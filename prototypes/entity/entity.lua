@@ -10,7 +10,7 @@ data:extend({
 			"logistic-science-pack",
 			"cerys-science-pack",
 			"utility-science-pack",
-		},
+		}, -- Also changed in data-final-fixes
 		collision_box = { { -2.15, -1.75 }, { 2.15, 1.75 } },
 		selection_box = { { -2.5, -2 }, { 2.5, 2 } },
 		minable = { mining_time = 0.2, result = "cerys-lab" },

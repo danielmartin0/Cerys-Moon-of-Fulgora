@@ -1,7 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.10
+Date: 2024-12-24
+  Modding:
+    - Lab compatibility with Tenebris.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.9
+Date: 2024-12-24
+  Modding:
+    - Added compatibility for Factorio HD Age: Space Age Terrain Aquilo.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.8
+Date: 2024-12-24
+  Modding:
+    - Mod compatibility tweaks.
+---------------------------------------------------------------------------------------------------
 Version: 0.3.7
-Date: ????
+Date: 2024-12-24
   Changes:
+    - Cerys cargo drops tech now requires utility science.
+    - Advanced plutonium technology tech no longer requires utility science.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.6
 Date: 2024-12-24

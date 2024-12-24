@@ -1,11 +1,108 @@
 local merge = require("lib").merge
 local common = require("common")
 local tile_collision_masks = require("__base__/prototypes/tile/tile-collision-masks")
--- local tile_graphics = require("__base__/prototypes/tile/tile-graphics")
+local tile_graphics = require("__base__/prototypes/tile/tile-graphics")
+local tile_spritesheet_layout = tile_graphics.tile_spritesheet_layout
+
+local original_ice_transitions = {
+	{
+		to_tiles = water_tile_type_names,
+		transition_group = water_transition_group_id,
+
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/ice-2.png",
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			inner_corner_count = 8,
+			outer_corner_count = 8,
+			side_count = 8,
+			u_transition_count = 2,
+			o_transition_count = 1,
+		},
+	},
+	{
+		to_tiles = lava_tile_type_names,
+		transition_group = lava_transition_group_id,
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
+		-- this added the lightmap spritesheet
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-lightmap.png" },
+		-- this added the lightmap spritesheet
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			inner_corner_count = 8,
+			outer_corner_count = 8,
+			side_count = 8,
+			u_transition_count = 2,
+			o_transition_count = 1,
+		},
+	},
+	{
+		to_tiles = { "out-of-map", "empty-space", "oil-ocean-shallow" },
+		transition_group = out_of_map_transition_group_id,
+
+		background_layer_offset = 1,
+		background_layer_group = "zero",
+		offset_background_layer_by_tile_layer = true,
+
+		spritesheet = "__space-age__/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png",
+		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
+		overlay_enabled = false,
+	},
+}
+
+local original_ice_transitions_between_transitions = {
+	{
+		transition_group1 = default_transition_group_id,
+		transition_group2 = water_transition_group_id,
+
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/ice-transition.png",
+		layout = tile_spritesheet_layout.transition_3_3_3_1_0,
+		background_enabled = false,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-to-land-mask.png",
+			o_transition_count = 0,
+		},
+		water_patch = {
+			filename = "__space-age__/graphics/terrain/water-transitions/ice-patch.png",
+			scale = 0.5,
+			width = 64,
+			height = 64,
+		},
+	},
+	{
+		transition_group1 = default_transition_group_id,
+		transition_group2 = out_of_map_transition_group_id,
+
+		background_layer_offset = 1,
+		background_layer_group = "zero",
+		offset_background_layer_by_tile_layer = true,
+
+		spritesheet = "__base__/graphics/terrain/out-of-map-transition/dirt-out-of-map-transition.png",
+		layout = tile_spritesheet_layout.transition_3_3_3_1_0,
+		overlay_enabled = false,
+	},
+	{
+		transition_group1 = water_transition_group_id,
+		transition_group2 = out_of_map_transition_group_id,
+
+		background_layer_offset = 1,
+		background_layer_group = "zero",
+		offset_background_layer_by_tile_layer = true,
+
+		spritesheet = "__base__/graphics/terrain/out-of-map-transition/dry-dirt-shore-out-of-map-transition.png",
+		layout = tile_spritesheet_layout.transition_3_3_3_1_0,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-to-out-of-map-mask.png",
+			u_transition_count = 0,
+			o_transition_count = 0,
+		},
+	},
+}
 
 --== Transitions ==--
 
-local water_ice_transitions = util.table.deepcopy(data.raw.tile["ice-rough"].transitions)
+local water_ice_transitions = original_ice_transitions
 water_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2.png"
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles-freezing")
@@ -13,8 +110,7 @@ for _, tile_name in pairs(common.ROCK_TILES) do
 	table.insert(water_ice_transitions[1].to_tiles, tile_name)
 end
 
-local water_ice_transitions_between_transitions =
-	util.table.deepcopy(data.raw.tile["ice-rough"].transitions_between_transitions)
+local water_ice_transitions_between_transitions = original_ice_transitions_between_transitions
 water_ice_transitions_between_transitions[1].spritesheet =
 	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
 water_ice_transitions_between_transitions[1].water_patch.filename =
