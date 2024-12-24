@@ -7,7 +7,6 @@ local ice = require("scripts.ice")
 local common = require("common")
 local cargo_pods = require("scripts.cargo-pods")
 local cryogenic_plant = require("scripts.cryogenic-plant")
-local init = require("scripts.init")
 
 local Private = {}
 
@@ -80,14 +79,9 @@ script.on_event(defines.events.on_tick, function(event)
 	end
 
 	if not storage.cerys then
-		surface = init.initialize_cerys(surface)
-	end
-
-	if tick % 60 == 0 then
-		if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
-			-- Something has gone wrong.
-			init.create_reactor(surface)
-		end
+		-- Something has gone wrong, so delete the surface to avoid play on a broken world.
+		game.delete_surface("cerys")
+		return
 	end
 
 	Private.tick_1_update_background_renderings()

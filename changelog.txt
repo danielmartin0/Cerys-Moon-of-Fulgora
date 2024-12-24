@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.15
+Date: ????
+  Bugfixes:
+    - Workaround implemented for base game bug with '/cheat cerys' in which chunks were generated twice, leading to non-ideal dry ice configuration.
+  Modding:
+    - For Any Planet Start, centrifuge recipe unlock removed from Cerys discovery as the player can obtain these from nuclear scrap.
+  Info:
+    - In-game notice added to users who generated Cerys during the brief window in which reactor initialization was broken.
+---------------------------------------------------------------------------------------------------
 Version: 0.3.14
 Date: 2024-12-24
   Changes:

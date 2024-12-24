@@ -4,15 +4,13 @@ local terrain = require("terrain")
 local Private = {}
 local Public = {}
 
-function Public.initialize_cerys(surface)
-	if storage.cerys then
-		if surface and surface.valid then
-			-- Avoid double initialization.
-			return
-		else
-			-- We're reinitializing after a surface deletion.
-			storage.cerys = {}
-		end
+function Public.initialize_cerys(surface) -- Must run before terrain generation
+	if storage.cerys and surface and surface.valid then
+		return
+	end
+
+	if storage.cerys and not (surface and surface.valid) then
+		storage.cerys = nil
 	end
 
 	if not surface then
@@ -27,10 +25,7 @@ function Public.initialize_cerys(surface)
 	surface.min_brightness = 0.2
 	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
 
-	surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
-
-	Private.init_cerys_storage()
-
+	Private.ensure_cerys_storage()
 	Public.create_reactor(surface)
 
 	return surface
@@ -44,16 +39,6 @@ function Public.create_reactor(surface)
 		position = common.REACTOR_POSITION,
 		force = "player",
 	})
-
-	if not (e and e.valid) then
-		local p2 = surface.find_non_colliding_position("character", common.REACTOR_POSITION, 35, 1)
-
-		e = surface.create_entity({
-			name = name,
-			position = p2,
-			force = "player",
-		})
-	end
 
 	e.minable_flag = false
 	e.destructible = false
@@ -91,6 +76,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 	end
 
 	if not storage.cerys then
+		-- Hold on tiger. You must have generated the surface in a non-standard way. Let's run this first:
 		Public.initialize_cerys(surface)
 	end
 
@@ -98,7 +84,24 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 end)
 
 script.on_configuration_changed(function()
-	Private.init_cerys_storage()
+	local surface = game.surfaces["cerys"]
+
+	if not (surface and surface.valid) then
+		return
+	end
+
+	Private.ensure_cerys_storage()
+
+	if
+		storage.cerys
+		and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+	then
+		if not storage.cerys.mod_version then
+			game.print(
+				"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
+			)
+		end
+	end
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
@@ -113,8 +116,8 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["recycling"].research_recursive()
 		player.force.technologies["bulk-inserter"].research_recursive()
 		player.force.technologies["railway"].research_recursive()
-		player.force.technologies["uranium-ammo"].research_recursive() -- should we force this tech?
-		player.force.technologies["solar-energy"].research_recursive() -- should we force this tech?
+		player.force.technologies["uranium-ammo"].research_recursive()
+		player.force.technologies["solar-energy"].research_recursive() -- if not for energy shield prerequisite, this tech might need to be a prerequisite
 		player.force.technologies["steel-axe"].research_recursive()
 		player.force.technologies["advanced-combinators"].research_recursive()
 		player.force.technologies["electric-mining-drill"].research_recursive()
@@ -141,8 +144,6 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then
-			-- game.print("teleporting to cerys")
-
 			local p = { x = 0, y = 0 }
 			local p2 = surface.find_non_colliding_position("character", { x = 0, y = 0 }, 20, 0.5)
 			player.teleport(p2 or p, surface)
@@ -174,9 +175,20 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 	end
 end)
 
-function Private.init_cerys_storage()
+script.on_event(defines.events.on_player_changed_surface, function(event)
+	local player = game.players[event.player_index]
+	local new_surface = player.surface
+
+	if new_surface.name == "cerys" then
+		new_surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+	end
+end)
+
+function Private.ensure_cerys_storage()
 	if not storage.cerys then
-		storage.cerys = {}
+		storage.cerys = {
+			mod_version = script.active_mods["Cerys-Moon-of-Fulgora"],
+		}
 	end
 
 	if not storage.cerys.charging_rods then

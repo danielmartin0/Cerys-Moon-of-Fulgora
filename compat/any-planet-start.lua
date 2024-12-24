@@ -26,9 +26,4 @@ if mods["any-planet-start"] then
 		type = "unlock-recipe",
 		recipe = "heat-exchanger",
 	})
-
-	table.insert(discovery_tech.effects, {
-		type = "unlock-recipe",
-		recipe = "centrifuge",
-	})
 end
