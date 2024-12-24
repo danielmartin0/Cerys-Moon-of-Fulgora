@@ -22,11 +22,11 @@ You glimpse frozen structures lodged throughout the surface. Though made of new 
 - It is said that due to the solar wind, cargo pods cannot drop resources onto Cerys (without researching a specific technology.)
 - There are no changes to vanilla content, so it is simple to include this mod in existing saves.
 - Ultimately, the moon is a set of puzzles and secrets that long-time Factorio players will enjoy.
-- More than one surprise...
+- More than a few surprises...
 
 ### Reviews
 
-- "one of the best mods ever made. every recipe has a purpose. does not waste your time" — notnotmelon, creator of [Maraxsis](https://mods.factorio.com/mod/maraxsis)
+- _"one of the best mods ever made. every recipe has a purpose. does not waste your time."_ — notnotmelon, creator of [Maraxsis](https://mods.factorio.com/mod/maraxsis)
 
 ![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing.png)
 

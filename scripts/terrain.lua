@@ -74,8 +74,8 @@ local tower_positions = hex_grid_positions({
 
 -- TODO: Switch cryo plant grid to use surface co-ordinates
 local cryo_plant_positions = hex_grid_positions({
-	seed = 3200,
-	grid_scale = 2.1,
+	seed = 4100,
+	grid_scale = 2.2,
 	avoid_final_region = false,
 	noise_size = 17,
 	noise_scale = 100,
