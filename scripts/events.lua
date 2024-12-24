@@ -7,6 +7,7 @@ local ice = require("scripts.ice")
 local common = require("common")
 local cargo_pods = require("scripts.cargo-pods")
 local cryogenic_plant = require("scripts.cryogenic-plant")
+local init = require("scripts.init")
 
 local Private = {}
 
@@ -76,6 +77,10 @@ script.on_event(defines.events.on_tick, function(event)
 	local surface = game.surfaces["cerys"]
 	if not (surface and surface.valid) then
 		return
+	end
+
+	if not storage.cerys then
+		init.initialize_cerys(surface)
 	end
 
 	Private.tick_1_update_background_renderings()

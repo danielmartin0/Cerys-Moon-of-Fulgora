@@ -1,4 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.4
+Date: 2024-12-25
+  Info:
+    - Radiative tower range now listed in localized description.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.3
+Date: 2024-12-24
+  Bugfixes:
+    - Support for '/c game.planets.cerys.create_surface()'.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.2
+Date: 2024-12-24
+  Features:
+    - Support for '/cheat cerys'.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.1
+Date: 2024-12-23
+  Bugfixes:
+    - Fixed uploading the wrong version of the mod. (Teaches me for doing changelog sheningans to construct 0.3.0.)
+---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2024-12-23
   Features:

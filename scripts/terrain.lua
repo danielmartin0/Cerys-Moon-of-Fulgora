@@ -91,13 +91,7 @@ local crusher_positions = hex_grid_positions({
 
 --== Terrain & entity generation ==--
 
-script.on_event(defines.events.on_chunk_generated, function(event)
-	local surface = event.surface
-
-	if not (surface and surface.valid and surface.name == "cerys") then
-		return
-	end
-
+function Public.on_cerys_chunk_generated(event, surface)
 	local area = event.area
 	local tiles = {}
 	local entities = {}
@@ -154,7 +148,7 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 	surface.create_decoratives({ check_collision = true, decoratives = decoratives })
 
 	Private.create_lithium_brine(surface, area)
-end)
+end
 
 function Private.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
 	local new_tile = nil

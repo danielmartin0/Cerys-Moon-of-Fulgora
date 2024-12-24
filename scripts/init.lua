@@ -1,29 +1,14 @@
 local common = require("common")
 local repair = require("repair")
+local terrain = require("terrain")
 local Private = {}
 local Public = {}
 
-script.on_init(function()
-	if common.DEBUG_MOON_START then
-		local surface = game.planets["cerys"].create_surface()
-
-		Private.on_cerys_created(surface)
-	end
-end)
-
-script.on_event(defines.events.on_surface_created, function(event)
-	local surface = event.surface
-
-	if not (surface and surface.valid and surface.name == "cerys") then
+function Public.initialize_cerys(surface)
+	if storage.cerys then
 		return
 	end
 
-	surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
-
-	Private.on_cerys_created(surface)
-end)
-
-function Private.on_cerys_created(surface)
 	surface.min_brightness = 0.2
 	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
 
@@ -50,6 +35,40 @@ function Private.on_cerys_created(surface)
 		creation_tick = game.tick,
 	}
 end
+
+script.on_init(function()
+	if common.DEBUG_MOON_START then
+		local surface = game.planets["cerys"].create_surface()
+
+		Public.initialize_cerys(surface)
+	end
+end)
+
+script.on_event(defines.events.on_surface_created, function(event)
+	local surface = event.surface
+
+	if not (surface and surface.valid and surface.name == "cerys") then
+		return
+	end
+
+	surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+
+	Public.initialize_cerys(surface)
+end)
+
+script.on_event(defines.events.on_chunk_generated, function(event)
+	local surface = event.surface
+
+	if not (surface and surface.valid and surface.name == "cerys") then
+		return
+	end
+
+	if not storage.cerys then
+		Public.initialize_cerys(surface)
+	end
+
+	terrain.on_cerys_chunk_generated(event, surface)
+end)
 
 script.on_configuration_changed(function()
 	Private.init_cerys_storage()
