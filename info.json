@@ -1,6 +1,6 @@
 {
   "name": "Cerys-Moon-of-Fulgora",
-  "version": "0.3.10",
+  "version": "0.3.13",
   "factorio_version": "2.0",
   "title": "Cerys, Moon of Fulgora",
   "author": "thesixthroc",
@@ -8,7 +8,7 @@
   "description": "Cerys is an airless moon of Fulgora full of puzzles and secrets. Ancient wrecks lodged in the ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is fully compatible with existing saves.",
   "homepage": "https://discord.gg/VuVhYUBbWE",
   "dependencies": [
-    "base >= 2.0.0",
+    "base >= 2.0.28",
     "space-age >= 2.0.0",
     "Surfaces-Have-Temperature"
   ]

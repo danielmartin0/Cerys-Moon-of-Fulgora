@@ -23,10 +23,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 
 	for _, resistance in pairs(e.resistances) do
 		if resistance.type == "laser" then
-			resistance.percent = 90 -- due to PLDs
-		end
-		if resistance.type == "laser" then
-			resistance.percent = 90 -- due to PLDs
+			resistance.percent = 100
 		end
 	end
 
