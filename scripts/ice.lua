@@ -1,4 +1,3 @@
-local Private = {}
 local Public = {}
 
 local TILE_TRANSITIONS = {
@@ -31,14 +30,14 @@ function Public.tick_ice(surface)
 		name = transition_tile_names,
 	})
 
-	local tiles_to_set = Private.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
+	local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
 
 	if #tiles_to_set > 0 then
 		surface.set_tiles(tiles_to_set)
 	end
 end
 
-function Private.process_transitions(surface, transitioning_tiles, interval)
+function Public.process_transitions(surface, transitioning_tiles, interval)
 	local tiles_to_set = {}
 
 	for _, tile in pairs(transitioning_tiles) do
@@ -61,8 +60,8 @@ function Private.process_transitions(surface, transitioning_tiles, interval)
 				}
 			end
 
-			if Private.TILE_TRANSITION_EFFECTS[tile.name] then
-				Private.TILE_TRANSITION_EFFECTS[tile.name](surface, pos)
+			if Public.TILE_TRANSITION_EFFECTS[tile.name] then
+				Public.TILE_TRANSITION_EFFECTS[tile.name](surface, pos)
 			end
 
 			storage.transitioning_tiles[surface.index][pos.x][pos.y] = nil
@@ -103,7 +102,7 @@ local function melt_dry_ice(surface, pos)
 	})
 end
 
-Private.TILE_TRANSITION_EFFECTS = {
+Public.TILE_TRANSITION_EFFECTS = {
 	["cerys-dry-ice-on-water-melting"] = function(surface, pos)
 		melt_dry_ice(surface, pos)
 	end,

@@ -2,7 +2,6 @@ local repair = require("scripts.repair")
 local common = require("common")
 
 local Public = {}
-local Private = {}
 
 Public.REACTOR_TICK_INTERVAL = 3
 
@@ -48,22 +47,22 @@ function Public.tick_reactor(surface)
 			reactor.stage = repair.REACTOR_STAGE_ENUM.needs_excavation
 		end
 	elseif reactor.stage == repair.REACTOR_STAGE_ENUM.active then
-		Private.drain_reactor(e)
+		Public.drain_reactor(e)
 
 		if e.burner.currently_burning then
-			Private.create_radiation(surface, e)
+			Public.create_radiation(surface, e)
 		end
 	end
 end
 
-function Private.drain_reactor(reactor_entity)
+function Public.drain_reactor(reactor_entity)
 	if reactor_entity.temperature > TEMPERATURE_ZERO then
 		reactor_entity.temperature = reactor_entity.temperature
 			- TEMPERATURE_LOSS_RATE * (Public.REACTOR_TICK_INTERVAL / 60)
 	end
 end
 
-function Private.create_radiation(surface, reactor_entity)
+function Public.create_radiation(surface, reactor_entity)
 	local player_looking_at_surface = false
 	for _, player in pairs(game.connected_players) do
 		if player.valid and player.surface and player.surface.valid and player.surface.index == surface.index then

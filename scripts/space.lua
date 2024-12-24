@@ -1,7 +1,6 @@
 local common = require("common")
 
 local Public = {}
-local Private = {}
 
 local SOLAR_WIND_SPAWN_CHANCE_PER_TICK = 1 / 24
 
@@ -70,13 +69,13 @@ function Public.tick_2_try_spawn_solar_wind_particle(surface)
 		table.insert(storage.cerys.solar_wind_particles, {
 			entity = e,
 			age = 0,
-			velocity = Private.initial_solar_wind_velocity(),
+			velocity = Public.initial_solar_wind_velocity(),
 			position = { x = -(common.MOON_RADIUS + 150), y = y },
 		})
 	end
 end
 
-function Private.initial_solar_wind_velocity()
+function Public.initial_solar_wind_velocity()
 	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1
 	local y_velocity = 0.3 * (math.random() - 0.5) ^ 3
 
@@ -227,7 +226,7 @@ function Public.tick_10_solar_wind_collisions(surface)
 				if e and e.valid then
 					local inv = e.get_main_inventory()
 					if inv and inv.valid then
-						local irradiated = Private.irradiate_inventory(inv)
+						local irradiated = Public.irradiate_inventory(inv)
 						if irradiated then
 							particle.damage_tick = game.tick
 
@@ -267,7 +266,7 @@ function Public.tick_10_solar_wind_collisions(surface)
 				if e and e.valid then
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
-						local irradiated = Private.irradiate_inventory(inv)
+						local irradiated = Public.irradiate_inventory(inv)
 						if irradiated then
 							particle.damage_tick = game.tick
 
@@ -341,7 +340,7 @@ function Public.particle_is_in_cooldown(particle)
 	return false
 end
 
-function Private.irradiate_inventory(inv)
+function Public.irradiate_inventory(inv)
 	for _, quality in pairs(prototypes.quality) do
 		local name = quality.name
 		local count = inv.get_item_count({ name = "uranium-238", quality = name })
@@ -394,7 +393,7 @@ script.on_event(defines.events.on_entity_died, function(event)
 
 	for _ = 1, drop_count do
 		-- TODO: Support modded belts
-		local belts = surface.find_entities_filtered({ name = Private.belt_names, position = entity.position })
+		local belts = surface.find_entities_filtered({ name = Public.belt_names, position = entity.position })
 
 		local placed = false
 		if #belts > 0 and belts[1].valid then
@@ -431,6 +430,6 @@ script.on_event(defines.events.on_entity_died, function(event)
 	end
 end)
 
-Private.belt_names = { "transport-belt", "fast-transport-belt", "express-transport-belt", "turbo-transport-belt" }
+Public.belt_names = { "transport-belt", "fast-transport-belt", "express-transport-belt", "turbo-transport-belt" }
 
 return Public

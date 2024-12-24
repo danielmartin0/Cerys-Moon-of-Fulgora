@@ -4,7 +4,6 @@ local find = require("lib").find
 local repair = require("scripts.repair")
 local common = require("common")
 
-local Private = {}
 local Public = {}
 
 local function final_region(x, y)
@@ -109,13 +108,13 @@ function Public.on_cerys_chunk_generated(event, surface)
 				local is_surface = existing_tile_name ~= "empty-space"
 
 				if is_surface then
-					Private.terrain(x, y, seed, existing_tile_name, entities, tiles, decoratives, hidden_tiles)
+					Public.terrain(x, y, seed, existing_tile_name, entities, tiles, decoratives, hidden_tiles)
 				end
 			end
 		end
 	end
 
-	Private.create_towers(surface, area)
+	Public.create_towers(surface, area)
 
 	surface.set_tiles(tiles, true)
 
@@ -125,8 +124,8 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
-	Private.create_cryo_plants(surface, area)
-	Private.create_crushers(surface, area)
+	Public.create_cryo_plants(surface, area)
+	Public.create_crushers(surface, area)
 
 	for _, entity_data in ipairs(entities) do
 		local p = surface.find_non_colliding_position(entity_data.name, entity_data.position, 14, 2)
@@ -147,10 +146,10 @@ function Public.on_cerys_chunk_generated(event, surface)
 
 	surface.create_decoratives({ check_collision = true, decoratives = decoratives })
 
-	Private.create_lithium_brine(surface, area)
+	Public.create_lithium_brine(surface, area)
 end
 
-function Private.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
+function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
 	local new_tile = nil
 
 	local is_rock = find(common.ROCK_TILES, existing_tile)
@@ -233,7 +232,7 @@ function Private.terrain(x, y, seed, existing_tile, entities, tiles, decoratives
 	end
 end
 
-function Private.create_towers(surface, area)
+function Public.create_towers(surface, area)
 	for _, p in ipairs(tower_positions) do
 		if
 			p.x >= area.left_top.x
@@ -307,7 +306,7 @@ function Private.create_towers(surface, area)
 	end
 end
 
-function Private.create_cryo_plants(surface, area)
+function Public.create_cryo_plants(surface, area)
 	for _, p in ipairs(cryo_plant_positions) do
 		if
 			p.x >= area.left_top.x
@@ -362,7 +361,7 @@ function Private.create_cryo_plants(surface, area)
 	end
 end
 
-function Private.create_crushers(surface, area)
+function Public.create_crushers(surface, area)
 	for _, p in ipairs(crusher_positions) do
 		if
 			p.x >= area.left_top.x
@@ -413,7 +412,7 @@ function Private.create_crushers(surface, area)
 	end
 end
 
-function Private.create_lithium_brine(surface, area)
+function Public.create_lithium_brine(surface, area)
 	if
 		not (
 			common.LITHIUM_POSITION.x >= area.left_top.x

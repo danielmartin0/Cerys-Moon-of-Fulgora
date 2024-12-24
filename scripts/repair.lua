@@ -56,6 +56,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 					})
 
 					if e2 and e2.valid then
+						e2.minable_flag = false
 						e2.destructible = false
 
 						if e and e.valid then

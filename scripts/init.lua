@@ -1,7 +1,7 @@
 local common = require("common")
 local repair = require("repair")
 local terrain = require("terrain")
-local Private = {}
+
 local Public = {}
 
 function Public.initialize_cerys(surface) -- Must run before terrain generation
@@ -25,7 +25,7 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	surface.min_brightness = 0.2
 	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
 
-	Private.ensure_cerys_storage_and_tables()
+	Public.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)
 
 	return surface
@@ -81,32 +81,6 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 	end
 
 	terrain.on_cerys_chunk_generated(event, surface)
-end)
-
-script.on_configuration_changed(function()
-	local surface = game.surfaces["cerys"]
-
-	if not (surface and surface.valid) then
-		return
-	end
-
-	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
-		if
-			storage.cerys
-			and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
-		then
-			if not storage.cerys.initialization_version then
-				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
-				)
-			end
-		end
-
-		-- Add any missing storage tables:
-		Private.ensure_cerys_storage_and_tables()
-
-		storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
-	end
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
@@ -180,16 +154,7 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_player_changed_surface, function(event)
-	local player = game.players[event.player_index]
-	local new_surface = player.surface
-
-	if new_surface.name == "cerys" then
-		new_surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
-	end
-end)
-
-function Private.ensure_cerys_storage_and_tables()
+function Public.ensure_cerys_storage_and_tables()
 	if not storage.cerys then
 		storage.cerys = {
 			initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"],

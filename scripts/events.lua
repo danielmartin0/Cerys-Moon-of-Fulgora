@@ -7,8 +7,37 @@ local ice = require("scripts.ice")
 local common = require("common")
 local cargo_pods = require("scripts.cargo-pods")
 local cryogenic_plant = require("scripts.cryogenic-plant")
+local background = require("scripts.background")
+local migrations = require("scripts.migrations")
 
-local Private = {}
+-- Highest-level file besides control.lua.
+
+script.on_configuration_changed(function()
+	local surface = game.surfaces["cerys"]
+
+	if not (surface and surface.valid) then
+		return
+	end
+
+	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
+		if
+			storage.cerys
+			and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+		then
+			if not storage.cerys.initialization_version then
+				game.print(
+					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
+				)
+			end
+		end
+
+		migrations.run_migrations()
+
+		storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
+	end
+
+	-- TODO: storage.cerys.last_seen_version
+end)
 
 script.on_event({
 	defines.events.on_built_entity,
@@ -70,6 +99,15 @@ script.on_event(defines.events.on_research_finished, function(event)
 	end
 end)
 
+script.on_event(defines.events.on_player_changed_surface, function(event)
+	local player = game.players[event.player_index]
+	local new_surface = player.surface
+
+	if new_surface.name == "cerys" then
+		new_surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+	end
+end)
+
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
@@ -84,7 +122,7 @@ script.on_event(defines.events.on_tick, function(event)
 		return
 	end
 
-	Private.tick_1_update_background_renderings()
+	background.tick_1_update_background_renderings()
 	space.tick_1_move_solar_wind()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	radiative_towers.tick_1_move_radiative_towers(surface)
@@ -173,46 +211,3 @@ script.on_event(defines.events.on_tick, function(event)
 		rods.tick_520_cleanup_charging_rods()
 	end
 end)
-
-local PLANET_OFFSET = { x = 50, y = -30 }
-local PLANET_PARALLAX = 0.35
-
-function Private.tick_1_update_background_renderings()
-	for _, player in pairs(game.connected_players) do
-		if not (player and player.valid) then
-			storage.background_renderings[player.index] = nil
-		else
-			local on_cerys = player.surface.name == "cerys"
-			local r = storage.background_renderings[player.index]
-
-			if on_cerys then
-				if not r then
-					storage.background_renderings[player.index] = rendering.draw_sprite({
-						sprite = "fulgora-background",
-						target = { x = player.position.x + PLANET_OFFSET.x, y = player.position.y + PLANET_OFFSET.y },
-						surface = player.surface,
-						render_layer = "zero",
-						players = { player.index },
-					})
-
-					r = storage.background_renderings[player.index]
-				end
-
-				if r.valid then
-					r.target = {
-						x = player.position.x * PLANET_PARALLAX + PLANET_OFFSET.x,
-						y = player.position.y * PLANET_PARALLAX + PLANET_OFFSET.y,
-					}
-				else
-					r.destroy()
-					storage.background_renderings[player.index] = nil
-				end
-			elseif r then
-				if r.valid then
-					r.destroy()
-				end
-				storage.background_renderings[player.index] = nil
-			end
-		end
-	end
-end
