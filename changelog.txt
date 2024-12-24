@@ -1,15 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.3.15
-Date: ????
+Version: 0.3.14
+Date: 2024-12-24
   Changes:
     - Removed setting to disable the necessity of the cargo drops technology.
     - Added compatibility with Any Planet Start. (Starting on a planet works, but you cannot start on Cerys yet.)
     - Dropped research cost of gas venting technology.
----------------------------------------------------------------------------------------------------
-Version: 0.3.14
-Date: 2024-12-24
-  Changes:
-    - Fixed crash related to 5Dim compat.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.13
 Date: 2024-12-24
