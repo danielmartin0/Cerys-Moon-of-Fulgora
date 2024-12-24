@@ -25,7 +25,7 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	surface.min_brightness = 0.2
 	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
 
-	Private.ensure_cerys_storage()
+	Private.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)
 
 	return surface
@@ -90,17 +90,22 @@ script.on_configuration_changed(function()
 		return
 	end
 
-	Private.ensure_cerys_storage()
-
-	if
-		storage.cerys
-		and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
-	then
-		if not storage.cerys.mod_version then
-			game.print(
-				"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
-			)
+	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
+		if
+			storage.cerys
+			and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+		then
+			if not storage.cerys.initialization_version then
+				game.print(
+					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
+				)
+			end
 		end
+
+		-- Add any missing storage tables:
+		Private.ensure_cerys_storage_and_tables()
+
+		storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 	end
 end)
 
@@ -184,10 +189,10 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	end
 end)
 
-function Private.ensure_cerys_storage()
+function Private.ensure_cerys_storage_and_tables()
 	if not storage.cerys then
 		storage.cerys = {
-			mod_version = script.active_mods["Cerys-Moon-of-Fulgora"],
+			initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"],
 		}
 	end
 
