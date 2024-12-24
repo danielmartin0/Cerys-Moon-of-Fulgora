@@ -26,7 +26,8 @@ There are no changes to vanilla content, so it is simple to include this mod in 
 ## Notes
 
 - Rewards to the rest of the game are venting and flaring towers, plus plutonium rocket fuel, ammo and portable reactor. These rewards are intentionally modest, as Cerys is a mostly self-contained experience.
-- I didn't set out to make an entire 'planet' originally, but this spun out of a possible revamp of Fulgora for [Space Age: Hardcore Mode](https://mods.factorio.com/mod/Space-Age-Hardcore-Mode).
+  - The mod contains a 2.0 port of [GotLag's Flare Stack](https://mods.factorio.com/mod/Flare%20Stack) which is higher-quality than those we could find. This is planned to be extracted into a separate mod.
+- We didn't originally set out to make a full 'planet'. This mod spun out of a thesixthroc's explorations to revamp Fulgora for [Space Age: Hardcore Mode](https://mods.factorio.com/mod/Space-Age-Hardcore-Mode).
 - I have an interest in professional game design, so feel free to reach out for potential collaborations. I also enjoy talking to players, so please feel free to reach out on Discord.
 - If you can't heat anything up, take the iron stick out.
 
