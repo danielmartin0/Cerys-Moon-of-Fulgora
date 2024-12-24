@@ -1,11 +1,5 @@
 data:extend({
 	{
-		type = "bool-setting",
-		name = "cerys-prevent-cargo-drops-without-technology",
-		setting_type = "startup",
-		default_value = true,
-	},
-	{
 		type = "double-setting",
 		name = "cerys-fulgoran-reactor-repair-cost-multiplier",
 		setting_type = "runtime-global",

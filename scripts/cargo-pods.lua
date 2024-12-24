@@ -3,10 +3,6 @@ local Public = {}
 local warn_color = { r = 255, g = 90, b = 54 }
 
 function Public.tick_10_check_cargo_pods()
-	if not settings.startup["cerys-prevent-cargo-drops-without-technology"].value then
-		return
-	end
-
 	if not storage.cerys_cargo_pods_seen_on_platforms then
 		storage.cerys_cargo_pods_seen_on_platforms = {}
 	end

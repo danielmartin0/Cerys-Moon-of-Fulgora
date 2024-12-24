@@ -1,6 +1,7 @@
 local collision_mask_util = require("collision-mask-util")
 
 data.raw.lab["cerys-lab"].next_upgrade = nil
+data.raw.reactor["cerys-fulgoran-reactor"].next_upgrade = nil
 
 for prototype in pairs(defines.prototypes.entity) do
 	for _, entity in pairs(data.raw[prototype] or {}) do

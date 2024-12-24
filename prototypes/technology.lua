@@ -107,7 +107,7 @@ data:extend({
 		icon_size = 256,
 	}),
 	cerys_tech({
-		science_count = 50,
+		science_count = 30,
 		name = "cerys-gas-venting",
 		effects = {
 			{
@@ -271,32 +271,30 @@ data:extend({
 	},
 })
 
-if settings.startup["cerys-prevent-cargo-drops-without-technology"].value then
-	data:extend({
-		lib.cerys_tech({
-			name = "cerys-cargo-drops",
-			effects = {
-				{
-					type = "nothing",
-					effect_description = { "cerys.cargo-drops-tech-description" },
-				},
+data:extend({
+	lib.cerys_tech({
+		name = "cerys-cargo-drops",
+		effects = {
+			{
+				type = "nothing",
+				effect_description = { "cerys.cargo-drops-tech-description" },
 			},
-			prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
-			unit = {
-				count = 5000,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerys-science-pack", 1 },
-					{ "utility-science-pack", 1 },
-				},
-				time = 60,
+		},
+		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
+		unit = {
+			count = 5000,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+				{ "utility-science-pack", 1 },
 			},
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys-cargo-drops.png",
-			icon_size = 520,
-		}),
-	})
-end
+			time = 60,
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys-cargo-drops.png",
+		icon_size = 520,
+	}),
+})
 
 local discovery_tech = {
 	type = "technology",

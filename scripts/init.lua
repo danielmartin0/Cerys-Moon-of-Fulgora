@@ -6,14 +6,37 @@ local Public = {}
 
 function Public.initialize_cerys(surface)
 	if storage.cerys then
-		return
+		if surface and surface.valid then
+			-- Avoid double initialization.
+			return
+		else
+			-- We're reinitializing after a surface deletion.
+			storage.cerys = {}
+		end
+	end
+
+	if not surface then
+		surface = game.planets["cerys"].create_surface()
+	end
+
+	if not surface.valid then
+		game.delete_surface("cerys")
+		surface = game.planets["cerys"].create_surface()
 	end
 
 	surface.min_brightness = 0.2
 	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
 
+	surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+
 	Private.init_cerys_storage()
 
+	Public.create_reactor(surface)
+
+	return surface
+end
+
+function Public.create_reactor(surface)
 	local name = common.DEBUG_REACTOR_START and "cerys-fulgoran-reactor" or "cerys-fulgoran-reactor-wreck-frozen"
 
 	local e = surface.create_entity({
@@ -22,7 +45,15 @@ function Public.initialize_cerys(surface)
 		force = "player",
 	})
 
-	-- if e and e.valid then end
+	if not (e and e.valid) then
+		local p2 = surface.find_non_colliding_position("character", common.REACTOR_POSITION, 35, 1)
+
+		e = surface.create_entity({
+			name = name,
+			position = p2,
+			force = "player",
+		})
+	end
 
 	e.minable_flag = false
 	e.destructible = false
@@ -38,9 +69,7 @@ end
 
 script.on_init(function()
 	if common.DEBUG_MOON_START then
-		local surface = game.planets["cerys"].create_surface()
-
-		Public.initialize_cerys(surface)
+		Public.initialize_cerys()
 	end
 end)
 
@@ -50,8 +79,6 @@ script.on_event(defines.events.on_surface_created, function(event)
 	if not (surface and surface.valid and surface.name == "cerys") then
 		return
 	end
-
-	surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 
 	Public.initialize_cerys(surface)
 end)
