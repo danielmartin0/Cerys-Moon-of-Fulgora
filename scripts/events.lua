@@ -40,6 +40,20 @@ script.on_configuration_changed(function()
 end)
 
 script.on_event({
+	defines.events.on_pre_surface_cleared,
+	defines.events.on_pre_surface_deleted,
+}, function(event)
+	local surface_index = event.surface_index
+	local surface = game.surfaces[surface_index]
+
+	if not (surface and surface.valid and surface.name == "cerys") then
+		return
+	end
+
+	storage.cerys = nil
+end)
+
+script.on_event({
 	defines.events.on_built_entity,
 	defines.events.on_robot_built_entity,
 	defines.events.on_space_platform_built_entity,

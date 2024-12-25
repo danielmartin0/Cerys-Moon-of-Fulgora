@@ -1,12 +1,18 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.20
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed Cerys failing to properly regenerate after being deleted.
 ---------------------------------------------------------------------------------------------------
-Version: 0.3.18
+Version: 0.3.19
 Date: ????
   Bugfixes:
     - Fixed issue in which cryogenic plant wrecks were minable after being defrosted. Fix applied to existing saves.
+---------------------------------------------------------------------------------------------------
+Version: 0.3.18
+Date: 2024-12-24
+  Info:
+    - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.17
 Date: 2024-12-24

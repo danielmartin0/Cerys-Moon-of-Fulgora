@@ -59,7 +59,8 @@ script.on_init(function()
 end)
 
 script.on_event(defines.events.on_surface_created, function(event)
-	local surface = event.surface
+	local surface_index = event.surface_index
+	local surface = game.surfaces[surface_index]
 
 	if not (surface and surface.valid and surface.name == "cerys") then
 		return
