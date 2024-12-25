@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.33
 Date: ????
+  Bugfixes:
+    - Fixed a bug in which scaffold could not be placed on the cleared reactor.
   Changes:
+    - Fluid inputs and outputs to nitrogen-rich mineral processing increased.
+    - Processing units required to upgrade Fulgoran cryogenic plants increased.
+    - Small tweaks to nuclear scrap recycling probabilities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.32
 Date: 2024-12-25

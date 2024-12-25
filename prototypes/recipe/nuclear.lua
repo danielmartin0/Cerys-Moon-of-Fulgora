@@ -42,17 +42,17 @@ data:extend({
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
-	["advanced-circuit"] = 12,
+	["advanced-circuit"] = 11,
 	["copper-cable"] = 8, -- initial power poles
-	["uranium-238"] = 5,
+	["uranium-238"] = 6,
 	["stone-brick"] = 2, -- some of the stone brick for furnaces comes from the reactor excavation
-	["pipe"] = 1.8, -- Pointedly small. This is also here to avoid getting softlocked if you clear all the ruins, and provide initial iron for iron production chain.
-	["holmium-plate"] = 0.6, -- 2.5 would be matching fulgora
-	["heat-pipe"] = 0.5,
-	["beacon"] = 0.3,
+	["pipe"] = 1.8, -- Avoid getting softlocked if you clear all the ruins, provide initial iron for iron production chain. Pointedly small.
+	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
+	["heat-pipe"] = 0.4,
+	["beacon"] = 0.25,
 	["steam-turbine"] = 0.25,
 	["centrifuge"] = 0.15,
-	["uranium-235"] = 5 * U235_RATIO,
+	["uranium-235"] = 6 * U235_RATIO,
 }
 
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do

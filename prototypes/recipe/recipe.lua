@@ -236,11 +236,11 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 10 }, -- 1 iron is needed to make 50 sulfuric acid. Therefore, less than 50 sulfuric acid should make 1 iron.
+			{ type = "fluid", name = "sulfuric-acid", amount = 20 }, -- 1 iron is needed to make 50 sulfuric acid. Therefore, less than 50 sulfuric acid should make 1 iron.
 		},
 		results = {
 			{ type = "item", name = "iron-ore", amount = 1 },
-			{ type = "fluid", name = "ammonia", amount = 10 },
+			{ type = "fluid", name = "ammonia", amount = 20 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",

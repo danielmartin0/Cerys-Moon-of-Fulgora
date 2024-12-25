@@ -227,7 +227,6 @@ function Public.reactor_excavation_check(surface, reactor)
 
 		if e2 and e2.valid then
 			e2.destructible = false
-			e2.minable_flag = false
 
 			if e and e.valid then
 				e.destroy()
