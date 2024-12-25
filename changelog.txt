@@ -2,6 +2,7 @@
 Version: 0.3.36
 Date: ????
   Changes:
+    - Increased volume of the explosion sound.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.35
 Date: 2024-12-25
