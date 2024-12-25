@@ -15,12 +15,7 @@ Public.REACTOR_STAGE_ENUM = {
 
 Public.CRYO_REPAIR_RECIPES_NEEDED = 200
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.REACTOR_REPAIR_RECIPES_NEEDED = 25
-
-Public.REACTOR_REPAIR_RECIPES_NEEDED = Public.REACTOR_REPAIR_RECIPES_NEEDED
-	* settings.global["cerys-fulgoran-reactor-repair-cost-multiplier"].value
-
-Public.REACTOR_REPAIR_RECIPES_NEEDED = math.ceil(Public.REACTOR_REPAIR_RECIPES_NEEDED)
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 25
 
 Public.register_ancient_cryogenic_plant = function(entity, frozen)
 	if not (entity and entity.valid) then
@@ -264,10 +259,19 @@ function Public.reactor_excavation_check(surface, reactor)
 	end
 end
 
+function Public.reactor_repair_recipes_needed()
+	local adjusted = Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED
+		* settings.global["cerys-fulgoran-reactor-repair-cost-multiplier"].value
+
+	return math.ceil(adjusted)
+end
+
 function Public.reactor_repair_check(surface, reactor)
 	local e = reactor.entity
 	local r1 = reactor.rendering1
 	local r2 = reactor.rendering2
+
+	local recipes_needed = Public.reactor_repair_recipes_needed()
 
 	local last_observed = reactor.repair_products_remaining_last_observed
 	if not last_observed then
@@ -283,7 +287,7 @@ function Public.reactor_repair_check(surface, reactor)
 		end
 	end
 
-	if e.products_finished >= Public.REACTOR_REPAIR_RECIPES_NEEDED then
+	if e.products_finished >= recipes_needed then
 		if r1 and r1.valid then
 			reactor.rendering1 = nil
 			r1.destroy()
@@ -376,20 +380,20 @@ function Public.reactor_repair_check(surface, reactor)
 			repair_count = 4 * (e.products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 		end
 
-		r1.color = chips_count >= Public.REACTOR_REPAIR_RECIPES_NEEDED and { 0, 255, 0 } or { 255, 200, 0 }
+		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 200, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
 			"[item=processing-unit,quality=rare]",
 			chips_count,
-			Public.REACTOR_REPAIR_RECIPES_NEEDED,
+			recipes_needed,
 		}
 
-		r2.color = repair_count >= Public.REACTOR_REPAIR_RECIPES_NEEDED * 4 and { 0, 255, 0 } or { 255, 200, 0 }
+		r2.color = repair_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 200, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
 			"[item=ancient-structure-repair-part,quality=rare]",
 			repair_count,
-			Public.REACTOR_REPAIR_RECIPES_NEEDED * 4,
+			recipes_needed * 4,
 		}
 	end
 end
