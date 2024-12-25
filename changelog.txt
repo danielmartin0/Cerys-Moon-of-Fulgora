@@ -2,6 +2,9 @@
 Version: 0.3.37
 Date: ????
   Changes:
+    - Methane ice input per output increased further.
+  Modding:
+    - Added compatibility for mods that add alternate character entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.36
 Date: 2024-12-25

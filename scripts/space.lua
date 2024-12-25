@@ -16,7 +16,7 @@ local COOLDOWN_DISTANCE = 1
 
 -- These shouldn't be crazy different such that the player doesn't get punished much if they don't figure this bit out:
 local CHANCE_MUTATE_BELT_URANIUM_IN_CHECK = 1 / 15000
-local CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK = 1 / 52000 -- shouldn't be greater than 1 over the max chest capacity for our algorithm to make sense
+local CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK = 1 / 45000 -- shouldn't be greater than 1 over the max chest capacity for our algorithm to make sense.
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.75,

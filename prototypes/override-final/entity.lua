@@ -47,7 +47,9 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 	end
 end
 
-table.insert(data.raw.character.character.crafting_categories, "crafting-or-fulgoran-cryogenics")
+for _, character in pairs(data.raw.character) do -- there are alt-skin mods with different characters
+	table.insert(character.crafting_categories, "crafting-or-fulgoran-cryogenics")
+end
 
 if data.raw.furnace["stone-furnace"] then
 	table.insert(data.raw.furnace["stone-furnace"].energy_source.fuel_categories, "chemical-or-radiative")

@@ -173,8 +173,8 @@ data:extend({
 			{ type = "item", name = "methane-ice", amount = 30 },
 		},
 		results = {
-			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 50 },
+			{ type = "fluid", name = "light-oil", amount = 30 },
+			{ type = "fluid", name = "methane", amount = 30 },
 		},
 		allow_productivity = true,
 		enabled = false,
