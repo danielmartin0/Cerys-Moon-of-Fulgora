@@ -22,7 +22,7 @@ data:extend({
 			},
 		},
 		energy_usage = "60kW",
-		researching_speed = 1.5,
+		researching_speed = 2,
 		frozen_patch = merge(data.raw.lab["lab"].frozen_patch, {
 			scale = 0.75,
 			shift = util.by_pixel(0, 4),

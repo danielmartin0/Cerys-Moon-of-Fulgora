@@ -13,14 +13,20 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "steel-plate", -- To build recycler
-				amount_max = math.ceil(collision_area * 0.45),
-				amount_min = math.ceil(collision_area * 0.55),
+				amount_max = math.ceil(collision_area * 0.55),
+				amount_min = math.ceil(collision_area * 0.45),
 			},
 			{
 				type = "item",
 				name = "concrete", -- To build recycler and protect buildings
 				amount_min = math.ceil(collision_area * 0.35),
 				amount_max = math.ceil(collision_area * 0.45),
+			},
+			{
+				type = "item",
+				name = "solar-panel",
+				amount_min = math.ceil(collision_area / 12),
+				amount_max = math.ceil(collision_area / 8),
 			},
 		},
 	}
@@ -37,21 +43,6 @@ local function ruin_minable_results(collision_area)
 			name = "processing-unit",
 			amount = 1,
 			probability = collision_area / 8,
-		})
-	end
-
-	if collision_area >= 12 then
-		table.insert(results.results, {
-			type = "item",
-			name = "solar-panel", -- Initial power
-			amount = math.floor(collision_area / 12),
-		})
-	else
-		table.insert(results.results, {
-			type = "item",
-			name = "solar-panel",
-			amount = 1,
-			probability = 0.25,
 		})
 	end
 

@@ -2,6 +2,10 @@
 Version: 0.3.38
 Date: ????
   Changes:
+    - Cerys lab researching speed increased.
+    - Solar panel loot from ruins increased.
+  Bugfixes:
+    - Fixed a bug with character skinning mods on startup.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.37
 Date: 2024-12-25
