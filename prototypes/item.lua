@@ -34,7 +34,7 @@ data:extend({
 		inventory_move_sound = item_sounds.repair_pack_inventory_move,
 		pick_sound = item_sounds.repair_pack_inventory_pickup,
 		drop_sound = item_sounds.repair_pack_inventory_move,
-		stack_size = 2,
+		stack_size = 1,
 	},
 	merge(data.raw.item["lightning-rod"], {
 		name = "charging-rod",

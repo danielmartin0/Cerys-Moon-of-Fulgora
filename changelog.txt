@@ -2,6 +2,7 @@
 Version: 0.3.30
 Date: ????
   Changes:
+    - Ancient structure repair part craft size reduced to 1.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.29
 Date: 2024-12-25
