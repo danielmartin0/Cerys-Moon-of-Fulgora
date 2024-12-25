@@ -2,6 +2,7 @@
 Version: 0.3.29
 Date: ????
   Changes:
+    - Fulgoran cryogenic plant crafting speed decreased.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.28
 Date: 2024-12-25

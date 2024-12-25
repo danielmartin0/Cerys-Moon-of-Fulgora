@@ -13,6 +13,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		"cryogenics-or-fulgoran-cryogenics",
 	},
 	module_slots = 9,
+	crafting_speed = 1.5,
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	minable = { mining_time = 1, result = "cerys-fulgoran-cryogenic-plant" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
