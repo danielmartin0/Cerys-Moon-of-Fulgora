@@ -2,6 +2,7 @@
 Version: 0.3.28
 Date: ????
   Changes:
+    - Description update for nitrogen-rich mineral processing.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.27
 Date: 2024-12-25
