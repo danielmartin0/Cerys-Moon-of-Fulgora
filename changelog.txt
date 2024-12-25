@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.34
-Date: ????
+Date: 2024-12-25
   Bugfixes:
     - Fixed a bug in which the reactor repair cost multiplier setting had no effect when changed at runtime.
 ---------------------------------------------------------------------------------------------------
