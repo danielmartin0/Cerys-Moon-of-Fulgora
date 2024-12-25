@@ -16,7 +16,7 @@ local COOLDOWN_DISTANCE = 1
 
 -- These shouldn't be crazy different such that the player doesn't get punished much if they don't figure this bit out:
 local CHANCE_MUTATE_BELT_URANIUM_IN_CHECK = 1 / 15000
-local CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK = 1 / 60000 -- shouldn't be greater than 1 over the max chest capacity for our algorithm to make sense
+local CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK = 1 / 52000 -- shouldn't be greater than 1 over the max chest capacity for our algorithm to make sense
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.75,
@@ -345,6 +345,7 @@ function Public.irradiate_inventory(inv)
 		local name = quality.name
 		local count = inv.get_item_count({ name = "uranium-238", quality = name })
 		if count then
+			-- TODO: Knuth algorithm for Poisson distribution
 			if math.random() < count * CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK then
 				local removed = inv.remove({ name = "uranium-238", count = 100, quality = name })
 				inv.insert({ name = "plutonium-239", count = 1, quality = name })
