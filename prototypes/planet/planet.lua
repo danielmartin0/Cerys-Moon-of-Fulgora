@@ -44,7 +44,6 @@ data:extend({
 		persistent_ambient_sounds = {},
 		surface_render_parameters = {},
 		entities_require_heating = common.CERYS_IS_FROZEN,
-		auto_save_on_first_trip = false,
 	},
 	{
 		type = "space-connection",

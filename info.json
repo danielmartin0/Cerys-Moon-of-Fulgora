@@ -5,7 +5,7 @@
   "title": "Cerys, Moon of Fulgora",
   "author": "thesixthroc",
   "contact": "contact@danielgmartin.com",
-  "description": "Cerys is an airless moon of Fulgora full of puzzles and secrets. Ancient wrecks lodged in the ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is fully compatible with existing saves.",
+  "description": "The moon of puzzles and secrets. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is fully compatible with existing saves.",
   "homepage": "https://discord.gg/VuVhYUBbWE",
   "dependencies": [
     "base >= 2.0.28",
