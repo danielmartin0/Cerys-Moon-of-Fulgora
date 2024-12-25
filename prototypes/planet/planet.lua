@@ -8,6 +8,7 @@ data:extend({
 		type = "planet",
 		name = "cerys",
 		astral_body_type = "moon", -- This field doesn't exist in the API, but this lets other modders be sensitive to it.
+		parent_planet = "fulgora",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
 		starmap_icon_size = 512,
