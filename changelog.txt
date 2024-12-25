@@ -2,6 +2,7 @@
 Version: 0.3.32
 Date: ????
   Changes:
+    - Increased methane ice consumption of methane ice processing.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.31
 Date: 2024-12-25

@@ -170,7 +170,7 @@ data:extend({
 		auto_recycle = false,
 		energy_required = 1 / 2,
 		ingredients = {
-			{ type = "item", name = "methane-ice", amount = 10 },
+			{ type = "item", name = "methane-ice", amount = 30 },
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
