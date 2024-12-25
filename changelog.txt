@@ -2,6 +2,7 @@
 Version: 0.3.24
 Date: ????
   Changes:
+    - Moved recycler recipe unlock to nuclear scrap recycling tech.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.23
 Date: 2024-12-25
