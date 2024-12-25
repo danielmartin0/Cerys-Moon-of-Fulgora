@@ -26,6 +26,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-nuclear-scrap-recycling",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "recycler",
+			},
 			-- {
 			-- 	type = "unlock-recipe",
 			-- 	recipe = "ancient-nuclear-fuel-cell-recycling",
@@ -317,10 +321,6 @@ local discovery_tech = {
 			type = "unlock-space-location",
 			space_location = "cerys",
 			use_icon_overlay_constant = false, -- This prevents the 'planet' symbol from appearing over the effect icon.
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "recycler",
 		},
 	},
 	prerequisites = {
