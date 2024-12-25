@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.38
-Date: ????
+Date: 2024-12-25
   Changes:
     - Cerys lab researching speed increased.
     - Solar panel loot from ruins increased.
