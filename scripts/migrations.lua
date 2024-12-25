@@ -22,13 +22,16 @@ function Public.run_migrations()
 		end
 	end
 
-	if lib.is_newer_version(old_version, "0.3.23") then
+	if lib.is_newer_version(old_version, "0.3.27") then
 		local reactor = storage.cerys.nuclear_reactor
 		if
 			reactor
 			and reactor.entity
 			and reactor.entity.valid
-			and reactor.entity.name == "cerys-fulgoran-reactor-wreck"
+			and (
+				reactor.entity.name == "cerys-fulgoran-reactor-wreck"
+				or reactor.entity.name == "cerys-fulgoran-reactor-wreck-cleared"
+			)
 		then
 			reactor.entity.minable_flag = false
 		end
