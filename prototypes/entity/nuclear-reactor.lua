@@ -267,6 +267,10 @@ local reactor_wreck_cleared = merge(reactor_wreck_base, {
 
 local scaffold = merge(reactor_wreck_cleared, {
 	name = "cerys-fulgoran-reactor-scaffold",
+	minable = {
+		mining_time = 2,
+		result = "cerys-fulgoran-reactor-scaffold",
+	},
 	collision_box = {
 		{ -11, -10.7 },
 		{ 10.8, 10.7 },

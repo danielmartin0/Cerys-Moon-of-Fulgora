@@ -2,6 +2,7 @@
 Version: 0.3.35
 Date: ????
   Changes:
+    - The reactor scaffold is now minable as a workaround for a bug in which it can be placed on the ground under unknown circumstances.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.34
 Date: 2024-12-25
