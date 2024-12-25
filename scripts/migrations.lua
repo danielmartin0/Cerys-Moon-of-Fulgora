@@ -16,7 +16,7 @@ function Public.run_migrations()
 
 			for _, entity in pairs(cryo_plants) do
 				if entity and entity.valid then
-					game.print("setting minable flag to false for " .. entity.name)
+					game.print("[Cerys-Moon-of-Fulgora] Making cryogenic plant wrecks non-minable.")
 					entity.minable_flag = false
 				end
 			end

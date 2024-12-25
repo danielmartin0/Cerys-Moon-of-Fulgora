@@ -11,16 +11,16 @@ Public.DEBUG_MOON_START = false
 Public.DEBUG_REACTOR_START = false
 
 Public.ROCK_TILES = {
-    "cerys-ash-cracks",
-    "cerys-ash-cracks-frozen",
-    "cerys-ash-dark",
-    "cerys-ash-dark-frozen",
-    "cerys-ash-flats",
-    "cerys-ash-flats-frozen",
-    "cerys-ash-light",
-    "cerys-ash-light-frozen",
-    "cerys-pumice-stones",
-    "cerys-pumice-stones-frozen"
+	"cerys-ash-cracks",
+	"cerys-ash-cracks-frozen",
+	"cerys-ash-dark",
+	"cerys-ash-dark-frozen",
+	"cerys-ash-flats",
+	"cerys-ash-flats-frozen",
+	"cerys-ash-light",
+	"cerys-ash-light-frozen",
+	"cerys-pumice-stones",
+	"cerys-pumice-stones-frozen",
 }
 
 return Public
