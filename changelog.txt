@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.37
-Date: ????
+Date: 2024-12-25
   Changes:
     - Methane ice input per output increased further.
   Modding:
