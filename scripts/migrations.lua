@@ -1,5 +1,5 @@
 local init = require("scripts.init")
-
+local lib = require("lib")
 local Public = {}
 
 function Public.run_migrations()
@@ -16,10 +16,21 @@ function Public.run_migrations()
 
 			for _, entity in pairs(cryo_plants) do
 				if entity and entity.valid then
-					game.print("[Cerys-Moon-of-Fulgora] Making cryogenic plant wrecks non-minable.")
 					entity.minable_flag = false
 				end
 			end
+		end
+	end
+
+	if lib.is_newer_version(old_version, "0.3.23") then
+		local reactor = storage.cerys.nuclear_reactor
+		if
+			reactor
+			and reactor.entity
+			and reactor.entity.valid
+			and reactor.entity.name == "cerys-fulgoran-reactor-wreck"
+		then
+			reactor.entity.minable_flag = false
 		end
 	end
 end
