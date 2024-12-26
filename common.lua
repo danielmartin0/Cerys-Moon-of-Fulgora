@@ -7,8 +7,8 @@ Public.LITHIUM_POSITION = { x = 111, y = 0 }
 
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_MOON_START = false
+Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_REACTOR_START = false
-Public.DEBUG_REACTORS_FUELED = false
 
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",

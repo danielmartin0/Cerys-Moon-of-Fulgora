@@ -93,7 +93,7 @@ function Public.tick_towers(surface)
 			local heating_radius =
 				math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
 
-			if common.DEBUG_REACTORS_FUELED then
+			if common.DEBUG_HEATERS_FUELED then
 				heating_radius = MAX_HEATING_RADIUS
 			end
 
@@ -220,7 +220,7 @@ function Public.tick_20_contracted_towers(surface)
 		else
 			local inv = e.get_inventory(defines.inventory.chest)
 			local should_open = inv and inv.get_item_count("iron-stick") == 0
-			if common.DEBUG_REACTORS_FUELED then
+			if common.DEBUG_HEATERS_FUELED then
 				should_open = true
 			end
 

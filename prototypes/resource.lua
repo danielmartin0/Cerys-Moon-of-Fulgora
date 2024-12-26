@@ -65,6 +65,7 @@ data:extend({
 		map_color = { 0, 0, 0 },
 		map_grid = true,
 		stage_counts = stage_counts_2,
+		factoriopedia_simulation = "nil",
 	}),
 
 	merge(data.raw.resource["copper-ore"], {
@@ -94,5 +95,6 @@ data:extend({
 		map_color = { 0.75, 0.8, 1 },
 		map_grid = true,
 		stage_counts = stage_counts_2,
+		factoriopedia_simulation = "nil",
 	}),
 })

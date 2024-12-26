@@ -19,7 +19,7 @@ local reactor = {
 	consumption = "350kW",
 	energy_source = merge(data.raw.reactor["heating-tower"].energy_source, {
 		fuel_categories = { "chemical-or-radiative" },
-		effectivity = 0.3,
+		effectivity = 0.27,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0, -- from 2
 	}),
