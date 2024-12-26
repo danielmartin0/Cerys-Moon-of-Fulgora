@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.24
-Date: ????
+Date: 2024-12-26
   Bugfixes:
     - Attempted workaround for base game bug complaining about missing 'cerys_ash_flats' on some saves.
   Modding:
