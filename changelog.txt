@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.3
-Date: ????
+Date: 2024-12-26
   Changes:
     - Radiative towers consume fuel slightly faster.
   Bugfixes:
