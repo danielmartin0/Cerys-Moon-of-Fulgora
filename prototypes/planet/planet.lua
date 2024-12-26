@@ -318,4 +318,9 @@ data:extend({
 			output_scale = 0.01}\z
 			- 10 * cerys_all_resources",
 	},
+	{
+		type = "noise-expression",
+		name = "cerys_ash_flats",
+		expression = "0",
+	},
 })

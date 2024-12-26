@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.24
 Date: ????
-  Changes:
+  Bugfixes:
+    - Attempted workaround for base game bug complaining about missing 'cerys_ash_flats' on some saves.
+  Modding:
+    - Compatibility with mods that remove the 'fuel_categories' field from entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.23
 Date: 2024-12-26
