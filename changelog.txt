@@ -1,12 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.19
 Date: ????
-  Changes:
+  Graphics:
+    - Graphical updates to the visual appearence of Cerys in poster, icons etc.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.18
 Date: 2024-12-26
   Changes:
     - Reactor moved by two tiles on new saves so that repairs via inserters are possible.
+  Graphics:
+    - New icon for nuclear scrap recycling.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.17
 Date: 2024-12-26
