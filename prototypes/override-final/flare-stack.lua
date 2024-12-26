@@ -16,8 +16,8 @@ local function get_icons(prototype)
 	end
 end
 local no_icon = {
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/no.png",
-	icon_size = 32,
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/no.png",
+	icon_size = 64,
 }
 
 local function fluid_name_is_flarable(name)

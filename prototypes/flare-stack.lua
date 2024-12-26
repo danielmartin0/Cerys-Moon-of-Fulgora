@@ -17,8 +17,8 @@ data:extend({
 	{
 		type = "item",
 		name = "vent-stack",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/vent-stack.png",
-		icon_size = 32,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/vent-stack.png",
+		icon_size = 64,
 		subgroup = "production-machine",
 		order = "e[chemical-plant]a",
 		place_result = "vent-stack",
@@ -27,8 +27,8 @@ data:extend({
 	{
 		type = "item",
 		name = "flare-stack",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/flare-stack.png",
-		icon_size = 32,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/flare-stack.png",
+		icon_size = 64,
 		subgroup = "production-machine",
 		order = "e[chemical-plant]a",
 		place_result = "flare-stack",
@@ -62,8 +62,8 @@ data:extend({
 		type = "furnace",
 		name = "vent-stack",
 		-- localised_description = "flare-tooltips.fluid-burn-rate " .. settings.startup["flare-stack-fluid-rate"].value,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/vent-stack.png",
-		icon_size = 32,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/vent-stack.png",
+		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 1, result = "vent-stack" },
 		fast_replaceable_group = "fluid-incinerator",
@@ -86,7 +86,7 @@ data:extend({
 		result_inventory_size = 0,
 		graphics_set = {
 			animation = {
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/entity/vent-stack.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/flare-stack/vent-stack.png",
 				priority = "extra-high",
 				width = 160,
 				height = 160,
@@ -95,7 +95,7 @@ data:extend({
 			working_visualisations = {
 				{
 					animation = {
-						filename = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/entity/vent-stack-fumes.png",
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/flare-stack/vent-stack-fumes.png",
 						priority = "extra-high",
 						frame_count = 29,
 						width = 48,
@@ -132,8 +132,8 @@ data:extend({
 		type = "furnace",
 		name = "flare-stack",
 		-- localised_description = "flare-tooltips.fluid-burn-rate " .. settings.startup["flare-stack-fluid-rate"].value,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/flare-stack.png",
-		icon_size = 32,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/flare-stack.png",
+		icon_size = 64,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 1, result = "flare-stack" },
 		fast_replaceable_group = "fluid-incinerator",
@@ -156,7 +156,7 @@ data:extend({
 		result_inventory_size = 0,
 		graphics_set = {
 			animation = {
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/entity/flare-stack.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/flare-stack/flare-stack.png",
 				priority = "extra-high",
 				width = 160,
 				height = 160,
@@ -165,7 +165,7 @@ data:extend({
 			working_visualisations = {
 				{
 					animation = {
-						filename = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/entity/flare-stack-fire.png",
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/flare-stack/flare-stack-fire.png",
 						priority = "extra-high",
 						frame_count = 29,
 						width = 48,
