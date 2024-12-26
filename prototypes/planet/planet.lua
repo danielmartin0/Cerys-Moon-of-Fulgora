@@ -11,7 +11,7 @@ data:extend({
 		planet_type = "moon", -- This field doesn't exist in the API, but this lets other modders be sensitive to it.
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
-		starmap_icon_size = 512,
+		starmap_icon_size = 500,
 		map_gen_settings = map_gen.cerys(),
 		gravity_pull = 10,
 		distance = 25.5,
