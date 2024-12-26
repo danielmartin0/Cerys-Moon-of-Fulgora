@@ -108,7 +108,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 				local existing_tile = surface.get_tile(x, y)
 				local existing_tile_name = existing_tile and existing_tile.valid and existing_tile.name
 
-				local is_surface = existing_tile_name ~= "empty-space"
+				local is_surface = existing_tile_name ~= "empty-space" and existing_tile_name ~= "cerys-empty-space"
 
 				if is_surface then
 					Public.terrain(x, y, seed, existing_tile_name, entities, tiles, decoratives, hidden_tiles)

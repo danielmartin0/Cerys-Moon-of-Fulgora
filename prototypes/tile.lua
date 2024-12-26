@@ -38,7 +38,7 @@ local original_ice_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "empty-space", "oil-ocean-shallow" },
+		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "oil-ocean-shallow" }, -- Added cerys-empty-space to the list
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -574,10 +574,15 @@ data:extend({
 	}),
 })
 
---== Concrete (supporting script entities from water) ==--
+--== Other simple cloned tiles ==--
+
 data:extend({
 	merge(data.raw.tile["concrete"], {
 		name = "cerys-concrete",
 		minable = "nil",
+	}),
+	merge(data.raw.tile["empty-space"], {
+		name = "cerys-empty-space",
+		destroys_dropped_items = true,
 	}),
 })
