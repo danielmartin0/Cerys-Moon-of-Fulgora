@@ -12,7 +12,7 @@ try {
   )
   const content = fs.readFileSync(commonPath, "utf8")
 
-  if (content.match(/DEBUG_\w+ = false/)) {
+  if (content.match(/DEBUG_\w+ = true/)) {
     console.error("Error: Debug flags must be disabled before publishing.")
     console.error("Please set all DEBUG_ variables to false in common.lua")
     process.exit(1)
