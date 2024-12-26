@@ -11,7 +11,7 @@ Date: 2024-12-26
 Version: 0.4.5
 Date: 2024-12-26
   Bugfixes:
-    - Fixed map generation issue.
+    - Fixed map generation issue relating to empty space tiles.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.4
 Date: 2024-12-26
