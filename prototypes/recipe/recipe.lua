@@ -5,7 +5,7 @@ data:extend({
 		type = "recipe",
 		name = "plutonium-239",
 		category = "no-machine",
-		enabled = true, -- TODO: Turn off
+		enabled = false,
 		energy_required = 1,
 		ingredients = {
 			{ type = "item", name = "uranium-238", amount = 1 },
@@ -16,7 +16,6 @@ data:extend({
 		allow_decomposition = false,
 		always_show_products = true,
 	},
-
 	{
 		type = "recipe",
 		name = "processing-units-from-nitric-acid",
@@ -24,6 +23,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "d-c",
 		category = "cryogenics-or-fulgoran-cryogenics",
+		enabled = false,
 		energy_required = 5,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 20 },
@@ -53,6 +53,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "charging-rod",
+		enabled = false,
 		category = "electronics",
 		surface_conditions = {
 			{
@@ -92,6 +93,7 @@ data:extend({
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
 		},
 		allow_productivity = false,
+		enabled = false,
 		always_show_made_in = true,
 		always_show_products = true,
 		allow_decomposition = false,
@@ -107,6 +109,7 @@ data:extend({
 			{ type = "item", name = "iron-plate", amount = 20 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
+		enabled = false,
 		surface_conditions = {
 			{
 				property = "magnetic-field",
@@ -125,6 +128,7 @@ data:extend({
 		name = "cerys-science-pack",
 		always_show_made_in = true,
 		category = "fulgoran-cryogenics",
+		enabled = false,
 		energy_required = 2,
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 1 },
@@ -188,6 +192,7 @@ data:extend({
 			{ type = "fluid", name = "methane", amount = 30 },
 		},
 		allow_productivity = true,
+		enabled = false,
 		crafting_machine_tint = { -- TODO: Change. From fluoroketone
 			primary = { r = 0.365, g = 0.815, b = 0.334, a = 1.000 }, -- #5dcf55ff
 			secondary = { r = 0.772, g = 0.394, b = 0.394, a = 1.000 }, -- #c46464ff
@@ -203,6 +208,7 @@ data:extend({
 		icon_size = 256,
 		subgroup = "cerys-processes",
 		order = "e-a",
+		enabled = false,
 		energy_required = 3,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
@@ -242,6 +248,7 @@ data:extend({
 		},
 		category = "fulgoran-cryogenics",
 		energy_required = 1 / 2,
+		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
 			{ type = "fluid", name = "sulfuric-acid", amount = 20 }, -- 1 iron is needed to make 50 sulfuric acid. Therefore, less than 50 sulfuric acid should make 1 iron.
