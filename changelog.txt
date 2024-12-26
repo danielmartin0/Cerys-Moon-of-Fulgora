@@ -1,10 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.5
+Date: ????
+  Changes:
+---------------------------------------------------------------------------------------------------
 Version: 0.4.4
 Date: 2024-12-26
   Changes:
     - Fulgoran cryogenic plant quality upgrades now require researching a new technology.
     - Gas venting technology now only requires Cerys science packs.
     - Charging rod technology now only requires Cerys and automation science packs.
+  Bugfixes:
+    - Items can now be destroyed by dropping them off the edge of Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.3
 Date: 2024-12-26
