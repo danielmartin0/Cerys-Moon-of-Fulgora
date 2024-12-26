@@ -2,10 +2,10 @@
   "name": "Cerys-Moon-of-Fulgora",
   "version": "0.4.6",
   "factorio_version": "2.0",
-  "title": "Cerys, Moon of Fulgora",
+  "title": "Cerys",
   "author": "thesixthroc",
   "contact": "contact@danielgmartin.com",
-  "description": "The moon of puzzles and secrets. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is fully compatible with existing saves.",
+  "description": "The moon of puzzles and secrets. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is easy to include in existing saves.",
   "homepage": "https://discord.gg/VuVhYUBbWE",
   "dependencies": [
     "base >= 2.0.28",
