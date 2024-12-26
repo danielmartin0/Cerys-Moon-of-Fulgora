@@ -238,104 +238,61 @@ local lightmap_spritesheet = {
 	},
 }
 
+local function create_base_tile(name)
+	return merge(cerys_rock_base, {
+		name = name,
+		frozen_variant = name .. "-frozen",
+		variants = tile_variations_template_with_transitions(
+			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. ".png",
+			lightmap_spritesheet
+		),
+	})
+end
+
+local function create_frozen_variant(name)
+	local noise_var = string.gsub(name, "%-", "_")
+	return merge(cerys_rock_base, {
+		name = name .. "-frozen",
+		autoplace = {
+			probability_expression = "if(cerys_surface>0, 1000 + " .. noise_var .. ", -1000)",
+		},
+		thawed_variant = name,
+		layer = 48,
+		variants = tile_variations_template_with_transitions(
+			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png",
+			lightmap_spritesheet
+		),
+	})
+end
+
+local function create_melting_variant(name)
+	local frozen_variant = create_frozen_variant(name)
+	return merge(frozen_variant, {
+		name = frozen_variant.name .. "-from-dry-ice",
+		thawed_variant = "nil",
+	})
+end
+
 data:extend({
-	merge(cerys_rock_base, {
-		name = "cerys-ash-cracks",
-		frozen_variant = "cerys-ash-cracks-frozen",
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-cracks.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-cracks-frozen",
-		autoplace = {
-			probability_expression = "if(cerys_surface>0, 1000 + cerys_ash_cracks, -1000)",
-		},
-		thawed_variant = "cerys-ash-cracks",
-		layer = 48,
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-cracks-frozen.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-dark",
-		frozen_variant = "cerys-ash-dark-frozen",
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-dark.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-dark-frozen",
-		autoplace = {
-			probability_expression = "if(cerys_surface>0, 1000 + cerys_ash_dark, -1000)",
-		},
-		thawed_variant = "cerys-ash-dark",
-		layer = 48,
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-dark-frozen.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-flats",
-		frozen_variant = "cerys-ash-flats-frozen",
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-flats.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-flats-frozen",
-		thawed_variant = "cerys-ash-flats",
-		layer = 48,
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-flats-frozen.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-light",
-		frozen_variant = "cerys-ash-light-frozen",
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-light.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-ash-light-frozen",
-		autoplace = {
-			probability_expression = "if(cerys_surface>0, 1000 + cerys_ash_light, -1000)",
-		},
-		thawed_variant = "cerys-ash-light",
-		layer = 48,
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-ash-light-frozen.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-pumice-stones",
-		frozen_variant = "cerys-pumice-stones-frozen",
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-pumice-stones.png",
-			lightmap_spritesheet
-		),
-	}),
-	merge(cerys_rock_base, {
-		name = "cerys-pumice-stones-frozen",
-		autoplace = {
-			probability_expression = "if(cerys_surface>0, 1000 + cerys_pumice_stones, -1000)",
-		},
-		thawed_variant = "cerys-pumice-stones",
-		layer = 48,
-		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/moon-pumice-stones-frozen.png",
-			lightmap_spritesheet
-		),
-	}),
+	create_base_tile("cerys-ash-cracks"),
+	create_frozen_variant("cerys-ash-cracks"),
+	create_melting_variant("cerys-ash-cracks"),
+
+	create_base_tile("cerys-ash-dark"),
+	create_frozen_variant("cerys-ash-dark"),
+	create_melting_variant("cerys-ash-dark"),
+
+	create_base_tile("cerys-ash-flats"),
+	create_frozen_variant("cerys-ash-flats"),
+	create_melting_variant("cerys-ash-flats"),
+
+	create_base_tile("cerys-ash-light"),
+	create_frozen_variant("cerys-ash-light"),
+	create_melting_variant("cerys-ash-light"),
+
+	create_base_tile("cerys-pumice-stones"),
+	create_frozen_variant("cerys-pumice-stones"),
+	create_melting_variant("cerys-pumice-stones"),
 })
 
 --== Water Ice ==--

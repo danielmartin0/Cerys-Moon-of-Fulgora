@@ -182,7 +182,7 @@ local reactor_wreck_base = {
 		{ 16, 10.7 },
 	},
 	selection_box = { { -16, -11 }, { 16, 11 } },
-	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
 }
 
 local reactor_wreck = merge(reactor_wreck_base, {

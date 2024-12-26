@@ -66,7 +66,7 @@ local reactor = {
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
 	circuit_connector = circuit_connector_definitions["heating-tower"],
-	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	autoplace = {
 		probability_expression = "0",
 	},
@@ -75,6 +75,7 @@ local reactor = {
 
 local frozen_reactor = merge(reactor, {
 	name = "cerys-fulgoran-radiative-tower-frozen",
+	hidden = true,
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice", {
@@ -101,7 +102,7 @@ local CONTRACTED_MAP_COLOR = { 37, 0, 0 }
 local rising_reactor_base = merge(reactor, {
 	name = "cerys-fulgoran-radiative-tower-rising-reactor-base",
 	render_layer = "wires",
-	hidden_in_factoriopedia = true,
+	hidden = true,
 	consumption = "0.0000001W",
 	picture = {
 		layers = {
@@ -116,6 +117,7 @@ local rising_reactor_base = merge(reactor, {
 	},
 	map_color = CONTRACTED_MAP_COLOR,
 	working_sound = "nil",
+	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
