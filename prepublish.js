@@ -4,7 +4,12 @@ const fs = require("fs")
 const path = require("path")
 
 try {
-  const commonPath = path.join(__dirname, "..", "common.lua")
+  const commonPath = path.join(
+    __dirname,
+    "..",
+    "Cerys-Moon-of-Fulgora",
+    "common.lua",
+  )
   const content = fs.readFileSync(commonPath, "utf8")
 
   if (content.match(/DEBUG_\w+ = false/)) {
