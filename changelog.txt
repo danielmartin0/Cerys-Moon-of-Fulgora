@@ -1,4 +1,8 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.4.6
+Date: ????
+  Changes:
+---------------------------------------------------------------------------------------------------
 Version: 0.4.5
 Date: 2024-12-26
   Bugfixes:
@@ -11,7 +15,7 @@ Date: 2024-12-26
     - Gas venting technology now only requires Cerys science packs.
     - Charging rod technology now only requires Cerys and automation science packs.
   Bugfixes:
-    - Items can now be destroyed by dropping them off the edge of Cerys.
+    - Items can now be destroyed by dropping them off the edge of Cerys on new saves.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.3
 Date: 2024-12-26
