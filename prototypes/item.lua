@@ -237,7 +237,7 @@ data:extend({
 		type = "item",
 		name = "cerys-fulgoran-cryogenic-plant",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-		icon_size = 432,
+		icon_size = 256,
 		subgroup = "production-machine",
 		order = "h[cryogenic-plant]-b[fulgoran-cryogenic-plant]",
 		hidden = true,

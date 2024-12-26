@@ -110,9 +110,8 @@ data:extend({
 		subgroup = "cerys-repair",
 		order = "f",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-		icon_size = 432,
+		icon_size = 256,
 		energy_required = 30,
-		enabled = true,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {

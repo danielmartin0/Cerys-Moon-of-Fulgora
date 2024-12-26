@@ -88,7 +88,7 @@ data:extend({
 			time = 60,
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-		icon_size = 432,
+		icon_size = 256,
 	}),
 	cerys_tech({
 		name = "cerys-science-pack",
@@ -111,7 +111,13 @@ data:extend({
 		icon_size = 256,
 	}),
 	cerys_tech({
-		science_count = 30,
+		unit = {
+			count = 50,
+			ingredients = {
+				{ "cerys-science-pack", 1 },
+			},
+			time = 60,
+		},
 		name = "cerys-gas-venting",
 		effects = {
 			{
@@ -128,8 +134,29 @@ data:extend({
 		icon_size = 160,
 	}),
 	cerys_tech({
-		name = "cerys-charging-rod",
 		science_count = 100,
+		name = "cerys-cryogenic-plant-quality-upgrades",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+			},
+		},
+		prerequisites = { "cerys-science-pack" },
+		icons = util.technology_icon_constant_speed(
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png"
+		),
+	}),
+	cerys_tech({
+		name = "cerys-charging-rod",
+		unit = {
+			count = 100,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+			},
+			time = 60,
+		},
 		effects = {
 			{
 				type = "unlock-recipe",
