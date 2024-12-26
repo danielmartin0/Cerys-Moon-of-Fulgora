@@ -2,7 +2,7 @@
 Version: 0.4.10
 Date: ????
   Changes:
-    - Spawning of methane icebergs now respects the moon curvature.\
+    - Spawning of methane icebergs now respects the moon curvature.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.9
 Date: 2024-12-26
