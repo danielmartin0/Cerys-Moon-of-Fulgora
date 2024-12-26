@@ -14,7 +14,7 @@
   ],
   "package": {
     "scripts": {
-      "prepublish": "scripts/prepublish.js"
+      "prepublish": "prepublish.js"
     }
   }
 }
