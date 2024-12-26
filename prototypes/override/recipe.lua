@@ -78,6 +78,6 @@ data.raw.recipe["steam-engine"].surface_conditions = {
 data.raw.recipe["rocket-fuel"].surface_conditions = {
 	{
 		property = "temperature",
-		min = 259,
+		min = 253,
 	},
 }

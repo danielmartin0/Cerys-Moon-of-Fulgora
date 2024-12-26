@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.22
 Date: ????
-  Changes:
+  Bugfixes:
+    - The regular rocket fuel recipe (from light oil) is no longer made uncraftable on Aquilo by this mod.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.21
 Date: 2024-12-26

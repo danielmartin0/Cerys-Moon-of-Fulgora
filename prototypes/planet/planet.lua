@@ -38,7 +38,7 @@ data:extend({
 			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
 			gravity = 1, -- 0.1 is minimum for chests
-			temperature = 255,
+			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),
