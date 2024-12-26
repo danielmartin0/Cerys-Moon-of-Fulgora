@@ -294,7 +294,5 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		end
 	end
 
-	if storage.cerys then
-		migrations.run_migrations()
-	end
+	migrations.run_migrations()
 end)
