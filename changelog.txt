@@ -2,6 +2,7 @@
 Version: 0.4.18
 Date: ????
   Changes:
+    - Reactor moved by two tiles on new saves so that repairs via inserters are possible.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.17
 Date: 2024-12-26
