@@ -4,7 +4,7 @@ local common = require("common")
 
 local TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
-local TEMPERATURE_MAX_STEPS = 16 -- TODO: No more radius when above this, and no more heating either
+local MAX_HEATING_RADIUS = 16 -- TODO: No more radius when above this, and no more heating either
 local TEMPERATURE_LOSS_RATE = 1 / 350
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
@@ -91,7 +91,11 @@ function Public.tick_towers(surface)
 			local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
 
 			local heating_radius =
-				math.min(TEMPERATURE_MAX_STEPS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+				math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+
+			if common.DEBUG_REACTORS_FUELED then
+				heating_radius = MAX_HEATING_RADIUS
+			end
 
 			if not tower.last_radius then
 				tower.last_radius = 0
@@ -129,7 +133,7 @@ function Public.tick_towers(surface)
 			end
 
 			local temperature_to_apply_loss_for =
-				math.min(temperature_above_zero, TEMPERATURE_MAX_STEPS * TEMPERATURE_INTERVAL)
+				math.min(temperature_above_zero, MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
 
 			e.temperature = e.temperature
 				- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
@@ -215,7 +219,12 @@ function Public.tick_20_contracted_towers(surface)
 			storage.cerys.heating_towers_contracted[unit_number] = nil
 		else
 			local inv = e.get_inventory(defines.inventory.chest)
-			if inv and inv.get_item_count("iron-stick") == 0 then
+			local should_open = inv and inv.get_item_count("iron-stick") == 0
+			if common.DEBUG_REACTORS_FUELED then
+				should_open = true
+			end
+
+			if should_open then
 				for _, player in pairs(game.connected_players) do
 					if player.opened == e then
 						player.opened = nil

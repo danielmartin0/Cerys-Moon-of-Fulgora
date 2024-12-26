@@ -76,6 +76,9 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 					})
 
 					if e and e.valid and e2 and e2.valid then
+						e2.minable_flag = false
+						e2.destructible = false
+
 						local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
 						local new_input = e2.get_inventory(defines.inventory.assembling_machine_input)
 

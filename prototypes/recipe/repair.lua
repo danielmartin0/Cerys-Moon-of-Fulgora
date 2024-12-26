@@ -3,7 +3,6 @@ data:extend({
 		type = "recipe",
 		name = "ancient-structure-repair-part",
 		category = "crafting-or-fulgoran-cryogenics",
-		enabled = false,
 		energy_required = 0.7,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
@@ -18,7 +17,6 @@ data:extend({
 		type = "recipe",
 		name = "cerys-fulgoran-reactor-scaffold",
 		energy_required = 20,
-		enabled = false,
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 500 },
 			{ type = "item", name = "refined-concrete", amount = 500 },
@@ -34,7 +32,6 @@ data:extend({
 		order = "c",
 		icon = "__base__/graphics/icons/concrete.png",
 		energy_required = 1.6,
-		enabled = false,
 		hide_from_player_crafting = true,
 		category = "nuclear-reactor-repair",
 		ingredients = {},
@@ -54,7 +51,6 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
 		icon_size = 268,
 		energy_required = 1 / 5,
-		enabled = false,
 		hide_from_player_crafting = true,
 		category = "nuclear-reactor-repair",
 		ingredients = {
@@ -76,7 +72,6 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
 		icon_size = 268,
 		energy_required = 1 / 20,
-		enabled = false,
 		hide_from_player_crafting = true,
 		category = "cryogenic-plant-repair",
 		ingredients = {
@@ -122,7 +117,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 25 },
-			{ type = "item", name = "processing-unit", amount = 10 },
+			{ type = "item", name = "advanced-circuit", amount = 25 }, -- blue chips here would be too little variety
 		},
 		results = {},
 		allow_quality = true,

@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.3.41
+Version: 0.4.0
 Date: ????
+  Info:
+    - 'Meaningless' uncraftable plutonium recipe added for purposes of hinting in Factoriopedia.
   Changes:
+    - Fulgoran cryogenic plants now spawn with concrete underneath only if the tile would have been water there, and this concrete cannot be mined.
+    - Upgrading cryogenic plants now requires red chips rather than blue chips, for variety.
+    - Map generation adjusted to avoid 'trap' cryogenic plants that are heatable but unable to craft fluid recipes due to unheated sides.
+    - Map and tower generation tweaked to increase the amount of water.
+  Bugfixes:
+    - Fulgoran cryogenic plants can no longer be mined when upgraded. This fix applies to existing saves.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.40
 Date: 2024-12-25

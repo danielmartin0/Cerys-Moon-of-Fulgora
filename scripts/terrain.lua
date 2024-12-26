@@ -29,12 +29,13 @@ local function hex_grid_positions(args)
 	local grid_scale = args.grid_scale or 1
 	local noise_size = args.noise_size or 40
 	local noise_scale = args.noise_scale or 500
+	local displacement = args.displacement or { x = 0, y = 0 }
 
 	local positions = {}
 	for col = -max_cols, max_cols do
 		for row = -max_rows, max_rows do
-			local x = col * col_offset
-			local y = row * hex_height + (col % 2) * row_offset
+			local x = col * col_offset + displacement.x
+			local y = row * hex_height + (col % 2) * row_offset + displacement.y
 
 			local place = true
 			if x ^ 2 + y ^ 2 > max_radius * max_radius then
@@ -63,19 +64,21 @@ local function hex_grid_positions(args)
 	return positions
 end
 
+-- The following seeds aren't easy to get right. You need to put several plants in the final area, and not leave any plants with awkward heating coverage that trick the player into heating them up when they don't work. Radiative heaters should be able to reach the reactor, but only just, so the reactor doesn't heat too quickly after you turn them on.
+
 local tower_positions = hex_grid_positions({
-	seed = 2100,
+	seed = 2104,
 	grid_scale = 1,
 	avoid_final_region = true,
 	noise_size = 40,
 	noise_scale = 500,
 })
 
--- TODO: Switch cryo plant grid to use surface co-ordinates
 local cryo_plant_positions = hex_grid_positions({
 	seed = 4100,
 	grid_scale = 2.2,
 	avoid_final_region = false,
+	displacement = { x = 0, y = -4.5 },
 	noise_size = 17,
 	noise_scale = 100,
 })
@@ -203,15 +206,7 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 		end
 	end
 
-	if common.CERYS_IS_FROZEN then
-		table.insert(hidden_tiles, { name = new_tile or existing_tile, position = { x = x, y = y } })
-
-		if is_rock then
-			new_tile = "cerys-dry-ice-on-land"
-		else
-			new_tile = "cerys-dry-ice-on-water"
-		end
-	else
+	if common.DEBUG_DISABLE_FREEZING then
 		if existing_tile == "cerys-ice-on-water" then
 			new_tile = "cerys-water-puddles"
 		elseif existing_tile == "cerys-ash-cracks-frozen" then
@@ -224,6 +219,14 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 			new_tile = "cerys-ash-light"
 		elseif existing_tile == "cerys-pumice-stones-frozen" then
 			new_tile = "cerys-pumice-stones"
+		end
+	else
+		table.insert(hidden_tiles, { name = new_tile or existing_tile, position = { x = x, y = y } })
+
+		if is_rock then
+			new_tile = "cerys-dry-ice-on-land"
+		else
+			new_tile = "cerys-dry-ice-on-water"
 		end
 	end
 
@@ -331,16 +334,23 @@ function Public.create_cryo_plants(surface, area)
 			local name = frozen and "cerys-fulgoran-cryogenic-plant-wreck-frozen"
 				or "cerys-fulgoran-cryogenic-plant-wreck"
 
-			local p3 = surface.find_non_colliding_position(name, p2, 7, 3)
+			local p3 = surface.find_non_colliding_position(name, p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
 				local tiles = {}
 				for dx = -2, 2 do
 					for dy = -2, 2 do
-						table.insert(tiles, {
-							name = "concrete",
-							position = { x = math.floor(p3.x) + dx, y = math.floor(p3.y) + dy },
-						})
+						local tile_underneath = surface.get_tile(p3.x + dx, p3.y + dy)
+
+						local tile_underneath_is_water = tile_underneath
+							and tile_underneath.name == "cerys-dry-ice-on-water"
+
+						if tile_underneath_is_water then
+							table.insert(tiles, {
+								name = "cerys-concrete",
+								position = { x = math.floor(p3.x) + dx, y = math.floor(p3.y) + dy },
+							})
+						end
 					end
 				end
 				surface.set_tiles(tiles, true)

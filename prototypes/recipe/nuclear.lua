@@ -36,7 +36,6 @@ data:extend({
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 1 },
 		},
 		results = {},
-		enabled = false,
 	}),
 })
 
@@ -79,7 +78,6 @@ data:extend({
 	merge(data.raw.recipe["nuclear-fuel-reprocessing"], {
 		name = "nuclear-waste-solution-centrifuging",
 		always_show_made_in = true,
-		enabled = false,
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-waste-solution-nitric.png",
@@ -128,7 +126,6 @@ data:extend({
 		name = "mixed-oxide-cell-reprocessing",
 		category = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		always_show_made_in = true,
-		enabled = false,
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/depleted-mixed-oxide-fuel-cell.png",
@@ -174,7 +171,6 @@ data:extend({
 		category = "crafting-or-fulgoran-cryogenics",
 		always_show_made_in = true,
 		energy_required = 10,
-		enabled = false,
 		ingredients = {
 			{ type = "item", name = "iron-plate", amount = 10 },
 			{ type = "item", name = "uranium-235", amount = 1 },
@@ -188,7 +184,6 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plutonium-rounds-magazine",
-		enabled = false,
 		energy_required = 10,
 		ingredients = {
 			{ type = "item", name = "uranium-rounds-magazine", amount = 10 },
@@ -202,7 +197,6 @@ data:extend({
 		name = "plutonium-fuel",
 		always_show_made_in = true,
 		energy_required = 90,
-		enabled = false,
 		category = "centrifuging",
 		subgroup = "plutonium-processing",
 		order = "c-a",

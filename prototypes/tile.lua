@@ -573,3 +573,11 @@ data:extend({
 		frozen_variant = "cerys-dry-ice-on-land",
 	}),
 })
+
+--== Concrete (supporting script entities from water) ==--
+data:extend({
+	merge(data.raw.tile["concrete"], {
+		name = "cerys-concrete",
+		minable = "nil",
+	}),
+})

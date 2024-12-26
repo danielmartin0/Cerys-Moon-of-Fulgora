@@ -2,13 +2,13 @@ local Public = {}
 
 Public.MOON_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
-Public.REACTOR_POSITION = { x = 24, y = 27 }
+Public.REACTOR_POSITION = { x = 21, y = 27 }
 Public.LITHIUM_POSITION = { x = 111, y = 0 }
 
-Public.CERYS_IS_FROZEN = true
-
+Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_MOON_START = false
 Public.DEBUG_REACTOR_START = false
+Public.DEBUG_REACTORS_FUELED = false
 
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",

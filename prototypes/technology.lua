@@ -148,6 +148,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-fulgoran-reactor-scaffold",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "plutonium-239",
+			},
 		},
 		prerequisites = { "cerys-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",

@@ -44,7 +44,7 @@ data:extend({
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),
 		persistent_ambient_sounds = {},
 		surface_render_parameters = {},
-		entities_require_heating = common.CERYS_IS_FROZEN,
+		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
 	},
 	{
 		type = "space-connection",
@@ -140,9 +140,10 @@ data:extend({
 	},
 
 	{
+		-- Water should avoid being on the map edge, as that looks wrong.
 		type = "noise-expression",
 		name = "cerys_water",
-		expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = 783, seed1 = 40, octaves = 4, persistence = 0.4, input_scale = 1 / 10, output_scale = 15} - 4\z
+		expression = "multioctave_noise{x = (cerys_x_surface * 0.8 - 204)/6, y = (cerys_y_surface * 0.8 + 23)/6, seed0 = 0, seed1 = 1610, octaves = 4, persistence = 0.35, input_scale = 1, output_scale = 14} - 3.2\z
 		- max(0, 10 * cerys_nuclear_scrap_forced)\z
 		- max(0, 10 * cerys_nitrogen_rich_minerals_forced)\z
 		- max(0, 10 * cerys_methane_ice_forced)", -- No variation with map seed

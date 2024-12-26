@@ -36,6 +36,10 @@ data:extend({
 		name = "crafting-or-fulgoran-cryogenics",
 	},
 	{
+		type = "recipe-category",
+		name = "no-machine",
+	},
+	{
 		type = "item-subgroup",
 		name = "plutonium-processing",
 		group = "intermediate-products",
