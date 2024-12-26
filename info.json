@@ -5,11 +5,16 @@
   "title": "Cerys",
   "author": "thesixthroc",
   "contact": "contact@danielgmartin.com",
-  "description": "The moon of puzzles and secrets. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nThis mod does not affect the vanilla game, so is easy to include in existing saves.",
+  "description": "Fulgora's moon of puzzles and secrets. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nCerys is a polished and complete mod that does not affect the vanilla game, so is easy to include in existing saves.",
   "homepage": "https://discord.gg/VuVhYUBbWE",
   "dependencies": [
     "base >= 2.0.28",
     "space-age >= 2.0.0",
     "Surfaces-Have-Temperature"
-  ]
+  ],
+  "package": {
+    "scripts": {
+      "prepublish": "scripts/prepublish.js"
+    }
+  }
 }
