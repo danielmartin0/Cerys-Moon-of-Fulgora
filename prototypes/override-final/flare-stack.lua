@@ -16,8 +16,8 @@ local function get_icons(prototype)
 	end
 end
 local no_icon = {
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/icons/no.png",
-	icon_size = 32,
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/no.png",
+	icon_size = 64,
 }
 
 local function fluid_name_is_flarable(name)
@@ -56,6 +56,7 @@ for _, vi in pairs(data.raw.fluid) do
 					{ "cerys.venting-recipe-suffix" },
 				},
 				hidden_in_factoriopedia = true,
+				hide_from_player_crafting = true,
 				category = "gas-venting",
 				enabled = true,
 				energy_required = 1 / 5,
@@ -81,6 +82,7 @@ for _, vi in pairs(data.raw.fluid) do
 						{ "cerys.flaring-recipe-suffix" },
 					},
 					hidden_in_factoriopedia = true,
+					hide_from_player_crafting = true,
 					category = "flaring",
 					enabled = true,
 					energy_required = 1,

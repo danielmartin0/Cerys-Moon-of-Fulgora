@@ -9,6 +9,19 @@ local TILE_TRANSITIONS = {
 	["cerys-dry-ice-on-land-melting"] = "nil",
 	-- ["cerys-dry-ice-smooth-melting"] = "nil",
 	-- ["cerys-dry-ice-smooth-land-melting"] = "nil",
+	["cerys-ash-cracks-frozen-from-dry-ice"] = "cerys-ash-cracks",
+	["cerys-ash-dark-frozen-from-dry-ice"] = "cerys-ash-dark",
+	["cerys-ash-flats-frozen-from-dry-ice"] = "cerys-ash-flats",
+	["cerys-ash-light-frozen-from-dry-ice"] = "cerys-ash-light",
+	["cerys-pumice-stones-frozen-from-dry-ice"] = "cerys-pumice-stones",
+}
+
+local HIDDEN_TILE_TO_MELTING_TILE = {
+	["cerys-ash-cracks-frozen"] = "cerys-ash-cracks-frozen-from-dry-ice",
+	["cerys-ash-dark-frozen"] = "cerys-ash-dark-frozen-from-dry-ice",
+	["cerys-ash-flats-frozen"] = "cerys-ash-flats-frozen-from-dry-ice",
+	["cerys-ash-light-frozen"] = "cerys-ash-light-frozen-from-dry-ice",
+	["cerys-pumice-stones-frozen"] = "cerys-pumice-stones-frozen-from-dry-ice",
 }
 
 Public.ICE_CHECK_INTERVAL = 80 -- Only specific numbers work, see events.lua
@@ -53,7 +66,7 @@ function Public.process_transitions(surface, transitioning_tiles, interval)
 			and (game.tick - last_observed_tick >= interval)
 			and (game.tick - last_observed_tick < interval * 2)
 		then
-			if TILE_TRANSITIONS[tile.name] ~= "nil" then
+			if TILE_TRANSITIONS[tile.name] and TILE_TRANSITIONS[tile.name] ~= "nil" then
 				tiles_to_set[#tiles_to_set + 1] = {
 					name = TILE_TRANSITIONS[tile.name],
 					position = pos,
@@ -74,9 +87,13 @@ function Public.process_transitions(surface, transitioning_tiles, interval)
 end
 
 local function melt_dry_ice(surface, pos)
-	local tile = surface.get_hidden_tile(pos)
-	if tile then
-		surface.set_tiles({ { name = tile, position = pos } })
+	local hidden_tile = surface.get_hidden_tile(pos)
+	if hidden_tile then
+		if HIDDEN_TILE_TO_MELTING_TILE[hidden_tile] then
+			hidden_tile = HIDDEN_TILE_TO_MELTING_TILE[hidden_tile]
+		end
+
+		surface.set_tiles({ { name = hidden_tile, position = pos } })
 		surface.set_hidden_tile(pos, nil)
 	end
 

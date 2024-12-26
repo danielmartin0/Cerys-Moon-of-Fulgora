@@ -53,38 +53,41 @@ for _, character in pairs(data.raw.character) do -- there are alt-skin mods with
 	end
 end
 
-if data.raw.furnace["stone-furnace"] then
+if data.raw.furnace["stone-furnace"] and data.raw.furnace["stone-furnace"].energy_source.fuel_categories then
 	table.insert(data.raw.furnace["stone-furnace"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.furnace["steel-furnace"] then
+if data.raw.furnace["steel-furnace"] and data.raw.furnace["steel-furnace"].energy_source.fuel_categories then
 	table.insert(data.raw.furnace["steel-furnace"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.boiler["boiler"] then
+if data.raw.boiler["boiler"] and data.raw.boiler["boiler"].energy_source.fuel_categories then
 	table.insert(data.raw.boiler["boiler"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.inserter["burner-inserter"] then
+if data.raw.inserter["burner-inserter"] and data.raw.inserter["burner-inserter"].energy_source.fuel_categories then
 	table.insert(data.raw.inserter["burner-inserter"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.car["car"] then
+if data.raw.car["car"] and data.raw.car["car"].energy_source.fuel_categories then
 	table.insert(data.raw.car["car"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.car["tank"] then
+if data.raw.car["tank"] and data.raw.car["tank"].energy_source.fuel_categories then
 	table.insert(data.raw.car["tank"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw["mining-drill"]["burner-mining-drill"] then
+if
+	data.raw["mining-drill"]["burner-mining-drill"]
+	and data.raw["mining-drill"]["burner-mining-drill"].energy_source.fuel_categories
+then
 	table.insert(data.raw["mining-drill"]["burner-mining-drill"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.locomotive["locomotive"] then
+if data.raw.locomotive["locomotive"] and data.raw.locomotive["locomotive"].energy_source.fuel_categories then
 	table.insert(data.raw.locomotive["locomotive"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
-if data.raw.reactor["heating-tower"] then
+if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energy_source.fuel_categories then
 	table.insert(data.raw.reactor["heating-tower"].energy_source.fuel_categories, "chemical-or-radiative")
 end

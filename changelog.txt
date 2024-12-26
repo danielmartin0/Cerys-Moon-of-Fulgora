@@ -1,7 +1,101 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.4.7
+Version: 0.4.25
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.4.24
+Date: 2024-12-26
+  Bugfixes:
+    - Attempted workaround for base game bug complaining about missing 'cerys_ash_flats' on some saves.
+  Modding:
+    - Compatibility with mods that remove the 'fuel_categories' field from entities.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.23
+Date: 2024-12-26
+  Graphics:
+    - Fulgoran cryogenic plants no longer have bugged pipe graphics when rotated.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.22
+Date: 2024-12-26
+  Bugfixes:
+    - The regular rocket fuel recipe (from light oil) is no longer made uncraftable on Aquilo by this mod.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.21
+Date: 2024-12-26
+  Graphics:
+    - Removed graphical fuzz on the border of the Cerys image.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.20
+Date: 2024-12-26
+  Bugfixes:
+    - Fixed wrong image size.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.19
+Date: 2024-12-26
+  Graphics:
+    - Graphical updates to the visual appearence of Cerys in poster, icons etc.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.18
+Date: 2024-12-26
+  Changes:
+    - Reactor moved by two tiles on new saves so that repairs via inserters are possible.
+  Graphics:
+    - New icon for nuclear scrap recycling.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.17
+Date: 2024-12-26
+  Bugfixes:
+    - Fix for saves from old versions in which the reactor entity became unregistered.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.16
+Date: 2024-12-26
+  Info:
+    - 'Movie poster' update.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.15
+Date: 2024-12-26
+  Info:
+    - Locale updates.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.14
+Date: 2024-12-26
+  Bugfixes:
+    - Factoriopedia fixes.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.13
+Date: 2024-12-26
+  Modding:
+    - Prepublish script.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.12
+Date: 2024-12-26
+  Graphics:
+    - Asteroid shadows now match the direction of other entities.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.11
+Date: 2024-12-26
+  Changes:
+    - Melting dry ice now melts to the first ice layer, rather than directly to rock.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.10
+Date: 2024-12-26
+  Changes:
+    - Spawning of methane icebergs now respects the moon curvature.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.9
+Date: 2024-12-26
+  Graphics:
+    - New icon for cryogenic plant quality upgrade tech.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.8
+Date: 2024-12-26
+  Bugfixes:
+    - Fixed flaring recipes being shown in player crafting.
+---------------------------------------------------------------------------------------------------
+Version: 0.4.7
+Date: 2024-12-26
+  Bugfixes:
+    - Fixed Cerys recipes being always unlocked.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.6
 Date: 2024-12-26
@@ -11,7 +105,7 @@ Date: 2024-12-26
 Version: 0.4.5
 Date: 2024-12-26
   Bugfixes:
-    - Fixed map generation issue.
+    - Fixed map generation issue relating to empty space tiles.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.4
 Date: 2024-12-26

@@ -11,7 +11,9 @@ data:extend({
 				{ type = "item", name = "methane-ice", amount_min = 8, amount_max = 15 },
 			},
 		}),
-		autoplace = "nil",
+		autoplace = {
+			probability_expression = "cerys_methane_iceberg_large",
+		},
 		pictures = {
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-2.png",
@@ -63,7 +65,9 @@ data:extend({
 				{ type = "item", name = "methane-ice", amount_min = 5, amount_max = 6 },
 			},
 		}),
-		autoplace = "nil",
+		autoplace = {
+			probability_expression = "cerys_methane_iceberg_large",
+		},
 		pictures = {
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-big/dry-iceberg-big-1.png",

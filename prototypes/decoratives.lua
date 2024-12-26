@@ -12,7 +12,9 @@ data:extend({
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-c[medium]",
 		collision_box = { { -1.1, -1.1 }, { 1.1, 1.1 } },
 		render_layer = "decorative",
-
+		autoplace = {
+			probability_expression = "cerys_methane_iceberg_large",
+		},
 		trigger_effect = decorative_trigger_effects.medium_rock(),
 		pictures = {
 			{
@@ -144,7 +146,9 @@ data:extend({
 		collision_box = { { -0.8, -0.8 }, { 0.8, 0.8 } },
 		render_layer = "decorative",
 		walking_sound = sounds.pebble,
-
+		autoplace = {
+			probability_expression = "cerys_methane_iceberg_small",
+		},
 		trigger_effect = decorative_trigger_effects.small_rock(),
 		pictures = {
 			{
@@ -244,7 +248,9 @@ data:extend({
 		collision_box = { { -0.1, -0.1 }, { 0.1, 0.1 } },
 		render_layer = "decorative",
 		walking_sound = sounds.pebble,
-
+		autoplace = {
+			probability_expression = "cerys_methane_iceberg_small",
+		},
 		trigger_effect = decorative_trigger_effects.tiny_rock(),
 		pictures = {
 			{

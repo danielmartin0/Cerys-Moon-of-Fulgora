@@ -152,59 +152,11 @@ function Public.on_cerys_chunk_generated(event, surface)
 	Public.create_lithium_brine(surface, area)
 end
 
+--luacheck: ignore
 function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
 	local new_tile = nil
 
 	local is_rock = find(common.ROCK_TILES, existing_tile)
-
-	local resource_noise = simplex_noise(x / 30, y / 30, seed)
-
-	if resource_noise < 0 then
-		local decorative_noise = simplex_noise(x / 50, y / 50, seed + 400)
-		if decorative_noise > -0.3 then
-			local rng = math.random()
-			if is_rock then
-				if rng < 0.015 then
-					table.insert(entities, {
-						name = "cerys-methane-iceberg-huge",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				elseif rng < 0.03 then
-					table.insert(entities, {
-						name = "cerys-methane-iceberg-big",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				elseif rng < 0.05 then
-					table.insert(decoratives, {
-						name = "cerys-methane-iceberg-medium",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				elseif rng < 0.06 then
-					table.insert(decoratives, {
-						name = "cerys-methane-iceberg-small",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				elseif rng < 0.075 then
-					table.insert(decoratives, {
-						name = "cerys-methane-iceberg-tiny",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				end
-			else
-				if rng < 0.06 then
-					table.insert(decoratives, {
-						name = "cerys-methane-iceberg-small",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				elseif rng < 0.075 then
-					table.insert(decoratives, {
-						name = "cerys-methane-iceberg-tiny",
-						position = { x = x + 0.5, y = y + 0.5 },
-					})
-				end
-			end
-		end
-	end
 
 	if common.DEBUG_DISABLE_FREEZING then
 		if existing_tile == "cerys-ice-on-water" then

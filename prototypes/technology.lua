@@ -130,8 +130,8 @@ data:extend({
 			},
 		},
 		prerequisites = { "cerys-science-pack" },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/flare-stack/technology.png",
-		icon_size = 160,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/gas-venting.png",
+		icon_size = 256,
 	}),
 	cerys_tech({
 		science_count = 100,
@@ -143,9 +143,8 @@ data:extend({
 			},
 		},
 		prerequisites = { "cerys-science-pack" },
-		icons = util.technology_icon_constant_speed(
-			"__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png"
-		),
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
+		icon_size = 256,
 	}),
 	cerys_tech({
 		name = "cerys-charging-rod",
