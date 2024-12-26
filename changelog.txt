@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.3.42
+Version: 0.4.1
 Date: ????
   Changes:
+    - Rephrased the hint accompanying Pu239 in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.0
-Date: ????
+Date: 2024-12-25
   Info:
-    - 'Meaningless' uncraftable plutonium recipe added for purposes of hinting in Factoriopedia.
+    - 'Meaningless' uncraftable plutonium recipe added for purposes of hinting in Factoriopedia. (This also solves the problem of Pu239 never showing up in item filters by default.)
   Changes:
     - Fulgoran cryogenic plants now spawn with concrete underneath only if the tile would have been water there, and this concrete cannot be mined.
     - Upgrading cryogenic plants now requires red chips rather than blue chips, for variety.
