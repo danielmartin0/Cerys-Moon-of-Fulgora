@@ -2,6 +2,7 @@
 Version: 0.4.11
 Date: ????
   Changes:
+    - Melting dry ice now melts to the first ice layer, rather than directly to rock.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.10
 Date: 2024-12-26
