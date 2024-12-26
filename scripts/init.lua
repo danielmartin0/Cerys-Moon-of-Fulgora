@@ -32,7 +32,8 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 end
 
 function Public.create_reactor(surface)
-	local name = common.DEBUG_REACTOR_START and "cerys-fulgoran-reactor" or "cerys-fulgoran-reactor-wreck-frozen"
+	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
+		or "cerys-fulgoran-reactor-wreck-frozen"
 
 	local e = surface.create_entity({
 		name = name,
@@ -43,7 +44,8 @@ function Public.create_reactor(surface)
 	e.minable_flag = false
 	e.destructible = false
 
-	local stage = common.DEBUG_REACTOR_START and repair.REACTOR_STAGE_ENUM.active or repair.REACTOR_STAGE_ENUM.frozen
+	local stage = common.DEBUG_NUCLEAR_REACTOR_START and repair.REACTOR_STAGE_ENUM.active
+		or repair.REACTOR_STAGE_ENUM.frozen
 
 	storage.cerys.reactor = {
 		stage = stage,

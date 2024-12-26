@@ -25,6 +25,9 @@ planet_map_gen.cerys = function()
 					["cerys-ice-decal-white"] = {},
 					["cerys-crater-large"] = {},
 					["cerys-crater-small"] = {},
+					["cerys-methane-iceberg-medium"] = {},
+					["cerys-methane-iceberg-small"] = {},
+					["cerys-methane-iceberg-tiny"] = {},
 				},
 			},
 			["entity"] = {
@@ -41,6 +44,8 @@ planet_map_gen.cerys = function()
 					["cerys-fulgoran-radiative-tower"] = {}, -- null
 					["cerys-fulgoran-cryogenic-plant"] = {}, -- null
 					["cerys-fulgoran-reactor"] = {}, -- null
+					["cerys-methane-iceberg-big"] = {},
+					["cerys-methane-iceberg-huge"] = {},
 				},
 			},
 		},
