@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.29
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed the Maraxsis compatibility code.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.28
 Date: 2024-12-27
@@ -16,7 +17,7 @@ Date: 2024-12-27
 Version: 0.4.26
 Date: 2024-12-27
   Modding:
-    - Maraxsis compatibility: Maraxsis petroleum cracking from heavy oil recipe is now forbidden on Cerys.
+    - Maraxsis compatibility: Maraxsis petroleum cracking to heavy oil recipe is now forbidden on Cerys.
     - Description update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.24
