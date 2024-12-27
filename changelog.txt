@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.30
 Date: ????
-  Changes:
+  Bugfixes:
+    - Logistic containers are no longer broken in their endgame role. They are now consistent with other container entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.29
 Date: 2024-12-27

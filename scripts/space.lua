@@ -203,7 +203,7 @@ end
 
 local container_names = {}
 for _, e in pairs(prototypes["entity"]) do
-	if e.type == "container" then
+	if e.type == "container" or e.type == "logistic-container" then
 		table.insert(container_names, e.name)
 	end
 end
