@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.4.25
+Version: 0.4.26
 Date: 2024-12-27
   Modding:
     - Maraxsis compatibility: Maraxsis petroleum cracking from heavy oil recipe is now forbidden on Cerys.
