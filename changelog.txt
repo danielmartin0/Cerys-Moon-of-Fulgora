@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.4.30
+Version: 0.4.31
 Date: 2024-12-27
   Bugfixes:
     - Logistic containers are no longer broken in their endgame role. They are now consistent with other container entities.
@@ -11,7 +11,7 @@ Date: 2024-12-27
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.28
 Date: 2024-12-27
-  Info:±
+  Info:
     - Version bump for debugging.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.27
