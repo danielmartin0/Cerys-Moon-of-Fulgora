@@ -109,7 +109,7 @@ function Public.tick_2_radiation(surface)
 	local damage = BASE_DAMAGE * settings.global["cerys-gamma-radiation-damage-multiplier"].value
 
 	for _, particle in ipairs(storage.cerys.radiation_particles) do
-		if (not particle.damage_tick) or (particle.damage_tick < game.tick - DAMAGE_TICK_DELAY) then
+		if (not particle.irradiation_tick) or (particle.irradiation_tick < game.tick - DAMAGE_TICK_DELAY) then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.5 })
 
@@ -124,7 +124,7 @@ function Public.tick_2_radiation(surface)
 					end
 
 					char.damage(damage, game.forces.neutral, "laser")
-					particle.damage_tick = game.tick
+					particle.irradiation_tick = game.tick
 				end
 			end
 		end

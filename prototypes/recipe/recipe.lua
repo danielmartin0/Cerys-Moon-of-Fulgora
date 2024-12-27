@@ -26,9 +26,9 @@ data:extend({
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
-			{ type = "item", name = "electronic-circuit", amount = 20 },
-			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = "nitric-acid", amount = 15 },
+			{ type = "item",  name = "electronic-circuit", amount = 20 },
+			{ type = "item",  name = "advanced-circuit",   amount = 2 },
+			{ type = "fluid", name = "nitric-acid",        amount = 15 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
@@ -70,8 +70,8 @@ data:extend({
 		energy_required = 4,
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 6 }, -- Let's not have them make too many
-			{ type = "item", name = "steel-plate", amount = 12 },
-			{ type = "item", name = "copper-cable", amount = 6 },
+			{ type = "item", name = "steel-plate",    amount = 12 },
+			{ type = "item", name = "copper-cable",   amount = 6 },
 		},
 		results = { { type = "item", name = "charging-rod", amount = 1 } },
 	},
@@ -87,7 +87,7 @@ data:extend({
 		energy_required = 1,
 		ingredients = {
 			{ type = "fluid", name = "ammonia", amount = 25 },
-			{ type = "fluid", name = "water", amount = 25 },
+			{ type = "fluid", name = "water",   amount = 25 },
 		},
 		results = {
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
@@ -104,9 +104,9 @@ data:extend({
 		name = "cerys-lab",
 		energy_required = 3,
 		ingredients = {
-			{ type = "item", name = "transport-belt", amount = 8 },
+			{ type = "item", name = "transport-belt",  amount = 8 },
 			{ type = "item", name = "processing-unit", amount = 10 },
-			{ type = "item", name = "iron-plate", amount = 20 },
+			{ type = "item", name = "iron-plate",      amount = 20 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,
@@ -131,10 +131,10 @@ data:extend({
 		enabled = false,
 		energy_required = 2,
 		ingredients = {
-			{ type = "item", name = "superconductor", amount = 1 },
-			{ type = "item", name = "uranium-238", amount = 6 },
-			{ type = "fluid", name = "nitric-acid", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 50 },
+			{ type = "item",  name = "superconductor", amount = 1 },
+			{ type = "item",  name = "uranium-238",    amount = 6 },
+			{ type = "fluid", name = "nitric-acid",    amount = 50 },
+			{ type = "fluid", name = "methane",        amount = 50 },
 		},
 		results = { { type = "item", name = "cerys-science-pack", amount = 1 } },
 		surface_conditions = {
@@ -189,11 +189,11 @@ data:extend({
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 30 },
-			{ type = "fluid", name = "methane", amount = 30 },
+			{ type = "fluid", name = "methane",   amount = 30 },
 		},
 		allow_productivity = true,
 		enabled = false,
-		crafting_machine_tint = { -- TODO: Change. From fluoroketone
+		crafting_machine_tint = {                               -- TODO: Change. From fluoroketone
 			primary = { r = 0.365, g = 0.815, b = 0.334, a = 1.000 }, -- #5dcf55ff
 			secondary = { r = 0.772, g = 0.394, b = 0.394, a = 1.000 }, -- #c46464ff
 			tertiary = { r = 0.116, g = 0.116, b = 0.111, a = 1.000 }, -- #1d1d1cff
@@ -212,9 +212,9 @@ data:extend({
 		energy_required = 3,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 10 },
-			{ type = "item", name = "carbon", amount = 10 },
-			{ type = "item", name = "lithium", amount = 5 },
+			{ type = "fluid", name = "methane",   amount = 10 },
+			{ type = "item",  name = "carbon",    amount = 10 },
+			{ type = "item",  name = "lithium",   amount = 5 },
 		},
 		results = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
@@ -250,15 +250,16 @@ data:extend({
 		energy_required = 1 / 2,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 20 }, -- 1 iron is needed to make 50 sulfuric acid. Therefore, less than 50 sulfuric acid should make 1 iron.
+			{ type = "item",  name = "cerys-nitrogen-rich-minerals", amount = 1 },
+			{ type = "fluid", name = "sulfuric-acid",                amount = 20 }, -- 1 iron is needed to make 50 sulfuric acid. Therefore, less than 50 sulfuric acid should make 1 iron.
 		},
 		results = {
-			{ type = "item", name = "iron-ore", amount = 1 },
-			{ type = "fluid", name = "ammonia", amount = 20 },
+			{ type = "item",  name = "iron-ore", amount = 1 },
+			{ type = "fluid", name = "ammonia",  amount = 20 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",
 		order = "d-a",
+		auto_recycle = false,
 	}),
 })

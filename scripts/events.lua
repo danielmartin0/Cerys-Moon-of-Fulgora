@@ -153,8 +153,8 @@ script.on_event(defines.events.on_tick, function(event)
 		nuclear_reactor.tick_reactor(surface)
 	end
 
-	if tick % 10 == 0 then
-		space.tick_10_solar_wind_collisions(surface)
+	if tick % 8 == 0 then
+		space.tick_8_solar_wind_collisions(surface)
 	end
 
 	if tick % 9 == 0 then

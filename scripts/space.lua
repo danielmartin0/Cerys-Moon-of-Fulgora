@@ -12,11 +12,13 @@ local ROD_DEFLECTION_STRENGTH = 1 / 10
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
 local CHANCE_DAMAGE_CHARACTER = 1 / 40
-local COOLDOWN_DISTANCE = 1
+local COOLDOWN_DISTANCE = 1.5
+local COOLDOWN_TICKS = 30
 
--- These shouldn't be crazy different such that the player doesn't get punished much if they don't figure this bit out:
-local CHANCE_MUTATE_BELT_URANIUM_IN_CHECK = 1 / 15000
-local CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK = 1 / 45000 -- shouldn't be greater than 1 over the max chest capacity for our algorithm to make sense.
+-- These ideally shouldn't be crazy different such that the player doesn't get punished much if they don't figure this bit out:
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 3000
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 /
+	10000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.75,
@@ -216,60 +218,68 @@ for _, e in pairs(prototypes["entity"]) do
 end
 
 local CHANCE_CHECK_BELT = 1 / 20
-function Public.tick_10_solar_wind_collisions(surface)
+function Public.tick_8_solar_wind_collisions(surface)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not Public.particle_is_in_cooldown(particle) then
 			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1 })
+				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 0.75 })
 			if #chars > 0 then
 				local e = chars[1]
 				if e and e.valid then
-					local inv = e.get_main_inventory()
-					if inv and inv.valid then
-						local irradiated = Public.irradiate_inventory(inv)
-						if irradiated then
-							particle.damage_tick = game.tick
+					local check = (not Public.particle_is_in_cooldown(particle)) or
+						(particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
-							surface.create_entity({
-								name = "plutonium-explosion",
-								position = e.position,
-							})
-						end
-					end
+					if check then
+						particle.irradiation_tick = game.tick
+						particle.last_checked_inv = e.unit_number
 
-					if math.random() < CHANCE_DAMAGE_CHARACTER then
-						local player = e.player
-						if player and player.valid then
-							player.play_sound({
-								path = "cerys-radiation-impact",
-								volume_modifier = 0.2,
-							})
+						local inv = e.get_main_inventory()
+						if inv and inv.valid then
+							local irradiated = Public.irradiate_inventory(inv)
+							if irradiated then
+								surface.create_entity({
+									name = "plutonium-explosion",
+									position = e.position,
+								})
+							end
 						end
 
-						e.damage(15, game.forces.neutral, "laser")
+						if math.random() < CHANCE_DAMAGE_CHARACTER then
+							local player = e.player
+							if player and player.valid then
+								player.play_sound({
+									path = "cerys-radiation-impact",
+									volume_modifier = 0.2,
+								})
+							end
 
-						particle.damage_tick = game.tick
+							e.damage(15, game.forces.neutral, "laser")
+						end
 					end
 				end
 			end
 		end
 
-		if not Public.particle_is_in_cooldown(particle) then
-			local containers = surface.find_entities_filtered({
-				name = container_names,
-				position = particle.position,
-				radius = 1,
-			})
+		local containers = surface.find_entities_filtered({
+			name = container_names,
+			position = particle.position,
+			radius = 0.75,
+		})
 
-			if #containers > 0 then
-				local e = containers[1]
-				if e and e.valid then
+		if #containers > 0 then
+			local e = containers[1]
+			if e and e.valid then
+				local check = (not Public.particle_is_in_cooldown(particle)) or
+					(particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+
+				if check then
+					particle.irradiation_tick = game.tick
+					particle.last_checked_inv = e.unit_number
+
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
 						local irradiated = Public.irradiate_inventory(inv)
 						if irradiated then
-							particle.damage_tick = game.tick
-
 							surface.create_entity({
 								name = "plutonium-explosion",
 								position = e.position,
@@ -280,11 +290,12 @@ function Public.tick_10_solar_wind_collisions(surface)
 			end
 		end
 
-		if (math.random() < CHANCE_CHECK_BELT) and not Public.particle_is_in_cooldown(particle) then
+		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture, but is probably not the final form of this code.
+		if math.random() < CHANCE_CHECK_BELT then
 			local belts = surface.find_entities_filtered({
 				name = belt_names,
 				position = particle.position,
-				radius = 1,
+				radius = 0.5,
 			})
 			if #belts > 0 then
 				local e = belts[1]
@@ -296,24 +307,35 @@ function Public.tick_10_solar_wind_collisions(surface)
 
 					for _, line in pairs(lines) do
 						local contents = line.get_detailed_contents()
+
 						for _, item in pairs(contents) do
-							if
-								item.stack.name == "uranium-238"
-								and math.random()
-									< (CHANCE_MUTATE_BELT_URANIUM_IN_CHECK / CHANCE_CHECK_BELT) * item.stack.count
-							then
-								item.stack.set_stack({
-									name = "plutonium-239",
-									count = item.stack.count,
-									quality = item.stack.quality,
-								})
+							if item.stack.name == "uranium-238" then
+								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT) * item.stack.count
 
-								surface.create_entity({
-									name = "plutonium-explosion",
-									position = e.position,
-								})
+								storage.accrued_probability_units = storage.accrued_probability_units +
+									increase
 
-								particle.damage_tick = game.tick
+								local mutate = storage.accrued_probability_units > 1
+
+								if mutate then
+									storage.accrued_probability_units = storage.accrued_probability_units - 1
+
+									item.stack.set_stack({
+										name = "plutonium-239",
+										count = item.stack.count,
+										quality = item.stack.quality,
+									})
+
+									surface.create_entity({
+										name = "plutonium-explosion",
+										position = e.position,
+									})
+								end
+
+								particle.irradiation_tick = game.tick
+								particle.last_checked_inv = nil
+
+								break
 							end
 						end
 					end
@@ -324,33 +346,54 @@ function Public.tick_10_solar_wind_collisions(surface)
 end
 
 function Public.particle_is_in_cooldown(particle)
-	if not particle.damage_tick then
+	if not particle.irradiation_tick then
 		return false
 	end
 
 	local v2 = particle.velocity.x ^ 2 + particle.velocity.y ^ 2
 	local speed = math.sqrt(v2)
 
-	local cooldown_time = COOLDOWN_DISTANCE / speed
-	if game.tick < particle.damage_tick + cooldown_time then
-		return true
+	local cooldown_time_1 = COOLDOWN_DISTANCE / speed
+	local cooldown_time_2 = COOLDOWN_TICKS
+
+	if game.tick > particle.irradiation_tick + cooldown_time_1 or game.tick > particle.irradiation_tick + cooldown_time_2 then
+		particle.irradiation_tick = nil
+		particle.last_checked_inv = nil
+		return false
 	end
 
-	particle.damage_tick = nil
-	return false
+	return true
 end
 
 function Public.irradiate_inventory(inv)
 	for _, quality in pairs(prototypes.quality) do
 		local name = quality.name
 		local count = inv.get_item_count({ name = "uranium-238", quality = name })
-		if count then
-			-- TODO: Knuth algorithm for Poisson distribution
-			if math.random() < count * CHANCE_MUTATE_INVENTORY_URANIUM_IN_CHECK then
+		if count and count > 0 then
+			-- Throw in some rng to cause double and triple transitions:
+			local increase_multiplier = 1
+			local rng = math.random()
+			if rng < 0.01 then
+				increase_multiplier = 6
+			elseif rng < 0.06 then
+				increase_multiplier = 3
+			elseif rng > 0.85 then
+				increase_multiplier = 0.5
+			end
+
+			local increase = count * CHANCE_MUTATE_INVENTORY_URANIUM * increase_multiplier
+
+			storage.accrued_probability_units = storage.accrued_probability_units + increase
+
+			local number_mutated = storage.accrued_probability_units - (storage.accrued_probability_units % 1)
+
+			if number_mutated > 0 then
+				storage.accrued_probability_units = storage.accrued_probability_units - number_mutated
+
 				local removed = inv.remove({ name = "uranium-238", count = 100, quality = name })
-				inv.insert({ name = "plutonium-239", count = 1, quality = name })
-				if removed > 1 then
-					inv.insert({ name = "uranium-238", count = removed - 1, quality = name })
+				inv.insert({ name = "plutonium-239", count = number_mutated, quality = name })
+				if removed > number_mutated then
+					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
 				end
 
 				return true

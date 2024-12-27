@@ -71,7 +71,7 @@ local solar_wind_particle = {
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
 				apply_runtime_tint = true,
 				size = 32,
-				scale = 0.7,
+				scale = 0.6,
 				draw_as_glow = true,
 				blend_mode = "additive",
 			},

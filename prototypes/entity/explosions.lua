@@ -51,7 +51,7 @@ data:extend({
 				max_count = 1,
 				remove = true,
 			},
-			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.2, 0.5),
+			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.35, 0.45),
 		},
 	},
 })

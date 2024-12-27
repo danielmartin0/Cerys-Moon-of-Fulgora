@@ -7,7 +7,7 @@ data:extend({
 		energy_required = 0.7,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
-			{ type = "item", name = "engine-unit", amount = 1 },
+			{ type = "item", name = "engine-unit",        amount = 1 },
 		},
 		results = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
@@ -20,9 +20,9 @@ data:extend({
 		energy_required = 20,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 500 },
+			{ type = "item", name = "steel-plate",      amount = 500 },
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "processing-unit", amount = 50 },
+			{ type = "item", name = "processing-unit",  amount = 50 },
 		},
 		results = { { type = "item", name = "cerys-fulgoran-reactor-scaffold", amount = 1 } },
 	},
@@ -60,7 +60,7 @@ data:extend({
 		ingredients = {
 			-- The script need to be updated if these change:
 			{ type = "item", name = "ancient-structure-repair-part", amount = 4 },
-			{ type = "item", name = "processing-unit", amount = 1 },
+			{ type = "item", name = "processing-unit",               amount = 1 },
 		},
 		results = {},
 		allow_quality = false,
@@ -121,7 +121,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 20 },
-			{ type = "item", name = "advanced-circuit", amount = 20 }, -- blue chips here would be too little variety
+			{ type = "item", name = "advanced-circuit",              amount = 20 }, -- blue chips here would be too little variety
 		},
 		results = {},
 		allow_quality = true,

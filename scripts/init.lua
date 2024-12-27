@@ -128,6 +128,10 @@ function Public.ensure_cerys_storage_and_tables()
 	if not storage.background_renderings then
 		storage.background_renderings = {}
 	end
+
+	if not storage.accrued_probability_units then
+		storage.accrued_probability_units = 0
+	end
 end
 
 return Public
