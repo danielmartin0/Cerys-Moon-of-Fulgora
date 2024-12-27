@@ -2,6 +2,7 @@
 Version: 0.4.27
 Date: ????
   Changes:
+    - Burner mining drills can no longer be placed on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.26
 Date: 2024-12-27

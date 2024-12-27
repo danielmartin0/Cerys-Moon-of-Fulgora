@@ -46,7 +46,6 @@ local eased_pressure_restriction = {
 		min = 5,
 	},
 }
-data.raw["mining-drill"]["burner-mining-drill"].surface_conditions = eased_pressure_restriction
 data.raw["inserter"]["burner-inserter"].surface_conditions = eased_pressure_restriction
 data.raw["roboport"]["roboport"].surface_conditions = eased_pressure_restriction
 
