@@ -1,11 +1,3 @@
--- Prevent destruction of uranium-238:
-local r = data.raw.recipe["uranium-238-recycling"]
-if r then
-	r.results = {
-		{ type = "item", name = "uranium-238", amount = 1 },
-	}
-end
-
 --== Relaxations ==--
 
 data.raw.recipe.recycler.surface_conditions = {
@@ -81,3 +73,16 @@ data.raw.recipe["rocket-fuel"].surface_conditions = {
 		min = 253,
 	},
 }
+
+--== Forbid recycling certain items on Cerys ==--
+
+local magnetic_field_restriction = {
+	{ property = "magnetic-field", max = 119 },
+}
+
+if data.raw.recipe["uranium-238-recycling"] then
+	data.raw.recipe["uranium-238-recycling"].surface_conditions = magnetic_field_restriction
+end
+if data.raw.recipe["construction-robot-recycling"] then
+	data.raw.recipe["construction-robot-recycling"].surface_conditions = magnetic_field_restriction
+end

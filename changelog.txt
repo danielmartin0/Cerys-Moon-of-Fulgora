@@ -2,6 +2,8 @@
 Version: 0.5.5
 Date: ????
   Changes:
+    - Rather than an idempotent recycling recipe, recycling uranium-238 on Cerys is no longer possible.
+    - Recycling construction robots on Cerys is no longer possible.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.4
 Date: 2024-12-28
