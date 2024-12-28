@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.7
-Date: ????
+Date: 2024-12-28
   Changes:
     - Water can no longer spawn on the edge of Cerys.
     - The area without radiative heaters is now symmetric about the x-axis, making it more obvious this feature is intentional.
