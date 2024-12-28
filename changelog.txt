@@ -2,6 +2,8 @@
 Version: 0.5.4
 Date: ????
   Changes:
+    - Decreased cargo drops technology science pack count required.
+    - Decreased scaling of holmium plate productivity technology per level.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.3
 Date: 2024-12-28

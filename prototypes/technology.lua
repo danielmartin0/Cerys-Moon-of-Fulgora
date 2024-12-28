@@ -152,7 +152,7 @@ data:extend({
 			count = 100,
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
+				{ "cerys-science-pack",      1 },
 			},
 			time = 60,
 		},
@@ -218,8 +218,8 @@ data:extend({
 			count = 2000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
+				{ "logistic-science-pack",   1 },
+				{ "cerys-science-pack",      1 },
 			},
 			time = 60,
 		},
@@ -268,8 +268,8 @@ data:extend({
 			count = 500,
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
+				{ "logistic-science-pack",   1 },
+				{ "cerys-science-pack",      1 },
 			},
 			time = 60,
 		},
@@ -291,12 +291,12 @@ data:extend({
 		},
 		prerequisites = { "holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "4^(L-1)*500",
+			count_formula = "3^(L-1)*500",
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
-				{ "utility-science-pack", 1 },
+				{ "logistic-science-pack",   1 },
+				{ "cerys-science-pack",      1 },
+				{ "utility-science-pack",    1 },
 			},
 			time = 60,
 		},
@@ -316,12 +316,12 @@ data:extend({
 		},
 		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
 		unit = {
-			count = 5000,
+			count = 2000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
-				{ "utility-science-pack", 1 },
+				{ "logistic-science-pack",   1 },
+				{ "cerys-science-pack",      1 },
+				{ "utility-science-pack",    1 },
 			},
 			time = 60,
 		},
@@ -363,9 +363,9 @@ local discovery_tech = {
 		count = 500,
 		ingredients = {
 			{ "automation-science-pack", 1 },
-			{ "logistic-science-pack", 1 },
-			{ "chemical-science-pack", 1 },
-			{ "space-science-pack", 1 },
+			{ "logistic-science-pack",   1 },
+			{ "chemical-science-pack",   1 },
+			{ "space-science-pack",      1 },
 		},
 		time = 60,
 	},
