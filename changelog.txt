@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.8
 Date: ????
-  Changes:
+  Graphics:
+    - Improvements to icon quality and size.
+  Modding:
+    - Minimum version enforced on Surfaces Have Temperature mod.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.7
 Date: 2024-12-28

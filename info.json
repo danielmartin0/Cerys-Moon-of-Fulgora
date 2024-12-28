@@ -10,7 +10,7 @@
   "dependencies": [
     "base >= 2.0.28",
     "space-age >= 2.0.0",
-    "Surfaces-Have-Temperature"
+    "Surfaces-Have-Temperature >= 1.1.0"
   ],
   "package": {
     "scripts": {
