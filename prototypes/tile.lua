@@ -112,9 +112,9 @@ end
 
 local water_ice_transitions_between_transitions = original_ice_transitions_between_transitions
 water_ice_transitions_between_transitions[1].spritesheet =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
 water_ice_transitions_between_transitions[1].water_patch.filename =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
 
 local dry_ice_transitions = util.table.deepcopy(water_ice_transitions)
 dry_ice_transitions[1].to_tiles = {
@@ -146,9 +146,9 @@ table.insert(rock_ice_transitions[1].to_tiles, "cerys-pumice-stones")
 local rock_ice_transitions_between_transitions =
 	util.table.deepcopy(data.raw.tile["ice-rough"].transitions_between_transitions)
 rock_ice_transitions_between_transitions[1].spritesheet =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
 rock_ice_transitions_between_transitions[1].water_patch.filename =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
 
 table.insert(water_tile_type_names, "cerys-water-puddles")
 table.insert(water_tile_type_names, "cerys-water-puddles-freezing")
@@ -531,15 +531,27 @@ data:extend({
 	}),
 })
 
---== Other simple cloned tiles ==--
+--== Other cloned tiles ==--
+
+local cerys_concrete = merge(data.raw.tile["concrete"], {
+	name = "cerys-concrete",
+	minable = "nil"
+})
+if not cerys_concrete.layers then
+	cerys_concrete.layers = {}
+end
+cerys_concrete.layers.cerys_tile = true
+
+local cerys_empty = merge(data.raw.tile["empty-space"], {
+	name = "cerys-empty-space",
+	destroys_dropped_items = true
+})
+if not cerys_empty.layers then
+	cerys_empty.layers = {}
+end
+cerys_empty.layers.cerys_tile = true
 
 data:extend({
-	merge(data.raw.tile["concrete"], {
-		name = "cerys-concrete",
-		minable = "nil",
-	}),
-	merge(data.raw.tile["empty-space"], {
-		name = "cerys-empty-space",
-		destroys_dropped_items = true,
-	}),
+	cerys_concrete,
+	cerys_empty
 })

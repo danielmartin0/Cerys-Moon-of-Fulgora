@@ -2,6 +2,8 @@
 Version: 0.5.6
 Date: ????
   Changes:
+    - Radiative towers now spawn on water tiles (with non-minable concrete underneath).
+    - Iron gear wheel amounts produced from ruins very slightly reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.5
 Date: 2024-12-28

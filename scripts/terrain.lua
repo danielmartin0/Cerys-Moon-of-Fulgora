@@ -18,7 +18,7 @@ local max_radius = common.MOON_RADIUS * 1.2
 local hex_width = tower_separation
 local hex_height = tower_separation * math.sqrt(3)
 local col_offset = hex_width * 3 / 4 -- Horizontal distance between columns
-local row_offset = hex_height / 2 -- Vertical offset for every other column
+local row_offset = hex_height / 2    -- Vertical offset for every other column
 
 local max_cols = math.ceil(2 * max_radius / col_offset)
 local max_rows = math.ceil(2 * max_radius / hex_height)
@@ -117,7 +117,6 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
-	Public.create_towers(surface, area)
 
 	surface.set_tiles(tiles, true)
 
@@ -127,6 +126,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
+	Public.create_towers(surface, area)
 	Public.create_cryo_plants(surface, area)
 	Public.create_crushers(surface, area)
 
@@ -197,64 +197,57 @@ function Public.create_towers(surface, area)
 		then
 			local p2 = { x = p.x + 0.5, y = p.y }
 
-			local existing_tiles = {
-				surface.get_tile(p2.x - 1, p2.y - 1.5),
-				surface.get_tile(p2.x, p2.y - 1.5),
-				surface.get_tile(p2.x + 1, p2.y - 1.5),
-				surface.get_tile(p2.x - 1, p2.y - 0.5),
-				surface.get_tile(p2.x, p2.y - 0.5),
-				surface.get_tile(p2.x + 1, p2.y - 0.5),
-				surface.get_tile(p2.x - 1, p2.y + 0.5),
-				surface.get_tile(p2.x, p2.y + 0.5),
-				surface.get_tile(p2.x + 1, p2.y + 0.5),
-				surface.get_tile(p2.x - 1, p2.y + 1.5),
-				surface.get_tile(p2.x, p2.y + 1.5),
-				surface.get_tile(p2.x + 1, p2.y + 1.5),
-			}
+			local tiles = {}
+			for dx = -1, 1 do
+				for dy = -1.5, 1.5 do
+					local tile_underneath = surface.get_tile(p2.x + dx, p2.y + dy)
+					local tile_underneath_is_water = tile_underneath
+						and tile_underneath.name == "cerys-dry-ice-on-water"
 
-			local can_place = true
-			for _, tile in ipairs(existing_tiles) do
-				if tile and tile.valid and not find(common.ROCK_TILES, tile.name) then
-					can_place = false
+					if tile_underneath_is_water then
+						table.insert(tiles, {
+							name = "cerys-concrete",
+							position = { x = math.floor(p2.x) + dx, y = math.floor(p2.y) + dy },
+						})
+					end
 				end
 			end
+			surface.set_tiles(tiles, true)
 
-			if can_place then
-				local colliding_simple_entities = surface.find_entities_filtered({
-					type = "simple-entity",
-					area = {
-						left_top = { x = p2.x - 1.5, y = p2.y - 2 },
-						right_bottom = { x = p2.x + 1.5, y = p2.y + 2 },
-					},
+			local colliding_simple_entities = surface.find_entities_filtered({
+				type = "simple-entity",
+				area = {
+					left_top = { x = p2.x - 1.5, y = p2.y - 2 },
+					right_bottom = { x = p2.x + 1.5, y = p2.y + 2 },
+				},
+			})
+			for _, entity in ipairs(colliding_simple_entities) do
+				entity.destroy()
+			end
+
+			if
+				surface.can_place_entity({
+					name = "cerys-fulgoran-radiative-tower-contracted-container",
+					position = p2,
 				})
-				for _, entity in ipairs(colliding_simple_entities) do
-					entity.destroy()
-				end
+			then
+				local e = surface.create_entity({
+					name = "cerys-fulgoran-radiative-tower-contracted-container",
+					position = p2,
+					force = "neutral",
+				})
 
-				if
-					surface.can_place_entity({
-						name = "cerys-fulgoran-radiative-tower-contracted-container",
-						position = p2,
-					})
-				then
-					local e = surface.create_entity({
-						name = "cerys-fulgoran-radiative-tower-contracted-container",
-						position = p2,
-						force = "neutral",
-					})
+				if e and e.valid then
+					e.minable_flag = false
+					e.destructible = false
 
-					if e and e.valid then
-						e.minable_flag = false
-						e.destructible = false
-
-						local inv = e.get_inventory(defines.inventory.chest)
-						if inv and inv.valid then
-							inv.insert({ name = "iron-stick", count = 1 })
-						end
-
-						-- radiative_towers.register_heating_tower(e)
-						radiative_towers.register_heating_tower_contracted(e)
+					local inv = e.get_inventory(defines.inventory.chest)
+					if inv and inv.valid then
+						inv.insert({ name = "iron-stick", count = 1 })
 					end
+
+					-- radiative_towers.register_heating_tower(e)
+					radiative_towers.register_heating_tower_contracted(e)
 				end
 			end
 		end
