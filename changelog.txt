@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.2
-Date: ????
+Date: 2024-12-28
   Changes:
     - Recipe change: Ammonia production and consumption is increased, due to the vanilla change to require more ammonia in the rocket fuel production recipe. To balance the new fluid levels, and for realism, nitrogen-rich mineral processing now requires water.
     - Recipe change: Mixed-oxide fuel cell recipe changed to require steel plates rather than iron plates.
