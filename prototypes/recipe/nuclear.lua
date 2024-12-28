@@ -9,7 +9,7 @@ data:extend({
 		energy_required = 10,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "iron-plate",    amount = 4 },
+			{ type = "item", name = "steel-plate",   amount = 3 },
 			{ type = "item", name = "uranium-235",   amount = 1 },
 			{ type = "item", name = "uranium-238",   amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 9 },

@@ -134,31 +134,48 @@ script.on_event(defines.events.on_tick, function(event)
 		return
 	end
 
+	local move_solar_wind = true
+	if settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
+		move_solar_wind = false
+		for _, player in pairs(game.connected_players) do
+			if player.surface.name == "cerys" then
+				move_solar_wind = true
+				break
+			end
+		end
+	end
+
 	background.tick_1_update_background_renderings()
-	space.tick_1_move_solar_wind()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	radiative_towers.tick_1_move_radiative_towers(surface)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
+
+	if move_solar_wind then
+		space.tick_1_move_solar_wind()
+
+		if tick % 2 == 0 then
+			space.tick_2_try_spawn_solar_wind_particle(surface)
+		end
+
+		if tick % 8 == 0 then
+			space.tick_8_solar_wind_collisions(surface)
+		end
+
+		if tick % 9 == 0 then
+			space.tick_9_solar_wind_deflection()
+		end
+	end
 
 	if common.DEBUG_MOON_START and tick == 30 then
 		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 	end
 
 	if tick % 2 == 0 then
-		space.tick_2_try_spawn_solar_wind_particle(surface)
 		nuclear_reactor.tick_2_radiation(surface)
 	end
 
 	if tick % nuclear_reactor.REACTOR_TICK_INTERVAL == 0 then
 		nuclear_reactor.tick_reactor(surface)
-	end
-
-	if tick % 8 == 0 then
-		space.tick_8_solar_wind_collisions(surface)
-	end
-
-	if tick % 9 == 0 then
-		space.tick_9_solar_wind_deflection()
 	end
 
 	if tick % 10 == 0 then

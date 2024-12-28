@@ -80,7 +80,7 @@ data:extend({
 					scale = 0.68,
 					line_length = 1,
 					repeat_count = 33,
-					shift = util.by_pixel(17, 2),
+					shift = util.by_pixel(10, 0),
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-front.png",

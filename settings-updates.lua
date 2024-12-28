@@ -15,4 +15,10 @@ data:extend({
 		minimum_value = 0.0,
 		maximum_value = 100.0,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-disable-solar-wind-when-not-looking-at-surface",
+		setting_type = "runtime-global",
+		default_value = false,
+	},
 })

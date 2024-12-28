@@ -2,6 +2,12 @@
 Version: 0.5.2
 Date: ????
   Changes:
+    - Recipe change: Ammonia production and consumption is increased, due to the vanilla change to require more ammonia in the rocket fuel production recipe. To balance the new fluid levels, and for realism, nitrogen-rich mineral processing now requires water.
+    - Recipe change: Mixed-oxide fuel cell recipe changed to require steel plates rather than iron plates.
+  Features:
+    - Added setting to freeze solar wind unless a player is looking at Cerys for UPS reasons.
+  Graphics:
+    - Fixed interior shadow graphic on Cerys lab while working.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
 Date: 2024-12-28
