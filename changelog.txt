@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.10
 Date: ????
+  Bugfixes:
+    - Lithium brine now appears under 'Contains:' on the starmap.
   Changes:
+    - Space platform foundation can no longer be crafted on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.9
 Date: 2024-12-28

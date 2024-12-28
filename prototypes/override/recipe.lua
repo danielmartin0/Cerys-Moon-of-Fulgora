@@ -73,6 +73,12 @@ data.raw.recipe["rocket-fuel"].surface_conditions = {
 		min = 253,
 	},
 }
+data.raw.recipe["space-platform-foundation"].surface_conditions = {
+	{
+		property = "magnetic-field",
+		max = 119,
+	},
+}
 
 --== Forbid recycling certain items on Cerys ==--
 

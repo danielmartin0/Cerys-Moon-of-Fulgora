@@ -41,11 +41,16 @@ planet_map_gen.cerys = function()
 					["cerys-ruin-big"] = {},
 					["cerys-ruin-medium"] = {},
 					["cerys-ruin-small"] = {},
+					["cerys-methane-iceberg-big"] = {},
+					["cerys-methane-iceberg-huge"] = {},
 					["cerys-fulgoran-radiative-tower"] = {}, -- null
 					["cerys-fulgoran-cryogenic-plant"] = {}, -- null
 					["cerys-fulgoran-reactor"] = {}, -- null
-					["cerys-methane-iceberg-big"] = {},
-					["cerys-methane-iceberg-huge"] = {},
+					["lithium-brine"] = {
+						frequency = 0,
+						size = 0,
+						richness = 0,
+					},
 				},
 			},
 		},

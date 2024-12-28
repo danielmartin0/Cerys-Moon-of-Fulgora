@@ -16,13 +16,6 @@ This file specifies code and assets used in Cerys, Moon of Fulgora from other so
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes. Icon recolored to be more vivid.
 
-#### Cerys icon & image
-
-- **Creators**: Lukah
-- **Source**: [Terrapalus](https://mods.factorio.com/mod/terrapalus)
-- **License**: [MIT](https://opensource.org/license/MIT)
-- **Changes**: Yes. Significant edits to the icon.
-
 #### Sci-fi Nuclear Reactor
 
 - **Creators**: 19vitali99

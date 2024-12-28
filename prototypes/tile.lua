@@ -537,19 +537,20 @@ local cerys_concrete = merge(data.raw.tile["concrete"], {
 	name = "cerys-concrete",
 	minable = "nil"
 })
-if not cerys_concrete.layers then
-	cerys_concrete.layers = {}
+if not cerys_concrete.collision_mask then
+	cerys_concrete.collision_mask = { layers = {} }
 end
-cerys_concrete.layers.cerys_tile = true
+cerys_concrete.collision_mask.layers.cerys_tile = true
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
 	name = "cerys-empty-space",
 	destroys_dropped_items = true
 })
-if not cerys_empty.layers then
-	cerys_empty.layers = {}
+if not cerys_empty.collision_mask then
+	cerys_empty.collision_mask = { layers = {} }
 end
-cerys_empty.layers.cerys_tile = true
+cerys_empty.collision_mask.layers.cerys_tile = true
+table.insert(out_of_map_tile_type_names, "cerys-empty-space")
 
 data:extend({
 	cerys_concrete,
