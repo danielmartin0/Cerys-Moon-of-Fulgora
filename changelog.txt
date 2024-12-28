@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.8
-Date: ????
+Date: 2024-12-28
   Graphics:
     - Improvements to icon quality and size.
   Modding:
