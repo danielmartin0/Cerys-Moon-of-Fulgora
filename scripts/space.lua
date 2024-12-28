@@ -312,7 +312,7 @@ function Public.tick_8_solar_wind_collisions(surface)
 							if item.stack.name == "uranium-238" then
 								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT) * item.stack.count
 
-								storage.accrued_probability_units = storage.accrued_probability_units +
+								storage.accrued_probability_units = (storage.accrued_probability_units or 0) +
 									increase
 
 								local mutate = storage.accrued_probability_units > 1
@@ -383,7 +383,7 @@ function Public.irradiate_inventory(inv)
 
 			local increase = count * CHANCE_MUTATE_INVENTORY_URANIUM * increase_multiplier
 
-			storage.accrued_probability_units = storage.accrued_probability_units + increase
+			storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 
 			local number_mutated = storage.accrued_probability_units - (storage.accrued_probability_units % 1)
 

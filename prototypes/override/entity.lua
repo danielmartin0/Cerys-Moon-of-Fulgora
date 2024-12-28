@@ -49,6 +49,19 @@ local eased_pressure_restriction = {
 data.raw["inserter"]["burner-inserter"].surface_conditions = eased_pressure_restriction
 data.raw["roboport"]["roboport"].surface_conditions = eased_pressure_restriction
 
+local gravity_condition =
+{
+	{
+		property = "gravity",
+		min = 0.1
+	}
+}
+
+data.raw["cargo-landing-pad"]["cargo-landing-pad"].surface_conditions = gravity_condition
+data.raw["car"]["car"].surface_conditions = gravity_condition
+data.raw["car"]["tank"].surface_conditions = gravity_condition
+data.raw["spider-vehicle"]["spidertron"].surface_conditions = gravity_condition
+
 --== Restrictions ==--
 
 local magnetic_field_restriction = {
