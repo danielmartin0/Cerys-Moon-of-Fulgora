@@ -178,6 +178,6 @@ data:extend({
 			},
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png", -- Since lab research productivity reads this icon
-		icon_size = 224,
+		icon_size = 64,
 	}),
 })

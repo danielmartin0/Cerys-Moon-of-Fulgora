@@ -205,7 +205,7 @@ data:extend({
 		name = "lubricant-synthesis",
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",
-		icon_size = 256,
+		icon_size = 64,
 		subgroup = "cerys-processes",
 		order = "e-a",
 		enabled = false,
