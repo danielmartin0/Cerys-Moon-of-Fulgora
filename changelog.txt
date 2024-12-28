@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
-Date: ????
+Date: 2024-12-28
   Bugfixes:
     - Fixed crash on arriving at Cerys.
     - Fixed being unable to place a cargo landing pad or spidertron on Cerys.
