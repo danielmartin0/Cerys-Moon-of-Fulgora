@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.3
 Date: ????
-  Changes:
+  Debug:
+    - If the reactor entity goes missing for any reason, adding a reactor in the map editor will now fix the save file.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.2
 Date: 2024-12-28

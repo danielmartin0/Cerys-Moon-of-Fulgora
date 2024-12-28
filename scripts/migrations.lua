@@ -62,26 +62,6 @@ function Public.run_migrations()
 		end
 	end
 
-	if lib.is_newer_version(last_seen_version, "0.4.17") then
-		local reactor = storage.cerys.reactor
-
-		if reactor and not (reactor.entity and reactor.entity.valid) then
-			local reactor_entity = surface.find_entities_filtered({
-				name = {
-					"cerys-fulgoran-reactor",
-					"cerys-fulgoran-reactor-wreck-cleared",
-					"cerys-fulgoran-reactor-wreck",
-					"cerys-fulgoran-reactor-wreck-frozen",
-					"cerys-fulgoran-reactor",
-				},
-			})
-
-			if reactor_entity and reactor_entity.valid then
-				reactor.entity = reactor_entity
-			end
-		end
-	end
-
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 

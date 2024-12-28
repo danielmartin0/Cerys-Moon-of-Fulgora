@@ -18,6 +18,8 @@ function Public.tick_reactor(surface)
 		return
 	end
 
+	Public.register_reactor_if_missing(surface)
+
 	local reactor = storage.cerys.reactor
 
 	local e = reactor.entity
@@ -161,6 +163,46 @@ function Public.tick_1_move_radiation(tick)
 			end
 		else
 			table.remove(storage.cerys.radiation_particles, i)
+		end
+	end
+end
+
+function Public.register_reactor_if_missing(surface)
+	local reactor = storage.cerys.reactor
+
+	if reactor and not (reactor.entity and reactor.entity.valid) then
+		local reactors = surface.find_entities_filtered({
+			name = {
+				"cerys-fulgoran-reactor",
+				"cerys-fulgoran-reactor-wreck-cleared",
+				"cerys-fulgoran-reactor-wreck",
+				"cerys-fulgoran-reactor-wreck-frozen",
+				"cerys-fulgoran-reactor-wreck-scaffolded",
+			},
+		})
+
+		if #reactors > 0 then
+			local e = reactors[1]
+
+			if e and e.valid then
+				reactor.entity = e
+
+				-- NOTE: This list needs updating if stages or entities are changed.
+				local stage
+				if e.name == "cerys-fulgoran-reactor-wreck-scaffolded" then
+					stage = repair.REACTOR_STAGE_ENUM.needs_repair
+				elseif e.name == "cerys-fulgoran-reactor-wreck-frozen" then
+					stage = repair.REACTOR_STAGE_ENUM.frozen
+				elseif e.name == "cerys-fulgoran-reactor-wreck-cleared" then
+					stage = repair.REACTOR_STAGE_ENUM.needs_scaffold
+				elseif e.name == "cerys-fulgoran-reactor-wreck" then
+					stage = repair.REACTOR_STAGE_ENUM.needs_excavation
+				else
+					stage = repair.REACTOR_STAGE_ENUM.active
+				end
+
+				reactor.stage = stage
+			end
 		end
 	end
 end
