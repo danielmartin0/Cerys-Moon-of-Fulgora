@@ -28,7 +28,7 @@ data:extend({
 		type = "item",
 		name = "ancient-structure-repair-part",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
-		icon_size = 268,
+		icon_size = 64,
 		subgroup = "tool",
 		order = "b[repair]-b[ancient-structure-repair-part]",
 		inventory_move_sound = item_sounds.repair_pack_inventory_move,
@@ -120,7 +120,7 @@ data:extend({
 	merge(data.raw.item["lab"], {
 		name = "cerys-lab",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png",
-		icon_size = 224,
+		icon_size = 64,
 		order = "zzzz",
 		place_result = "cerys-lab",
 		default_import_location = "cerys",
