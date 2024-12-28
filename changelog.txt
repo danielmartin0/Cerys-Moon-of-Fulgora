@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.10
-Date: ????
+Date: 2024-12-28
   Bugfixes:
     - Lithium brine now appears under 'Contains:' on the starmap.
   Changes:
