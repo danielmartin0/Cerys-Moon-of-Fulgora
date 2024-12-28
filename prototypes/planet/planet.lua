@@ -34,10 +34,10 @@ data:extend({
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
 			["day-night-cycle"] = 4.5 * 60 * 60, -- Fulgora is 3m
-			["magnetic-field"] = 120, -- Fulgora is 99
-			["solar-power"] = 120, -- No atmosphere
+			["magnetic-field"] = 120,   -- Fulgora is 99
+			["solar-power"] = 120,      -- No atmosphere
 			pressure = 5,
-			gravity = 0.1, -- 0.1 is minimum for chests
+			gravity = 0.1,              -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,
@@ -62,11 +62,13 @@ data:extend({
 		name = "cerys_radius",
 		expression = tostring(common.MOON_RADIUS),
 	},
+
 	{
 		type = "noise-expression",
 		name = "map_distance",
 		expression = "(x^2 + y^2)^(1/2)",
 	},
+
 	{
 		type = "noise-expression",
 		name = "cerys_surface_distance_over_map_distance",
@@ -82,15 +84,23 @@ data:extend({
 		name = "cerys_x_surface",
 		expression = "x * cerys_surface_distance_over_map_distance",
 	},
+
 	{
 		type = "noise-expression",
 		name = "cerys_y_surface",
 		expression = "y * cerys_surface_distance_over_map_distance",
 	},
+
 	{
 		type = "noise-expression",
 		name = "cerys_surface",
 		expression = "cerys_radius_wobble + (cerys_radius - distance) / 50",
+	},
+
+	{
+		type = "noise-expression",
+		name = "cerys_surface_inner",
+		expression = "cerys_radius_wobble + (cerys_radius - 2 - distance) / 50",
 	},
 
 	{
@@ -188,7 +198,8 @@ data:extend({
 			persistence = 0.35, \z
 			input_scale = 1, \z
 			output_scale = 14} - 3.2 \z
-			- 10 * cerys_all_forced_resources)", -- This expression drops below zero
+			- 10 * cerys_all_forced_resources\z
+			+ min(0, 10000 * cerys_surface_inner))", -- This expression drops below zero
 	},
 
 	{

@@ -7,7 +7,7 @@ local common = require("common")
 local Public = {}
 
 local function final_region(x, y)
-	return -(((y / 64) ^ 2) + (30 - (x + y / 5)) / 32)
+	return -(((y / 64) ^ 2) + (30 - x) / 32)
 end
 
 --== Entity positions ==--
