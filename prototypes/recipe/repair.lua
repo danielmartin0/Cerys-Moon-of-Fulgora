@@ -33,7 +33,7 @@ data:extend({
 		subgroup = "cerys-repair",
 		order = "c",
 		icon = "__base__/graphics/icons/concrete.png",
-		energy_required = 1.6,
+		energy_required = 1.1,
 		enabled = false,
 		hide_from_player_crafting = true,
 		category = "nuclear-reactor-repair",

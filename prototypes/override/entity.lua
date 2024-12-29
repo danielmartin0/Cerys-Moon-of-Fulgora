@@ -10,7 +10,7 @@ pipe_picture.south.tint = { 0.3, 0.35, 0.3 }
 pipe_picture.east.tint = { 0.3, 0.35, 0.3 }
 pipe_picture.west.tint = { 0.3, 0.35, 0.3 }
 
-data.raw["assembling-machine"]["centrifuge"].fluid_boxes = {
+local fluid_boxes = {
 	{
 		production_type = "input",
 		pipe_picture = pipe_picture,
@@ -28,7 +28,19 @@ data.raw["assembling-machine"]["centrifuge"].fluid_boxes = {
 		secondary_draw_orders = { north = -1 },
 	},
 }
-data.raw["assembling-machine"]["centrifuge"].fluid_boxes_off_when_no_fluid_recipe = true
+
+-- Ensure centrifuges can accept fluid recipes:
+for _, machine in pairs(data.raw["assembling-machine"]) do
+	if machine.crafting_categories and not machine.fluid_boxes then
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "centrifuging" then
+				machine.fluid_boxes = fluid_boxes
+				machine.fluid_boxes_off_when_no_fluid_recipe = true
+				break
+			end
+		end
+	end
+end
 
 --== Relaxations ==--
 

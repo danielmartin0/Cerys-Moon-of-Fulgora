@@ -9,9 +9,7 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 		return
 	end
 
-	if storage.cerys and not (surface and surface.valid) then
-		storage.cerys = nil
-	end
+	Public.delete_cerys_storage_if_necessary()
 
 	if not surface then
 		surface = game.planets["cerys"].create_surface()
@@ -85,6 +83,14 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 
 	terrain.on_cerys_chunk_generated(event, surface)
 end)
+
+function Public.delete_cerys_storage_if_necessary()
+	local surface = game.surfaces["cerys"]
+	if storage.cerys and not (surface and surface.valid) then
+		-- Reset the cerys table:
+		storage.cerys = nil
+	end
+end
 
 function Public.ensure_cerys_storage_and_tables()
 	if not storage.cerys then

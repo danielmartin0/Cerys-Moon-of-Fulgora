@@ -1,7 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.11
 Date: ????
+  Features:
+    - Subtle audiovisual effect when a chance of plutonium generation occurs.
   Changes:
+    - Asteroids on Cerys are now tougher, with more health and physical resistance.
+    - Reactor excavation recipe now proceeds faster.
+    - Asteroid laser resistance lowered from 100% to 99%.
+  Modding:
+    - Added compatibility with most modded centrifuges.
+  Graphics:
+    - Charging rod corpse graphic adjusted.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.10
 Date: 2024-12-28

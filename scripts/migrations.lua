@@ -7,16 +7,18 @@ function Public.run_migrations()
 		return
 	end
 
+	local last_seen_version = storage.cerys.last_seen_version
+	-- local new_version = script.active_mods["Cerys-Moon-of-Fulgora"]
+
+	init.delete_cerys_storage_if_necessary()
+
+	-- Add any missing storage tables:
+	init.ensure_cerys_storage_and_tables()
+
 	local surface = game.surfaces["cerys"]
 	if not surface or not surface.valid then
 		return
 	end
-
-	local last_seen_version = storage.cerys.last_seen_version
-	-- local new_version = script.active_mods["Cerys-Moon-of-Fulgora"]
-
-	-- Add any missing storage tables:
-	init.ensure_cerys_storage_and_tables()
 
 	if lib.is_newer_version(last_seen_version, "0.3.27") then
 		local reactor = storage.cerys.nuclear_reactor

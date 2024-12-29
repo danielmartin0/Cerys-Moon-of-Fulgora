@@ -51,7 +51,33 @@ data:extend({
 				max_count = 1,
 				remove = true,
 			},
-			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.35, 0.45),
+			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.25, 0.3),
 		},
+	},
+})
+
+data:extend({
+	{
+		type = "optimized-particle",
+		name = "solar-wind-exposure-particle",
+		life_time = (60 * 0.32),
+		render_layer = "projectile",
+		render_layer_when_on_ground = "corpse",
+		regular_trigger_effect_frequency = 2,
+		pictures = {
+			sheet =
+			{
+				filename = "__base__/graphics/particle/blood-particle/water-particle.png",
+				line_length = 12,
+				width = 16,
+				height = 16,
+				frame_count = 12,
+				variation_count = 7,
+				tint = { r = 0.8, g = 0.8, b = 1 },
+				scale = 0.8,
+				draw_as_glow = true,
+				shift = util.by_pixel(1.5, -1)
+			}
+		}
 	},
 })

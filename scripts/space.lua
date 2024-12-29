@@ -217,7 +217,7 @@ for _, e in pairs(prototypes["entity"]) do
 	end
 end
 
-local CHANCE_CHECK_BELT = 1 / 20
+local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not Public.particle_is_in_cooldown(particle) then
@@ -235,7 +235,7 @@ function Public.tick_8_solar_wind_collisions(surface)
 
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
-							local irradiated = Public.irradiate_inventory(inv)
+							local irradiated = Public.irradiate_inventory(surface, inv, e.position)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -249,7 +249,7 @@ function Public.tick_8_solar_wind_collisions(surface)
 							if player and player.valid then
 								player.play_sound({
 									path = "cerys-radiation-impact",
-									volume_modifier = 0.2,
+									volume_modifier = 0.3,
 								})
 							end
 
@@ -278,7 +278,7 @@ function Public.tick_8_solar_wind_collisions(surface)
 
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
-						local irradiated = Public.irradiate_inventory(inv)
+						local irradiated = Public.irradiate_inventory(surface, inv, e.position)
 						if irradiated then
 							surface.create_entity({
 								name = "plutonium-explosion",
@@ -305,11 +305,14 @@ function Public.tick_8_solar_wind_collisions(surface)
 						e.get_transport_line(2),
 					}
 
+					local has_uranium = false
 					for _, line in pairs(lines) do
 						local contents = line.get_detailed_contents()
 
 						for _, item in pairs(contents) do
 							if item.stack.name == "uranium-238" then
+								has_uranium = true
+
 								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT) * item.stack.count
 
 								storage.accrued_probability_units = (storage.accrued_probability_units or 0) +
@@ -339,6 +342,10 @@ function Public.tick_8_solar_wind_collisions(surface)
 							end
 						end
 					end
+
+					if has_uranium then
+						Public.irradiation_chance_effect(surface, e.position)
+					end
 				end
 			end
 		end
@@ -365,11 +372,40 @@ function Public.particle_is_in_cooldown(particle)
 	return true
 end
 
-function Public.irradiate_inventory(inv)
+function Public.irradiation_chance_effect(surface, position)
+	surface.play_sound({
+		path = "cerys-radiation-exposure",
+		position = position,
+		volume_modifier = 0.08,
+	})
+
+	for _ = 1, 8 do
+		surface.create_particle({
+			name = "solar-wind-exposure-particle",
+			position = {
+				x = position.x + (math.random() - 0.5),
+				y = position.y + (math.random() - 0.5)
+			},
+			movement = {
+				(math.random() - 0.5) * 0.3,
+				(math.random() - 0.5) * 0.3
+			},
+			height = 0.1,
+			vertical_speed = 0.01,
+			frame_speed = 1
+		})
+	end
+end
+
+function Public.irradiate_inventory(surface, inv, position)
+	local uranium_count = 0
+	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
 		local name = quality.name
 		local count = inv.get_item_count({ name = "uranium-238", quality = name })
 		if count and count > 0 then
+			uranium_count = uranium_count + count
+
 			-- Throw in some rng to cause double and triple transitions:
 			local increase_multiplier = 1
 			local rng = math.random()
@@ -396,12 +432,18 @@ function Public.irradiate_inventory(inv)
 					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
 				end
 
-				return true
+				mutated = true
 			end
 		end
 	end
 
-	return false
+	local effect_count = math.ceil(uranium_count / 1000)
+
+	for _ = 1, effect_count do
+		Public.irradiation_chance_effect(surface, position)
+	end
+
+	return mutated
 end
 
 local ASTEROIDS_TO_DROPS = {

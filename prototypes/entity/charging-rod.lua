@@ -84,6 +84,27 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 	}),
 
+
+	{
+		type = "corpse",
+		name = "charging-rod-remnants",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		flags = { "placeable-neutral", "not-on-map" },
+		hidden_in_factoriopedia = true,
+		subgroup = "environmental-protection-remnants",
+		order = "a-k-a",
+		selection_box = { { -0.9, -1 }, { 0.9, 1 } },
+		tile_width = 2,
+		tile_height = 2,
+		expires = false,
+		animation = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/charging-rod-remnants",
+			{
+				direction_count = 1,
+				scale = 0.75
+			}
+		)
+	},
+
 	merge(data.raw["lamp"]["small-lamp"], {
 		name = "charging-rod-lamp",
 		minable = nil,

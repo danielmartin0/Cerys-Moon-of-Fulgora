@@ -9,8 +9,8 @@ local ASTEROIDS_TO_CLONE = {
 	"medium-oxide-asteroid",
 }
 
-local ASTEROID_HEALTH_MULTIPLIER = 1.6
-
+local ASTEROID_HEALTH_MULTIPLIER = 2.5
+local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = 10
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local original = data.raw.asteroid[asteroid_name]
 
@@ -21,10 +21,20 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
 	})
 
+	local existing_physical_res = nil
 	for _, resistance in pairs(e.resistances) do
 		if resistance.type == "laser" then
-			resistance.percent = 100
+			resistance.percent = 99
 		end
+
+		if resistance.type == "physical" then
+			existing_physical_res = resistance
+			break
+		end
+	end
+
+	if existing_physical_res then
+		existing_physical_res.decrease = existing_physical_res.decrease + ASTEROID_PHYSICAL_RESISTANCE_INCREASE
 	end
 
 	for _, variation in pairs(e.graphics_set.variations) do
