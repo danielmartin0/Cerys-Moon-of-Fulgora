@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.11
-Date: ????
+Date: 2024-12-29
   Features:
     - Subtle audiovisual effect when a chance of plutonium generation occurs.
   Changes:
