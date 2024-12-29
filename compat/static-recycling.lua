@@ -54,13 +54,6 @@ data.raw['recipe']['electronic-circuit-recycling']['results'] = {
 local recycleintoitself = {'solid-fuel', 'steel-plate', 'copper-plate', 'iron-plate', 'stone-brick', 'plastic-bar', 'holmium-plate', 'uranium-235'}
 
 local recycle_chance = 0.25
-if mods['modified-productivity-cap'] then --crossmod compatibility!!!
-	if settings.startup["modify-recycling-recipes"].value then
-		local max_prod = (settings.startup["new-productivity-cap"].value/100) + 1
-		recycle_chance = math.min(1/max_prod, 0.75)
-	end
-end
-
 
 for i = 1, #recycleintoitself do
 	data.raw['recipe'][recycleintoitself[i] .. '-recycling']['ingredients'] = { {type='item', name=recycleintoitself[i], amount=1} }
