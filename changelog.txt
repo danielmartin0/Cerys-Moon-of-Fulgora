@@ -8,6 +8,7 @@ Date: 2024-12-29
     - Reactor excavation recipe now proceeds faster.
     - Asteroid laser resistance lowered from 100% to 99%.
   Modding:
+    - Recycling recipes of items found in nuclear scrap are now prevented from being modified by the introduction of new recipes for those items in other mods.
     - Added compatibility with most modded centrifuges.
   Graphics:
     - Charging rod corpse graphic adjusted.
