@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.5.11
+Version: 0.5.12
 Date: 2024-12-29
   Features:
     - Subtle audiovisual effect when a chance of plutonium generation occurs.
@@ -12,6 +12,11 @@ Date: 2024-12-29
     - Added compatibility with most modded centrifuges.
   Graphics:
     - Charging rod corpse graphic adjusted.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.11
+Date: 2024-12-29
+  Info:
+    - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.10
 Date: 2024-12-28
