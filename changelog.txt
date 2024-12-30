@@ -1,11 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.18
 Date: ????
-  Changes:
+  Modding:
+    - Compatibility with Visible Planets in Space: Fulgora now appears in the background behind Cerys.
+  Info:
+    - Updated movie poster.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.17
 Date: 2024-12-30
-  Changes:
+  Modding:
     - PlanetsLib version dependency updated.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.16

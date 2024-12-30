@@ -12,7 +12,7 @@
     "space-age >= 2.0.0",
     "PlanetsLib >= 1.0.2",
     "? Tiered-Solar-System",
-    "(?) MT-lib-ex"
+    "? visible-planets"
   ],
   "package": {
     "scripts": {
