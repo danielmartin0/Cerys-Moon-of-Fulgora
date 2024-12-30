@@ -61,3 +61,5 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
 - Art by [Tserup](https://mods.factorio.com/user/Tserup).
 - Special thanks to playtesters rjdunlap, xbarsigma, Preceti, and especially NekoBaron and notnotmelon for feedback and discussion.
 - Some assets are adapted from open-source materials. See Credits.md for details.
+
+![](images/hovering.png)
