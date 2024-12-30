@@ -308,7 +308,7 @@ data:extend({
 data:extend({
 	lib.cerys_tech({
 		name = "cerys-cargo-drops",
-		effects = PlanetsLib.cargo_drops_tech_effect("cerys"),
+		effects = PlanetsLib.technology_effect_cargo_drops("cerys"),
 		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
 		unit = {
 			count = 2000,
