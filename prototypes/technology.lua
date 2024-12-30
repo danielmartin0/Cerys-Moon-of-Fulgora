@@ -321,7 +321,8 @@ data:extend({
 			time = 60,
 		},
 		icons = PlanetsLib.technology_icons_planet_cargo_drops(
-			"__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png"
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png",
+			520
 		),
 	}),
 })

@@ -1,7 +1,39 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.5.15
+Version: 0.5.21
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.5.20
+Date: 2024-12-30
+  Bugfixes:
+    - Fixed crash without Visible Planets installed.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.19
+Date: 2024-12-30
+  Info:
+    - 'Hovering' graphic for the mod portal.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.18
+Date: 2024-12-30
+  Modding:
+    - Compatibility with Visible Planets in Space: Fulgora now appears in the background behind Cerys.
+  Info:
+    - Updated movie poster.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.17
+Date: 2024-12-30
+  Modding:
+    - PlanetsLib version dependency updated.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.16
+Date: 2024-12-29
+  Info:
+    - (Version skipped.)
+---------------------------------------------------------------------------------------------------
+Version: 0.5.15
+Date: 2024-12-30
+  Changes:
+    - Reactor repair now requires double the processing units and half the ancient repair parts.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.14
 Date: 2024-12-30

@@ -59,7 +59,7 @@ data:extend({
 		category = "nuclear-reactor-repair",
 		ingredients = {
 			-- The script need to be updated if these change:
-			{ type = "item", name = "ancient-structure-repair-part", amount = 4 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 			{ type = "item", name = "processing-unit",               amount = 1 },
 		},
 		results = {},
