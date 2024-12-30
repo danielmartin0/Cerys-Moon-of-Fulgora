@@ -15,7 +15,7 @@ Public.REACTOR_STAGE_ENUM = {
 
 Public.CRYO_REPAIR_RECIPES_NEEDED = 200
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 25
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 50
 
 Public.register_ancient_cryogenic_plant = function(entity, frozen)
 	if not (entity and entity.valid) then
@@ -377,8 +377,8 @@ function Public.reactor_repair_check(surface, reactor)
 				processing_units = input_inv.get_item_count({ name = "processing-unit", quality = "rare" })
 				repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = "rare" })
 			end
-			chips_count = e.products_finished + (e.is_crafting() and 1 or 0) + processing_units
-			repair_count = 4 * (e.products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
+			chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + processing_units
+			repair_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 		end
 
 		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 200, 0 }
@@ -386,7 +386,7 @@ function Public.reactor_repair_check(surface, reactor)
 			"cerys.repair-remaining-description",
 			"[item=processing-unit,quality=rare]",
 			chips_count,
-			recipes_needed,
+			recipes_needed * 1,
 		}
 
 		r2.color = repair_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 200, 0 }
@@ -394,7 +394,7 @@ function Public.reactor_repair_check(surface, reactor)
 			"cerys.repair-remaining-description",
 			"[item=ancient-structure-repair-part,quality=rare]",
 			repair_count,
-			recipes_needed * 4,
+			recipes_needed * 1,
 		}
 	end
 end

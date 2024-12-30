@@ -2,6 +2,7 @@
 Version: 0.5.15
 Date: ????
   Changes:
+    - Reactor repair now requires double the processing units and half the ancient repair parts.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.14
 Date: 2024-12-30
