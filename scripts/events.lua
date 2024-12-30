@@ -5,7 +5,6 @@ local repair = require("scripts.repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
 local common = require("common")
-local cargo_pods = require("scripts.cargo-pods")
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
 local migrations = require("scripts.migrations")
@@ -176,10 +175,6 @@ script.on_event(defines.events.on_tick, function(event)
 
 	if tick % nuclear_reactor.REACTOR_TICK_INTERVAL == 0 then
 		nuclear_reactor.tick_reactor(surface)
-	end
-
-	if tick % 10 == 0 then
-		cargo_pods.tick_10_check_cargo_pods()
 	end
 
 	if tick % 15 == 0 then

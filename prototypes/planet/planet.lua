@@ -3,20 +3,23 @@ local map_gen = require("prototypes.planet.map_gen")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 local planet_catalogue_cerys = require("__Cerys-Moon-of-Fulgora__.prototypes.planet.procession-catalogue-cerys")
 
-data:extend({
+PlanetsLib:planet_extend({
 	{
 		type = "planet",
 		name = "cerys",
-		parent_planet = "fulgora", -- This field doesn't exist in the API, but this lets other modders be sensitive to it.
-		planet_type = "moon", -- This field doesn't exist in the API, but this lets other modders be sensitive to it.
+		planet_type = "moon",
+		orbit = {
+			parent = "fulgora",
+			type = "satellite",
+			distance = 1.3,
+			orientation = 0.7,
+			label_orientation = 0.55,
+		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
 		starmap_icon_size = 500,
 		map_gen_settings = map_gen.cerys(),
 		gravity_pull = 10,
-		distance = 25.5,
-		orientation = 0.3328,
-		label_orientation = 0.55,
 		draw_orbit = false,
 		magnitude = 0.5,
 		order = "d[fulgora]-a[cerys]",
@@ -46,6 +49,9 @@ data:extend({
 		surface_render_parameters = {},
 		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
 	},
+})
+
+data:extend({
 	{
 		type = "space-connection",
 		name = "fulgora-cerys",

@@ -1,4 +1,3 @@
-require("scripts.cargo-pods")
 require("scripts.charging-rod")
 require("scripts.cryogenic-plant")
 require("scripts.events")
