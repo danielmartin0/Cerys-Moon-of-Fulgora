@@ -10,7 +10,8 @@
   "dependencies": [
     "base >= 2.0.28",
     "space-age >= 2.0.0",
-    "Surfaces-Have-Temperature >= 1.1.0"
+    "PlanetsLib",
+    "? Tiered-Solar-System"
   ],
   "package": {
     "scripts": {

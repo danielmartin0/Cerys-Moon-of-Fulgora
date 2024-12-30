@@ -70,7 +70,7 @@ data.raw.recipe["steam-engine"].surface_conditions = {
 data.raw.recipe["rocket-fuel"].surface_conditions = {
 	{
 		property = "temperature",
-		min = 253,
+		min = 255,
 	},
 }
 data.raw.recipe["space-platform-foundation"].surface_conditions = {

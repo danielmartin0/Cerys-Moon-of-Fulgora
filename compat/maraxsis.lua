@@ -3,7 +3,7 @@ if mods["maraxsis"] then
 		data.raw.recipe["maraxsis-petroleum-gas-cracking"].surface_conditions = {
 			{
 				property = "temperature",
-				min = 253,
+				min = 255,
 			},
 		}
 	end

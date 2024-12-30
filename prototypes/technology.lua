@@ -308,12 +308,7 @@ data:extend({
 data:extend({
 	lib.cerys_tech({
 		name = "cerys-cargo-drops",
-		effects = {
-			{
-				type = "nothing",
-				effect_description = { "cerys.cargo-drops-tech-description" },
-			},
-		},
+		effects = PlanetsLib.cargo_drops_tech_effect("cerys"),
 		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
 		unit = {
 			count = 2000,
@@ -325,26 +320,16 @@ data:extend({
 			},
 			time = 60,
 		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys-cargo-drops.png",
-		icon_size = 520,
+		icons = PlanetsLib.technology_icons_planet_cargo_drops(
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png"
+		),
 	}),
 })
 
 local discovery_tech = {
 	type = "technology",
 	name = "moon-discovery-cerys",
-	icons = {
-		{
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png",
-			icon_size = 256,
-		},
-		{
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/constant-moon.png",
-			icon_size = 128,
-			scale = 0.5,
-			shift = { 50, 50 },
-		},
-	},
+	icons = PlanetsLib.technology_icons_moon("__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png"),
 	icon_size = 256,
 	effects = {
 		{
