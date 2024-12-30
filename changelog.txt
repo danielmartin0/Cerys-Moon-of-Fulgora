@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.18
-Date: ????
+Date: 2024-12-30
   Modding:
     - Compatibility with Visible Planets in Space: Fulgora now appears in the background behind Cerys.
   Info:
