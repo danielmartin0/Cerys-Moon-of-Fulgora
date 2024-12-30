@@ -2,6 +2,7 @@
 Version: 0.5.16
 Date: ????
   Changes:
+    - PlanetsLib version dependency updated.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.15
 Date: 2024-12-30
