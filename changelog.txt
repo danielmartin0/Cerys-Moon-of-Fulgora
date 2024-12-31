@@ -1,14 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.25
 Date: ????
-  Changes:
+  Modding:
+    - When Cerys is enabled, solid fuel can now once again be used with entities from other mods that take solid fuel.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.24
 Date: 2024-12-31
-  Bugfixes:
-    - Ancient structure repair parts can now be crafted in Fulgoran cryogenic plants as intended.
   Changes:
     - The icon for Discover Fulgoran Cryogenics recipe is now different to the Cerys Science Pack to avoid a confusing state when looking at the technology tree.
+    - Ancient structure repair parts can now be crafted in Fulgoran cryogenic plants as intended.
+  Bugfixes:
+    - The Fulgoran Cryogenics technology no longer breaks if the player resets their technology tree.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.23
 Date: 2024-12-31
