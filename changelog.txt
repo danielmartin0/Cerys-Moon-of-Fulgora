@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.24
-Date: ????
+Date: 2024-12-31
   Bugfixes:
     - Ancient structure repair parts can now be crafted in Fulgoran cryogenic plants as intended.
   Changes:
