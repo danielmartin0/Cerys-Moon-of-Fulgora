@@ -11,6 +11,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		"electromagnetics-or-fulgoran-cryogenics",
 		"chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		"cryogenics-or-fulgoran-cryogenics",
+		"crafting-or-fulgoran-cryogenics",
 	},
 	module_slots = 9,
 	crafting_speed = 1.25,
@@ -174,7 +175,8 @@ local wreck_frozen = merge(wreck, {
 			layers = {
 				{
 					animation_speed = 0.5,
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
+					filename =
+					"__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
 					frame_count = 1,
 					repeat_count = 192,
 					height = 864,

@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.24
 Date: ????
+  Bugfixes:
+    - Ancient structure repair parts can now be crafted in Fulgoran cryogenic plants as intended.
   Changes:
+    - The icon for Discover Fulgoran Cryogenics recipe is now different to the Cerys Science Pack to avoid a confusing state when looking at the technology tree.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.23
 Date: 2024-12-31

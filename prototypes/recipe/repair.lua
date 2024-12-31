@@ -93,7 +93,7 @@ data:extend({
 		name = "cerys-discover-fulgoran-cryogenics",
 		subgroup = "cerys-repair",
 		order = "e",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-science-pack.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-3.png",
 		icon_size = 64,
 		energy_required = 3,
 		enabled = true,
@@ -103,7 +103,7 @@ data:extend({
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 20 },
 		},
 		results = {
-			{ type = "research-progress", research_item = "cerys-science-pack", amount = 1 },
+			{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
 		},
 		allow_quality = false,
 		allow_productivity = false,
