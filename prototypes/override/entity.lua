@@ -29,7 +29,7 @@ local fluid_boxes = {
 	},
 }
 
--- Ensure centrifuges can accept fluid recipes:
+-- Ensure centrifuges can accept fluid recipes. It isn't ideal that we change modded centrifuges this way, as the fluid boxes may be in the wrong positions, but on the other hand they're only visible when fluid recipes are used.
 for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories and not machine.fluid_boxes then
 		for _, category in pairs(machine.crafting_categories) do

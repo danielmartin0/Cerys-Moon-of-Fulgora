@@ -2,6 +2,7 @@
 Version: 0.5.22
 Date: ????
   Changes:
+    - Significantly reduced file size by compression.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.21
 Date: 2024-12-30
