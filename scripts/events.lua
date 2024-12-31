@@ -20,12 +20,13 @@ script.on_configuration_changed(function()
 
 	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
 		if
-			storage.cerys
-			and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+			not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
 		then
-			if not storage.cerys.initialization_version then
+			nuclear_reactor.register_reactor_if_missing(surface)
+
+			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
+					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This is likely due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
 				)
 			end
 		end

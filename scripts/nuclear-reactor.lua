@@ -14,6 +14,14 @@ local DAMAGE_TICK_DELAY = 30
 
 local BASE_DAMAGE = 68
 
+Public.REACTOR_NAME_TO_STAGE = {
+	["cerys-fulgoran-reactor"] = repair.REACTOR_STAGE_ENUM.active,
+	["cerys-fulgoran-reactor-wreck"] = repair.REACTOR_STAGE_ENUM.needs_excavation,
+	["cerys-fulgoran-reactor-wreck-cleared"] = repair.REACTOR_STAGE_ENUM.needs_scaffold,
+	["cerys-fulgoran-reactor-wreck-scaffolded"] = repair.REACTOR_STAGE_ENUM.needs_repair,
+	["cerys-fulgoran-reactor-wreck-frozen"] = repair.REACTOR_STAGE_ENUM.frozen,
+}
+
 function Public.tick_reactor(surface, player_looking_at_surface)
 	if not (storage.cerys and storage.cerys.reactor) then
 		return
@@ -216,7 +224,7 @@ end
 function Public.register_reactor_if_missing(surface)
 	local reactor = storage.cerys.reactor
 
-	if reactor and not (reactor.entity and reactor.entity.valid) then
+	if not (reactor and reactor.entity and reactor.entity.valid) then
 		local reactors = surface.find_entities_filtered({
 			name = {
 				"cerys-fulgoran-reactor",
@@ -231,23 +239,19 @@ function Public.register_reactor_if_missing(surface)
 			local e = reactors[1]
 
 			if e and e.valid then
-				reactor.entity = e
+				e.minable_flag = false
+				e.destructible = false
 
-				-- NOTE: This list needs updating if stages or entities are changed.
-				local stage
-				if e.name == "cerys-fulgoran-reactor-wreck-scaffolded" then
-					stage = repair.REACTOR_STAGE_ENUM.needs_repair
-				elseif e.name == "cerys-fulgoran-reactor-wreck-frozen" then
-					stage = repair.REACTOR_STAGE_ENUM.frozen
-				elseif e.name == "cerys-fulgoran-reactor-wreck-cleared" then
-					stage = repair.REACTOR_STAGE_ENUM.needs_scaffold
-				elseif e.name == "cerys-fulgoran-reactor-wreck" then
-					stage = repair.REACTOR_STAGE_ENUM.needs_excavation
-				else
+				local stage = Public.REACTOR_NAME_TO_STAGE[e.name]
+				if not stage then
 					stage = repair.REACTOR_STAGE_ENUM.active
 				end
 
-				reactor.stage = stage
+				storage.cerys.reactor = {
+					stage = stage,
+					entity = e,
+					creation_tick = game.tick,
+				}
 			end
 		end
 	end
