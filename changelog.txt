@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.2
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed loading existing saves with a running reactor after the 0.6.0 changes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.1
 Date: 2024-12-31
-  Bugfixes:
-    - Fixed loading existing saves with a running reactor after the 0.6.0 changes.
+  Info:
+    - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.0
 Date: 2024-12-31
