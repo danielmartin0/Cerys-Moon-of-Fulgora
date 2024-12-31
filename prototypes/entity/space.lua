@@ -24,7 +24,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local existing_physical_res = nil
 	for _, resistance in pairs(e.resistances) do
 		if resistance.type == "laser" then
-			resistance.percent = 99
+			resistance.percent = 100
 		end
 
 		if resistance.type == "physical" then

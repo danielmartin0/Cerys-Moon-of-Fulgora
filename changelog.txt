@@ -2,6 +2,7 @@
 Version: 0.5.26
 Date: ????
   Changes:
+    - Asteroid laser resistance changed from 99% back to 100%. This avoids PLDs littering the base with chunks.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.25
 Date: 2024-12-31
