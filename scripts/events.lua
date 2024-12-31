@@ -137,16 +137,16 @@ script.on_event(defines.events.on_tick, function(event)
 		return
 	end
 
-	local move_solar_wind = true
-	if settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
-		move_solar_wind = false
-		for _, player in pairs(game.connected_players) do
-			if player.surface.name == "cerys" then
-				move_solar_wind = true
-				break
-			end
+	local player_looking_at_surface = false
+	for _, player in pairs(game.connected_players) do
+		if player.surface.name == "cerys" then
+			player_looking_at_surface = true
+			break
 		end
 	end
+
+	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value or
+		player_looking_at_surface
 
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
@@ -173,12 +173,12 @@ script.on_event(defines.events.on_tick, function(event)
 		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 	end
 
-	if tick % 2 == 0 then
+	if player_looking_at_surface and tick % 2 == 0 then
 		nuclear_reactor.tick_2_radiation(surface)
 	end
 
 	if tick % nuclear_reactor.REACTOR_TICK_INTERVAL == 0 then
-		nuclear_reactor.tick_reactor(surface)
+		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
 	end
 
 	if tick % 15 == 0 then

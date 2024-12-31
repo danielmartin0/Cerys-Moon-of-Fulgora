@@ -13,7 +13,7 @@ local DAMAGE_TICK_DELAY = 30
 
 local BASE_DAMAGE = 68
 
-function Public.tick_reactor(surface)
+function Public.tick_reactor(surface, player_looking_at_surface)
 	if not (storage.cerys and storage.cerys.reactor) then
 		return
 	end
@@ -52,7 +52,7 @@ function Public.tick_reactor(surface)
 	elseif reactor.stage == repair.REACTOR_STAGE_ENUM.active then
 		Public.drain_reactor(e)
 
-		if e.burner.currently_burning then
+		if player_looking_at_surface and e.burner.currently_burning then
 			Public.create_radiation(surface, e)
 		end
 	end
@@ -91,7 +91,7 @@ function Public.create_radiation(surface, reactor_entity)
 	}
 
 	local e = surface.create_entity({
-		name = "cerys-radiation-particle",
+		name = "cerys-gamma-radiation",
 		position = position,
 	})
 
@@ -110,10 +110,12 @@ function Public.tick_2_radiation(surface)
 
 	local damage = BASE_DAMAGE * settings.global["cerys-gamma-radiation-damage-multiplier"].value
 
-	for _, particle in ipairs(storage.cerys.radiation_particles) do
+	local i = 1
+	while i <= #storage.cerys.radiation_particles do
+		local particle = storage.cerys.radiation_particles[i]
 		if (not particle.irradiation_tick) or (particle.irradiation_tick < game.tick - DAMAGE_TICK_DELAY) then
 			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.5 })
+				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1.5 })
 
 			for _, char in ipairs(chars) do
 				if char and char.valid then
@@ -129,6 +131,34 @@ function Public.tick_2_radiation(surface)
 					particle.irradiation_tick = game.tick
 				end
 			end
+
+			local storage_tanks = surface.find_entities_filtered({
+				type = "storage-tank",
+				position = particle.position,
+				radius = 1.5,
+			})
+
+			local should_remove = false
+			for _, tank in ipairs(storage_tanks) do
+				if tank and tank.valid and tank.fluids_count then
+					local fill_fraction = tank.get_fluid_count() / tank.fluids_count
+					if fill_fraction >= 1 or math.random() < fill_fraction then
+						if particle.entity and particle.entity.valid then
+							particle.entity.destroy()
+						end
+						should_remove = true
+						break
+					end
+				end
+			end
+
+			if should_remove then
+				table.remove(storage.cerys.radiation_particles, i)
+			else
+				i = i + 1
+			end
+		else
+			i = i + 1
 		end
 	end
 end
