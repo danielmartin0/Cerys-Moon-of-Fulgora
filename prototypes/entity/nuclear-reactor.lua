@@ -312,7 +312,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 8,
 				},
 				{
 					filename =
@@ -322,7 +322,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(17, 0),
 					scale = 0.354816,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 8,
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-front.png",
@@ -331,8 +331,17 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 8,
 				},
+				-- {
+				-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-laser.png",
+				-- 	width = 1180,
+				-- 	height = 1300,
+				-- 	shift = util.by_pixel(0, 0),
+				-- 	scale = 1,
+				-- 	frame_count = 8,
+				-- 	line_length = 4,
+				-- },
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-shadow.png",
 					width = 1058,
@@ -341,7 +350,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					scale = 1,
 					draw_as_shadow = true,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 8,
 				},
 			},
 		},
