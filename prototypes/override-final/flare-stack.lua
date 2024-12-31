@@ -1,5 +1,5 @@
 local find = require("lib").find
-
+local common = require("common")
 -- returns icon/icons always in the form of a table of icons
 local function get_icons(prototype)
 	if prototype.icons then
@@ -36,16 +36,11 @@ local function fluid_name_is_flarable(name)
 	return true
 end
 
-local OTHER_GAS_WHITELIST = {
-	"petroleum-gas",
-	"fusion-plasma",
-}
-
 for _, vi in pairs(data.raw.fluid) do
 	local newicons = get_icons(vi)
 	table.insert(newicons, no_icon)
 
-	if vi.gas_temperature or find(OTHER_GAS_WHITELIST, vi.name) then
+	if vi.gas_temperature or find(common.GAS_NAMES, vi.name) then
 		data:extend({
 			{
 				type = "recipe",

@@ -28,4 +28,12 @@ Public.ROCK_TILES = {
 	"cerys-pumice-stones-frozen-from-dry-ice",
 }
 
+Public.GAS_NAMES = {
+	"steam",
+	"methane",
+	"petroleum-gas",
+	"fusion-plasma",
+}
+
+
 return Public

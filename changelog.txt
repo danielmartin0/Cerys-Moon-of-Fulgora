@@ -4,6 +4,7 @@ Date: ????
   Changes:
     - Gamma radiation can now be stopped by tanks of fluid. The stopping probability is proportional to the tank fullness. A hint for this has been added to Factoriopedia.
     - Gamma radiation no longer spawns or moves if a player is not looking at the Cerys surface, improving UPS.
+    - Gamma radiation range slightly increased.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.26
 Date: 2024-12-31

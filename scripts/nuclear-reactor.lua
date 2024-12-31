@@ -1,4 +1,5 @@
 local repair = require("scripts.repair")
+local find = require("lib").find
 local common = require("common")
 
 local Public = {}
@@ -8,7 +9,7 @@ Public.REACTOR_TICK_INTERVAL = 3
 local TEMPERATURE_ZERO = 15
 local TEMPERATURE_LOSS_RATE = 3
 
-local RANGE_SQUARED = 65 ^ 2
+local RANGE_SQUARED = 67 ^ 2
 local DAMAGE_TICK_DELAY = 30
 
 local BASE_DAMAGE = 68
@@ -100,6 +101,7 @@ function Public.create_radiation(surface, reactor_entity)
 		age = 0,
 		velocity = velocity,
 		position = position,
+		spawn_position = position,
 	})
 end
 
@@ -141,8 +143,22 @@ function Public.tick_2_radiation(surface)
 			local should_remove = false
 			for _, tank in ipairs(storage_tanks) do
 				if tank and tank.valid and tank.fluids_count then
+					local fluid_contents = tank.get_fluid_contents()
+
+					local stop = true
+					for fluid_name, _ in pairs(fluid_contents) do
+						if find(common.GAS_NAMES, fluid_name) then
+							stop = false
+							break
+						end
+					end
+
 					local fill_fraction = tank.get_fluid_count() / tank.fluids_count
-					if fill_fraction >= 1 or math.random() < fill_fraction then
+					if fill_fraction < 1 and math.random() > fill_fraction then
+						stop = false
+					end
+
+					if stop then
 						if particle.entity and particle.entity.valid then
 							particle.entity.destroy()
 						end
@@ -176,8 +192,8 @@ function Public.tick_1_move_radiation(tick)
 			particle.age = particle.age + 1
 
 			if tick % 10 == 0 then
-				local d2 = (particle.position.x - common.REACTOR_POSITION.x) ^ 2
-					+ (particle.position.y - common.REACTOR_POSITION.y) ^ 2
+				local d2 = (particle.position.x - particle.spawn_position.x) ^ 2
+					+ (particle.position.y - particle.spawn_position.y) ^ 2
 
 				if d2 > RANGE_SQUARED then
 					if particle.entity and particle.entity.valid then
