@@ -25,7 +25,7 @@ script.on_configuration_changed(function()
 		then
 			if not storage.cerys.initialization_version then
 				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
+					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
 				)
 			end
 		end

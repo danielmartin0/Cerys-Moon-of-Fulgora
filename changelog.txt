@@ -2,6 +2,7 @@
 Version: 0.5.23
 Date: ????
   Changes:
+    - If more than 15 asteroid chunks drop on the ground, old chunks are now deleted.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.22
 Date: 2024-12-31
