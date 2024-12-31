@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.25
-Date: ????
+Date: 2024-12-31
   Modding:
     - When Cerys is enabled, solid fuel can now once again be used with entities from other mods that take solid fuel.
 ---------------------------------------------------------------------------------------------------
