@@ -29,6 +29,8 @@ local ASTEROID_TO_PERCENTAGE_RATE = {
 	["medium-oxide-asteroid-planetary"] = 1.5,
 }
 
+local MAX_CHUNKS_ON_GROUND = 15
+
 function Public.spawn_asteroid(surface, y_position)
 	y_position = y_position or -(common.MOON_RADIUS + 60)
 
@@ -511,6 +513,27 @@ script.on_event(defines.events.on_entity_died, function(event)
 			if e and e.valid then
 				e.to_be_looted = true
 				e.order_deconstruction(force)
+
+				storage.cerys.ground_chunks = storage.cerys.ground_chunks or {}
+
+				local i = 1
+				while i <= #storage.cerys.ground_chunks do
+					local chunk = storage.cerys.ground_chunks[i]
+					if not (chunk and chunk.valid) then
+						table.remove(storage.cerys.ground_chunks, i)
+					else
+						i = i + 1
+					end
+				end
+
+				storage.cerys.ground_chunks[#storage.cerys.ground_chunks + 1] = e
+
+				while #storage.cerys.ground_chunks > MAX_CHUNKS_ON_GROUND do
+					local oldest = table.remove(storage.cerys.ground_chunks, 1)
+					if oldest and oldest.valid then
+						oldest.destroy()
+					end
+				end
 			end
 		end
 	end

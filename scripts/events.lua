@@ -20,12 +20,13 @@ script.on_configuration_changed(function()
 
 	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
 		if
-			storage.cerys
-			and not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+			not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
 		then
-			if not storage.cerys.initialization_version then
+			nuclear_reactor.register_reactor_if_missing(surface)
+
+			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This happened due to an initialization bug in the mod when you first visited. To allow Cerys to regenerate, it is recommended to run /c game.delete_surface('cerys')"
+					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This is likely due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
 				)
 			end
 		end
@@ -94,6 +95,7 @@ end)
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 	local cursor_stack = player.cursor_stack
+
 	if cursor_stack and cursor_stack.valid_for_read then
 		local item_name = cursor_stack.name
 
@@ -107,6 +109,9 @@ script.on_event(defines.events.on_research_finished, function(event)
 	local research = event.research
 	if research.name == "cerys-fulgoran-cryogenics" then
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
+	elseif research.name == "cerys-nuclear-scrap-recycling" then
+		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
+		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
 	end
 end)
 
@@ -133,16 +138,16 @@ script.on_event(defines.events.on_tick, function(event)
 		return
 	end
 
-	local move_solar_wind = true
-	if settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
-		move_solar_wind = false
-		for _, player in pairs(game.connected_players) do
-			if player.surface.name == "cerys" then
-				move_solar_wind = true
-				break
-			end
+	local player_looking_at_surface = false
+	for _, player in pairs(game.connected_players) do
+		if player.surface.name == "cerys" then
+			player_looking_at_surface = true
+			break
 		end
 	end
+
+	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value or
+		player_looking_at_surface
 
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
@@ -169,12 +174,12 @@ script.on_event(defines.events.on_tick, function(event)
 		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 	end
 
-	if tick % 2 == 0 then
+	if player_looking_at_surface and tick % 2 == 0 then
 		nuclear_reactor.tick_2_radiation(surface)
 	end
 
 	if tick % nuclear_reactor.REACTOR_TICK_INTERVAL == 0 then
-		nuclear_reactor.tick_reactor(surface)
+		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
 	end
 
 	if tick % 15 == 0 then

@@ -24,7 +24,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local existing_physical_res = nil
 	for _, resistance in pairs(e.resistances) do
 		if resistance.type == "laser" then
-			resistance.percent = 99
+			resistance.percent = 100
 		end
 
 		if resistance.type == "physical" then
@@ -90,7 +90,7 @@ local solar_wind_particle = {
 }
 local radiation_particle = merge(solar_wind_particle, {
 	map_color = { 0, 1, 0 },
-	name = "cerys-radiation-particle",
+	name = "cerys-gamma-radiation",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiation-particle.png",
 	icon_size = 64,
 	order = "b",

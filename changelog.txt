@@ -1,7 +1,67 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.5.21
+Version: 0.6.5
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.6.4
+Date: 2025-01-01
+  Bugfixes:
+    - Fix the compatibility overrides changing the copper cable recycling recipe.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.3
+Date: 2024-12-31
+  Bugfixes:
+    - Better handling of saves with manually placed reactors.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.2
+Date: 2024-12-31
+  Bugfixes:
+    - Fixed loading existing saves with a running reactor after the 0.6.0 changes.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.1
+Date: 2024-12-31
+  Info:
+    - (Version skipped.)
+---------------------------------------------------------------------------------------------------
+Version: 0.6.0
+Date: 2024-12-31
+  Changes:
+    - Gamma radiation can now be stopped by tanks of fluid. The stopping probability is proportional to the tank fullness. A hint for this has been added to Factoriopedia.
+    - Gamma radiation no longer spawns or moves if a player is not looking at the Cerys surface, improving UPS.
+    - Gamma radiation range slightly increased.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.26
+Date: 2024-12-31
+  Changes:
+    - Asteroid laser resistance changed from 99% back to 100%. This avoids PLDs littering the base with chunks.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.25
+Date: 2024-12-31
+  Modding:
+    - When Cerys is enabled, solid fuel can now once again be used with entities from other mods that take solid fuel.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.24
+Date: 2024-12-31
+  Changes:
+    - The icon for Discover Fulgoran Cryogenics recipe is now different to the Cerys Science Pack to avoid a confusing state when looking at the technology tree.
+    - Ancient structure repair parts can now be crafted in Fulgoran cryogenic plants as intended.
+  Bugfixes:
+    - The Fulgoran Cryogenics technology no longer breaks if the player resets their technology tree.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.23
+Date: 2024-12-31
+  Changes:
+    - If more than 15 asteroid chunks drop on the ground, old chunks are now deleted.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.22
+Date: 2024-12-31
+  Changes:
+    - Significantly reduced file size by compression.
+---------------------------------------------------------------------------------------------------
+Version: 0.5.21
+Date: 2024-12-30
+  Locale:
+    - Chinese localization update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.20
 Date: 2024-12-30

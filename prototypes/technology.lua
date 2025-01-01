@@ -83,7 +83,7 @@ data:extend({
 		unit = {
 			count = 10,
 			ingredients = {
-				{ "cerys-science-pack", 1 },
+				{ "fulgoran-cryogenics-progress", 1 },
 			},
 			time = 60,
 		},
