@@ -33,6 +33,17 @@ function Public.create_reactor(surface)
 	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
 		or "cerys-fulgoran-reactor-wreck-frozen"
 
+	local entities = surface.find_entities_filtered({
+		area = {
+			{ common.REACTOR_POSITION.x - 11, common.REACTOR_POSITION.y - 11 },
+			{ common.REACTOR_POSITION.x + 11, common.REACTOR_POSITION.y + 11 },
+		},
+	})
+
+	for _, entity in pairs(entities) do
+		entity.destroy()
+	end
+
 	local e = surface.create_entity({
 		name = name,
 		position = common.REACTOR_POSITION,

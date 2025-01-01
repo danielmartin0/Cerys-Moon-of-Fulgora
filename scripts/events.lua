@@ -8,6 +8,7 @@ local common = require("common")
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
 local migrations = require("scripts.migrations")
+local init = require("scripts.init")
 
 -- Highest-level file besides control.lua.
 
@@ -25,9 +26,7 @@ script.on_configuration_changed(function()
 			nuclear_reactor.register_reactor_if_missing(surface)
 
 			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
-				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This is likely due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
-				)
+				init.create_reactor(surface)
 			end
 		end
 
