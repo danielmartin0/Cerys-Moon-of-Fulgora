@@ -1,10 +1,5 @@
 local Public = {}
 
-Public.CRYO_WRECK_STAGE_ENUM = {
-	frozen = 0,
-	needs_repair = 1,
-}
-
 Public.REACTOR_STAGE_ENUM = {
 	frozen = 0,
 	needs_excavation = 1,
@@ -13,155 +8,8 @@ Public.REACTOR_STAGE_ENUM = {
 	active = 4,
 }
 
-Public.CRYO_REPAIR_RECIPES_NEEDED = 200
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
 Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 50
-
-Public.register_ancient_cryogenic_plant = function(entity, frozen)
-	if not (entity and entity.valid) then
-		return
-	end
-
-	storage.cerys.broken_cryo_plants[entity.unit_number] = {
-		entity = entity,
-		stage = frozen and Public.CRYO_WRECK_STAGE_ENUM.frozen or Public.CRYO_WRECK_STAGE_ENUM.needs_repair,
-		creation_tick = game.tick,
-	}
-end
-
-function Public.tick_15_check_broken_cryo_plants(surface)
-	if not storage.cerys.broken_cryo_plants then
-		return
-	end
-
-	for unit_number, plant in pairs(storage.cerys.broken_cryo_plants) do
-		local e = plant.entity
-
-		if e and e.valid then
-			local products_finished = e.products_finished
-
-			-- TODO: Move unfreezing code somewhere else
-			if plant.stage == Public.CRYO_WRECK_STAGE_ENUM.frozen then
-				if not e.frozen and game.tick > plant.creation_tick + 300 then
-					local e2 = surface.create_entity({
-						name = "cerys-fulgoran-cryogenic-plant-wreck",
-						position = e.position,
-						force = e.force,
-						fast_replace = true,
-					})
-
-					if e2 and e2.valid then
-						e2.minable_flag = false
-						e2.destructible = false
-
-						if e and e.valid then
-							local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
-							local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
-							if input_inv and input_inv.valid and input_inv2 and input_inv2.valid then
-								local contents = input_inv.get_contents()
-								for _, c in pairs(contents) do
-									local new_count = c.count +
-										1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
-									input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
-								end
-							end
-
-							local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
-							local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
-							if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
-								local contents = module_inv.get_contents()
-								for _, c in pairs(contents) do
-									module_inv2.insert({ name = c.name, count = c.count, quality = c.quality })
-								end
-							end
-
-							if e and e.valid then
-								e.destroy()
-							end
-						end
-
-						plant.entity = e2
-					end
-
-					plant.stage = Public.CRYO_WRECK_STAGE_ENUM.needs_repair
-				end
-			elseif products_finished >= Public.CRYO_REPAIR_RECIPES_NEEDED then
-				if plant.rendering then
-					if plant.rendering.valid then
-						plant.rendering.destroy()
-					end
-					plant.rendering = nil
-				end
-
-				local e2 = surface.create_entity({
-					name = "cerys-fulgoran-cryogenic-plant",
-					position = e.position,
-					force = e.force,
-					direction = e.direction,
-					fast_replace = true,
-				})
-
-				if e2 and e2.valid then
-					e2.minable_flag = false
-					e2.destructible = false
-				end
-
-				if e and e.valid then
-					local module_inv = e.get_module_inventory()
-					local module_inv2 = e2.get_module_inventory()
-					if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
-						local contents = module_inv.get_contents()
-						for _, m in pairs(contents) do
-							module_inv2.insert({ name = m.name, count = m.count, quality = m.quality })
-						end
-					end
-
-					e.destroy()
-				end
-
-				storage.cerys.broken_cryo_plants[unit_number] = nil
-			elseif products_finished > 0 or e.is_crafting() then
-				if not plant.rendering then
-					plant.rendering = rendering.draw_text({
-						text = "",
-						surface = surface,
-						target = {
-							entity = e,
-							offset = { 0, -3.8 },
-						},
-						color = { 0, 255, 0 },
-						scale = 1.2,
-						font = "default-game",
-						alignment = "center",
-						use_rich_text = true,
-					})
-				end
-
-				local repair_parts = 0
-
-				if e and e.valid then
-					local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
-					if input_inv and input_inv.valid then
-						repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
-					end
-				end
-
-				local repair_parts_count = products_finished + (e.is_crafting() and 1 or 0) + repair_parts
-
-				plant.rendering.color = repair_parts_count >= Public.CRYO_REPAIR_RECIPES_NEEDED and { 0, 255, 0 }
-					or { 255, 200, 0 }
-				plant.rendering.text = {
-					"cerys.repair-remaining-description",
-					"[item=ancient-structure-repair-part]",
-					repair_parts_count,
-					Public.CRYO_REPAIR_RECIPES_NEEDED,
-				}
-			end
-		else
-			storage.cerys.broken_cryo_plants[unit_number] = nil
-		end
-	end
-end
 
 function Public.tick_15_nuclear_reactor_repair_check(surface)
 	if not (storage.cerys and storage.cerys.reactor) then
@@ -401,32 +249,36 @@ end
 
 Public.scaffold_on_pre_build = function(event)
 	if not event.player_index then
+		log("scaffold_on_pre_build: No player_index")
 		return
 	end
 
 	local player = game.get_player(event.player_index)
-
 	if not (player and player.valid) then
+		log("scaffold_on_pre_build: Invalid player")
 		return
 	end
 
 	local surface = player.surface
-
 	if not (surface and surface.valid and surface.name == "cerys") then
+		log("scaffold_on_pre_build: Invalid surface or wrong surface name: " .. (surface and surface.name or "nil"))
 		return
 	end
 
 	local position = event.position
-
 	local wreck = surface.find_entity("cerys-fulgoran-reactor-wreck-cleared", position)
 	local can_build = wreck and wreck.valid
+
+	log(string.format("scaffold_on_pre_build: Position [%s,%s], Found wreck: %s, Can build: %s",
+		position.x, position.y,
+		wreck ~= nil,
+		can_build))
 
 	if not storage.cerys.scaffold_build_position_validated then
 		storage.cerys.scaffold_build_position_validated = {}
 	end
 
 	storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y] = can_build
-
 	return can_build
 end
 
@@ -435,43 +287,50 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 	local position = scaffold_entity.position
 	local force = scaffold_entity.force
 
+	log(string.format("scaffold_on_build: Starting build at [%s,%s]", position.x, position.y))
+
 	if not (surface and surface.valid and force and force.valid) then
+		log("scaffold_on_build: Invalid surface or force")
 		return
 	end
 
 	local scaffold_quality = scaffold_entity.quality
+	log("scaffold_on_build: Scaffold quality: " .. scaffold_quality)
 
 	scaffold_entity.destroy()
 
 	if not (storage.cerys and storage.cerys.reactor) then
+		log("scaffold_on_build: No reactor data in storage")
 		return
 	end
 
 	local reactor = storage.cerys.reactor
-
 	if not storage.cerys.scaffold_build_position_validated then
 		storage.cerys.scaffold_build_position_validated = {}
 	end
 
 	local can_build = storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y]
+	log("scaffold_on_build: Position validated for building: " .. tostring(can_build))
 
 	if can_build then
 		local e = surface.create_entity({
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
-			-- quality = scaffold_quality, -- Avoid locking players to a lower quality than they're happy with. In case you're wondering, it's not possible (as of 2.0.28) to fast-replace a higher-quality scaffold on an existing reactor.
 		})
 
 		if e and e.valid then
+			log("scaffold_on_build: Successfully created scaffolded reactor")
 			e.minable_flag = false
 			e.destructible = false
-
 			reactor.entity = e
+		else
+			log("scaffold_on_build: Failed to create scaffolded reactor")
 		end
 
 		reactor.stage = Public.REACTOR_STAGE_ENUM.needs_repair
 	else
+		log("scaffold_on_build: Invalid build location, returning scaffold to player")
 		if player and player.valid then
 			local is_cursor_empty = player.is_cursor_empty()
 

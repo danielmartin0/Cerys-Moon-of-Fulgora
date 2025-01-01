@@ -1,7 +1,7 @@
 local radiative_towers = require("scripts.radiative-tower")
 local simplex_noise = require("scripts.simplex_noise").d2
 local find = require("lib").find
-local repair = require("scripts.repair")
+local cryogenic_plant = require("scripts.cryogenic-plant")
 local common = require("common")
 
 local Public = {}
@@ -309,7 +309,7 @@ function Public.create_cryo_plants(surface, area)
 				if e and e.valid then
 					e.minable_flag = false
 					e.destructible = false
-					repair.register_ancient_cryogenic_plant(e, true)
+					cryogenic_plant.register_ancient_cryogenic_plant(e, true)
 				end
 			end
 		end

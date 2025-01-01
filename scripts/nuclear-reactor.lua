@@ -1,4 +1,4 @@
-local repair = require("scripts.repair")
+local repair = require("scripts.reactor-repair")
 local find = require("lib").find
 local common = require("common")
 

@@ -32,19 +32,6 @@ function Public.run_migrations()
 		end
 	end
 
-	if lib.is_newer_version(last_seen_version, "0.3.39") then
-		local reactor = storage.cerys.reactor
-
-		if
-			reactor
-			and reactor.entity
-			and reactor.entity.valid
-			and reactor.entity.name == "cerys-fulgoran-reactor-wreck-cleared"
-		then
-			reactor.entity.minable_flag = true
-		end
-	end
-
 	if lib.is_newer_version(last_seen_version, "0.3.41") then
 		local cryo_plant_wrecks = surface.find_entities_filtered({ name = "cerys-fulgoran-cryogenic-plant-wreck" })
 

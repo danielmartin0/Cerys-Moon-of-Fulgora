@@ -1,7 +1,7 @@
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
 local space = require("scripts.space")
-local repair = require("scripts.repair")
+local repair = require("scripts.reactor-repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
 local common = require("common")
@@ -77,13 +77,17 @@ script.on_event({
 	end
 
 	if entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
+		log(string.format("on_built_entity: Scaffold being built at [%s,%s]", entity.position.x, entity.position.y))
+
 		if not event.player_index then
+			log("on_built_entity: No player_index for scaffold build")
 			return
 		end
 
 		local player = game.connected_players[event.player_index]
 
 		if not (player and player.valid) then
+			log("on_built_entity: Invalid player for scaffold build")
 			return
 		end
 
@@ -97,8 +101,10 @@ script.on_event(defines.events.on_pre_build, function(event)
 
 	if cursor_stack and cursor_stack.valid_for_read then
 		local item_name = cursor_stack.name
+		log(string.format("on_pre_build: Player %s attempting to build %s", player.name, item_name))
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
+			log("on_pre_build: Scaffold pre-build check starting")
 			repair.scaffold_on_pre_build(event)
 		end
 	end
@@ -184,7 +190,7 @@ script.on_event(defines.events.on_tick, function(event)
 	if tick % 15 == 0 then
 		cryogenic_plant.tick_15_check_cryo_quality_upgrades(surface)
 		-- Ideally, match the tick interval of the repair recipes:
-		repair.tick_15_check_broken_cryo_plants(surface)
+		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
 	end
 

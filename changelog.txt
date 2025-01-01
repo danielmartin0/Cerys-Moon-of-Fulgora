@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.7
 Date: ????
-  Changes:
+  Info:
+    - Added logging statements to reproduce scaffold placement bug that won't reproduce on my machine.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.6
 Date: 2025-01-01

@@ -1,5 +1,5 @@
 local common = require("common")
-local repair = require("repair")
+local repair = require("reactor-repair")
 local terrain = require("terrain")
 
 local Public = {}
