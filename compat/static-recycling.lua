@@ -42,7 +42,7 @@ data.raw['recipe']['iron-gear-wheel-recycling']['results'] = {
 
 data.raw['recipe']['copper-cable-recycling']['ingredients'] = { { type = 'item', name = 'copper-cable', amount = 1 } }
 data.raw['recipe']['copper-cable-recycling']['results'] = {
-	{ type = 'item', name = 'copper-plate', amount = 0, extra_count_fraction = 0.5 }
+	{ type = 'item', name = 'copper-plate', amount = 0, extra_count_fraction = 0.125 }
 }
 
 data.raw['recipe']['electronic-circuit-recycling']['ingredients'] = { { type = 'item', name = 'electronic-circuit', amount = 1 } }
