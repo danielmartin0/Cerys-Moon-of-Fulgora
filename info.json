@@ -10,7 +10,7 @@
     "dependencies": [
         "base >= 2.0.28",
         "space-age >= 2.0.0",
-        "PlanetsLib >= 1.0.2",
+        "PlanetsLib >= 1.0.8",
         "? Tiered-Solar-System",
         "? visible-planets"
     ],
