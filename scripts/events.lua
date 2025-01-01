@@ -84,7 +84,7 @@ script.on_event({
 			return
 		end
 
-		local player = game.connected_players[event.player_index]
+		local player = game.players[event.player_index]
 
 		if not (player and player.valid) then
 			log("on_built_entity: Invalid player for scaffold build")

@@ -2,6 +2,7 @@
 Version: 0.6.8
 Date: ????
   Changes:
+    - Attempted fix for players being unable to place a scaffold on save files hosted by somebody else.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.7
 Date: 2025-01-01
