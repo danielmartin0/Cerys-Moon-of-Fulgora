@@ -249,30 +249,22 @@ end
 
 Public.scaffold_on_pre_build = function(event)
 	if not event.player_index then
-		log("scaffold_on_pre_build: No player_index")
 		return
 	end
 
 	local player = game.get_player(event.player_index)
 	if not (player and player.valid) then
-		log("scaffold_on_pre_build: Invalid player")
 		return
 	end
 
 	local surface = player.surface
 	if not (surface and surface.valid and surface.name == "cerys") then
-		log("scaffold_on_pre_build: Invalid surface or wrong surface name: " .. (surface and surface.name or "nil"))
 		return
 	end
 
 	local position = event.position
 	local wreck = surface.find_entity("cerys-fulgoran-reactor-wreck-cleared", position)
 	local can_build = wreck and wreck.valid
-
-	log(string.format("scaffold_on_pre_build: Position [%s,%s], Found wreck: %s, Can build: %s",
-		position.x, position.y,
-		wreck ~= nil,
-		can_build))
 
 	if not storage.cerys.scaffold_build_position_validated then
 		storage.cerys.scaffold_build_position_validated = {}
@@ -287,20 +279,15 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 	local position = scaffold_entity.position
 	local force = scaffold_entity.force
 
-	log(string.format("scaffold_on_build: Starting build at [%s,%s]", position.x, position.y))
-
 	if not (surface and surface.valid and force and force.valid) then
-		log("scaffold_on_build: Invalid surface or force")
 		return
 	end
 
 	local scaffold_quality = scaffold_entity.quality
-	log("scaffold_on_build: Scaffold quality: " .. scaffold_quality)
 
 	scaffold_entity.destroy()
 
 	if not (storage.cerys and storage.cerys.reactor) then
-		log("scaffold_on_build: No reactor data in storage")
 		return
 	end
 
@@ -310,7 +297,6 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 	end
 
 	local can_build = storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y]
-	log("scaffold_on_build: Position validated for building: " .. tostring(can_build))
 
 	if can_build then
 		local e = surface.create_entity({
@@ -320,17 +306,13 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 		})
 
 		if e and e.valid then
-			log("scaffold_on_build: Successfully created scaffolded reactor")
 			e.minable_flag = false
 			e.destructible = false
 			reactor.entity = e
-		else
-			log("scaffold_on_build: Failed to create scaffolded reactor")
 		end
 
 		reactor.stage = Public.REACTOR_STAGE_ENUM.needs_repair
 	else
-		log("scaffold_on_build: Invalid build location, returning scaffold to player")
 		if player and player.valid then
 			local is_cursor_empty = player.is_cursor_empty()
 

@@ -77,17 +77,13 @@ script.on_event({
 	end
 
 	if entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
-		log(string.format("on_built_entity: Scaffold being built at [%s,%s]", entity.position.x, entity.position.y))
-
 		if not event.player_index then
-			log("on_built_entity: No player_index for scaffold build")
 			return
 		end
 
 		local player = game.players[event.player_index]
 
 		if not (player and player.valid) then
-			log("on_built_entity: Invalid player for scaffold build")
 			return
 		end
 
@@ -101,10 +97,8 @@ script.on_event(defines.events.on_pre_build, function(event)
 
 	if cursor_stack and cursor_stack.valid_for_read then
 		local item_name = cursor_stack.name
-		log(string.format("on_pre_build: Player %s attempting to build %s", player.name, item_name))
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
-			log("on_pre_build: Scaffold pre-build check starting")
 			repair.scaffold_on_pre_build(event)
 		end
 	end

@@ -41,7 +41,11 @@ function Public.create_reactor(surface)
 	})
 
 	for _, entity in pairs(entities) do
-		entity.destroy()
+		if entity and entity.valid and entity.type == "character" then
+			entity.teleport({ 0, 0 })
+		else
+			entity.destroy()
+		end
 	end
 
 	local e = surface.create_entity({
