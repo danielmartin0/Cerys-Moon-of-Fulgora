@@ -7,14 +7,21 @@ PlanetsLib:planet_extend({
 	{
 		type = "planet",
 		name = "cerys",
-		planet_type = "moon",
 		orbit = {
-			parent = "fulgora",
-			type = "satellite",
+			parent = {
+				type = "planet",
+				name = "fulgora",
+			},
 			distance = 1.3,
 			orientation = 0.7,
-			label_orientation = 0.55,
+			sprite = {
+				type = "sprite",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit_cerys.png",
+				size = 86,
+			},
 		},
+		subgroup = "satellites",
+		label_orientation = 0.55,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
 		starmap_icon_size = 500,
@@ -23,7 +30,6 @@ PlanetsLib:planet_extend({
 		draw_orbit = false,
 		magnitude = 0.5,
 		order = "d[fulgora]-a[cerys]",
-		subgroup = "planets",
 		pollutant_type = nil,
 		solar_power_in_space = 120,
 		platform_procession_set = {
@@ -37,10 +43,10 @@ PlanetsLib:planet_extend({
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
 			["day-night-cycle"] = 4.5 * 60 * 60, -- Fulgora is 3m
-			["magnetic-field"] = 120,   -- Fulgora is 99
-			["solar-power"] = 120,      -- No atmosphere
+			["magnetic-field"] = 120, -- Fulgora is 99
+			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
-			gravity = 0.1,              -- 0.1 is minimum for chests
+			gravity = 0.1, -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,
