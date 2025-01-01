@@ -239,7 +239,11 @@ function Public.register_reactor_if_missing(surface)
 			local e = reactors[1]
 
 			if e and e.valid then
-				e.minable_flag = false
+				if e.name == "cerys-fulgoran-reactor-wreck-cleared" then
+					e.minable_flag = true
+				else
+					e.minable_flag = false
+				end
 				e.destructible = false
 
 				local stage = Public.REACTOR_NAME_TO_STAGE[e.name]
