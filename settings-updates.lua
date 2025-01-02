@@ -22,3 +22,5 @@ data:extend({
 		default_value = false,
 	},
 })
+
+data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true
