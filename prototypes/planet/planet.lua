@@ -10,8 +10,8 @@ PlanetsLib:planet_extend({
 		planet_type = "moon",
 		orbit = {
 			parent = {
-				name = "fulgora",
 				type = "planet",
+				name = "fulgora",
 			},
 			distance = 1.3,
 			orientation = 0.7,
