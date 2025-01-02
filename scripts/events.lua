@@ -1,13 +1,14 @@
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
 local space = require("scripts.space")
-local repair = require("scripts.repair")
+local repair = require("scripts.reactor-repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
 local common = require("common")
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
 local migrations = require("scripts.migrations")
+local init = require("scripts.init")
 
 -- Highest-level file besides control.lua.
 
@@ -25,9 +26,7 @@ script.on_configuration_changed(function()
 			nuclear_reactor.register_reactor_if_missing(surface)
 
 			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
-				game.print(
-					"[Cerys-Moon-of-Fulgora] Cerys is missing the Fulgoran reactor. This is likely due to an initialization bug in the mod when you first visited. It is recommended to add a Fulgoran Nuclear Reactor (frozen) in the map editor."
-				)
+				init.create_reactor(surface)
 			end
 		end
 
@@ -82,7 +81,7 @@ script.on_event({
 			return
 		end
 
-		local player = game.connected_players[event.player_index]
+		local player = game.players[event.player_index]
 
 		if not (player and player.valid) then
 			return
@@ -185,7 +184,7 @@ script.on_event(defines.events.on_tick, function(event)
 	if tick % 15 == 0 then
 		cryogenic_plant.tick_15_check_cryo_quality_upgrades(surface)
 		-- Ideally, match the tick interval of the repair recipes:
-		repair.tick_15_check_broken_cryo_plants(surface)
+		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
 	end
 

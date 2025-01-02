@@ -1,7 +1,41 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.6.5
+Version: 0.6.12
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.6.11
+Date: 2025-01-01
+  Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.6.10
+Date: 2025-01-01
+  Bugfixes:
+    - Bumped required version of PlanetsLib to patch cargo drops exploit.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.9
+Date: 2025-01-01
+  Bugfixes:
+    - Final(?) fix for players being unable to place a scaffold on save files hosted by somebody else.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.8
+Date: 2025-01-01
+  Bugfixes:
+    - Attempted fix for players being unable to place a scaffold on save files hosted by somebody else.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.7
+Date: 2025-01-01
+  Info:
+    - Added logging statements to reproduce scaffold placement bug that won't reproduce on my machine.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.6
+Date: 2025-01-01
+  Bugfixes:
+    - Ensure the cleared reactor on old saves is in the correct minable state.
+---------------------------------------------------------------------------------------------------
+Version: 0.6.5
+Date: 2025-01-01
+  Changes:
+    - Better handling of old saves without a reactor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.4
 Date: 2025-01-01

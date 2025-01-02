@@ -1,5 +1,5 @@
 local common = require("common")
-local repair = require("repair")
+local repair = require("reactor-repair")
 local terrain = require("terrain")
 
 local Public = {}
@@ -32,6 +32,21 @@ end
 function Public.create_reactor(surface)
 	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
 		or "cerys-fulgoran-reactor-wreck-frozen"
+
+	local entities = surface.find_entities_filtered({
+		area = {
+			{ common.REACTOR_POSITION.x - 11, common.REACTOR_POSITION.y - 11 },
+			{ common.REACTOR_POSITION.x + 11, common.REACTOR_POSITION.y + 11 },
+		},
+	})
+
+	for _, entity in pairs(entities) do
+		if entity and entity.valid and entity.type == "character" then
+			entity.teleport({ 0, 0 })
+		else
+			entity.destroy()
+		end
+	end
 
 	local e = surface.create_entity({
 		name = name,
