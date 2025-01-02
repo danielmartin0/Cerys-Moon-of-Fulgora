@@ -9,8 +9,10 @@ PlanetsLib:planet_extend({
 		name = "cerys",
 		planet_type = "moon",
 		orbit = {
-			parent = "fulgora",
-			type = "satellite",
+			parent = {
+				name = "fulgora",
+				type = "planet",
+			},
 			distance = 1.3,
 			orientation = 0.7,
 			label_orientation = 0.55,
@@ -37,10 +39,10 @@ PlanetsLib:planet_extend({
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
 			["day-night-cycle"] = 4.5 * 60 * 60, -- Fulgora is 3m
-			["magnetic-field"] = 120,   -- Fulgora is 99
-			["solar-power"] = 120,      -- No atmosphere
+			["magnetic-field"] = 120, -- Fulgora is 99
+			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
-			gravity = 0.1,              -- 0.1 is minimum for chests
+			gravity = 0.1, -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,
