@@ -29,7 +29,6 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 
 		if resistance.type == "physical" then
 			existing_physical_res = resistance
-			break
 		end
 	end
 
