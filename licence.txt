@@ -13,10 +13,9 @@ Restricted.
 You may make alterations for your own private personal use only.
 You are not allowed to distribute any content from the mod, or anything altered or derived from this mod with the following exception:
 You may post partial modified sections of this mod in thesixthroc's Discord https://discord.gg/VuVhYUBbWE for the purpose of providing bug fixes or enhancements.
-Certain assets may be intended for use by other modders, but no provision is made in this license to that effect. To find out if this is true for your use case and obtain permission, please contact thesixthroc.
 
 Distribution:
 You cannot distribute any content of the mod separate from the complete mod package.
 You can distribute the complete and unmodified mod package with the following conditions: 
 The mod must not be modified. (Packaging the mod into a larger zip file does not count as modification. It can be used in mod set packs.)
-You must disclose the source by providing a link to the mod on the mod portal https://mods.factorio.com, a link to the thesixthroc's discord https://discord.gg/VuVhYUBbWE for bug reporting and discussion, and a link to thesixthroc's Patreon https://www.patreon.com/thesixthroc to support further development.
+You must disclose the source by providing a link to the mod on the mod portal https://mods.factorio.com and a link to the thesixthroc's discord https://discord.gg/VuVhYUBbWE for bug reporting and discussion.
