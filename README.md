@@ -60,7 +60,7 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
 - Gameplay and code by [thesixthroc](https://mods.factorio.com/user/thesixthroc).
   - If you’d like to discuss game design, [https://www.patreon.com/thesixthroc](https://www.patreon.com/thesixthroc) gives access to a channel for that on [Discord](https://discord.gg/VuVhYUBbWE).
 - Art by [Tserup](https://mods.factorio.com/user/Tserup).
-- Special thanks to rjdunlap, xbarsigma, Preceti, and especially NekoBaron for feedback and discussion. Thanks to notnotmelon for the same, plus valuable advice.
+- Special thanks to rjdunlap, xbarsigma, Preceti, and especially NekoBaron for feedback and discussion. Thanks also to notnotmelon for feedback, advice and for improving some code.
 - Some assets are adapted from open-source materials. See Credits.md for details.
 
 ![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering.png)
