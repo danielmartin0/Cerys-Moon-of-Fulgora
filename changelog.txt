@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.18
-Date: ????
+Date: 2025-01-03
   Bugfixes:
     - Fixed a base game crash when generating Aquilo decoratives on medium or lower video memory usage setting.
 ---------------------------------------------------------------------------------------------------
