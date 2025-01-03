@@ -1,4 +1,3 @@
-local radiative_towers = require("scripts.radiative-tower")
 local simplex_noise = require("scripts.simplex_noise").d2
 local find = require("lib").find
 local cryogenic_plant = require("scripts.cryogenic-plant")
@@ -18,7 +17,7 @@ local max_radius = common.MOON_RADIUS * 1.2
 local hex_width = tower_separation
 local hex_height = tower_separation * math.sqrt(3)
 local col_offset = hex_width * 3 / 4 -- Horizontal distance between columns
-local row_offset = hex_height / 2    -- Vertical offset for every other column
+local row_offset = hex_height / 2 -- Vertical offset for every other column
 
 local max_cols = math.ceil(2 * max_radius / col_offset)
 local max_rows = math.ceil(2 * max_radius / hex_height)
@@ -116,7 +115,6 @@ function Public.on_cerys_chunk_generated(event, surface)
 			end
 		end
 	end
-
 
 	surface.set_tiles(tiles, true)
 
@@ -236,6 +234,7 @@ function Public.create_towers(surface, area)
 					position = p2,
 					force = "neutral",
 				})
+				script.raise_script_built({ entity = e })
 
 				if e and e.valid then
 					e.minable_flag = false

@@ -10,6 +10,8 @@ local background = require("scripts.background")
 local migrations = require("scripts.migrations")
 local init = require("scripts.init")
 
+local Public = {}
+
 -- Highest-level file besides control.lua.
 
 script.on_configuration_changed(function()
@@ -123,10 +125,19 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	end
 end)
 
+-- Cerys tick:
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
 	radiative_towers.tick_1_move_radiative_towers()
+
+	if tick % 20 == 0 then
+		radiative_towers.tick_20_contracted_towers()
+	end
+
+	if tick % radiative_towers.TOWER_CHECK_INTERVAL == 0 then
+		radiative_towers.tick_towers()
+	end
 
 	local surface = game.get_surface("cerys")
 	if not (surface and surface.valid) then
@@ -139,6 +150,10 @@ script.on_event(defines.events.on_tick, function(event)
 		return
 	end
 
+	Public.cerys_tick(surface, tick)
+end)
+
+function Public.cerys_tick(surface, tick)
 	local player_looking_at_surface = false
 	for _, player in pairs(game.connected_players) do
 		if player.surface == surface then
@@ -205,10 +220,7 @@ script.on_event(defines.events.on_tick, function(event)
 	if tick % 520 == 0 then
 		rods.tick_520_cleanup_charging_rods()
 	end
-end)
-
-script.on_nth_tick(radiative_towers.TOWER_CHECK_INTERVAL, radiative_towers.tick_towers)
-script.on_nth_tick(20, radiative_towers.tick_20_contracted_towers)
+end
 
 script.on_event(defines.events.on_script_trigger_effect, function(event)
 	local effect_id = event.effect_id
@@ -291,3 +303,5 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 
 	migrations.run_migrations()
 end)
+
+return Public
