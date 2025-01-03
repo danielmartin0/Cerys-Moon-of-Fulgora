@@ -240,14 +240,6 @@ function Public.create_towers(surface, area)
 				if e and e.valid then
 					e.minable_flag = false
 					e.destructible = false
-
-					local inv = e.get_inventory(defines.inventory.chest)
-					if inv and inv.valid then
-						inv.insert({ name = "iron-stick", count = 1 })
-					end
-
-					-- radiative_towers.register_heating_tower(e)
-					radiative_towers.register_heating_tower_contracted(e)
 				end
 			end
 		end
