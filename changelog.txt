@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.15
-Date: ????
+Date: 2025-01-03
   Changes:
     - Radiative towers can now be placed by the map editor and other mods.
   Info:
