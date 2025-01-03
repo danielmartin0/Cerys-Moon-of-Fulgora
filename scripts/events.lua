@@ -20,9 +20,7 @@ script.on_configuration_changed(function()
 	end
 
 	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
-		if
-			not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
-		then
+		if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 			nuclear_reactor.register_reactor_if_missing(surface)
 
 			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
@@ -54,13 +52,15 @@ script.on_event({
 	defines.events.on_built_entity,
 	defines.events.on_robot_built_entity,
 	defines.events.on_space_platform_built_entity,
+	defines.events.script_raised_built,
+	defines.events.script_raised_revive,
 }, function(event)
 	local entity = event.entity
 	if not (entity and entity.valid) then
 		return
 	end
 
-	if entity.name == "cerys-fulgoran-radiative-tower" then
+	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_heating_tower(entity)
 	end
 
@@ -126,7 +126,9 @@ end)
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
-	local surface = game.surfaces["cerys"]
+	radiative_towers.tick_1_move_radiative_towers()
+
+	local surface = game.get_surface("cerys")
 	if not (surface and surface.valid) then
 		return
 	end
@@ -139,18 +141,17 @@ script.on_event(defines.events.on_tick, function(event)
 
 	local player_looking_at_surface = false
 	for _, player in pairs(game.connected_players) do
-		if player.surface.name == "cerys" then
+		if player.surface == surface then
 			player_looking_at_surface = true
 			break
 		end
 	end
 
-	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value or
-		player_looking_at_surface
+	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
+		or player_looking_at_surface
 
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
-	radiative_towers.tick_1_move_radiative_towers(surface)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 
 	if move_solar_wind then
@@ -188,46 +189,12 @@ script.on_event(defines.events.on_tick, function(event)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
 	end
 
-	if tick % radiative_towers.TOWER_CHECK_INTERVAL == 0 then
-		radiative_towers.tick_towers(surface)
-	end
-
 	if tick % 60 == 0 then
 		space.spawn_asteroid(surface)
 	end
 
-	if tick % 20 == 0 then
-		local player_on_surface = false
-		for _, player in pairs(game.connected_players) do
-			if
-				not player_on_surface
-				and player
-				and player.valid
-				and player.surface
-				and player.surface.valid
-				and player.surface.index == surface.index
-			then
-				player_on_surface = true
-			elseif
-				not player_on_surface
-				and player
-				and player.valid
-				and player.character
-				and player.character.valid
-				and player.character.surface
-				and player.character.surface.valid
-				and player.character.surface.index == surface.index
-			then
-				player_on_surface = true
-			end
-		end
-		if player_on_surface then
-			radiative_towers.tick_20_contracted_towers(surface)
-
-			if tick % ice.ICE_CHECK_INTERVAL == 0 then
-				ice.tick_ice(surface)
-			end
-		end
+	if player_looking_at_surface and tick % ice.ICE_CHECK_INTERVAL == 0 then
+		ice.tick_ice(surface)
 	end
 
 	if tick % 240 == 0 then
@@ -237,6 +204,18 @@ script.on_event(defines.events.on_tick, function(event)
 
 	if tick % 520 == 0 then
 		rods.tick_520_cleanup_charging_rods()
+	end
+end)
+
+script.on_nth_tick(radiative_towers.TOWER_CHECK_INTERVAL, radiative_towers.tick_towers)
+script.on_nth_tick(20, radiative_towers.tick_20_contracted_towers)
+
+script.on_event(defines.events.on_script_trigger_effect, function(event)
+	local effect_id = event.effect_id
+	local entity = event.target_entity
+
+	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
+		radiative_towers.register_heating_tower_contracted(entity)
 	end
 end)
 

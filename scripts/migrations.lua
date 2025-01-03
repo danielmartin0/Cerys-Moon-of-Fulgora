@@ -85,6 +85,21 @@ function Public.run_migrations()
 		end
 	end
 
+	if lib.is_newer_version(last_seen_version, "0.6.15") then
+		storage.radiative_towers = storage.radiative_towers or {
+			towers = {},
+			contracted_towers = {},
+		}
+
+		if storage.cerys.heating_towers then
+			storage.radiative_towers.towers = storage.cerys.heating_towers
+		end
+
+		if storage.cerys.heating_towers_contracted then
+			storage.radiative_towers.contracted_towers = storage.cerys.heating_towers_contracted
+		end
+	end
+
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 

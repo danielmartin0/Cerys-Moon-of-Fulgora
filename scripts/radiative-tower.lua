@@ -9,9 +9,23 @@ local TEMPERATURE_LOSS_RATE = 1 / 350
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
 
+local function ensure_storage_tables()
+	storage.radiative_towers = storage.radiative_towers or {
+		towers = {},
+		contracted_towers = {},
+	}
+end
+
 Public.register_heating_tower_contracted = function(entity)
+	ensure_storage_tables()
+
 	if not (entity and entity.valid) then
 		return
+	end
+
+	local inv = entity.get_inventory(defines.inventory.chest)
+	if inv and inv.valid then
+		inv.insert({ name = "iron-stick", count = 1 })
 	end
 
 	local starting_tower_position = {
@@ -28,7 +42,9 @@ Public.register_heating_tower_contracted = function(entity)
 		surface = entity.surface,
 	})
 
-	storage.cerys.heating_towers_contracted[entity.unit_number] = {
+	ensure_storage_tables()
+
+	storage.radiative_towers.contracted_towers[entity.unit_number] = {
 		entity = entity,
 		starting_tower_position = starting_tower_position,
 		stage = 0,
@@ -36,7 +52,9 @@ Public.register_heating_tower_contracted = function(entity)
 	}
 end
 
-Public.register_heating_tower = function(entity, contracted_tower_parent_data)
+Public.register_heating_tower = function(entity)
+	ensure_storage_tables()
+
 	if not (entity and entity.valid) then
 		return
 	end
@@ -45,10 +63,6 @@ Public.register_heating_tower = function(entity, contracted_tower_parent_data)
 
 	if not (surface and surface.valid) then
 		return
-	end
-
-	if contracted_tower_parent_data.top_entity then
-		contracted_tower_parent_data.top_entity.destroy()
 	end
 
 	local base = surface.create_entity({
@@ -64,7 +78,7 @@ Public.register_heating_tower = function(entity, contracted_tower_parent_data)
 
 	-- TODO: Create lamps for each heating radius that don't require power
 
-	storage.cerys.heating_towers[entity.unit_number] = {
+	storage.radiative_towers.towers[entity.unit_number] = {
 		entity = entity,
 		reactors = {},
 		base_entity = base,
@@ -73,8 +87,10 @@ Public.register_heating_tower = function(entity, contracted_tower_parent_data)
 end
 
 Public.TOWER_CHECK_INTERVAL = 32
-function Public.tick_towers(surface)
-	for unit_number, tower in pairs(storage.cerys.heating_towers) do
+function Public.tick_towers()
+	ensure_storage_tables()
+
+	for unit_number, tower in pairs(storage.radiative_towers.towers) do
 		local e = tower.entity
 
 		if not (e and e.valid) then
@@ -86,7 +102,7 @@ function Public.tick_towers(surface)
 				end
 			end
 
-			storage.cerys.heating_towers[unit_number] = nil
+			storage.radiative_towers.towers[unit_number] = nil
 		else
 			local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
 
@@ -110,7 +126,7 @@ function Public.tick_towers(surface)
 
 				if heating_radius > tower.last_radius then -- If radius increased, add new reactors
 					for r = tower.last_radius + 1, heating_radius do
-						local new_reactor = surface.create_entity({
+						local new_reactor = e.surface.create_entity({
 							name = "hidden-reactor-" .. r,
 							position = e.position,
 							force = e.force,
@@ -142,14 +158,14 @@ function Public.tick_towers(surface)
 
 			if tower.frozen then
 				if temperature_above_zero > 1 then
-					Public.unfreeze_tower(surface, tower)
+					Public.unfreeze_tower(tower)
 				end
 			end
 		end
 	end
 end
 
-function Public.unfreeze_tower(surface, tower)
+function Public.unfreeze_tower(tower)
 	local e = tower.entity
 
 	if not (e and e.valid) then
@@ -158,7 +174,7 @@ function Public.unfreeze_tower(surface, tower)
 
 	if tower.base_entity and tower.base_entity.valid then
 		tower.base_entity.destroy()
-		local base = surface.create_entity({
+		local base = e.surface.create_entity({
 			name = "cerys-fulgoran-radiative-tower-base",
 			position = e.position,
 			force = e.force,
@@ -171,7 +187,7 @@ function Public.unfreeze_tower(surface, tower)
 		end
 	end
 
-	local new_tower = surface.create_entity({
+	local new_tower = e.surface.create_entity({
 		name = "cerys-fulgoran-radiative-tower",
 		position = e.position,
 		force = e.force,
@@ -208,16 +224,19 @@ function Public.unfreeze_tower(surface, tower)
 	tower.frozen = false
 end
 
-function Public.tick_20_contracted_towers(surface)
-	for unit_number, contracted_tower in pairs(storage.cerys.heating_towers_contracted) do
+function Public.tick_20_contracted_towers()
+	ensure_storage_tables()
+
+	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		if contracted_tower.open_tick then
 			return
 		end
 
 		local e = contracted_tower.entity
 		if not (e and e.valid) then
-			storage.cerys.heating_towers_contracted[unit_number] = nil
+			storage.radiative_towers.contracted_towers[unit_number] = nil
 		else
+			local surface = e.surface
 			local inv = e.get_inventory(defines.inventory.chest)
 			local should_open = inv and inv.get_item_count("iron-stick") == 0
 			if common.DEBUG_HEATERS_FUELED then
@@ -292,10 +311,12 @@ end
 
 local EXPAND_SPEED = 0.03
 
-function Public.tick_1_move_radiative_towers(surface)
+function Public.tick_1_move_radiative_towers()
+	ensure_storage_tables()
+
 	local expand_distance = common.RADIATIVE_TOWER_SHIFT_PIXELS
 
-	for unit_number, contracted_tower in pairs(storage.cerys.heating_towers_contracted) do
+	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		local top_entity = contracted_tower.top_entity
 
 		local open_tick = contracted_tower.open_tick
@@ -322,7 +343,7 @@ function Public.tick_1_move_radiative_towers(surface)
 				if contracted_tower.stage == 0 and ticks_since_open > 1 / EXPAND_SPEED then
 					contracted_tower.stage = 1
 
-					local new_top_entity = surface.create_entity({
+					local new_top_entity = top_entity.surface.create_entity({
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
 						position = top_entity.position,
 						force = top_entity.force,
@@ -336,7 +357,7 @@ function Public.tick_1_move_radiative_towers(surface)
 				elseif contracted_tower.stage == 1 and ticks_since_open > 2 / EXPAND_SPEED then
 					contracted_tower.stage = 2
 
-					local new_top_entity = surface.create_entity({
+					local new_top_entity = top_entity.surface.create_entity({
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
 						position = top_entity.position,
 						force = top_entity.force,
@@ -345,10 +366,11 @@ function Public.tick_1_move_radiative_towers(surface)
 					contracted_tower.top_entity = new_top_entity
 				end
 			else
-				local new_tower = surface.create_entity({
+				local new_tower = contracted_tower.entity.surface.create_entity({
 					name = "cerys-fulgoran-radiative-tower-frozen",
 					position = contracted_tower.entity.position,
 					force = contracted_tower.entity.force,
+					raise_built = true,
 				})
 
 				if new_tower and new_tower.valid then
@@ -364,7 +386,7 @@ function Public.tick_1_move_radiative_towers(surface)
 							if stack.name == "solid-fuel" then
 								new_tower.insert(stack)
 							else
-								surface.spill_item_stack({
+								contracted_tower.entity.surface.spill_item_stack({
 									position = contracted_tower.entity.position,
 									stack = stack,
 								})
@@ -377,7 +399,9 @@ function Public.tick_1_move_radiative_towers(surface)
 					contracted_tower.rendering.destroy()
 				end
 
-				Public.register_heating_tower(new_tower, contracted_tower)
+				if contracted_tower.top_entity then
+					contracted_tower.top_entity.destroy()
+				end
 
 				for _, player in pairs(game.connected_players) do
 					if player.opened == contracted_tower.entity then
@@ -386,7 +410,7 @@ function Public.tick_1_move_radiative_towers(surface)
 				end
 
 				contracted_tower.entity.destroy()
-				storage.cerys.heating_towers_contracted[unit_number] = nil
+				storage.radiative_towers.contracted_towers[unit_number] = nil
 			end
 		end
 	end

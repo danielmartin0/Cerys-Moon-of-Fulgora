@@ -24,7 +24,7 @@ local HIDDEN_TILE_TO_MELTING_TILE = {
 	["cerys-pumice-stones-frozen"] = "cerys-pumice-stones-frozen-from-dry-ice",
 }
 
-Public.ICE_CHECK_INTERVAL = 80 -- Only specific numbers work, see events.lua
+Public.ICE_CHECK_INTERVAL = 80
 
 function Public.tick_ice(surface)
 	if not storage.transitioning_tiles then

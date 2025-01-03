@@ -2,6 +2,8 @@
 Version: 0.6.15
 Date: ????
   Changes:
+    - Radiative towers can now be placed by the map editor and other mods.
+  Info:
     - Fix the Fulgoran Nuclear Reactor showing 'Yields: Nuclear Reactor' in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.14

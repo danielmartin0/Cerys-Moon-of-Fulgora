@@ -211,7 +211,17 @@ local container = {
 	subgroup = "cerys-entities",
 	hidden_in_factoriopedia = true,
 	flags = { "placeable-neutral", "not-deconstructable", "not-blueprintable", "not-flammable" },
-	icon = "__space-age__/graphics/icons/heating-tower.png", -- TODO: Change
+	icon = "__space-age__/graphics/icons/heating-tower.png",
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-radiative-tower-contracted-container",
+			},
+		},
+	},
 	inventory_size = 1,
 	max_health = 500,
 	corpse = "heating-tower-remnants",
