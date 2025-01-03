@@ -3,7 +3,7 @@ local map_gen = require("prototypes.planet.map_gen")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 local planet_catalogue_cerys = require("__Cerys-Moon-of-Fulgora__.prototypes.planet.procession-catalogue-cerys")
 
-PlanetsLib:planet_extend({
+PlanetsLib:extend({
 	{
 		type = "planet",
 		name = "cerys",
