@@ -384,6 +384,7 @@ data:extend({
 	}),
 })
 
+-- We need to write out 'pictures' explicitly, since if we clone the base pictures there's a base game crash on medium or lower video memory settings.
 local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 	name = "cerys-ice-decal-white",
 	render_layer = "decorative",
@@ -391,7 +392,161 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 		probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 11000, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.005} + 0.01",
 		tile_restriction = common.ROCK_TILES,
 	},
-	pictures = util.table.deepcopy(data.raw["optimized-decorative"]["aqulio-snowy-decal"].pictures),
+	pictures = {
+		{
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-01.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  759,
+		  height =  396,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-02.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  907,
+		  height =  548,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-03.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  678,
+		  height =  307,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-04.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  563,
+		  height =  476,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-05.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  479,
+		  height =  348,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-06.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  585,
+		  height =  320,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-07.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  468,
+		  height =  373,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-08.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  558,
+		  height =  509,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-09.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  570,
+		  height =  428,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-10.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  736,
+		  height =  378,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-11.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  513,
+		  height =  473,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-12.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  529,
+		  height =  279,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-13.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  376,
+		  height =  380,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-14.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  421,
+		  height =  372,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-15.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  724,
+		  height =  383,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-16.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  389,
+		  height =  364,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+		  {
+		  filename =  "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-17.png",
+		  priority = base_decorative_sprite_priority,
+		  width =  817,
+		  height =  379,
+		  tint = {1,1,1},
+		  scale = 0.5,
+		  shift = {0.0, 0.0}
+		  },
+	  },
 })
 for _, picture in pairs(d.pictures) do
 	picture.tint = { 1, 1, 1, 0.5 }
