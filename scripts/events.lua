@@ -20,9 +20,7 @@ script.on_configuration_changed(function()
 	end
 
 	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
-		if
-			not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
-		then
+		if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 			nuclear_reactor.register_reactor_if_missing(surface)
 
 			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
@@ -128,6 +126,8 @@ end)
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
+	radiative_towers.tick_1_move_radiative_towers()
+
 	local surface = game.get_surface("cerys")
 	if not (surface and surface.valid) then
 		return
@@ -141,18 +141,17 @@ script.on_event(defines.events.on_tick, function(event)
 
 	local player_looking_at_surface = false
 	for _, player in pairs(game.connected_players) do
-		if player.surface == surface or player.physical_surface == surface then
+		if player.surface == surface then
 			player_looking_at_surface = true
 			break
 		end
 	end
 
-	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value or
-		player_looking_at_surface
+	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
+		or player_looking_at_surface
 
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
-	radiative_towers.tick_1_move_radiative_towers()
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 
 	if move_solar_wind then

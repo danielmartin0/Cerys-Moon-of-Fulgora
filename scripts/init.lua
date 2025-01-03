@@ -133,15 +133,6 @@ function Public.ensure_cerys_storage_and_tables()
 	if not storage.cerys.asteroids then
 		storage.cerys.asteroids = {}
 	end
-
-	if not storage.cerys.heating_towers then
-		storage.cerys.heating_towers = {}
-	end
-
-	if not storage.cerys.heating_towers_contracted then
-		storage.cerys.heating_towers_contracted = {}
-	end
-
 	if not storage.cerys.broken_cryo_plants then
 		storage.cerys.broken_cryo_plants = {}
 	end

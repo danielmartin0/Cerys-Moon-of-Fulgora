@@ -9,8 +9,15 @@ local TEMPERATURE_LOSS_RATE = 1 / 350
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
 
+local function ensure_storage_tables()
+	storage.radiative_towers = storage.radiative_towers or {
+		towers = {},
+		contracted_towers = {},
+	}
+end
+
 Public.register_heating_tower_contracted = function(entity)
-	if not storage.cerys then return end
+	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
 		return
@@ -18,7 +25,7 @@ Public.register_heating_tower_contracted = function(entity)
 
 	local inv = entity.get_inventory(defines.inventory.chest)
 	if inv and inv.valid then
-		inv.insert {name = "iron-stick", count = 1}
+		inv.insert({ name = "iron-stick", count = 1 })
 	end
 
 	local starting_tower_position = {
@@ -35,7 +42,9 @@ Public.register_heating_tower_contracted = function(entity)
 		surface = entity.surface,
 	})
 
-	storage.cerys.heating_towers_contracted[entity.unit_number] = {
+	ensure_storage_tables()
+
+	storage.radiative_towers.contracted_towers[entity.unit_number] = {
 		entity = entity,
 		starting_tower_position = starting_tower_position,
 		stage = 0,
@@ -44,7 +53,7 @@ Public.register_heating_tower_contracted = function(entity)
 end
 
 Public.register_heating_tower = function(entity)
-	if not storage.cerys then return end
+	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
 		return
@@ -69,7 +78,7 @@ Public.register_heating_tower = function(entity)
 
 	-- TODO: Create lamps for each heating radius that don't require power
 
-	storage.cerys.heating_towers[entity.unit_number] = {
+	storage.radiative_towers.towers[entity.unit_number] = {
 		entity = entity,
 		reactors = {},
 		base_entity = base,
@@ -79,9 +88,9 @@ end
 
 Public.TOWER_CHECK_INTERVAL = 32
 function Public.tick_towers()
-	if not storage.cerys then return end
+	ensure_storage_tables()
 
-	for unit_number, tower in pairs(storage.cerys.heating_towers) do
+	for unit_number, tower in pairs(storage.radiative_towers.towers) do
 		local e = tower.entity
 
 		if not (e and e.valid) then
@@ -93,7 +102,7 @@ function Public.tick_towers()
 				end
 			end
 
-			storage.cerys.heating_towers[unit_number] = nil
+			storage.radiative_towers.towers[unit_number] = nil
 		else
 			local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
 
@@ -216,16 +225,16 @@ function Public.unfreeze_tower(tower)
 end
 
 function Public.tick_20_contracted_towers()
-	if not storage.cerys then return end
+	ensure_storage_tables()
 
-	for unit_number, contracted_tower in pairs(storage.cerys.heating_towers_contracted) do
+	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		if contracted_tower.open_tick then
 			return
 		end
 
 		local e = contracted_tower.entity
 		if not (e and e.valid) then
-			storage.cerys.heating_towers_contracted[unit_number] = nil
+			storage.radiative_towers.contracted_towers[unit_number] = nil
 		else
 			local surface = e.surface
 			local inv = e.get_inventory(defines.inventory.chest)
@@ -303,9 +312,11 @@ end
 local EXPAND_SPEED = 0.03
 
 function Public.tick_1_move_radiative_towers()
+	ensure_storage_tables()
+
 	local expand_distance = common.RADIATIVE_TOWER_SHIFT_PIXELS
 
-	for unit_number, contracted_tower in pairs(storage.cerys.heating_towers_contracted) do
+	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		local top_entity = contracted_tower.top_entity
 
 		local open_tick = contracted_tower.open_tick
@@ -399,7 +410,7 @@ function Public.tick_1_move_radiative_towers()
 				end
 
 				contracted_tower.entity.destroy()
-				storage.cerys.heating_towers_contracted[unit_number] = nil
+				storage.radiative_towers.contracted_towers[unit_number] = nil
 			end
 		end
 	end
