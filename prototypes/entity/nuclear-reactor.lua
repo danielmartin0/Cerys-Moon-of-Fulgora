@@ -42,17 +42,18 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	order = "c",
 	max_health = max_health,
 	collision_box = {
-		{ -11,  -10.7 },
+		{ -11, -10.7 },
 		{ 10.8, 10.7 },
 	},
 	selection_box = { { -11, -11 }, { 11, 11 } },
+	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
 	lower_layer_picture = "nil",
 	heat_lower_layer_picture = "nil",
 	energy_source = merge(data.raw.reactor["nuclear-reactor"].energy_source, {
 		fuel_categories = { "nuclear-mixed-oxide" },
-		effectivity = 6,        -- from 1
+		effectivity = 6, -- from 1
 	}),
-	consumption = "6GW",        -- From 40MW
+	consumption = "6GW", -- From 40MW
 	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
 		minimum_glow_temperature = 0, -- From 350
 		connections = make_heat_buffer_connections(22),
@@ -179,7 +180,7 @@ local reactor_wreck_base = {
 	allow_copy_paste = false,
 	collision_box = {
 		{ -16, -10.7 },
-		{ 16,  10.7 },
+		{ 16, 10.7 },
 	},
 	selection_box = { { -16, -11 }, { 16, 11 } },
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
@@ -247,7 +248,7 @@ local reactor_wreck_cleared = merge(reactor_wreck_base, {
 	minable = "nil",
 	fast_replaceable_group = "cerys-fulgoran-reactor-scaffold",
 	collision_box = {
-		{ -11,  -10.7 },
+		{ -11, -10.7 },
 		{ 10.8, 10.7 },
 	},
 	selection_box = { { -11, -11 }, { 11, 11 } },
@@ -272,7 +273,7 @@ local scaffold = merge(reactor_wreck_cleared, {
 		result = "cerys-fulgoran-reactor-scaffold",
 	},
 	collision_box = {
-		{ -11,  -10.7 },
+		{ -11, -10.7 },
 		{ 10.8, 10.7 },
 	},
 	picture = {
@@ -315,8 +316,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					repeat_count = 20,
 				},
 				{
-					filename =
-					"__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
 					width = 2299,
 					height = 2161,
 					shift = util.by_pixel(17, 0),

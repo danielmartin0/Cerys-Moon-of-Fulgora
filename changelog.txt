@@ -2,6 +2,7 @@
 Version: 0.6.15
 Date: ????
   Changes:
+    - Fix the Fulgoran Nuclear Reactor showing 'Yields: Nuclear Reactor' in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.14
 Date: 2025-01-02
