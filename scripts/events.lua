@@ -194,7 +194,7 @@ script.on_event(defines.events.on_tick, function(event)
 		space.spawn_asteroid(surface)
 	end
 
-    if player_looking_at_surface and tick % ice.ICE_CHECK_INTERVAL == 0 then
+	if player_looking_at_surface and tick % ice.ICE_CHECK_INTERVAL == 0 then
 		ice.tick_ice(surface)
 	end
 
