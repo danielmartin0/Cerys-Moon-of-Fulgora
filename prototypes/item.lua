@@ -279,7 +279,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 1,
-    	place_result = "cerys-fulgoran-radiative-tower-contracted-container",
+		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
 	},
 })
 
