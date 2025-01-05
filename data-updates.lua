@@ -14,6 +14,8 @@ local U235_RATIO = (U235_NATURAL_AMOUNT / U238_NATURAL_AMOUNT)
 
 log("Cerys U235/U238 ratio: " .. U235_RATIO)
 
+data.raw["furnace"]["recycler"].result_inventory_size=13 --added to allow stone output for AAI mod
+
 data:extend({
 
     merge(data.raw.recipe["scrap-recycling"], {
@@ -37,7 +39,7 @@ data:extend({
         },
         results = {},
         enabled = false,
-    }),
+		}),
 })
 
 local RECYCLING_PROBABILITIES_PERCENT = {
@@ -45,7 +47,7 @@ local RECYCLING_PROBABILITIES_PERCENT = {
     ["advanced-circuit"] = 11,
     ["copper-cable"] = 8,    -- initial power poles
     ["uranium-238"] = 6,
-    ["stone"] = 2,     -- some of the stone brick for furnaces comes from the reactor excavation
+    ["stone-brick"] = 2,     -- some of the stone brick for furnaces comes from the reactor excavation
     ["pipe"] = 1.8,          -- Avoid getting softlocked if you clear all the ruins, provide initial iron for iron production chain. Pointedly small.
     ["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
     ["heat-pipe"] = 0.4,
@@ -53,6 +55,7 @@ local RECYCLING_PROBABILITIES_PERCENT = {
     ["steam-turbine"] = 0.25,
     ["centrifuge"] = 0.15,
     ["uranium-235"] = 6 * U235_RATIO,
+	["stone"]= 2 -- added for AAI functionality
 	
 }
 
