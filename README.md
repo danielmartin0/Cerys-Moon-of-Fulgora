@@ -4,7 +4,7 @@
 
 # Cerys
 
-You discover Cerys, a moon of Fulgora whose ancient ruins lie frozen below a thick layer of dry ice. A gentle solar wind drifts above under Fulgora's magnetic influence. As you touch down, methane ice crystals scatter into the airless atmosphere. Asteroids wander overhead.
+You discover Cerys, a moon of Fulgora whose ruins lie frozen under a thick layer of dry ice. As you touch down, methane ice crystals scatter into the airless atmosphere. Asteroids wander overhead, anlomg with a gentle solar wind under Fulgora’s magnetic influence.
 
 You glimpse many frozen structures lodged in the surface. Though made of new materials, they bear the hallmarks of the Fulgorans. As you explore, it becomes apparent that without lightning, they turned to another source of power.
 
@@ -20,12 +20,10 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
     - Defrost your factory with a new mechanic, different to Aquilo.
     - Solve the workings of plutonium.
     - Unlike planets, the play area is finite. Terrain curves as you approach the moon's edge.
-- Traditional mining is combined with a novel recycling chain based on nuclear components. Iron is a scarce resource, providing challenge in the early-game.
+- Traditional mining is combined with a novel recycling chain based on nuclear components. Iron is a scarce resource, providing challenge in the early-game. Logistic bots appear only later in the gameplay.
 - It is said that due to the solar wind, cargo pods cannot drop resources onto Cerys (without researching a specific technology.)
-- There are no changes to vanilla content, so it is simple to include Cerys in existing saves.
-    - There are no new entity or recipe restrictions on vanilla planets, no tweaks to vanilla gameplay, and no new recipes that change vanilla items into each other.
-- Ultimately, Cerys is a set of puzzles and mechanics that long-time Factorio players will enjoy.
-    - In some ways it is closer to a Factorio puzzle game than a Space Age planet on the first playthrough.
+- It is simple to include Cerys in existing saves as there are zero changes to vanilla: no restrictions on vanilla planets, changes to vanilla gameplay, or new recipes with purely vanilla items.
+- On first playthrough, Cerys is equal parts puzzle game and Space Age planet.
 
 ---
 
@@ -44,7 +42,7 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
   - This is for easy gameplay compatibility with existing saves. Cerys is a largely self-contained experience.
 - Cerys contains a 2.0 port of GotLag’s [Flare Stack](https://mods.factorio.com/mod/Flare%20Stack) of higher quality than we could find. This is planned to be extracted into a separate mod.
 - We didn't originally set out to make a 'planet'. This mod grew out of roc experimenting with nuclear plant recycling chains after the release of [Hardcore Fulgora](https://mods.factorio.com/mod/Rocs-Hardcore-Fulgora).
-- WE LOVE YOUR FEEDBACK. More you’d like to see? Something you hate? Trying to get a Cerys megabase working? Let us know in Discussion or [Discord](https://discord.gg/VuVhYUBbWE).
+- More you’d like to see? Something you hate? Trying to get a Cerys megabase working? Let us know in Discussion or [Discord](https://discord.gg/VuVhYUBbWE).
 
 ---
 
@@ -58,9 +56,15 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
 ### Credits
 
 - Gameplay and code by [thesixthroc](https://mods.factorio.com/user/thesixthroc).
-  - If you’d like to discuss game design, [https://www.patreon.com/thesixthroc](https://www.patreon.com/thesixthroc) gives access to a channel for that on [Discord](https://discord.gg/VuVhYUBbWE).
+    - Opening PRs is welcome on Github if there's something you'd like to see changed.
+    - If you’d like to discuss game design, [https://www.patreon.com/thesixthroc](https://www.patreon.com/thesixthroc) gives a channel for that on [Discord](https://discord.gg/VuVhYUBbWE).
 - Art by [Tserup](https://mods.factorio.com/user/Tserup).
-- Special thanks to rjdunlap, xbarsigma, Preceti, and especially NekoBaron for feedback and discussion. Thanks also to notnotmelon for feedback, advice and for improving some code.
+- Special thanks:
+    - snooz for the scrap recycling technology icon
+    - notnotmelon for a bugfix and teaching the ways of image compression
+    - rjdunlap, xbarsigma, Preceti, notnotmleon, NekoBaron and others for feedback and discussion
 - Some assets are adapted from open-source materials. See Credits.md for details.
+
+---
 
 ![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering.png)
