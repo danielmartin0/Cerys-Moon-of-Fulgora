@@ -69,16 +69,3 @@ override_surface_conditions(data.raw["cargo-landing-pad"]["cargo-landing-pad"], 
 override_surface_conditions(data.raw["car"]["car"], gravity_condition)
 override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
 override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
-
---== Restrictions ==--
-
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
-override_surface_conditions(data.raw["lab"]["lab"], magnetic_field_restriction)
-override_surface_conditions(data.raw["accumulator"]["accumulator"], magnetic_field_restriction)
-override_surface_conditions(data.raw["reactor"]["nuclear-reactor"], magnetic_field_restriction)
-override_surface_conditions(data.raw["fusion-reactor"]["fusion-reactor"], magnetic_field_restriction)
-override_surface_conditions(data.raw["fusion-generator"]["fusion-generator"], magnetic_field_restriction)

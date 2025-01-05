@@ -1,4 +1,5 @@
 local lib = require("lib")
+local override_surface_conditions = lib.override_surface_conditions
 
 data.raw.lab["cerys-lab"].inputs = {
 	"automation-science-pack",
@@ -100,3 +101,44 @@ end
 if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energy_source.fuel_categories then
 	table.insert(data.raw.reactor["heating-tower"].energy_source.fuel_categories, "chemical-or-radiative")
 end
+
+--== Restrictions ==--
+
+local magnetic_field_restriction = {
+	property = "magnetic-field",
+	max = 119,
+}
+
+for name, entity in pairs(data.raw["reactor"]) do
+	if not string.sub(name, 1, 6) == "cerys-" then
+		override_surface_conditions(entity, magnetic_field_restriction)
+	end
+end
+for name, entity in pairs(data.raw["lab"]) do
+	if not string.sub(name, 1, 6) == "cerys-" then
+		override_surface_conditions(entity, magnetic_field_restriction)
+	end
+end
+for name, entity in pairs(data.raw["accumulator"]) do
+	if name ~= "charging-rod" then
+		override_surface_conditions(entity, magnetic_field_restriction)
+	end
+end
+for _, entity in pairs(data.raw["fusion-reactor"]) do
+	override_surface_conditions(entity, magnetic_field_restriction)
+end
+for _, entity in pairs(data.raw["fusion-generator"]) do
+	override_surface_conditions(entity, magnetic_field_restriction)
+end
+
+local ten_pressure_condition = {
+	property = "pressure",
+	min = 10,
+}
+
+for name, entity in pairs(data.raw["boiler"]) do
+	if name ~= "heat-exchanger" then
+		override_surface_conditions(entity, ten_pressure_condition)
+	end
+end
+-- TODO: Restrict modded furnaces
