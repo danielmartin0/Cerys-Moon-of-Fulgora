@@ -186,7 +186,7 @@ for _, entity in pairs(data.raw["offshore-pump"]) do
 end
 
 for _, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
-	if mask.layers then
+	if mask.layers and mask.layers.water_tile then
 		mask.layers.cerys_water_tile = true
 	end
 end
