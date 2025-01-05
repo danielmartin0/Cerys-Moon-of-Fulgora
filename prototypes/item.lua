@@ -245,8 +245,8 @@ data:extend({
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",
 		name = "cerys-fulgoran-cryogenic-plant",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-		icon_size = 256,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
+		icon_size = 223,
 		subgroup = "production-machine",
 		order = "h[cryogenic-plant]-b[fulgoran-cryogenic-plant]",
 		hidden = true,

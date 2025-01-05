@@ -160,11 +160,11 @@ local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 	}),
 })
 
-local cerys_shallow_water_collision_mask = merge(tile_collision_masks.shallow_water(), {
-	layers = merge((tile_collision_masks.shallow_water().layers or {}), {
-		cerys_tile = true,
-	}),
-})
+local cerys_shallow_water_collision_mask = { layers = {
+	resource = true,
+	floor = true,
+	cerys_tile = true,
+} }
 
 --== Rock Ice ==--
 local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
@@ -300,10 +300,10 @@ data:extend({
 local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
 	collision_mask = cerys_shallow_water_collision_mask,
-	default_cover_tile = "foundation",
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
+	default_cover_tile = "concrete",
 })
 
 data:extend({

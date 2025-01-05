@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.2
 Date: ????
+  Bugfixes:
+    - Cerys water puddles can now be covered by concrete as intended.
   Changes:
+    - Ancient structure repair parts can no longer be crafted by hand.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.1
 Date: 2025-01-05

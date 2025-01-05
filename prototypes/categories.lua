@@ -37,6 +37,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "advanced-crafting-or-fulgoran-cryogenics",
+	},
+	{
+		type = "recipe-category",
 		name = "no-machine",
 	},
 	{

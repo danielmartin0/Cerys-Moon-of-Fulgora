@@ -2,7 +2,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "ancient-structure-repair-part",
-		category = "crafting-or-fulgoran-cryogenics",
+		category = "advanced-crafting-or-fulgoran-cryogenics",
 		enabled = false,
 		energy_required = 0.7,
 		ingredients = {
@@ -13,6 +13,7 @@ data:extend({
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
 		allow_productivity = true,
+		always_show_made_in = true,
 	},
 
 	{
