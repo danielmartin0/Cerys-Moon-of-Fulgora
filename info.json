@@ -11,6 +11,7 @@
         "base >= 2.0.28",
         "space-age >= 2.0.0",
         "PlanetsLib >= 1.1.11",
+        "Flare Stack >= 3.0.3",
         "? Tiered-Solar-System",
         "? visible-planets"
     ],

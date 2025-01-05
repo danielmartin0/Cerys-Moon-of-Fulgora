@@ -21,6 +21,12 @@ data:extend({
 		setting_type = "runtime-global",
 		default_value = false,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-disable-flare-stack-item-venting",
+		setting_type = "startup",
+		default_value = true,
+	},
 })
 
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

@@ -111,29 +111,6 @@ data:extend({
 		icon_size = 256,
 	}),
 	cerys_tech({
-		unit = {
-			count = 50,
-			ingredients = {
-				{ "cerys-science-pack", 1 },
-			},
-			time = 60,
-		},
-		name = "cerys-gas-venting",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "vent-stack",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "flare-stack",
-			},
-		},
-		prerequisites = { "cerys-science-pack" },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/gas-venting.png",
-		icon_size = 256,
-	}),
-	cerys_tech({
 		science_count = 100,
 		name = "cerys-cryogenic-plant-quality-upgrades",
 		effects = {
@@ -192,7 +169,7 @@ data:extend({
 				recipe = "nuclear-waste-solution-centrifuging",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "cerys-gas-venting" },
+		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 	}),

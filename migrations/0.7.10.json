@@ -1,0 +1,6 @@
+{
+    "technology": [["cerys-gas-venting", "flare-stack-fluid-venting-tech"]],
+    "item": [["vent-stack", "flare-stack"]],
+    "entity": [["vent-stack", "flare-stack"]],
+    "recipe": [["vent-stack", "flare-stack"]]
+}

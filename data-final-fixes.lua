@@ -1,6 +1,5 @@
 require("prototypes.override-final.entity")
 require("prototypes.override-final.item")
-require("prototypes.override-final.flare-stack")
 require("prototypes.override-final.recipe")
 require("prototypes.override-final.technology")
 require("compat.categories")
