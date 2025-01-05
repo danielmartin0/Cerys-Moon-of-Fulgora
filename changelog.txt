@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.1
-Date: ????
+Date: 2025-01-05
   Changes:
     - Reactor repair cost dropped from 50 to 25 recipes. This is a preliminary tweak.
     - Charging rods no longer have a 4 tile vertical offset for their deflection effect, making it easier for players to understand specifically how they work without looking at the code.
