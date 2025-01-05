@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.3
-Date: ????
+Date: 2025-01-05
   Modding:
     - Maraxsis compatibility: rocket parts are once again craftable on Cerys if Maraxsis is installed.
 ---------------------------------------------------------------------------------------------------
