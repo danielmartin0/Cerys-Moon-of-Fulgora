@@ -9,7 +9,7 @@ local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
 local migrations = require("scripts.migrations")
 local init = require("scripts.init")
-local heat = require("scripts.heat")
+local cooling = require("scripts.cooling")
 
 local Public = {}
 
@@ -217,7 +217,7 @@ function Public.cerys_tick(surface, tick)
 
 	if tick % 60 == 0 then
 		space.spawn_asteroid(surface)
-		heat.tick_60_cool_heat_entities()
+		cooling.tick_60_cool_heat_entities()
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
@@ -230,7 +230,7 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if tick % 300 == 0 then
-		heat.tick_300_find_heat_entities(surface)
+		cooling.tick_300_find_heat_entities(surface)
 	end
 end
 

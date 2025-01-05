@@ -1,7 +1,7 @@
 require("scripts.charging-rod")
 require("scripts.cryogenic-plant")
 require("scripts.events")
-require("scripts.heat")
+require("scripts.cooling")
 require("scripts.ice")
 require("scripts.init")
 require("scripts.nuclear-reactor")

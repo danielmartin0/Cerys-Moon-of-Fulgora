@@ -2,6 +2,7 @@
 Version: 0.7.7
 Date: ????
   Changes:
+    - Heat pipe and reactor cooling rates adjusted. Heat pipes now cool twice as fast as the reactor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.6
 Date: 2025-01-05

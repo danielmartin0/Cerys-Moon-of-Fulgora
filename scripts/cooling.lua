@@ -1,6 +1,6 @@
 local Public = {}
 
-local TEMPERATURE_LOSS_RATE = 3
+local TEMPERATURE_LOSS_RATE = 4
 
 function Public.tick_300_find_heat_entities(surface)
 	storage.cerys.heat_entities = surface.find_entities_filtered({
