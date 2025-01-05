@@ -142,3 +142,13 @@ for name, entity in pairs(data.raw["boiler"]) do
 	end
 end
 -- TODO: Restrict modded furnaces
+
+for _, entity in pairs(data.raw["offshore-pump"]) do
+	if entity.tile_buildability_rules then
+		for _, rule in pairs(entity.tile_buildability_rules) do
+			if rule.required_tiles and rule.required_tiles.layers and rule.required_tiles.layers.water_tile then
+				rule.required_tiles.layers.cerys_water_tile = true
+			end
+		end
+	end
+end

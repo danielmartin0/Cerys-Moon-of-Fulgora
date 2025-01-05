@@ -163,7 +163,7 @@ local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 local cerys_shallow_water_collision_mask = { layers = {
 	resource = true,
 	floor = true,
-	cerys_tile = true,
+	cerys_water_tile = true,
 } }
 
 --== Rock Ice ==--
