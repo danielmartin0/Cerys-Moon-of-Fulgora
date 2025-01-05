@@ -31,21 +31,23 @@ Public.find = function(tbl, f, ...)
 	return nil
 end
 
-function Public.override_surface_conditions(recipe, conditions)
+function Public.override_surface_conditions(recipe_or_entity, conditions)
+	conditions = util.table.deepcopy(conditions)
+
 	if conditions.property then
 		conditions = { conditions }
 	end
 
-	recipe.surface_conditions = recipe.surface_conditions or {}
+	recipe_or_entity.surface_conditions = recipe_or_entity.surface_conditions or {}
 
 	for _, condition in pairs(conditions) do
-		for i = #recipe.surface_conditions, 1, -1 do
-			local existing_condition = recipe.surface_conditions[i]
+		for i = #recipe_or_entity.surface_conditions, 1, -1 do
+			local existing_condition = recipe_or_entity.surface_conditions[i]
 			if existing_condition.property == condition.property then
-				table.remove(recipe.surface_conditions, i)
+				table.remove(recipe_or_entity.surface_conditions, i)
 			end
 		end
-		table.insert(recipe.surface_conditions, condition)
+		table.insert(recipe_or_entity.surface_conditions, condition)
 	end
 end
 

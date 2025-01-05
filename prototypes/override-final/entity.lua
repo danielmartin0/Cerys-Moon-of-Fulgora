@@ -102,6 +102,41 @@ if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energ
 	table.insert(data.raw.reactor["heating-tower"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
+--== Relaxations ==--
+
+override_surface_conditions(data.raw["assembling-machine"]["crusher"], {
+	property = "gravity",
+	min = 0,
+	max = 5,
+})
+
+local eased_pressure_restriction = { {
+	property = "pressure",
+	min = 5,
+} }
+
+-- NOTE: Why are these not equivalent?
+-- override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
+-- override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
+data.raw["roboport"]["roboport"].surface_conditions = { {
+	property = "pressure",
+	min = 5,
+} }
+data.raw["inserter"]["burner-inserter"].surface_conditions = { {
+	property = "pressure",
+	min = 5,
+} }
+
+local gravity_condition = {
+	property = "gravity",
+	min = 0.1,
+}
+
+override_surface_conditions(data.raw["cargo-landing-pad"]["cargo-landing-pad"], gravity_condition)
+override_surface_conditions(data.raw["car"]["car"], gravity_condition)
+override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+
 --== Restrictions ==--
 
 local magnetic_field_restriction = {

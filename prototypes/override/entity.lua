@@ -1,5 +1,3 @@
-local override_surface_conditions = require("lib").override_surface_conditions
-
 table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 	type = "prototype",
 	string = "charging-rod",
@@ -43,29 +41,3 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 		end
 	end
 end
-
---== Relaxations ==--
-
-override_surface_conditions(data.raw["assembling-machine"]["crusher"], {
-	property = "gravity",
-	min = 0,
-	max = 5,
-})
-
-local eased_pressure_restriction = {
-	property = "pressure",
-	min = 5,
-}
-
-override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
-override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
-
-local gravity_condition = {
-	property = "gravity",
-	min = 0.1,
-}
-
-override_surface_conditions(data.raw["cargo-landing-pad"]["cargo-landing-pad"], gravity_condition)
-override_surface_conditions(data.raw["car"]["car"], gravity_condition)
-override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
-override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
