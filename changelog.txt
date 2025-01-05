@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.0
-Date: ????
+Date: 2025-01-05
   Changes:
     - Transport belts are now obtainable from nuclear scrap recycling.
     - Beacons are no longer obtainable from nuclear scrap recycling. The beacon technology is now a prerequisite for discovering Cerys.
