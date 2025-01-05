@@ -41,3 +41,5 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 		end
 	end
 end
+
+data.raw["assembling-machine"]["crusher"].corpse = nil -- These are possible to see on Cerys
