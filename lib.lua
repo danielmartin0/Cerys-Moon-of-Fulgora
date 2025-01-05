@@ -38,17 +38,21 @@ function Public.override_surface_conditions(recipe_or_entity, conditions)
 		conditions = { conditions }
 	end
 
-	recipe_or_entity.surface_conditions = recipe_or_entity.surface_conditions or {}
+	local surface_conditions = recipe_or_entity.surface_conditions
+			and util.table.deepcopy(recipe_or_entity.surface_conditions)
+		or {}
 
 	for _, condition in pairs(conditions) do
-		for i = #recipe_or_entity.surface_conditions, 1, -1 do
-			local existing_condition = recipe_or_entity.surface_conditions[i]
+		for i = #surface_conditions, 1, -1 do
+			local existing_condition = surface_conditions[i]
 			if existing_condition.property == condition.property then
-				table.remove(recipe_or_entity.surface_conditions, i)
+				table.remove(surface_conditions, i)
 			end
 		end
-		table.insert(recipe_or_entity.surface_conditions, condition)
+		table.insert(surface_conditions, condition)
 	end
+
+	recipe_or_entity.surface_conditions = surface_conditions
 end
 
 function Public.cerys_research_unit(count)

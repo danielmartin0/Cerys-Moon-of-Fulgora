@@ -116,16 +116,8 @@ local eased_pressure_restriction = { {
 } }
 
 -- NOTE: Why are these not equivalent?
--- override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
--- override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
-data.raw["roboport"]["roboport"].surface_conditions = { {
-	property = "pressure",
-	min = 5,
-} }
-data.raw["inserter"]["burner-inserter"].surface_conditions = { {
-	property = "pressure",
-	min = 5,
-} }
+override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
+override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
 
 local gravity_condition = {
 	property = "gravity",
