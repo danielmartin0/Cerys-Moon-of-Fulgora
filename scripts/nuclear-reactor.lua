@@ -12,7 +12,7 @@ local TEMPERATURE_LOSS_RATE = 3
 local RANGE_SQUARED = 67 ^ 2
 local DAMAGE_TICK_DELAY = 30
 
-local BASE_DAMAGE = 68
+local BASE_DAMAGE = 62
 
 Public.REACTOR_NAME_TO_STAGE = {
 	["cerys-fulgoran-reactor"] = repair.REACTOR_STAGE_ENUM.active,

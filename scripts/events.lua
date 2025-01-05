@@ -208,10 +208,6 @@ function Public.cerys_tick(surface, tick)
 		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
 	end
 
-	if tick % 60 == 0 then
-		heat.tick_60_cool_entities(surface)
-	end
-
 	if tick % 20 == 0 then
 		cryogenic_plant.tick_20_check_cryo_quality_upgrades(surface)
 		-- Ideally, match the tick interval of the repair recipes:
@@ -221,6 +217,7 @@ function Public.cerys_tick(surface, tick)
 
 	if tick % 60 == 0 then
 		space.spawn_asteroid(surface)
+		heat.tick_60_cool_heat_entities()
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
@@ -230,6 +227,10 @@ function Public.cerys_tick(surface, tick)
 	if tick % 240 == 0 then
 		space.tick_240_clean_up_cerys_asteroids()
 		space.tick_240_clean_up_cerys_solar_wind_particles()
+	end
+
+	if tick % 300 == 0 then
+		heat.tick_300_find_heat_entities(surface)
 	end
 end
 
