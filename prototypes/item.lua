@@ -290,7 +290,23 @@ local e1 = merge(data.raw.ammo["uranium-rounds-magazine"], {
 	order = "a[basic-clips]-d[plutonium-rounds-magazine]",
 	default_import_location = "cerys",
 })
-e1.pictures.layers[1].filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png"
+-- e1.pictures.layers[1].filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png"
+e1.pictures = {
+	layers = {
+		{
+			size = 64,
+			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
+			scale = 0.5,
+			mipmap_count = 4,
+		},
+		{
+			draw_as_light = true,
+			size = 64,
+			filename = "__base__/graphics/icons/uranium-rounds-magazine-light.png",
+			scale = 0.5,
+		},
+	},
+}
 e1.ammo_type.action.action_delivery.target_effects[2].damage.amount = 48
 
 local e2 = merge(data.raw.item["uranium-fuel-cell"], {

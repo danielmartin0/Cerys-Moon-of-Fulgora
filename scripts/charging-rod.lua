@@ -1,6 +1,6 @@
 local Public = {}
 
-local CHARGING_ROD_DISPLACEMENT = -4
+local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
 local GUI_KEY = "cerys-gui-charging-rod"
 local GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
 

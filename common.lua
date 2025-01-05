@@ -35,6 +35,6 @@ Public.GAS_NAMES = {
 	"fusion-plasma",
 }
 
-Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.9, 0.78, 1 }
+Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 
 return Public
