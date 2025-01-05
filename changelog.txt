@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.17
-Date: ????
+Date: 2025-01-05
   Changes:
     - When buildings are destroyed by melting water puddles on Cerys, a ghost with concrete is automatically placed.
 ---------------------------------------------------------------------------------------------------
