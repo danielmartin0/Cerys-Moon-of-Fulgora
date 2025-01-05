@@ -27,6 +27,14 @@ data:extend({
 		setting_type = "startup",
 		default_value = true,
 	},
+	{
+		type = "double-setting",
+		name = "cerys-plutonium-generation-rate-multiplier",
+		setting_type = "runtime-global",
+		default_value = 1.0,
+		minimum_value = 0.1,
+		maximum_value = 1000.0,
+	},
 })
 
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

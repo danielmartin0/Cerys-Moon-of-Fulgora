@@ -313,6 +313,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
 									* item.stack.count
 									* probability_multiplier
+									* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 
 								storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 
@@ -418,7 +419,11 @@ function Public.irradiate_inventory(surface, inv, position, probability_multipli
 				random_increase = 0.5
 			end
 
-			local increase = count * CHANCE_MUTATE_INVENTORY_URANIUM * random_increase * probability_multiplier
+			local increase = count
+				* CHANCE_MUTATE_INVENTORY_URANIUM
+				* random_increase
+				* probability_multiplier
+				* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 
 			storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 

@@ -9,9 +9,11 @@ data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	time = 60,
 }
 
-data.raw.furnace["electric-incinerator"].hidden = true
-data.raw.furnace["incinerator"].hidden = true
-data.raw.item["electric-incinerator"].hidden = true
-data.raw.item["incinerator"].hidden = true
-data.raw.recipe["electric-incinerator"].hidden = true
-data.raw.recipe["incinerator"].hidden = true
+if settings.startup["cerys-disable-flare-stack-item-venting"].value then
+	data.raw.furnace["electric-incinerator"].hidden = true
+	data.raw.furnace["incinerator"].hidden = true
+	data.raw.item["electric-incinerator"].hidden = true
+	data.raw.item["incinerator"].hidden = true
+	data.raw.recipe["electric-incinerator"].hidden = true
+	data.raw.recipe["incinerator"].hidden = true
+end

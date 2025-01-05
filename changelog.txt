@@ -2,6 +2,7 @@
 Version: 0.7.15
 Date: ????
   Changes:
+    - Added a plutonium generation rate multiplier to the mod settings.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.14
 Date: 2025-01-05
