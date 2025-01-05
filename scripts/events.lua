@@ -9,6 +9,7 @@ local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
 local migrations = require("scripts.migrations")
 local init = require("scripts.init")
+local heat = require("scripts.heat")
 
 local Public = {}
 
@@ -205,6 +206,10 @@ function Public.cerys_tick(surface, tick)
 
 	if tick % nuclear_reactor.REACTOR_TICK_INTERVAL == 0 then
 		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
+	end
+
+	if tick % 60 == 0 then
+		heat.tick_60_cool_entities(surface)
 	end
 
 	if tick % 20 == 0 then

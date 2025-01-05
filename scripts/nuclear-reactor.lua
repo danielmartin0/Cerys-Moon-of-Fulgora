@@ -59,7 +59,7 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 			reactor.stage = repair.REACTOR_STAGE_ENUM.needs_excavation
 		end
 	elseif reactor.stage == repair.REACTOR_STAGE_ENUM.active then
-		Public.drain_reactor(e)
+		Public.cool_reactor(e)
 
 		if player_looking_at_surface and e.burner.currently_burning then
 			Public.create_radiation(surface, e)
@@ -67,7 +67,7 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 	end
 end
 
-function Public.drain_reactor(reactor_entity)
+function Public.cool_reactor(reactor_entity)
 	if reactor_entity.temperature > TEMPERATURE_ZERO then
 		reactor_entity.temperature = reactor_entity.temperature
 			- TEMPERATURE_LOSS_RATE * (Public.REACTOR_TICK_INTERVAL / 60)
