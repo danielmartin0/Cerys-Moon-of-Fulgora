@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.5
-Date: ????
+Date: 2025-01-05
   Changes:
     - Heat pipes and heat exchangers now, like the reactor, lose heat over time on Cerys. This fact has been added to the in-game planet description.
 ---------------------------------------------------------------------------------------------------
