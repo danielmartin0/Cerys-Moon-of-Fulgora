@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.9
-Date: ????
+Date: 2025-01-05
   Modding:
     - Restrictions on building various modded reactors, labs, accumulators, and fusion reactors on Cerys.
 ---------------------------------------------------------------------------------------------------
