@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.10
-Date: ????
+Date: 2025-01-05
   Changes:
     - Now that GotLag's Flare Stack has been ported to 2.0, it is now a mandatory dependency. The homebrewed port has been removed.
 ---------------------------------------------------------------------------------------------------
