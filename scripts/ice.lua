@@ -142,17 +142,11 @@ Public.TILE_TRANSITION_EFFECTS = {
 		})
 
 		for _, entity in pairs(colliding_entities) do
-			if
-				entity
-				and entity.valid
-				and entity.surface
-				and entity.surface.valid
-				and entity.name
-				and entity.name == "character"
-			then
-				-- TODO: Fix this
-				entity.teleport(surface.find_non_colliding_position("character", entity.position, 10, 0.5))
-			else
+			if entity and entity.valid and entity.type ~= "asteroid" then
+				if entity.type ~= "offshore-pump" then
+					Public.place_ghost_concrete_under_entity(surface, entity)
+				end
+
 				entity.die()
 			end
 		end
@@ -206,5 +200,36 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- 	storage.frozen_scrap_amounts[pos.x][pos.y] = amount
 	-- end,
 }
+
+function Public.place_ghost_concrete_under_entity(surface, entity)
+	for i = -entity.tile_width / 2 + 0.5, entity.tile_width / 2 - 0.5 do
+		for j = -entity.tile_height / 2 + 0.5, entity.tile_height / 2 - 0.5 do
+			local tile = surface.get_tile(entity.position.x + i, entity.position.y + j)
+
+			if tile and tile.valid then
+				local ghosts = tile.get_tile_ghosts()
+
+				local has_floor_layer = false
+				for _, ghost in pairs(ghosts) do
+					local prototype = ghost.ghost_prototype
+					local layers = prototype.collision_mask.layers
+
+					if layers and layers.floor then
+						has_floor_layer = true
+					end
+				end
+
+				if not has_floor_layer then
+					surface.create_entity({
+						force = entity.force,
+						name = "tile-ghost",
+						position = { x = entity.position.x + i, y = entity.position.y + j },
+						ghost_name = "concrete",
+					})
+				end
+			end
+		end
+	end
+end
 
 return Public
