@@ -195,22 +195,7 @@ function Public.create_towers(surface, area)
 		then
 			local p2 = { x = p.x + 0.5, y = p.y }
 
-			local tiles = {}
-			for dx = -1, 1 do
-				for dy = -1.5, 1.5 do
-					local tile_underneath = surface.get_tile(p2.x + dx, p2.y + dy)
-					local tile_underneath_is_water = tile_underneath
-						and tile_underneath.name == "cerys-dry-ice-on-water"
-
-					if tile_underneath_is_water then
-						table.insert(tiles, {
-							name = "cerys-concrete",
-							position = { x = math.floor(p2.x) + dx, y = math.floor(p2.y) + dy },
-						})
-					end
-				end
-			end
-			surface.set_tiles(tiles, true)
+			Public.ensure_solid_foundation(surface, p2, 1, 1.5)
 
 			local colliding_simple_entities = surface.find_entities_filtered({
 				type = "simple-entity",
@@ -273,23 +258,7 @@ function Public.create_cryo_plants(surface, area)
 			local p3 = surface.find_non_colliding_position(name, p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
-				local tiles = {}
-				for dx = -2, 2 do
-					for dy = -2, 2 do
-						local tile_underneath = surface.get_tile(p3.x + dx, p3.y + dy)
-
-						local tile_underneath_is_water = tile_underneath
-							and tile_underneath.name == "cerys-dry-ice-on-water"
-
-						if tile_underneath_is_water then
-							table.insert(tiles, {
-								name = "cerys-concrete",
-								position = { x = math.floor(p3.x) + dx, y = math.floor(p3.y) + dy },
-							})
-						end
-					end
-				end
-				surface.set_tiles(tiles, true)
+				Public.ensure_solid_foundation(surface, p3, 2, 2)
 
 				local e = surface.create_entity({
 					name = name,
@@ -331,16 +300,7 @@ function Public.create_crushers(surface, area)
 			local p3 = surface.find_non_colliding_position("crusher", p2, 7, 3)
 
 			if p3 then
-				local tiles = {}
-				for dx = -1, 1 do
-					for dy = -1, 0 do
-						table.insert(tiles, {
-							name = "concrete",
-							position = { x = math.floor(p3.x) + dx, y = math.floor(p3.y) + dy },
-						})
-					end
-				end
-				surface.set_tiles(tiles, true)
+				Public.ensure_solid_foundation(surface, p3, 1, 1)
 
 				local e = surface.create_entity({
 					name = "crusher",
@@ -388,6 +348,24 @@ function Public.create_lithium_brine(surface, area)
 			})
 		end
 	end
+end
+
+function Public.ensure_solid_foundation(surface, center, width, height)
+	local tiles = {}
+	for dx = -width, width do
+		for dy = -height, height do
+			local tile_underneath = surface.get_tile(center.x + dx, center.y + dy)
+			local tile_underneath_is_water = tile_underneath and tile_underneath.name == "cerys-dry-ice-on-water"
+
+			if tile_underneath_is_water then
+				table.insert(tiles, {
+					name = "cerys-concrete",
+					position = { x = math.floor(center.x) + dx, y = math.floor(center.y) + dy },
+				})
+			end
+		end
+	end
+	surface.set_tiles(tiles, true)
 end
 
 return Public

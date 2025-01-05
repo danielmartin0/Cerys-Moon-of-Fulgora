@@ -4,7 +4,7 @@ data:extend({
 	{
 		type = "sound",
 		name = "cerys-radiation-exposure",
-		audible_distance_modifier = 0.9, --multiplies the default 40 tiles of audible distance by this number
+		audible_distance_modifier = 1, --multiplies the default 40 tiles of audible distance by this number
 		category = "game-effect",
 		priority = 180,
 		variations = {

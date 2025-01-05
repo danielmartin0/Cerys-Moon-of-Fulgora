@@ -31,6 +31,24 @@ Public.find = function(tbl, f, ...)
 	return nil
 end
 
+function Public.override_surface_conditions(recipe, conditions)
+	if conditions.property then
+		conditions = { conditions }
+	end
+
+	recipe.surface_conditions = recipe.surface_conditions or {}
+
+	for _, condition in pairs(conditions) do
+		for i = #recipe.surface_conditions, 1, -1 do
+			local existing_condition = recipe.surface_conditions[i]
+			if existing_condition.property == condition.property then
+				table.remove(recipe.surface_conditions, i)
+			end
+		end
+		table.insert(recipe.surface_conditions, condition)
+	end
+end
+
 function Public.cerys_research_unit(count)
 	return {
 		count = count,

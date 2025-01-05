@@ -198,18 +198,18 @@ data:extend({
 		)",
 	},
 	{
-		-- Water should avoid being on the map edge, as that looks wrong.
 		type = "noise-expression",
 		name = "cerys_water",
+		-- Heavily tuned:
 		expression = "max(0, multioctave_noise{\z
-			x = (cerys_x_surface * 0.8 - 204) / 6, \z
-			y = (cerys_y_surface * 0.8 + 23) / 6, \z
+			x = (cerys_x_surface * 0.2 + 77), \z
+			y = (cerys_y_surface * 0.2 + 77), \z
 			seed0 = 0, \z
 			seed1 = 1610, \z
 			octaves = 4, \z
 			persistence = 0.35, \z
 			input_scale = 1, \z
-			output_scale = 14} - 3.2 \z
+			output_scale = 15} - 2.8 \z
 			- 10 * cerys_all_forced_resources\z
 			+ min(0, 10000 * cerys_surface_inner))", -- This expression drops below zero
 	},

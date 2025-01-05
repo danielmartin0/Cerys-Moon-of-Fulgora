@@ -6,19 +6,9 @@ Public.CRYO_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.CRYO_REPAIR_RECIPES_NEEDED = 200
-
-Public.register_ancient_cryogenic_plant = function(entity, frozen)
-	if not (entity and entity.valid) then
-		return
-	end
-
-	storage.cerys.broken_cryo_plants[entity.unit_number] = {
-		entity = entity,
-		stage = frozen and Public.CRYO_WRECK_STAGE_ENUM.frozen or Public.CRYO_WRECK_STAGE_ENUM.needs_repair,
-		creation_tick = game.tick,
-	}
-end
+Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 100
+Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 150
+Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = 200
 
 function Public.tick_15_check_broken_cryo_plants(surface)
 	if not storage.cerys.broken_cryo_plants then
@@ -31,51 +21,23 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 		if e and e.valid then
 			local products_finished = e.products_finished
 
+			local products_required = Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED
+
+			if storage.cerys.first_unfrozen_cryo_plant and storage.cerys.first_unfrozen_cryo_plant == e.unit_number then
+				products_required = Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED
+			end
+			if
+				storage.cerys.second_unfrozen_cryo_plant
+				and storage.cerys.second_unfrozen_cryo_plant == e.unit_number
+			then
+				products_required = Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED
+			end
+
 			if plant.stage == Public.CRYO_WRECK_STAGE_ENUM.frozen then
 				if not e.frozen and game.tick > plant.creation_tick + 300 then
-					local e2 = surface.create_entity({
-						name = "cerys-fulgoran-cryogenic-plant-wreck",
-						position = e.position,
-						force = e.force,
-						fast_replace = true,
-					})
-
-					if e2 and e2.valid then
-						e2.minable_flag = false
-						e2.destructible = false
-
-						if e and e.valid then
-							local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
-							local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
-							if input_inv and input_inv.valid and input_inv2 and input_inv2.valid then
-								local contents = input_inv.get_contents()
-								for _, c in pairs(contents) do
-									local new_count = c.count +
-										1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
-									input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
-								end
-							end
-
-							local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
-							local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
-							if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
-								local contents = module_inv.get_contents()
-								for _, c in pairs(contents) do
-									module_inv2.insert({ name = c.name, count = c.count, quality = c.quality })
-								end
-							end
-
-							if e and e.valid then
-								e.destroy()
-							end
-						end
-
-						plant.entity = e2
-					end
-
-					plant.stage = Public.CRYO_WRECK_STAGE_ENUM.needs_repair
+					Public.unfreeze_cryo_plant(surface, plant)
 				end
-			elseif products_finished >= Public.CRYO_REPAIR_RECIPES_NEEDED then
+			elseif products_finished >= products_required then
 				if plant.rendering then
 					if plant.rendering.valid then
 						plant.rendering.destroy()
@@ -111,6 +73,19 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 
 				storage.cerys.broken_cryo_plants[unit_number] = nil
 			elseif products_finished > 0 or e.is_crafting() then
+				if not storage.cerys.first_unfrozen_cryo_plant then
+					storage.cerys.first_unfrozen_cryo_plant = e.unit_number
+				end
+				if
+					not storage.cerys.second_unfrozen_cryo_plant
+					and (
+						storage.cerys.first_unfrozen_cryo_plant
+						and e.unit_number ~= storage.cerys.first_unfrozen_cryo_plant
+					)
+				then
+					storage.cerys.second_unfrozen_cryo_plant = e.unit_number
+				end
+
 				if not plant.rendering then
 					plant.rendering = rendering.draw_text({
 						text = "",
@@ -138,13 +113,12 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 
 				local repair_parts_count = products_finished + (e.is_crafting() and 1 or 0) + repair_parts
 
-				plant.rendering.color = repair_parts_count >= Public.CRYO_REPAIR_RECIPES_NEEDED and { 0, 255, 0 } or
-					{ 255, 200, 0 }
+				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
 				plant.rendering.text = {
 					"cerys.repair-remaining-description",
 					"[item=ancient-structure-repair-part]",
 					repair_parts_count,
-					Public.CRYO_REPAIR_RECIPES_NEEDED,
+					products_required,
 				}
 			end
 		else
@@ -153,9 +127,83 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 	end
 end
 
+Public.register_ancient_cryogenic_plant = function(entity, frozen)
+	if not (entity and entity.valid) then
+		return
+	end
+
+	storage.cerys.broken_cryo_plants[entity.unit_number] = {
+		entity = entity,
+		stage = frozen and Public.CRYO_WRECK_STAGE_ENUM.frozen or Public.CRYO_WRECK_STAGE_ENUM.needs_repair,
+		creation_tick = game.tick,
+	}
+end
+
+function Public.unfreeze_cryo_plant(surface, plant)
+	local e = plant.entity
+
+	if not (e and e.valid) then
+		return
+	end
+
+	local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+	local contents = nil
+	if input_inv and input_inv.valid then
+		contents = input_inv.get_contents()
+
+		if #contents > 0 then
+			-- Kick any players out of the GUI. A craft is about to complete, and we want them to notice the sign above the cryo plant.
+			for _, player in pairs(game.connected_players) do
+				if player.opened and player.opened == e then
+					player.opened = nil
+				end
+			end
+		end
+	end
+
+	local e2 = surface.create_entity({
+		name = "cerys-fulgoran-cryogenic-plant-wreck",
+		position = e.position,
+		force = e.force,
+		fast_replace = true,
+	})
+
+	if e2 and e2.valid then
+		e2.minable_flag = false
+		e2.destructible = false
+
+		if e and e.valid and input_inv and input_inv.valid then
+			local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
+			if input_inv2 and input_inv2.valid then
+				for _, c in pairs(contents) do
+					local new_count = c.count + 1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
+					input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
+				end
+			end
+
+			local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
+			local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
+			if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
+				local contents2 = module_inv.get_contents()
+				for _, c in pairs(contents2) do
+					module_inv2.insert({ name = c.name, count = c.count, quality = c.quality })
+				end
+			end
+
+			if e and e.valid then
+				e.destroy()
+			end
+		end
+
+		plant.entity = e2
+	end
+
+	plant.stage = Public.CRYO_WRECK_STAGE_ENUM.needs_repair
+end
+
 local CRAFTING_PROGRESS_THRESHOLD = 0.97 -- Since there's no API for completing a craft, we need to watch for recipes above this threshold
 
-function Public.tick_15_check_cryo_quality_upgrades(surface)
+function Public.tick_20_check_cryo_quality_upgrades(surface)
 	storage.cerys.cryo_upgrade_monitor = storage.cerys.cryo_upgrade_monitor or {}
 
 	local plants = surface.find_entities_filtered({
@@ -168,7 +216,7 @@ function Public.tick_15_check_cryo_quality_upgrades(surface)
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality" then
 				local plant_quality = plant.quality
 
-				if recipe_quality.level > plant_quality.level then
+				if plant_quality.next.name == recipe_quality.name then
 					storage.cerys.cryo_upgrade_monitor[plant.unit_number] = {
 						entity = plant,
 						quality_upgrading_to = recipe_quality.name,
@@ -176,7 +224,7 @@ function Public.tick_15_check_cryo_quality_upgrades(surface)
 				else
 					plant.set_recipe(nil)
 					for _, ingredient in
-					pairs(prototypes.recipe["cerys-upgrade-fulgoran-cryogenic-plant-quality"].ingredients)
+						pairs(prototypes.recipe["cerys-upgrade-fulgoran-cryogenic-plant-quality"].ingredients)
 					do
 						for _ = 1, ingredient.amount do
 							surface.spill_item_stack({
@@ -232,12 +280,18 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 						e2.minable_flag = false
 						e2.destructible = false
 
+						e2.set_recipe(nil)
+
 						local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
-						local new_input = e2.get_inventory(defines.inventory.assembling_machine_input)
 
 						local input = old_input.get_contents()
 						for _, m in pairs(input) do
-							new_input.insert({ name = m.name, count = m.count, quality = m.quality })
+							for _ = 1, m.count do
+								surface.spill_item_stack({
+									position = e.position,
+									stack = { name = m.name, count = 1, quality = m.quality },
+								})
+							end
 						end
 
 						local old_modules = e.get_module_inventory()

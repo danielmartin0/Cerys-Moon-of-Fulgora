@@ -7,11 +7,12 @@ data:extend({
 		energy_required = 0.7,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
-			{ type = "item", name = "engine-unit",        amount = 1 },
+			{ type = "item", name = "engine-unit", amount = 1 },
 		},
 		results = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
+		allow_productivity = true,
 	},
 
 	{
@@ -20,9 +21,9 @@ data:extend({
 		energy_required = 20,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate",      amount = 500 },
+			{ type = "item", name = "steel-plate", amount = 500 },
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "processing-unit",  amount = 50 },
+			{ type = "item", name = "processing-unit", amount = 50 },
 		},
 		results = { { type = "item", name = "cerys-fulgoran-reactor-scaffold", amount = 1 } },
 	},
@@ -60,7 +61,7 @@ data:extend({
 		ingredients = {
 			-- The script need to be updated if these change:
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit",               amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 1 },
 		},
 		results = {},
 		allow_quality = false,
@@ -93,7 +94,7 @@ data:extend({
 		name = "cerys-discover-fulgoran-cryogenics",
 		subgroup = "cerys-repair",
 		order = "e",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-3.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
 		icon_size = 64,
 		energy_required = 3,
 		enabled = true,
@@ -113,6 +114,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
 		subgroup = "cerys-repair",
+		enabled = false,
 		order = "f",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 		icon_size = 256,
@@ -121,7 +123,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 20 },
-			{ type = "item", name = "advanced-circuit",              amount = 20 }, -- blue chips here would be too little variety
+			{ type = "item", name = "advanced-circuit", amount = 20 }, -- blue chips here would be too little variety
 		},
 		results = {},
 		allow_quality = true,

@@ -80,7 +80,7 @@ function Public.reactor_excavation_check(surface, reactor)
 		end
 
 		reactor.stage = Public.REACTOR_STAGE_ENUM.needs_scaffold
-	else -- I would prefer to check if they've removed some, but there might be a risk they never try removing concrete?
+	else -- We don't check if they've removed some, as they might never think to remove any
 		if not (r and r.valid) then
 			r = rendering.draw_text({
 				text = "",
@@ -88,7 +88,7 @@ function Public.reactor_excavation_check(surface, reactor)
 				surface = surface,
 				target = {
 					entity = e,
-					offset = { 0, -13.5 },
+					offset = { 0, -14 },
 				},
 				scale = 3,
 				font = "default-game",

@@ -2,8 +2,6 @@ local common = require("common")
 
 local Public = {}
 
-local SOLAR_WIND_SPAWN_CHANCE_PER_TICK = 1 / 24
-
 local OUT_OF_BOUNDS_D2 = (common.MOON_RADIUS * (2 ^ (1 / 2)) * 1.5 + 5) ^ 2
 local SOLAR_WIND_MIN_VELOCITY = 0.2
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 1.5
@@ -11,18 +9,16 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 
 local ROD_DEFLECTION_STRENGTH = 1 / 10
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = 1 / 40
+local CHANCE_DAMAGE_CHARACTER = 1 / 30
 local COOLDOWN_DISTANCE = 1.5
 local COOLDOWN_TICKS = 30
 
--- These ideally shouldn't be crazy different such that the player doesn't get punished much if they don't figure this bit out:
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 3000
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 /
-	10000
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 800
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
-	["small-metallic-asteroid-planetary"] = 0.75,
-	["medium-metallic-asteroid-planetary"] = 0.5,
+	["small-metallic-asteroid-planetary"] = 0.9,
+	["medium-metallic-asteroid-planetary"] = 0.6,
 	["small-carbonic-asteroid-planetary"] = 5,
 	["medium-carbonic-asteroid-planetary"] = 1.75,
 	["small-oxide-asteroid-planetary"] = 4,
@@ -61,22 +57,20 @@ function Public.spawn_asteroid(surface, y_position)
 	end
 end
 
-function Public.tick_2_try_spawn_solar_wind_particle(surface)
-	if math.random() < SOLAR_WIND_SPAWN_CHANCE_PER_TICK * 2 then
-		local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
+function Public.tick_24_spawn_solar_wind_particle(surface)
+	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
 
-		local e = surface.create_entity({
-			name = "cerys-solar-wind-particle",
-			position = { x = -(common.MOON_RADIUS + math.random(65, 70)), y = y },
-		})
+	local e = surface.create_entity({
+		name = "cerys-solar-wind-particle",
+		position = { x = -(common.MOON_RADIUS + math.random(65, 70)), y = y },
+	})
 
-		table.insert(storage.cerys.solar_wind_particles, {
-			entity = e,
-			age = 0,
-			velocity = Public.initial_solar_wind_velocity(),
-			position = { x = -(common.MOON_RADIUS + 150), y = y },
-		})
-	end
+	table.insert(storage.cerys.solar_wind_particles, {
+		entity = e,
+		age = 0,
+		velocity = Public.initial_solar_wind_velocity(),
+		position = { x = -(common.MOON_RADIUS + 150), y = y },
+	})
 end
 
 function Public.initial_solar_wind_velocity()
@@ -220,7 +214,7 @@ for _, e in pairs(prototypes["entity"]) do
 end
 
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
-function Public.tick_8_solar_wind_collisions(surface)
+function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not Public.particle_is_in_cooldown(particle) then
 			local chars =
@@ -228,8 +222,8 @@ function Public.tick_8_solar_wind_collisions(surface)
 			if #chars > 0 then
 				local e = chars[1]
 				if e and e.valid then
-					local check = (not Public.particle_is_in_cooldown(particle)) or
-						(particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+					local check = (not Public.particle_is_in_cooldown(particle))
+						or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
 					if check then
 						particle.irradiation_tick = game.tick
@@ -237,7 +231,8 @@ function Public.tick_8_solar_wind_collisions(surface)
 
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
-							local irradiated = Public.irradiate_inventory(surface, inv, e.position)
+							local irradiated =
+								Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -271,8 +266,8 @@ function Public.tick_8_solar_wind_collisions(surface)
 		if #containers > 0 then
 			local e = containers[1]
 			if e and e.valid then
-				local check = (not Public.particle_is_in_cooldown(particle)) or
-					(particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+				local check = (not Public.particle_is_in_cooldown(particle))
+					or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
 				if check then
 					particle.irradiation_tick = game.tick
@@ -280,7 +275,7 @@ function Public.tick_8_solar_wind_collisions(surface)
 
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
-						local irradiated = Public.irradiate_inventory(surface, inv, e.position)
+						local irradiated = Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
 						if irradiated then
 							surface.create_entity({
 								name = "plutonium-explosion",
@@ -292,8 +287,8 @@ function Public.tick_8_solar_wind_collisions(surface)
 			end
 		end
 
-		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture, but is probably not the final form of this code.
-		if math.random() < CHANCE_CHECK_BELT then
+		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
+		if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
 			local belts = surface.find_entities_filtered({
 				name = belt_names,
 				position = particle.position,
@@ -315,10 +310,11 @@ function Public.tick_8_solar_wind_collisions(surface)
 							if item.stack.name == "uranium-238" then
 								has_uranium = true
 
-								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT) * item.stack.count
+								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
+									* item.stack.count
+									* probability_multiplier
 
-								storage.accrued_probability_units = (storage.accrued_probability_units or 0) +
-									increase
+								storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 
 								local mutate = storage.accrued_probability_units > 1
 
@@ -365,7 +361,10 @@ function Public.particle_is_in_cooldown(particle)
 	local cooldown_time_1 = COOLDOWN_DISTANCE / speed
 	local cooldown_time_2 = COOLDOWN_TICKS
 
-	if game.tick > particle.irradiation_tick + cooldown_time_1 or game.tick > particle.irradiation_tick + cooldown_time_2 then
+	if
+		game.tick > particle.irradiation_tick + cooldown_time_1
+		or game.tick > particle.irradiation_tick + cooldown_time_2
+	then
 		particle.irradiation_tick = nil
 		particle.last_checked_inv = nil
 		return false
@@ -378,28 +377,28 @@ function Public.irradiation_chance_effect(surface, position)
 	surface.play_sound({
 		path = "cerys-radiation-exposure",
 		position = position,
-		volume_modifier = 0.08,
+		volume_modifier = 0.13,
 	})
 
-	for _ = 1, 8 do
+	for _ = 1, 12 do
 		surface.create_particle({
 			name = "solar-wind-exposure-particle",
 			position = {
 				x = position.x + (math.random() - 0.5),
-				y = position.y + (math.random() - 0.5)
+				y = position.y + (math.random() - 0.5),
 			},
 			movement = {
 				(math.random() - 0.5) * 0.3,
-				(math.random() - 0.5) * 0.3
+				(math.random() - 0.5) * 0.3,
 			},
-			height = 0.1,
-			vertical_speed = 0.01,
-			frame_speed = 1
+			height = 0.3,
+			vertical_speed = 0.03,
+			frame_speed = 1,
 		})
 	end
 end
 
-function Public.irradiate_inventory(surface, inv, position)
+function Public.irradiate_inventory(surface, inv, position, probability_multiplier)
 	local uranium_count = 0
 	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
@@ -409,17 +408,17 @@ function Public.irradiate_inventory(surface, inv, position)
 			uranium_count = uranium_count + count
 
 			-- Throw in some rng to cause double and triple transitions:
-			local increase_multiplier = 1
+			local random_increase = 1
 			local rng = math.random()
 			if rng < 0.01 then
-				increase_multiplier = 6
+				random_increase = 6
 			elseif rng < 0.06 then
-				increase_multiplier = 3
+				random_increase = 3
 			elseif rng > 0.85 then
-				increase_multiplier = 0.5
+				random_increase = 0.5
 			end
 
-			local increase = count * CHANCE_MUTATE_INVENTORY_URANIUM * increase_multiplier
+			local increase = count * CHANCE_MUTATE_INVENTORY_URANIUM * random_increase * probability_multiplier
 
 			storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 
@@ -480,8 +479,7 @@ script.on_event(defines.events.on_entity_died, function(event)
 	end
 
 	for _ = 1, drop_count do
-		-- TODO: Support modded belts
-		local belts = surface.find_entities_filtered({ name = Public.belt_names, position = entity.position })
+		local belts = surface.find_entities_filtered({ type = "transport-belt", position = entity.position })
 
 		local placed = false
 		if #belts > 0 and belts[1].valid then
@@ -538,7 +536,5 @@ script.on_event(defines.events.on_entity_died, function(event)
 		end
 	end
 end)
-
-Public.belt_names = { "transport-belt", "fast-transport-belt", "express-transport-belt", "turbo-transport-belt" }
 
 return Public

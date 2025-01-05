@@ -121,7 +121,7 @@ data:extend({
 		name = "fulgoran-cryogenics-progress",
 		localised_description = "nil",
 		hidden = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-3.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
 		icon_size = 64,
 		weight = 1 * 1000 * 1000000,
 		order = "j-a[cerys]-b[fulgoran-cryogenics-progress]",
@@ -252,7 +252,7 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 1,
+		stack_size = 20,
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -265,7 +265,7 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 1,
+		stack_size = 10,
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -278,7 +278,7 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 1,
+		stack_size = 20,
 		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
 	},
 })

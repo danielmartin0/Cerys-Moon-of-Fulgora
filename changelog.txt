@@ -1,7 +1,37 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.6.20
+Version: 0.7.0
 Date: ????
   Changes:
+    - Transport belts are now obtainable from nuclear scrap recycling.
+    - Beacons are no longer obtainable from nuclear scrap recycling. The beacon technology is now a prerequisite for discovering Cerys.
+    - Fulgoran cryogenic plant quality can now be upgraded only one level at a time.
+    - The first and second Fulgoran cryogenic plants the player starts repairing require fewer parts to repair.
+    - Crafting Cerys labs now requires advanced circuits instead of processing units.
+    - Water density increased in Cerys map gen to reduce the probability of never noticing water on the map.
+    - Subtlety of certain plutonium hints reduced.
+    - Radiative heaters now heat up and cool down faster.
+  Balancing:
+    - Plutonium generation rate increased.
+    - Nuclear scrap recycling percentages adjusted slightly.
+    - Productivity modules can now be used when crafting ancient structure repair parts.
+    - Nitrogen-rich mineral processing recipe now requires more sulfuric acid.
+    - Cerys lab module slots dropped from 3 to 2.
+    - Adjustments to recipe crafting times.
+  Bugfixes:
+    - Upgrading the quality of a cryogenic plant no longer destroys its input inventory.
+    - Radiative towers now clean up after themselves (after a few ticks) after being deleted in the map editor.
+    - Concrete no longer spawns underneath crushers unless the tile underneath is water.
+  Graphics:
+    - The light indicator on charging rods is now red for positive, blue for negative.
+    - Icons for the Discover Fulgoran Cryogenics recipe & science item switched to an empty bottle.
+    - Various graphical fixes.
+  Modding:
+    - Better mod compatibility with surface conditions set by other mods.
+    - Asteroid chunks can now drop onto modded transport belts.
+  Optimizations:
+    - Performance improvements to solar wind when nobody is looking at the Cerys surface.
+  Locale:
+    - Added Ukrainian localization.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.19
 Date: 2025-01-03

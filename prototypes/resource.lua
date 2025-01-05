@@ -14,7 +14,7 @@ data:extend({
 		icon_size = 64,
 		order = "w-a[nuclear-scrap]",
 		minable = merge(data.raw.resource["scrap"].minable, {
-			mining_time = 0.4,
+			mining_time = 0.33,
 			result = "cerys-nuclear-scrap",
 		}),
 		stages = {
@@ -39,7 +39,6 @@ data:extend({
 	}),
 
 	merge(data.raw.resource["iron-ore"], {
-		-- TODO: Map color
 		name = "cerys-nitrogen-rich-minerals",
 		order = "w-b[nuclear-scrap]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
@@ -69,7 +68,6 @@ data:extend({
 	}),
 
 	merge(data.raw.resource["copper-ore"], {
-		-- TODO: Map color
 		name = "methane-ice",
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted

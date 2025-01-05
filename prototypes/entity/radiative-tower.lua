@@ -15,13 +15,13 @@ local reactor = {
 	collision_box = { { -1.25, -1.75 }, { 1.25, 1.75 } },
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
 	damaged_trigger_effect = hit_effects.entity(),
-	drawing_box_vertical_extension = 2, -- TODO: Check
-	consumption = "350kW",
+	drawing_box_vertical_extension = 3,
+	consumption = "700kW",
 	energy_source = merge(data.raw.reactor["heating-tower"].energy_source, {
 		fuel_categories = { "chemical-or-radiative" },
-		effectivity = 0.27,
+		effectivity = 0.54,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
-		burnt_inventory_size = 0, -- from 2
+		burnt_inventory_size = 0,
 	}),
 	heat_buffer = {
 		max_temperature = 200,
@@ -229,7 +229,7 @@ local container = {
 	allow_copy_paste = false,
 	collision_box = { { -1.25, -1.75 }, { 1.25, 1.75 } },
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
-	drawing_box_vertical_extension = 2, -- TODO: Check
+	drawing_box_vertical_extension = 0,
 	picture = {
 		layers = {
 			util.sprite_load(
@@ -273,7 +273,7 @@ data:extend({
 	container,
 })
 
-for i = 1, 20 do
+for i = 1, 17 do
 	data:extend({
 		{
 			type = "reactor",
@@ -321,5 +321,46 @@ for i = 1, 20 do
 				},
 			},
 		},
+	})
+
+	data:extend({
+		merge(data.raw["lamp"]["small-lamp"], {
+			name = "radiative-tower-lamp-" .. i,
+			minable = nil,
+			hidden_in_factoriopedia = true,
+			next_upgrade = nil,
+			flags = { "not-blueprintable", "not-deconstructable", "placeable-off-grid", "not-on-map" },
+			selectable_in_game = false,
+			collision_box = { { 0, 0 }, { 0, 0 } },
+			selection_box = { { 0, 0 }, { 0, 0 } },
+			collision_mask = { layers = {} },
+			picture_off = {
+				filename = "__core__/graphics/empty.png",
+				priority = "high",
+				width = 1,
+				height = 1,
+				frame_count = 1,
+				axially_symmetrical = false,
+				direction_count = 1,
+			},
+			picture_on = {
+				filename = "__core__/graphics/empty.png",
+				priority = "high",
+				width = 1,
+				height = 1,
+				frame_count = 1,
+				axially_symmetrical = false,
+				direction_count = 1,
+			},
+			light = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
+			light_when_colored = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
+			energy_usage_per_tick = "1kW",
+			always_on = true,
+			energy_source = {
+				type = "void",
+			},
+			glow_size = 100,
+			glow_color_intensity = 5,
+		}),
 	})
 end

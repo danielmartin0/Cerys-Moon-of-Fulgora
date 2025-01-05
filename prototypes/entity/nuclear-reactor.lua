@@ -1,5 +1,5 @@
 local merge = require("lib").merge
-
+local common = require("common")
 -- This function actually needs to be adjusted if size is changed:
 local function make_heat_buffer_connections(size)
 	local connections = {}
@@ -206,8 +206,8 @@ local reactor_wreck = merge(reactor_wreck_base, {
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin.png",
 					width = 3620,
 					height = 2770,
-					shift = util.by_pixel(66, 0),
-					scale = 0.354816,
+					shift = util.by_pixel(66, -10),
+					scale = 0.365,
 					frame_count = 1,
 					repeat_count = 1,
 				},
@@ -232,10 +232,11 @@ local reactor_wreck_frozen = merge(reactor_wreck, {
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-frozen.png",
 					width = 3620,
 					height = 2770,
-					shift = util.by_pixel(66, 0),
-					scale = 0.354816,
+					shift = util.by_pixel(66, -10),
+					scale = 0.365,
 					frame_count = 1,
 					repeat_count = 1,
+					tint = common.FACTORIO_UNDO_FROZEN_TINT,
 				},
 			},
 		},

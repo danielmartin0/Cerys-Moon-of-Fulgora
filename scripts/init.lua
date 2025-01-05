@@ -68,7 +68,7 @@ function Public.create_reactor(surface)
 end
 
 script.on_init(function()
-	if common.DEBUG_MOON_START then
+	if common.DEBUG_CERYS_START then
 		Public.initialize_cerys()
 	end
 end)

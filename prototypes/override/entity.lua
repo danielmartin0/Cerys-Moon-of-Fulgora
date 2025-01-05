@@ -1,3 +1,5 @@
+local override_surface_conditions = require("lib").override_surface_conditions
+
 table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 	type = "prototype",
 	string = "charging-rod",
@@ -44,44 +46,39 @@ end
 
 --== Relaxations ==--
 
-data.raw["assembling-machine"]["crusher"].surface_conditions = {
-	{
-		property = "gravity",
-		min = 0,
-		max = 5,
-	},
-}
+override_surface_conditions(data.raw["assembling-machine"]["crusher"], {
+	property = "gravity",
+	min = 0,
+	max = 5,
+})
 
 local eased_pressure_restriction = {
-	{
-		property = "pressure",
-		min = 5,
-	},
-}
-data.raw["inserter"]["burner-inserter"].surface_conditions = eased_pressure_restriction
-data.raw["roboport"]["roboport"].surface_conditions = eased_pressure_restriction
-
-local gravity_condition =
-{
-	{
-		property = "gravity",
-		min = 0.1
-	}
+	property = "pressure",
+	min = 5,
 }
 
-data.raw["cargo-landing-pad"]["cargo-landing-pad"].surface_conditions = gravity_condition
-data.raw["car"]["car"].surface_conditions = gravity_condition
-data.raw["car"]["tank"].surface_conditions = gravity_condition
-data.raw["spider-vehicle"]["spidertron"].surface_conditions = gravity_condition
+override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
+override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
+
+local gravity_condition = {
+	property = "gravity",
+	min = 0.1,
+}
+
+override_surface_conditions(data.raw["cargo-landing-pad"]["cargo-landing-pad"], gravity_condition)
+override_surface_conditions(data.raw["car"]["car"], gravity_condition)
+override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
 
 --== Restrictions ==--
 
 local magnetic_field_restriction = {
-	{ property = "magnetic-field", max = 119 },
+	property = "magnetic-field",
+	max = 119,
 }
 
-data.raw["lab"]["lab"].surface_conditions = magnetic_field_restriction
-data.raw["accumulator"]["accumulator"].surface_conditions = magnetic_field_restriction
-data.raw["reactor"]["nuclear-reactor"].surface_conditions = magnetic_field_restriction
-data.raw["fusion-reactor"]["fusion-reactor"].surface_conditions = magnetic_field_restriction
-data.raw["fusion-generator"]["fusion-generator"].surface_conditions = magnetic_field_restriction
+override_surface_conditions(data.raw["lab"]["lab"], magnetic_field_restriction)
+override_surface_conditions(data.raw["accumulator"]["accumulator"], magnetic_field_restriction)
+override_surface_conditions(data.raw["reactor"]["nuclear-reactor"], magnetic_field_restriction)
+override_surface_conditions(data.raw["fusion-reactor"]["fusion-reactor"], magnetic_field_restriction)
+override_surface_conditions(data.raw["fusion-generator"]["fusion-generator"], magnetic_field_restriction)

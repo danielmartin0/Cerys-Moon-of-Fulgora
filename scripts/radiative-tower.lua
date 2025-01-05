@@ -4,8 +4,8 @@ local common = require("common")
 
 local TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
-local MAX_HEATING_RADIUS = 16 -- TODO: No more radius when above this, and no more heating either
-local TEMPERATURE_LOSS_RATE = 1 / 350
+local MAX_HEATING_RADIUS = 16
+local TEMPERATURE_LOSS_RATE = 1 / 175
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
 
@@ -76,6 +76,15 @@ Public.register_heating_tower = function(entity)
 		base.destructible = false
 	end
 
+	local shadow = rendering.draw_sprite({
+		sprite = "radiative-tower-tower-shadow-1",
+		target = {
+			x = entity.position.x + 1,
+			y = entity.position.y,
+		},
+		surface = entity.surface,
+	})
+
 	-- TODO: Create lamps for each heating radius that don't require power
 
 	storage.radiative_towers.towers[entity.unit_number] = {
@@ -83,11 +92,12 @@ Public.register_heating_tower = function(entity)
 		reactors = {},
 		base_entity = base,
 		frozen = true,
+		shadow = shadow,
 	}
 end
 
-Public.TOWER_CHECK_INTERVAL = 32
-function Public.tick_towers()
+Public.TOWER_TEMPERATURE_TICK_INTERVAL = 16
+function Public.radiative_heaters_temperature_tick()
 	ensure_storage_tables()
 
 	for unit_number, tower in pairs(storage.radiative_towers.towers) do
@@ -101,66 +111,103 @@ function Public.tick_towers()
 					end
 				end
 			end
+			if tower.lamps then
+				for _, lamp in pairs(tower.lamps) do
+					if lamp and lamp.valid then
+						lamp.destroy()
+					end
+				end
+			end
+			if tower.base_entity and tower.base_entity.valid then
+				tower.base_entity.destroy()
+			end
+			if tower.shadow and tower.shadow.valid then
+				tower.shadow.destroy()
+			end
 
 			storage.radiative_towers.towers[unit_number] = nil
 		else
-			local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
+			Public.apply_temperature_drop(tower)
+		end
+	end
+end
 
-			local heating_radius =
-				math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+function Public.apply_temperature_drop(valid_tower)
+	local e = valid_tower.entity
 
-			if common.DEBUG_HEATERS_FUELED then
-				heating_radius = MAX_HEATING_RADIUS
+	local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
+
+	local heating_radius = math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+
+	if common.DEBUG_HEATERS_FUELED then
+		heating_radius = MAX_HEATING_RADIUS
+	end
+
+	if not valid_tower.last_radius then
+		valid_tower.last_radius = 0
+	end
+
+	local skip = (heating_radius == valid_tower.last_radius - 1) -- Don't update the reactor in this case, avoiding reactor count oscillation
+
+	if heating_radius ~= valid_tower.last_radius and not skip then
+		if not valid_tower.reactors then
+			valid_tower.reactors = {}
+		end
+		if not valid_tower.lamps then
+			valid_tower.lamps = {}
+		end
+
+		if heating_radius > valid_tower.last_radius then -- If radius increased, add new reactors and lamps
+			for r = valid_tower.last_radius + 1, heating_radius do
+				local new_reactor = e.surface.create_entity({
+					name = "hidden-reactor-" .. r,
+					position = e.position,
+					force = e.force,
+				})
+				new_reactor.destructible = false
+				new_reactor.minable_flag = false
+
+				new_reactor.temperature = 40
+				valid_tower.reactors[r] = new_reactor
+
+				local new_lamp = e.surface.create_entity({
+					name = "radiative-tower-lamp-" .. r,
+					position = e.position,
+					force = e.force,
+				})
+				valid_tower.lamps[r] = new_lamp
+
+				new_lamp.destructible = false
+				new_lamp.minable_flag = false
 			end
-
-			if not tower.last_radius then
-				tower.last_radius = 0
-			end
-
-			local skip = (heating_radius == tower.last_radius - 1) -- Don't update the reactor in this case, avoiding reactor count oscillation
-
-			if heating_radius ~= tower.last_radius and not skip then
-				if not tower.reactors then
-					tower.reactors = {}
+		elseif heating_radius < valid_tower.last_radius then -- If radius decreased, remove excess reactors and lamps
+			for r = valid_tower.last_radius, heating_radius + 1, -1 do
+				if valid_tower.reactors[r] and valid_tower.reactors[r].valid then
+					valid_tower.reactors[r].destroy()
+					valid_tower.reactors[r] = nil
 				end
-
-				if heating_radius > tower.last_radius then -- If radius increased, add new reactors
-					for r = tower.last_radius + 1, heating_radius do
-						local new_reactor = e.surface.create_entity({
-							name = "hidden-reactor-" .. r,
-							position = e.position,
-							force = e.force,
-						})
-						new_reactor.temperature = 40
-						tower.reactors[r] = new_reactor
-					end
-				elseif heating_radius < tower.last_radius then -- If radius decreased, remove excess reactors
-					for r = tower.last_radius, heating_radius + 1, -1 do
-						if tower.reactors[r] and tower.reactors[r].valid then
-							tower.reactors[r].destroy()
-							tower.reactors[r] = nil
-						end
-					end
+				if valid_tower.lamps[r] and valid_tower.lamps[r].valid then
+					valid_tower.lamps[r].destroy()
+					valid_tower.lamps[r] = nil
 				end
 			end
+		end
+	end
 
-			if not skip then
-				tower.last_radius = heating_radius
-			end
+	if not skip then
+		valid_tower.last_radius = heating_radius
+	end
 
-			local temperature_to_apply_loss_for =
-				math.min(temperature_above_zero, MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
+	local temperature_to_apply_loss_for = math.min(temperature_above_zero, MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
 
-			e.temperature = e.temperature
-				- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
-					* TEMPERATURE_LOSS_RATE
-					* (Public.TOWER_CHECK_INTERVAL / 60)
+	e.temperature = e.temperature
+		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
+			* TEMPERATURE_LOSS_RATE
+			* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
 
-			if tower.frozen then
-				if temperature_above_zero > 1 then
-					Public.unfreeze_tower(tower)
-				end
-			end
+	if valid_tower.frozen then
+		if temperature_above_zero > 1 then
+			Public.unfreeze_tower(valid_tower)
 		end
 	end
 end
@@ -234,6 +281,16 @@ function Public.tick_20_contracted_towers()
 
 		local e = contracted_tower.entity
 		if not (e and e.valid) then
+			if contracted_tower.shadow and contracted_tower.shadow.valid then
+				contracted_tower.shadow.destroy()
+			end
+			if contracted_tower.top_entity and contracted_tower.top_entity.valid then
+				contracted_tower.top_entity.destroy()
+			end
+			if contracted_tower.rendering and contracted_tower.rendering.valid then
+				contracted_tower.rendering.destroy()
+			end
+
 			storage.radiative_towers.contracted_towers[unit_number] = nil
 		else
 			local surface = e.surface
@@ -318,25 +375,38 @@ function Public.tick_1_move_radiative_towers()
 
 	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		local top_entity = contracted_tower.top_entity
+		local e = contracted_tower.entity
 
 		local open_tick = contracted_tower.open_tick
 		if open_tick then
+			if not (top_entity and top_entity.valid and e and e.valid) then
+				if top_entity and top_entity.valid then
+					top_entity.destroy()
+				end
+				if e and e.valid then
+					e.destroy()
+				end
+				if contracted_tower.shadow and contracted_tower.shadow.valid then
+					contracted_tower.shadow.destroy()
+				end
+				if contracted_tower.rendering and contracted_tower.rendering.valid then
+					contracted_tower.rendering.destroy()
+				end
+				storage.radiative_towers.contracted_towers[unit_number] = nil
+				goto continue
+			end
+
 			local ticks_since_open = game.tick - open_tick
 			if ticks_since_open < (expand_distance / 32) / EXPAND_SPEED then
-				if top_entity and top_entity.valid then
-					top_entity.teleport({
-						x = contracted_tower.starting_tower_position.x,
-						y = contracted_tower.starting_tower_position.y - ticks_since_open * EXPAND_SPEED,
-					})
-				end
+				top_entity.teleport({
+					x = contracted_tower.starting_tower_position.x,
+					y = contracted_tower.starting_tower_position.y - ticks_since_open * EXPAND_SPEED,
+				})
 
 				if contracted_tower.shadow and contracted_tower.shadow.valid then
 					contracted_tower.shadow.target = {
-						x = contracted_tower.entity.position.x
-							+ 1
-							- (expand_distance / 32)
-							+ ticks_since_open * EXPAND_SPEED,
-						y = contracted_tower.entity.position.y,
+						x = e.position.x + 1 - (expand_distance / 32) + ticks_since_open * EXPAND_SPEED,
+						y = e.position.y,
 					}
 				end
 
@@ -366,10 +436,10 @@ function Public.tick_1_move_radiative_towers()
 					contracted_tower.top_entity = new_top_entity
 				end
 			else
-				local new_tower = contracted_tower.entity.surface.create_entity({
+				local new_tower = e.surface.create_entity({
 					name = "cerys-fulgoran-radiative-tower-frozen",
-					position = contracted_tower.entity.position,
-					force = contracted_tower.entity.force,
+					position = e.position,
+					force = e.force,
 					raise_built = true,
 				})
 
@@ -378,7 +448,7 @@ function Public.tick_1_move_radiative_towers()
 					new_tower.destructible = false
 				end
 
-				local inv = contracted_tower.entity.get_inventory(defines.inventory.chest)
+				local inv = e.get_inventory(defines.inventory.chest)
 				if inv and inv.valid then
 					for i = 1, #inv do
 						local stack = inv[i]
@@ -386,8 +456,8 @@ function Public.tick_1_move_radiative_towers()
 							if stack.name == "solid-fuel" then
 								new_tower.insert(stack)
 							else
-								contracted_tower.entity.surface.spill_item_stack({
-									position = contracted_tower.entity.position,
+								e.surface.spill_item_stack({
+									position = e.position,
 									stack = stack,
 								})
 							end
@@ -398,20 +468,24 @@ function Public.tick_1_move_radiative_towers()
 				if contracted_tower.rendering and contracted_tower.rendering.valid then
 					contracted_tower.rendering.destroy()
 				end
-
 				if contracted_tower.top_entity then
 					contracted_tower.top_entity.destroy()
 				end
+				if contracted_tower.shadow and contracted_tower.shadow.valid then
+					contracted_tower.shadow.destroy()
+				end
 
 				for _, player in pairs(game.connected_players) do
-					if player.opened == contracted_tower.entity then
+					if player.opened == e then
 						player.opened = new_tower
 					end
 				end
 
-				contracted_tower.entity.destroy()
+				e.destroy()
 				storage.radiative_towers.contracted_towers[unit_number] = nil
 			end
+
+			::continue::
 		end
 	end
 end

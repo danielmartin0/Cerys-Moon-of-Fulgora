@@ -2,7 +2,6 @@ local merge = require("lib").merge
 
 local cerys_lab = merge(data.raw.lab["lab"], {
 	name = "cerys-lab",
-	module_slots = 3,
 	inputs = {
 		"automation-science-pack",
 		"logistic-science-pack",

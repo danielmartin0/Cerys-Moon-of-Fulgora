@@ -32,8 +32,6 @@ script.on_configuration_changed(function()
 
 		migrations.run_migrations()
 	end
-
-	-- TODO: storage.cerys.last_seen_version
 end)
 
 script.on_event({
@@ -135,8 +133,8 @@ script.on_event(defines.events.on_tick, function(event)
 		radiative_towers.tick_20_contracted_towers()
 	end
 
-	if tick % radiative_towers.TOWER_CHECK_INTERVAL == 0 then
-		radiative_towers.tick_towers()
+	if tick % radiative_towers.TOWER_TEMPERATURE_TICK_INTERVAL == 0 then
+		radiative_towers.radiative_heaters_temperature_tick()
 	end
 
 	local surface = game.get_surface("cerys")
@@ -155,37 +153,49 @@ end)
 
 function Public.cerys_tick(surface, tick)
 	local player_looking_at_surface = false
+	local player_on_surface = false
+
 	for _, player in pairs(game.connected_players) do
 		if player.surface == surface then
 			player_looking_at_surface = true
-			break
+		end
+
+		if player.physical_surface == surface then
+			player_on_surface = true
 		end
 	end
 
-	local move_solar_wind = not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
-		or player_looking_at_surface
+	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or 12
 
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 
-	if move_solar_wind then
-		space.tick_1_move_solar_wind()
-
-		if tick % 2 == 0 then
-			space.tick_2_try_spawn_solar_wind_particle(surface)
+	if
+		player_looking_at_surface or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
+	then
+		if tick % (1 * solar_wind_tick_multiplier) == 0 then
+			space.tick_1_move_solar_wind()
 		end
 
-		if tick % 8 == 0 then
-			space.tick_8_solar_wind_collisions(surface)
+		if tick % (8 * solar_wind_tick_multiplier) == 0 then
+			space.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
 		end
 
-		if tick % 9 == 0 then
+		if tick % (9 * solar_wind_tick_multiplier) == 0 then
 			space.tick_9_solar_wind_deflection()
+		end
+
+		if tick % (24 * solar_wind_tick_multiplier) == 0 then
+			space.tick_24_spawn_solar_wind_particle(surface)
+		end
+
+		if tick % (12 * solar_wind_tick_multiplier) == 0 then
+			rods.tick_12_check_charging_rods()
 		end
 	end
 
-	if common.DEBUG_MOON_START and tick == 30 then
+	if common.DEBUG_CERYS_START and tick == 30 then
 		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 	end
 
@@ -197,8 +207,8 @@ function Public.cerys_tick(surface, tick)
 		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
 	end
 
-	if tick % 15 == 0 then
-		cryogenic_plant.tick_15_check_cryo_quality_upgrades(surface)
+	if tick % 20 == 0 then
+		cryogenic_plant.tick_20_check_cryo_quality_upgrades(surface)
 		-- Ideally, match the tick interval of the repair recipes:
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
@@ -208,17 +218,13 @@ function Public.cerys_tick(surface, tick)
 		space.spawn_asteroid(surface)
 	end
 
-	if player_looking_at_surface and tick % ice.ICE_CHECK_INTERVAL == 0 then
+	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
 		ice.tick_ice(surface)
 	end
 
 	if tick % 240 == 0 then
 		space.tick_240_clean_up_cerys_asteroids()
 		space.tick_240_clean_up_cerys_solar_wind_particles()
-	end
-
-	if tick % 520 == 0 then
-		rods.tick_520_cleanup_charging_rods()
 	end
 end
 
@@ -232,7 +238,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
-	if common.DEBUG_MOON_START then
+	if common.DEBUG_CERYS_START then
 		local player = game.players[event.player_index]
 
 		if player.controller_type == defines.controllers.cutscene then
@@ -268,6 +274,12 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["electromagnetic-plant"].research_recursive()
 		player.force.technologies["laser-turret"].research_recursive()
 		player.force.technologies["repair-pack"].research_recursive()
+		player.force.technologies["gun-turret"].research_recursive()
+		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
+		player.force.technologies["research-speed-2"].research_recursive()
+		player.force.technologies["inserter-capacity-bonus-2"].research_recursive()
+		player.force.technologies["worker-robots-speed-2"].research_recursive()
+		player.force.technologies["worker-robots-storage-2"].research_recursive()
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then

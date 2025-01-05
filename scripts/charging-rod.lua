@@ -36,20 +36,8 @@ function Public.register_charging_rod(entity)
 		return
 	end
 
-	local lamp = surface.create_entity({
-		name = "charging-rod-lamp",
-		position = entity.position,
-		force = force,
-	})
-
-	if lamp and lamp.valid then
-		lamp.destructible = false
-		lamp.minable_flag = false
-	end
-
 	storage.cerys.charging_rods[entity.unit_number] = {
 		entity = entity,
-		lamp = lamp,
 		rod_position = { x = entity.position.x, y = entity.position.y + CHARGING_ROD_DISPLACEMENT },
 	}
 end
@@ -74,17 +62,37 @@ Public.built_ghost_charging_rod = function(entity, tags)
 	end
 end
 
-function Public.tick_520_cleanup_charging_rods()
+function Public.tick_12_check_charging_rods()
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
-		local rod_e = rod.entity
-		local lamp = rod.lamp
+		local e = rod.entity
 
-		if not (rod_e and rod_e.valid) then
-			if lamp and lamp.valid then
-				lamp.destroy()
+		if not (e and e.valid) then
+			if rod.red_light_rendering and rod.red_light_rendering.valid then
+				rod.red_light_rendering.destroy()
 			end
 			storage.cerys.charging_rods[unit_number] = nil
+			goto continue
 		end
+
+		if storage.cerys.charging_rod_is_negative[unit_number] then
+			if rod.red_light_rendering then
+				if rod.red_light_rendering.valid then
+					rod.red_light_rendering.destroy()
+				end
+				rod.red_light_rendering = nil
+			end
+		else
+			if not (rod.red_light_rendering and rod.red_light_rendering.valid) then
+				rod.red_light_rendering = rendering.draw_sprite({
+					surface = e.surface,
+					sprite = "cerys-charging-rod-red-light",
+					target = e,
+					render_layer = "object",
+				})
+			end
+		end
+
+		::continue::
 	end
 end
 

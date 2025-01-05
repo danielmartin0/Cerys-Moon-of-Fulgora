@@ -84,7 +84,6 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 	}),
 
-
 	{
 		type = "corpse",
 		name = "charging-rod-remnants",
@@ -97,45 +96,9 @@ data:extend({
 		tile_width = 2,
 		tile_height = 2,
 		expires = false,
-		animation = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/charging-rod-remnants",
-			{
-				direction_count = 1,
-				scale = 0.75
-			}
-		)
+		animation = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/charging-rod-remnants", {
+			direction_count = 1,
+			scale = 0.75,
+		}),
 	},
-
-	merge(data.raw["lamp"]["small-lamp"], {
-		name = "charging-rod-lamp",
-		minable = nil,
-		hidden_in_factoriopedia = true,
-		next_upgrade = nil,
-		flags = { "not-blueprintable", "not-deconstructable", "placeable-off-grid", "not-on-map" },
-		selectable_in_game = false,
-		collision_box = { { 0, 0 }, { 0, 0 } },
-		selection_box = { { 0, 0 }, { 0, 0 } },
-		collision_mask = { layers = {} },
-		picture_off = {
-			filename = "__core__/graphics/empty.png",
-			priority = "high",
-			width = 1,
-			height = 1,
-			frame_count = 1,
-			axially_symmetrical = false,
-			direction_count = 1,
-		},
-		picture_on = {
-			filename = "__core__/graphics/empty.png",
-			priority = "high",
-			width = 1,
-			height = 1,
-			frame_count = 1,
-			axially_symmetrical = false,
-			direction_count = 1,
-		},
-		light = { intensity = 0.4, size = 50, color = { r = 0.5, g = 0.5, b = 1 } },
-		light_when_colored = { intensity = 0.5, size = 50 * 0.15, color = { r = 0.5, g = 0.5, b = 1 } },
-		energy_usage_per_tick = "1kW",
-		always_on = true,
-	}),
 })

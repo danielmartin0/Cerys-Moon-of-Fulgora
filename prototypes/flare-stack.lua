@@ -37,7 +37,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "vent-stack",
-		energy_required = 0.25,
+		energy_required = 2,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 10 },
@@ -49,7 +49,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "flare-stack",
-		energy_required = 1,
+		energy_required = 2,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 10 },

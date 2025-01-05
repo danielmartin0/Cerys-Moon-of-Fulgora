@@ -1,4 +1,5 @@
 local merge = require("lib").merge
+local common = require("common")
 -- local sounds = require("__base__.prototypes.entity.sounds")
 
 local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
@@ -39,7 +40,7 @@ cryo_plant.graphics_set = {
 				line_length = 1,
 				scale = 0.252,
 				shift = {
-					0.4,
+					0.6,
 					-0.1,
 				},
 				width = 993,
@@ -52,9 +53,9 @@ cryo_plant.graphics_set = {
 				repeat_count = 192,
 				height = 310,
 				line_length = 1,
-				scale = 0.5,
+				scale = 0.504,
 				shift = {
-					1.109375,
+					1.309375,
 					0.21875,
 				},
 				width = 462,
@@ -66,9 +67,9 @@ cryo_plant.graphics_set = {
 				height = 188,
 				line_length = 8,
 				repeat_count = 3,
-				scale = 0.25,
+				scale = 0.252,
 				shift = {
-					-0.25,
+					-0.05,
 					-1.359375,
 				},
 				width = 244,
@@ -84,9 +85,9 @@ cryo_plant.graphics_set = {
 				height = 128,
 				line_length = 8,
 				repeat_count = 3,
-				scale = 0.25,
+				scale = 0.252,
 				shift = {
-					-0.21875,
+					-0.11875,
 					-1.1875,
 				},
 				width = 212,
@@ -101,9 +102,9 @@ cryo_plant.graphics_set = {
 				height = 124,
 				line_length = 8,
 				repeat_count = 3,
-				scale = 0.25,
+				scale = 0.252,
 				shift = {
-					-0.21875,
+					-0.11875,
 					-1.1875,
 				},
 				width = 208,
@@ -119,9 +120,9 @@ cryo_plant.graphics_set = {
 				height = 120,
 				line_length = 8,
 				repeat_count = 3,
-				scale = 0.25,
+				scale = 0.252,
 				shift = {
-					-0.21875,
+					-0.11875,
 					-1.171875,
 				},
 				width = 208,
@@ -154,9 +155,9 @@ local wreck = merge(cryo_plant, {
 					repeat_count = 192,
 					height = 864,
 					line_length = 1,
-					scale = 0.28,
+					scale = 0.273,
 					shift = {
-						0.4,
+						0.5,
 						-0.1,
 					},
 					width = 993,
@@ -166,6 +167,13 @@ local wreck = merge(cryo_plant, {
 		working_visualisations = nil,
 	},
 	map_color = { 53, 54, 89 },
+	working_sound = {
+		-- TODO: Improve this sound
+		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },
+		audible_distance_modifier = 0.5,
+		fade_in_ticks = 4,
+		fade_out_ticks = 20,
+	},
 })
 
 local wreck_frozen = merge(wreck, {
@@ -175,18 +183,18 @@ local wreck_frozen = merge(wreck, {
 			layers = {
 				{
 					animation_speed = 0.5,
-					filename =
-					"__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
 					frame_count = 1,
 					repeat_count = 192,
 					height = 864,
 					line_length = 1,
-					scale = 0.28,
+					scale = 0.273,
 					shift = {
-						0.4,
+						0.5,
 						-0.1,
 					},
 					width = 993,
+					tint = common.FACTORIO_UNDO_FROZEN_TINT,
 				},
 			},
 		},
