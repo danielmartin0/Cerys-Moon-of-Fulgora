@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.14
-Date: ????
+Date: 2025-01-05
   Modding:
     - Subtle bugfix to the helper function override_surface_conditions, improving certain mod compatibilities.
 ---------------------------------------------------------------------------------------------------
