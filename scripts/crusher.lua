@@ -5,7 +5,7 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 20
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 10
 
 function Public.tick_15_check_broken_crushers(surface)
 	if not storage.cerys.broken_crushers then
