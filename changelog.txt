@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.20
-Date: ????
+Date: 2025-01-06
   Balancing:
     - Fuel value of mixed oxide fuel cells adjusted.
     - Gamma radiation moves slightly slower and is emitted more randomly.
