@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.1
 Date: ????
-  Changes:
+  Balancing:
+    - Heat pipes on Cerys now cool down slower.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.0
 Date: 2025-01-06
   Features:
-    - A new entity, the Fulgoran Crusher, spawns on newly generated Cerys maps. Like the cryogenic plant, it needs to be repaired before use.
+    - A new entity, the Fulgoran Crusher, spawns on newly generated Cerys maps. Like the cryogenic plant, it needs to be repaired before use. Existing maps are able to place their non-minable crushers with working Fulgoran crushers in the map editor.
   Changes:
     - The rate of spawn of asteroids on Cerys has been slightly increased.
     - Normal crushers no longer spawn on Cerys and cannot be built on Cerys.
