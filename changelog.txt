@@ -3,6 +3,8 @@ Version: 0.8.5
 Date: 2025-01-06
   Bugfixes:
     - Fixed crash on attempt to index field 'broken_crushers'
+  Locale:
+    - Korean.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.4
 Date: 2025-01-06
