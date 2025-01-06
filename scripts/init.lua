@@ -144,6 +144,10 @@ function Public.ensure_cerys_storage_and_tables()
 	if not storage.accrued_probability_units then
 		storage.accrued_probability_units = 0
 	end
+
+	if not storage.cerys.broken_crushers then
+		storage.cerys.broken_crushers = {}
+	end
 end
 
 return Public

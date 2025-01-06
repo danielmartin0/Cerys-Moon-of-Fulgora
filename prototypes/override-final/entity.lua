@@ -20,6 +20,15 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 		end
 
 		for _, category in pairs(machine.crafting_categories) do
+			if category == "chemistry" then
+				if not lib.find(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
 			if category == "electromagnetics" then
 				if not lib.find(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics") then
 					table.insert(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics")
@@ -103,12 +112,6 @@ if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energ
 end
 
 --== Relaxations ==--
-
-override_surface_conditions(data.raw["assembling-machine"]["crusher"], {
-	property = "gravity",
-	min = 0,
-	max = 5,
-})
 
 local eased_pressure_restriction = { {
 	property = "pressure",

@@ -1,6 +1,5 @@
 local Public = {}
 
--- Add these constants from repair.lua
 Public.CRYO_WRECK_STAGE_ENUM = {
 	frozen = 0,
 	needs_repair = 1,

@@ -1,7 +1,38 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.7.19
+Version: 0.8.1
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 0.8.0
+Date: 2025-01-06
+  Features:
+    - A new entity, the Fulgoran Crusher, spawns on newly generated Cerys maps. Like the cryogenic plant, it needs to be repaired before use.
+  Changes:
+    - The rate of spawn of asteroids on Cerys has been slightly increased.
+    - Normal crushers no longer spawn on Cerys and cannot be built on Cerys.
+    - The amount of sulfuric acid needed to process nitrogen-rich minerals has been increased.
+---------------------------------------------------------------------------------------------------
+Version: 0.7.21
+Date: 2025-01-06
+  Balancing:
+    - Solar panels in Cerys ruins are now weighted more towards larger ruins.
+  Bugfixes:
+    - Fixed Cerys not appearing in lithium brine's Factoriopedia entry under 'Appears on'.
+  Info:
+    - Better organization for Cerys tiles in Factoriopedia and the map editor.
+---------------------------------------------------------------------------------------------------
+Version: 0.7.20
+Date: 2025-01-06
+  Balancing:
+    - Fuel value of mixed oxide fuel cells adjusted.
+    - Gamma radiation moves slightly slower and is emitted more randomly.
+---------------------------------------------------------------------------------------------------
+Version: 0.7.19
+Date: 2025-01-06
+  Changes:
+    - Lubricant synthesis can now be performed in a Fulgoran cryogenic plant.
+  Graphics:
+    - Most graphical issues with the Fulgoran cryogenic plant are now fixed.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.18
 Date: 2025-01-05

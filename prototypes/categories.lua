@@ -1,3 +1,5 @@
+-- TODO: Prepend with "cerys-"
+
 data:extend({
 	{
 		type = "fuel-category",
@@ -17,11 +19,19 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "crusher-repair",
+	},
+	{
+		type = "recipe-category",
 		name = "fulgoran-cryogenics",
 	},
 	{
 		type = "recipe-category",
 		name = "electromagnetics-or-fulgoran-cryogenics",
+	},
+	{
+		type = "recipe-category",
+		name = "chemistry-or-fulgoran-cryogenics",
 	},
 	{
 		type = "recipe-category",
@@ -78,5 +88,11 @@ data:extend({
 		name = "research-recipes",
 		group = "intermediate-products",
 		order = "y-b",
+	},
+	{
+		type = "item-subgroup",
+		name = "cerys-tiles",
+		group = "tiles",
+		order = "k-[cerys]",
 	},
 })

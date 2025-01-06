@@ -1,6 +1,7 @@
 local simplex_noise = require("scripts.simplex_noise").d2
 local find = require("lib").find
 local cryogenic_plant = require("scripts.cryogenic-plant")
+local crusher = require("scripts.crusher")
 local common = require("common")
 
 local Public = {}
@@ -251,17 +252,13 @@ function Public.create_cryo_plants(surface, area)
 				entity.destroy()
 			end
 
-			local frozen = true
-			local name = frozen and "cerys-fulgoran-cryogenic-plant-wreck-frozen"
-				or "cerys-fulgoran-cryogenic-plant-wreck"
-
-			local p3 = surface.find_non_colliding_position(name, p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
+			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
 				Public.ensure_solid_foundation(surface, p3, 2, 2)
 
 				local e = surface.create_entity({
-					name = name,
+					name = "cerys-fulgoran-cryogenic-plant-wreck-frozen",
 					position = p3,
 					force = "player",
 				})
@@ -284,34 +281,34 @@ function Public.create_crushers(surface, area)
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
 		then
-			local p2 = { x = p.x + 0.5, y = p.y }
+			local p2 = { x = p.x, y = p.y }
 
 			local colliding_simple_entities = surface.find_entities_filtered({
 				type = "simple-entity",
 				area = {
-					left_top = { x = p2.x - 1.5, y = p2.y - 1 },
-					right_bottom = { x = p2.x + 1.5, y = p2.y + 1 },
+					left_top = { x = p2.x - 2, y = p2.y - 1.5 },
+					right_bottom = { x = p2.x + 2, y = p2.y + 1.5 },
 				},
 			})
 			for _, entity in ipairs(colliding_simple_entities) do
 				entity.destroy()
 			end
 
-			local p3 = surface.find_non_colliding_position("crusher", p2, 7, 3)
+			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 7, 3)
 
 			if p3 then
-				Public.ensure_solid_foundation(surface, p3, 1, 1)
+				Public.ensure_solid_foundation(surface, p3, 4, 3)
 
 				local e = surface.create_entity({
-					name = "crusher",
+					name = "cerys-fulgoran-crusher-wreck-frozen",
 					position = p3,
 					force = "player",
-					direction = defines.direction.east,
 				})
 
 				if e and e.valid then
 					e.minable_flag = false
 					e.destructible = false
+					crusher.register_ancient_crusher(e, true)
 				end
 			end
 		end

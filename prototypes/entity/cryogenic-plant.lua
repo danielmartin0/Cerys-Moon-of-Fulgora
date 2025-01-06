@@ -10,6 +10,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	crafting_categories = {
 		"fulgoran-cryogenics",
 		"electromagnetics-or-fulgoran-cryogenics",
+		"chemistry-or-fulgoran-cryogenics",
 		"chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		"cryogenics-or-fulgoran-cryogenics",
 		"crafting-or-fulgoran-cryogenics",
@@ -23,7 +24,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	autoplace = {
 		probability_expression = "0",
 	},
-	map_color = { 153, 158, 255 },
+	map_color = { 83, 17, 150 },
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 	icon_size = 256,
 })
@@ -88,7 +89,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.1875,
 				},
 				width = 212,
@@ -105,7 +106,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.1875,
 				},
 				width = 208,
@@ -123,7 +124,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.171875,
 				},
 				width = 208,
@@ -140,17 +141,17 @@ local wreck = merge(cryo_plant, {
 	crafting_categories = { "cryogenic-plant-repair" },
 	fixed_recipe = "cerys-repair-cryogenic-plant",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
-	crafting_speed = 0.2, -- Super slow animation
+	crafting_speed = 1,
 	energy_source = {
 		type = "void",
 	},
-	module_slots = 2,
+	module_slots = 1,
 	allowed_effects = { "speed", "productivity" },
 	graphics_set = {
 		animation = {
 			layers = {
 				{
-					animation_speed = 0.5,
+					animation_speed = 0.1,
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck.png",
 					frame_count = 1,
 					repeat_count = 192,
@@ -167,7 +168,7 @@ local wreck = merge(cryo_plant, {
 		},
 		working_visualisations = nil,
 	},
-	map_color = { 53, 54, 89 },
+	map_color = { 200, 150, 250 },
 	working_sound = {
 		-- TODO: Improve this sound
 		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },

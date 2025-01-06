@@ -10,7 +10,7 @@ local background = require("scripts.background")
 local migrations = require("scripts.migrations")
 local init = require("scripts.init")
 local cooling = require("scripts.cooling")
-
+local crusher = require("scripts.crusher")
 local Public = {}
 
 -- Highest-level file besides control.lua.
@@ -212,6 +212,7 @@ function Public.cerys_tick(surface, tick)
 		cryogenic_plant.tick_20_check_cryo_quality_upgrades(surface)
 		-- Ideally, match the tick interval of the repair recipes:
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
+		crusher.tick_15_check_broken_crushers(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
 	end
 

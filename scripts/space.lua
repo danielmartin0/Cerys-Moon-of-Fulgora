@@ -17,12 +17,12 @@ local CHANCE_MUTATE_BELT_URANIUM = 1 / 800
 local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
-	["small-metallic-asteroid-planetary"] = 0.9,
-	["medium-metallic-asteroid-planetary"] = 0.6,
-	["small-carbonic-asteroid-planetary"] = 5,
-	["medium-carbonic-asteroid-planetary"] = 1.75,
+	["small-metallic-asteroid-planetary"] = 1,
+	["medium-metallic-asteroid-planetary"] = 1,
+	["small-carbonic-asteroid-planetary"] = 4,
+	["medium-carbonic-asteroid-planetary"] = 2,
 	["small-oxide-asteroid-planetary"] = 4,
-	["medium-oxide-asteroid-planetary"] = 1.5,
+	["medium-oxide-asteroid-planetary"] = 2,
 }
 
 local MAX_CHUNKS_ON_GROUND = 15
