@@ -108,6 +108,8 @@ function Public.delete_cerys_storage_if_necessary()
 end
 
 function Public.ensure_cerys_storage_and_tables()
+	-- TODO: Fix the fact adding tables here is insufficient.
+
 	if not storage.cerys then
 		storage.cerys = {
 			initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"],

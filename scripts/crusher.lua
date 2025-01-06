@@ -160,6 +160,8 @@ Public.register_ancient_crusher = function(entity, frozen)
 		return
 	end
 
+	storage.cerys.broken_crushers = storage.cerys.broken_crushers or {}
+
 	storage.cerys.broken_crushers[entity.unit_number] = {
 		entity = entity,
 		stage = frozen and Public.CRUSHER_WRECK_STAGE_ENUM.frozen or Public.CRUSHER_WRECK_STAGE_ENUM.needs_repair,
