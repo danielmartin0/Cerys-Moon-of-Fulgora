@@ -51,9 +51,9 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	heat_lower_layer_picture = "nil",
 	energy_source = merge(data.raw.reactor["nuclear-reactor"].energy_source, {
 		fuel_categories = { "nuclear-mixed-oxide" },
-		effectivity = 6, -- from 1
+		effectivity = 1.5, -- from 1
 	}),
-	consumption = "6GW", -- From 40MW
+	consumption = "12GW", -- From 40MW
 	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
 		minimum_glow_temperature = 0, -- From 350
 		connections = make_heat_buffer_connections(22),
@@ -66,7 +66,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			blend_mode = "additive",
 			draw_as_glow = true,
 		}),
-		specific_heat = "400MJ", -- from 10MJ
+		specific_heat = "800MJ", -- from 10MJ
 		max_temperature = 1000, -- from 1000
 		max_transfer = "300GW", -- from 10GW
 	}),

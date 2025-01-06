@@ -317,7 +317,7 @@ local e2 = merge(data.raw.item["uranium-fuel-cell"], {
 	subgroup = "plutonium-processing",
 	order = "b-d",
 	burnt_result = "depleted-mixed-oxide-fuel-cell",
-	fuel_value = "16GJ",
+	fuel_value = "128GJ",
 	default_import_location = "cerys",
 })
 

@@ -12,7 +12,9 @@ local TEMPERATURE_LOSS_RATE = 2
 local RANGE_SQUARED = 67 ^ 2
 local DAMAGE_TICK_DELAY = 30
 
-local BASE_DAMAGE = 62
+local BASE_DAMAGE = 65
+
+local RADIATION_BAIL_CHANCE = 0.2
 
 Public.REACTOR_NAME_TO_STAGE = {
 	["cerys-fulgoran-reactor"] = repair.REACTOR_STAGE_ENUM.active,
@@ -75,6 +77,10 @@ function Public.cool_reactor(reactor_entity)
 end
 
 function Public.create_radiation(surface, reactor_entity)
+	if math.random() < RADIATION_BAIL_CHANCE then
+		return
+	end
+
 	local player_looking_at_surface = false
 	for _, player in pairs(game.connected_players) do
 		if player.valid and player.surface and player.surface.valid and player.surface.index == surface.index then
@@ -87,7 +93,7 @@ function Public.create_radiation(surface, reactor_entity)
 
 	local angle = math.random() * 2 * math.pi
 
-	local speed = 0.7 + 0.3 * math.random()
+	local speed = 0.58 + 0.4 * math.random()
 
 	local x_velocity = math.cos(angle) * speed
 	local y_velocity = math.sin(angle) * speed
