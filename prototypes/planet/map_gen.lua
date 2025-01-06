@@ -46,6 +46,7 @@ planet_map_gen.cerys = function()
 					["cerys-methane-iceberg-huge"] = {},
 					["cerys-fulgoran-radiative-tower"] = {}, -- null
 					["cerys-fulgoran-cryogenic-plant"] = {}, -- null
+					["cerys-fulgoran-crusher"] = {}, -- null
 					["cerys-fulgoran-reactor"] = {}, -- null
 					["lithium-brine"] = {
 						frequency = 0.00000000000000001, -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry

@@ -113,12 +113,6 @@ end
 
 --== Relaxations ==--
 
-override_surface_conditions(data.raw["assembling-machine"]["crusher"], {
-	property = "gravity",
-	min = 0,
-	max = 5,
-})
-
 local eased_pressure_restriction = { {
 	property = "pressure",
 	min = 5,

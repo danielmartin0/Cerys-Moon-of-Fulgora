@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.7.22
+Version: 0.8.0
 Date: ????
+  Features:
+    - A new entity, the Fulgoran Crusher, spawns on newly generated Cerys maps. Like the cryogenic plant, it needs to be repaired before use.
   Changes:
+    - The rate of spawn of asteroids on Cerys has been slightly increased.
+    - Normal crushers no longer spawn on Cerys and cannot be built on Cerys.
+    - The amount of sulfuric acid needed to process nitrogen-rich minerals has been increased.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.21
 Date: 2025-01-06

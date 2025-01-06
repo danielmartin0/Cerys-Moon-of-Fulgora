@@ -1,3 +1,5 @@
+-- TODO: Prepend with "cerys-"
+
 data:extend({
 	{
 		type = "fuel-category",
@@ -14,6 +16,10 @@ data:extend({
 	{
 		type = "recipe-category",
 		name = "nuclear-reactor-repair",
+	},
+	{
+		type = "recipe-category",
+		name = "crusher-repair",
 	},
 	{
 		type = "recipe-category",

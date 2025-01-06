@@ -244,6 +244,19 @@ data:extend({
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",
+		name = "cerys-fulgoran-crusher",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/crusher.png",
+		icon_size = 280,
+		subgroup = "production-machine",
+		order = "h[cryogenic-plant]-e[fulgoran-crusher]",
+		hidden = true,
+		default_import_location = "cerys",
+		weight = 1000 * 1000,
+		stack_size = 20,
+	},
+	{
+		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
+		type = "item",
 		name = "cerys-fulgoran-cryogenic-plant",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
 		icon_size = 223,
