@@ -316,6 +316,7 @@ local discovery_tech = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
 		"quality-module-2",
+		"productivity-module-2",
 		"energy-shield-equipment",
 		"effect-transmission",
 	},

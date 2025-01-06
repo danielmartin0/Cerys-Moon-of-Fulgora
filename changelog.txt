@@ -2,6 +2,8 @@
 Version: 0.8.3
 Date: ????
   Changes:
+    - Reverted the change to sulfuric acid in nitrogen-rich minerals processing in 0.8.0.
+    - Productivity module 2 is now a prerequisite for Cerys discovery.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.2
 Date: 2025-01-06
