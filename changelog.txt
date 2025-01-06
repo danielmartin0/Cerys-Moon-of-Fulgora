@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.21
 Date: ????
-  Changes:
+  Balancing:
+    - Solar panels in Cerys ruins are now weighted more towards larger ruins.
+  Bugfixes:
+    - Fixed Cerys not appearing in lithium brine's Factoriopedia entry under 'Appears on'.
+  Info:
+    - Better organization for Cerys tiles in Factoriopedia and the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.20
 Date: 2025-01-06

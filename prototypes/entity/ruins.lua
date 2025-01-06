@@ -22,14 +22,24 @@ local function ruin_minable_results(collision_area)
 				amount_min = math.ceil(collision_area * 0.35),
 				amount_max = math.ceil(collision_area * 0.4),
 			},
-			{
-				type = "item",
-				name = "solar-panel",
-				amount_min = math.ceil(collision_area / 12),
-				amount_max = math.ceil(collision_area / 10),
-			},
 		},
 	}
+
+	if collision_area >= 7 then
+		table.insert(results.results, {
+			type = "item",
+			name = "solar-panel",
+			amount_min = math.ceil(collision_area / 10),
+			amount_max = math.ceil(collision_area / 8),
+		})
+	else
+		table.insert(results.results, {
+			type = "item",
+			name = "solar-panel",
+			amount = 1,
+			probability = collision_area / 7,
+		})
+	end
 
 	if collision_area >= 8 then
 		table.insert(results.results, {

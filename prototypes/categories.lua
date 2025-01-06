@@ -83,4 +83,10 @@ data:extend({
 		group = "intermediate-products",
 		order = "y-b",
 	},
+	{
+		type = "item-subgroup",
+		name = "cerys-tiles",
+		group = "tiles",
+		order = "k-[cerys]",
+	},
 })

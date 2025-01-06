@@ -170,6 +170,7 @@ local cerys_shallow_water_collision_mask = { layers = {
 local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
 	sprite_usage_surface = "nil",
 	collision_mask = cerys_ground_collision_mask,
+	subgroup = "cerys-tiles",
 })
 
 local lightmap_spritesheet = {
@@ -299,6 +300,7 @@ data:extend({
 
 local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
+	subgroup = "cerys-tiles",
 	collision_mask = cerys_shallow_water_collision_mask,
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
@@ -417,6 +419,7 @@ local dry_ice_rough_variants = tile_variations_template(
 )
 
 local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
+	subgroup = "cerys-tiles",
 	transitions = dry_ice_transitions,
 	transitions_between_transitions = dry_ice_transitions_between_transitions,
 	collision_mask = cerys_ground_collision_mask,
@@ -510,6 +513,7 @@ local dry_ice_rough_land_variants = tile_variations_template(
 )
 
 local cerys_dry_ice_rough_land_base = merge(data.raw.tile["ice-rough"], {
+	subgroup = "cerys-tiles",
 	transitions = dry_ice_transitions,
 	transitions_between_transitions = dry_ice_transitions_between_transitions,
 	collision_mask = cerys_ground_collision_mask,
@@ -534,6 +538,7 @@ data:extend({
 --== Other cloned tiles ==--
 
 local cerys_concrete = merge(data.raw.tile["concrete"], {
+	subgroup = "cerys-tiles",
 	name = "cerys-concrete",
 	minable = "nil",
 })
@@ -543,6 +548,7 @@ end
 cerys_concrete.collision_mask.layers.cerys_tile = true
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
+	subgroup = "cerys-tiles",
 	name = "cerys-empty-space",
 	destroys_dropped_items = true,
 })
