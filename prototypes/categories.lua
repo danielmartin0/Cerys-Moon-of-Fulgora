@@ -25,6 +25,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "chemistry-or-fulgoran-cryogenics",
+	},
+	{
+		type = "recipe-category",
 		name = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
 	},
 	{

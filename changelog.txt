@@ -2,6 +2,9 @@
 Version: 0.7.19
 Date: ????
   Changes:
+    - Lubricant synthesis can now be performed in a Fulgoran cryogenic plant.
+  Graphics:
+    - Graphical fixes for the Fulgoran cryogenic plant.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.18
 Date: 2025-01-05

@@ -47,6 +47,10 @@ data:extend({
 				draw_background = true,
 			},
 		},
+		crafting_machine_tint = {
+			primary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+			secondary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+		},
 	},
 
 	{
@@ -96,7 +100,10 @@ data:extend({
 		always_show_made_in = true,
 		always_show_products = true,
 		allow_decomposition = false,
-		crafting_machine_tint = data.raw.recipe["ammoniacal-solution-separation"].crafting_machine_tint,
+		crafting_machine_tint = {
+			primary = { r = 38, g = 110, b = 180, a = 1 }, -- water
+			secondary = { r = 38, g = 110, b = 240, a = 1 }, -- ammonia
+		},
 	},
 
 	{
@@ -195,11 +202,9 @@ data:extend({
 		},
 		allow_productivity = true,
 		enabled = false,
-		crafting_machine_tint = { -- TODO: Change. From fluoroketone
-			primary = { r = 0.365, g = 0.815, b = 0.334, a = 1.000 }, -- #5dcf55ff
-			secondary = { r = 0.772, g = 0.394, b = 0.394, a = 1.000 }, -- #c46464ff
-			tertiary = { r = 0.116, g = 0.116, b = 0.111, a = 1.000 }, -- #1d1d1cff
-			quaternary = { r = 0.395, g = 0.717, b = 0.563, a = 1.000 }, -- #64b68fff
+		crafting_machine_tint = {
+			primary = { r = 194, g = 194, b = 194, a = 1 }, -- methane?
+			secondary = { r = 117, g = 85, b = 13, a = 1 }, -- light oil
 		},
 	},
 
@@ -244,18 +249,16 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "d-a",
 		auto_recycle = false,
-		crafting_machine_tint = { -- TODO: Change. From battery
-			primary = { r = 0.965, g = 0.482, b = 0.338, a = 1.000 }, -- #f67a56ff
-			secondary = { r = 0.831, g = 0.560, b = 0.222, a = 1.000 }, -- #d38e38ff
-			tertiary = { r = 0.728, g = 0.818, b = 0.443, a = 1.000 }, -- #b9d070ff
-			quaternary = { r = 0.939, g = 0.763, b = 0.191, a = 1.000 }, -- #efc230ff
+		crafting_machine_tint = {
+			primary = { r = 234, g = 221, b = 9, a = 1 }, -- sulfuric acid
+			secondary = { r = 234, g = 221, b = 9, a = 1 }, -- sulfuric acid
 		},
 	},
 
 	{
 		type = "recipe",
 		name = "lubricant-synthesis",
-		category = "chemistry",
+		category = "chemistry-or-fulgoran-cryogenics",
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",
 		icon_size = 64,
@@ -274,11 +277,11 @@ data:extend({
 		},
 		allow_productivity = true,
 		auto_recycle = false,
-		crafting_machine_tint = { -- TODO: Change. From lubricant
-			primary = { r = 0.268, g = 0.723, b = 0.223, a = 1.000 }, -- #44b838ff
-			secondary = { r = 0.432, g = 0.793, b = 0.386, a = 1.000 }, -- #6eca62ff
-			tertiary = { r = 0.647, g = 0.471, b = 0.396, a = 1.000 }, -- #a57865ff
-			quaternary = { r = 1.000, g = 0.395, b = 0.127, a = 1.000 }, -- #ff6420ff
+		crafting_machine_tint = {
+			primary = { r = 0.268, g = 0.723, b = 0.223, a = 1.000 }, -- lubricant
+			secondary = { r = 117, g = 85, b = 13, a = 1 }, -- light oil
+			tertiary = { r = 0.647, g = 0.471, b = 0.396, a = 1.000 }, -- TODO: Change
+			quaternary = { r = 1.000, g = 0.395, b = 0.127, a = 1.000 }, -- TODO: Change
 		},
 	},
 })

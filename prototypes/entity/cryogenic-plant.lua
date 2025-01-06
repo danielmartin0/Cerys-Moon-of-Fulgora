@@ -10,6 +10,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	crafting_categories = {
 		"fulgoran-cryogenics",
 		"electromagnetics-or-fulgoran-cryogenics",
+		"chemistry-or-fulgoran-cryogenics",
 		"chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		"cryogenics-or-fulgoran-cryogenics",
 		"crafting-or-fulgoran-cryogenics",
@@ -88,7 +89,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.1875,
 				},
 				width = 212,
@@ -105,7 +106,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.1875,
 				},
 				width = 208,
@@ -123,7 +124,7 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.11875,
+					0,
 					-1.171875,
 				},
 				width = 208,

@@ -20,6 +20,15 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 		end
 
 		for _, category in pairs(machine.crafting_categories) do
+			if category == "chemistry" then
+				if not lib.find(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
 			if category == "electromagnetics" then
 				if not lib.find(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics") then
 					table.insert(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics")
