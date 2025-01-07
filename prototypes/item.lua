@@ -326,6 +326,22 @@ local e2 = merge(data.raw.item["uranium-fuel-cell"], {
 	name = "mixed-oxide-fuel-cell",
 	fuel_category = "nuclear-mixed-oxide",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
+	pictures = {
+		layers = {
+			{
+				size = 64,
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
+				scale = 0.5,
+				mipmap_count = 4,
+			},
+			{
+				draw_as_light = true,
+				size = 64,
+				filename = "__base__/graphics/icons/uranium-fuel-cell-light.png",
+				scale = 0.5,
+			},
+		},
+	},
 	icon_size = 64,
 	subgroup = "plutonium-processing",
 	order = "b-d",

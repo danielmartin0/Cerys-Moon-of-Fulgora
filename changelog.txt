@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.8
 Date: ????
-  Changes:
+  Modding:
+    - Compatibility with AAI Industry: nuclear scrap recycling contains stone instead of stone bricks.
+  Graphics:
+    - Fixed the icon for mixed oxide fuel cells on belts.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.7
 Date: 2025-01-07
