@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.8
-Date: ????
+Date: 2025-01-07
   Modding:
     - Compatibility with AAI Industry: nuclear scrap recycling contains stone instead of stone bricks.
   Graphics:
