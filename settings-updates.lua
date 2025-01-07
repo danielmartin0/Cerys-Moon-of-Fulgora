@@ -35,6 +35,12 @@ data:extend({
 		minimum_value = 0.1,
 		maximum_value = 1000.0,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-technology-compatibility-mode",
+		setting_type = "startup",
+		default_value = false,
+	},
 })
 
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

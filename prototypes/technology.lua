@@ -48,49 +48,6 @@ data:extend({
 		icon_size = 256,
 	}),
 	cerys_tech({
-		name = "cerys-fulgoran-cryogenics",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "methane-ice-dissociation",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "superconductor",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "ammonia-rocket-fuel",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "nitric-acid",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "processing-units-from-nitric-acid",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "lithium",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "mixed-oxide-fuel-cell",
-			},
-		},
-		prerequisites = { "cerys-nuclear-scrap-recycling" },
-		unit = {
-			count = 10,
-			ingredients = {
-				{ "fulgoran-cryogenics-progress", 1 },
-			},
-			time = 60,
-		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-		icon_size = 256,
-	}),
-	cerys_tech({
 		name = "cerys-science-pack",
 		effects = {
 			{
@@ -333,3 +290,57 @@ local discovery_tech = {
 }
 
 data:extend({ discovery_tech })
+
+local cryogenics_tech = cerys_tech({
+	name = "cerys-fulgoran-cryogenics",
+	effects = {
+		{
+			type = "unlock-recipe",
+			recipe = "methane-ice-dissociation",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "superconductor",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "ammonia-rocket-fuel",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "nitric-acid",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "processing-units-from-nitric-acid",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "lithium",
+		},
+		{
+			type = "unlock-recipe",
+			recipe = "mixed-oxide-fuel-cell",
+		},
+	},
+	prerequisites = { "cerys-nuclear-scrap-recycling" },
+	unit = {
+		count = 10,
+		ingredients = {
+			{ "fulgoran-cryogenics-progress", 1 },
+		},
+		time = 60,
+	},
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
+	icon_size = 256,
+})
+
+if settings.startup["cerys-technology-compatibility-mode"].value then
+	cryogenics_tech.unit = nil
+	cryogenics_tech.research_trigger = {
+		type = "craft-item",
+		item = "ancient-structure-repair-part",
+	}
+end
+
+data:extend({ cryogenics_tech })

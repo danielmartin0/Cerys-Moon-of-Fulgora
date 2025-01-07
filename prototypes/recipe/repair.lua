@@ -92,27 +92,6 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "cerys-discover-fulgoran-cryogenics",
-		subgroup = "cerys-repair",
-		order = "e",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
-		icon_size = 64,
-		energy_required = 3,
-		enabled = true,
-		hide_from_player_crafting = true,
-		category = "fulgoran-cryogenics",
-		ingredients = {
-			{ type = "item", name = "cerys-nuclear-scrap", amount = 20 },
-		},
-		results = {
-			{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
-		},
-		allow_quality = false,
-		allow_productivity = false,
-		hide_from_signal_gui = true,
-	},
-	{
-		type = "recipe",
 		name = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
 		subgroup = "cerys-repair",
 		enabled = false,
@@ -124,7 +103,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 20 },
-			{ type = "item", name = "advanced-circuit", amount = 20 }, -- blue chips here would be too little variety
+			{ type = "item", name = "advanced-circuit", amount = 20 },
 		},
 		results = {},
 		allow_quality = true,
@@ -153,3 +132,29 @@ data:extend({
 		hide_from_signal_gui = true,
 	},
 })
+
+if not settings.startup["cerys-technology-compatibility-mode"].value then
+	data:extend({
+		{
+			type = "recipe",
+			name = "cerys-discover-fulgoran-cryogenics",
+			subgroup = "cerys-repair",
+			order = "e",
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
+			icon_size = 64,
+			energy_required = 3,
+			enabled = true,
+			hide_from_player_crafting = true,
+			category = "fulgoran-cryogenics",
+			ingredients = {
+				{ type = "item", name = "cerys-nuclear-scrap", amount = 20 },
+			},
+			results = {
+				{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
+			},
+			allow_quality = false,
+			allow_productivity = false,
+			hide_from_signal_gui = true,
+		},
+	})
+end

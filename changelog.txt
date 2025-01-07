@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.6
 Date: ????
-  Changes:
+  Modding:
+    - For compatibility with Factory Planner, Black Market and other mods, a startup setting has been included to switch the Fulgoran Cryogenics technology from recipe-based to trigger-based. This prevents certain crashes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.5
 Date: 2025-01-06
