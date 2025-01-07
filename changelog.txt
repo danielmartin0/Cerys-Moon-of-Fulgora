@@ -2,6 +2,7 @@
 Version: 0.8.7
 Date: ????
   Changes:
+    - Minimum version enforced on Visible Planets mod
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.6
 Date: 2025-01-07
