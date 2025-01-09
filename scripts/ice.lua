@@ -1,3 +1,5 @@
+local common = require("common")
+
 local Public = {}
 
 local TILE_TRANSITIONS = {
@@ -26,6 +28,11 @@ local HIDDEN_TILE_TO_MELTING_TILE = {
 
 Public.ICE_CHECK_INTERVAL = 80
 
+local TRANSITION_TILE_NAMES = {}
+for source_tile, _ in pairs(TILE_TRANSITIONS) do
+	table.insert(TRANSITION_TILE_NAMES, source_tile)
+end
+
 function Public.tick_ice(surface)
 	if not storage.transitioning_tiles then
 		storage.transitioning_tiles = {}
@@ -34,19 +41,19 @@ function Public.tick_ice(surface)
 		storage.transitioning_tiles[surface.index] = {}
 	end
 
-	local transition_tile_names = {}
-	for source_tile, _ in pairs(TILE_TRANSITIONS) do
-		table.insert(transition_tile_names, source_tile)
-	end
-
 	local transitioning_tiles = surface.find_tiles_filtered({
-		name = transition_tile_names,
+		name = TRANSITION_TILE_NAMES,
+		position = { x = 0, y = 0 },
+		radius = common.MOON_RADIUS * 1.1,
+		limit = 200,
 	})
 
-	local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
+	if #transitioning_tiles > 0 then
+		local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
 
-	if #tiles_to_set > 0 then
-		surface.set_tiles(tiles_to_set)
+		if #tiles_to_set > 0 then
+			surface.set_tiles(tiles_to_set)
+		end
 	end
 end
 
