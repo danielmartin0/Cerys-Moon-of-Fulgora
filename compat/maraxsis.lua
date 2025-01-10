@@ -8,9 +8,11 @@ if mods["maraxsis"] then
 		})
 	end
 
-	for _, surface_condition in pairs(data.raw.recipe["rocket-part"].surface_conditions) do
-		if surface_condition.property == "gravity" and surface_condition.min > 0.1 then
-			surface_condition.min = 0.1
+	if data.raw.recipe["rocket-part"].surface_conditions then
+		for _, surface_condition in pairs(data.raw.recipe["rocket-part"].surface_conditions) do
+			if surface_condition.property == "gravity" and surface_condition.min > 0.1 then
+				surface_condition.min = 0.1
+			end
 		end
 	end
 
