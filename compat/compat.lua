@@ -10,4 +10,3 @@ data.raw.lab["cerys-lab"].inputs = {
 data.raw.lab["cerys-lab-dummy"].next_upgrade = nil
 data.raw.lab["cerys-lab"].next_upgrade = nil
 data.raw.reactor["cerys-fulgoran-reactor"].next_upgrade = nil
-data.raw.lab["cerys-fulgoran-cryogenic-plant"].next_upgrade = nil
