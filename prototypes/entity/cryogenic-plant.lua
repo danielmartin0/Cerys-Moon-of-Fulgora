@@ -135,6 +135,52 @@ cryo_plant.graphics_set = {
 	},
 }
 
+-- TODO: Adjust to our pipe graphics
+cryo_plant.fluid_boxes = {
+	{
+		production_type = "input",
+		pipe_covers = pipecoverspictures(),
+		volume = 1000,
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -2, 2 } } },
+	},
+	{
+		production_type = "input",
+		pipe_picture = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
+		pipe_picture_frozen = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
+		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
+		pipe_covers = pipecoverspictures(),
+		volume = 1000,
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } },
+	},
+	{
+		production_type = "input",
+		pipe_covers = pipecoverspictures(),
+		volume = 1000,
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 2, 2 } } },
+	},
+	{
+		production_type = "output",
+		pipe_covers = pipecoverspictures(),
+		volume = 100,
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -2, -2 } } },
+	},
+	{
+		production_type = "output",
+		pipe_picture = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
+		pipe_picture_frozen = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
+		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
+		pipe_covers = pipecoverspictures(),
+		volume = 100,
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 0, -2 } } },
+	},
+	{
+		production_type = "output",
+		pipe_covers = pipecoverspictures(),
+		volume = 100,
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 2, -2 } } },
+	},
+}
+
 local wreck = merge(cryo_plant, {
 	name = "cerys-fulgoran-cryogenic-plant-wreck",
 	hidden_in_factoriopedia = true,

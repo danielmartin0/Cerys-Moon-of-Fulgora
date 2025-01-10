@@ -1,10 +1,3 @@
-local override_surface_conditions = require("lib").override_surface_conditions
-
-override_surface_conditions(data.raw.recipe["uranium-238-recycling"], {
-	property = "magnetic-field",
-	max = 119,
-})
-
 data.raw["recipe"]["pipe-recycling"]["ingredients"] = { { type = "item", name = "pipe", amount = 1 } }
 data.raw["recipe"]["pipe-recycling"]["results"] = {
 	{ type = "item", name = "iron-plate", amount = 0, extra_count_fraction = 0.25 },

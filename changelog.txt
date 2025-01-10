@@ -1,7 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.10
 Date: ????
-  Changes:
+  Locale:
+    - Ukranian localization.
+  Balancing:
+    - Sulfuric acid required for nitrogen-rich minerals processing recipe very slightly increased.
+    - Exoskeletons can no longer be recycled on Cerys.
+  Modding:
+    - Maraxsis compatibility: Maraxsis' sublimation recipe now has a minimum surface temperature condition of 255K.
+    - Prevent other mods from overriding inputs or next upgrade of the Cerys lab, reactor, and cryogenic plant.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.9
 Date: 2025-01-09

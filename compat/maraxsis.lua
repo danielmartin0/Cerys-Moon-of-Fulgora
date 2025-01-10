@@ -13,4 +13,11 @@ if mods["maraxsis"] then
 			surface_condition.min = 0.1
 		end
 	end
+
+	if data.raw.recipe["maraxsis-sublimation"] then
+		override_surface_conditions(data.raw.recipe["maraxsis-sublimation"], {
+			property = "temperature",
+			min = 255,
+		})
+	end
 end

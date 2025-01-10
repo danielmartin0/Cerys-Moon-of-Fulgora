@@ -1,13 +1,6 @@
 local lib = require("lib")
 local override_surface_conditions = lib.override_surface_conditions
 
-data.raw.lab["cerys-lab"].inputs = {
-	"automation-science-pack",
-	"logistic-science-pack",
-	"cerys-science-pack",
-	"utility-science-pack",
-}
-
 for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories then
 		for _, category in pairs(machine.crafting_categories) do

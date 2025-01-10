@@ -79,3 +79,6 @@ end
 if data.raw.recipe["construction-robot-recycling"] then
 	override_surface_conditions(data.raw.recipe["construction-robot-recycling"], magnetic_field_restriction)
 end
+if data.raw.recipe["exoskeleton-equipment-recycling"] then
+	override_surface_conditions(data.raw.recipe["exoskeleton-equipment-recycling"], magnetic_field_restriction)
+end
