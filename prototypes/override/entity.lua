@@ -34,7 +34,7 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories and not machine.fluid_boxes then
 		for _, category in pairs(machine.crafting_categories) do
 			if category == "centrifuging" then
-				machine.fluid_boxes = fluid_boxes
+				machine.fluid_boxes = table.deepcopy(fluid_boxes)
 				machine.fluid_boxes_off_when_no_fluid_recipe = true
 				break
 			end
