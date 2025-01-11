@@ -1,3 +1,5 @@
+--== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. ==--
+
 local merge = require("lib").merge
 
 local cerys_lab = merge(data.raw.lab["lab"], {
@@ -189,5 +191,15 @@ data:extend({
 		inputs = {
 			"fulgoran-cryogenics-progress",
 		},
+	}),
+
+	merge(data.raw.tool["electromagnetic-science-pack"], {
+		name = "cerys-science-pack",
+		localised_description = "nil",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-science-pack.png",
+		icon_size = 64,
+		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
+		order = "j-a[cerys]",
+		default_import_location = "cerys",
 	}),
 })

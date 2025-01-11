@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.1
 Date: ????
-  Changes:
+  Modding:
+    - To improve mod compatibility, Cerysian labs, science packs and technology prototypes are defined in data-final-fixes.lua for now.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.0
 Date: 2025-01-11

@@ -109,15 +109,6 @@ data:extend({
 		default_import_location = "cerys",
 	}),
 	merge(data.raw.tool["electromagnetic-science-pack"], {
-		name = "cerys-science-pack",
-		localised_description = "nil",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-science-pack.png",
-		icon_size = 64,
-		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
-		order = "j-a[cerys]",
-		default_import_location = "cerys",
-	}),
-	merge(data.raw.tool["electromagnetic-science-pack"], {
 		name = "fulgoran-cryogenics-progress",
 		localised_description = "nil",
 		hidden = true,
