@@ -100,6 +100,17 @@ function Public.run_migrations()
 		end
 	end
 
+	if lib.is_newer_version(last_seen_version, "0.9.2") then
+		-- Destroy all solar wind particles:
+		for _, particle in pairs(storage.cerys.solar_wind_particles) do
+			if particle.entity and particle.entity.valid then
+				particle.entity.destroy()
+			end
+
+			particle.entity = nil
+		end
+	end
+
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 

@@ -141,7 +141,7 @@ function Public.tick_1_move_solar_wind()
 		local r = particle.rendering
 		local v = particle.velocity
 
-		if r.valid then
+		if r and r.valid then
 			local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
 			particle.position = p
 			r.target = p
@@ -157,6 +157,7 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
+
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
