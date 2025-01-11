@@ -8,6 +8,7 @@ Date: ????
   Graphics:
     - Various graphical improvements and new icons (by snouz).
     - Graphical improvements to centrifuge in fluid mode (by Quezler).
+    - Outdated Cerys icon replaced.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.13
 Date: 2025-01-10
