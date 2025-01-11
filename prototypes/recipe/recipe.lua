@@ -142,7 +142,7 @@ data:extend({
 			{ type = "item", name = "superconductor", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 6 },
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 50 },
+			{ type = "fluid", name = "ammonia", amount = 50 },
 		},
 		results = { { type = "item", name = "cerys-science-pack", amount = 1 } },
 		surface_conditions = {
@@ -268,7 +268,6 @@ data:extend({
 		energy_required = 5,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 10 },
 			{ type = "item", name = "carbon", amount = 10 },
 			{ type = "item", name = "lithium", amount = 5 },
 		},
