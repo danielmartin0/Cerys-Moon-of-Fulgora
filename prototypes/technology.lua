@@ -111,7 +111,7 @@ data:extend({
 		},
 		prerequisites = { "cerys-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
-		icon_size = 256,
+		icon_size = 767,
 	}),
 	cerys_tech({
 		science_count = 300,
