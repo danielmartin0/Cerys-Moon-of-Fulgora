@@ -23,6 +23,12 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-solar-wind-performance-mode",
+		setting_type = "runtime-global",
+		default_value = false,
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-disable-flare-stack-item-venting",
 		setting_type = "startup",
 		default_value = true,

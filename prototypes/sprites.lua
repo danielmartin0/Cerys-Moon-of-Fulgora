@@ -1,6 +1,20 @@
 data:extend({
 	{
 		type = "sprite",
+		name = "cerys-solar-wind-particle",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
+		priority = "extra-high-no-scale",
+		width = 32,
+		height = 32,
+		flags = { "no-crop" },
+		mipmap_count = 1,
+		scale = 0.6,
+		draw_as_glow = true,
+		blend_mode = "additive",
+	},
+
+	{
+		type = "sprite",
 		name = "fulgora-background",
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/sharper-planets/fulgora.png",
 		priority = "extra-high-no-scale",

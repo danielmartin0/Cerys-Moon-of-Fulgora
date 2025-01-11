@@ -87,6 +87,7 @@ local solar_wind_particle = {
 		},
 	},
 }
+
 local radiation_particle = merge(solar_wind_particle, {
 	map_color = { 0, 1, 0 },
 	name = "cerys-gamma-radiation",

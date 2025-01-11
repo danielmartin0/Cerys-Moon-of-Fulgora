@@ -57,19 +57,23 @@ function Public.spawn_asteroid(surface, y_position)
 	end
 end
 
-function Public.tick_24_spawn_solar_wind_particle(surface)
+function Public.spawn_solar_wind_particle(surface)
 	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
 
-	local e = surface.create_entity({
-		name = "cerys-solar-wind-particle",
-		position = { x = -(common.MOON_RADIUS + math.random(65, 70)), y = y },
+	local x = -(common.MOON_RADIUS + 150)
+
+	local r = rendering.draw_sprite({
+		sprite = "cerys-solar-wind-particle",
+		target = { x = x, y = y },
+		surface = surface,
+		render_layer = "air-object",
 	})
 
 	table.insert(storage.cerys.solar_wind_particles, {
-		entity = e,
+		rendering = r,
 		age = 0,
 		velocity = Public.initial_solar_wind_velocity(),
-		position = { x = -(common.MOON_RADIUS + 150), y = y },
+		position = { x = x, y = y },
 	})
 end
 
@@ -134,12 +138,13 @@ function Public.tick_1_move_solar_wind()
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
-		local e = particle.entity
+		local r = particle.rendering
 		local v = particle.velocity
 
-		if e.valid then
-			e.teleport({ x = e.position.x + v.x, y = e.position.y + v.y })
-			particle.position = { x = e.position.x, y = e.position.y }
+		if r.valid then
+			local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
+			particle.position = p
+			r.target = p
 			particle.age = particle.age + 1
 			i = i + 1
 		else
@@ -160,8 +165,8 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 		end
 
 		if kill then
-			if particle.entity and particle.entity.valid then
-				particle.entity.destroy()
+			if particle.rendering and particle.rendering.valid then
+				particle.rendering.destroy()
 			end
 
 			table.remove(storage.cerys.solar_wind_particles, i)
