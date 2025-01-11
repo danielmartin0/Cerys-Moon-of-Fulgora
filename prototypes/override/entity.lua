@@ -5,10 +5,10 @@ table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 })
 
 local pipe_picture = assembler3pipepictures()
-pipe_picture.north.tint = { 0.3, 0.35, 0.3 }
-pipe_picture.south.tint = { 0.3, 0.35, 0.3 }
-pipe_picture.east.tint = { 0.3, 0.35, 0.3 }
-pipe_picture.west.tint = { 0.3, 0.35, 0.3 }
+pipe_picture.north = util.empty_sprite()
+pipe_picture.south.filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-pipe-S.png"
+pipe_picture.east.filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-pipe-E.png"
+pipe_picture.west.filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-pipe-W.png"
 
 local fluid_boxes = {
 	{
@@ -17,7 +17,6 @@ local fluid_boxes = {
 		pipe_covers = pipecoverspictures(),
 		volume = 1000,
 		pipe_connections = { { flow_direction = "input", direction = defines.direction.north, position = { 0, -1 } } },
-		secondary_draw_orders = { north = -1 },
 	},
 	{
 		production_type = "output",
@@ -25,7 +24,6 @@ local fluid_boxes = {
 		pipe_covers = pipecoverspictures(),
 		volume = 1000,
 		pipe_connections = { { flow_direction = "output", direction = defines.direction.south, position = { 0, 1 } } },
-		secondary_draw_orders = { north = -1 },
 	},
 }
 
