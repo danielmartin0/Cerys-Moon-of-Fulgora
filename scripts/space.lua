@@ -6,7 +6,7 @@ local OUT_OF_BOUNDS_D2 = (common.MOON_RADIUS * (2 ^ (1 / 2)) * 1.5 + 5) ^ 2
 local SOLAR_WIND_MIN_VELOCITY = 0.2
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 1.5
 
-local ROD_DEFLECTION_STRENGTH = 1 / 10
+local ROD_DEFLECTION_STRENGTH = 5
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
 local CHANCE_DAMAGE_CHARACTER = 1 / 30
@@ -80,14 +80,15 @@ function Public.initial_solar_wind_velocity()
 	return { x = x_velocity, y = y_velocity }
 end
 
-local max_charging_rod_energy = prototypes.entity["charging-rod"].electric_energy_source_prototype.buffer_capacity
-local MIN_ELECTROMAGNETIC_DISTANCE = 0.005
+local MIN_ELECTROMAGNETIC_DISTANCE = 2
 
-function Public.tick_9_solar_wind_deflection()
+Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
+
+function Public.tick_solar_wind_deflection()
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		local p_particle = particle.position
 
-		for unit_number, rod in pairs(storage.cerys.charging_rods) do
+		for _, rod in pairs(storage.cerys.charging_rods) do
 			local p_rod = rod.rod_position
 
 			local dx = p_particle.x - p_rod.x
@@ -108,30 +109,21 @@ function Public.tick_9_solar_wind_deflection()
 			end
 
 			if d2 < ROD_MAX_RANGE_SQUARED then
-				local rod_e = rod.entity
+				local polarity_fraction = rod.polarity_fraction
 
-				if rod_e and rod_e.valid then
-					if rod_e.energy > 0 then
-						local sign = storage.cerys.charging_rod_is_negative[rod_e.unit_number] and 1 or -1
+				if polarity_fraction and polarity_fraction ~= 0 then
+					local deflection = polarity_fraction
+						* ROD_DEFLECTION_STRENGTH
+						* Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
+						/ 60
 
-						local charged_fraction = rod_e.energy / max_charging_rod_energy
+					local dvx = dx / (d2 ^ (7 / 4)) * deflection
+					local dvy = dy / (d2 ^ (7 / 4)) * deflection
 
-						local deflection = ROD_DEFLECTION_STRENGTH * charged_fraction * sign
-
-						local dvx = dx / (d2 ^ (5 / 4)) * deflection
-						local dvy = dy / (d2 ^ (5 / 4)) * deflection
-
-						local v = particle.velocity
-						v.x = v.x + dvx
-						v.y = v.y + dvy
-						particle.velocity = v
-					end
-				else
-					local lamp = rod.lamp
-					if lamp and lamp.valid then
-						lamp.destroy()
-					end
-					storage.cerys.charging_rods[unit_number] = nil
+					local v = particle.velocity
+					v.x = v.x + dvx
+					v.y = v.y + dvy
+					particle.velocity = v
 				end
 			end
 		end
@@ -514,8 +506,13 @@ script.on_event(defines.events.on_entity_died, function(event)
 				stack = { name = drop_name, count = drop_count },
 			})
 			if e and e.valid then
-				e.to_be_looted = true
-				e.order_deconstruction(force)
+				if settings.global["cerys-mark-chunks-to-be-looted"].value then
+					e.to_be_looted = true
+				end
+
+				if settings.global["cerys-mark-chunks-for-deconstruction"].value then
+					e.order_deconstruction(force)
+				end
 
 				storage.cerys.ground_chunks = storage.cerys.ground_chunks or {}
 

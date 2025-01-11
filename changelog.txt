@@ -1,14 +1,23 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.8.14
+Version: 0.9.0
 Date: ????
   Changes:
-    - Methane has been removed as an input from recipes. It is now simply vented as a waste product. Cerysian science packs now require ammonia instead.
-  Modding:
-    - Centrifuge fluid boxes introduced by Cerys are now moddable by others mods without data collisions (by Quezler).
+    - Methane removed as an input from Cerys recipes — it is now simply a waste product on Cerys. Cerysian science packs now require ammonia instead of methane.
+    - Charging rods now deflect solar wind particles at shorter range, making it easier to control their path.
+    - Flipping the polarity of a charging rod no longer resets its energy to 0.
+    - Positive charging rods no longer tend to violently scatter the solar wind.
   Graphics:
-    - Various graphical improvements and new icons (by snouz).
-    - Graphical improvements to centrifuge in fluid mode (by Quezler).
-    - Outdated Cerys icon replaced.
+    - Various graphical improvements and new icons (thanks snouz!)
+    - Graphical improvements to centrifuge in fluid mode (thanks Quezler!)
+    - Old Cerys icon replaced.
+  Control:
+    - Added mod settings to control whether fallen asteroid chunks on Cerys should be automatically picked up by bots and/or players.
+  Modding:
+    - Centrifuge fluid boxes introduced by Cerys are now moddable by others mods without data collisions (thanks Quezler!)
+  Optimizations:
+    - Performance optimizations for solar wind.
+  Sounds:
+    - Volume of radiative tower working sound reduced slightly.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.13
 Date: 2025-01-10

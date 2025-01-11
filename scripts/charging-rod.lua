@@ -44,9 +44,9 @@ end
 
 Public.rod_set_state = function(entity, negative)
 	if entity.name == "charging-rod" then
-		if storage.cerys.charging_rod_is_negative[entity.unit_number] ~= negative then
-			entity.energy = 0
-		end
+		-- if storage.cerys.charging_rod_is_negative[entity.unit_number] ~= negative then
+		-- 	entity.energy = 0
+		-- end
 
 		storage.cerys.charging_rod_is_negative[entity.unit_number] = negative
 	elseif entity.name == "entity-ghost" and entity.ghost_name == "charging-rod" then
@@ -62,6 +62,8 @@ Public.built_ghost_charging_rod = function(entity, tags)
 	end
 end
 
+local max_charging_rod_energy = prototypes.entity["charging-rod"].electric_energy_source_prototype.buffer_capacity
+
 function Public.tick_12_check_charging_rods()
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
 		local e = rod.entity
@@ -74,7 +76,9 @@ function Public.tick_12_check_charging_rods()
 			goto continue
 		end
 
-		if storage.cerys.charging_rod_is_negative[unit_number] then
+		local negative = storage.cerys.charging_rod_is_negative[unit_number]
+
+		if negative then
 			if rod.red_light_rendering then
 				if rod.red_light_rendering.valid then
 					rod.red_light_rendering.destroy()
@@ -91,6 +95,8 @@ function Public.tick_12_check_charging_rods()
 				})
 			end
 		end
+
+		rod.polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 
 		::continue::
 	end

@@ -57,7 +57,7 @@ local reactor = {
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	working_sound = {
-		sound = { filename = "__base__/sound/heat-pipe.ogg", volume = 1.2 },
+		sound = { filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
 		max_sounds_per_type = 2,
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,

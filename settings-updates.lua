@@ -41,6 +41,18 @@ data:extend({
 		setting_type = "startup",
 		default_value = false,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-mark-chunks-for-deconstruction",
+		setting_type = "runtime-global",
+		default_value = true,
+	},
+	{
+		type = "bool-setting",
+		name = "cerys-mark-chunks-to-be-looted",
+		setting_type = "runtime-global",
+		default_value = true,
+	},
 })
 
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

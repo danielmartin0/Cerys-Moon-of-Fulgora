@@ -186,8 +186,8 @@ function Public.cerys_tick(surface, tick)
 			space.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
 		end
 
-		if tick % (9 * solar_wind_tick_multiplier) == 0 then
-			space.tick_9_solar_wind_deflection()
+		if tick % (space.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
+			space.tick_solar_wind_deflection()
 		end
 
 		if tick % (24 * solar_wind_tick_multiplier) == 0 then

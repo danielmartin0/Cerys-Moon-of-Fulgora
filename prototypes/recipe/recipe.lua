@@ -89,8 +89,8 @@ data:extend({
 		auto_recycle = false,
 		energy_required = 1,
 		ingredients = {
-			{ type = "fluid", name = "ammonia", amount = 40 },
-			{ type = "fluid", name = "water", amount = 10 },
+			{ type = "fluid", name = "ammonia", amount = 25 },
+			{ type = "fluid", name = "water", amount = 25 },
 		},
 		results = {
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
