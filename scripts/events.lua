@@ -190,14 +190,12 @@ function Public.cerys_tick(surface, tick)
 			space.tick_solar_wind_deflection()
 		end
 
-		local default_spawn_interval = settings.global["cerys-solar-wind-performance-mode"].value and 36 or 18
-
-		if tick % (default_spawn_interval * solar_wind_tick_multiplier) == 0 then
-			space.spawn_solar_wind_particle(surface)
-		end
-
 		if tick % (12 * solar_wind_tick_multiplier) == 0 then
 			rods.tick_12_check_charging_rods()
+		end
+
+		if tick % (18 * solar_wind_tick_multiplier) == 0 then
+			space.spawn_solar_wind_particle(surface)
 		end
 	end
 

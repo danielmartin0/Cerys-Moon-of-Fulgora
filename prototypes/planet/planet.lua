@@ -23,6 +23,7 @@ PlanetsLib:extend({
 		subgroup = "satellites",
 		label_orientation = 0.55,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
+		icon_size = 256,
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
 		starmap_icon_size = 500,
 		map_gen_settings = map_gen.cerys(),

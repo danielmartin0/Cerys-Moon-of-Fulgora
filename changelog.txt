@@ -3,6 +3,10 @@ Version: 0.9.2
 Date: ????
   Bugfixes:
     - Fixed the collision box of large methane icebergs.
+  Changes:
+    - Further performance improvement to solar wind: particle images are now displayed as renderings rather than entities, reducing UPS usage to ~50%. The number of solar wind particles has been increased by 33%.
+  Graphics:
+    - Further improvements to Cerys icons.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.1
 Date: 2025-01-11
