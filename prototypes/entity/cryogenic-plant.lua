@@ -25,8 +25,8 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		probability_expression = "0",
 	},
 	map_color = { 83, 17, 150 },
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-	icon_size = 256,
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
+	icon_size = 64,
 })
 
 -- TODO: Apart from the main image, some of the shifts are from the base game.
