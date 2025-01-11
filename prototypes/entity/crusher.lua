@@ -9,7 +9,7 @@ local crusher = {
 	subgroup = "cerys-entities",
 	order = "d",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/crusher.png",
-	icon_size = 280,
+	icon_size = 64,
 	flags = { "placeable-neutral", "placeable-player", "player-creation" },
 	minable = { mining_time = 0.2, result = "cerys-fulgoran-crusher" },
 	fast_replaceable_group = "cerys-fulgoran-crusher",
