@@ -3,7 +3,6 @@ local merge = require("lib").merge
 data:extend({
 	merge(data.raw["simple-entity"]["lithium-iceberg-huge"], {
 		name = "cerys-methane-iceberg-huge",
-		collision_box = { { -1.75, -1.15 }, { 1.75, 1.15 } },
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-a[huge]",
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-huge"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.4,
@@ -58,7 +57,6 @@ data:extend({
 	merge(data.raw["simple-entity"]["lithium-iceberg-big"], {
 		name = "cerys-methane-iceberg-big",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-b[big]",
-		collision_box = { { -1.75, -1.15 }, { 1.75, 1.15 } },
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-big"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.4,
 			results = {
