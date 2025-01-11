@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.0
-Date: ????
+Date: 2025-01-11
   Changes:
     - Methane removed as an input from Cerys recipes — it is now simply a waste product on Cerys. Cerysian science packs now require ammonia instead of methane.
     - Charging rods now deflect solar wind particles at shorter range, making it easier to control their path.
