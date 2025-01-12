@@ -217,7 +217,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "lubricant-synthesis",
-		category = "chemistry-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",
 		icon_size = 64,

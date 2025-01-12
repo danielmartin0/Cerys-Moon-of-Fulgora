@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.3
 Date: ????
+  Graphics:
+    - Icon improvements.
+  Balancing:
+    - Slight increase to entity cooling rates on Cerys.
+    - Slight decrease in plutonium generation rate.
   Changes:
+    - Lubricant synthesis can now only be performed in Fulgoran cryogenic plants. Since this recipe now uses only vanilla items, this ensures gameplay with vanilla items is completely unchanged on other planets.
+  Locale:
+    - Updated Chinese localization.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.2
 Date: 2025-01-11
