@@ -82,3 +82,10 @@ end
 if data.raw.recipe["exoskeleton-equipment-recycling"] then
 	override_surface_conditions(data.raw.recipe["exoskeleton-equipment-recycling"], magnetic_field_restriction)
 end
+
+--== Flare stack ==--
+
+if settings.startup["cerys-disable-flare-stack-item-venting"].value then
+	data.raw.recipe["electric-incinerator"].hidden = true
+	data.raw.recipe["incinerator"].hidden = true
+end

@@ -32,10 +32,17 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories and not machine.fluid_boxes then
 		for _, category in pairs(machine.crafting_categories) do
 			if category == "centrifuging" then
-				machine.fluid_boxes = table.deepcopy(fluid_boxes)
+				machine.fluid_boxes = util.table.deepcopy(fluid_boxes)
 				machine.fluid_boxes_off_when_no_fluid_recipe = true
 				break
 			end
 		end
 	end
+end
+
+--== Flare stack ==--
+
+if settings.startup["cerys-disable-flare-stack-item-venting"].value then
+	data.raw.furnace["electric-incinerator"].hidden = true
+	data.raw.furnace["incinerator"].hidden = true
 end
