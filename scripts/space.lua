@@ -62,6 +62,11 @@ function Public.spawn_solar_wind_particle(surface)
 
 	local x = -(common.MOON_RADIUS + 150)
 
+	-- local e = surface.create_entity({
+	-- 	name = "cerys-solar-wind-particle",
+	-- 	position = { x = x, y = y },
+	-- })
+
 	local r = rendering.draw_sprite({
 		sprite = "cerys-solar-wind-particle",
 		target = { x = x, y = y },
@@ -70,6 +75,7 @@ function Public.spawn_solar_wind_particle(surface)
 	})
 
 	table.insert(storage.cerys.solar_wind_particles, {
+		-- entity = e,
 		rendering = r,
 		age = 0,
 		velocity = Public.initial_solar_wind_velocity(),
@@ -169,6 +175,9 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 			if particle.rendering and particle.rendering.valid then
 				particle.rendering.destroy()
 			end
+			-- if particle.entity and particle.entity.valid then
+			-- 	particle.entity.destroy()
+			-- end
 
 			table.remove(storage.cerys.solar_wind_particles, i)
 		else
