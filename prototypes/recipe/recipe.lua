@@ -55,7 +55,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "charging-rod",
+		name = "cerys-charging-rod",
 		enabled = false,
 		category = "electronics",
 		surface_conditions = {
@@ -76,7 +76,7 @@ data:extend({
 			{ type = "item", name = "steel-plate", amount = 12 },
 			{ type = "item", name = "copper-cable", amount = 6 },
 		},
-		results = { { type = "item", name = "charging-rod", amount = 1 } },
+		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},
 
 	{

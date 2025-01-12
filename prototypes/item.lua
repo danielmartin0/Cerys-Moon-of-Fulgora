@@ -37,12 +37,12 @@ data:extend({
 		stack_size = 1,
 	},
 	merge(data.raw.item["lightning-rod"], {
-		name = "charging-rod",
+		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 64,
 		order = "e[accumulator]-b[charging-rod]",
 		subgroup = "energy",
-		place_result = "charging-rod",
+		place_result = "cerys-charging-rod",
 		default_import_location = "cerys",
 	}),
 	merge(data.raw.item["nuclear-fuel"], {

@@ -143,7 +143,7 @@ for name, entity in pairs(data.raw["lab"]) do
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
-	if name ~= "charging-rod" then
+	if name ~= "cerys-charging-rod" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end

@@ -128,7 +128,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "charging-rod",
+				recipe = "cerys-charging-rod",
 			},
 		},
 		prerequisites = { "cerys-science-pack" },

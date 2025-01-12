@@ -3,8 +3,8 @@ local merge = require("lib").merge
 data:extend({
 	merge(data.raw["lightning-attractor"]["lightning-rod"], {
 		type = "accumulator",
-		name = "charging-rod",
-		minable = { mining_time = 0.1, result = "charging-rod" },
+		name = "cerys-charging-rod",
+		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
 		collision_box = { { -0.65, -0.85 }, { 0.65, 0.85 } },
 		selection_box = { { -0.9, -1 }, { 0.9, 1 } },
 		-- range_elongation = 0,

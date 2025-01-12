@@ -65,7 +65,7 @@ script.on_event({
 		radiative_towers.register_heating_tower(entity)
 	end
 
-	if entity.name == "charging-rod" then
+	if entity.name == "cerys-charging-rod" then
 		if event.robot then
 			rods.robot_built_charging_rod(entity, event.tags or {})
 		else
@@ -73,7 +73,7 @@ script.on_event({
 		end
 	end
 
-	if entity.name == "entity-ghost" and entity.ghost_name == "charging-rod" then
+	if entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		rods.built_ghost_charging_rod(entity, entity.tags)
 	end
 

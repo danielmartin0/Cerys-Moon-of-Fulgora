@@ -1,5 +1,7 @@
 --== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. ==--
 
+-- TODO: Add recycling recipes for the Cerysian lab and science pack.
+
 local merge = require("lib").merge
 
 local cerys_lab = merge(data.raw.lab["lab"], {

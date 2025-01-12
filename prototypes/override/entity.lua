@@ -1,6 +1,6 @@
 table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 	type = "prototype",
-	string = "charging-rod",
+	string = "cerys-charging-rod",
 	priority_bonus = 250,
 })
 
