@@ -285,69 +285,111 @@ data:extend({
 		stack_size = 20,
 		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
 	},
-})
-
-local e1 = merge(data.raw.ammo["uranium-rounds-magazine"], {
-	name = "plutonium-rounds-magazine",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
-	icon_size = 64,
-	order = "a[basic-clips]-d[plutonium-rounds-magazine]",
-	default_import_location = "cerys",
-})
--- e1.pictures.layers[1].filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png"
-e1.pictures = {
-	layers = {
-		{
-			size = 64,
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
-			scale = 0.5,
-			mipmap_count = 4,
-		},
-		{
-			draw_as_light = true,
-			size = 64,
-			filename = "__base__/graphics/icons/uranium-rounds-magazine-light.png",
-			scale = 0.5,
-		},
-	},
-}
-e1.ammo_type.action.action_delivery.target_effects[2].damage.amount = 48
-
-local e2 = merge(data.raw.item["uranium-fuel-cell"], {
-	name = "mixed-oxide-fuel-cell",
-	fuel_category = "nuclear-mixed-oxide",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
-	pictures = {
-		layers = {
-			{
-				size = 64,
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
-				scale = 0.5,
-				mipmap_count = 4,
-			},
-			{
-				draw_as_light = true,
-				size = 64,
-				filename = "__base__/graphics/icons/uranium-fuel-cell-light.png",
-				scale = 0.5,
+	{
+		type = "ammo",
+		name = "plutonium-rounds-magazine",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
+		icon_size = 64,
+		pictures = {
+			layers = {
+				{
+					size = 64,
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
+					scale = 0.5,
+					mipmap_count = 4,
+				},
+				{
+					draw_as_light = true,
+					size = 64,
+					filename = "__base__/graphics/icons/uranium-rounds-magazine-light.png",
+					scale = 0.5,
+				},
 			},
 		},
+		ammo_category = "bullet",
+		ammo_type = {
+			action = {
+				type = "direct",
+				action_delivery = {
+					type = "instant",
+					source_effects = {
+						type = "create-explosion",
+						entity_name = "explosion-gunshot",
+					},
+					target_effects = {
+						{
+							type = "create-entity",
+							entity_name = "explosion-hit",
+							offsets = { { 0, 1 } },
+							offset_deviation = { { -0.5, -0.5 }, { 0.5, 0.5 } },
+						},
+						{
+							type = "damage",
+							damage = { amount = 48, type = "physical" },
+						},
+						{
+							type = "activate-impact",
+							deliver_category = "bullet",
+						},
+					},
+				},
+			},
+		},
+		magazine_size = 10,
+		subgroup = "ammo",
+		order = "a[basic-clips]-d[plutonium-rounds-magazine]",
+		inventory_move_sound = item_sounds.ammo_small_inventory_move,
+		pick_sound = item_sounds.ammo_small_inventory_pickup,
+		drop_sound = item_sounds.ammo_small_inventory_move,
+		stack_size = 100,
+		default_import_location = "cerys",
+		weight = 40 * 1000,
 	},
-	icon_size = 64,
-	subgroup = "plutonium-processing",
-	order = "b-d",
-	burnt_result = "depleted-mixed-oxide-fuel-cell",
-	fuel_value = "128GJ",
-	default_import_location = "cerys",
+	{
+		type = "item",
+		name = "mixed-oxide-fuel-cell",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
+		icon_size = 64,
+		pictures = {
+			layers = {
+				{
+					size = 64,
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
+					scale = 0.5,
+					mipmap_count = 4,
+				},
+				{
+					draw_as_light = true,
+					size = 64,
+					filename = "__base__/graphics/icons/uranium-fuel-cell-light.png",
+					scale = 0.5,
+				},
+			},
+		},
+		subgroup = "plutonium-processing",
+		order = "b-d",
+		inventory_move_sound = item_sounds.nuclear_inventory_move,
+		pick_sound = item_sounds.nuclear_inventory_pickup,
+		drop_sound = item_sounds.nuclear_inventory_move,
+		fuel_category = "nuclear-mixed-oxide",
+		burnt_result = "depleted-mixed-oxide-fuel-cell",
+		fuel_value = "128GJ",
+		stack_size = 50,
+		default_import_location = "cerys",
+		weight = 100 * 1000,
+	},
+	{
+		type = "item",
+		name = "depleted-mixed-oxide-fuel-cell",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/depleted-mixed-oxide-fuel-cell.png",
+		icon_size = 64,
+		subgroup = "plutonium-processing",
+		order = "b-e",
+		inventory_move_sound = item_sounds.nuclear_inventory_move,
+		pick_sound = item_sounds.nuclear_inventory_pickup,
+		drop_sound = item_sounds.nuclear_inventory_move,
+		stack_size = 50,
+		default_import_location = "cerys",
+		weight = 100 * 1000,
+	},
 })
-
-local e3 = merge(data.raw.item["depleted-uranium-fuel-cell"], {
-	name = "depleted-mixed-oxide-fuel-cell",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/depleted-mixed-oxide-fuel-cell.png",
-	icon_size = 64,
-	subgroup = "plutonium-processing",
-	order = "b-e",
-	default_import_location = "cerys",
-})
-
-data:extend({ e1, e2, e3 })
