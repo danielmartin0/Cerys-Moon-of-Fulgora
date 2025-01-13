@@ -38,7 +38,7 @@ local original_ice_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "oil-ocean-shallow" }, -- Added cerys-empty-space to the list
+		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -166,11 +166,59 @@ local cerys_shallow_water_collision_mask = { layers = {
 	cerys_water_tile = true,
 } }
 
---== Rock Ice ==--
+--== Rock & Rock Ice ==--
+
+local original_rock_transitions = {
+	{
+		to_tiles = water_tile_type_names,
+		transition_group = water_transition_group_id,
+
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			inner_corner_count = 8,
+			outer_corner_count = 8,
+			side_count = 8,
+			u_transition_count = 2,
+			o_transition_count = 1,
+		},
+	},
+	{
+		to_tiles = lava_tile_type_names,
+		transition_group = lava_transition_group_id,
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
+		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-lightmap.png" },
+		-- this added the lightmap spritesheet
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			inner_corner_count = 8,
+			outer_corner_count = 8,
+			side_count = 8,
+			u_transition_count = 2,
+			o_transition_count = 1,
+		},
+	},
+	{
+		to_tiles = { "out-of-map", "cerys-empty-space", "empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		transition_group = out_of_map_transition_group_id,
+
+		background_layer_offset = 1,
+		background_layer_group = "zero",
+		offset_background_layer_by_tile_layer = true,
+
+		spritesheet = "__space-age__/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png",
+		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
+		overlay_enabled = false,
+	},
+}
+
 local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
 	sprite_usage_surface = "nil",
 	collision_mask = cerys_ground_collision_mask,
 	subgroup = "cerys-tiles",
+	transitions = original_rock_transitions,
 })
 
 local lightmap_spritesheet = {
@@ -296,7 +344,7 @@ data:extend({
 	create_melting_variant("cerys-pumice-stones"),
 })
 
---== Water Ice ==--
+--== Water & Water Ice ==--
 
 local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",

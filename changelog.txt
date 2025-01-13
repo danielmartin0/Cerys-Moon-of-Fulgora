@@ -1,7 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.6
 Date: ????
-  Changes:
+  Balancing:
+    - Increased energy consumption of the Fulgoran cryogenic plant to match the Foundry.
+  Bugfixes:
+    - Fixed the locale entries for charging rods.
+  Graphics:
+    - Improvements to the pipe graphics for the Fulgoran cryogenic plant.
+    - Fixed tile transitions between Cerys rock and empty space.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.5
 Date: 2025-01-12

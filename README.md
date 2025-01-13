@@ -4,9 +4,9 @@
 
 # Cerys
 
-You discover Cerys, a moon of Fulgora whose ruins lie frozen under a thick layer of dry ice. As you touch down, methane ice crystals scatter into the airless atmosphere. Asteroids wander overhead, anlomg with a gentle solar wind under Fulgora’s magnetic influence.
+You discover Cerys, a moon of Fulgora whose ruins lie frozen under a thick layer of dry ice. As you touch down, methane ice crystals scatter into the vacuum. Asteroids wander overhead, along with a gentle solar wind under Fulgora’s magnetic influence.
 
-You glimpse many frozen structures lodged in the surface. Though made of new materials, they bear the hallmarks of the Fulgorans. As you explore, it becomes apparent that without lightning, they turned to another source of power.
+Many frozen structures lie embedded in the surface. Though made of new materials, they bear the hallmarks of the Fulgorans. As you explore, it becomes apparent that without lightning, they turned to another source of power.
 
 ![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/explore.png)
 
@@ -39,16 +39,17 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
 ## Notes
 
 - Rewards to the rest of the game are intentionally modest: venting and flaring towers, plutonium rocket fuel, plutonium portable reactor (made obsolete by Aquilo), plutonium ammo, and an infinite productivity technology.
-  - This is for easy gameplay compatibility with existing saves. Cerys is a largely self-contained experience.
-- Cerys contains a 2.0 port of GotLag’s [Flare Stack](https://mods.factorio.com/mod/Flare%20Stack) of higher quality than we could find. This is planned to be extracted into a separate mod.
-- We didn't originally set out to make a 'planet'. This mod grew out of roc experimenting with nuclear plant recycling chains after the release of [Hardcore Fulgora](https://mods.factorio.com/mod/Rocs-Hardcore-Fulgora).
+    - This is for easy gameplay compatibility with existing saves. Cerys is a largely self-contained experience. However, we will add more rewards in later updates.
+- This mod originally contained a revamp of [GotLag’s Flare Stack](https://mods.factorio.com/mods/GotLag/Flare%20Stack), but we then assisted snouz to port and improve the original for 2.0. With Cerys installed, flare stacks are unlocked on Cerys. Incinerators are also disabled by default, since Space Age has the recycler (but this can be reverted in the mod settings).
+- There isn't yet a good mod to allow players to freely return to their space platform (meaning Space Age planets act like a 'prison'). Since Cerys is a puzzle moon, this is not for everyone, and so mod settings are included to make certain puzzles easier.
+- We didn't originally set out to make a 'planet'. This mod grew out of roc experimenting with a recycling chain based on nuclear plant components after the release of [Hardcore Fulgora](https://mods.factorio.com/mod/Rocs-Hardcore-Fulgora).
 - More you’d like to see? Something you hate? Trying to get a Cerys megabase working? Let us know in Discussion or [Discord](https://discord.gg/VuVhYUBbWE).
 
 ---
 
 ### Localization
 
-- English, Chinese, Russian, French.
+- English, Chinese, Ukrainian, French, Korean, Russian.
 - To help translate more languages, submit a pull request on Github (but please play the game first to get context.)
 
 ---
@@ -56,14 +57,25 @@ You glimpse many frozen structures lodged in the surface. Though made of new mat
 ### Credits
 
 - Gameplay and code by [thesixthroc](https://mods.factorio.com/user/thesixthroc).
-    - Opening PRs is welcome on Github if there's something you'd like to see changed.
+    - Opening PRs is welcome on Github if you'd like to collaborate to make this mod better, or feel free to reach out with your ideas. I also encourage people maintaining compatibility mods.
     - If you’d like to discuss game design, [https://www.patreon.com/thesixthroc](https://www.patreon.com/thesixthroc) gives a channel for that on [Discord](https://discord.gg/VuVhYUBbWE).
 - Art by [Tserup](https://mods.factorio.com/user/Tserup).
 - Special thanks:
-    - snooz for the scrap recycling technology icon
-    - notnotmelon for a bugfix and teaching the ways of image compression
-    - rjdunlap, xbarsigma, Preceti, notnotmleon, NekoBaron and others for feedback and discussion
+    - Quezler and notnotmelon for contributing bugfixes and code improvements
+    - rjdunlap, xbarsigma, Preceti, notnotmelon, NekoBaron and others for feedback and discussion
+    - snouz for contributing many icon graphics
+    - LunarNex for helpful feedback on the plutonium generation gameplay
 - Some assets are adapted from open-source materials. See Credits.md for details.
+
+---
+
+### See also
+
+We recommend these modpacks which include Cerys.
+
+- [Snouztorio](https://mods.factorio.com/mod/snouz-snouztorio).
+    - Snouz even provided extra polish to Cerys making his modpack better. Thanks Snouz!
+- [Starmap: Nexuz](https://mods.factorio.com/mod/Starmap_Nexuz)
 
 ---
 

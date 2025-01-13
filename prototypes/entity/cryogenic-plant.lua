@@ -18,6 +18,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	},
 	module_slots = 9,
 	crafting_speed = 1.25,
+	energy_usage = "2500kW",
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	minable = { mining_time = 1, result = "cerys-fulgoran-cryogenic-plant" },
@@ -35,7 +36,7 @@ cryo_plant.graphics_set = {
 		layers = {
 			{
 				animation_speed = 0.5,
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-main.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-main-no-pipes.png",
 				frame_count = 1,
 				repeat_count = 192,
 				height = 864,
@@ -135,6 +136,55 @@ cryo_plant.graphics_set = {
 	},
 }
 
+local pipe_picture = {
+	north = {
+		layers = {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-1", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { 0, 3 },
+			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-2", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { 0, 3 },
+			}),
+		},
+	},
+	east = {
+		layers = {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-h", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { -3, 0 },
+			}),
+		},
+	},
+	south = {
+		layers = {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-1", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { 0, -3 },
+			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-2", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { 0, -3 },
+			}),
+		},
+	},
+	west = {
+		layers = {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-h", {
+				priority = "extra-high",
+				scale = 0.252,
+				shift = { 3, 0 },
+			}),
+		},
+	},
+}
+
 -- TODO: Adjust to our pipe graphics
 cryo_plant.fluid_boxes = {
 	{
@@ -145,10 +195,9 @@ cryo_plant.fluid_boxes = {
 	},
 	{
 		production_type = "input",
-		pipe_picture = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
-		pipe_picture_frozen = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
-		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		pipe_covers = pipecoverspictures(),
+		pipe_picture = pipe_picture,
+		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 1000,
 		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } },
 	},
@@ -166,12 +215,12 @@ cryo_plant.fluid_boxes = {
 	},
 	{
 		production_type = "output",
-		pipe_picture = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
-		pipe_picture_frozen = require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
-		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		pipe_covers = pipecoverspictures(),
+		pipe_picture = pipe_picture,
+		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 100,
 		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 0, -2 } } },
+		render_layer = "object-under",
 	},
 	{
 		production_type = "output",
@@ -180,6 +229,52 @@ cryo_plant.fluid_boxes = {
 		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 2, -2 } } },
 	},
 }
+
+-- fluid_boxes =
+--     {
+--       {
+--         production_type = "input",
+--         pipe_covers = pipecoverspictures(),
+--         volume = 1000,
+--         pipe_connections = {{ flow_direction="input", direction = defines.direction.south, position = {-2, 2} }}
+--       },
+--       {
+--         production_type = "input",
+--         pipe_picture =  require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
+--         pipe_picture_frozen =  require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
+--         always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
+--         pipe_covers = pipecoverspictures(),
+--         volume = 1000,
+--         pipe_connections = {{ flow_direction="input", direction = defines.direction.south, position = {0, 2} }}
+--       },
+--       {
+--         production_type = "input",
+--         pipe_covers = pipecoverspictures(),
+--         volume = 1000,
+--         pipe_connections = {{ flow_direction="input", direction = defines.direction.south, position = {2, 2} }}
+--       },
+--       {
+--         production_type = "output",
+--         pipe_covers = pipecoverspictures(),
+--         volume = 100,
+--         pipe_connections = {{ flow_direction="output", direction = defines.direction.north, position = {-2, -2} }}
+--       },
+--       {
+--         production_type = "output",
+--         pipe_picture =  require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture,
+--         pipe_picture_frozen =  require("__space-age__.prototypes.entity.cryogenic-plant-pictures").pipe_picture_frozen,
+--         always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
+--         pipe_covers = pipecoverspictures(),
+--         volume = 100,
+--         pipe_connections = {{ flow_direction="output", direction = defines.direction.north, position = {0, -2} }}
+--       },
+--       {
+--         production_type = "output",
+--         pipe_covers = pipecoverspictures(),
+--         volume = 100,
+--         pipe_connections = {{ flow_direction="output", direction = defines.direction.north, position = {2, -2} }}
+--       }
+--     }
 
 local wreck = merge(cryo_plant, {
 	name = "cerys-fulgoran-cryogenic-plant-wreck",
