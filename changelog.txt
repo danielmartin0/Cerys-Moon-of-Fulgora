@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.6
-Date: ????
+Date: 2025-01-13
   Balancing:
     - Increased energy consumption of the Fulgoran cryogenic plant to match the Foundry.
   Bugfixes:
