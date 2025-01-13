@@ -338,6 +338,7 @@ function Public.create_lithium_brine(surface, area)
 		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 11, 1)
 
 		if position then
+			log("creating lithium brine at " .. position.x .. ", " .. position.y)
 			surface.create_entity({
 				name = "lithium-brine",
 				position = position,

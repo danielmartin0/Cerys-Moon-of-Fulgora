@@ -1,6 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.7
 Date: ????
+  Bugfixes:
+    - Fixed that lithium brine sometimes spawned inside tower-heated areas, breaking the reactor gameplay. Old saves with this issue are automatically fixed when 0.9.7 is installed.
+    - Fixed that it was possible on Cerys to build non-Cerys reactors and labs dropped by space platforms.
   Info:
     - Updated image for the mod portal.
 ---------------------------------------------------------------------------------------------------

@@ -133,12 +133,12 @@ local magnetic_field_restriction = {
 }
 
 for name, entity in pairs(data.raw["reactor"]) do
-	if not string.sub(name, 1, 6) == "cerys-" then
+	if string.sub(name, 1, 6) ~= "cerys-" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["lab"]) do
-	if not string.sub(name, 1, 6) == "cerys-" then
+	if string.sub(name, 1, 6) ~= "cerys-" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
