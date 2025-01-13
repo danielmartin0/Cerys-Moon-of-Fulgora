@@ -32,7 +32,7 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 - _"one of the best mods ever made. every recipe has a purpose. does not waste your time."_ — notnotmelon (creator of Maraxsis)
 - _"Extremely impressed at how several space age systems work together"_ — PlzPuddingPlz
 
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing.png)
+![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing-and-factory.png)
 
 ---
 
