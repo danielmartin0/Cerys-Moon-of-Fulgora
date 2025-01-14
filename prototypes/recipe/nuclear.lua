@@ -4,7 +4,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "mixed-oxide-fuel-cell",
-		category = "crafting-or-fulgoran-cryogenics",
+		category = "crafting",
 		always_show_made_in = true,
 		energy_required = 10,
 		enabled = false,
@@ -80,7 +80,7 @@ data:extend({
 
 	merge(data.raw.recipe["sulfuric-acid"], {
 		name = "mixed-oxide-cell-reprocessing",
-		category = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
+		category = "chemistry",
 		always_show_made_in = true,
 		enabled = false,
 		icons = {
