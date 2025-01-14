@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.10
-Date: ????
+Date: 2025-01-14
   Balancing:
     - Mixed oxide fuel cell reprocessing and crafting can both no longer be performed in Fulgoran cryogenic plants, as the number of module slots meant the loop was too positive.
 ---------------------------------------------------------------------------------------------------
