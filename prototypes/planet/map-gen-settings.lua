@@ -5,6 +5,11 @@ planet_map_gen.cerys = function()
 		width = 32 * 30,
 		height = 32 * 30,
 		cliff_settings = nil,
+		autoplace_controls = {
+			["cerys_nitrogen_rich_minerals"] = {},
+			["cerys_methane_ice"] = {},
+			["cerys_nuclear_scrap"] = {},
+		},
 		autoplace_settings = {
 			["tile"] = {
 				treat_missing_as_default = false,
@@ -58,5 +63,41 @@ planet_map_gen.cerys = function()
 		},
 	}
 end
+
+data:extend({
+	{
+		type = "autoplace-control",
+		name = "cerys_nuclear_scrap",
+		localised_name = {
+			"",
+			"[entity=cerys-nuclear-scrap] ",
+			{ "entity-name.cerys-nuclear-scrap" },
+		},
+		order = "r-a",
+		category = "resource",
+	},
+	{
+		type = "autoplace-control",
+		name = "cerys_methane_ice",
+		localised_name = {
+			"",
+			"[entity=methane-ice] ",
+			{ "entity-name.methane-ice" },
+		},
+		order = "r-b",
+		category = "resource",
+	},
+	{
+		type = "autoplace-control",
+		name = "cerys_nitrogen_rich_minerals",
+		localised_name = {
+			"",
+			"[entity=cerys-nitrogen-rich-minerals] ",
+			{ "entity-name.cerys-nitrogen-rich-minerals" },
+		},
+		order = "r-c",
+		category = "resource",
+	},
+})
 
 return planet_map_gen
