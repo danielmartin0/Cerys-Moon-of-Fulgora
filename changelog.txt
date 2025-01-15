@@ -136,7 +136,7 @@ Date: 2025-01-10
 Version: 0.8.10
 Date: 2025-01-10
   Locale:
-    - Ukranian localization.
+    - Updated Ukrainian localization.
   Balancing:
     - Sulfuric acid required for nitrogen-rich minerals processing recipe very slightly increased.
     - Exoskeletons can no longer be recycled on Cerys.
