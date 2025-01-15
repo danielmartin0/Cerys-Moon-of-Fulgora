@@ -13,8 +13,7 @@
         "PlanetsLib >= 1.1.11",
         "Flare Stack >= 3.0.3",
         "? Tiered-Solar-System",
-        "? visible-planets >= 1.2.11",
-        "? cerys-lunaponics"
+        "? visible-planets >= 1.2.11"
     ],
     "package": {
         "scripts": {
