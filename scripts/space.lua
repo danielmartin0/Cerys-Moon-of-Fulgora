@@ -60,7 +60,7 @@ end
 function Public.spawn_solar_wind_particle(surface)
 	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
 
-	local x = -(common.MOON_RADIUS + 150)
+	local x = -(common.MOON_RADIUS + math.random(60, 70))
 
 	-- local e = surface.create_entity({
 	-- 	name = "cerys-solar-wind-particle",
