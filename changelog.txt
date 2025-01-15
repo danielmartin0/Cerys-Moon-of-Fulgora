@@ -2,10 +2,13 @@
 Version: 0.9.15
 Date: ????
   Changes:
+    - Changelog fix.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.14
 Date: 2025-01-15
-  Changes:
+  Optimizations:
+    - Further performance improvement to solar wind.
+    - Added a setting to control the spawn rate of solar wind particles, if all else fails on slower PCs. Note this performance concern is only relevant if a player is looking at the Cerys surface. Solar wind is already heavily optimized if Cerys is running with nobody looking at it.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.13
 Date: 2025-01-15
