@@ -7,6 +7,7 @@ local reactor = {
 	name = "cerys-fulgoran-radiative-tower",
 	subgroup = "cerys-entities",
 	order = "a",
+	-- The 'player-creation' flag is needed for undocumented reasons: if not set, players cannot drop fuel into this reactor using 'z'.
 	flags = { "placeable-neutral", "not-deconstructable", "not-blueprintable", "not-flammable", "player-creation" },
 	max_health = 500,
 	corpse = "heating-tower-remnants",
