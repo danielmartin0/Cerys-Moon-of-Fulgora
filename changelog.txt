@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.19
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that it was impossible to drop solid fuel into radiative towers (using 'z'.)
+    - Fixed that ice could melt in an unusual order if lots of ice was melting at once.
+  Optimizations:
+    - Performance improvement to melting ice.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.18
 Date: 2025-01-17

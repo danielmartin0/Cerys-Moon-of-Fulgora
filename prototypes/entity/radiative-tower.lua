@@ -7,7 +7,7 @@ local reactor = {
 	name = "cerys-fulgoran-radiative-tower",
 	subgroup = "cerys-entities",
 	order = "a",
-	flags = { "placeable-neutral", "not-deconstructable", "not-blueprintable", "not-flammable" },
+	flags = { "placeable-neutral", "not-deconstructable", "not-blueprintable", "not-flammable", "player-creation" },
 	max_health = 500,
 	corpse = "heating-tower-remnants",
 	dying_explosion = "heating-tower-explosion",
@@ -17,12 +17,19 @@ local reactor = {
 	damaged_trigger_effect = hit_effects.entity(),
 	drawing_box_vertical_extension = 3,
 	consumption = "700kW",
-	energy_source = merge(data.raw.reactor["heating-tower"].energy_source, {
+	energy_source = {
+		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
+		emissions_per_minute = { pollution = 10 },
 		effectivity = 0.54,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
-	}),
+		light_flicker = {
+			color = { 0, 0, 0 },
+			minimum_intensity = 0.7,
+			maximum_intensity = 0.95,
+		},
+	},
 	heat_buffer = {
 		max_temperature = 200,
 		specific_heat = "70kJ",

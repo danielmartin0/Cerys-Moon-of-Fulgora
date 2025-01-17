@@ -216,7 +216,6 @@ local original_rock_transitions = {
 
 local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
 	sprite_usage_surface = "nil",
-	collision_mask = cerys_ground_collision_mask,
 	subgroup = "cerys-tiles",
 	transitions = original_rock_transitions,
 })
@@ -295,6 +294,7 @@ local function create_base_tile(name)
 			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. ".png",
 			lightmap_spritesheet
 		),
+		collision_mask = cerys_ground_collision_mask,
 	})
 end
 
@@ -311,6 +311,7 @@ local function create_frozen_variant(name)
 			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png",
 			lightmap_spritesheet
 		),
+		collision_mask = cerys_ground_collision_mask,
 	})
 end
 
@@ -319,6 +320,11 @@ local function create_melting_variant(name)
 	return merge(frozen_variant, {
 		name = frozen_variant.name .. "-from-dry-ice",
 		thawed_variant = "nil",
+		collision_mask = merge(cerys_ground_collision_mask, {
+			layers = merge((cerys_ground_collision_mask.layers or {}), {
+				cerys_needs_meltfreeze_processing = true,
+			}),
+		}),
 	})
 end
 
@@ -349,7 +355,6 @@ data:extend({
 local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
 	subgroup = "cerys-tiles",
-	collision_mask = cerys_shallow_water_collision_mask,
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
@@ -363,17 +368,22 @@ data:extend({
 		autoplace = {
 			probability_expression = "0",
 		},
+		collision_mask = cerys_shallow_water_collision_mask,
 	}),
 	merge(cerys_brash_ice_base, {
 		name = "cerys-water-puddles-freezing",
 		thawed_variant = "cerys-water-puddles",
+		collision_mask = merge(cerys_shallow_water_collision_mask, {
+			layers = merge(cerys_shallow_water_collision_mask.layers, {
+				cerys_needs_meltfreeze_processing = true,
+			}),
+		}),
 	}),
 })
 
 local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	transitions = water_ice_transitions,
 	transitions_between_transitions = water_ice_transitions_between_transitions,
-	collision_mask = cerys_ground_collision_mask,
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
 })
@@ -385,11 +395,17 @@ data:extend({
 		autoplace = {
 			probability_expression = "min(0, 1000000 * cerys_surface) + 100 * cerys_water",
 		},
+		collision_mask = cerys_ground_collision_mask,
 	}),
 	merge(cerys_ice_on_water_base, {
 		name = "cerys-ice-on-water-melting",
 		frozen_variant = "cerys-ice-on-water",
 		autoplace = "nil",
+		collision_mask = merge(cerys_ground_collision_mask, {
+			layers = merge(cerys_ground_collision_mask.layers, {
+				cerys_needs_meltfreeze_processing = true,
+			}),
+		}),
 	}),
 })
 
@@ -470,7 +486,6 @@ local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
 	subgroup = "cerys-tiles",
 	transitions = dry_ice_transitions,
 	transitions_between_transitions = dry_ice_transitions_between_transitions,
-	collision_mask = cerys_ground_collision_mask,
 	autoplace = "nil",
 	variants = dry_ice_rough_variants,
 	sprite_usage_surface = "nil",
@@ -482,10 +497,16 @@ data:extend({
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water",
 		thawed_variant = "cerys-dry-ice-on-water-melting",
+		collision_mask = cerys_ground_collision_mask,
 	}),
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water-melting",
 		frozen_variant = "cerys-dry-ice-on-water",
+		collision_mask = merge(cerys_ground_collision_mask, {
+			layers = merge(cerys_ground_collision_mask.layers, {
+				cerys_needs_meltfreeze_processing = true,
+			}),
+		}),
 	}),
 })
 
@@ -564,7 +585,6 @@ local cerys_dry_ice_rough_land_base = merge(data.raw.tile["ice-rough"], {
 	subgroup = "cerys-tiles",
 	transitions = dry_ice_transitions,
 	transitions_between_transitions = dry_ice_transitions_between_transitions,
-	collision_mask = cerys_ground_collision_mask,
 	autoplace = "nil",
 	variants = dry_ice_rough_land_variants,
 	sprite_usage_surface = "nil",
@@ -576,10 +596,16 @@ data:extend({
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land",
 		thawed_variant = "cerys-dry-ice-on-land-melting",
+		collision_mask = cerys_ground_collision_mask,
 	}),
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land-melting",
 		frozen_variant = "cerys-dry-ice-on-land",
+		collision_mask = merge(cerys_ground_collision_mask, {
+			layers = merge(cerys_ground_collision_mask.layers, {
+				cerys_needs_meltfreeze_processing = true,
+			}),
+		}),
 	}),
 })
 
