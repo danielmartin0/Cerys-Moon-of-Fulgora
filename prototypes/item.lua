@@ -35,6 +35,7 @@ data:extend({
 		pick_sound = item_sounds.repair_pack_inventory_pickup,
 		drop_sound = item_sounds.repair_pack_inventory_move,
 		stack_size = 1,
+		weight = 10 * 1000,
 	},
 	merge(data.raw.item["lightning-rod"], {
 		name = "cerys-charging-rod",

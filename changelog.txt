@@ -2,6 +2,7 @@
 Version: 0.9.25
 Date: ????
   Changes:
+    - Space platform foundation can now be crafted on Cerys (but still cannot be placed.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.24
 Date: 2025-01-18

@@ -61,11 +61,6 @@ override_surface_conditions(data.raw.recipe["rocket-fuel"], {
 	min = 255,
 })
 
-override_surface_conditions(data.raw.recipe["space-platform-foundation"], {
-	property = "magnetic-field",
-	max = 119,
-})
-
 --== Forbid recycling certain items on Cerys ==--
 
 local magnetic_field_restriction = {
