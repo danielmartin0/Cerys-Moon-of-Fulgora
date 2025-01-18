@@ -180,6 +180,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 	},
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png", -- Since lab research productivity reads this icon
 	icon_size = 64,
+	fast_replaceable_group = "nil",
 })
 
 data:extend({
