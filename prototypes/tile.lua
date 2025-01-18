@@ -38,7 +38,7 @@ local original_ice_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space-2", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "cerys-empty-space-2", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -201,7 +201,7 @@ local original_rock_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "cerys-empty-space-2", "empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = { "out-of-map", "cerys-empty-space", "cerys-empty-space-2", "empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -595,9 +595,20 @@ if not cerys_concrete.collision_mask then
 end
 cerys_concrete.collision_mask.layers.cerys_tile = true
 
+local cerys_empty = merge(data.raw.tile["empty-space"], {
+	subgroup = "cerys-tiles",
+	name = "cerys-empty-space", -- Legacy tile. No longer created, but exists in old saves.
+	destroys_dropped_items = true,
+})
+if not cerys_empty.collision_mask then
+	cerys_empty.collision_mask = { layers = {} }
+end
+cerys_empty.collision_mask.layers.cerys_tile = true
+table.insert(out_of_map_tile_type_names, "cerys-empty-space")
+
 local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space-2", -- cerys-empty-space is used in some old saves, but this is a different tile
+	name = "cerys-empty-space-2",
 	destroys_dropped_items = true,
 	collision_mask = {
 		colliding_with_tiles_only = true,
@@ -609,5 +620,6 @@ table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
 data:extend({
 	cerys_concrete,
+	cerys_empty,
 	cerys_empty_2,
 })
