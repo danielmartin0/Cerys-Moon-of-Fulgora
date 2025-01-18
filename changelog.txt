@@ -2,6 +2,7 @@
 Version: 0.9.24
 Date: ????
   Changes:
+    - Improved feedback from the recipe Upgrade Fulgoran cryogenic plant quality. When the recipe is selected with the wrong quality, the quality of the recipe will be adjusted automatically.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.23
 Date: 2025-01-18
