@@ -45,7 +45,6 @@ function Public.tick_ice(surface)
 		name = TRANSITION_TILE_NAMES,
 		position = { x = 0, y = 0 },
 		radius = common.MOON_RADIUS * 1.1,
-		limit = 200,
 	})
 
 	if #transitioning_tiles > 0 then
