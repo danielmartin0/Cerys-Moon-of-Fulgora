@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.21
-Date: ????
+Date: 2025-01-18
   Changes:
     - Re-removed the limitation on requesting a maximum of 200 ice tiles to transition at once, since this will be unrelated to the reported bug. This fixes ice melting in an unusual order.
 ---------------------------------------------------------------------------------------------------
