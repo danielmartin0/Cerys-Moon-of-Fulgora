@@ -133,6 +133,14 @@ function Public.run_migrations()
 		end
 	end
 
+	if lib.is_newer_version(last_seen_version, "1.0.0") then
+		for _, rod in pairs(storage.cerys.charging_rods) do
+			if rod.red_light_rendering and rod.red_light_rendering.valid then
+				rod.red_light_rendering.destroy()
+			end
+		end
+	end
+
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 

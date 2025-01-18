@@ -19,9 +19,9 @@ local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 10000
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 1,
 	["medium-metallic-asteroid-planetary"] = 1,
-	["small-carbonic-asteroid-planetary"] = 4,
+	["small-carbonic-asteroid-planetary"] = 5,
 	["medium-carbonic-asteroid-planetary"] = 2,
-	["small-oxide-asteroid-planetary"] = 4,
+	["small-oxide-asteroid-planetary"] = 3,
 	["medium-oxide-asteroid-planetary"] = 2,
 }
 

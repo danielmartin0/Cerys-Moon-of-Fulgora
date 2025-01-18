@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.9.32
+Version: 1.0.0
 Date: ????
+  Features:
+    - The Hydrogen bomb, a powerful upgrade of Atomic bomb rocketry.
+    - The Neutron bomb, an artillery shell releasing a scattering cloud of neutrons.
+    - The mixed-oxide nuclear reactor, usable outside of Cerys.
   Changes:
+    - Tech tree tweaks.
+    - Nuclear weaponry can no longer permanently change ground tiles on Cerys.
+  Balancing:
+    - Hitbox of radiation slightly reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: 2025-01-19

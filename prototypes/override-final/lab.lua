@@ -1,4 +1,4 @@
---== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. ==--
+--== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. It is fine for other mods to modify these if they do so mindfully. ==--
 
 -- TODO: Add recycling recipes for the Cerysian lab and science pack.
 
@@ -11,7 +11,8 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 		"logistic-science-pack",
 		"cerys-science-pack",
 		"utility-science-pack",
-	}, -- Also changed in data-final-fixes
+		"military-science-pack",
+	}, -- Also set elsewhere
 	collision_box = { { -2.15, -1.75 }, { 2.15, 1.75 } },
 	selection_box = { { -2.5, -2 }, { 2.5, 2 } },
 	minable = { mining_time = 0.2, result = "cerys-lab" },

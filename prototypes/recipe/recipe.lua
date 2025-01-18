@@ -1,6 +1,32 @@
 data:extend({
 	{
 		type = "recipe",
+		name = "cerys-hydrogen-bomb",
+		enabled = false,
+		energy_required = 50,
+		ingredients = {
+			{ type = "item", name = "atomic-bomb", amount = 1 },
+			{ type = "item", name = "plutonium-239", amount = 100 },
+			{ type = "item", name = "lithium", amount = 10 },
+		},
+		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
+	},
+	{
+		type = "recipe",
+		name = "cerys-neutron-bomb",
+		enabled = false,
+		energy_required = 15,
+		ingredients = {
+			{ type = "item", name = "artillery-shell", amount = 1 },
+			{ type = "item", name = "lithium", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 10 },
+			{ type = "item", name = "plutonium-239", amount = 5 },
+		},
+		results = { { type = "item", name = "cerys-neutron-bomb", amount = 1 } },
+	},
+
+	{
+		type = "recipe",
 		name = "plutonium-239",
 		category = "no-machine",
 		enabled = false,
