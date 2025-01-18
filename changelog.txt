@@ -2,6 +2,11 @@
 Version: 0.9.22
 Date: ????
   Changes:
+    - Defrosting water puddles no longer destroy offshore pumps.
+  Balancing:
+    - Adjusted the recipe for processing units from nitric acid to use the same amount of nitric acid as sulfuric acid used in the vanilla recipe.
+  Bugfixes:
+    - On new saves, fixed that space platform foundations could be placed around Cerys, which caused problems with asteroid gameplay and other areas. Since Factorio cannot handle migrating tiles that contain covering tiles which would now collide, old saves are migrated to have Cerys surrounded by the empty-space tile.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.21
 Date: 2025-01-18

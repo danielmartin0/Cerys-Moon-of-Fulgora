@@ -27,7 +27,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 20 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = "nitric-acid", amount = 15 },
+			{ type = "fluid", name = "nitric-acid", amount = 5 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
