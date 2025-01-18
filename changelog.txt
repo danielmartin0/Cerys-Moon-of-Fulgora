@@ -2,6 +2,7 @@
 Version: 0.9.20
 Date: ????
   Changes:
+    - Revert melting ice changes due to reports of bugs I can't reproduce.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.19
 Date: 2025-01-17
