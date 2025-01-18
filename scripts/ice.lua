@@ -2,7 +2,7 @@ local common = require("common")
 
 local Public = {}
 
-local TILES_TO_TRANSITION = {
+local TILE_TRANSITIONS = {
 	["cerys-water-puddles-freezing"] = "cerys-ice-on-water",
 	["cerys-ice-on-water-melting"] = "cerys-water-puddles",
 	-- ["nuclear-scrap-under-ice-melting"] = "ice-supporting-nuclear-scrap",
@@ -28,6 +28,11 @@ local HIDDEN_TILE_TO_MELTING_TILE = {
 
 Public.ICE_CHECK_INTERVAL = 80
 
+local TRANSITION_TILE_NAMES = {}
+for source_tile, _ in pairs(TILE_TRANSITIONS) do
+	table.insert(TRANSITION_TILE_NAMES, source_tile)
+end
+
 function Public.tick_ice(surface)
 	if not storage.transitioning_tiles then
 		storage.transitioning_tiles = {}
@@ -37,9 +42,10 @@ function Public.tick_ice(surface)
 	end
 
 	local transitioning_tiles = surface.find_tiles_filtered({
-		collision_mask = "cerys_needs_meltfreeze_processing",
+		name = TRANSITION_TILE_NAMES,
 		position = { x = 0, y = 0 },
 		radius = common.MOON_RADIUS * 1.1,
+		limit = 200,
 	})
 
 	if #transitioning_tiles > 0 then
@@ -67,9 +73,9 @@ function Public.process_transitions(surface, transitioning_tiles, interval)
 			and (game.tick - last_observed_tick >= interval)
 			and (game.tick - last_observed_tick < interval * 2)
 		then
-			if TILES_TO_TRANSITION[tile.name] and TILES_TO_TRANSITION[tile.name] ~= "nil" then
+			if TILE_TRANSITIONS[tile.name] and TILE_TRANSITIONS[tile.name] ~= "nil" then
 				tiles_to_set[#tiles_to_set + 1] = {
-					name = TILES_TO_TRANSITION[tile.name],
+					name = TILE_TRANSITIONS[tile.name],
 					position = pos,
 				}
 			end
