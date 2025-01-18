@@ -181,8 +181,10 @@ for _, entity in pairs(data.raw["offshore-pump"]) do
 	end
 end
 
-for _, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
+for key, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
 	if mask.layers and mask.layers.water_tile then
-		mask.layers.cerys_water_tile = true
+		local new_mask = util.table.deepcopy(mask)
+		new_mask.layers.cerys_water_tile = true
+		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
 	end
 end

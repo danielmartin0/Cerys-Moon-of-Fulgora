@@ -80,7 +80,7 @@ data:extend({
 
 	merge(data.raw.recipe["sulfuric-acid"], {
 		name = "mixed-oxide-cell-reprocessing",
-		category = "chemistry",
+		category = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		always_show_made_in = true,
 		enabled = false,
 		icons = {
@@ -110,10 +110,10 @@ data:extend({
 		main_product = "",
 		ingredients = {
 			{ type = "item", name = "depleted-mixed-oxide-fuel-cell", amount = 1 },
-			{ type = "fluid", name = "nitric-acid", amount = 40 },
+			{ type = "fluid", name = "nitric-acid", amount = 20 },
 		},
 		results = {
-			{ type = "fluid", name = "nuclear-waste-solution", amount = 40 },
+			{ type = "fluid", name = "nuclear-waste-solution", amount = 20 },
 		},
 		allow_decomposition = false,
 		allow_productivity = true, -- Partial opt-out of plutonium gameplay

@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.23
 Date: ????
-  Changes:
+  Balancing:
+    - Fulgoran cryogenic plants can now once again process nuclear waste solution, but the mixed-oxide fuel cell reprocessing loop has been nerfed to compensate.
+  Modding:
+    - Fulgoran cryogenic plants can now be placed in the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.22
 Date: 2025-01-18
