@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.26
-Date: ????
+Date: 2025-01-18
   Bugfixes:
     - Reinstated the tile `cerys-empty-space`. Saves with this title will no longer be migrated to `empty-space`. Although cerys-empty-space does not have the desired properties, migrating to `empty-space` was problematic because some bases relied on voiding items by dropping onto empty space with an inserter.
 ---------------------------------------------------------------------------------------------------
