@@ -2,6 +2,7 @@
 Version: 0.9.29
 Date: ????
   Changes:
+    - Replaced the outdated in-game mod description.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.28
 Date: 2025-01-19
