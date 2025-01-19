@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
-Date: ????
+Date: 2025-01-19
   Balancing:
     - Partially reverted the science cost of Cerys cargo drops from 500 to 1000.
   Modding:
