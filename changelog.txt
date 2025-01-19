@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: ????
-  Changes:
+  Balancing:
+    - Partially reverted the science cost of Cerys cargo drops from 500 to 1000.
+  Modding:
+    - Oxygen=0 on Cerys for compatibility with Mulana, etc.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.30
 Date: 2025-01-19
