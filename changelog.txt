@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.27
-Date: ????
+Date: 2025-01-19
   Modding:
     - Added Planet Hopper as an optional dependency. Although there is no specific compatibility, players may like to use Planet hoppers to pause gameplay on Cerys and resume later.
 ---------------------------------------------------------------------------------------------------
