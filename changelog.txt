@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.27
 Date: ????
-  Changes:
+  Modding:
+    - Added Planet Hopper as an optional dependency. Although there is no specific compatibility, players may like to use Planet hoppers to pause gameplay on Cerys and resume later.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.26
 Date: 2025-01-18
   Bugfixes:
-    - Reinstated the tile `cerys-empty-space`. Saves with this title will no longer be migrated to `empty-space`. Although cerys-empty-space does not have the desired properties, migrating to `empty-space` was problematic because some bases relied on voiding items by dropping onto empty space with an inserter.
+    - Reinstated the tile cerys-empty-space. Although this tile does not have the desired properties, migrating it to empty-space was problematic because some bases relied on voiding items by dropping onto empty space with an inserter. cerys-empty-space is left as a legacy tile, whilst new saves will use cerys-empty-space-2.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.25
 Date: 2025-01-18
