@@ -223,8 +223,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 45 }, -- 1 iron => 50 sulfuric acid.
-			{ type = "fluid", name = "water", amount = 35 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 40 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "water", amount = 40 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },
