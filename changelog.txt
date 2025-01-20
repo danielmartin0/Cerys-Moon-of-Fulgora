@@ -10,8 +10,6 @@ Date: ????
   Changes:
     - Tech tree tweaks.
     - Nuclear weaponry can no longer permanently change ground tiles on Cerys.
-  Balancing:
-    - Hitbox of radiation slightly reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: 2025-01-19
