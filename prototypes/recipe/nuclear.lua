@@ -3,13 +3,29 @@ local merge = require("lib").merge
 data:extend({
 	{
 		type = "recipe",
+		name = "cerys-mixed-oxide-reactor",
+		category = "crafting",
+		energy_required = 10,
+		enabled = false,
+		ingredients = {
+			{ type = "item", name = "refined-concrete", amount = 500 },
+			{ type = "item", name = "steel-plate", amount = 500 },
+			{ type = "item", name = "processing-unit", amount = 500 },
+			{ type = "item", name = "lithium-plate", amount = 500 },
+		},
+		results = { { type = "item", name = "cerys-mixed-oxide-reactor", amount = 1 } },
+		requester_paste_multiplier = 1,
+	},
+
+	{
+		type = "recipe",
 		name = "mixed-oxide-fuel-cell",
 		category = "crafting",
 		always_show_made_in = true,
 		energy_required = 10,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 3 },
+			{ type = "item", name = "steel-plate", amount = 5 },
 			{ type = "item", name = "uranium-235", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 9 },
@@ -150,4 +166,28 @@ data:extend({
 		results = { { type = "item", name = "plutonium-fuel", amount = 1 } },
 		allow_productivity = true,
 	},
+
+	-- {
+	-- 	type = "recipe",
+	-- 	name = "plutonium-cannon-shell",
+	-- 	enabled = false,
+	-- 	energy_required = 12,
+	-- 	ingredients = {
+	-- 		{ type = "item", name = "uranium-cannon-shell", amount = 1 },
+	-- 		{ type = "item", name = "plutonium-238", amount = 1 },
+	-- 	},
+	-- 	results = { { type = "item", name = "plutonium-cannon-shell", amount = 1 } },
+	-- },
+
+	-- {
+	-- 	type = "recipe",
+	-- 	name = "explosive-plutonium-cannon-shell",
+	-- 	enabled = false,
+	-- 	energy_required = 12,
+	-- 	ingredients = {
+	-- 		{ type = "item", name = "explosive-uranium-cannon-shell", amount = 1 },
+	-- 		{ type = "item", name = "plutonium-238", amount = 1 },
+	-- 	},
+	-- 	results = { { type = "item", name = "explosive-plutonium-cannon-shell", amount = 1 } },
+	-- },
 })

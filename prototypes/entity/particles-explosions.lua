@@ -1,3 +1,5 @@
+local sounds = require("__base__.prototypes.entity.sounds")
+
 local function sound_variations_with_volume_variations(
 	filename_string,
 	variations,
@@ -65,8 +67,7 @@ data:extend({
 		render_layer_when_on_ground = "corpse",
 		regular_trigger_effect_frequency = 2,
 		pictures = {
-			sheet =
-			{
+			sheet = {
 				filename = "__base__/graphics/particle/blood-particle/water-particle.png",
 				line_length = 12,
 				width = 16,
@@ -76,8 +77,143 @@ data:extend({
 				tint = { r = 0.8, g = 0.8, b = 1 },
 				scale = 0.8,
 				draw_as_glow = true,
-				shift = util.by_pixel(1.5, -1)
-			}
-		}
+				shift = util.by_pixel(1.5, -1),
+			},
+		},
+	},
+})
+
+-- local plutonium_cannon_shell_explosion = merge(data.raw["explosion"]["big-explosion"], {
+-- 	name = "plutonium-cannon-shell-explosion",
+-- 	localised_name = "entity-name.plutonium-cannon-shell-explosion",
+-- 	icons = {
+-- 		{ icon = "__base__/graphics/icons/explosion.png" },
+-- 		{ icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/explosive-plutonium-cannon-shell.png" },
+-- 	},
+-- })
+-- for _, spritesheet in pairs(plutonium_cannon_shell_explosion.animations) do
+-- 	spritesheet.tint = { r = 0.3, g = 0.4, b = 1 }
+-- end
+
+-- local plutonium_cannon_explosion = merge(data.raw["explosion"]["explosion"], {
+-- 	name = "plutonium-cannon-explosion",
+-- 	localised_name = "entity-name.plutonium-cannon-explosion",
+-- 	icons = {
+-- 		{ icon = "__base__/graphics/icons/explosion.png" },
+-- 		{ icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-cannon-shell.png" },
+-- 	},
+-- })
+-- for _, spritesheet in pairs(plutonium_cannon_explosion.animations) do
+-- 	spritesheet.tint = { r = 0.3, g = 0.4, b = 1 }
+-- end
+
+-- data:extend({
+-- 	plutonium_cannon_shell_explosion,
+-- 	plutonium_cannon_explosion,
+-- })
+
+data:extend({
+	{
+		type = "explosion",
+		name = "thermonuclear-explosion",
+		flags = { "not-on-map" },
+		hidden = true,
+		icons = {
+			{ icon = "__base__/graphics/icons/explosion.png" },
+			{ icon = "__base__/graphics/icons/atomic-bomb.png" },
+		},
+		order = "a-d-a",
+		subgroup = "explosions",
+		height = 0,
+		sound = sounds.large_explosion(1.0),
+		animations = {
+			width = 628,
+			height = 720,
+			frame_count = 100,
+			draw_as_glow = true,
+			priority = "very-low",
+			flags = { "linear-magnification" },
+			shift = util.by_pixel(0.5, -122.5), --shift = util.by_pixel(0.5, -62.5), shifted by 60 due to scaling and centering
+			animation_speed = 0.45 * 0.5 * 0.75,
+			scale = 4,
+			dice_y = 5,
+			allow_forced_downscale = true,
+			stripes = {
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-1.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-2.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-3.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-4.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+			},
+			usage = "explosion",
+		},
+	},
+	{
+		type = "explosion",
+		name = "neutron-bomb-explosion",
+		flags = { "not-on-map" },
+		hidden = true,
+		icons = {
+			{ icon = "__base__/graphics/icons/explosion.png" },
+			{ icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png", icon_size = 64 },
+		},
+		order = "a-d-a",
+		subgroup = "explosions",
+		height = 0,
+		sound = {
+			variations = sound_variations_with_volume_variations("__base__/sound/fight/medium-explosion", 5, 0.8, 0.9),
+		},
+		animations = {
+			width = 628,
+			height = 720,
+			frame_count = 100,
+			draw_as_glow = true,
+			priority = "very-low",
+			flags = { "linear-magnification" },
+			shift = util.by_pixel(0.5, -122.5), --shift = util.by_pixel(0.5, -62.5), shifted by 60 due to scaling and centering
+			animation_speed = 4 * 0.5 * 0.75,
+			tint = { r = 0.6, g = 0.8, b = 1 },
+			scale = 0.7,
+			dice_y = 5,
+			allow_forced_downscale = true,
+			stripes = {
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-1.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-2.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-3.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+				{
+					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-4.png",
+					width_in_frames = 5,
+					height_in_frames = 5,
+				},
+			},
+			usage = "explosion",
+		},
 	},
 })

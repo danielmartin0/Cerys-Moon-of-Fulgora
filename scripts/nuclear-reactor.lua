@@ -131,7 +131,7 @@ function Public.tick_2_radiation(surface)
 		local particle = storage.cerys.radiation_particles[i]
 		if (not particle.irradiation_tick) or (particle.irradiation_tick < game.tick - DAMAGE_TICK_DELAY) then
 			local chars =
-				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1.5 })
+				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1 })
 
 			for _, char in ipairs(chars) do
 				if char and char.valid then

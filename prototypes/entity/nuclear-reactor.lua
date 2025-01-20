@@ -49,10 +49,18 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
 	lower_layer_picture = "nil",
 	heat_lower_layer_picture = "nil",
-	energy_source = merge(data.raw.reactor["nuclear-reactor"].energy_source, {
+	energy_source = {
+		type = "burner",
 		fuel_categories = { "nuclear-mixed-oxide" },
-		effectivity = 1.5, -- from 1
-	}),
+		effectivity = 2,
+		fuel_inventory_size = 1,
+		burnt_inventory_size = 1,
+		light_flicker = {
+			color = { 0, 0, 0 },
+			minimum_intensity = 0.7,
+			maximum_intensity = 0.95,
+		},
+	},
 	consumption = "12GW", -- From 40MW
 	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
 		minimum_glow_temperature = 0, -- From 350
@@ -67,7 +75,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			draw_as_glow = true,
 		}),
 		specific_heat = "800MJ", -- from 10MJ
-		max_temperature = 1000, -- from 1000
+		max_temperature = 2000, -- from 1000
 		max_transfer = "300GW", -- from 10GW
 	}),
 	connection_patches_connected = {
@@ -79,16 +87,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		},
 	},
-	connection_patches_disconnected = {
-		sheet = {
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		},
-	},
+	connection_patches_disconnected = "nil",
 	heat_connection_patches_connected = {
 		sheet = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
@@ -98,16 +97,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		}),
 	},
-	heat_connection_patches_disconnected = {
-		sheet = apply_heat_pipe_glow({
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		}),
-	},
+	heat_connection_patches_disconnected = "nil",
 	working_light_picture = {
 		blend_mode = "additive",
 		draw_as_glow = true,

@@ -40,7 +40,7 @@ data:extend({
 	merge(data.raw.item["lightning-rod"], {
 		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
-		icon_size = 64,
+		icon_size = 128,
 		order = "e[accumulator]-b[charging-rod]",
 		subgroup = "energy",
 		place_result = "cerys-charging-rod",
@@ -220,6 +220,18 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 2 * 1000,
 	},
+	{
+		type = "item",
+		name = "cerys-mixed-oxide-reactor",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/mixed-oxide-reactor.png",
+		icon_size = 64,
+		subgroup = "energy",
+		order = "f[nuclear-energy]-a[reactor]-a[mixed-oxide-reactor]",
+		default_import_location = "cerys",
+		weight = 1000 * 1000,
+		stack_size = 10,
+		place_result = "cerys-mixed-oxide-reactor",
+	},
 	-- {
 	-- 	type = "item",
 	-- 	name = "ancient-nuclear-fuel-cell",
@@ -347,6 +359,103 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 40 * 1000,
 	},
+	-- {
+	-- 	type = "ammo",
+	-- 	name = "plutonium-cannon-shell",
+	-- 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-cannon-shell.png",
+	-- 	pictures = {
+	-- 		layers = {
+	-- 			{
+	-- 				size = 64,
+	-- 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-cannon-shell.png",
+	-- 				scale = 0.5,
+	-- 				mipmap_count = 4,
+	-- 			},
+	-- 			{
+	-- 				draw_as_light = true,
+	-- 				size = 64,
+	-- 				filename = "__base__/graphics/icons/uranium-cannon-shell-light.png",
+	-- 				scale = 0.5,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	ammo_category = "cannon-shell",
+	-- 	ammo_type = {
+	-- 		range_modifier = 1.25,
+	-- 		target_type = "direction",
+	-- 		action = {
+	-- 			type = "direct",
+	-- 			action_delivery = {
+	-- 				type = "projectile",
+	-- 				projectile = "cerys-plutonium-cannon-projectile",
+	-- 				starting_speed = 1,
+	-- 				direction_deviation = 0.1,
+	-- 				range_deviation = 0.1,
+	-- 				max_range = 30,
+	-- 				min_range = 5,
+	-- 				source_effects = {
+	-- 					type = "create-explosion",
+	-- 					entity_name = "explosion-gunshot",
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	subgroup = "ammo",
+	-- 	order = "d[cannon-shell]-c[uranium]-b[plutonium]",
+	-- 	inventory_move_sound = item_sounds.ammo_large_inventory_move,
+	-- 	pick_sound = item_sounds.ammo_large_inventory_pickup,
+	-- 	drop_sound = item_sounds.ammo_large_inventory_move,
+	-- 	stack_size = 100,
+	-- 	weight = 40 * 1000,
+	-- },
+	-- {
+	-- 	type = "ammo",
+	-- 	name = "explosive-plutonium-cannon-shell",
+	-- 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/explosive-plutonium-cannon-shell.png",
+	-- 	pictures = {
+	-- 		layers = {
+	-- 			{
+	-- 				size = 64,
+	-- 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/explosive-plutonium-cannon-shell.png",
+	-- 				scale = 0.5,
+	-- 				mipmap_count = 4,
+	-- 			},
+	-- 			{
+	-- 				draw_as_light = true,
+	-- 				size = 64,
+	-- 				filename = "__base__/graphics/icons/uranium-cannon-shell-light.png",
+	-- 				scale = 0.5,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	ammo_category = "cannon-shell",
+	-- 	ammo_type = {
+	-- 		target_type = "direction",
+	-- 		action = {
+	-- 			type = "direct",
+	-- 			action_delivery = {
+	-- 				type = "projectile",
+	-- 				projectile = "explosive-cerys-plutonium-cannon-projectile",
+	-- 				starting_speed = 1,
+	-- 				direction_deviation = 0.1,
+	-- 				range_deviation = 0.1,
+	-- 				max_range = 30,
+	-- 				min_range = 5,
+	-- 				source_effects = {
+	-- 					type = "create-explosion",
+	-- 					entity_name = "explosion-gunshot",
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	subgroup = "ammo",
+	-- 	order = "d[explosive-cannon-shell]-c[uranium]-b[plutonium]",
+	-- 	inventory_move_sound = item_sounds.ammo_large_inventory_move,
+	-- 	pick_sound = item_sounds.ammo_large_inventory_pickup,
+	-- 	drop_sound = item_sounds.ammo_large_inventory_move,
+	-- 	stack_size = 100,
+	-- 	weight = 40 * 1000,
+	-- },
 	{
 		type = "item",
 		name = "mixed-oxide-fuel-cell",
@@ -375,7 +484,7 @@ data:extend({
 		drop_sound = item_sounds.nuclear_inventory_move,
 		fuel_category = "nuclear-mixed-oxide",
 		burnt_result = "depleted-mixed-oxide-fuel-cell",
-		fuel_value = "128GJ",
+		fuel_value = "96GJ",
 		stack_size = 50,
 		default_import_location = "cerys",
 		weight = 100 * 1000,
@@ -392,6 +501,85 @@ data:extend({
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 50,
 		default_import_location = "cerys",
+		weight = 100 * 1000,
+	},
+	{
+		type = "ammo",
+		name = "cerys-hydrogen-bomb",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/hydrogen-bomb.png",
+		icon_size = 64,
+		ammo_category = "rocket",
+		ammo_type = {
+			range_modifier = 2, -- from 1.5
+			cooldown_modifier = 12, -- from 10
+			target_type = "position",
+			action = {
+				type = "direct",
+				action_delivery = {
+					type = "projectile",
+					projectile = "cerys-hydrogen-bomb-rocket",
+					starting_speed = 0.05,
+					source_effects = {
+						type = "create-entity",
+						entity_name = "explosion-hit",
+					},
+				},
+			},
+		},
+		subgroup = "ammo",
+		order = "d[rocket-launcher]-d[atomic-bomb]-b[hydrogen-bomb]",
+		inventory_move_sound = item_sounds.atomic_bomb_inventory_move,
+		pick_sound = item_sounds.atomic_bomb_inventory_pickup,
+		drop_sound = item_sounds.atomic_bomb_inventory_move,
+		stack_size = 10,
+		weight = 1.5 * 1000,
+	},
+	{
+		type = "ammo",
+		name = "cerys-neutron-bomb",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png",
+		icon_size = 64,
+		pictures = {
+			layers = {
+				{
+					size = 64,
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png",
+					scale = 0.5,
+				},
+				{
+					draw_as_light = true,
+					size = 64,
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb-light.png",
+					scale = 0.5,
+				},
+			},
+		},
+		ammo_category = "artillery-shell",
+		ammo_type = {
+			-- range_modifier = 0.25 -- Has no effect
+			cooldown_modifier = 1.4,
+			target_type = "position",
+			action = {
+				type = "direct",
+				action_delivery = {
+					type = "artillery",
+					projectile = "cerys-neutron-bomb-projectile",
+					starting_speed = 1,
+					direction_deviation = 0,
+					range_deviation = 0,
+					source_effects = {
+						type = "create-explosion",
+						entity_name = "artillery-cannon-muzzle-flash",
+					},
+				},
+			},
+		},
+		subgroup = "ammo",
+		order = "d[explosive-cannon-shell]-d[artillery]-a[neutron-bomb]",
+		inventory_move_sound = item_sounds.artillery_large_inventory_move,
+		pick_sound = item_sounds.artillery_large_inventory_pickup,
+		drop_sound = item_sounds.artillery_large_inventory_move,
+		stack_size = 1,
 		weight = 100 * 1000,
 	},
 })

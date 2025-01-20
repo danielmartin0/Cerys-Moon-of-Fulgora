@@ -482,10 +482,12 @@ data:extend({
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water",
 		thawed_variant = "cerys-dry-ice-on-water-melting",
+		collision_mask = cerys_ground_collision_mask,
 	}),
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water-melting",
 		frozen_variant = "cerys-dry-ice-on-water",
+		collision_mask = cerys_ground_collision_mask,
 	}),
 })
 

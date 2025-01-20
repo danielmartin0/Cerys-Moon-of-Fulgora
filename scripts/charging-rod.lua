@@ -69,36 +69,59 @@ function Public.tick_12_check_charging_rods()
 		local e = rod.entity
 
 		if not (e and e.valid) then
-			if rod.red_light_rendering and rod.red_light_rendering.valid then
-				rod.red_light_rendering.destroy()
-			end
+			Public.destroy_red_light_entity(rod)
+			Public.destroy_blue_light_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 			goto continue
 		end
 
 		local negative = storage.cerys.charging_rod_is_negative[unit_number]
 
-		if negative then
-			if rod.red_light_rendering then
-				if rod.red_light_rendering.valid then
-					rod.red_light_rendering.destroy()
-				end
-				rod.red_light_rendering = nil
-			end
-		else
-			if not (rod.red_light_rendering and rod.red_light_rendering.valid) then
-				rod.red_light_rendering = rendering.draw_sprite({
-					surface = e.surface,
-					sprite = "cerys-charging-rod-red-light",
-					target = e,
-					render_layer = "object",
+		local polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
+		rod.polarity_fraction = polarity_fraction
+
+		if polarity_fraction == 1 then
+			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
+				rod.blue_light_entity = e.surface.create_entity({
+					name = "cerys-charging-rod-animation-blue",
+					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
 				})
 			end
+
+			Public.destroy_red_light_entity(rod)
+		elseif polarity_fraction == -1 then
+			if not (rod.red_light_entity and rod.red_light_entity.valid) then
+				rod.red_light_entity = e.surface.create_entity({
+					name = "cerys-charging-rod-animation-red",
+					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
+				})
+			end
+
+			Public.destroy_blue_light_entity(rod)
+		else
+			Public.destroy_blue_light_entity(rod)
+			Public.destroy_red_light_entity(rod)
 		end
 
-		rod.polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
-
 		::continue::
+	end
+end
+
+function Public.destroy_red_light_entity(rod)
+	if rod.red_light_entity then
+		if rod.red_light_entity.valid then
+			rod.red_light_entity.destroy()
+		end
+		rod.red_light_entity = nil
+	end
+end
+
+function Public.destroy_blue_light_entity(rod)
+	if rod.blue_light_entity then
+		if rod.blue_light_entity.valid then
+			rod.blue_light_entity.destroy()
+		end
+		rod.blue_light_entity = nil
 	end
 end
 

@@ -188,3 +188,29 @@ for key, mask in pairs(data.raw["utility-constants"].default.default_collision_m
 		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
 	end
 end
+
+--== Atomic projectiles ==--
+-- Ensuring that nuclear ground tiles don't get set on Cerys water spots.
+
+local function add_cerys_layers_to_masks(tbl)
+	if type(tbl) ~= "table" then
+		return
+	end
+
+	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_tile then
+		tbl.layers.cerys_tile = true
+	end
+	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_water_tile then
+		tbl.layers.cerys_water_tile = true
+	end
+
+	for _, v in pairs(tbl) do
+		if type(v) == "table" then
+			add_cerys_layers_to_masks(v)
+		end
+	end
+end
+
+for _, projectile in pairs(data.raw["projectile"]) do
+	add_cerys_layers_to_masks(projectile)
+end

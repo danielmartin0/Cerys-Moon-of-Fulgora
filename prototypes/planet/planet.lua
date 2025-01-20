@@ -58,6 +58,11 @@ PlanetsLib:extend({
 	},
 })
 
+-- If oxygen property is enabled, oxygen for Cerys is set to 0%, in line with Muluna's convention for planets intended to ban burner items.
+if data.raw["surface-property"]["oxygen"] then
+	data.raw["planet"]["cerys"].surface_properties["oxygen"] = 0
+end
+
 data:extend({
 	{
 		type = "space-connection",
