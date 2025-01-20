@@ -79,4 +79,4 @@ We recommend these modpacks which include Cerys.
 
 ---
 
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering.png)
+![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering-2.png)
