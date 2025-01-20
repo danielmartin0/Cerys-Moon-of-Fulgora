@@ -546,7 +546,6 @@ data:extend({
 											layers = {
 												water_tile = true,
 												cerys_water_tile = true,
-												cerys_tile = true,
 											},
 										},
 									},
@@ -570,7 +569,6 @@ data:extend({
 											layers = {
 												water_tile = true,
 												cerys_water_tile = true,
-												cerys_tile = true,
 											},
 										},
 									},
@@ -594,7 +592,6 @@ data:extend({
 											layers = {
 												water_tile = true,
 												cerys_water_tile = true,
-												cerys_tile = true,
 											},
 										},
 									},
@@ -618,7 +615,6 @@ data:extend({
 											layers = {
 												water_tile = true,
 												cerys_water_tile = true,
-												cerys_tile = true,
 											},
 										},
 									},
@@ -642,7 +638,6 @@ data:extend({
 											layers = {
 												water_tile = true,
 												cerys_water_tile = true,
-												cerys_tile = true,
 											},
 										},
 									},
