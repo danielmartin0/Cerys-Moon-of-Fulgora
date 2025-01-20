@@ -38,8 +38,6 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 
 ## Notes
 
-- Rewards for completion are intentionally modest for now: venting and flaring towers, plutonium rocket fuel, plutonium portable reactor (made obsolete by Aquilo), plutonium ammo, and an infinite productivity technology.
-    - However, we certainly plan to add more rewards and even gameplay in later updates, compatible with existing bases.
 - Cerys originally contained a revamp of [GotLag’s Flare Stack](https://mods.factorio.com/mods/GotLag/Flare%20Stack). We later assisted snouz to port the original mod to 2.0. In the current version, with Cerys installed, flare stacks are unlocked on Cerys and incinerators are disabled by default since Space Age brings the recycler (but this latter change can be reverted in the mod settings).
 - We didn't set out to make a 'planet'. This mod grew out of roc experimenting with a recycling chain based on nuclear plant components after the release of [Hardcore Fulgora](https://mods.factorio.com/mod/Rocs-Hardcore-Fulgora).
 - More you’d like to see? Something you hate? Trying to get a Cerys megabase working? Let us know in Discussion or [Discord](https://discord.gg/VuVhYUBbWE).
