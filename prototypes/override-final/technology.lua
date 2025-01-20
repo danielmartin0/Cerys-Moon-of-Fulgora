@@ -35,7 +35,7 @@ for _, technology in pairs(data.raw.technology) do
 	end
 end
 
---== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. ==--
+--== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. It is fine for other mods to modify these if they do so mindfully. ==--
 
 data:extend({
 	cerys_tech({
@@ -149,7 +149,7 @@ data:extend({
 		icon_size = 256,
 	}),
 	cerys_tech({
-		science_count = 300,
+		science_count = 250,
 		name = "cerys-plutonium-enhanced-fuel-reprocessing",
 		effects = {
 			{
@@ -159,6 +159,10 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "nuclear-waste-solution-centrifuging",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "coal-synthesis",
 			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
@@ -180,7 +184,7 @@ data:extend({
 	}),
 	cerys_tech({
 		unit = {
-			count = 2000,
+			count = 1000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -188,7 +192,7 @@ data:extend({
 			},
 			time = 60,
 		},
-		name = "cerys-advanced-plutonium-technology",
+		name = "cerys-applications-of-radioactivity",
 		effects = {
 			{
 				type = "unlock-recipe",
@@ -202,17 +206,77 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "plutonium-fuel",
 			},
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "plutonium-cannon-shell",
+			-- },
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "explosive-plutonium-cannon-shell",
+			-- },
 		},
 		prerequisites = {
 			"cerys-plutonium-enhanced-fuel-reprocessing",
 			"uranium-ammo",
 			"fission-reactor-equipment",
 			"kovarex-enrichment-process",
-			"cerys-lubricant-synthesis",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
+	}),
+	cerys_tech({
+		unit = {
+			count = 4000,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		name = "cerys-plutonium-weaponry",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-hydrogen-bomb",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-neutron-bomb",
+			},
+		},
+		prerequisites = {
+			"cerys-lubricant-synthesis",
+			"cerys-applications-of-radioactivity",
+			"atomic-bomb",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
+		icon_size = 256,
+	}),
+	cerys_tech({
+		unit = {
+			count = 750,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+			},
+			time = 60,
+		},
+		name = "cerys-mixed-oxide-reactor",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-mixed-oxide-reactor",
+			},
+		},
+		prerequisites = {
+			"cerys-plutonium-enhanced-fuel-reprocessing",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/reactor-tech.png",
+		icon_size = 256,
 	}),
 	{
 		type = "technology",
@@ -228,13 +292,14 @@ data:extend({
 				change = 0.1,
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair" },
+		prerequisites = { "cerys-advanced-structure-repair", "cerys-lubricant-synthesis" },
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
 				{ "cerys-science-pack", 1 },
+				{ "utility-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -256,7 +321,7 @@ data:extend({
 		},
 		prerequisites = { "holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "3^(L-1)*500",
+			count_formula = "3^(L-1)*400",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

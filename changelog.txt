@@ -1,7 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.9.32
+Version: 1.0.0
 Date: ????
+  Features:
+    - Planet reward: Hydrogen bomb, a powerful upgrade of Atomic bomb rocketry.
+    - Planet reward: Neutron bomb, an artillery shell releasing a scattering cloud of neutrons.
+    - Planet reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
+  Graphics:
+    - Brand new graphics for the charging rod.
   Changes:
+    - Tech tree tweaks.
+    - Nuclear weaponry can no longer permanently change ground tiles on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: 2025-01-19

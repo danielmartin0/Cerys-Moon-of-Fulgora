@@ -200,6 +200,7 @@ cryo_plant.fluid_boxes = {
 		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 1000,
 		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } },
+		render_layer = "object-under",
 	},
 	{
 		production_type = "input",

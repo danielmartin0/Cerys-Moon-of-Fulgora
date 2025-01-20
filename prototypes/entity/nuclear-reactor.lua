@@ -49,10 +49,18 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
 	lower_layer_picture = "nil",
 	heat_lower_layer_picture = "nil",
-	energy_source = merge(data.raw.reactor["nuclear-reactor"].energy_source, {
+	energy_source = {
+		type = "burner",
 		fuel_categories = { "nuclear-mixed-oxide" },
-		effectivity = 1.5, -- from 1
-	}),
+		effectivity = 2,
+		fuel_inventory_size = 1,
+		burnt_inventory_size = 1,
+		light_flicker = {
+			color = { 0, 0, 0 },
+			minimum_intensity = 0.7,
+			maximum_intensity = 0.95,
+		},
+	},
 	consumption = "12GW", -- From 40MW
 	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
 		minimum_glow_temperature = 0, -- From 350
@@ -67,7 +75,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			draw_as_glow = true,
 		}),
 		specific_heat = "800MJ", -- from 10MJ
-		max_temperature = 1000, -- from 1000
+		max_temperature = 2000, -- from 1000
 		max_transfer = "300GW", -- from 10GW
 	}),
 	connection_patches_connected = {

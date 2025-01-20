@@ -57,14 +57,4 @@ data:extend({
 		scale = 0.22,
 		draw_as_shadow = true,
 	},
-	{
-		type = "sprite",
-		name = "cerys-charging-rod-red-light",
-		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/red-light.png",
-		width = 108,
-		height = 352,
-		shift = util.by_pixel(0, -85.0),
-		mipmap_count = 1,
-		scale = 0.75,
-	},
 })

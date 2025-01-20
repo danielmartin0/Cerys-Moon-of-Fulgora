@@ -243,9 +243,14 @@ end
 
 script.on_event(defines.events.on_script_trigger_effect, function(event)
 	local effect_id = event.effect_id
-	local entity = event.target_entity
 
 	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
+		local entity = event.target_entity
+
+		if not (entity and entity.valid) then
+			return
+		end
+
 		radiative_towers.register_heating_tower_contracted(entity)
 	end
 end)
