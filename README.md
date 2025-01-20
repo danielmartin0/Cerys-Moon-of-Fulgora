@@ -18,7 +18,7 @@ Many frozen structures lie embedded in the surface. Though made of new materials
     - Uncover ancient wrecks from multiple layers of ice, and repair them by various methods.
     - Defrost your factory with a new mechanic, different to Aquilo.
     - Solve the workings of plutonium to unlock devastating weaponry for other planets.
-    - Unlike planets, the play area is finite. Terrain curves as you approach the moon's edge.
+    - The play area of the moon is finite. Terrain curves as you approach the moon's edge.
 - Traditional mining is combined with a novel recycling chain based on nuclear components. Iron is a scarce resource, providing challenge in the early-game. Logistic bots appear only later in the gameplay.
 - It is said that due to the solar wind, cargo pods cannot drop resources onto Cerys (without researching a specific technology.)
 - It is simple to include Cerys in existing saves as there are zero changes to vanilla: no restrictions on vanilla planets, changes to vanilla gameplay, or new recipes with purely vanilla items.
