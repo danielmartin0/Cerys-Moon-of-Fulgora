@@ -87,18 +87,18 @@ local solar_wind_particle = {
 	},
 }
 
-local radiation_particle = merge(solar_wind_particle, {
+local gamma_radiation = merge(solar_wind_particle, {
 	map_color = { 0, 1, 0 },
 	name = "cerys-gamma-radiation",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiation-particle.png",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
 	icon_size = 64,
 	order = "b",
 	pictures = {
 		layers = {
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiation-particle.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
 				size = 32,
-				scale = 0.3,
+				scale = 0.35,
 				draw_as_glow = true,
 			},
 		},
@@ -123,4 +123,4 @@ local neutron_dummy = merge(solar_wind_particle, {
 	},
 })
 
-data:extend({ solar_wind_particle, radiation_particle, neutron_dummy })
+data:extend({ solar_wind_particle, gamma_radiation, neutron_dummy })
