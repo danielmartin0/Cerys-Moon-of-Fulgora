@@ -160,6 +160,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "nuclear-waste-solution-centrifuging",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "coal-synthesis",
+			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
@@ -180,12 +184,11 @@ data:extend({
 	}),
 	cerys_tech({
 		unit = {
-			count = 250,
+			count = 1000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
 				{ "cerys-science-pack", 1 },
-				{ "military-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -224,12 +227,12 @@ data:extend({
 	}),
 	cerys_tech({
 		unit = {
-			count = 2000,
+			count = 4000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
 				{ "cerys-science-pack", 1 },
-				{ "military-science-pack", 1 },
+				{ "utility-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -245,6 +248,7 @@ data:extend({
 			},
 		},
 		prerequisites = {
+			"cerys-lubricant-synthesis",
 			"cerys-applications-of-radioactivity",
 			"atomic-bomb",
 		},
