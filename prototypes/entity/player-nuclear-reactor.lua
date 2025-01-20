@@ -115,16 +115,7 @@ local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.55,
 		},
 	},
-	connection_patches_disconnected = {
-		sheet = {
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-4x4.png",
-			width = 64,
-			height = 64,
-			variation_count = 16,
-			y = 64,
-			scale = 0.55,
-		},
-	},
+	connection_patches_disconnected = "nil",
 	heat_connection_patches_connected = {
 		sheet = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
@@ -134,16 +125,7 @@ local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.55,
 		}),
 	},
-	heat_connection_patches_disconnected = {
-		sheet = apply_heat_pipe_glow({
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
-			width = 64,
-			height = 64,
-			variation_count = 16,
-			y = 64,
-			scale = 0.55,
-		}),
-	},
+	heat_connection_patches_disconnected = "nil",
 	working_light_picture = {
 		blend_mode = "additive",
 		draw_as_glow = true,
