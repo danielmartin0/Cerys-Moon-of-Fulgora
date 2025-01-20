@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
-Date: ????
+Date: 2025-01-20
   Features:
     - Planet reward: Hydrogen bomb, a powerful upgrade of Atomic bomb rocketry.
     - Planet reward: Neutron bomb, an artillery shell releasing a scattering cloud of neutrons.
