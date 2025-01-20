@@ -24,7 +24,7 @@ local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			maximum_intensity = 0.95,
 		},
 	},
-	consumption = "640MW", -- From 40MW
+	consumption = "160MW", -- From 40MW
 	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
 		minimum_glow_temperature = 175, -- From 350
 		connections = {
@@ -102,7 +102,7 @@ local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			blend_mode = "additive",
 			draw_as_glow = true,
 		}),
-		specific_heat = "40MJ", -- from 10MJ
+		specific_heat = "10MJ", -- from 10MJ
 		max_temperature = 1500, -- from 1000
 		max_transfer = "40GW", -- from 10GW
 	}),
