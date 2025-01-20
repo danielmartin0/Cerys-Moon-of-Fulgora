@@ -12,7 +12,6 @@ Date: ????
     - Nuclear weaponry can no longer permanently change ground tiles on Cerys.
   Balancing:
     - Hitbox of radiation slightly reduced.
-    - The Fulgoran crusher now has 2 module slots.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: 2025-01-19
