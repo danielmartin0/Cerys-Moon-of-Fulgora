@@ -3,6 +3,8 @@ Version: 1.0.7
 Date: 2025-01-20
   Balancing:
     - Slightly increased the base ore yield from nitrogen-rich minerals processing.
+  Locale:
+    - Russian updated.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 2025-01-20
