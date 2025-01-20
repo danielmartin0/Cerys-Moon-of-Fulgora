@@ -87,16 +87,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		},
 	},
-	connection_patches_disconnected = {
-		sheet = {
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		},
-	},
+	connection_patches_disconnected = "nil",
 	heat_connection_patches_connected = {
 		sheet = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
@@ -106,16 +97,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		}),
 	},
-	heat_connection_patches_disconnected = {
-		sheet = apply_heat_pipe_glow({
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		}),
-	},
+	heat_connection_patches_disconnected = "nil",
 	working_light_picture = {
 		blend_mode = "additive",
 		draw_as_glow = true,
