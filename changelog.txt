@@ -1,8 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.21
 Date: 2025-01-21
+  Changes:
+    - Removed mod setting to control the repair cost of the Fulgoran reactor.
+  Locale:
+    - Chinese locale updated (recently).
   Balancing:
     - Crafting time of processing units from nitric acid reduced.
+    - Methane ice required for dissociation increased.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.20
 Date: 2025-01-21
