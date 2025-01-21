@@ -9,8 +9,10 @@ for prototype in pairs(defines.prototypes.entity) do
 			if not collision_mask_util.masks_are_same(collision_mask_1, collision_mask_2) then
 				entity.next_upgrade = nil
 			end
-		else
-			entity.next_upgrade = nil
+
+			if entity.fast_replaceable_group ~= next_upgrade.fast_replaceable_group then
+				entity.next_upgrade = nil
+			end
 		end
 		if not entity.minable then
 			entity.next_upgrade = nil
