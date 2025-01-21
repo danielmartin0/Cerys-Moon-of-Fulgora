@@ -18,6 +18,21 @@ function Public.tick_15_check_broken_crushers(surface)
 		if e and e.valid then
 			if crusher.stage == Public.CRUSHER_WRECK_STAGE_ENUM.frozen then
 				if not e.frozen and game.tick > crusher.creation_tick + 300 then
+					local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+					local contents = nil
+					if input_inv and input_inv.valid then
+						contents = input_inv.get_contents()
+
+						if #contents > 0 then
+							-- Kick any players out of the GUI. A craft is about to complete, and we want them to notice the sign above the crusher.
+							for _, player in pairs(game.connected_players) do
+								if player.opened and player.opened == e then
+									player.opened = nil
+								end
+							end
+						end
+					end
+
 					local e2 = surface.create_entity({
 						name = "cerys-fulgoran-crusher-wreck",
 						position = e.position,
@@ -28,6 +43,25 @@ function Public.tick_15_check_broken_crushers(surface)
 					if e2 and e2.valid then
 						e2.minable_flag = false
 						e2.destructible = false
+
+						if e and e.valid and input_inv and input_inv.valid then
+							local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
+							if input_inv2 and input_inv2.valid then
+								for _, c in pairs(contents) do
+									local new_count = c.count
+									input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
+								end
+							end
+
+							local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
+							local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
+							if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
+								local contents2 = module_inv.get_contents()
+								for _, c in pairs(contents2) do
+									module_inv2.insert({ name = c.name, count = c.count, quality = c.quality })
+								end
+							end
+						end
 
 						if e and e.valid then
 							e.destroy()

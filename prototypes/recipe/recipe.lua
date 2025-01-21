@@ -121,7 +121,7 @@ data:extend({
 		results = {
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
 		},
-		allow_productivity = false,
+		allow_productivity = true,
 		enabled = false,
 		always_show_made_in = true,
 		always_show_products = true,

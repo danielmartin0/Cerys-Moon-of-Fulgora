@@ -2,6 +2,10 @@
 Version: 1.0.19
 Date: ????
   Changes:
+    - Increased the temperature of steam produced by mixed-oxide cell reprocessing.
+  Bugfixes:
+    - Production of nitric acid now allows productivity modules.
+    - Fixed that items placed into frozen Fulgoran crushers were not retained when the crusher thaws.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.18
 Date: 2025-01-21
