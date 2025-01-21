@@ -1,5 +1,6 @@
 local init = require("scripts.init")
 local lib = require("lib")
+local common = require("common")
 local Public = {}
 
 function Public.run_migrations()
@@ -108,6 +109,35 @@ function Public.run_migrations()
 			end
 
 			particle.entity = nil
+		end
+	end
+
+	if lib.is_newer_version(last_seen_version, "0.9.8") then
+		local lithium_brines = surface.find_entities_filtered({ name = "lithium-brine" })
+
+		for _, entity in pairs(lithium_brines) do
+			if entity and entity.valid then
+				local dx = entity.position.x - common.LITHIUM_POSITION.x
+				local dy = entity.position.y - common.LITHIUM_POSITION.y
+				local d2 = dx * dx + dy * dy
+				if d2 > 15 * 15 then
+					game.print(
+						"[CERYS]: Migrating save: destroying bugged lithium brine at "
+							.. entity.position.x
+							.. ", "
+							.. entity.position.y
+					)
+					entity.destroy()
+				end
+			end
+		end
+	end
+
+	if lib.is_newer_version(last_seen_version, "1.0.0") then
+		for _, rod in pairs(storage.cerys.charging_rods) do
+			if rod.red_light_rendering and rod.red_light_rendering.valid then
+				rod.red_light_rendering.destroy()
+			end
 		end
 	end
 

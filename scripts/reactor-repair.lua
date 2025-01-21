@@ -9,7 +9,7 @@ Public.REACTOR_STAGE_ENUM = {
 }
 
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 20
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 15
 
 function Public.tick_15_nuclear_reactor_repair_check(surface)
 	if not (storage.cerys and storage.cerys.reactor) then

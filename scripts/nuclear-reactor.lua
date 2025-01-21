@@ -7,7 +7,7 @@ local Public = {}
 Public.REACTOR_TICK_INTERVAL = 3
 
 local TEMPERATURE_ZERO = 15
-local TEMPERATURE_LOSS_RATE = 2.5
+local TEMPERATURE_LOSS_RATE = 3
 
 local RANGE_SQUARED = 67 ^ 2
 local DAMAGE_TICK_DELAY = 30
@@ -131,7 +131,7 @@ function Public.tick_2_radiation(surface)
 		local particle = storage.cerys.radiation_particles[i]
 		if (not particle.irradiation_tick) or (particle.irradiation_tick < game.tick - DAMAGE_TICK_DELAY) then
 			local chars =
-				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1.5 })
+				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1 })
 
 			for _, char in ipairs(chars) do
 				if char and char.valid then

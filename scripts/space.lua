@@ -13,8 +13,8 @@ local CHANCE_DAMAGE_CHARACTER = 1 / 30
 local COOLDOWN_DISTANCE = 1.5
 local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 800
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8000
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 1000
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 10000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 1,
@@ -60,7 +60,12 @@ end
 function Public.spawn_solar_wind_particle(surface)
 	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
 
-	local x = -(common.MOON_RADIUS + 150)
+	local x = -(common.MOON_RADIUS + math.random(60, 70))
+
+	-- local e = surface.create_entity({
+	-- 	name = "cerys-solar-wind-particle",
+	-- 	position = { x = x, y = y },
+	-- })
 
 	local r = rendering.draw_sprite({
 		sprite = "cerys-solar-wind-particle",
@@ -70,6 +75,7 @@ function Public.spawn_solar_wind_particle(surface)
 	})
 
 	table.insert(storage.cerys.solar_wind_particles, {
+		-- entity = e,
 		rendering = r,
 		age = 0,
 		velocity = Public.initial_solar_wind_velocity(),
@@ -169,6 +175,9 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 			if particle.rendering and particle.rendering.valid then
 				particle.rendering.destroy()
 			end
+			-- if particle.entity and particle.entity.valid then
+			-- 	particle.entity.destroy()
+			-- end
 
 			table.remove(storage.cerys.solar_wind_particles, i)
 		else

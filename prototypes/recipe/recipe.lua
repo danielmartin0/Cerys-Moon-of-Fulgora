@@ -1,6 +1,32 @@
 data:extend({
 	{
 		type = "recipe",
+		name = "cerys-hydrogen-bomb",
+		enabled = false,
+		energy_required = 50,
+		ingredients = {
+			{ type = "item", name = "atomic-bomb", amount = 1 },
+			{ type = "item", name = "plutonium-239", amount = 100 },
+			{ type = "item", name = "lithium", amount = 10 },
+		},
+		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
+	},
+	{
+		type = "recipe",
+		name = "cerys-neutron-bomb",
+		enabled = false,
+		energy_required = 15,
+		ingredients = {
+			{ type = "item", name = "artillery-shell", amount = 1 },
+			{ type = "item", name = "lithium", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 10 },
+			{ type = "item", name = "plutonium-239", amount = 5 },
+		},
+		results = { { type = "item", name = "cerys-neutron-bomb", amount = 1 } },
+	},
+
+	{
+		type = "recipe",
 		name = "plutonium-239",
 		category = "no-machine",
 		enabled = false,
@@ -23,11 +49,11 @@ data:extend({
 		order = "d-c",
 		category = "cryogenics-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 5,
+		energy_required = 3,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 20 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = "nitric-acid", amount = 15 },
+			{ type = "fluid", name = "nitric-acid", amount = 5 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
@@ -55,7 +81,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "charging-rod",
+		name = "cerys-charging-rod",
 		enabled = false,
 		category = "electronics",
 		surface_conditions = {
@@ -76,7 +102,7 @@ data:extend({
 			{ type = "item", name = "steel-plate", amount = 12 },
 			{ type = "item", name = "copper-cable", amount = 6 },
 		},
-		results = { { type = "item", name = "charging-rod", amount = 1 } },
+		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},
 
 	{
@@ -197,8 +223,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 45 }, -- 1 iron => 50 sulfuric acid.
-			{ type = "fluid", name = "water", amount = 35 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 40 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "water", amount = 40 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },
@@ -217,7 +243,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "lubricant-synthesis",
-		category = "chemistry-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",
 		icon_size = 64,

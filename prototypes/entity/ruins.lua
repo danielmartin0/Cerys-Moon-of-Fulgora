@@ -59,13 +59,13 @@ local function ruin_minable_results(collision_area)
 	if collision_area >= 20 then
 		table.insert(results.results, {
 			type = "item",
-			name = "charging-rod", -- Power through the night
+			name = "cerys-charging-rod", -- Power through the night
 			amount = math.floor(collision_area / 20),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
-			name = "charging-rod",
+			name = "cerys-charging-rod",
 			amount = 1,
 			probability = 0.12,
 		})

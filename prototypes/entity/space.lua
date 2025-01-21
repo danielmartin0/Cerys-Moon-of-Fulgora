@@ -1,5 +1,4 @@
 local merge = require("lib").merge
-
 local ASTEROIDS_TO_CLONE = {
 	"small-metallic-asteroid",
 	"small-carbonic-asteroid",
@@ -88,23 +87,40 @@ local solar_wind_particle = {
 	},
 }
 
-local radiation_particle = merge(solar_wind_particle, {
+local gamma_radiation = merge(solar_wind_particle, {
 	map_color = { 0, 1, 0 },
 	name = "cerys-gamma-radiation",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiation-particle.png",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
 	icon_size = 64,
 	order = "b",
 	pictures = {
 		layers = {
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiation-particle.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
 				size = 32,
-				scale = 0.3,
+				scale = 0.35,
 				draw_as_glow = true,
-				blend_mode = "additive",
 			},
 		},
 	},
 })
 
-data:extend({ solar_wind_particle, radiation_particle })
+local neutron_dummy = merge(solar_wind_particle, {
+	map_color = { 0.8, 0.8, 0.8 },
+	name = "cerys-neutron-dummy", -- For Factoriopedia
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
+	icon_size = 48,
+	order = "c",
+	pictures = {
+		layers = {
+			{
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
+				size = 32,
+				scale = 0.45,
+				draw_as_glow = true,
+			},
+		},
+	},
+})
+
+data:extend({ solar_wind_particle, gamma_radiation, neutron_dummy })

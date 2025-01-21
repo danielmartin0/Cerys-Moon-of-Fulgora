@@ -3,13 +3,29 @@ local merge = require("lib").merge
 data:extend({
 	{
 		type = "recipe",
+		name = "cerys-mixed-oxide-reactor",
+		category = "crafting",
+		energy_required = 10,
+		enabled = false,
+		ingredients = {
+			{ type = "item", name = "refined-concrete", amount = 500 },
+			{ type = "item", name = "steel-plate", amount = 500 },
+			{ type = "item", name = "processing-unit", amount = 500 },
+			{ type = "item", name = "lithium-plate", amount = 500 },
+		},
+		results = { { type = "item", name = "cerys-mixed-oxide-reactor", amount = 1 } },
+		requester_paste_multiplier = 1,
+	},
+
+	{
+		type = "recipe",
 		name = "mixed-oxide-fuel-cell",
-		category = "crafting-or-fulgoran-cryogenics",
+		category = "crafting",
 		always_show_made_in = true,
 		energy_required = 10,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 3 },
+			{ type = "item", name = "steel-plate", amount = 5 },
 			{ type = "item", name = "uranium-235", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 9 },
@@ -64,11 +80,11 @@ data:extend({
 		},
 		main_product = "",
 		ingredients = {
-			{ type = "fluid", name = "nuclear-waste-solution", amount = 40 },
+			{ type = "fluid", name = "nuclear-waste-solution", amount = 50 },
 		},
 		energy_required = 45,
 		results = {
-			{ type = "fluid", name = "steam", amount = 40 },
+			{ type = "fluid", name = "steam", amount = 50 },
 			{ type = "item", name = "uranium-238", amount = 3 },
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
 			{ type = "item", name = "plutonium-238", amount = 1, probability = 50 / 100 },
@@ -110,10 +126,10 @@ data:extend({
 		main_product = "",
 		ingredients = {
 			{ type = "item", name = "depleted-mixed-oxide-fuel-cell", amount = 1 },
-			{ type = "fluid", name = "nitric-acid", amount = 40 },
+			{ type = "fluid", name = "nitric-acid", amount = 20 },
 		},
 		results = {
-			{ type = "fluid", name = "nuclear-waste-solution", amount = 40 },
+			{ type = "fluid", name = "nuclear-waste-solution", amount = 20 },
 		},
 		allow_decomposition = false,
 		allow_productivity = true, -- Partial opt-out of plutonium gameplay
@@ -150,4 +166,28 @@ data:extend({
 		results = { { type = "item", name = "plutonium-fuel", amount = 1 } },
 		allow_productivity = true,
 	},
+
+	-- {
+	-- 	type = "recipe",
+	-- 	name = "plutonium-cannon-shell",
+	-- 	enabled = false,
+	-- 	energy_required = 12,
+	-- 	ingredients = {
+	-- 		{ type = "item", name = "uranium-cannon-shell", amount = 1 },
+	-- 		{ type = "item", name = "plutonium-238", amount = 1 },
+	-- 	},
+	-- 	results = { { type = "item", name = "plutonium-cannon-shell", amount = 1 } },
+	-- },
+
+	-- {
+	-- 	type = "recipe",
+	-- 	name = "explosive-plutonium-cannon-shell",
+	-- 	enabled = false,
+	-- 	energy_required = 12,
+	-- 	ingredients = {
+	-- 		{ type = "item", name = "explosive-uranium-cannon-shell", amount = 1 },
+	-- 		{ type = "item", name = "plutonium-238", amount = 1 },
+	-- 	},
+	-- 	results = { { type = "item", name = "explosive-plutonium-cannon-shell", amount = 1 } },
+	-- },
 })

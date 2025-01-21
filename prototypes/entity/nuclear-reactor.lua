@@ -1,5 +1,6 @@
 local merge = require("lib").merge
 local common = require("common")
+
 -- This function actually needs to be adjusted if size is changed:
 local function make_heat_buffer_connections(size)
 	local connections = {}
@@ -36,26 +37,47 @@ end
 
 local max_health = 15000
 
-local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
+local reactor_sound = sound_variations("__base__/sound/nuclear-reactor", 2, 1)
+for _, sound in pairs(reactor_sound) do
+	sound.speed = 0.8
+end
+
+local fulgoran_reactor = {
+	type = "reactor",
 	name = "cerys-fulgoran-reactor",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
+	icon_size = 64,
+	flags = { "placeable-neutral", "player-creation" },
+	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
+	max_health = max_health,
+	corpse = "nuclear-reactor-remnants",
+	dying_explosion = "nuclear-reactor-explosion",
+	consumption = "12GW",
+	neighbour_bonus = 0,
+	energy_source = {
+		type = "burner",
+		fuel_categories = { "nuclear-mixed-oxide" },
+		effectivity = 2,
+		fuel_inventory_size = 1,
+		burnt_inventory_size = 1,
+		light_flicker = {
+			color = { 0, 0, 0 },
+			minimum_intensity = 0.7,
+			maximum_intensity = 0.95,
+		},
+	},
+	collision_box = { { -11, -10.7 }, { 10.8, 10.7 } },
+	selection_box = { { -11, -11 }, { 11, 11 } },
+	damaged_trigger_effect = data.raw["reactor"]["nuclear-reactor"].damaged_trigger_effect,
+	lower_layer_picture = nil,
+	heat_lower_layer_picture = nil,
 	subgroup = "cerys-entities",
 	order = "c",
-	max_health = max_health,
-	collision_box = {
-		{ -11, -10.7 },
-		{ 10.8, 10.7 },
-	},
-	selection_box = { { -11, -11 }, { 11, 11 } },
-	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
-	lower_layer_picture = "nil",
-	heat_lower_layer_picture = "nil",
-	energy_source = merge(data.raw.reactor["nuclear-reactor"].energy_source, {
-		fuel_categories = { "nuclear-mixed-oxide" },
-		effectivity = 1.5, -- from 1
-	}),
-	consumption = "12GW", -- From 40MW
-	heat_buffer = merge(data.raw.reactor["nuclear-reactor"].heat_buffer, {
-		minimum_glow_temperature = 0, -- From 350
+	heat_buffer = {
+		max_temperature = 2000, -- from 1000
+		specific_heat = "800MJ", -- from 10MJ
+		max_transfer = "300GW", -- from 10GW
+		minimum_glow_temperature = 0,
 		connections = make_heat_buffer_connections(22),
 		heat_picture = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-heat-0.5.png",
@@ -66,10 +88,8 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			blend_mode = "additive",
 			draw_as_glow = true,
 		}),
-		specific_heat = "800MJ", -- from 10MJ
-		max_temperature = 1000, -- from 1000
-		max_transfer = "300GW", -- from 10GW
-	}),
+	},
+
 	connection_patches_connected = {
 		sheet = {
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-4x6.png",
@@ -79,16 +99,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		},
 	},
-	connection_patches_disconnected = {
-		sheet = {
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		},
-	},
+	connection_patches_disconnected = nil,
 	heat_connection_patches_connected = {
 		sheet = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
@@ -98,16 +109,8 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			scale = 0.5,
 		}),
 	},
-	heat_connection_patches_disconnected = {
-		sheet = apply_heat_pipe_glow({
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-connect-patches-heated-4x6.png",
-			width = 64,
-			height = 64,
-			variation_count = 24,
-			y = 64,
-			scale = 0.5,
-		}),
-	},
+	heat_connection_patches_disconnected = nil,
+
 	working_light_picture = {
 		blend_mode = "additive",
 		draw_as_glow = true,
@@ -118,6 +121,7 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 		shift = util.by_pixel(3, -3),
 		tint = { r = 0, g = 1, b = 1 },
 	},
+
 	picture = {
 		layers = {
 			{
@@ -137,31 +141,39 @@ local fulgoran_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 			},
 		},
 	},
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
-	icon_size = 64,
-	-- lower_layer_picture = {
-	-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-0.5.png",
-	-- width = 2113,
-	-- height = 2068,
-	-- scale = 0.354816,
-	-- shift = ?,
-	-- },
-	-- heat_lower_layer_picture = apply_heat_pipe_glow({
-	-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-heated-0.5.png",
-	-- width = 2113,
-	-- height = 2068,
-	-- scale = 0.354816,
-	-- shift = ?,
-	-- }),
+
+	impact_category = "metal-large",
+	open_sound = { filename = "__base__/sound/open-close/nuclear-open.ogg", volume = 0.8 },
+	close_sound = { filename = "__base__/sound/open-close/nuclear-close.ogg", volume = 0.8 },
+	working_sound = {
+		sound = reactor_sound,
+		max_sounds_per_type = 3,
+		fade_in_ticks = 4,
+		fade_out_ticks = 20,
+	},
+
+	meltdown_action = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			target_effects = {
+				{
+					type = "create-entity",
+					entity_name = "atomic-rocket",
+				},
+			},
+		},
+	},
+
+	default_temperature_signal = { type = "virtual", name = "signal-T" },
+	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
+	circuit_connector = circuit_connector_definitions["nuclear-reactor"],
 	autoplace = {
 		probability_expression = "0",
 	},
 	map_color = { 0, 183, 212 },
-	working_sound = merge(data.raw.reactor["nuclear-reactor"].working_sound, {
-		sound = sound_variations("__base__/sound/nuclear-reactor", 2, 1),
-	}),
 	fast_replaceable_group = "cerys-fulgoran-reactor",
-})
+}
 
 local reactor_wreck_base = {
 	type = "simple-entity-with-owner",

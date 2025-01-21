@@ -65,7 +65,7 @@ script.on_event({
 		radiative_towers.register_heating_tower(entity)
 	end
 
-	if entity.name == "charging-rod" then
+	if entity.name == "cerys-charging-rod" then
 		if event.robot then
 			rods.robot_built_charging_rod(entity, event.tags or {})
 		else
@@ -73,7 +73,7 @@ script.on_event({
 		end
 	end
 
-	if entity.name == "entity-ghost" and entity.ghost_name == "charging-rod" then
+	if entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		rods.built_ghost_charging_rod(entity, entity.tags)
 	end
 
@@ -190,12 +190,15 @@ function Public.cerys_tick(surface, tick)
 			space.tick_solar_wind_deflection()
 		end
 
-		if tick % (12 * solar_wind_tick_multiplier) == 0 then
-			rods.tick_12_check_charging_rods()
+		if tick % (9 * solar_wind_tick_multiplier) == 0 then
+			local spawn_chance = 0.5 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
+			if math.random() < spawn_chance then
+				space.spawn_solar_wind_particle(surface)
+			end
 		end
 
-		if tick % (18 * solar_wind_tick_multiplier) == 0 then
-			space.spawn_solar_wind_particle(surface)
+		if tick % (12 * solar_wind_tick_multiplier) == 0 then
+			rods.tick_12_check_charging_rods()
 		end
 	end
 
@@ -240,9 +243,14 @@ end
 
 script.on_event(defines.events.on_script_trigger_effect, function(event)
 	local effect_id = event.effect_id
-	local entity = event.target_entity
 
 	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
+		local entity = event.target_entity
+
+		if not (entity and entity.valid) then
+			return
+		end
+
 		radiative_towers.register_heating_tower_contracted(entity)
 	end
 end)

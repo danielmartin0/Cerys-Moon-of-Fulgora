@@ -1,20 +1,22 @@
 {
     "name": "Cerys-Moon-of-Fulgora",
-    "version": "0.9.3",
+    "version": "1.0.16",
     "factorio_version": "2.0",
     "title": "Cerys",
     "author": "thesixthroc",
     "contact": "contact@danielgmartin.com",
-    "description": "Fulgora's moon of puzzles. Ancient wrecks lodged under thick ice can seemingly be repaired, including a colossal Fulgoran reactor that could transform the possibilities on the surface... if you can manage to get it working.\n\nCerys is a largely (not fully) complete and polished mod that does not affect the vanilla game, so is easy to include in existing saves.",
+    "description": "Fulgora's moon of puzzles. Ancient wrecks embedded in thick ice can seemingly be repaired, including a colossal nuclear reactor that could transform the possibilities on the surface... if you can get it working.\n\nCerys is a polished and complete planet mod that does not affect the vanilla game in any way, so is easy to include in existing saves.",
     "homepage": "https://discord.gg/VuVhYUBbWE",
     "dependencies": [
         "base >= 2.0.28",
         "space-age >= 2.0.0",
-        "PlanetsLib >= 1.1.11",
         "Flare Stack >= 3.0.3",
+        "? Planet-Hopper",
+        "PlanetsLib >= 1.1.11",
         "? Tiered-Solar-System",
         "? visible-planets >= 1.2.11"
     ],
+    "space_travel_required": true,
     "package": {
         "scripts": {
             "prepublish": "./prepublish.js"

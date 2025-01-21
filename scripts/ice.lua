@@ -45,7 +45,6 @@ function Public.tick_ice(surface)
 		name = TRANSITION_TILE_NAMES,
 		position = { x = 0, y = 0 },
 		radius = common.MOON_RADIUS * 1.1,
-		limit = 200,
 	})
 
 	if #transitioning_tiles > 0 then
@@ -149,7 +148,7 @@ Public.TILE_TRANSITION_EFFECTS = {
 		})
 
 		for _, entity in pairs(colliding_entities) do
-			if entity and entity.valid and entity.type ~= "asteroid" then
+			if entity and entity.valid and entity.type ~= "asteroid" and entity.type ~= "offshore-pump" then
 				if entity.type ~= "offshore-pump" and entity.prototype.create_ghost_on_death then
 					Public.place_ghost_concrete_under_entity(surface, entity)
 				end

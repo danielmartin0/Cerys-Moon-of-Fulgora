@@ -133,17 +133,17 @@ local magnetic_field_restriction = {
 }
 
 for name, entity in pairs(data.raw["reactor"]) do
-	if not string.sub(name, 1, 6) == "cerys-" then
+	if string.sub(name, 1, 6) ~= "cerys-" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["lab"]) do
-	if not string.sub(name, 1, 6) == "cerys-" then
+	if string.sub(name, 1, 6) ~= "cerys-" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
-	if name ~= "charging-rod" then
+	if name ~= "cerys-charging-rod" then
 		override_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
@@ -181,8 +181,36 @@ for _, entity in pairs(data.raw["offshore-pump"]) do
 	end
 end
 
-for _, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
+for key, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
 	if mask.layers and mask.layers.water_tile then
-		mask.layers.cerys_water_tile = true
+		local new_mask = util.table.deepcopy(mask)
+		new_mask.layers.cerys_water_tile = true
+		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
 	end
+end
+
+--== Atomic projectiles ==--
+-- Ensuring that nuclear ground tiles don't get set on Cerys water spots.
+
+local function add_cerys_layers_to_masks(tbl)
+	if type(tbl) ~= "table" then
+		return
+	end
+
+	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_tile then
+		tbl.layers.cerys_tile = true
+	end
+	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_water_tile then
+		tbl.layers.cerys_water_tile = true
+	end
+
+	for _, v in pairs(tbl) do
+		if type(v) == "table" then
+			add_cerys_layers_to_masks(v)
+		end
+	end
+end
+
+for _, projectile in pairs(data.raw["projectile"]) do
+	add_cerys_layers_to_masks(projectile)
 end

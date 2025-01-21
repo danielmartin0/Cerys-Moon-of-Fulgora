@@ -43,13 +43,13 @@ function Public.register_charging_rod(entity)
 end
 
 Public.rod_set_state = function(entity, negative)
-	if entity.name == "charging-rod" then
+	if entity.name == "cerys-charging-rod" then
 		-- if storage.cerys.charging_rod_is_negative[entity.unit_number] ~= negative then
 		-- 	entity.energy = 0
 		-- end
 
 		storage.cerys.charging_rod_is_negative[entity.unit_number] = negative
-	elseif entity.name == "entity-ghost" and entity.ghost_name == "charging-rod" then
+	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		local tags = entity.tags or {}
 		tags.is_negative = negative
 		entity.tags = tags
@@ -62,43 +62,66 @@ Public.built_ghost_charging_rod = function(entity, tags)
 	end
 end
 
-local max_charging_rod_energy = prototypes.entity["charging-rod"].electric_energy_source_prototype.buffer_capacity
+local max_charging_rod_energy = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
 
 function Public.tick_12_check_charging_rods()
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
 		local e = rod.entity
 
 		if not (e and e.valid) then
-			if rod.red_light_rendering and rod.red_light_rendering.valid then
-				rod.red_light_rendering.destroy()
-			end
+			Public.destroy_red_light_entity(rod)
+			Public.destroy_blue_light_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 			goto continue
 		end
 
 		local negative = storage.cerys.charging_rod_is_negative[unit_number]
 
-		if negative then
-			if rod.red_light_rendering then
-				if rod.red_light_rendering.valid then
-					rod.red_light_rendering.destroy()
-				end
-				rod.red_light_rendering = nil
-			end
-		else
-			if not (rod.red_light_rendering and rod.red_light_rendering.valid) then
-				rod.red_light_rendering = rendering.draw_sprite({
-					surface = e.surface,
-					sprite = "cerys-charging-rod-red-light",
-					target = e,
-					render_layer = "object",
+		local polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
+		rod.polarity_fraction = polarity_fraction
+
+		if polarity_fraction == 1 then
+			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
+				rod.blue_light_entity = e.surface.create_entity({
+					name = "cerys-charging-rod-animation-blue",
+					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
 				})
 			end
+
+			Public.destroy_red_light_entity(rod)
+		elseif polarity_fraction == -1 then
+			if not (rod.red_light_entity and rod.red_light_entity.valid) then
+				rod.red_light_entity = e.surface.create_entity({
+					name = "cerys-charging-rod-animation-red",
+					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
+				})
+			end
+
+			Public.destroy_blue_light_entity(rod)
+		else
+			Public.destroy_blue_light_entity(rod)
+			Public.destroy_red_light_entity(rod)
 		end
 
-		rod.polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
-
 		::continue::
+	end
+end
+
+function Public.destroy_red_light_entity(rod)
+	if rod.red_light_entity then
+		if rod.red_light_entity.valid then
+			rod.red_light_entity.destroy()
+		end
+		rod.red_light_entity = nil
+	end
+end
+
+function Public.destroy_blue_light_entity(rod)
+	if rod.blue_light_entity then
+		if rod.blue_light_entity.valid then
+			rod.blue_light_entity.destroy()
+		end
+		rod.blue_light_entity = nil
 	end
 end
 
@@ -120,15 +143,15 @@ script.on_event(defines.events.on_gui_opened, function(event)
 			entity
 			and entity.valid
 			and (
-				entity.name == "charging-rod"
-				or (entity.name == "entity-ghost" and entity.ghost_name == "charging-rod")
+				entity.name == "cerys-charging-rod"
+				or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
 			)
 		)
 	then
 		return
 	end
 
-	local gui_key = entity.name == "charging-rod" and GUI_KEY or GUI_KEY_GHOST
+	local gui_key = entity.name == "cerys-charging-rod" and GUI_KEY or GUI_KEY_GHOST
 
 	local relative = player.gui.relative
 	if relative[gui_key] then
@@ -192,7 +215,7 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	local switch = relative[gui_key]["content"]["charging-rod-switch"]
 	local is_negative = false
 
-	if entity.name == "charging-rod" then
+	if entity.name == "cerys-charging-rod" then
 		is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number] or false
 	elseif entity.name == "entity-ghost" then
 		is_negative = (entity.tags and entity.tags.is_negative) or false
@@ -221,7 +244,7 @@ script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 	local is_negative = event.element.switch_state == "left"
 	Public.rod_set_state(entity, is_negative)
 
-	local gui_key = entity.name == "charging-rod" and GUI_KEY or GUI_KEY_GHOST
+	local gui_key = entity.name == "cerys-charging-rod" and GUI_KEY or GUI_KEY_GHOST
 
 	for _, other_player in pairs(game.connected_players) do
 		if
@@ -251,9 +274,9 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	end
 
 	local negative
-	if source.name == "charging-rod" then
+	if source.name == "cerys-charging-rod" then
 		negative = storage.cerys.charging_rod_is_negative[source.unit_number]
-	elseif source.name == "entity-ghost" and source.ghost_name == "charging-rod" then
+	elseif source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod" then
 		negative = source.tags.is_negative
 	end
 
@@ -268,7 +291,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 		return
 	end
 
-	if source.name ~= "charging-rod" then
+	if source.name ~= "cerys-charging-rod" then
 		return
 	end
 
@@ -287,7 +310,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	if blueprint and blueprint.valid_for_read then
 		local mapping = event.mapping.get()
 		for blueprint_entity_number, entity in pairs(mapping) do
-			if entity.name == "charging-rod" then
+			if entity.name == "cerys-charging-rod" then
 				local tags = blueprint.get_blueprint_entity_tags(blueprint_entity_number) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
 				blueprint.set_blueprint_entity_tags(blueprint_entity_number, tags)
@@ -298,7 +321,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 
 		if cursor_stack and cursor_stack.valid_for_read and cursor_stack.is_blueprint then
 			local source_entity = event.mapping.get()[1]
-			if source_entity and source_entity.valid and source_entity.name == "charging-rod" then
+			if source_entity and source_entity.valid and source_entity.name == "cerys-charging-rod" then
 				local tags = cursor_stack.get_blueprint_entity_tags(1) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[source_entity.unit_number]
 				cursor_stack.set_blueprint_entity_tags(1, tags)
@@ -320,7 +343,7 @@ script.on_event(defines.events.on_pre_build, function(event)
 		return
 	end
 
-	if event.ghost_name == "charging-rod" then
+	if event.ghost_name == "cerys-charging-rod" then
 		local tags = blueprint.get_blueprint_entity_tags(event.blueprint_entity_number) or {}
 		event.tags = event.tags or {}
 		event.tags.is_negative = tags.is_negative

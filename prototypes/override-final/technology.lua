@@ -1,8 +1,41 @@
---== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. ==--
-
 local lib = require("lib")
 -- local merge = lib.merge
 local cerys_tech = lib.cerys_tech
+
+for _, technology in pairs(data.raw.technology) do
+	local processing_unit_productivity_change = 0
+	local scrap_recycling_productivity_change = 0
+
+	if technology.effects then
+		for _, effect in ipairs(technology.effects) do
+			if effect.type == "change-recipe-productivity" and effect.recipe == "processing-unit" then
+				processing_unit_productivity_change = processing_unit_productivity_change + effect.change
+			end
+
+			if effect.type == "change-recipe-productivity" and effect.recipe == "scrap-recycling" then
+				scrap_recycling_productivity_change = scrap_recycling_productivity_change + effect.change
+			end
+		end
+
+		if processing_unit_productivity_change ~= 0 then
+			table.insert(technology.effects, {
+				type = "change-recipe-productivity",
+				recipe = "processing-units-from-nitric-acid",
+				change = processing_unit_productivity_change,
+			})
+		end
+
+		if scrap_recycling_productivity_change ~= 0 then
+			table.insert(technology.effects, {
+				type = "change-recipe-productivity",
+				recipe = "cerys-nuclear-scrap-recycling",
+				change = scrap_recycling_productivity_change,
+			})
+		end
+	end
+end
+
+--== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. It is fine for other mods to modify these if they do so mindfully. ==--
 
 data:extend({
 	cerys_tech({
@@ -95,7 +128,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "charging-rod",
+				recipe = "cerys-charging-rod",
 			},
 		},
 		prerequisites = { "cerys-science-pack" },
@@ -113,10 +146,10 @@ data:extend({
 		},
 		prerequisites = { "cerys-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
-		icon_size = 767,
+		icon_size = 256,
 	}),
 	cerys_tech({
-		science_count = 300,
+		science_count = 250,
 		name = "cerys-plutonium-enhanced-fuel-reprocessing",
 		effects = {
 			{
@@ -126,6 +159,10 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "nuclear-waste-solution-centrifuging",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "coal-synthesis",
 			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
@@ -147,7 +184,7 @@ data:extend({
 	}),
 	cerys_tech({
 		unit = {
-			count = 2000,
+			count = 1000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -155,7 +192,7 @@ data:extend({
 			},
 			time = 60,
 		},
-		name = "cerys-advanced-plutonium-technology",
+		name = "cerys-applications-of-radioactivity",
 		effects = {
 			{
 				type = "unlock-recipe",
@@ -169,17 +206,77 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "plutonium-fuel",
 			},
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "plutonium-cannon-shell",
+			-- },
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "explosive-plutonium-cannon-shell",
+			-- },
 		},
 		prerequisites = {
 			"cerys-plutonium-enhanced-fuel-reprocessing",
 			"uranium-ammo",
 			"fission-reactor-equipment",
 			"kovarex-enrichment-process",
-			"cerys-lubricant-synthesis",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
+	}),
+	cerys_tech({
+		unit = {
+			count = 4000,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		name = "cerys-plutonium-weaponry",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-hydrogen-bomb",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-neutron-bomb",
+			},
+		},
+		prerequisites = {
+			"cerys-lubricant-synthesis",
+			"cerys-applications-of-radioactivity",
+			"atomic-bomb",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
+		icon_size = 256,
+	}),
+	cerys_tech({
+		unit = {
+			count = 750,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerys-science-pack", 1 },
+			},
+			time = 60,
+		},
+		name = "cerys-mixed-oxide-reactor",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-mixed-oxide-reactor",
+			},
+		},
+		prerequisites = {
+			"cerys-plutonium-enhanced-fuel-reprocessing",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/reactor-tech.png",
+		icon_size = 256,
 	}),
 	{
 		type = "technology",
@@ -195,13 +292,14 @@ data:extend({
 				change = 0.1,
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair" },
+		prerequisites = { "cerys-advanced-structure-repair", "cerys-lubricant-synthesis" },
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
 				{ "cerys-science-pack", 1 },
+				{ "utility-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -223,7 +321,7 @@ data:extend({
 		},
 		prerequisites = { "holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "3^(L-1)*500",
+			count_formula = "3^(L-1)*400",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -243,7 +341,7 @@ data:extend({
 		effects = PlanetsLib.technology_effect_cargo_drops("cerys"),
 		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
 		unit = {
-			count = 2000,
+			count = 1500,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -347,35 +445,15 @@ end
 
 data:extend({ cryogenics_tech })
 
-for _, technology in pairs(data.raw.technology) do
-	local processing_unit_productivity_change = 0
-	local scrap_recycling_productivity_change = 0
+--== Flare stack ==--
 
-	if technology.effects then
-		for _, effect in ipairs(technology.effects) do
-			if effect.type == "change-recipe-productivity" and effect.recipe == "processing-unit" then
-				processing_unit_productivity_change = processing_unit_productivity_change + effect.change
-			end
-
-			if effect.type == "change-recipe-productivity" and effect.recipe == "scrap-recycling" then
-				scrap_recycling_productivity_change = scrap_recycling_productivity_change + effect.change
-			end
-		end
-
-		if processing_unit_productivity_change ~= 0 then
-			table.insert(technology.effects, {
-				type = "change-recipe-productivity",
-				recipe = "processing-units-from-nitric-acid",
-				change = processing_unit_productivity_change,
-			})
-		end
-
-		if scrap_recycling_productivity_change ~= 0 then
-			table.insert(technology.effects, {
-				type = "change-recipe-productivity",
-				recipe = "cerys-nuclear-scrap-recycling",
-				change = scrap_recycling_productivity_change,
-			})
-		end
-	end
-end
+data.raw.technology["flare-stack-item-venting-electric-tech"].enabled = false
+data.raw.technology["flare-stack-item-venting-tech"].enabled = false
+data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerys-science-pack" }
+data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
+	count = 50,
+	ingredients = {
+		{ "cerys-science-pack", 1 },
+	},
+	time = 60,
+}

@@ -22,6 +22,14 @@ data:extend({
 		default_value = false,
 	},
 	{
+		type = "double-setting",
+		name = "cerys-solar-wind-spawn-rate-percentage",
+		setting_type = "runtime-global",
+		default_value = 100.0,
+		minimum_value = 0.0,
+		maximum_value = 200.0,
+	},
+	{
 		type = "bool-setting",
 		name = "cerys-disable-flare-stack-item-venting",
 		setting_type = "startup",

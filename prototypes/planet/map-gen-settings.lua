@@ -5,11 +5,16 @@ planet_map_gen.cerys = function()
 		width = 32 * 30,
 		height = 32 * 30,
 		cliff_settings = nil,
+		autoplace_controls = {
+			["cerys_nitrogen_rich_minerals"] = {},
+			["cerys_methane_ice"] = {},
+			["cerys_nuclear_scrap"] = {},
+		},
 		autoplace_settings = {
 			["tile"] = {
 				treat_missing_as_default = false,
 				settings = {
-					["cerys-empty-space"] = {},
+					["cerys-empty-space-2"] = {},
 					["cerys-ice-on-water"] = {},
 					["cerys-water-puddles"] = {},
 					["cerys-ash-cracks-frozen"] = {},
@@ -49,14 +54,50 @@ planet_map_gen.cerys = function()
 					["cerys-fulgoran-crusher"] = {}, -- null
 					["cerys-fulgoran-reactor"] = {}, -- null
 					["lithium-brine"] = {
-						frequency = 0.00000000000000001, -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
-						size = 0.00000000000000001, -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
-						richness = 0.00000000000000001, -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
+						frequency = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
+						size = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
+						richness = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
 					},
 				},
 			},
 		},
 	}
 end
+
+data:extend({
+	{
+		type = "autoplace-control",
+		name = "cerys_nuclear_scrap",
+		localised_name = {
+			"",
+			"[entity=cerys-nuclear-scrap] ",
+			{ "entity-name.cerys-nuclear-scrap" },
+		},
+		order = "r-a",
+		category = "resource",
+	},
+	{
+		type = "autoplace-control",
+		name = "cerys_methane_ice",
+		localised_name = {
+			"",
+			"[entity=methane-ice] ",
+			{ "entity-name.methane-ice" },
+		},
+		order = "r-b",
+		category = "resource",
+	},
+	{
+		type = "autoplace-control",
+		name = "cerys_nitrogen_rich_minerals",
+		localised_name = {
+			"",
+			"[entity=cerys-nitrogen-rich-minerals] ",
+			{ "entity-name.cerys-nitrogen-rich-minerals" },
+		},
+		order = "r-c",
+		category = "resource",
+	},
+})
 
 return planet_map_gen
