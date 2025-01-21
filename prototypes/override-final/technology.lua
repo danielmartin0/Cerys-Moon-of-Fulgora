@@ -372,6 +372,7 @@ local discovery_tech = {
 	prerequisites = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
+		"kovarex-enrichment-process",
 		"quality-module-2",
 		"productivity-module-2",
 		"energy-shield-equipment",
