@@ -329,9 +329,9 @@ function Public.create_lithium_brine(surface, area)
 		return
 	end
 
-	for _ = 1, 14 do
+	for _ = 1, 27 do
 		local angle = math.random() * 2 * math.pi
-		local distance = math.random() * 11
+		local distance = math.random() * 21
 		local test_pos = {
 			x = common.LITHIUM_POSITION.x + math.cos(angle) * distance,
 			y = common.LITHIUM_POSITION.y + math.sin(angle) * distance,

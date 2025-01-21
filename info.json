@@ -9,7 +9,7 @@
     "homepage": "https://discord.gg/VuVhYUBbWE",
     "dependencies": [
         "base >= 2.0.28",
-        "space-age >= 2.0.0",
+        "space-age >= 2.0.28",
         "Flare Stack >= 3.0.3",
         "? Planet-Hopper",
         "PlanetsLib >= 1.1.11",

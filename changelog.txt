@@ -2,6 +2,7 @@
 Version: 1.0.20
 Date: ????
   Changes:
+    - Slightly increased the number of lithium brine spawns.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.19
 Date: 2025-01-21
