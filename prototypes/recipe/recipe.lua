@@ -49,7 +49,7 @@ data:extend({
 		order = "d-c",
 		category = "cryogenics-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 3,
+		energy_required = 2,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 20 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
