@@ -2,6 +2,7 @@
 Version: 1.0.27
 Date: ????
   Changes:
+    - The mixed-oxide reactor technology now unlocks the lithium plate recipe.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.26
 Date: 2025-01-22
