@@ -6,7 +6,6 @@ require("prototypes.override-final.technology")
 
 require("compat.categories")
 require("compat.compat")
-require("compat.5-dim")
 require("compat.any-planet-start")
 require("compat.maraxsis")
 require("compat.static-recycling")

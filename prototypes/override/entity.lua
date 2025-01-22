@@ -1,8 +1,10 @@
-table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
-	type = "prototype",
-	string = "cerys-charging-rod",
-	priority_bonus = 250,
-})
+if data.raw.planet.fulgora.lightning_properties and data.raw.planet.fulgora.lightning_properties.priority_rules then
+	table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
+		type = "prototype",
+		string = "cerys-charging-rod",
+		priority_bonus = 250,
+	})
+end
 
 local pipe_picture = assembler3pipepictures()
 pipe_picture.north = util.empty_sprite()
@@ -43,6 +45,10 @@ end
 --== Flare stack ==--
 
 if settings.startup["cerys-disable-flare-stack-item-venting"].value then
-	data.raw.furnace["electric-incinerator"].hidden = true
-	data.raw.furnace["incinerator"].hidden = true
+	if data.raw.furnace["electric-incinerator"] then
+		data.raw.furnace["electric-incinerator"].hidden = true
+	end
+	if data.raw.furnace["incinerator"] then
+		data.raw.furnace["incinerator"].hidden = true
+	end
 end

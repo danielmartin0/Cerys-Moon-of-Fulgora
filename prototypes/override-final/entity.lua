@@ -106,24 +106,53 @@ end
 
 --== Relaxations ==--
 
-local eased_pressure_restriction = { {
-	property = "pressure",
-	min = 5,
-} }
+-- local eased_pressure_restriction = {
+-- 	property = "pressure",
+-- 	min = 5,
+-- }
 
--- NOTE: Why are these not equivalent?
-override_surface_conditions(data.raw["roboport"]["roboport"], eased_pressure_restriction)
-override_surface_conditions(data.raw["inserter"]["burner-inserter"], eased_pressure_restriction)
+-- Vanilla and modded roboports:
+for _, entity in pairs(data.raw["roboport"]) do
+	for _, condition in pairs(entity.surface_conditions or {}) do
+		if condition.property == "pressure" and condition.min and condition.min > 5 then
+			condition.min = 5
+		end
+	end
+end
+-- Vanilla and modded burner inserters (to help with freeze reboots):
+for _, entity in pairs(data.raw["inserter"]) do
+	if entity.energy_source.type == "burner" and entity.surface_conditions then
+		for _, condition in pairs(entity.surface_conditions) do
+			if condition.property == "pressure" and condition.min and condition.min > 5 then
+				condition.min = 5
+			end
+		end
+	end
+end
 
 local gravity_condition = {
 	property = "gravity",
 	min = 0.1,
 }
 
-override_surface_conditions(data.raw["cargo-landing-pad"]["cargo-landing-pad"], gravity_condition)
-override_surface_conditions(data.raw["car"]["car"], gravity_condition)
-override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
-override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
+	if entity.surface_conditions then
+		for _, condition in pairs(entity.surface_conditions) do
+			if condition.property == "gravity" and condition.min and condition.min > 0.1 then
+				condition.min = 0.1
+			end
+		end
+	end
+end
+if data.raw["car"]["car"] then
+	override_surface_conditions(data.raw["car"]["car"], gravity_condition)
+end
+if data.raw["car"]["tank"] then
+	override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+end
+if data.raw["spider-vehicle"]["spidertron"] then
+	override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+end
 
 --== Restrictions ==--
 

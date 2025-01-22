@@ -2,11 +2,13 @@ local override_surface_conditions = require("lib").override_surface_conditions
 
 --== Relaxations ==--
 
-override_surface_conditions(data.raw.recipe["recycler"], {
-	property = "magnetic-field",
-	min = 99,
-	max = 120,
-})
+if data.raw.recipe["recycler"] then
+	override_surface_conditions(data.raw.recipe["recycler"], {
+		property = "magnetic-field",
+		min = 99,
+		max = 120,
+	})
+end
 
 override_surface_conditions(data.raw.recipe["cryogenic-plant"], {
 	property = "pressure",
@@ -16,45 +18,61 @@ override_surface_conditions(data.raw.recipe["cryogenic-plant"], {
 
 --== Restrictions ==--
 
-override_surface_conditions(data.raw.recipe["lab"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["lab"] then
+	override_surface_conditions(data.raw.recipe["lab"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["accumulator"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["accumulator"] then
+	override_surface_conditions(data.raw.recipe["accumulator"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["nuclear-reactor"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["nuclear-reactor"] then
+	override_surface_conditions(data.raw.recipe["nuclear-reactor"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["fusion-reactor"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["fusion-reactor"] then
+	override_surface_conditions(data.raw.recipe["fusion-reactor"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["fusion-generator"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["fusion-generator"] then
+	override_surface_conditions(data.raw.recipe["fusion-generator"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["fusion-power-cell"], {
-	property = "magnetic-field",
-	max = 119,
-})
+if data.raw.recipe["fusion-power-cell"] then
+	override_surface_conditions(data.raw.recipe["fusion-power-cell"], {
+		property = "magnetic-field",
+		max = 119,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["boiler"], {
-	property = "pressure",
-	min = 10,
-})
+if data.raw.recipe["boiler"] then
+	override_surface_conditions(data.raw.recipe["boiler"], {
+		property = "pressure",
+		min = 10,
+	})
+end
 
-override_surface_conditions(data.raw.recipe["steam-engine"], {
-	property = "pressure",
-	min = 10,
-})
+if data.raw.recipe["steam-engine"] then
+	override_surface_conditions(data.raw.recipe["steam-engine"], {
+		property = "pressure",
+		min = 10,
+	})
+end
 
 override_surface_conditions(data.raw.recipe["rocket-fuel"], {
 	property = "temperature",
