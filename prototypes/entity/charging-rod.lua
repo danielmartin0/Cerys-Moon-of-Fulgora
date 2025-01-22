@@ -1,18 +1,38 @@
+local hit_effects = require("__base__.prototypes.entity.hit-effects")
+local sounds = require("__base__.prototypes.entity.sounds")
+
 local merge = require("lib").merge
 
 data:extend({
-	merge(data.raw["lightning-attractor"]["lightning-rod"], {
+	{
 		type = "accumulator",
 		name = "cerys-charging-rod",
+		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
+		max_health = 200,
+		corpse = "lightning-rod-remnants",
+		dying_explosion = "medium-electric-pole-explosion",
+		resistances = {
+			{
+				type = "fire",
+				percent = 90,
+			},
+			{
+				type = "electric",
+				percent = 100,
+			},
+		},
 		collision_box = { { -0.65, -0.65 }, { 0.65, 0.65 } },
 		selection_box = { { -0.9, -1 }, { 0.9, 1 } },
-		-- range_elongation = 0,
+		damaged_trigger_effect = hit_effects.entity({ { -0.2, -2.2 }, { 0.2, 0.2 } }),
+		drawing_box_vertical_extension = 4.3,
+		open_sound = sounds.electric_network_open,
+		close_sound = sounds.electric_network_close,
 		factoriopedia_simulation = "nil",
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
-			buffer_capacity = "12MJ", -- from 5MJ
+			buffer_capacity = "12MJ",
 			input_flow_limit = "4MW",
 			output_flow_limit = "500kW",
 		},
@@ -55,7 +75,7 @@ data:extend({
 			charge_animation_is_looped = true,
 		}),
 		surface_conditions = {
-			{ property = "magnetic-field", min = 120, max = 120 }, -- Don't allow scripts to run on other surfaces
+			{ property = "magnetic-field", min = 120, max = 120 },
 		},
 		working_sound = {
 			main_sounds = {
@@ -82,7 +102,7 @@ data:extend({
 			},
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
-	}),
+	},
 
 	{
 		type = "simple-entity",

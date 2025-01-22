@@ -1,3 +1,4 @@
+local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
 
@@ -37,15 +38,21 @@ data:extend({
 		stack_size = 1,
 		weight = 10 * 1000,
 	},
-	merge(data.raw.item["lightning-rod"], {
+	{
+		type = "item",
 		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 128,
-		order = "e[accumulator]-b[charging-rod]",
 		subgroup = "energy",
+		order = "e[accumulator]-b[charging-rod]",
+		inventory_move_sound = item_sounds.electric_small_inventory_move,
+		pick_sound = item_sounds.electric_small_inventory_pickup,
+		drop_sound = item_sounds.electric_small_inventory_move,
 		place_result = "cerys-charging-rod",
+		stack_size = 50,
 		default_import_location = "cerys",
-	}),
+		random_tint_color = item_tints.iron_rust,
+	},
 	merge(data.raw.item["nuclear-fuel"], {
 		name = "plutonium-fuel",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-fuel.png",
