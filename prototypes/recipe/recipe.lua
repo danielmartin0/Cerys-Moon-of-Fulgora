@@ -49,7 +49,7 @@ data:extend({
 		order = "d-c",
 		category = "cryogenics-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 3,
+		energy_required = 1.8,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 20 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
@@ -121,7 +121,7 @@ data:extend({
 		results = {
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
 		},
-		allow_productivity = false,
+		allow_productivity = true,
 		enabled = false,
 		always_show_made_in = true,
 		always_show_products = true,
@@ -196,9 +196,9 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 5,
+		energy_required = 6,
 		ingredients = {
-			{ type = "item", name = "methane-ice", amount = 20 },
+			{ type = "item", name = "methane-ice", amount = 30 },
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 30 },

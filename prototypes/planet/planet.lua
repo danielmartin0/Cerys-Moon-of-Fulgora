@@ -16,8 +16,9 @@ PlanetsLib:extend({
 			orientation = 0.7,
 			sprite = {
 				type = "sprite",
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit_cerys.png",
-				size = 86,
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit.png",
+				size = 332,
+				scale = 0.25,
 			},
 		},
 		subgroup = "satellites",

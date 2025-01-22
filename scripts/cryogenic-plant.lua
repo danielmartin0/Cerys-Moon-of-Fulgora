@@ -216,7 +216,7 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 			local recipe, recipe_quality = plant.get_recipe()
 
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality" then
-				if plant.quality.next.name == recipe_quality.name and plant.is_crafting() then
+				if plant.quality.next.name == recipe_quality.name then
 					storage.cerys.cryo_upgrade_monitor[plant.unit_number] = {
 						entity = plant,
 						quality_upgrading_to = recipe_quality.name,
@@ -260,9 +260,9 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 		local e = data.entity
 		local quality_upgrading_to = data.quality_upgrading_to
 
-		if not (e and e.valid and e.is_crafting()) then
+		if not (e and e.valid) then
 			storage.cerys.cryo_upgrade_monitor[unit_number] = nil
-		else
+		elseif e.is_crafting() then
 			local recipe, quality = e.get_recipe()
 			local still_the_same_recipe = recipe
 				and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality"
@@ -282,32 +282,36 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 						quality = quality_upgrading_to,
 					})
 
-					if e and e.valid and e2 and e2.valid then
+					if e2 and e2.valid then
 						e2.minable_flag = false
 						e2.destructible = false
 
 						e2.set_recipe(nil)
 
-						local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
+						if e and e.valid then
+							local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
 
-						local input = old_input.get_contents()
-						for _, m in pairs(input) do
-							for _ = 1, m.count do
-								surface.spill_item_stack({
-									position = e.position,
-									stack = { name = m.name, count = 1, quality = m.quality },
-								})
+							local input = old_input.get_contents()
+							for _, m in pairs(input) do
+								for _ = 1, m.count do
+									surface.spill_item_stack({
+										position = e.position,
+										stack = { name = m.name, count = 1, quality = m.quality },
+									})
+								end
+							end
+
+							local old_modules = e.get_module_inventory()
+							local new_modules = e2.get_module_inventory()
+
+							local modules = old_modules.get_contents()
+							for _, m in pairs(modules) do
+								new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
 							end
 						end
+					end
 
-						local old_modules = e.get_module_inventory()
-						local new_modules = e2.get_module_inventory()
-
-						local modules = old_modules.get_contents()
-						for _, m in pairs(modules) do
-							new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
-						end
-
+					if e and e.valid then
 						e.destroy()
 					end
 

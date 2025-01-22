@@ -109,6 +109,8 @@ data:extend({
 		allow_quality = true,
 		allow_productivity = false,
 		hide_from_signal_gui = true,
+		allow_inserter_overload = false,
+		overload_multiplier = 1, -- This is ineffective due to the default value of the utility constant 'minimum_recipe_overload_multiplier', which this vanilla-compatible mod doesn't want to change. However if another mod lowers this value, this will take effect.
 	},
 
 	{

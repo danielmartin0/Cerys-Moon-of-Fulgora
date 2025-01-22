@@ -1,7 +1,71 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.16
+Version: 1.0.27
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 1.0.26
+Date: 2025-01-22
+  Modding:
+    - More mod compatibilities.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.25
+Date: 2025-01-22
+  Modding:
+    - Compatibility with mods that mess with the default charging rod in the data stage.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.24
+Date: 2025-01-22
+  Graphics:
+    - 4K orbit graphic.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.23
+Date: 2025-01-22
+  Changes:
+    - Support for PlanetsLib 1.1.31.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.22
+Date: 2025-01-22
+  Changes:
+    - Support for PlanetsLib 1.1.30.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.21
+Date: 2025-01-21
+  Changes:
+    - Removed mod setting to control the repair cost of the Fulgoran reactor.
+  Locale:
+    - Chinese locale updated (recently).
+  Balancing:
+    - Crafting time of processing units from nitric acid reduced.
+    - Methane ice required for dissociation increased.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.20
+Date: 2025-01-21
+  Changes:
+    - Added Kovarex enrichment process as a prerequisite for discovering Cerys.
+    - Slightly increased the number of lithium brine spawns.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.19
+Date: 2025-01-21
+  Changes:
+    - Increased the temperature of steam produced by mixed-oxide cell reprocessing.
+  Bugfixes:
+    - Production of nitric acid now allows productivity modules.
+    - Fixed that items placed into frozen Fulgoran crushers were not retained when the crusher thaws.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.18
+Date: 2025-01-21
+  Modding:
+    - Further compatibility fixes, especially for 5-dim.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.17
+Date: 2025-01-21
+  Bugfixes:
+    - Fixed that cryogenic plant quality upgrade recipes were not functioning.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.16
+Date: 2025-01-21
+  Modding:
+    - Compatibility fix for crafting science packs with Mulana installed.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.15
 Date: 2025-01-21

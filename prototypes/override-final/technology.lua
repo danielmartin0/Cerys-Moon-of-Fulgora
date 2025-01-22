@@ -1,5 +1,5 @@
 local lib = require("lib")
--- local merge = lib.merge
+local merge = lib.merge
 local cerys_tech = lib.cerys_tech
 
 for _, technology in pairs(data.raw.technology) do
@@ -336,25 +336,22 @@ data:extend({
 })
 
 data:extend({
-	lib.cerys_tech({
-		name = "cerys-cargo-drops",
-		effects = PlanetsLib.technology_effect_cargo_drops("cerys"),
-		prerequisites = { "cerys-lubricant-synthesis" }, -- Note that the dependence on advanced plutonium tech might force the player to leave the moon before performing drops.
-		unit = {
-			count = 1500,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerys-science-pack", 1 },
-				{ "utility-science-pack", 1 },
+	merge(
+		PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256),
+		{
+			prerequisites = { "cerys-lubricant-synthesis" },
+			unit = {
+				count = 1500,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerys-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
 			},
-			time = 60,
-		},
-		icons = PlanetsLib.technology_icons_planet_cargo_drops(
-			"__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png",
-			256
-		),
-	}),
+		}
+	),
 })
 
 local discovery_tech = {
@@ -372,6 +369,7 @@ local discovery_tech = {
 	prerequisites = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
+		"kovarex-enrichment-process",
 		"quality-module-2",
 		"productivity-module-2",
 		"energy-shield-equipment",

@@ -109,10 +109,10 @@ function Public.reactor_excavation_check(surface, reactor)
 end
 
 function Public.reactor_repair_recipes_needed()
-	local adjusted = Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED
-		* settings.global["cerys-fulgoran-reactor-repair-cost-multiplier"].value
+	-- local adjusted = Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED
+	-- * settings.global["cerys-fulgoran-reactor-repair-cost-multiplier"].value
 
-	return math.ceil(adjusted)
+	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
 end
 
 function Public.reactor_repair_check(surface, reactor)
