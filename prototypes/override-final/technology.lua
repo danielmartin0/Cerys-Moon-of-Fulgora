@@ -271,6 +271,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-mixed-oxide-reactor",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "lithium-plate",
+			},
 		},
 		prerequisites = {
 			"cerys-plutonium-enhanced-fuel-reprocessing",
