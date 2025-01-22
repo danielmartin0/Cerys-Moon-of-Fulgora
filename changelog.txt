@@ -2,6 +2,7 @@
 Version: 1.0.28
 Date: ????
   Changes:
+    - Added migration to preserve research progress on cargo drops. Players loading older saves with this tech researched will have it preserved from 1.0.28.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.27
 Date: 2025-01-22
