@@ -38,6 +38,36 @@ end
 --== The following content should really be in data.lua. However, there are a large number of conflicts on the mod portal that arise when other mods try to mess with Cerys labs and technologies, so it is here for now. It is fine for other mods to modify these if they do so mindfully. ==--
 
 data:extend({
+
+	{
+		type = "recipe",
+		name = "cerys-science-pack",
+		always_show_made_in = true,
+		category = "fulgoran-cryogenics",
+		enabled = false,
+		energy_required = 2,
+		ingredients = {
+			{ type = "item", name = "superconductor", amount = 1 },
+			{ type = "item", name = "uranium-238", amount = 6 },
+			{ type = "fluid", name = "nitric-acid", amount = 50 },
+			{ type = "fluid", name = "ammonia", amount = 50 },
+		},
+		results = { { type = "item", name = "cerys-science-pack", amount = 1 } },
+		surface_conditions = {
+			{
+				property = "magnetic-field",
+				min = 120,
+				max = 120,
+			},
+			{
+				property = "pressure",
+				min = 5,
+				max = 5,
+			},
+		},
+		allow_productivity = true,
+	},
+
 	cerys_tech({
 		name = "cerys-nitrogen-rich-mineral-processing",
 		effects = {
