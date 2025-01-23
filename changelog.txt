@@ -2,6 +2,8 @@
 Version: 1.0.30
 Date: ????
   Changes:
+    - Improved cross-mod compatibility of surface conditions.
+    - Burner generators are no longer buildable on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.29
 Date: 2025-01-23
