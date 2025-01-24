@@ -2,6 +2,13 @@
 Version: 1.0.33
 Date: ????
   Changes:
+    - Added mod setting to disable quality-sensitive mechanics on Cerys.
+    - Reduced the speed at which the Fulgoran nuclear reactor consumes mixed-oxide fuel.
+    - Slightly decreased the ambient rate at which the Fulgoran nuclear reactor cools.
+  Balancing:
+    - Dropped the recipes needed for Fulgoran reactor repair from 15 to 12.
+  Bugfixes:
+    - Fixed quality indicators not being shown in the floating GUI for the Fulgoran crusher repair.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.32
 Date: 2025-01-24

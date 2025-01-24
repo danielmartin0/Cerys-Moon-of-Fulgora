@@ -9,7 +9,9 @@ Public.REACTOR_STAGE_ENUM = {
 }
 
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 15
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 12
+
+local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
 function Public.tick_15_nuclear_reactor_repair_check(surface)
 	if not (storage.cerys and storage.cerys.reactor) then
@@ -30,8 +32,6 @@ function Public.tick_15_nuclear_reactor_repair_check(surface)
 		Public.reactor_repair_check(surface, reactor)
 	end
 end
-
-local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
 function Public.reactor_excavation_check(surface, reactor)
 	local e = reactor.entity
@@ -109,10 +109,9 @@ function Public.reactor_excavation_check(surface, reactor)
 end
 
 function Public.reactor_repair_recipes_needed()
-	-- local adjusted = Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED
-	-- * settings.global["cerys-fulgoran-reactor-repair-cost-multiplier"].value
+	local multiplier = settings.startup["cerys-disable-quality-mechanics"].value and 50 or 1
 
-	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
+	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED * multiplier)
 end
 
 function Public.reactor_repair_check(surface, reactor)
@@ -222,17 +221,25 @@ function Public.reactor_repair_check(surface, reactor)
 		if e and e.valid then
 			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
 			if input_inv and input_inv.valid then
-				processing_units = input_inv.get_item_count({ name = "processing-unit", quality = "rare" })
-				repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = "rare" })
+				if settings.startup["cerys-disable-quality-mechanics"].value then
+					processing_units = input_inv.get_item_count({ name = "processing-unit" })
+					repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part" })
+				else
+					processing_units = input_inv.get_item_count({ name = "processing-unit", quality = "rare" })
+					repair_parts =
+						input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = "rare" })
+				end
 			end
 			chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + processing_units
 			repair_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 		end
 
+		local quality_text = settings.startup["cerys-disable-quality-mechanics"].value and "" or ",quality=rare"
+
 		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 200, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
-			"[item=processing-unit,quality=rare]",
+			"[item=processing-unit" .. quality_text .. "]",
 			chips_count,
 			recipes_needed * 1,
 		}
@@ -240,7 +247,7 @@ function Public.reactor_repair_check(surface, reactor)
 		r2.color = repair_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 200, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
-			"[item=ancient-structure-repair-part,quality=rare]",
+			"[item=ancient-structure-repair-part" .. quality_text .. "]",
 			repair_count,
 			recipes_needed * 1,
 		}

@@ -125,8 +125,17 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "crusher-repair",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "advanced-circuit", amount = 1 },
+			{
+				type = "item",
+				name = settings.startup["cerys-disable-quality-mechanics"].value and "processing-unit"
+					or "advanced-circuit",
+				amount = 1,
+			},
+			{
+				type = "item",
+				name = "ancient-structure-repair-part",
+				amount = settings.startup["cerys-disable-quality-mechanics"].value and 5 or 1,
+			},
 		},
 		results = {},
 		allow_quality = false,
