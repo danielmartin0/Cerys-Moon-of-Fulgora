@@ -2,6 +2,7 @@
 Version: 1.0.32
 Date: ????
   Changes:
+    - Increased the lifetime of solar wind particles.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.31
 Date: 2025-01-23
