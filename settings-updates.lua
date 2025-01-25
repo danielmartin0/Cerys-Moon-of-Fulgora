@@ -59,6 +59,12 @@ data:extend({
 		setting_type = "startup",
 		default_value = false,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-start-on-cerys",
+		setting_type = "startup",
+		default_value = false,
+	},
 })
 
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true
