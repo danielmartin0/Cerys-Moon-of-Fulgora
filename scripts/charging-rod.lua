@@ -1,3 +1,5 @@
+local handler = require("event_handler")
+
 local Public = {}
 
 local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
@@ -76,27 +78,24 @@ function Public.tick_12_check_charging_rods()
 		end
 
 		local negative = storage.cerys.charging_rod_is_negative[unit_number]
-
 		local polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 		rod.polarity_fraction = polarity_fraction
 
-		if polarity_fraction == 1 then
+		if polarity_fraction > 0.999 then
 			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
 				rod.blue_light_entity = e.surface.create_entity({
 					name = "cerys-charging-rod-animation-blue",
-					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
+					position = { x = e.position.x, y = e.position.y + 1 },
 				})
 			end
-
 			Public.destroy_red_light_entity(rod)
-		elseif polarity_fraction == -1 then
+		elseif polarity_fraction < -0.999 then
 			if not (rod.red_light_entity and rod.red_light_entity.valid) then
 				rod.red_light_entity = e.surface.create_entity({
 					name = "cerys-charging-rod-animation-red",
-					position = { x = e.position.x, y = e.position.y + 1 }, -- +1 makes it appear on top
+					position = { x = e.position.x, y = e.position.y + 1 },
 				})
 			end
-
 			Public.destroy_blue_light_entity(rod)
 		else
 			Public.destroy_blue_light_entity(rod)
@@ -349,5 +348,35 @@ script.on_event(defines.events.on_pre_build, function(event)
 		event.tags.is_negative = tags.is_negative
 	end
 end)
+
+handler.add_lib({
+	events = {
+		["pre_blueprint_pasted"] = function(event)
+			local blueprint_entities = event.blueprint_entities
+
+			local pasted_positions = event.pasted_positions
+
+			for entity_index, position in pairs(pasted_positions) do
+				local entity = blueprint_entities[entity_index]
+
+
+				if entity.name == "cerys-charging-rod" then
+					local surface = event.surface
+
+					local existing_rod = surface.find_entity("cerys-charging-rod", position)
+
+					if
+						existing_rod
+						and existing_rod.valid
+						and existing_rod.position.x == position.x
+						and existing_rod.position.y == position.y
+					then
+						Public.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
+					end
+				end
+			end
+		end,
+	},
+})
 
 return Public

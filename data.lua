@@ -1,5 +1,6 @@
 require("prototypes.categories")
 require("prototypes.collision-layers")
+require("prototypes.custom-events")
 require("prototypes.decoratives")
 require("prototypes.entity.charging-rod")
 require("prototypes.entity.crusher")

@@ -2,11 +2,13 @@
 Version: 1.1.0
 Date: 2025-02-04
   Changes:
+    - Moon Discovery Cerys and Cerysian Science Pack are now marked as essential technologies. This convention seems to have taken hold amongst planet mods.
+    - Most of the bugs in which charging rod settings failed to paste correctly have been fixed. The remaining bugs will probably need the base game to be patched.
+    - Fixed graphical bug in which charging rod lights failed to appear.
     - Significantly increased the lifetime of solar wind particles.
     - More efficient cleanup of out-of-bounds solar wind particles.
     - Slightly reduced the strength of charging rod deflection.
     - Range increase on the hydrogen bomb rolling wave.
-    - Moon Discovery Cerys and Cerysian Science Pack technologies are now marked as essential. (This convention seems to have taken hold amongst planet mods.)
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.50
 Date: 2025-02-04
