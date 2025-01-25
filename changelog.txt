@@ -2,6 +2,7 @@
 Version: 1.0.36
 Date: ????
   Changes:
+    - Fixed the size of the charging rod as displayed in the statistics screen.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.35
 Date: 2025-01-25
