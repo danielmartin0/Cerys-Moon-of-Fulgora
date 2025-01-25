@@ -2,6 +2,7 @@
 Version: 1.0.35
 Date: ????
   Changes:
+    - Moved technology-related prototype definitions from data-final-fixes back to data where they belong. Now that 1.0 has released, we can hopefully iron out compatibility issues over time.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.34
 Date: 2025-01-25
