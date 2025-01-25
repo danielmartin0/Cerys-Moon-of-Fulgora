@@ -176,7 +176,12 @@ data:extend({
 		subgroup = "explosions",
 		height = 0,
 		sound = {
-			variations = sound_variations_with_volume_variations("__base__/sound/fight/medium-explosion", 5, 0.8, 0.9),
+			audible_distance_modifier = 2,
+			speed = 4,
+			variations = {
+				{ filename = "__base__/sound/fight/large-explosion-1.ogg", volume = 1, speed = 2 },
+				{ filename = "__base__/sound/fight/large-explosion-2.ogg", volume = 1, speed = 2 },
+			},
 		},
 		animations = {
 			width = 628,
@@ -186,7 +191,7 @@ data:extend({
 			priority = "very-low",
 			flags = { "linear-magnification" },
 			shift = util.by_pixel(0.5, -122.5), --shift = util.by_pixel(0.5, -62.5), shifted by 60 due to scaling and centering
-			animation_speed = 4 * 0.5 * 0.75,
+			animation_speed = 2.3 * 0.5 * 0.75,
 			tint = { r = 0.6, g = 0.8, b = 1 },
 			scale = 0.7,
 			dice_y = 5,

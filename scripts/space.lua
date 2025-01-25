@@ -4,7 +4,7 @@ local Public = {}
 
 local OUT_OF_BOUNDS_D2 = (common.MOON_RADIUS * (2 ^ (1 / 2)) * 1.5 + 5) ^ 2
 local SOLAR_WIND_MIN_VELOCITY = 0.2
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 1.5
+local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 2.5
 
 local ROD_DEFLECTION_STRENGTH = 5
 local ROD_MAX_RANGE_SQUARED = 25 * 25

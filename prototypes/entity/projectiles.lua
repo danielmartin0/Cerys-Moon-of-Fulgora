@@ -14,7 +14,7 @@ local base_neutron = {
 	animation = {
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
 		size = 32,
-		scale = 0.45,
+		scale = 0.5,
 		draw_as_glow = true,
 	},
 	action = {
@@ -72,10 +72,10 @@ data:extend({
 								type = "projectile",
 								projectile = "cerys-neutron-projectile-3",
 								starting_speed = 0.3,
-								starting_speed_deviation = 0.1,
-								max_range = 5,
+								starting_speed_deviation = 0.3,
+								max_range = 12,
 								min_range = 0,
-								direction_deviation = 6 * math.pi / 16,
+								direction_deviation = 5 * math.pi / 16,
 							},
 						},
 					},
@@ -118,9 +118,9 @@ data:extend({
 							action_delivery = {
 								type = "projectile",
 								projectile = "cerys-neutron-projectile-2",
-								starting_speed = 0.4,
-								starting_speed_deviation = 0.1,
-								max_range = 9,
+								starting_speed = 0.9,
+								starting_speed_deviation = 1.2,
+								max_range = 1.1,
 								min_range = 0,
 								direction_deviation = 3 * math.pi / 16,
 							},
@@ -167,7 +167,7 @@ data:extend({
 				target_effects = {
 					{
 						type = "nested-result",
-						repeat_count = 150,
+						repeat_count = 200,
 						action = {
 							type = "area",
 							target_entities = false,
@@ -176,9 +176,9 @@ data:extend({
 							action_delivery = {
 								type = "projectile",
 								projectile = "cerys-neutron-projectile",
-								starting_speed = 0.5,
-								starting_speed_deviation = 0.2,
-								max_range = 14,
+								starting_speed = 1.1,
+								starting_speed_deviation = 1.5,
+								max_range = 15,
 								min_range = 0,
 								direction_deviation = math.pi,
 							},
@@ -188,17 +188,17 @@ data:extend({
 						type = "nested-result",
 						action = {
 							type = "area",
-							radius = 9.0,
+							radius = 12.0,
 							action_delivery = {
 								type = "instant",
 								target_effects = {
 									{
 										type = "damage",
-										damage = { amount = 1200, type = "physical" },
+										damage = { amount = 2000, type = "physical" },
 									},
 									{
 										type = "damage",
-										damage = { amount = 1200, type = "explosion" },
+										damage = { amount = 2000, type = "explosion" },
 									},
 								},
 							},

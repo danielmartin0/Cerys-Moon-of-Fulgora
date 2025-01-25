@@ -102,6 +102,7 @@ data:extend({
 			},
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon_size = 128,
 	},
 
 	{

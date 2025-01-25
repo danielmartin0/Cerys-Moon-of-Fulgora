@@ -1,5 +1,6 @@
 local lib = require("lib")
-local override_surface_conditions = lib.override_surface_conditions
+local restrict_surface_conditions = lib.restrict_surface_conditions
+local relax_surface_conditions = lib.relax_surface_conditions
 
 for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories then
@@ -136,22 +137,16 @@ local gravity_condition = {
 }
 
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
-	if entity.surface_conditions then
-		for _, condition in pairs(entity.surface_conditions) do
-			if condition.property == "gravity" and condition.min and condition.min > 0.1 then
-				condition.min = 0.1
-			end
-		end
-	end
+	relax_surface_conditions(entity, gravity_condition)
 end
 if data.raw["car"]["car"] then
-	override_surface_conditions(data.raw["car"]["car"], gravity_condition)
+	relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
 end
 if data.raw["car"]["tank"] then
-	override_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+	relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
 end
 if data.raw["spider-vehicle"]["spidertron"] then
-	override_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+	relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
 end
 
 --== Restrictions ==--
@@ -163,24 +158,27 @@ local magnetic_field_restriction = {
 
 for name, entity in pairs(data.raw["reactor"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		override_surface_conditions(entity, magnetic_field_restriction)
+		restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["lab"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		override_surface_conditions(entity, magnetic_field_restriction)
+		restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
 	if name ~= "cerys-charging-rod" then
-		override_surface_conditions(entity, magnetic_field_restriction)
+		restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for _, entity in pairs(data.raw["fusion-reactor"]) do
-	override_surface_conditions(entity, magnetic_field_restriction)
+	restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 for _, entity in pairs(data.raw["fusion-generator"]) do
-	override_surface_conditions(entity, magnetic_field_restriction)
+	restrict_surface_conditions(entity, magnetic_field_restriction)
+end
+for _, entity in pairs(data.raw["burner-generator"]) do
+	restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 
 local ten_pressure_condition = {
@@ -190,7 +188,7 @@ local ten_pressure_condition = {
 
 for name, entity in pairs(data.raw["boiler"]) do
 	if name ~= "heat-exchanger" then
-		override_surface_conditions(entity, ten_pressure_condition)
+		restrict_surface_conditions(entity, ten_pressure_condition)
 	end
 end
 -- TODO: Restrict modded furnaces

@@ -1,7 +1,64 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.27
+Version: 1.0.37
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 1.0.36
+Date: 2025-01-25
+  Changes:
+    - Fixed the size of the charging rod as displayed in the statistics screen.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.35
+Date: 2025-01-25
+  Changes:
+    - Moved technology-related prototype definitions from data-final-fixes back to data where they belong. Now that 1.0 has released, we can hopefully iron out compatibility issues over time.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.34
+Date: 2025-01-25
+  Balancing:
+    - Neutrons from neutron bombs move faster, spread wider and are more numerous. The central explosion also deals more damage.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.33
+Date: 2025-01-24
+  Changes:
+    - Added mod setting to disable quality-sensitive mechanics on Cerys.
+    - Reduced the speed at which the Fulgoran nuclear reactor consumes mixed-oxide fuel.
+    - Slightly decreased the ambient rate at which the Fulgoran nuclear reactor cools.
+  Balancing:
+    - Dropped the recipes needed for Fulgoran reactor repair from 15 to 12.
+  Bugfixes:
+    - Fixed quality indicators not being shown in the floating GUI for the Fulgoran crusher repair.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.32
+Date: 2025-01-24
+  Changes:
+    - Increased the lifetime of solar wind particles.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.31
+Date: 2025-01-23
+  Changes:
+    - More mod compatibilities.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.30
+Date: 2025-01-23
+  Changes:
+    - Improved cross-mod compatibility of surface conditions.
+    - Burner generators are no longer buildable on Cerys.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.29
+Date: 2025-01-23
+  Changes:
+    - Japanese locale update.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.28
+Date: 2025-01-22
+  Changes:
+    - Added migration to preserve research progress on cargo drops. Players loading older saves with this tech researched will have it preserved from 1.0.28.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.27
+Date: 2025-01-22
+  Changes:
+    - The mixed-oxide reactor technology now unlocks the lithium plate recipe.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.26
 Date: 2025-01-22

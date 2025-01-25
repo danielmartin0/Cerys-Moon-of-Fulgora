@@ -7,6 +7,10 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 
 Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 10
 
+function Public.crusher_repair_recipes_needed()
+	return math.ceil(Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
+end
+
 function Public.tick_15_check_broken_crushers(surface)
 	if not storage.cerys.broken_crushers then
 		return
@@ -74,7 +78,7 @@ function Public.tick_15_check_broken_crushers(surface)
 				end
 			else
 				local products_finished = e.products_finished
-				local products_required = Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED
+				local products_required = Public.crusher_repair_recipes_needed()
 
 				if products_finished >= products_required then
 					if crusher.rendering1 then
@@ -155,29 +159,57 @@ function Public.tick_15_check_broken_crushers(surface)
 					if e and e.valid then
 						local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
 						if input_inv and input_inv.valid then
-							repair_parts = input_inv.get_item_count({
-								name = "ancient-structure-repair-part",
-								quality = "uncommon",
-							})
-							circuits = input_inv.get_item_count({ name = "advanced-circuit", quality = "uncommon" })
+							if settings.startup["cerys-disable-quality-mechanics"].value then
+								repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
+
+								local repair_recipe = prototypes.recipe["cerys-repair-crusher"]
+								local chip_type = repair_recipe.ingredients[1].name
+
+								circuits = input_inv.get_item_count(chip_type)
+							else
+								repair_parts = input_inv.get_item_count({
+									name = "ancient-structure-repair-part",
+									quality = "uncommon",
+								})
+
+								local repair_recipe = prototypes.recipe["cerys-repair-crusher"]
+								local chip_type = repair_recipe.ingredients[1].name
+
+								circuits = input_inv.get_item_count({
+									name = chip_type,
+									quality = "uncommon",
+								})
+							end
 						end
 					end
 
-					local repair_count = products_finished + (e.is_crafting() and 1 or 0) + repair_parts
-					local circuit_count = products_finished + (e.is_crafting() and 1 or 0) + circuits
+					local repair_count_multiplier = prototypes.recipe["cerys-repair-crusher"].ingredients[2].amount
 
-					crusher.rendering1.color = repair_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
+					local circuit_count = products_finished + (e.is_crafting() and 1 or 0) + circuits
+					local repair_count = (products_finished + (e.is_crafting() and 1 or 0)) * repair_count_multiplier
+						+ repair_parts
+
+					local quality_text = settings.startup["cerys-disable-quality-mechanics"].value and ""
+						or ",quality=uncommon"
+
+					crusher.rendering1.color = repair_count >= products_required * repair_count_multiplier
+							and { 0, 255, 0 }
+						or { 255, 200, 0 }
+
 					crusher.rendering1.text = {
 						"cerys.repair-remaining-description",
-						"[item=ancient-structure-repair-part]",
+						"[item=ancient-structure-repair-part" .. quality_text .. "]",
 						repair_count,
-						products_required,
+						products_required * repair_count_multiplier,
 					}
 
 					crusher.rendering2.color = circuit_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
 					crusher.rendering2.text = {
 						"cerys.repair-remaining-description",
-						"[item=advanced-circuit]",
+						"[item="
+							.. prototypes.recipe["cerys-repair-crusher"].ingredients[1].name
+							.. quality_text
+							.. "]",
 						circuit_count,
 						products_required,
 					}

@@ -1,99 +1,84 @@
-local override_surface_conditions = require("lib").override_surface_conditions
+local relax_surface_conditions = require("lib").relax_surface_conditions
+local restrict_surface_conditions = require("lib").restrict_surface_conditions
 
 --== Relaxations ==--
 
 if data.raw.recipe["recycler"] then
-	override_surface_conditions(data.raw.recipe["recycler"], {
+	relax_surface_conditions(data.raw.recipe["recycler"], {
 		property = "magnetic-field",
-		min = 99,
 		max = 120,
 	})
 end
 
-override_surface_conditions(data.raw.recipe["cryogenic-plant"], {
-	property = "pressure",
-	min = 5,
-	max = 600,
-})
+if data.raw.recipe["cryogenic-plant"] then
+	relax_surface_conditions(data.raw.recipe["cryogenic-plant"], {
+		property = "pressure",
+		min = 5,
+	})
+end
 
 --== Restrictions ==--
-
-if data.raw.recipe["lab"] then
-	override_surface_conditions(data.raw.recipe["lab"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["accumulator"] then
-	override_surface_conditions(data.raw.recipe["accumulator"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["nuclear-reactor"] then
-	override_surface_conditions(data.raw.recipe["nuclear-reactor"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["fusion-reactor"] then
-	override_surface_conditions(data.raw.recipe["fusion-reactor"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["fusion-generator"] then
-	override_surface_conditions(data.raw.recipe["fusion-generator"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["fusion-power-cell"] then
-	override_surface_conditions(data.raw.recipe["fusion-power-cell"], {
-		property = "magnetic-field",
-		max = 119,
-	})
-end
-
-if data.raw.recipe["boiler"] then
-	override_surface_conditions(data.raw.recipe["boiler"], {
-		property = "pressure",
-		min = 10,
-	})
-end
-
-if data.raw.recipe["steam-engine"] then
-	override_surface_conditions(data.raw.recipe["steam-engine"], {
-		property = "pressure",
-		min = 10,
-	})
-end
-
-override_surface_conditions(data.raw.recipe["rocket-fuel"], {
-	property = "temperature",
-	min = 255,
-})
-
---== Forbid recycling certain items on Cerys ==--
 
 local magnetic_field_restriction = {
 	property = "magnetic-field",
 	max = 119,
 }
 
+if data.raw.recipe["lab"] then
+	restrict_surface_conditions(data.raw.recipe["lab"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["accumulator"] then
+	restrict_surface_conditions(data.raw.recipe["accumulator"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["nuclear-reactor"] then
+	restrict_surface_conditions(data.raw.recipe["nuclear-reactor"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["fusion-reactor"] then
+	restrict_surface_conditions(data.raw.recipe["fusion-reactor"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["fusion-generator"] then
+	restrict_surface_conditions(data.raw.recipe["fusion-generator"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["fusion-power-cell"] then
+	restrict_surface_conditions(data.raw.recipe["fusion-power-cell"], magnetic_field_restriction)
+end
+
+if data.raw.recipe["boiler"] then
+	restrict_surface_conditions(data.raw.recipe["boiler"], {
+		property = "pressure",
+		min = 10,
+	})
+end
+
+if data.raw.recipe["steam-engine"] then
+	restrict_surface_conditions(data.raw.recipe["steam-engine"], {
+		property = "pressure",
+		min = 10,
+	})
+end
+
+if data.raw.recipe["rocket-fuel"] then
+	restrict_surface_conditions(data.raw.recipe["rocket-fuel"], {
+		property = "temperature",
+		min = 255,
+	})
+end
+
+--== Forbid recycling certain items on Cerys ==--
+
 if data.raw.recipe["uranium-238-recycling"] then
-	override_surface_conditions(data.raw.recipe["uranium-238-recycling"], magnetic_field_restriction)
+	restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], magnetic_field_restriction)
 end
 if data.raw.recipe["construction-robot-recycling"] then
-	override_surface_conditions(data.raw.recipe["construction-robot-recycling"], magnetic_field_restriction)
+	restrict_surface_conditions(data.raw.recipe["construction-robot-recycling"], magnetic_field_restriction)
 end
 if data.raw.recipe["exoskeleton-equipment-recycling"] then
-	override_surface_conditions(data.raw.recipe["exoskeleton-equipment-recycling"], magnetic_field_restriction)
+	restrict_surface_conditions(data.raw.recipe["exoskeleton-equipment-recycling"], magnetic_field_restriction)
 end
 
 --== Flare stack ==--
