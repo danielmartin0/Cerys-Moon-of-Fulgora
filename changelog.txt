@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.34
 Date: ????
-  Changes:
+  Balancing:
+    - Neutrons from neutron bombs move faster, spread wider and are more numerous. The central explosion also deals more damage.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.33
 Date: 2025-01-24
