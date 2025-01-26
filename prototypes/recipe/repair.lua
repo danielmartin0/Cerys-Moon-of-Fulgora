@@ -4,7 +4,7 @@ data:extend({
 		name = "ancient-structure-repair-part",
 		category = "advanced-crafting-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 0.7,
+		energy_required = 1.2,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
 			{ type = "item", name = "engine-unit", amount = 1 },
