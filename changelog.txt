@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.41
-Date: ????
+Date: 2025-01-26
   Changes:
     - The second cryogenic plant defrosted no longer has a dropped repair cost (but the first defroster plant still does.)
 ---------------------------------------------------------------------------------------------------
