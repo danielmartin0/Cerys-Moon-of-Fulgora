@@ -1,7 +1,6 @@
 require("prototypes.override-final.entity")
 require("prototypes.override-final.item")
 require("prototypes.override-final.recipe")
-require("prototypes.override-final.lab")
 require("prototypes.override-final.technology")
 
 require("compat.categories")

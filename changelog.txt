@@ -2,6 +2,7 @@
 Version: 1.0.38
 Date: ????
   Changes:
+    - Fixed the lab and science pack being unintentionally defined in data-final-fixes.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.37
 Date: 2025-01-25
