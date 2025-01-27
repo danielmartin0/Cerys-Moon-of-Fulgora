@@ -118,7 +118,7 @@ data:extend({
 		name = "cerys-repair-crusher",
 		subgroup = "cerys-repair",
 		order = "c",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png", -- Should not be distinguishable from cryogenic repair on the map view
 		icon_size = 64,
 		energy_required = 1 / 4,
 		enabled = false,
