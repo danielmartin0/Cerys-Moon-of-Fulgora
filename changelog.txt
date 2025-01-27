@@ -2,6 +2,9 @@
 Version: 1.0.43
 Date: ????
   Changes:
+    - Tweaks to neutron bomb neutrons.
+    - Primary blast radius of neutron bombs reduced.
+    - Tweaks to hydrogen bomb sounds.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.42
 Date: 2025-01-27
@@ -11,7 +14,7 @@ Date: 2025-01-27
 Version: 1.0.41
 Date: 2025-01-26
   Changes:
-    - The second cryogenic plant defrosted no longer has a dropped repair cost (but the first defroster plant still does.)
+    - The second cryogenic plant defrosted no longer has a dropped repair cost (but the first defrosted plant still does.)
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.40
 Date: 2025-01-26

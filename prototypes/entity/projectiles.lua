@@ -5,6 +5,19 @@ local nuke_shockwave_starting_speed_deviation = 0.125
 
 local NEUTRON_DAMAGE = { amount = 70, type = "physical" }
 
+local neutron_damage_effect = {
+	type = "direct",
+	filter_enabled = true,
+	entity_flags = { "breaths-air" },
+	action_delivery = {
+		type = "instant",
+		target_effects = {
+			type = "damage",
+			damage = NEUTRON_DAMAGE,
+		},
+	},
+}
+
 local base_neutron = {
 	type = "projectile",
 	acceleration = 0,
@@ -17,17 +30,54 @@ local base_neutron = {
 		scale = 0.5,
 		draw_as_glow = true,
 	},
-	action = {
-		type = "direct",
-		filter_enabled = true,
-		entity_flags = { "breaths-air" },
-		action_delivery = {
-			type = "instant",
-			target_effects = {
-				type = "damage",
-				damage = NEUTRON_DAMAGE,
-			},
-		},
+	action = neutron_damage_effect,
+}
+
+local create_neutron = {
+	type = "area",
+	target_entities = false,
+	trigger_from_target = true,
+	radius = 1337,
+	action_delivery = {
+		type = "projectile",
+		projectile = "cerys-neutron-projectile",
+		starting_speed = 1.1,
+		starting_speed_deviation = 1.5,
+		max_range = 12,
+		min_range = 0,
+		direction_deviation = math.pi,
+	},
+}
+
+local create_neutron_slow = {
+	type = "area",
+	target_entities = false,
+	trigger_from_target = true,
+	radius = 1337,
+	action_delivery = {
+		type = "projectile",
+		projectile = "cerys-neutron-projectile-2",
+		starting_speed = 0.9,
+		starting_speed_deviation = 1.2,
+		max_range = 6,
+		min_range = 0,
+		direction_deviation = 3 * math.pi / 16,
+	},
+}
+
+local create_neutron_very_slow = {
+	type = "area",
+	target_entities = false,
+	trigger_from_target = true,
+	radius = 1337,
+	action_delivery = {
+		type = "projectile",
+		projectile = "cerys-neutron-projectile-3",
+		starting_speed = 0.3,
+		starting_speed_deviation = 0.3,
+		max_range = 6,
+		min_range = 0,
+		direction_deviation = 5 * math.pi / 16,
 	},
 }
 
@@ -45,39 +95,12 @@ data:extend({
 				target_effects = {
 					{
 						type = "nested-result",
-						action = {
-							type = "direct",
-							filter_enabled = true,
-							entity_flags = { "breaths-air" },
-							action_delivery = {
-								type = "instant",
-								target_effects = {
-									{
-										type = "damage",
-										damage = NEUTRON_DAMAGE,
-									},
-								},
-							},
-						},
+						action = neutron_damage_effect,
 					},
 					{
 						type = "nested-result",
 						probability = 1,
-						action = {
-							type = "area",
-							target_entities = false,
-							trigger_from_target = true,
-							radius = 30,
-							action_delivery = {
-								type = "projectile",
-								projectile = "cerys-neutron-projectile-3",
-								starting_speed = 0.3,
-								starting_speed_deviation = 0.3,
-								max_range = 12,
-								min_range = 0,
-								direction_deviation = 5 * math.pi / 16,
-							},
-						},
+						action = create_neutron_very_slow,
 					},
 				},
 			},
@@ -92,39 +115,12 @@ data:extend({
 				target_effects = {
 					{
 						type = "nested-result",
-						action = {
-							type = "direct",
-							filter_enabled = true,
-							entity_flags = { "breaths-air" },
-							action_delivery = {
-								type = "instant",
-								target_effects = {
-									{
-										type = "damage",
-										damage = NEUTRON_DAMAGE,
-									},
-								},
-							},
-						},
+						action = neutron_damage_effect,
 					},
 					{
 						type = "nested-result",
 						probability = 1,
-						action = {
-							type = "area",
-							target_entities = false,
-							trigger_from_target = true,
-							radius = 30,
-							action_delivery = {
-								type = "projectile",
-								projectile = "cerys-neutron-projectile-2",
-								starting_speed = 0.9,
-								starting_speed_deviation = 1.2,
-								max_range = 1.1,
-								min_range = 0,
-								direction_deviation = 3 * math.pi / 16,
-							},
-						},
+						action = create_neutron_slow,
 					},
 				},
 			},
@@ -167,38 +163,29 @@ data:extend({
 				target_effects = {
 					{
 						type = "nested-result",
-						repeat_count = 200,
-						action = {
-							type = "area",
-							target_entities = false,
-							trigger_from_target = true,
-							radius = 30,
-							action_delivery = {
-								type = "projectile",
-								projectile = "cerys-neutron-projectile",
-								starting_speed = 1.1,
-								starting_speed_deviation = 1.5,
-								max_range = 15,
-								min_range = 0,
-								direction_deviation = math.pi,
-							},
-						},
+						repeat_count = 175,
+						action = create_neutron,
+					},
+					{
+						type = "nested-result",
+						repeat_count = 50,
+						action = create_neutron_slow,
 					},
 					{
 						type = "nested-result",
 						action = {
 							type = "area",
-							radius = 12.0,
+							radius = 6,
 							action_delivery = {
 								type = "instant",
 								target_effects = {
 									{
 										type = "damage",
-										damage = { amount = 2000, type = "physical" },
+										damage = { amount = 2500, type = "physical" },
 									},
 									{
 										type = "damage",
-										damage = { amount = 2000, type = "explosion" },
+										damage = { amount = 2500, type = "explosion" },
 									},
 								},
 							},
@@ -220,7 +207,7 @@ data:extend({
 					},
 					{
 						type = "play-sound",
-						sound = sounds.nuclear_explosion(1),
+						sound = sounds.nuclear_explosion(0.5),
 						play_on_target_position = true,
 					},
 					{
@@ -283,12 +270,12 @@ data:extend({
 						},
 						{
 							type = "camera-effect",
-							duration = 90,
+							duration = 60,
 							ease_in_duration = 5,
-							ease_out_duration = 90,
+							ease_out_duration = 60,
 							delay = 0,
-							strength = 9,
-							full_strength_max_distance = 140,
+							strength = 10,
+							full_strength_max_distance = 200,
 							max_distance = 1200,
 						},
 						{
@@ -298,7 +285,7 @@ data:extend({
 							-- min_distance = 200,
 							max_distance = 3000,
 							-- volume_modifier = 1,
-							audible_distance_modifier = 3,
+							audible_distance_modifier = 5,
 						},
 						{
 							type = "play-sound",
@@ -307,7 +294,7 @@ data:extend({
 							-- min_distance = 200,
 							max_distance = 1000,
 							-- volume_modifier = 1,
-							audible_distance_modifier = 3,
+							audible_distance_modifier = 5,
 						},
 						{
 							type = "damage",
