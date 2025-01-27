@@ -41,7 +41,7 @@ data:extend({
 })
 
 local RECYCLING_PROBABILITIES_PERCENT = {
-	["solid-fuel"] = 25,
+	["solid-fuel"] = 23,
 	["advanced-circuit"] = 11,
 	["copper-cable"] = 7, -- initial power poles
 	["uranium-238"] = 6,

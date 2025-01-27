@@ -238,10 +238,14 @@ function Public.unfreeze_tower(tower)
 		name = "cerys-fulgoran-radiative-tower",
 		position = e.position,
 		force = e.force,
-		fast_replace = true,
+		-- fast_replace = true,
 	})
 
 	if new_tower and new_tower.valid then
+		if e and e.valid then
+			new_tower.temperature = e.temperature
+		end
+
 		new_tower.minable_flag = false
 		new_tower.destructible = false
 		tower.entity = new_tower
@@ -263,10 +267,11 @@ function Public.unfreeze_tower(tower)
 				end
 			end
 		end
-		new_tower.temperature = e.temperature
 
 		e.destroy()
 	end
+
+	new_tower.insert({ name = "solid-fuel", count = 1 })
 
 	tower.frozen = false
 end
