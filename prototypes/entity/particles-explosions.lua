@@ -1,5 +1,3 @@
-local sounds = require("__base__.prototypes.entity.sounds")
-
 local function sound_variations_with_volume_variations(
 	filename_string,
 	variations,
@@ -125,7 +123,14 @@ data:extend({
 		order = "a-d-a",
 		subgroup = "explosions",
 		height = 0,
-		sound = sounds.large_explosion(1.0),
+		sound = {
+			audible_distance_modifier = 2,
+			speed = 2,
+			variations = {
+				{ filename = "__base__/sound/fight/large-explosion-1.ogg", volume = 0.5, speed = 2 },
+				{ filename = "__base__/sound/fight/large-explosion-2.ogg", volume = 0.5, speed = 2 },
+			},
+		},
 		animations = {
 			width = 628,
 			height = 720,

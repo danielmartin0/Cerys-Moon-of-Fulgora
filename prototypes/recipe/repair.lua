@@ -4,7 +4,7 @@ data:extend({
 		name = "ancient-structure-repair-part",
 		category = "advanced-crafting-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 0.7,
+		energy_required = 1.2,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
 			{ type = "item", name = "engine-unit", amount = 1 },
@@ -118,7 +118,7 @@ data:extend({
 		name = "cerys-repair-crusher",
 		subgroup = "cerys-repair",
 		order = "c",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png", -- Should not be distinguishable from cryogenic repair on the map view
 		icon_size = 64,
 		energy_required = 1 / 4,
 		enabled = false,

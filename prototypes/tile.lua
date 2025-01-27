@@ -612,6 +612,7 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
 	name = "cerys-empty-space-2",
 	destroys_dropped_items = true,
+	default_cover_tile = "nil",
 	collision_mask = {
 		colliding_with_tiles_only = true,
 		not_colliding_with_itself = true,

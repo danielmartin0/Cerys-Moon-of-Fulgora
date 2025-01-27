@@ -36,15 +36,15 @@ cryo_plant.graphics_set = {
 		layers = {
 			{
 				animation_speed = 0.5,
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-main-no-pipes.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-main.png",
 				frame_count = 1,
 				repeat_count = 192,
 				height = 864,
 				line_length = 1,
 				scale = 0.252,
 				shift = {
-					0.6,
-					-0.1,
+					0.6 - 0.132,
+					-0.1 - 0.05,
 				},
 				width = 993,
 			},
@@ -58,8 +58,8 @@ cryo_plant.graphics_set = {
 				line_length = 1,
 				scale = 0.504,
 				shift = {
-					1.309375,
-					0.21875,
+					1.309375 - 0.132,
+					0.21875 - 0.05,
 				},
 				width = 462,
 			},
@@ -72,8 +72,8 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					-0.05,
-					-1.359375,
+					-0.05 - 0.132,
+					-1.359375 - 0.05,
 				},
 				width = 244,
 			},
@@ -90,8 +90,8 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					0,
-					-1.1875,
+					0 - 0.132,
+					-1.1875 - 0.05,
 				},
 				width = 212,
 			},
@@ -107,8 +107,8 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					0,
-					-1.1875,
+					0 - 0.132,
+					-1.1875 - 0.05,
 				},
 				width = 208,
 			},
@@ -125,8 +125,8 @@ cryo_plant.graphics_set = {
 				repeat_count = 3,
 				scale = 0.252,
 				shift = {
-					0,
-					-1.171875,
+					0 - 0.132,
+					-1.171875 - 0.05,
 				},
 				width = 208,
 			},
@@ -139,12 +139,7 @@ cryo_plant.graphics_set = {
 local pipe_picture = {
 	north = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-1", {
-				priority = "extra-high",
-				scale = 0.252,
-				shift = { 0, 3 },
-			}),
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-2", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v", {
 				priority = "extra-high",
 				scale = 0.252,
 				shift = { 0, 3 },
@@ -162,12 +157,7 @@ local pipe_picture = {
 	},
 	south = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-1", {
-				priority = "extra-high",
-				scale = 0.252,
-				shift = { 0, -3 },
-			}),
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v-2", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v", {
 				priority = "extra-high",
 				scale = 0.252,
 				shift = { 0, -3 },
@@ -200,7 +190,6 @@ cryo_plant.fluid_boxes = {
 		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 1000,
 		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } },
-		render_layer = "object-under",
 	},
 	{
 		production_type = "input",
@@ -221,7 +210,6 @@ cryo_plant.fluid_boxes = {
 		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 100,
 		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 0, -2 } } },
-		render_layer = "object-under",
 	},
 	{
 		production_type = "output",

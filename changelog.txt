@@ -1,7 +1,51 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.37
+Version: 1.0.45
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 1.0.44
+Date: 2025-01-27
+  Changes:
+    - Slight reduction to solid fuel obtained from nuclear scrap recycling.
+  Bugfixes:
+    - Fixed radiative towers destroying the original solid fuel heating progress when defrosting.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.43
+Date: 2025-01-27
+  Changes:
+    - Tweaks to neutron bomb neutrons.
+    - Primary blast radius of neutron bombs reduced.
+    - Tweaks to hydrogen bomb sounds.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.42
+Date: 2025-01-27
+  Changes:
+    - Fewer crushers spawn on the map.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.41
+Date: 2025-01-26
+  Changes:
+    - The second cryogenic plant defrosted no longer has a dropped repair cost (but the first defrosted plant still does.)
+---------------------------------------------------------------------------------------------------
+Version: 1.0.40
+Date: 2025-01-26
+  Bugfixes:
+    - Prevent placing concrete on Cerys empty space.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.39
+Date: 2025-01-26
+  Changes:
+    - Graphical updates for the Fulgoran cryogenic plant.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.38
+Date: 2025-01-26
+  Changes:
+    - Fixed the lab and science pack being unintentionally defined in data-final-fixes.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.37
+Date: 2025-01-25
+  Changes:
+    - Checkbox setting added to start new games on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.36
 Date: 2025-01-25
@@ -15,7 +59,7 @@ Date: 2025-01-25
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.34
 Date: 2025-01-25
-  Balancing:
+  Changes:
     - Neutrons from neutron bombs move faster, spread wider and are more numerous. The central explosion also deals more damage.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.33
@@ -24,7 +68,7 @@ Date: 2025-01-24
     - Added mod setting to disable quality-sensitive mechanics on Cerys.
     - Reduced the speed at which the Fulgoran nuclear reactor consumes mixed-oxide fuel.
     - Slightly decreased the ambient rate at which the Fulgoran nuclear reactor cools.
-  Balancing:
+  Changes:
     - Dropped the recipes needed for Fulgoran reactor repair from 15 to 12.
   Bugfixes:
     - Fixed quality indicators not being shown in the floating GUI for the Fulgoran crusher repair.
@@ -62,17 +106,17 @@ Date: 2025-01-22
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.26
 Date: 2025-01-22
-  Modding:
+  Changes:
     - More mod compatibilities.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.25
 Date: 2025-01-22
-  Modding:
+  Changes:
     - Compatibility with mods that mess with the default charging rod in the data stage.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.24
 Date: 2025-01-22
-  Graphics:
+  Changes:
     - 4K orbit graphic.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.23
@@ -91,7 +135,7 @@ Date: 2025-01-21
     - Removed mod setting to control the repair cost of the Fulgoran reactor.
   Locale:
     - Chinese locale updated (recently).
-  Balancing:
+  Changes:
     - Crafting time of processing units from nitric acid reduced.
     - Methane ice required for dissociation increased.
 ---------------------------------------------------------------------------------------------------
@@ -111,7 +155,7 @@ Date: 2025-01-21
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.18
 Date: 2025-01-21
-  Modding:
+  Changes:
     - Further compatibility fixes, especially for 5-dim.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.17
@@ -121,12 +165,12 @@ Date: 2025-01-21
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.16
 Date: 2025-01-21
-  Modding:
+  Changes:
     - Compatibility fix for crafting science packs with Mulana installed.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.15
 Date: 2025-01-21
-  Info:
+  Changes:
     - Changelog fix.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.14
@@ -136,53 +180,53 @@ Date: 2025-01-21
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.13
 Date: 2025-01-21
-  Graphics:
+  Changes:
     - Graphical fix for the neutron bomb icon.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.12
 Date: 2025-01-20
-  Graphics:
+  Changes:
     - Adjusted the color and sound of the new nuclear reactors.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.11
 Date: 2025-01-20
-  Graphics:
+  Changes:
     - Gamma radiation particles are now green and slightly larger.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.10
 Date: 2025-01-20
-  Balancing:
+  Changes:
     - Reduced the crafting time of processing units in the Fulgoran cryogenic plant.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.9
 Date: 2025-01-20
-  Balancing:
+  Changes:
     - Dropped the number of reactor repair recipes needed from 20 to 15.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.8
 Date: 2025-01-20
-  Balancing:
+  Changes:
     - Energy consumption of the Fulgoran cryogenic plant reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.7
 Date: 2025-01-20
-  Balancing:
+  Changes:
     - Slightly increased the base ore yield from nitrogen-rich minerals processing.
   Locale:
     - Russian updated.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 2025-01-20
-  Balancing:
+  Changes:
     - Adjusted the heat capacity and heat intake of mixed-oxide nuclear reactors.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 2025-01-20
-  Features:
+  Changes:
     - Planet reward: Hydrogen bomb, a powerful upgrade of the Atomic bomb.
     - Planet reward: Neutron bomb, an artillery shell that releases a scattering cloud of neutrons.
     - Planet reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
-  Graphics:
+  Changes:
     - Brand new graphics for the charging rod.
   Changes:
     - Tech tree tweaks.
@@ -190,14 +234,14 @@ Date: 2025-01-20
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.31
 Date: 2025-01-19
-  Balancing:
+  Changes:
     - Partially reverted the science cost of Cerys cargo drops from 500 to 1500.
-  Modding:
+  Changes:
     - Oxygen=0 on Cerys for compatibility with Mulana, etc.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.30
 Date: 2025-01-19
-  Balancing:
+  Changes:
     - Dropped the science cost of Cerys cargo drops from 2000 to 500.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.29
@@ -207,12 +251,12 @@ Date: 2025-01-19
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.28
 Date: 2025-01-19
-  Info:
+  Changes:
     - space_travel_required flag added.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.27
 Date: 2025-01-19
-  Modding:
+  Changes:
     - Added Planet Hopper as an optional dependency. Although there is no specific compatibility, players may like to use Planet hoppers to pause gameplay on Cerys and resume later.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.26
@@ -232,16 +276,16 @@ Date: 2025-01-18
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.23
 Date: 2025-01-18
-  Balancing:
+  Changes:
     - Fulgoran cryogenic plants can now once again process nuclear waste solution, but the mixed-oxide fuel cell reprocessing loop has been nerfed to compensate.
-  Modding:
+  Changes:
     - Fulgoran cryogenic plants can now be placed in the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.22
 Date: 2025-01-18
   Changes:
     - Defrosting water puddles no longer destroy offshore pumps.
-  Balancing:
+  Changes:
     - Adjusted the recipe for processing units from nitric acid to use the same amount of nitric acid as sulfuric acid used in the vanilla recipe.
   Bugfixes:
     - On new saves, fixed that space platform foundations could be placed around Cerys, which caused problems with asteroid gameplay and other areas. Since Factorio cannot handle migrating tiles that contain covering tiles which would now collide, old saves are migrated to have Cerys surrounded by the empty-space tile.
@@ -261,12 +305,12 @@ Date: 2025-01-17
   Bugfixes:
     - Fixed that it was impossible to drop solid fuel into radiative towers (using 'z'.)
     - Fixed that ice could melt in an unusual order if lots of ice was melting at once.
-  Optimizations:
+  Changes:
     - Performance improvement to melting ice.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.18
 Date: 2025-01-17
-  Balancing:
+  Changes:
     - Heat loss rate of heat pipes and boilers on Cerys reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.17
@@ -287,7 +331,7 @@ Date: 2025-01-15
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.14
 Date: 2025-01-15
-  Optimizations:
+  Changes:
     - Further performance improvement to solar wind.
     - Added a setting to control the spawn rate of solar wind particles, if all else fails on slower PCs. Note this performance concern is only relevant if a player is looking at the Cerys surface. Solar wind is already heavily optimized if Cerys is running with nobody looking at it.
 ---------------------------------------------------------------------------------------------------
@@ -298,17 +342,17 @@ Date: 2025-01-15
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.12
 Date: 2025-01-15
-  Modding:
+  Changes:
     - Optional dependency added: Wooden Cerys: Lunaponics.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.11
 Date: 2025-01-15
-  Balancing:
+  Changes:
     - Nerfed mixed-oxide fuel cell reprocessing slightly.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.10
 Date: 2025-01-14
-  Balancing:
+  Changes:
     - Mixed oxide fuel cell reprocessing and crafting can both no longer be performed in Fulgoran cryogenic plants, as the number of module slots meant the loop was too positive.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.9
@@ -326,16 +370,16 @@ Date: 2025-01-13
   Bugfixes:
     - Fixed that lithium brine sometimes spawned inside tower-heated areas, breaking the reactor gameplay. Old saves with this issue are automatically fixed when 0.9.7 is installed.
     - Fixed that it was possible on Cerys to build non-Cerys reactors and labs dropped by space platforms.
-  Info:
+  Changes:
     - Updated image for the mod portal.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.6
 Date: 2025-01-13
-  Balancing:
+  Changes:
     - Increased energy consumption of the Fulgoran cryogenic plant to match the Foundry.
   Bugfixes:
     - Fixed the locale entries for charging rods.
-  Graphics:
+  Changes:
     - Improvements to the pipe graphics for the Fulgoran cryogenic plant.
     - Fixed tile transitions between Cerys rock and empty space.
 ---------------------------------------------------------------------------------------------------
@@ -346,14 +390,14 @@ Date: 2025-01-12
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.4
 Date: 2025-01-12
-  Modding:
+  Changes:
     - Assorted compatibility fixes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.3
 Date: 2025-01-12
-  Graphics:
+  Changes:
     - Icon improvements.
-  Balancing:
+  Changes:
     - Slight increase to entity cooling rates on Cerys.
     - Slight decrease in plutonium generation rate.
   Changes:
@@ -367,12 +411,12 @@ Date: 2025-01-11
     - Fixed the collision box of large methane icebergs.
   Changes:
     - Further performance improvement to solar wind: particle images are now displayed as renderings rather than entities, reducing UPS usage to ~50%. The number of solar wind particles has been increased by 33%.
-  Graphics:
+  Changes:
     - Further improvements to Cerys icons.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.1
 Date: 2025-01-11
-  Modding:
+  Changes:
     - To improve mod compatibility, Cerysian labs, science packs and technology prototypes are defined in data-final-fixes.lua for now.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.0
@@ -382,17 +426,17 @@ Date: 2025-01-11
     - Charging rods now deflect solar wind particles at shorter range, making it easier to control their path.
     - Flipping the polarity of a charging rod no longer resets its energy to 0.
     - Positive charging rods no longer tend to violently scatter the solar wind.
-  Graphics:
+  Changes:
     - Various graphical improvements and new icons (thanks snouz!)
     - Graphical improvements to centrifuge in fluid mode (thanks Quezler!)
     - Old Cerys icon replaced.
-  Control:
+  Changes:
     - Added mod settings to control whether fallen asteroid chunks on Cerys should be automatically picked up by bots and/or players.
-  Modding:
+  Changes:
     - Centrifuge fluid boxes introduced by Cerys are now moddable by others mods without data collisions (thanks Quezler!)
-  Optimizations:
+  Changes:
     - Performance optimizations for solar wind.
-  Sounds:
+  Changes:
     - Volume of radiative tower working sound reduced slightly.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.13
@@ -414,10 +458,10 @@ Version: 0.8.10
 Date: 2025-01-10
   Locale:
     - Updated Ukrainian localization.
-  Balancing:
+  Changes:
     - Sulfuric acid required for nitrogen-rich minerals processing recipe very slightly increased.
     - Exoskeletons can no longer be recycled on Cerys.
-  Modding:
+  Changes:
     - Maraxsis compatibility: Maraxsis' sublimation recipe now has a minimum surface temperature condition of 255K.
     - Prevent other mods from overriding inputs or next upgrade of the Cerys lab, reactor, and cryogenic plant.
 ---------------------------------------------------------------------------------------------------
@@ -428,9 +472,9 @@ Date: 2025-01-09
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.8
 Date: 2025-01-07
-  Modding:
+  Changes:
     - Compatibility with AAI Industry: nuclear scrap recycling contains stone instead of stone bricks.
-  Graphics:
+  Changes:
     - Fixed the icon for mixed oxide fuel cells on belts.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.7
@@ -440,7 +484,7 @@ Date: 2025-01-07
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.6
 Date: 2025-01-07
-  Modding:
+  Changes:
     - For compatibility with Factory Planner, Black Market and other mods, a startup setting has been included to switch the Fulgoran Cryogenics technology from recipe-based to trigger-based. This prevents certain crashes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.5
@@ -452,7 +496,7 @@ Date: 2025-01-06
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.4
 Date: 2025-01-06
-  Balancing:
+  Changes:
     - Further adjustments to heat loss rate.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.3
@@ -463,18 +507,18 @@ Date: 2025-01-06
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.2
 Date: 2025-01-06
-  Balancing:
+  Changes:
     - Reduced the repair cost of the Fulgoran Crusher.
     - Reduced the methane ice consumed by methane ice dissociation.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.1
 Date: 2025-01-06
-  Balancing:
+  Changes:
     - Heat pipes on Cerys now cool down slower.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.0
 Date: 2025-01-06
-  Features:
+  Changes:
     - A new entity, the Fulgoran Crusher, spawns on newly generated Cerys maps. Like the cryogenic plant, it needs to be repaired before use. Existing maps are able to place their non-minable crushers with working Fulgoran crushers in the map editor.
   Changes:
     - The rate of spawn of asteroids on Cerys has been slightly increased.
@@ -483,16 +527,16 @@ Date: 2025-01-06
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.21
 Date: 2025-01-06
-  Balancing:
+  Changes:
     - Solar panels in Cerys ruins are now weighted more towards larger ruins.
   Bugfixes:
     - Fixed Cerys not appearing in lithium brine's Factoriopedia entry under 'Appears on'.
-  Info:
+  Changes:
     - Better organization for Cerys tiles in Factoriopedia and the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.20
 Date: 2025-01-06
-  Balancing:
+  Changes:
     - Fuel value of mixed oxide fuel cells adjusted.
     - Gamma radiation moves slightly slower and is emitted more randomly.
 ---------------------------------------------------------------------------------------------------
@@ -500,7 +544,7 @@ Version: 0.7.19
 Date: 2025-01-06
   Changes:
     - Lubricant synthesis can now be performed in a Fulgoran cryogenic plant.
-  Graphics:
+  Changes:
     - Most graphical issues with the Fulgoran cryogenic plant are now fixed.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.18
@@ -525,7 +569,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.14
 Date: 2025-01-05
-  Modding:
+  Changes:
     - Subtle bugfix to the helper function override_surface_conditions, improving certain mod compatibilities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.13
@@ -550,7 +594,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.9
 Date: 2025-01-05
-  Modding:
+  Changes:
     - Restrictions on building various modded reactors, labs, accumulators, and fusion reactors on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.8
@@ -565,7 +609,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.6
 Date: 2025-01-05
-  Optimizations:
+  Changes:
     - Performance improvements to heat loss of heat pipes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.5
@@ -580,7 +624,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.3
 Date: 2025-01-05
-  Modding:
+  Changes:
     - Maraxsis compatibility: rocket parts are once again craftable on Cerys if Maraxsis is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.2
@@ -595,9 +639,9 @@ Date: 2025-01-05
   Changes:
     - Reactor repair cost dropped from 50 to 25 recipes. This is a preliminary tweak.
     - Charging rods no longer have a 4 tile vertical offset for their deflection effect, making it easier for players to understand specifically how they work without looking at the code.
-  Balancing:
+  Changes:
     - Increased the input energy flow limit of charging rods.
-  Modding:
+  Changes:
     - Compatibility with Factorio+.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.0
@@ -611,7 +655,7 @@ Date: 2025-01-05
     - Water density increased in Cerys map gen to reduce the probability of never noticing water on the map.
     - Subtlety of certain plutonium hints reduced.
     - Radiative heaters now heat up and cool down faster.
-  Balancing:
+  Changes:
     - Plutonium generation rate increased.
     - Nuclear scrap recycling percentages adjusted slightly.
     - Productivity modules can now be used when crafting ancient structure repair parts.
@@ -622,21 +666,21 @@ Date: 2025-01-05
     - Upgrading the quality of a cryogenic plant no longer destroys its input inventory.
     - Radiative towers now clean up after themselves (after a few ticks) after being deleted in the map editor.
     - Concrete no longer spawns underneath crushers unless the tile underneath is water.
-  Graphics:
+  Changes:
     - The light indicator on charging rods is now red for positive, blue for negative.
     - Icons for the Discover Fulgoran Cryogenics recipe & science item switched to an empty bottle.
     - Various graphical fixes.
-  Modding:
+  Changes:
     - Better mod compatibility with surface conditions set by other mods.
     - Asteroid chunks can now drop onto modded transport belts.
-  Optimizations:
+  Changes:
     - Performance improvements to solar wind when nobody is looking at the Cerys surface.
   Locale:
     - Added Ukrainian localization.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.19
 Date: 2025-01-03
-  Graphics:
+  Changes:
     - New graphics for re-frozen rock tiles.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.18
@@ -656,7 +700,7 @@ Date: 2025-01-03
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.15
 Date: 2025-01-03
-  Info:
+  Changes:
     - Fixed the Fulgoran Nuclear Reactor showing 'Yields: Nuclear Reactor' in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.14
@@ -696,7 +740,7 @@ Date: 2025-01-01
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.7
 Date: 2025-01-01
-  Info:
+  Changes:
     - Added logging statements to reproduce scaffold placement bug that won't reproduce on my machine.
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.6
@@ -726,7 +770,7 @@ Date: 2024-12-31
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.1
 Date: 2024-12-31
-  Info:
+  Changes:
     - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.6.0
@@ -743,7 +787,7 @@ Date: 2024-12-31
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.25
 Date: 2024-12-31
-  Modding:
+  Changes:
     - When Cerys is enabled, solid fuel can now once again be used with entities from other mods that take solid fuel.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.24
@@ -776,24 +820,24 @@ Date: 2024-12-30
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.19
 Date: 2024-12-30
-  Info:
+  Changes:
     - 'Hovering' graphic for the mod portal.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.18
 Date: 2024-12-30
-  Modding:
+  Changes:
     - Compatibility with Visible Planets in Space: Fulgora now appears in the background behind Cerys.
-  Info:
+  Changes:
     - Updated movie poster.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.17
 Date: 2024-12-30
-  Modding:
+  Changes:
     - PlanetsLib version dependency updated.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.16
 Date: 2024-12-29
-  Info:
+  Changes:
     - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.15
@@ -803,31 +847,31 @@ Date: 2024-12-30
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.14
 Date: 2024-12-30
-  Info:
+  Changes:
     - Changelog fixed.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.13
 Date: 2024-12-30
-  Modding:
+  Changes:
     - Dependency on 'Surfaces Have Temperature' mod replaced by dependency on 'PlanetsLib'.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.12
 Date: 2024-12-29
-  Features:
+  Changes:
     - Subtle audiovisual effect when a chance of plutonium generation occurs.
   Changes:
     - Asteroids on Cerys are now tougher, with more health and physical resistance.
     - Reactor excavation recipe now proceeds faster.
     - Asteroid laser resistance lowered from 100% to 99%.
-  Modding:
+  Changes:
     - Recycling recipes of items found in nuclear scrap are now prevented from being modified by the introduction of new recipes for those items in other mods.
     - Added compatibility with most modded centrifuges.
-  Graphics:
+  Changes:
     - Charging rod corpse graphic adjusted.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.11
 Date: 2024-12-29
-  Info:
+  Changes:
     - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.10
@@ -839,14 +883,14 @@ Date: 2024-12-28
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.9
 Date: 2024-12-28
-  Info:
+  Changes:
     - Movie poster update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.8
 Date: 2024-12-28
-  Graphics:
+  Changes:
     - Improvements to icon quality and size.
-  Modding:
+  Changes:
     - Minimum version enforced on Surfaces Have Temperature mod.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.7
@@ -883,9 +927,9 @@ Date: 2024-12-28
   Changes:
     - Recipe change: Ammonia production and consumption is increased, due to the vanilla change to require more ammonia in the rocket fuel production recipe. To balance the new fluid levels, and for realism, nitrogen-rich mineral processing now requires water.
     - Recipe change: Mixed-oxide fuel cell recipe changed to require steel plates rather than iron plates.
-  Features:
+  Changes:
     - Added setting to freeze solar wind unless a player is looking at Cerys for UPS reasons.
-  Graphics:
+  Changes:
     - Fixed interior shadow graphic on Cerys lab while working.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
@@ -896,7 +940,7 @@ Date: 2024-12-28
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.0
 Date: 2024-12-27
-  Features:
+  Changes:
     - The first big plutonium update, plus some critical fixes.
   Changes:
     - Plutonium-239 requirement to run the reactor increased by 10x, and plutonium generation rate increased by 10x. This makes it much less subtle to discover the plutonium generation process by experimentation, and reduces the wait times in experimentation.
@@ -909,7 +953,7 @@ Date: 2024-12-27
     - Logistic containers are no longer broken in their endgame role. They are now consistent with other container entities.
     - Fast and slow particles now behave more consistently with each other in their endgame role.
     - Iron ore no longer recycles into nitrogen-rich minerals.
-  Info:
+  Changes:
     - Small description added to gamma radiation entity.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.29
@@ -919,7 +963,7 @@ Date: 2024-12-27
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.28
 Date: 2024-12-27
-  Info:
+  Changes:
     - Version bump for debugging.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.27
@@ -929,7 +973,7 @@ Date: 2024-12-27
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.26
 Date: 2024-12-27
-  Modding:
+  Changes:
     - Maraxsis compatibility: Maraxsis petroleum cracking to heavy oil recipe is now forbidden on Cerys.
     - Description update.
 ---------------------------------------------------------------------------------------------------
@@ -937,12 +981,12 @@ Version: 0.4.24
 Date: 2024-12-26
   Bugfixes:
     - Attempted workaround for base game bug complaining about missing 'cerys_ash_flats' on some saves.
-  Modding:
+  Changes:
     - Compatibility with mods that remove the 'fuel_categories' field from entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.23
 Date: 2024-12-26
-  Graphics:
+  Changes:
     - Fulgoran cryogenic plants no longer have bugged pipe graphics when rotated.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.22
@@ -952,7 +996,7 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.21
 Date: 2024-12-26
-  Graphics:
+  Changes:
     - Removed graphical fuzz on the border of the Cerys image.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.20
@@ -962,14 +1006,14 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.19
 Date: 2024-12-26
-  Graphics:
+  Changes:
     - Graphical updates to the visual appearence of Cerys in poster, icons etc.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.18
 Date: 2024-12-26
   Changes:
     - Reactor moved by two tiles on new saves so that repairs via inserters are possible.
-  Graphics:
+  Changes:
     - New icon for nuclear scrap recycling.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.17
@@ -979,12 +1023,12 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.16
 Date: 2024-12-26
-  Info:
+  Changes:
     - 'Movie poster' update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.15
 Date: 2024-12-26
-  Info:
+  Changes:
     - Locale updates.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.14
@@ -994,12 +1038,12 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.13
 Date: 2024-12-26
-  Modding:
+  Changes:
     - Prepublish script.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.12
 Date: 2024-12-26
-  Graphics:
+  Changes:
     - Asteroid shadows now match the direction of other entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.11
@@ -1014,7 +1058,7 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.9
 Date: 2024-12-26
-  Graphics:
+  Changes:
     - New icon for cryogenic plant quality upgrade tech.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.8
@@ -1066,7 +1110,7 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.0
 Date: 2024-12-25
-  Info:
+  Changes:
     - 'Meaningless' uncraftable plutonium recipe added for purposes of hinting in Factoriopedia. (This also solves the problem of Pu239 never showing up in item filters by default.)
   Changes:
     - Map generation adjusted to avoid 'trap' cryogenic plants that are heatable but unable to craft fluid recipes due to unheated sides.
@@ -1099,7 +1143,7 @@ Version: 0.3.37
 Date: 2024-12-25
   Changes:
     - Methane ice input per output increased further.
-  Modding:
+  Changes:
     - Added compatibility for mods that add alternate character entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.36
@@ -1159,12 +1203,12 @@ Date: 2024-12-25
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.26
 Date: 2024-12-25
-  Modding:
+  Changes:
     - Switched API for other modders to 'parent_body = fulgora' and 'planet_type = moon'.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.25
 Date: 2024-12-25
-  Modding:
+  Changes:
     - Added 'parent_planet' field to Cerys for the purposes of other modders.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.24
@@ -1179,7 +1223,7 @@ Date: 2024-12-25
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.22
 Date: 2024-12-25
-  Info:
+  Changes:
     - Russian locale.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.21
@@ -1199,26 +1243,26 @@ Date: ????
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.18
 Date: 2024-12-24
-  Info:
+  Changes:
     - (Version skipped.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.17
 Date: 2024-12-24
-  Modding:
+  Changes:
     - Added safety clause to handle case of mod or command generating the Cerys surface.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.16
 Date: 2024-12-24
-  Info:
+  Changes:
     - Chinese localization update.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.15
 Date: 2024-12-24
   Bugfixes:
     - Workaround implemented for base game bug with '/cheat cerys' in which chunks were generated twice, leading to non-ideal dry ice configuration.
-  Modding:
+  Changes:
     - For Any Planet Start, centrifuge recipe unlock removed from Cerys discovery as the player can obtain these from nuclear scrap.
-  Info:
+  Changes:
     - In-game notice added to users who generated Cerys during the brief window in which reactor initialization was broken.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.14
@@ -1247,17 +1291,17 @@ Date: 2024-12-24
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.10
 Date: 2024-12-24
-  Modding:
+  Changes:
     - Lab compatibility with Tenebris.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.9
 Date: 2024-12-24
-  Modding:
+  Changes:
     - Added compatibility for Factorio HD Age: Space Age Terrain Aquilo.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.8
 Date: 2024-12-24
-  Modding:
+  Changes:
     - Mod compatibility tweaks.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.7
@@ -1273,12 +1317,12 @@ Date: 2024-12-24
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.5
 Date: 2024-12-24
-  Info:
+  Changes:
     - Updated locale description of Fulgoran cryogenics for clarity.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.4
 Date: 2024-12-24
-  Info:
+  Changes:
     - Radiative tower range now listed in localized description.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.3
@@ -1288,7 +1332,7 @@ Date: 2024-12-24
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.2
 Date: 2024-12-24
-  Features:
+  Changes:
     - Support for '/cheat cerys'.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.1
@@ -1298,5 +1342,5 @@ Date: 2024-12-23
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2024-12-23
-  Features:
+  Changes:
     - Initial mod release.

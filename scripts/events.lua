@@ -202,7 +202,7 @@ function Public.cerys_tick(surface, tick)
 		end
 	end
 
-	if common.DEBUG_CERYS_START and tick == 30 then
+	if (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) and tick == 30 then
 		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
 	end
 
@@ -256,7 +256,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
-	if common.DEBUG_CERYS_START then
+	if common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value then
 		local player = game.players[event.player_index]
 
 		if player.controller_type == defines.controllers.cutscene then
@@ -298,6 +298,10 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["inserter-capacity-bonus-2"].research_recursive()
 		player.force.technologies["worker-robots-speed-2"].research_recursive()
 		player.force.technologies["worker-robots-storage-2"].research_recursive()
+		player.force.technologies["battery-equipment"].research_recursive()
+		player.force.technologies["belt-immunity-equipment"].research_recursive()
+		player.force.technologies["exoskeleton-equipment"].research_recursive()
+		player.force.technologies["personal-roboport-equipment"].research_recursive()
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then
@@ -332,6 +336,35 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 	end
 
 	migrations.run_migrations()
+end)
+
+-- It seems to be impossible to prevent this with collision masks:
+script.on_event({
+	defines.events.on_robot_built_tile,
+	defines.events.on_player_built_tile,
+}, function(event)
+	local surface = game.surfaces[event.surface_index]
+	if not (surface and surface.valid and surface.name == "cerys") then
+		return
+	end
+
+	local tiles = event.tiles
+	for _, tile in pairs(tiles) do
+		local hidden_tile = surface.get_hidden_tile(tile.position)
+		if hidden_tile == "cerys-empty-space-2" then
+			surface.set_tiles({ {
+				name = "cerys-empty-space-2",
+				position = tile.position,
+			} }, true)
+
+			if event.player_index then
+				local player = game.get_player(event.player_index)
+				if player and player.valid and event.item then
+					player.insert({ name = event.item.name, count = 1, quality = event.quality.name })
+				end
+			end
+		end
+	end
 end)
 
 return Public
