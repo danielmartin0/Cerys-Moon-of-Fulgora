@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.43
-Date: ????
+Date: 2025-01-27
   Changes:
     - Tweaks to neutron bomb neutrons.
     - Primary blast radius of neutron bombs reduced.
