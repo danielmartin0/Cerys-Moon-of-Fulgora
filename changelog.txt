@@ -2,6 +2,7 @@
 Version: 1.0.45
 Date: ????
   Changes:
+    - Science cost of Moon Discovery Cerys reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.44
 Date: 2025-01-27

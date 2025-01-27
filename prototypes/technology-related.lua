@@ -376,7 +376,7 @@ local discovery_tech = {
 		"effect-transmission",
 	},
 	unit = {
-		count = 500,
+		count = 250,
 		ingredients = {
 			{ "automation-science-pack", 1 },
 			{ "logistic-science-pack", 1 },
