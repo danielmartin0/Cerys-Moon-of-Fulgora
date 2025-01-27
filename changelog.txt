@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.44
-Date: ????
+Date: 2025-01-27
   Changes:
     - Slight reduction to solid fuel obtained from nuclear scrap recycling.
   Bugfixes:
