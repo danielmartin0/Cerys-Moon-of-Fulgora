@@ -446,11 +446,11 @@ data:extend({ cryogenics_tech })
 local cerys_lab = merge(data.raw.lab["lab"], {
 	name = "cerys-lab",
 	inputs = {
+		"cerys-science-pack",
 		"automation-science-pack",
 		"logistic-science-pack",
-		"cerys-science-pack",
 		"utility-science-pack",
-	}, -- Also set elsewhere
+	},
 	collision_box = { { -2.15, -1.75 }, { 2.15, 1.75 } },
 	selection_box = { { -2.5, -2 }, { 2.5, 2 } },
 	minable = { mining_time = 0.2, result = "cerys-lab" },

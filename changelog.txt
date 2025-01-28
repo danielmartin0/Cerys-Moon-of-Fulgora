@@ -2,6 +2,8 @@
 Version: 1.0.46
 Date: ????
   Changes:
+    - Fixed crash on 2.0.33 due to missing explosion graphic in base game.
+    - Crafting time of excavation recipe reduced.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.45
 Date: 2025-01-27
