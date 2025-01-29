@@ -6,7 +6,7 @@ Public.CRYO_WRECK_STAGE_ENUM = {
 }
 
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 100
-Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 200
+Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 200 -- Making this different to the default value is actually a bad idea, as players will think it will also be higher for the third repair.
 Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = 200
 
 function Public.tick_15_check_broken_cryo_plants(surface)

@@ -33,7 +33,7 @@ data:extend({
 		subgroup = "explosions",
 		animations = {
 			{
-				filename = "__base__/graphics/entity/explosion/explosion-2.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/explosion-2.png",
 				draw_as_glow = true,
 				priority = "high",
 				line_length = 16,
