@@ -2,6 +2,9 @@
 Version: 1.0.47
 Date: ????
   Changes:
+    - New icon and description for the charging rod technology.
+    - Slowed the speed of the animated charging rod lights.
+    - Adjusted the orbit graphic slightly.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.46
 Date: 2025-01-28

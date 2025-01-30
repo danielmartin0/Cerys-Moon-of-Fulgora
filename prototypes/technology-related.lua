@@ -129,7 +129,7 @@ data:extend({
 		},
 		prerequisites = { "cerys-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/charging-rod.png",
-		icon_size = 256,
+		icon_size = 1000,
 	}),
 	cerys_tech({
 		science_count = 150,
