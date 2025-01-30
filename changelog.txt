@@ -5,6 +5,8 @@ Date: 2025-01-30
     - New icon and description for the charging rod technology.
     - Slowed the speed of the animated charging rod lights.
     - Adjusted the orbit graphic slightly.
+  Locale:
+    - Chinese updated.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.46
 Date: 2025-01-28
