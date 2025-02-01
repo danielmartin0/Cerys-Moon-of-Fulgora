@@ -2,6 +2,8 @@
 Version: 1.0.49
 Date: ????
   Changes:
+    - Concrete spawning under map entities is now coterminous.
+    - Fulgoran crushers have a more contrasting map color and are more common.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.48
 Date: 2025-01-30

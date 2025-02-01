@@ -88,7 +88,7 @@ local crusher = {
 	autoplace = {
 		probability_expression = "0",
 	},
-	map_color = { 153, 158, 255 },
+	map_color = { 212, 93, 93 },
 }
 
 local wreck = merge(crusher, {
@@ -126,7 +126,7 @@ local wreck = merge(crusher, {
 			},
 		},
 	},
-	map_color = { 53, 54, 89 },
+	map_color = { 212, 93, 93 },
 	working_sound = {
 		-- TODO: Improve this sound
 		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },

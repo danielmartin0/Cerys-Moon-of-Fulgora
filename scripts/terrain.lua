@@ -4,8 +4,6 @@ local cryogenic_plant = require("scripts.cryogenic-plant")
 local crusher = require("scripts.crusher")
 local common = require("common")
 
--- TODO: There's quite a bit of fragile logic in the concrete placement code. Check it if anything changes.
-
 local Public = {}
 
 local function final_region(x, y)
@@ -85,18 +83,31 @@ local cryo_plant_positions = hex_grid_positions({
 	noise_scale = 100,
 })
 
+-- Mostly water positions:
 local crusher_positions = {
 	{
-		x = (common.MOON_RADIUS - 15) * math.sin(-1 * math.pi / 15),
-		y = (common.MOON_RADIUS - 15) * math.cos(-1 * math.pi / 15),
+		x = -16,
+		y = 133.5,
 	},
 	{
-		x = (common.MOON_RADIUS - 15) * math.sin(2 * math.pi / 6),
-		y = (common.MOON_RADIUS - 15) * math.cos(2 * math.pi / 6),
+		x = (common.MOON_RADIUS - 31) * math.cos(30 * math.pi / 180),
+		y = (common.MOON_RADIUS - 31) * math.sin(30 * math.pi / 180),
 	},
 	{
-		x = (common.MOON_RADIUS - 45) * math.sin(11 * math.pi / 12),
-		y = (common.MOON_RADIUS - 45) * math.cos(11 * math.pi / 12),
+		x = (common.MOON_RADIUS - 19) * math.cos(-25 * math.pi / 180),
+		y = (common.MOON_RADIUS - 19) * math.sin(-25 * math.pi / 180),
+	},
+	{
+		x = 15,
+		y = -92.5,
+	},
+	{
+		x = 11,
+		y = 66.5,
+	},
+	{
+		x = -72,
+		y = 59.5,
 	},
 }
 
@@ -205,9 +216,9 @@ function Public.create_towers(surface, area)
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
 		then
-			local p2 = { x = p.x + 0.5, y = p.y }
+			local p2 = { x = p.x, y = p.y }
 
-			Public.ensure_solid_foundation(surface, p2, 2, 3)
+			Public.ensure_solid_foundation(surface, p2, 3, 4)
 
 			local colliding_simple_entities = surface.find_entities_filtered({
 				type = "simple-entity",
@@ -266,7 +277,7 @@ function Public.create_cryo_plants(surface, area)
 			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
-				Public.ensure_solid_foundation(surface, p3, 4, 4)
+				Public.ensure_solid_foundation(surface, p3, 5, 5)
 
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-cryogenic-plant-wreck-frozen",
@@ -308,7 +319,7 @@ function Public.create_crushers(surface, area)
 			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 7, 3)
 
 			if p3 then
-				Public.ensure_solid_foundation(surface, { x = p3.x + 0.5, y = p3.y + 0.5 }, 4, 4)
+				Public.ensure_solid_foundation(surface, { x = p3.x, y = p3.y }, 4, 3)
 
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-crusher-wreck-frozen",
@@ -361,8 +372,8 @@ end
 
 function Public.ensure_solid_foundation(surface, center, width, height)
 	local tiles = {}
-	for dx = -width / 2, width / 2 do
-		for dy = -height / 2, height / 2 do
+	for dx = -width / 2 + 0.5, width / 2 - 0.5 do
+		for dy = -height / 2 + 0.5, height / 2 - 0.5 do
 			local tile_underneath = surface.get_tile(center.x + dx, center.y + dy)
 			local tile_underneath_is_water = tile_underneath and tile_underneath.name == "cerys-dry-ice-on-water"
 
