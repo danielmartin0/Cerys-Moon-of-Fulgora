@@ -1396,7 +1396,7 @@ Date: 2024-12-24
 Version: 0.3.1
 Date: 2024-12-23
   Bugfixes:
-    - Fixed uploading the wrong version of the mod. (Teaches me for doing changelog sheningans to construct 0.3.0.)
+    - Fixed crash.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2024-12-23
