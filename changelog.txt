@@ -2,6 +2,7 @@
 Version: 1.1.2
 Date: ????
   Changes:
+    - Description update to the Cerysian Science Pack tech.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 2025-02-04
