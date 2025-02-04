@@ -2,11 +2,12 @@ local common = require("common")
 
 local Public = {}
 
-local OUT_OF_BOUNDS_D2 = (common.MOON_RADIUS * (2 ^ (1 / 2)) * 1.5 + 5) ^ 2
+local ASTEROID_SPAWN_DISTANCE = common.MOON_RADIUS + 60
+local WIND_SPAWN_DISTANCE = common.MOON_RADIUS + 70
 local SOLAR_WIND_MIN_VELOCITY = 0.2
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 2.5
+local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 10
 
-local ROD_DEFLECTION_STRENGTH = 5
+local ROD_DEFLECTION_STRENGTH = 4
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
 local CHANCE_DAMAGE_CHARACTER = 1 / 30
@@ -27,8 +28,8 @@ local ASTEROID_TO_PERCENTAGE_RATE = {
 
 local MAX_CHUNKS_ON_GROUND = 15
 
-function Public.spawn_asteroid(surface, y_position)
-	y_position = y_position or -(common.MOON_RADIUS + 60)
+function Public.spawn_asteroid(surface)
+	local y_position = -ASTEROID_SPAWN_DISTANCE
 
 	local random_value = math.random() * 100
 	local chosen_name = nil
@@ -58,9 +59,9 @@ function Public.spawn_asteroid(surface, y_position)
 end
 
 function Public.spawn_solar_wind_particle(surface)
-	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
+	local y = math.random(-common.MOON_RADIUS - 8, common.MOON_RADIUS + 8)
 
-	local x = -(common.MOON_RADIUS + math.random(60, 70))
+	local x = -(WIND_SPAWN_DISTANCE - math.random(0, 10))
 
 	-- local e = surface.create_entity({
 	-- 	name = "cerys-solar-wind-particle",
@@ -167,7 +168,10 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
-		elseif particle.position.x ^ 2 + particle.position.y ^ 2 > OUT_OF_BOUNDS_D2 then
+		elseif
+			math.abs(particle.position.x) > WIND_SPAWN_DISTANCE + 5
+			or math.abs(particle.position.y) > WIND_SPAWN_DISTANCE + 5
+		then
 			kill = true
 		end
 
@@ -192,8 +196,7 @@ function Public.tick_240_clean_up_cerys_asteroids()
 		local e = storage.cerys.asteroids[i]
 
 		if e and e.valid then
-			local d2 = e.position.x ^ 2 + e.position.y ^ 2
-			if d2 > OUT_OF_BOUNDS_D2 then
+			if e.position.y > ASTEROID_SPAWN_DISTANCE + 5 then
 				e.destroy()
 
 				table.remove(storage.cerys.asteroids, i)
