@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.51
-Date: ????
+Date: 2025-02-04
   Changes:
     - Significantly increased the lifetime of solar wind particles.
     - More efficient cleanup of out-of-bounds solar wind particles.
