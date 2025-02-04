@@ -32,6 +32,7 @@ data:extend({
 			},
 		},
 		allow_productivity = true,
+		essential = true,
 	},
 
 	cerys_tech({
@@ -385,6 +386,7 @@ local discovery_tech = {
 		},
 		time = 60,
 	},
+	essential = true,
 }
 
 data:extend({ discovery_tech })

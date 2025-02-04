@@ -359,7 +359,7 @@ data:extend({
 								target_entities = false,
 								trigger_from_target = true,
 								repeat_count = 3000,
-								radius = 85,
+								radius = 110,
 								action_delivery = {
 									type = "projectile",
 									projectile = "hydrogen-bomb-wave",
