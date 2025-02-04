@@ -2,6 +2,7 @@
 Version: 1.0.50
 Date: ????
   Changes:
+    - Reduced occurrence of huge nuclear scrap patches.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.49
 Date: 2025-02-01

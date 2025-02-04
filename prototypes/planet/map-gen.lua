@@ -184,8 +184,8 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 10, \z
-				output_scale = 110} \z
-				- (140 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
+				output_scale = 220} \z
+				- (280 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 200 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water",
