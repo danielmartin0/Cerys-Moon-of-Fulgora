@@ -32,7 +32,6 @@ data:extend({
 			},
 		},
 		allow_productivity = true,
-		essential = true,
 	},
 
 	cerys_tech({
@@ -98,6 +97,7 @@ data:extend({
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys-science-pack.png",
 		icon_size = 256,
+		essential = true,
 	}),
 	cerys_tech({
 		science_count = 100,
