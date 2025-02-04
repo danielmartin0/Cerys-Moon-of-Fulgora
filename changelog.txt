@@ -2,6 +2,7 @@
 Version: 1.1.3
 Date: ????
   Changes:
+    - Fixed crash when placing a blueprint from a blueprint book.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2025-02-04

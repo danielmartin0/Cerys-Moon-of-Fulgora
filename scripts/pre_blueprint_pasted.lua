@@ -202,6 +202,11 @@ local function on_pre_build(event)
 		return
 	end
 
+	if (cursor_stack.name ~= "blueprint") then
+		-- TODO: Handle blueprint books
+		return
+	end
+
 	local blueprint_entities = cursor_stack.get_blueprint_entities() -- Blueprint entities has the format of {{entity_number = 1, name = 1, position = {1,1}}, {entity_number = 2, name = 2, position = {2,2}}}
 	if blueprint_entities == nil then
 		return
