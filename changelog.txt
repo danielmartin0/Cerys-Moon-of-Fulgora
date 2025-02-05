@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
-Date: ????
+Date: 2025-02-05
   Changes:
     - Repairing the reactor no longer requires quality components.
     - The scaffolded nuclear reactor no longer has module slots.
