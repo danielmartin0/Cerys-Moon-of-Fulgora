@@ -86,18 +86,6 @@ local cryo_plant_positions = hex_grid_positions({
 -- Mostly water positions:
 local crusher_positions = {
 	{
-		x = -16,
-		y = 133.5,
-	},
-	{
-		x = (common.MOON_RADIUS - 31) * math.cos(30 * math.pi / 180),
-		y = (common.MOON_RADIUS - 31) * math.sin(30 * math.pi / 180),
-	},
-	{
-		x = (common.MOON_RADIUS - 19) * math.cos(-25 * math.pi / 180),
-		y = (common.MOON_RADIUS - 19) * math.sin(-25 * math.pi / 180),
-	},
-	{
 		x = 15,
 		y = -92.5,
 	},
@@ -108,6 +96,10 @@ local crusher_positions = {
 	{
 		x = -72,
 		y = 59.5,
+	},
+	{
+		x = 107,
+		y = 25.5,
 	},
 }
 
