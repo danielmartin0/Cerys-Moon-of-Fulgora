@@ -5,7 +5,7 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 12
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 10
 
 function Public.crusher_repair_recipes_needed()
 	return math.ceil(Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
