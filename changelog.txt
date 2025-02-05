@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.0
-Date: ????
+Date: 2025-02-05
   Changes:
     - Significant balance change: much less sulfuric acid is now needed in the iron->iron loop involving nitrogen-rich minerals. The 'puzzle' of needing productivity modules to make this recipe effective has been removed.
     - As with the reactor, the Fulgoran crusher no longer requires quality components to repair.
