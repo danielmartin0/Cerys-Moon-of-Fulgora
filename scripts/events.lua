@@ -91,6 +91,10 @@ script.on_event({
 
 		repair.scaffold_on_build(entity, player)
 	end
+
+	if entity.name == "cerys-fulgoran-crusher" or string.find(entity.name, "^cerys%-fulgoran%-crusher%-quality%-") then
+		crusher.register_crusher(entity)
+	end
 end)
 
 script.on_event(defines.events.on_pre_build, function(event)
@@ -178,6 +182,7 @@ function Public.cerys_tick(surface, tick)
 	background.tick_1_update_background_renderings()
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
+	crusher.tick_1_check_crusher_quality_upgrades(surface)
 
 	if
 		player_looking_at_surface or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
@@ -218,12 +223,16 @@ function Public.cerys_tick(surface, tick)
 		nuclear_reactor.tick_reactor(surface, player_looking_at_surface)
 	end
 
-	if tick % 20 == 0 then
-		cryogenic_plant.tick_20_check_cryo_quality_upgrades(surface)
+	if tick % 15 == 0 then
 		-- Ideally, match the tick interval of the repair recipes:
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		crusher.tick_15_check_broken_crushers(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
+	end
+
+	if tick % 20 == 0 then
+		cryogenic_plant.tick_20_check_cryo_quality_upgrades(surface)
+		crusher.tick_20_check_crusher_quality_upgrades(surface)
 	end
 
 	if tick % 60 == 0 then
@@ -256,6 +265,11 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		end
 
 		radiative_towers.register_heating_tower_contracted(entity)
+	elseif effect_id == "cerys-fulgoran-crusher-created" then
+		local entity = event.target_entity
+		if entity and entity.valid then
+			crusher.register_crusher(entity)
+		end
 	end
 end)
 

@@ -34,15 +34,15 @@ local crusher = {
 		},
 	},
 	damaged_trigger_effect = hit_effects.entity(),
-	module_slots = 1, -- 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules
+	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {
 		{ inventory_index = defines.inventory.furnace_modules, shift = { 0, 0.3 } },
 	},
 	icon_draw_specification = { shift = { 0, -0.45 } },
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
-	crafting_categories = { "crushing" },
-	crafting_speed = 0.5,
-	energy_usage = "600kW",
+	crafting_categories = { "crushing", "crusher-quality-upgrades" },
+	crafting_speed = 0.4,
+	energy_usage = "1250kW",
 	heating_energy = "200kW",
 	energy_source = {
 		type = "electric",
@@ -89,14 +89,38 @@ local crusher = {
 		probability_expression = "0",
 	},
 	map_color = { 212, 93, 93 },
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-crusher-created",
+			},
+		},
+	},
 }
+
+local quality_variants = {}
+for _, quality in pairs(data.raw.quality) do
+	if quality.level and quality.level > 0 then
+		local quality_crusher = merge(crusher, {
+			name = "cerys-fulgoran-crusher-quality-" .. quality.level,
+			localised_name = { "entity-name.cerys-fulgoran-crusher" },
+			module_slots = math.ceil(quality.level),
+			hidden = true,
+		})
+
+		table.insert(quality_variants, quality_crusher)
+	end
+end
 
 local wreck = merge(crusher, {
 	name = "cerys-fulgoran-crusher-wreck",
-	hidden_in_factoriopedia = true,
+	hidden = true,
 	crafting_categories = { "crusher-repair" },
 	fixed_recipe = "cerys-repair-crusher",
-	fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "uncommon",
+	-- fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "uncommon",
 	fast_replaceable_group = "cerys-fulgoran-crusher",
 	crafting_speed = 1,
 	energy_source = {
@@ -161,3 +185,4 @@ local wreck_frozen = merge(wreck, {
 })
 
 data:extend({ crusher, wreck, wreck_frozen })
+data:extend(quality_variants)

@@ -304,9 +304,11 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 							local old_modules = e.get_module_inventory()
 							local new_modules = e2.get_module_inventory()
 
-							local modules = old_modules.get_contents()
-							for _, m in pairs(modules) do
-								new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
+							if old_modules and old_modules.valid and new_modules and new_modules.valid then
+								local modules = old_modules.get_contents()
+								for _, m in pairs(modules) do
+									new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
+								end
 							end
 						end
 					end

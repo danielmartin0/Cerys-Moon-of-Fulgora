@@ -18,7 +18,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	},
 	module_slots = 9,
 	crafting_speed = 1.25,
-	energy_usage = "1800kW",
+	energy_usage = "1600kW",
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	minable = { mining_time = 1, result = "cerys-fulgoran-cryogenic-plant" },

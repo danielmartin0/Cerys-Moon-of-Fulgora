@@ -5,7 +5,7 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 10
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 40
 
 function Public.crusher_repair_recipes_needed()
 	return math.ceil(Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
@@ -167,27 +167,12 @@ function Public.tick_15_check_broken_crushers(surface)
 					if e and e.valid then
 						local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
 						if input_inv and input_inv.valid then
-							if settings.startup["cerys-disable-quality-mechanics"].value then
-								repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
+							repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
 
-								local repair_recipe = prototypes.recipe["cerys-repair-crusher"]
-								local chip_type = repair_recipe.ingredients[1].name
+							local repair_recipe = prototypes.recipe["cerys-repair-crusher"]
+							local chip_type = repair_recipe.ingredients[1].name
 
-								circuits = input_inv.get_item_count(chip_type)
-							else
-								repair_parts = input_inv.get_item_count({
-									name = "ancient-structure-repair-part",
-									quality = "uncommon",
-								})
-
-								local repair_recipe = prototypes.recipe["cerys-repair-crusher"]
-								local chip_type = repair_recipe.ingredients[1].name
-
-								circuits = input_inv.get_item_count({
-									name = chip_type,
-									quality = "uncommon",
-								})
-							end
+							circuits = input_inv.get_item_count(chip_type)
 						end
 					end
 
@@ -197,16 +182,13 @@ function Public.tick_15_check_broken_crushers(surface)
 					local repair_count = (products_finished + (e.is_crafting() and 1 or 0)) * repair_count_multiplier
 						+ repair_parts
 
-					local quality_text = settings.startup["cerys-disable-quality-mechanics"].value and ""
-						or ",quality=uncommon"
-
 					crusher.rendering1.color = repair_count >= products_required * repair_count_multiplier
 							and { 0, 255, 0 }
 						or { 255, 185, 0 }
 
 					crusher.rendering1.text = {
 						"cerys.repair-remaining-description",
-						"[item=ancient-structure-repair-part" .. quality_text .. "]",
+						"[item=ancient-structure-repair-part]",
 						repair_count,
 						products_required * repair_count_multiplier,
 					}
@@ -214,10 +196,7 @@ function Public.tick_15_check_broken_crushers(surface)
 					crusher.rendering2.color = circuit_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 					crusher.rendering2.text = {
 						"cerys.repair-remaining-description",
-						"[item="
-							.. prototypes.recipe["cerys-repair-crusher"].ingredients[1].name
-							.. quality_text
-							.. "]",
+						"[item=processing-unit]",
 						circuit_count,
 						products_required,
 					}
@@ -241,6 +220,139 @@ Public.register_ancient_crusher = function(entity, frozen)
 		stage = frozen and Public.CRUSHER_WRECK_STAGE_ENUM.frozen or Public.CRUSHER_WRECK_STAGE_ENUM.needs_repair,
 		creation_tick = game.tick,
 	}
+end
+
+local CRAFTING_PROGRESS_THRESHOLD = 0.97
+
+function Public.tick_20_check_crusher_quality_upgrades(surface)
+	storage.cerys.crusher_upgrade_monitor = storage.cerys.crusher_upgrade_monitor or {}
+	storage.cerys_fulgoran_crushers = storage.cerys_fulgoran_crushers or {}
+
+	for unit_number, crusher in pairs(storage.cerys_fulgoran_crushers) do
+		if not (crusher and crusher.valid) then
+			storage.cerys_fulgoran_crushers[unit_number] = nil
+		end
+	end
+
+	for unit_number, crusher in pairs(storage.cerys_fulgoran_crushers) do
+		storage.cerys.crusher_upgrade_monitor[unit_number] = nil
+
+		if crusher.quality and crusher.quality.next then
+			local recipe, recipe_quality = crusher.get_recipe()
+
+			if recipe and recipe.name == "cerys-upgrade-fulgoran-crusher-quality" then
+				if crusher.quality.next.name == recipe_quality.name then
+					storage.cerys.crusher_upgrade_monitor[unit_number] = {
+						entity = crusher,
+						quality_upgrading_to = recipe_quality,
+					}
+				else
+					local input_inv = crusher.get_inventory(defines.inventory.assembling_machine_input)
+					if input_inv and input_inv.valid then
+						local contents = input_inv.get_contents()
+						for _, ingredient in pairs(contents) do
+							input_inv.remove({
+								name = ingredient.name,
+								count = ingredient.count,
+								quality = ingredient.quality,
+							})
+							surface.spill_item_stack({
+								position = crusher.position,
+								stack = {
+									name = ingredient.name,
+									count = ingredient.count,
+									quality = ingredient.quality,
+								},
+							})
+						end
+					end
+					crusher.set_recipe(recipe, crusher.quality.next)
+				end
+			end
+		end
+	end
+end
+
+function Public.tick_1_check_crusher_quality_upgrades(surface)
+	if not (storage and storage.cerys and storage.cerys.crusher_upgrade_monitor) then
+		return
+	end
+
+	for unit_number, data in pairs(storage.cerys.crusher_upgrade_monitor) do
+		local e = data.entity
+		local quality_upgrading_to = data.quality_upgrading_to
+
+		if not (e and e.valid) then
+			storage.cerys.crusher_upgrade_monitor[unit_number] = nil
+		elseif e.is_crafting() then
+			local recipe, quality = e.get_recipe()
+			local still_the_same_recipe = recipe
+				and recipe.name == "cerys-upgrade-fulgoran-crusher-quality"
+				and quality
+				and quality.name == quality_upgrading_to.name
+
+			if not still_the_same_recipe then
+				storage.cerys.crusher_upgrade_monitor[unit_number] = nil
+			else
+				if e.crafting_progress > CRAFTING_PROGRESS_THRESHOLD then
+					local new_entity_name = "cerys-fulgoran-crusher-quality-" .. quality_upgrading_to.level
+
+					local e2 = surface.create_entity({
+						name = new_entity_name,
+						position = e.position,
+						force = e.force,
+						direction = e.direction,
+						fast_replace = true,
+						quality = quality_upgrading_to.name,
+					})
+
+					if e2 and e2.valid then
+						e2.minable_flag = false
+						e2.destructible = false
+
+						e2.set_recipe(nil)
+
+						local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
+						if old_input and old_input.valid then
+							local contents = old_input.get_contents()
+							for _, m in pairs(contents) do
+								for _ = 1, m.count do
+									surface.spill_item_stack({
+										position = e.position,
+										stack = { name = m.name, count = 1, quality = m.quality },
+									})
+								end
+							end
+						end
+
+						local old_modules = e.get_module_inventory()
+						local new_modules = e2.get_module_inventory()
+
+						if old_modules and old_modules.valid and new_modules and new_modules.valid then
+							local modules = old_modules.get_contents()
+							for _, m in pairs(modules) do
+								new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
+							end
+						end
+					end
+
+					if e and e.valid then
+						e.destroy()
+					end
+					storage.cerys.crusher_upgrade_monitor[unit_number] = nil
+				end
+			end
+		end
+	end
+end
+
+Public.register_crusher = function(entity)
+	if not (entity and entity.valid) then
+		return
+	end
+
+	storage.cerys_fulgoran_crushers = storage.cerys_fulgoran_crushers or {}
+	storage.cerys_fulgoran_crushers[entity.unit_number] = entity
 end
 
 return Public

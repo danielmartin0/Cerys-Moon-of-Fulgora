@@ -101,11 +101,15 @@ data:extend({
 	}),
 	cerys_tech({
 		science_count = 100,
-		name = "cerys-cryogenic-plant-quality-upgrades",
+		name = "cerys-fulgoran-machine-quality-upgrades",
 		effects = {
 			{
 				type = "unlock-recipe",
 				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-upgrade-fulgoran-crusher-quality",
 			},
 		},
 		prerequisites = { "cerys-science-pack" },

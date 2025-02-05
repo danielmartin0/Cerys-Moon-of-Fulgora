@@ -1,6 +1,8 @@
 local init = require("scripts.init")
 local lib = require("lib")
 local common = require("common")
+local crusher = require("scripts.crusher")
+
 local Public = {}
 
 function Public.run_migrations()
@@ -138,6 +140,18 @@ function Public.run_migrations()
 			if rod.red_light_rendering and rod.red_light_rendering.valid then
 				rod.red_light_rendering.destroy()
 			end
+		end
+	end
+
+	if lib.is_newer_version(last_seen_version, "1.3.0") then
+		storage.cerys_fulgoran_crushers = storage.cerys_fulgoran_crushers or {}
+
+		local crushers = surface.find_entities_filtered({
+			name = "cerys-fulgoran-crusher",
+		})
+
+		for _, e in pairs(crushers) do
+			crusher.register_crusher(e)
 		end
 	end
 
