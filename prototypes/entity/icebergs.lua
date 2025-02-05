@@ -5,7 +5,7 @@ data:extend({
 		name = "cerys-methane-iceberg-huge",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-a[huge]",
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-huge"].minable, {
-			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.4,
+			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.15,
 			results = {
 				{ type = "item", name = "methane-ice", amount_min = 8, amount_max = 15 },
 			},
@@ -58,7 +58,7 @@ data:extend({
 		name = "cerys-methane-iceberg-big",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-b[big]",
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-big"].minable, {
-			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.4,
+			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.15,
 			results = {
 				{ type = "item", name = "methane-ice", amount_min = 5, amount_max = 6 },
 			},

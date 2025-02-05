@@ -2,6 +2,7 @@
 Version: 1.1.7
 Date: ????
   Changes:
+    - Reduced mining time of methane icebergs.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.6
 Date: 2025-02-05
