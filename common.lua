@@ -7,7 +7,7 @@ Public.DEBUG_NUCLEAR_REACTOR_START = false
 
 Public.MOON_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
-Public.REACTOR_POSITION = { x = 21, y = 29 }
+Public.REACTOR_POSITION = { x = 20, y = 29 }
 Public.LITHIUM_POSITION = { x = 111, y = -5 }
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",

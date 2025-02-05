@@ -1,7 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.1.7
+Version: 1.2.0
 Date: ????
   Changes:
+    - Repairing the reactor no longer requires quality components.
+    - The scaffolded nuclear reactor no longer has module slots.
+    - The amount of iron obtained from nuclear scrap recycling has been reduced to encourage players to find more productive ways of generating it.
+    - Repairing Fulgoran crushers now requires processing units instead of advanced circuits.
+    - Items in the input inventory of a Fulgoran wreck are no longer lost when the wreck is repaired.
+    - Crafting time of dummy Plutonium-239 recipe shown in Factoriopedia reduced to 0.1.
     - Reduced mining time of methane icebergs.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.6

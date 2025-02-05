@@ -30,7 +30,7 @@ data:extend({
 		name = "plutonium-239",
 		category = "no-machine",
 		enabled = false,
-		energy_required = 1,
+		energy_required = 0.1,
 		ingredients = {
 			{ type = "item", name = "uranium-238", amount = 1 },
 		},
@@ -39,6 +39,7 @@ data:extend({
 		hide_from_player_crafting = true,
 		allow_decomposition = false,
 		always_show_products = true,
+		auto_recycle = false,
 	},
 
 	{

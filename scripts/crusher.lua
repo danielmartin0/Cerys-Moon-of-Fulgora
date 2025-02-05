@@ -5,7 +5,7 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 10
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 12
 
 function Public.crusher_repair_recipes_needed()
 	return math.ceil(Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
@@ -108,6 +108,14 @@ function Public.tick_15_check_broken_crushers(surface)
 					end
 
 					if e and e.valid then
+						local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+						if input_inv and input_inv.valid then
+							local contents = input_inv.get_contents()
+							for _, item in pairs(contents) do
+								surface.spill_item_stack({ position = e.position, stack = item })
+							end
+						end
+
 						local module_inv = e.get_module_inventory()
 						local module_inv2 = e2.get_module_inventory()
 						if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then

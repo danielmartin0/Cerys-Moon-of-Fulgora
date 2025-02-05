@@ -60,8 +60,7 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "nuclear-reactor-repair",
 		ingredients = {
-			-- The script need to be updated if these change:
-			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 2 },
 			{ type = "item", name = "processing-unit", amount = 1 },
 		},
 		results = {},
@@ -127,9 +126,8 @@ data:extend({
 		ingredients = {
 			{
 				type = "item",
-				name = settings.startup["cerys-disable-quality-mechanics"].value and "processing-unit"
-					or "advanced-circuit",
-				amount = 1,
+				name = "processing-unit",
+				amount = settings.startup["cerys-disable-quality-mechanics"].value and 5 or 1,
 			},
 			{
 				type = "item",
