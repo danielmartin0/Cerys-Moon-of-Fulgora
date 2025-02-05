@@ -11,6 +11,7 @@ local migrations = require("scripts.migrations")
 local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
+local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local Public = {}
 
 -- Highest-level file besides control.lua.
@@ -96,10 +97,15 @@ script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 	local cursor_stack = player.cursor_stack
 
+	rods.on_pre_build(event)
+	pre_blueprint_pasted.on_pre_build(event)
+
 	if cursor_stack and cursor_stack.valid_for_read then
 		local item_name = cursor_stack.name
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
+			game.print("on_pre_build cerys-fulgoran-reactor-scaffold")
+
 			repair.scaffold_on_pre_build(event)
 		end
 	end

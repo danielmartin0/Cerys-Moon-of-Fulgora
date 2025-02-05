@@ -1,9 +1,8 @@
-local handler = require("event_handler")
 
 -- This code is adapted from bunshaman's library. For its MIT license, please see https://opensource.org/license/mit.
 -- Hopefully Factorio will support this event so that we can later replace this code.
 
-local pre_blueprint_pasted = {}
+local Public = {}
 
 local function rotate_point(point, axis, clockwise)
 	clockwise = clockwise or false
@@ -189,7 +188,8 @@ local function get_center_of_coordinates(corner1, corner2)
 end
 
 
-local function on_pre_build(event)
+function Public.on_pre_build(event)
+	
 	local player = game.players[event.player_index] -- Player who placed the blueprint
 	local mouse_pos = event.position -- Position of the MOUSE when placing the blueprint.
 	local direction = event.direction
@@ -273,8 +273,4 @@ local function on_pre_build(event)
 	return pasted_pos
 end
 
-pre_blueprint_pasted.events = {
-	[defines.events.on_pre_build] = on_pre_build,
-}
-
-handler.add_lib(pre_blueprint_pasted)
+return Public

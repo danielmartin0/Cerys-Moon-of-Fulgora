@@ -329,7 +329,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_pre_build, function(event)
+function Public.on_pre_build(event)
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -347,7 +347,7 @@ script.on_event(defines.events.on_pre_build, function(event)
 		event.tags = event.tags or {}
 		event.tags.is_negative = tags.is_negative
 	end
-end)
+end
 
 handler.add_lib({
 	events = {
@@ -358,7 +358,6 @@ handler.add_lib({
 
 			for entity_index, position in pairs(pasted_positions) do
 				local entity = blueprint_entities[entity_index]
-
 
 				if entity.name == "cerys-charging-rod" then
 					local surface = event.surface
