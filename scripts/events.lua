@@ -104,8 +104,6 @@ script.on_event(defines.events.on_pre_build, function(event)
 		local item_name = cursor_stack.name
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
-			game.print("on_pre_build cerys-fulgoran-reactor-scaffold")
-
 			repair.scaffold_on_pre_build(event)
 		end
 	end
