@@ -202,7 +202,7 @@ function Public.tick_15_check_broken_crushers(surface)
 
 					crusher.rendering1.color = repair_count >= products_required * repair_count_multiplier
 							and { 0, 255, 0 }
-						or { 255, 200, 0 }
+						or { 255, 185, 0 }
 
 					crusher.rendering1.text = {
 						"cerys.repair-remaining-description",
@@ -211,7 +211,7 @@ function Public.tick_15_check_broken_crushers(surface)
 						products_required * repair_count_multiplier,
 					}
 
-					crusher.rendering2.color = circuit_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
+					crusher.rendering2.color = circuit_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 					crusher.rendering2.text = {
 						"cerys.repair-remaining-description",
 						"[item="

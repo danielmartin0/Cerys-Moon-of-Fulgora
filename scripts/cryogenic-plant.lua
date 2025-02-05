@@ -112,7 +112,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 
 				local repair_parts_count = products_finished + (e.is_crafting() and 1 or 0) + repair_parts
 
-				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
+				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 				plant.rendering.text = {
 					"cerys.repair-remaining-description",
 					"[item=ancient-structure-repair-part]",
