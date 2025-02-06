@@ -13,7 +13,7 @@ Date: 2025-02-05
     - Fixed crash when playing Cerys in French.
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
-Date: 2025-02-05
+Date: 2025-02-04
   Changes:
     - Repairing the reactor no longer requires quality components.
     - The scaffolded nuclear reactor no longer has module slots.
@@ -24,12 +24,12 @@ Date: 2025-02-05
     - Reduced mining time of methane icebergs.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.6
-Date: 2025-02-05
+Date: 2025-02-04
   Changes:
     - French locale update.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.4
-Date: 2025-02-05
+Date: 2025-02-04
   Changes:
     - Fixed bug when placing the Fulgoran reactor scaffold.
 ---------------------------------------------------------------------------------------------------
