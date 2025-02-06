@@ -4,7 +4,7 @@ local Public = {}
 
 local ASTEROID_SPAWN_DISTANCE = common.MOON_RADIUS + 60
 local WIND_SPAWN_DISTANCE = common.MOON_RADIUS + 70
-local SOLAR_WIND_MIN_VELOCITY = 0.2
+local SOLAR_WIND_MIN_VELOCITY = 0.225
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 10
 
 local ROD_DEFLECTION_STRENGTH = 4
@@ -85,7 +85,7 @@ function Public.spawn_solar_wind_particle(surface)
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1
+	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.05
 	local y_velocity = 0.3 * (math.random() - 0.5) ^ 3
 
 	return { x = x_velocity, y = y_velocity }
