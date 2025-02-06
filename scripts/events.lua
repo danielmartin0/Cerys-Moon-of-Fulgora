@@ -64,21 +64,15 @@ script.on_event({
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_heating_tower(entity)
-	end
-
-	if entity.name == "cerys-charging-rod" then
+	elseif entity.name == "cerys-charging-rod" then
 		if event.robot then
 			rods.robot_built_charging_rod(entity, event.tags or {})
 		else
 			rods.built_charging_rod(entity, event.tags or {})
 		end
-	end
-
-	if entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
+	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		rods.built_ghost_charging_rod(entity, entity.tags)
-	end
-
-	if entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
+	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
 			return
 		end
@@ -90,9 +84,7 @@ script.on_event({
 		end
 
 		repair.scaffold_on_build(entity, player)
-	end
-
-	if entity.name == "cerys-fulgoran-crusher" or string.find(entity.name, "^cerys%-fulgoran%-crusher%-quality%-") then
+	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
 	end
 end)
