@@ -189,7 +189,7 @@ end
 
 
 function Public.on_pre_build(event)
-	
+
 	local player = game.players[event.player_index] -- Player who placed the blueprint
 	local mouse_pos = event.position -- Position of the MOUSE when placing the blueprint.
 	local direction = event.direction
@@ -239,8 +239,7 @@ function Public.on_pre_build(event)
 		mouse_pos.y = math.floor(mouse_pos.y) + 0.5 -- Snap to center
 	end
 
-	-- Find where each entity in the blueprint was pasted to.
-	local pasted_pos = {}
+	local pasted_positions = {}
 	for entity_index, entity in pairs(blueprint_entities) do
 		if
 			entity.type == "car"
@@ -252,7 +251,7 @@ function Public.on_pre_build(event)
 		then
 			goto skipvehicle
 		end
-		pasted_pos[entity_index] =get_pasted_position(
+		pasted_positions[entity_index] =get_pasted_position(
 			mouse_pos,
 			center_pos,
 			entity,
@@ -264,13 +263,27 @@ function Public.on_pre_build(event)
 		::skipvehicle::
 	end
 
-	script.raise_event("pre_blueprint_pasted", {
-		player_index = event.player_index,
-		blueprint_entities = blueprint_entities,
-		surface = player.surface,
-		pasted_positions = pasted_pos,
-	})
-	return pasted_pos
+	local surface = player.surface
+
+	for entity_index, position in pairs(pasted_positions) do
+		local entity = blueprint_entities[entity_index]
+
+		if entity.name == "cerys-charging-rod" then
+
+			local existing_rod = surface.find_entity("cerys-charging-rod", position)
+
+			if
+				existing_rod
+				and existing_rod.valid
+				and existing_rod.position.x == position.x
+				and existing_rod.position.y == position.y
+			then
+				Public.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
+			end
+		end
+	end
+
+	return pasted_positions
 end
 
 return Public

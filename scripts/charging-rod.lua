@@ -1,5 +1,3 @@
-local handler = require("event_handler")
-
 local Public = {}
 
 local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
@@ -348,34 +346,5 @@ function Public.on_pre_build(event)
 		event.tags.is_negative = tags.is_negative
 	end
 end
-
-handler.add_lib({
-	events = {
-		["pre_blueprint_pasted"] = function(event)
-			local blueprint_entities = event.blueprint_entities
-
-			local pasted_positions = event.pasted_positions
-
-			for entity_index, position in pairs(pasted_positions) do
-				local entity = blueprint_entities[entity_index]
-
-				if entity.name == "cerys-charging-rod" then
-					local surface = event.surface
-
-					local existing_rod = surface.find_entity("cerys-charging-rod", position)
-
-					if
-						existing_rod
-						and existing_rod.valid
-						and existing_rod.position.x == position.x
-						and existing_rod.position.y == position.y
-					then
-						Public.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
-					end
-				end
-			end
-		end,
-	},
-})
 
 return Public
