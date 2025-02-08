@@ -18,10 +18,8 @@ if mods["any-planet-start"] then
 	for i = #discovery_tech.prerequisites, 1, -1 do
 		if discovery_tech.prerequisites[i] == "nuclear-power" then
 			table.remove(discovery_tech.prerequisites, i)
-			break
 		elseif discovery_tech.prerequisites[i] == "kovarex-enrichment-process" then
 			table.remove(discovery_tech.prerequisites, i)
-			break
 		end
 	end
 
