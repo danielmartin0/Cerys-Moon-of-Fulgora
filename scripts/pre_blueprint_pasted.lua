@@ -1,3 +1,4 @@
+local rods = require("scripts.charging-rod")
 
 -- This code is adapted from bunshaman's library. For its MIT license, please see https://opensource.org/license/mit.
 -- Hopefully Factorio will support this event so that we can later replace this code.
@@ -187,7 +188,6 @@ local function get_center_of_coordinates(corner1, corner2)
 	return { x = x, y = y }
 end
 
-
 function Public.on_pre_build(event)
 
 	local player = game.players[event.player_index] -- Player who placed the blueprint
@@ -269,7 +269,6 @@ function Public.on_pre_build(event)
 		local entity = blueprint_entities[entity_index]
 
 		if entity.name == "cerys-charging-rod" then
-
 			local existing_rod = surface.find_entity("cerys-charging-rod", position)
 
 			if
@@ -278,7 +277,7 @@ function Public.on_pre_build(event)
 				and existing_rod.position.x == position.x
 				and existing_rod.position.y == position.y
 			then
-				Public.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
+				rods.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
 			end
 		end
 	end

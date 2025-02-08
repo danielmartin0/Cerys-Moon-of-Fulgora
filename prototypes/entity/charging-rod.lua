@@ -109,6 +109,10 @@ data:extend({
 		type = "simple-entity",
 		name = "cerys-charging-rod-animation-blue",
 		hidden = true,
+		collision_mask = { layers = {} },
+		collision_box = { { 0, 0 }, { 0, 0 } },
+		selection_box = { { -0, -0 }, { 0, 0 } },
+		selectable_in_game = false,
 		random_animation_offset = true,
 		animations = {
 			layers = {
@@ -144,6 +148,10 @@ data:extend({
 		type = "simple-entity",
 		name = "cerys-charging-rod-animation-red",
 		hidden = true,
+		collision_mask = { layers = {} },
+		collision_box = { { 0, 0 }, { 0, 0 } },
+		selection_box = { { -0, -0 }, { 0, 0 } },
+		selectable_in_game = false,
 		random_animation_offset = true,
 		animations = {
 			layers = {
