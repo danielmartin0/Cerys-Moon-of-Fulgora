@@ -1,6 +1,6 @@
 if mods["any-planet-start"] then
 	local planet = settings.startup["aps-planet"].value --[[@as string]]
-	if planet == "nauvis" then
+	if planet == "nauvis" or planet == "none" then
 		return
 	end
 
@@ -17,6 +17,9 @@ if mods["any-planet-start"] then
 
 	for i = #discovery_tech.prerequisites, 1, -1 do
 		if discovery_tech.prerequisites[i] == "nuclear-power" then
+			table.remove(discovery_tech.prerequisites, i)
+			break
+		elseif discovery_tech.prerequisites[i] == "kovarex-enrichment-process" then
 			table.remove(discovery_tech.prerequisites, i)
 			break
 		end

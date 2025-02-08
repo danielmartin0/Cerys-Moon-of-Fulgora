@@ -2,6 +2,7 @@
 Version: 1.3.4
 Date: ????
   Changes:
+    - Fixed Kovarex enrichment process not being removed as a prerequisite of Cerys when using Any Planet Start.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.3
 Date: 2025-02-07
