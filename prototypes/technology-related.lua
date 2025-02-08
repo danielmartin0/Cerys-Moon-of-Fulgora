@@ -1,5 +1,6 @@
 --== In the past this file was imported in data-final-fixes because Cerysian science caused compatibility problems with so many mods. It has now been moved back to data.lua after the 1.0 release. ==--
 
+local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
 local cerys_tech = lib.cerys_tech
@@ -346,7 +347,7 @@ data:extend({
 		{
 			prerequisites = { "cerys-lubricant-synthesis" },
 			unit = {
-				count = 1500,
+				count = common.HARDCORE_ON and 4000 or 1500,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },

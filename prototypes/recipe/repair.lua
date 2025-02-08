@@ -1,3 +1,5 @@
+local common = require("common")
+
 data:extend({
 	{
 		type = "recipe",
@@ -178,9 +180,18 @@ if not settings.startup["cerys-technology-compatibility-mode"].value then
 			enabled = true,
 			hide_from_player_crafting = true,
 			category = "fulgoran-cryogenics",
-			ingredients = {
-				{ type = "item", name = "cerys-nuclear-scrap", amount = 20 },
-			},
+			ingredients = common.HARDCORE_ON and {
+				{ type = "item", name = "solid-fuel", amount = 40 },
+				{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
+				{ type = "item", name = "advanced-circuit", amount = 30 },
+				{ type = "item", name = "uranium-238", amount = 20 },
+				{ type = "item", name = "copper-cable", amount = 20 },
+				{ type = "item", name = "stone-brick", amount = 6 },
+				{ type = "item", name = "transport-belt", amount = 3 },
+				{ type = "item", name = "holmium-plate", amount = 2 },
+				{ type = "item", name = "heat-pipe", amount = 1 },
+				{ type = "item", name = "steam-turbine", amount = 1 },
+			} or { { type = "item", name = "cerys-nuclear-scrap", amount = 20 } },
 			results = {
 				{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
 			},

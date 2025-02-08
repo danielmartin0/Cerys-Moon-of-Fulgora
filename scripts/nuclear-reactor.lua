@@ -124,7 +124,9 @@ function Public.tick_2_radiation(surface)
 		return
 	end
 
-	local damage = BASE_DAMAGE * settings.global["cerys-gamma-radiation-damage-multiplier"].value
+	local damage = BASE_DAMAGE
+		* settings.global["cerys-gamma-radiation-damage-multiplier"].value
+		* (common.HARDCORE_ON and 2 or 1)
 
 	local i = 1
 	while i <= #storage.cerys.radiation_particles do

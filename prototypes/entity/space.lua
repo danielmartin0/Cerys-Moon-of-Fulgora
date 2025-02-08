@@ -1,4 +1,6 @@
 local merge = require("lib").merge
+local common = require("common")
+
 local ASTEROIDS_TO_CLONE = {
 	"small-metallic-asteroid",
 	"small-carbonic-asteroid",
@@ -8,8 +10,9 @@ local ASTEROIDS_TO_CLONE = {
 	"medium-oxide-asteroid",
 }
 
-local ASTEROID_HEALTH_MULTIPLIER = 2.5
+local ASTEROID_HEALTH_MULTIPLIER = common.HARDCORE_ON and 8 or 2.5
 local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = 10
+
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local original = data.raw.asteroid[asteroid_name]
 

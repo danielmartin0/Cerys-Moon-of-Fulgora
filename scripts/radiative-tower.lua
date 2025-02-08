@@ -132,12 +132,24 @@ function Public.radiative_heaters_temperature_tick()
 	end
 end
 
+function Public.heating_radius_from_temperature_above_zero(temperature_above_zero)
+	local max_heating_radius = MAX_HEATING_RADIUS
+	local temperature_interval = TEMPERATURE_INTERVAL
+
+	if common.HARDCORE_ON then
+		max_heating_radius = 10.5
+		temperature_interval = temperature_interval * 16 / 10.5
+	end
+
+	return math.min(max_heating_radius, math.floor(temperature_above_zero / temperature_interval))
+end
+
 function Public.apply_temperature_drop(valid_tower)
 	local e = valid_tower.entity
 
 	local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
 
-	local heating_radius = math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero)
 
 	if common.DEBUG_HEATERS_FUELED then
 		heating_radius = MAX_HEATING_RADIUS

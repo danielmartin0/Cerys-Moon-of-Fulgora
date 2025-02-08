@@ -5,6 +5,8 @@ Public.DEBUG_CERYS_START = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 
+Public.HARDCORE_ON = settings.startup["cerys-hardcore-mode"].value
+
 Public.MOON_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION = { x = 20, y = 29 }

@@ -67,4 +67,15 @@ data:extend({
 	},
 })
 
+data:extend({
+	{
+		type = "bool-setting",
+		setting_type = "startup",
+		name = "cerys-hardcore-mode",
+		forced_value = false,
+		default_value = false,
+		hidden = true,
+	},
+})
+
 data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

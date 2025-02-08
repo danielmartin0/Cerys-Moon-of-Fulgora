@@ -10,8 +10,8 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 
 local ROD_DEFLECTION_STRENGTH = 4
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = 1 / 30
-local COOLDOWN_DISTANCE = 1.5
+local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 30
+local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
 local CHANCE_MUTATE_BELT_URANIUM = 1 / 1000
@@ -228,7 +228,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not Public.particle_is_in_cooldown(particle) then
 			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 0.75 })
+				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then
 				local e = chars[1]
 				if e and e.valid then
@@ -260,7 +260,11 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								})
 							end
 
-							e.damage(15, game.forces.neutral, "laser")
+							particle.irradiation_tick = game.tick
+
+							local damage = common.HARDCORE_ON and 180 or 15
+
+							e.damage(damage, game.forces.neutral, "laser")
 						end
 					end
 				end
