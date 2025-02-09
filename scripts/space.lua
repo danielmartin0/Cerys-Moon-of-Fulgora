@@ -242,7 +242,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
 							local irradiated =
-								Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
+								Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -289,7 +289,8 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
-						local irradiated = Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
+						local irradiated =
+							Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
 						if irradiated then
 							surface.create_entity({
 								name = "plutonium-explosion",
@@ -341,6 +342,15 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 										count = item.stack.count,
 										quality = item.stack.quality,
 									})
+
+									if e.force and e.force.valid then
+										e.force
+											.get_item_production_statistics(surface)
+											.on_flow("plutonium-239", item.stack.count)
+										e.force
+											.get_item_production_statistics(surface)
+											.on_flow("uranium-238", -item.stack.count)
+									end
 
 									surface.create_entity({
 										name = "plutonium-explosion",
@@ -413,7 +423,7 @@ function Public.irradiation_chance_effect(surface, position)
 	end
 end
 
-function Public.irradiate_inventory(surface, inv, position, probability_multiplier)
+function Public.irradiate_inventory(surface, inv, force, position, probability_multiplier)
 	local uranium_count = 0
 	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
@@ -450,6 +460,11 @@ function Public.irradiate_inventory(surface, inv, position, probability_multipli
 				inv.insert({ name = "plutonium-239", count = number_mutated, quality = name })
 				if removed > number_mutated then
 					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
+				end
+
+				if force and force.valid then
+					force.get_item_production_statistics(surface).on_flow("plutonium-239", number_mutated)
+					force.get_item_production_statistics(surface).on_flow("uranium-238", -number_mutated)
 				end
 
 				mutated = true
