@@ -130,7 +130,7 @@ function Public.tick_15_check_broken_crushers(surface)
 
 					storage.cerys.broken_crushers[unit_number] = nil
 				elseif products_finished > 0 or e.is_crafting() then
-					if not crusher.rendering1 then
+					if not (crusher.rendering1 and crusher.rendering1.valid) then
 						crusher.rendering1 = rendering.draw_text({
 							text = "",
 							surface = surface,
@@ -145,7 +145,7 @@ function Public.tick_15_check_broken_crushers(surface)
 							use_rich_text = true,
 						})
 					end
-					if not crusher.rendering2 then
+					if not (crusher.rendering2 and crusher.rendering2.valid) then
 						crusher.rendering2 = rendering.draw_text({
 							text = "",
 							surface = surface,

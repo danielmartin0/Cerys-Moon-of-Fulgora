@@ -85,7 +85,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 					storage.cerys.second_unfrozen_cryo_plant = e.unit_number
 				end
 
-				if not plant.rendering then
+				if not (plant.rendering and plant.rendering.valid) then
 					plant.rendering = rendering.draw_text({
 						text = "",
 						surface = surface,
