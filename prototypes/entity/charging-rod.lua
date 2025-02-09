@@ -7,6 +7,8 @@ data:extend({
 	{
 		type = "accumulator",
 		name = "cerys-charging-rod",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon_size = 128,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
 		max_health = 200,
@@ -101,8 +103,13 @@ data:extend({
 				},
 			},
 		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
-		icon_size = 128,
+		circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
+			variation = 18,
+			main_offset = util.by_pixel(0, -20),
+			shadow_offset = util.by_pixel(4.5, -7),
+			show_shadow = false,
+		}),
+		circuit_wire_max_distance = default_circuit_wire_max_distance,
 	},
 
 	{

@@ -39,6 +39,8 @@ function Public.register_charging_rod(entity)
 	storage.cerys.charging_rods[entity.unit_number] = {
 		entity = entity,
 		rod_position = { x = entity.position.x, y = entity.position.y + CHARGING_ROD_DISPLACEMENT },
+		circuit_controlled = false,
+		control_signal = { type = "virtual", name = "signal-P" },
 	}
 end
 
@@ -52,6 +54,10 @@ Public.rod_set_state = function(entity, negative)
 	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		local tags = entity.tags or {}
 		tags.is_negative = negative
+		tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
+			and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
+		tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
+			and storage.cerys.charging_rods[entity.unit_number].control_signal
 		entity.tags = tags
 	end
 end
@@ -76,6 +82,38 @@ function Public.tick_12_check_charging_rods()
 		end
 
 		local negative = storage.cerys.charging_rod_is_negative[unit_number]
+
+		for _, player in pairs(game.connected_players) do
+			if player.opened == e then
+				local gui = player.gui.relative[GUI_KEY]
+				if gui then
+					local switch = gui.content["charging-rod-switch"]
+					if not switch.enabled then -- Only sync disabled switches (circuit controlled)
+						local current_state = switch.switch_state == "left"
+						if current_state ~= negative then
+							switch.switch_state = negative and "left" or "right"
+						end
+					end
+				end
+			end
+		end
+
+		if rod.circuit_controlled and rod.control_signal then
+			local red_network = e.get_circuit_network(defines.wire_connector_id.circuit_red)
+			local green_network = e.get_circuit_network(defines.wire_connector_id.circuit_green)
+
+			if red_network or green_network then
+				local signal_value = (red_network and red_network.get_signal(rod.control_signal) or 0)
+					+ (green_network and green_network.get_signal(rod.control_signal) or 0)
+
+				if signal_value > 0 and negative then
+					Public.rod_set_state(e, false)
+				elseif signal_value <= 0 and not negative then
+					Public.rod_set_state(e, true)
+				end
+			end
+		end
+
 		local polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 		rod.polarity_fraction = polarity_fraction
 
@@ -195,10 +233,11 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		local content_frame = main_frame.add({
 			type = "frame",
 			name = "content",
-			style = "inside_shallow_frame_with_padding",
+			style = "inside_shallow_frame_with_padding_and_vertical_spacing",
 			direction = "vertical",
 		})
 
+		local rod = storage.cerys.charging_rods[entity.unit_number]
 		content_frame.add({
 			type = "switch",
 			left_label_caption = { "cerys.charging-rod-negative-polarity-label" },
@@ -206,7 +245,48 @@ script.on_event(defines.events.on_gui_opened, function(event)
 			name = "charging-rod-switch",
 			allow_none_state = false,
 			switch_state = "right",
+			enabled = entity.name == "cerys-charging-rod" and not rod.circuit_controlled, -- ghosts not supported
 		})
+
+		if entity.name == "cerys-charging-rod" then -- We don't support circuit control for ghosts yet
+			content_frame.add({
+				type = "line",
+				direction = "horizontal",
+			})
+
+			content_frame.add({
+				type = "checkbox",
+				name = "circuit-control-checkbox",
+				caption = "Set polarity from circuit",
+				state = rod.circuit_controlled,
+				tooltip = "The polarity of the charging rod will be negative if the selected circuit network signal is zero.",
+			})
+
+			local flow = content_frame.add({
+				type = "flow",
+				direction = "horizontal",
+				name = "signal_flow",
+				style = "player_input_horizontal_flow",
+			})
+			flow.style.horizontally_stretchable = true
+
+			local signal_label = flow.add({
+				type = "label",
+				caption = "Control signal:",
+				style = "label",
+			})
+			signal_label.style.minimal_width = 110 -- Why is this needed?
+			signal_label.style.horizontally_stretchable = true
+			signal_label.style.font_color = rod.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+
+			flow.add({
+				type = "choose-elem-button",
+				name = "control-signal-button",
+				elem_type = "signal",
+				signal = rod.control_signal,
+				enabled = rod.circuit_controlled,
+			})
+		end
 	end
 
 	local switch = relative[gui_key]["content"]["charging-rod-switch"]
@@ -346,5 +426,58 @@ function Public.on_pre_build(event)
 		event.tags.is_negative = tags.is_negative
 	end
 end
+
+script.on_event(defines.events.on_gui_checked_state_changed, function(event)
+	if event.element.name ~= "circuit-control-checkbox" then
+		return
+	end
+
+	local player = game.players[event.player_index]
+	if not (player and player.valid) then
+		return
+	end
+
+	local entity = player.opened
+	if not (entity and entity.valid) then
+		return
+	end
+
+	local rod = storage.cerys.charging_rods[entity.unit_number]
+	if not rod then
+		return
+	end
+
+	rod.circuit_controlled = event.element.state
+
+	local content_frame = event.element.parent
+	content_frame["charging-rod-switch"].enabled = not event.element.state
+	content_frame["signal_flow"]["control-signal-button"].enabled = event.element.state
+
+	local label = content_frame["signal_flow"].children[1]
+	label.style.font_color = event.element.state and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+end)
+
+script.on_event(defines.events.on_gui_elem_changed, function(event)
+	if event.element.name ~= "control-signal-button" then
+		return
+	end
+
+	local player = game.players[event.player_index]
+	if not (player and player.valid) then
+		return
+	end
+
+	local entity = player.opened
+	if not (entity and entity.valid) then
+		return
+	end
+
+	local rod = storage.cerys.charging_rods[entity.unit_number]
+	if not rod then
+		return
+	end
+
+	rod.control_signal = event.element.elem_value
+end)
 
 return Public

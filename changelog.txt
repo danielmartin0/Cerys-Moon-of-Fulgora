@@ -2,6 +2,7 @@
 Version: 1.3.9
 Date: ????
   Changes:
+    - Charging rod polarity can now be controlled by circuits.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.8
 Date: 2025-02-08

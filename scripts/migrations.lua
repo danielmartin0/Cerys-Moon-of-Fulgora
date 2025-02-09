@@ -155,6 +155,17 @@ function Public.run_migrations()
 		end
 	end
 
+	if lib.is_newer_version(last_seen_version, "1.3.9") then
+		for _, rod in pairs(storage.cerys.charging_rods) do
+			if not rod.circuit_controlled then
+				rod.circuit_controlled = false
+			end
+			if not rod.control_signal then
+				rod.control_signal = { type = "virtual", name = "signal-P" }
+			end
+		end
+	end
+
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 
