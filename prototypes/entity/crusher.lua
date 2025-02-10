@@ -60,7 +60,7 @@ local crusher = {
 		audible_distance_modifier = 1,
 		fade_in_ticks = 4,
 		fade_out_ticks = 40,
-		max_sounds_per_type = 3,
+		max_sounds_per_prototype = 3,
 	},
 	-- water_reflection = {...},
 	graphics_set = {

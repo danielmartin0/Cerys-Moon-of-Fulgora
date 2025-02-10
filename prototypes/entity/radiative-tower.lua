@@ -21,12 +21,12 @@ local reactor = {
 	energy_source = {
 		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
-		emissions_per_minute = { pollution = 10 },
+		emissions_per_minute = { pollution = 5 },
 		effectivity = 0.54 * (common.HARDCORE_ON and 0.75 or 1),
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
-			color = { 0, 0, 0 },
+			color = { 1, 1, 1 },
 			minimum_intensity = 0.7,
 			maximum_intensity = 0.95,
 		},
@@ -66,7 +66,7 @@ local reactor = {
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	working_sound = {
 		sound = { filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
-		max_sounds_per_type = 2,
+		max_sounds_per_prototype = 3,
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
 		audible_distance_modifier = 0.9,
@@ -360,15 +360,17 @@ for i = 1, 17 do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
-			light_when_colored = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
+			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.8, b = 0.8 } },
+			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.8, b = 0.8 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {
 				type = "void",
 			},
-			glow_size = 100,
-			glow_color_intensity = 5,
+			-- I believe these do nothing when picture_on is blank:
+			-- glow_size = 6,
+			-- glow_color_intensity = 1,
+			-- glow_render_mode = "additive",
 		}),
 	})
 end

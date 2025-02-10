@@ -2,7 +2,7 @@ local Public = {}
 
 local common = require("common")
 
-local TEMPERATURE_ZERO = 15
+Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
 local MAX_HEATING_RADIUS = 16
 local TEMPERATURE_LOSS_RATE = 1 / 175
@@ -147,7 +147,7 @@ end
 function Public.apply_temperature_drop(valid_tower)
 	local e = valid_tower.entity
 
-	local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
+	local temperature_above_zero = e.temperature - Public.TEMPERATURE_ZERO
 
 	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero)
 
@@ -165,11 +165,8 @@ function Public.apply_temperature_drop(valid_tower)
 		if not valid_tower.reactors then
 			valid_tower.reactors = {}
 		end
-		if not valid_tower.lamps then
-			valid_tower.lamps = {}
-		end
 
-		if heating_radius > valid_tower.last_radius then -- If radius increased, add new reactors and lamps
+		if heating_radius > valid_tower.last_radius then
 			for r = valid_tower.last_radius + 1, heating_radius do
 				local new_reactor = e.surface.create_entity({
 					name = "hidden-reactor-" .. r,
@@ -181,28 +178,29 @@ function Public.apply_temperature_drop(valid_tower)
 
 				new_reactor.temperature = 40
 				valid_tower.reactors[r] = new_reactor
-
-				local new_lamp = e.surface.create_entity({
-					name = "radiative-tower-lamp-" .. r,
-					position = e.position,
-					force = e.force,
-				})
-				valid_tower.lamps[r] = new_lamp
-
-				new_lamp.destructible = false
-				new_lamp.minable_flag = false
 			end
-		elseif heating_radius < valid_tower.last_radius then -- If radius decreased, remove excess reactors and lamps
+		elseif heating_radius < valid_tower.last_radius then
 			for r = valid_tower.last_radius, heating_radius + 1, -1 do
 				if valid_tower.reactors[r] and valid_tower.reactors[r].valid then
 					valid_tower.reactors[r].destroy()
 					valid_tower.reactors[r] = nil
 				end
-				if valid_tower.lamps[r] and valid_tower.lamps[r].valid then
-					valid_tower.lamps[r].destroy()
-					valid_tower.lamps[r] = nil
-				end
 			end
+		end
+
+		if valid_tower.current_lamp and valid_tower.current_lamp.valid then
+			valid_tower.current_lamp.destroy()
+		end
+
+		if heating_radius > 0 then
+			local new_lamp = e.surface.create_entity({
+				name = "radiative-tower-lamp-" .. heating_radius,
+				position = e.position,
+				force = e.force,
+			})
+			new_lamp.destructible = false
+			new_lamp.minable_flag = false
+			valid_tower.current_lamp = new_lamp
 		end
 	end
 

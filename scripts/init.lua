@@ -21,7 +21,7 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	end
 
 	surface.min_brightness = 0.2
-	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
+	surface.brightness_visual_weights = { 0.2, 0.23, 0.21 }
 
 	Public.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)

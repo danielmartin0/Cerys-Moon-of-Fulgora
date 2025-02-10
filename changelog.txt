@@ -2,6 +2,7 @@
 Version: 1.3.12
 Date: ????
   Changes:
+    - Changes to lighting on Cerys: Nights are somewhat darker. Radiative towers glow with a softer light which is tinted slightly red in Factorio 2.0.23 and onwards. Solar wind is slightly transparent.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.11
 Date: 2025-02-09
@@ -26,7 +27,7 @@ Date: 2025-02-08
 Version: 1.3.7
 Date: 2025-02-08
   Changes:
-    - Significantly reduced energy draw of the Fulgoran cryogenic plant, making it easier to solve bottlenecks by expanding into more.
+    - Significantly reduced energy draw of the Fulgoran cryogenic plant, making it easier to solve bottlenecks by expanding the number of plants.
     - Increased the crafting time of ancient structure repair parts.
     - Slightly increased sulfuric acid required for nitrogen-rich mineral processing.
     - Fixed a crash when overwriting existing charging rods with a blueprint.

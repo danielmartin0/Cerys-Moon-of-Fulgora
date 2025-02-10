@@ -2,6 +2,7 @@ local init = require("scripts.init")
 local lib = require("lib")
 local common = require("common")
 local crusher = require("scripts.crusher")
+local radiative_towers = require("scripts.radiative-tower")
 
 local Public = {}
 
@@ -164,6 +165,41 @@ function Public.run_migrations()
 				rod.control_signal = { type = "virtual", name = "signal-P" }
 			end
 		end
+	end
+
+	if lib.is_newer_version(last_seen_version, "1.3.12") then
+		if storage.radiative_towers and storage.radiative_towers.towers then
+			for _, tower in pairs(storage.radiative_towers.towers) do
+				local e = tower.entity
+
+				if e and e.valid then
+					local temperature_above_zero = e.temperature - radiative_towers.TEMPERATURE_ZERO
+
+					local heating_radius =
+						radiative_towers.heating_radius_from_temperature_above_zero(temperature_above_zero)
+
+					for _, lamp in pairs(tower.lamps or {}) do
+						if lamp and lamp.valid then
+							lamp.destroy()
+						end
+					end
+					tower.lamps = nil
+
+					if heating_radius > 0 then
+						local new_lamp = e.surface.create_entity({
+							name = "radiative-tower-lamp-" .. heating_radius,
+							position = e.position,
+							force = e.force,
+						})
+						new_lamp.destructible = false
+						new_lamp.minable_flag = false
+						tower.current_lamp = new_lamp
+					end
+				end
+			end
+		end
+
+		surface.brightness_visual_weights = { 0.2, 0.23, 0.21 }
 	end
 
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
