@@ -238,6 +238,7 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		})
 
 		local rod = storage.cerys.charging_rods[entity.unit_number]
+
 		content_frame.add({
 			type = "switch",
 			left_label_caption = { "cerys.charging-rod-negative-polarity-label" },
@@ -299,6 +300,19 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	end
 
 	switch.switch_state = is_negative and "left" or "right"
+
+	if entity.name == "cerys-charging-rod" then
+		local rod = storage.cerys.charging_rods[entity.unit_number]
+		local content = relative[gui_key]["content"]
+		local checkbox = content["circuit-control-checkbox"]
+		local signal_flow = content["signal_flow"]
+
+		checkbox.state = rod.circuit_controlled
+		content["charging-rod-switch"].enabled = not rod.circuit_controlled
+		signal_flow["control-signal-button"].enabled = rod.circuit_controlled
+		signal_flow["control-signal-button"].elem_value = rod.control_signal
+		signal_flow.children[1].style.font_color = rod.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+	end
 end)
 
 script.on_event(defines.events.on_gui_switch_state_changed, function(event)

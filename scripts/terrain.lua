@@ -227,12 +227,13 @@ function Public.create_towers(surface, area)
 				surface.can_place_entity({
 					name = "cerys-fulgoran-radiative-tower-contracted-container",
 					position = p2,
+					force = "player",
 				})
 			then
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-radiative-tower-contracted-container",
 					position = p2,
-					force = "neutral",
+					force = "player",
 				})
 				script.raise_script_built({ entity = e })
 

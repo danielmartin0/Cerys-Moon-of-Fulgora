@@ -202,6 +202,29 @@ function Public.run_migrations()
 		surface.brightness_visual_weights = { 0.2, 0.23, 0.21 }
 	end
 
+	if lib.is_newer_version(last_seen_version, "1.4.0") then
+		local tower_prototypes = {
+			"cerys-fulgoran-radiative-tower",
+			"cerys-fulgoran-radiative-tower-frozen",
+			"cerys-fulgoran-radiative-tower-rising-reactor-base",
+			"cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
+			"cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
+			"cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
+			"cerys-fulgoran-radiative-tower-base",
+			"cerys-fulgoran-radiative-tower-base-frozen",
+			"cerys-fulgoran-radiative-tower-contracted-container",
+		}
+
+		for _, prototype_name in pairs(tower_prototypes) do
+			local entities = surface.find_entities_filtered({ name = prototype_name })
+			for _, entity in pairs(entities) do
+				if entity.valid and entity.force.name == "neutral" then
+					entity.force = "player"
+				end
+			end
+		end
+	end
+
 	storage.cerys.last_seen_version = script.active_mods["Cerys-Moon-of-Fulgora"]
 end
 

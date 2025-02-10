@@ -26,9 +26,9 @@ local reactor = {
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
-			color = { 1, 1, 1 },
-			minimum_intensity = 0.7,
-			maximum_intensity = 0.95,
+			color = { 1, 0.6, 0.6 },
+			minimum_intensity = 0.25,
+			maximum_intensity = 0.25,
 		},
 	},
 	heat_buffer = {
