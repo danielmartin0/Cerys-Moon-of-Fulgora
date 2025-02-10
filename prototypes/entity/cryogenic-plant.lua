@@ -133,6 +133,11 @@ cryo_plant.graphics_set = {
 			apply_recipe_tint = "secondary",
 			fadeout = true,
 		},
+		-- TODO?:
+		-- frozen_patch = util.sprite_load(
+		-- 	"__space-age__/graphics/entity/cryogenic-plant/cryogenic-plant-frozen",
+		-- 	{ scale = 0.5 }
+		-- ),
 	},
 }
 
