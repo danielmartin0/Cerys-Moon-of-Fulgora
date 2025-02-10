@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.0
-Date: ????
+Date: 2025-02-10
   Changes:
     - Radiative towers on Cerys now belong to the player force rather than the neutral force, making their solid fuel consumption appear in production statistics.
     - The charging rod circuit control GUI now initializes correctly.
