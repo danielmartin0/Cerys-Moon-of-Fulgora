@@ -229,7 +229,7 @@ data:extend({
 	}),
 	cerys_tech({
 		unit = {
-			count = 4000,
+			count = 3000,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

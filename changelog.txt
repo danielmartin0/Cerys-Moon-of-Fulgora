@@ -2,6 +2,7 @@
 Version: 1.4.2
 Date: ????
   Changes:
+    - Decreased the research cost of the plutonium weaponry technology from 4000 packs to 3000 packs.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.1
 Date: 2025-02-11
