@@ -364,6 +364,10 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 		return
 	end
 
+	if not storage.cerys then
+		return
+	end
+
 	local negative
 	local source_rod = storage.cerys.charging_rods[source.unit_number]
 	if source.name == "cerys-charging-rod" then
@@ -394,6 +398,10 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 		return
 	end
 
+	if not storage.cerys then
+		return
+	end
+
 	local source_rod = storage.cerys.charging_rods[source.unit_number]
 	if source_rod and destination.name == "cerys-charging-rod" then
 		local dest_rod = storage.cerys.charging_rods[destination.unit_number]
@@ -418,7 +426,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	if blueprint and blueprint.valid_for_read then
 		local mapping = event.mapping.get()
 		for blueprint_entity_number, entity in pairs(mapping) do
-			if entity.name == "cerys-charging-rod" then
+			if entity.name == "cerys-charging-rod" and storage.cerys then
 				local tags = blueprint.get_blueprint_entity_tags(blueprint_entity_number) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
 				blueprint.set_blueprint_entity_tags(blueprint_entity_number, tags)
@@ -429,7 +437,12 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 
 		if cursor_stack and cursor_stack.valid_for_read and cursor_stack.is_blueprint then
 			local source_entity = event.mapping.get()[1]
-			if source_entity and source_entity.valid and source_entity.name == "cerys-charging-rod" then
+			if
+				source_entity
+				and source_entity.valid
+				and source_entity.name == "cerys-charging-rod"
+				and storage.cerys
+			then
 				local tags = cursor_stack.get_blueprint_entity_tags(1) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[source_entity.unit_number]
 				cursor_stack.set_blueprint_entity_tags(1, tags)
@@ -500,6 +513,10 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 
 	local entity = player.opened
 	if not (entity and entity.valid) then
+		return
+	end
+
+	if not storage.cerys then
 		return
 	end
 
