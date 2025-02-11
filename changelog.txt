@@ -2,6 +2,7 @@
 Version: 1.4.6
 Date: ????
   Changes:
+    - Methane quantity produced from methane ice dissociation increased.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.5
 Date: 2025-02-11
