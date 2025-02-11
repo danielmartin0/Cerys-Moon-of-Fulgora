@@ -2,6 +2,7 @@
 Version: 1.4.1
 Date: ????
   Changes:
+    - Added settings copy-paste functionality for charging rod circuit controls.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 2025-02-10

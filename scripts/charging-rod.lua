@@ -365,8 +365,16 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	end
 
 	local negative
+	local source_rod = storage.cerys.charging_rods[source.unit_number]
 	if source.name == "cerys-charging-rod" then
 		negative = storage.cerys.charging_rod_is_negative[source.unit_number]
+		if source_rod and destination.name == "cerys-charging-rod" then
+			local dest_rod = storage.cerys.charging_rods[destination.unit_number]
+			if dest_rod then
+				dest_rod.circuit_controlled = source_rod.circuit_controlled
+				dest_rod.control_signal = source_rod.control_signal
+			end
+		end
 	elseif source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod" then
 		negative = source.tags.is_negative
 	end
@@ -384,6 +392,15 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 
 	if source.name ~= "cerys-charging-rod" then
 		return
+	end
+
+	local source_rod = storage.cerys.charging_rods[source.unit_number]
+	if source_rod and destination.name == "cerys-charging-rod" then
+		local dest_rod = storage.cerys.charging_rods[destination.unit_number]
+		if dest_rod then
+			dest_rod.circuit_controlled = source_rod.circuit_controlled
+			dest_rod.control_signal = source_rod.control_signal
+		end
 	end
 
 	Public.rod_set_state(destination, storage.cerys.charging_rod_is_negative[source.unit_number])
