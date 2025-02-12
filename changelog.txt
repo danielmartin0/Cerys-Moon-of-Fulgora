@@ -2,6 +2,7 @@
 Version: 1.4.10
 Date: ????
   Changes:
+    - Internal neutron projectile entities are now hidden in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.9
 Date: 2025-02-12

@@ -20,6 +20,7 @@ local neutron_damage_effect = {
 
 local base_neutron = {
 	type = "projectile",
+	hidden = true,
 	acceleration = 0,
 	direction_only = true,
 	map_color = { 0.8, 0.8, 0.8 },
