@@ -141,7 +141,7 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 		temperature_interval = temperature_interval * 16 / 10.5
 	end
 
-	return math.min(max_heating_radius, math.floor(temperature_above_zero / temperature_interval))
+	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))
 end
 
 function Public.apply_temperature_drop(valid_tower)
