@@ -2,6 +2,7 @@
 Version: 1.4.15
 Date: ????
   Changes:
+    - Increased the mining time of nuclear scrap.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.14
 Date: 2025-02-12
