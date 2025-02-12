@@ -2,6 +2,8 @@
 Version: 1.4.12
 Date: ????
   Changes:
+    - Surface-based cooling rate reduced by 20%.
+    - Fulgoran reactor heat energy capacity reduced by 20%.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.11
 Date: 2025-02-12
