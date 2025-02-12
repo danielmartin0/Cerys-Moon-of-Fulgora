@@ -1,11 +1,12 @@
 local common = require("common")
+local find = require("lib").find
 
 local Public = {}
 
-local ASTEROID_SPAWN_DISTANCE = common.MOON_RADIUS + 60
-local WIND_SPAWN_DISTANCE = common.MOON_RADIUS + 70
+local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
+local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
 local SOLAR_WIND_MIN_VELOCITY = 0.225
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 10
+local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
 local ROD_DEFLECTION_STRENGTH = 4
 local ROD_MAX_RANGE_SQUARED = 25 * 25
@@ -29,8 +30,6 @@ local ASTEROID_TO_PERCENTAGE_RATE = {
 local MAX_CHUNKS_ON_GROUND = 15
 
 function Public.spawn_asteroid(surface)
-	local y_position = -ASTEROID_SPAWN_DISTANCE
-
 	local random_value = math.random() * 100
 	local chosen_name = nil
 	local running_total = 0
@@ -46,7 +45,25 @@ function Public.spawn_asteroid(surface)
 		return
 	end
 
-	local x = math.random(-common.MOON_RADIUS * 1.5, common.MOON_RADIUS * 1.5)
+	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local x = math.random(-semimajor_axis - 70, semimajor_axis + 70)
+
+	local y_position = -(common.CERYS_RADIUS + ASTEROID_SPAWN_DISTANCE_FROM_EDGE)
+
+	if y_position < -surface.map_gen_settings.height / 2 then
+		local trial_position = -surface.map_gen_settings.height / 2 + 0.5
+		local tile_1 = surface.get_tile(0, trial_position - 32)
+		local tile_2 = surface.get_tile(0, trial_position)
+
+		if tile_1 and tile_1.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_1.name) then
+			y_position = trial_position - 32
+		elseif tile_2 and tile_2.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_2.name) then
+			y_position = trial_position
+		else
+			surface.set_tiles({ { name = "cerys-empty-space-3", position = { 0, trial_position } } })
+			y_position = trial_position
+		end
+	end
 
 	local e = surface.create_entity({
 		name = chosen_name,
@@ -59,9 +76,12 @@ function Public.spawn_asteroid(surface)
 end
 
 function Public.spawn_solar_wind_particle(surface)
-	local y = math.random(-common.MOON_RADIUS - 8, common.MOON_RADIUS + 8)
+	local d = common.CERYS_RADIUS / common.get_cerys_surface_stretch_factor(surface)
 
-	local x = -(WIND_SPAWN_DISTANCE - math.random(0, 10))
+	local y = math.random(-d - 8, d + 8)
+
+	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
 	-- local e = surface.create_entity({
 	-- 	name = "cerys-solar-wind-particle",
@@ -160,17 +180,18 @@ function Public.tick_1_move_solar_wind()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_solar_wind_particles()
+function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
+		local semimajor_axis = common.get_cerys_semimajor_axis(surface)
 
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
 		elseif
-			math.abs(particle.position.x) > WIND_SPAWN_DISTANCE + 5
-			or math.abs(particle.position.y) > WIND_SPAWN_DISTANCE + 5
+			math.abs(particle.position.x) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
+			or math.abs(particle.position.y) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
 		then
 			kill = true
 		end
@@ -190,13 +211,15 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_asteroids()
+function Public.tick_240_clean_up_cerys_asteroids(surface)
 	local i = 1
 	while i <= #storage.cerys.asteroids do
 		local e = storage.cerys.asteroids[i]
 
 		if e and e.valid then
-			if e.position.y > ASTEROID_SPAWN_DISTANCE + 5 then
+			local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+
+			if e.position.y > (semimajor_axis + ASTEROID_SPAWN_DISTANCE_FROM_EDGE + 5) then
 				e.destroy()
 
 				table.remove(storage.cerys.asteroids, i)

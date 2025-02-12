@@ -38,7 +38,7 @@ local original_ice_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "cerys-empty-space-2", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -201,7 +201,7 @@ local original_rock_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "cerys-empty-space", "cerys-empty-space-2", "empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -599,7 +599,7 @@ cerys_concrete.collision_mask.layers.cerys_tile = true
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space", -- Legacy tile. No longer created, but exists in old saves.
+	name = "cerys-empty-space", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
 })
 if not cerys_empty.collision_mask then
@@ -610,7 +610,7 @@ table.insert(out_of_map_tile_type_names, "cerys-empty-space")
 
 local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space-2",
+	name = "cerys-empty-space-2", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
 	default_cover_tile = "nil",
 	collision_mask = {
@@ -621,8 +621,21 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 })
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
+local cerys_empty_3 = merge(data.raw.tile["empty-space"], {
+	subgroup = "cerys-tiles",
+	name = "cerys-empty-space-3",
+	default_cover_tile = "nil",
+	collision_mask = {
+		colliding_with_tiles_only = true,
+		not_colliding_with_itself = true,
+		layers = data.raw.tile["empty-space"].collision_mask.layers,
+	},
+})
+table.insert(out_of_map_tile_type_names, "cerys-empty-space-3")
+
 data:extend({
 	cerys_concrete,
 	cerys_empty,
 	cerys_empty_2,
+	cerys_empty_3,
 })

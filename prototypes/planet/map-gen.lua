@@ -5,13 +5,13 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_radius",
-		expression = tostring(common.MOON_RADIUS),
+		expression = tostring(common.CERYS_RADIUS),
 	},
 
 	{
 		type = "noise-expression",
 		name = "map_distance",
-		expression = "(x^2 + y^2)^(1/2)",
+		expression = "(xx^2 + yy^2)^(1/2)",
 	},
 
 	{
@@ -26,26 +26,56 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "cerys_x_surface",
-		expression = "x * cerys_surface_distance_over_map_distance",
+		name = "cerys_stretch_factor",
+		expression = "cerys_radius / min(map_height / 2, cerys_radius)",
 	},
 
 	{
 		type = "noise-expression",
-		name = "cerys_y_surface",
+		name = "cerys_y_surface_before_ribbonworld_adjustment",
 		expression = "y * cerys_surface_distance_over_map_distance",
 	},
 
 	{
 		type = "noise-expression",
+		name = "cerys_y_surface",
+		expression = "cerys_y_surface_before_ribbonworld_adjustment * cerys_stretch_factor",
+	},
+
+	{
+		type = "noise-expression",
+		name = "yy",
+		expression = "y * cerys_stretch_factor",
+	},
+
+	{
+		type = "noise-expression",
+		name = "cerys_x_surface_before_ribbonworld_adjustment",
+		expression = "x * cerys_surface_distance_over_map_distance",
+	},
+
+	{
+		type = "noise-expression",
+		name = "cerys_x_surface",
+		expression = "cerys_x_surface_before_ribbonworld_adjustment / cerys_stretch_factor",
+	},
+
+	{
+		type = "noise-expression",
+		name = "xx",
+		expression = "x / cerys_stretch_factor",
+	},
+
+	{
+		type = "noise-expression",
 		name = "cerys_surface",
-		expression = "cerys_radius_wobble + (cerys_radius - distance) / 50",
+		expression = "cerys_radius_wobble + (cerys_radius - map_distance) / 50",
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_surface_inner",
-		expression = "cerys_radius_wobble + (cerys_radius - 2 - distance) / 50",
+		expression = "cerys_radius_wobble + (cerys_radius - 2 - map_distance) / 50",
 	},
 
 	{
@@ -64,7 +94,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_reactor_correction",
-		expression = "clamp(lerp(0, 1, distance / 100), 0, 1)",
+		expression = "clamp(lerp(0, 1, map_distance / 100), 0, 1)",
 	},
 
 	{
@@ -124,10 +154,10 @@ data:extend({
 		type = "noise-expression",
 		name = "cerys_script_occupied_terrain",
 		expression = "max(0, \z
-		(1 / ((x - (" .. tostring(common.REACTOR_POSITION.x) .. "))^2 + \z
-			(y - (" .. tostring(common.REACTOR_POSITION.y) .. "))^2)^(1/2)) + \z
-			(1 / ((x - (" .. tostring(common.LITHIUM_POSITION.x) .. "))^2 + \z
-			(y - (" .. tostring(common.LITHIUM_POSITION.y) .. "))^2)^(1/2))\z
+		(1 / ((xx - (" .. tostring(common.REACTOR_POSITION.x) .. "))^2 + \z
+			(yy - (" .. tostring(common.REACTOR_POSITION.y) .. "))^2)^(1/2)) + \z
+			(1 / ((xx - (" .. tostring(common.LITHIUM_POSITION.x) .. "))^2 + \z
+			(yy - (" .. tostring(common.LITHIUM_POSITION.y) .. "))^2)^(1/2))\z
 		)",
 	},
 	{

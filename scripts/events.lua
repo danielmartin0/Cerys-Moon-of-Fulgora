@@ -7,7 +7,6 @@ local ice = require("scripts.ice")
 local common = require("common")
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local background = require("scripts.background")
-local migrations = require("scripts.migrations")
 local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
@@ -31,8 +30,6 @@ script.on_configuration_changed(function()
 				init.create_reactor(surface)
 			end
 		end
-
-		migrations.run_migrations()
 	end
 end)
 
@@ -123,7 +120,7 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	local new_surface = player.surface
 
 	if new_surface.name == "cerys" then
-		new_surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+		new_surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(new_surface) * 2 / 32)
 	end
 end)
 
@@ -204,7 +201,7 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) and tick == 30 then
-		surface.request_to_generate_chunks({ 0, 0 }, (common.MOON_RADIUS * 2) / 32)
+		surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(surface) * 2 / 32)
 	end
 
 	if player_looking_at_surface and tick % 2 == 0 then
@@ -237,8 +234,8 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if tick % 240 == 0 then
-		space.tick_240_clean_up_cerys_asteroids()
-		space.tick_240_clean_up_cerys_solar_wind_particles()
+		space.tick_240_clean_up_cerys_asteroids(surface)
+		space.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	end
 
 	if tick % 300 == 0 then
@@ -344,8 +341,6 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 			end
 		end
 	end
-
-	migrations.run_migrations()
 end)
 
 -- It seems to be impossible to prevent this with collision masks:
@@ -361,9 +356,9 @@ script.on_event({
 	local tiles = event.tiles
 	for _, tile in pairs(tiles) do
 		local hidden_tile = surface.get_hidden_tile(tile.position)
-		if hidden_tile == "cerys-empty-space-2" then
+		if hidden_tile == "cerys-empty-space-2" or hidden_tile == "cerys-empty-space-3" then
 			surface.set_tiles({ {
-				name = "cerys-empty-space-2",
+				name = hidden_tile,
 				position = tile.position,
 			} }, true)
 

@@ -41,11 +41,29 @@ function Public.tick_ice(surface)
 		storage.transitioning_tiles[surface.index] = {}
 	end
 
-	local transitioning_tiles = surface.find_tiles_filtered({
-		name = TRANSITION_TILE_NAMES,
-		position = { x = 0, y = 0 },
-		radius = common.MOON_RADIUS * 1.1,
-	})
+	local transitioning_tiles
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+	if stretch_factor > 1 then
+		transitioning_tiles = surface.find_tiles_filtered({
+			name = TRANSITION_TILE_NAMES,
+			area = {
+				left_top = {
+					x = -common.CERYS_RADIUS * 1.05 * stretch_factor,
+					y = -common.CERYS_RADIUS * 1.05 / stretch_factor,
+				},
+				right_bottom = {
+					x = common.CERYS_RADIUS * 1.05 * stretch_factor,
+					y = common.CERYS_RADIUS * 1.05 / stretch_factor,
+				},
+			},
+		})
+	else
+		transitioning_tiles = surface.find_tiles_filtered({
+			name = TRANSITION_TILE_NAMES,
+			position = { x = 0, y = 0 },
+			radius = common.CERYS_RADIUS * 1.05,
+		})
+	end
 
 	if #transitioning_tiles > 0 then
 		local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)

@@ -33,10 +33,15 @@ function Public.create_reactor(surface)
 	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
 		or "cerys-fulgoran-reactor-wreck-frozen"
 
+	local adjusted_reactor_position = {
+		x = math.ceil(common.REACTOR_POSITION.x * common.get_cerys_surface_stretch_factor(surface)),
+		y = math.ceil(common.REACTOR_POSITION.y / common.get_cerys_surface_stretch_factor(surface)),
+	}
+
 	local entities = surface.find_entities_filtered({
 		area = {
-			{ common.REACTOR_POSITION.x - 11, common.REACTOR_POSITION.y - 11 },
-			{ common.REACTOR_POSITION.x + 11, common.REACTOR_POSITION.y + 11 },
+			{ adjusted_reactor_position.x - 15, adjusted_reactor_position.y - 11 },
+			{ adjusted_reactor_position.x + 15, adjusted_reactor_position.y + 11 },
 		},
 	})
 
@@ -50,7 +55,7 @@ function Public.create_reactor(surface)
 
 	local e = surface.create_entity({
 		name = name,
-		position = common.REACTOR_POSITION,
+		position = adjusted_reactor_position,
 		force = "player",
 	})
 

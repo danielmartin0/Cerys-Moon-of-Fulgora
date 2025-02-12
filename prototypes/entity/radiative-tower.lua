@@ -26,9 +26,9 @@ local reactor = {
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
-			color = { 1, 0.6, 0.6 },
-			minimum_intensity = 0.25,
-			maximum_intensity = 0.25,
+			color = { 1, 0.57, 0.57 },
+			minimum_intensity = 0.15,
+			maximum_intensity = 0.15,
 		},
 	},
 	heat_buffer = {
@@ -281,7 +281,7 @@ data:extend({
 	container,
 })
 
-for i = 1, 17 do
+for i = 1, common.LAMP_COUNT do
 	data:extend({
 		{
 			type = "reactor",
@@ -360,8 +360,8 @@ for i = 1, 17 do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.8, b = 0.8 } },
-			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.8, b = 0.8 } },
+			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.78, b = 0.78 } },
+			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.78, b = 0.78 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {

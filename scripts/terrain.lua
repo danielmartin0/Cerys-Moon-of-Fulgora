@@ -12,11 +12,11 @@ end
 
 --== Entity positions ==--
 
-local tower_separation = 22
-local max_radius = common.MOON_RADIUS * 1.2
+local hex_scale = 22
+local max_radius = common.CERYS_RADIUS * 4 -- Accounting for possible ribbonworlds
 
-local hex_width = tower_separation
-local hex_height = tower_separation * math.sqrt(3)
+local hex_width = hex_scale
+local hex_height = hex_scale * math.sqrt(3)
 local col_offset = hex_width * 3 / 4 -- Horizontal distance between columns
 local row_offset = hex_height / 2 -- Vertical offset for every other column
 
@@ -64,7 +64,7 @@ local function hex_grid_positions(args)
 	return positions
 end
 
--- The following seeds aren't easy to get right. You need to put several plants in the final area, and not leave any plants with awkward heating coverage that trick the player into heating them up when they don't work. Radiative heaters should be able to reach the reactor, but only just, so the reactor doesn't heat too quickly after you turn them on.
+-- The following seeds aren't easy to get right. You need to put several plants in the final area, and not leave any plants with awkward heating coverage that trick the player into heating them up when they don't work. Radiative heaters should be able to reach the reactor, but only just, so the reactor doesn't heat too quickly after you turn them on. This all depends on the water seed. Ideally, the game should also be playable on ribbonworld.
 
 local tower_positions = hex_grid_positions({
 	seed = 2104,
@@ -113,10 +113,11 @@ function Public.on_cerys_chunk_generated(event, surface)
 	local hidden_tiles = {}
 
 	local seed = event.surface.map_gen_settings.seed
+	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
 
 	for x = area.left_top.x, area.right_bottom.x - 1 do
 		for y = area.left_top.y, area.right_bottom.y - 1 do
-			if x ^ 2 + y ^ 2 < (common.MOON_RADIUS * 1.5) ^ 2 then
+			if x ^ 2 + y ^ 2 < (semimajor_axis * 1.5) ^ 2 then
 				local existing_tile = surface.get_tile(x, y)
 				local existing_tile_name = existing_tile and existing_tile.valid and existing_tile.name
 
@@ -171,7 +172,11 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 
 	local is_rock = find(common.ROCK_TILES, existing_tile)
 
-	if common.DEBUG_DISABLE_FREEZING then
+	if find(common.SPACE_TILES_AROUND_CERYS, existing_tile) then -- Ribbonworld etc
+		if existing_tile ~= "cerys-empty-space-3" then
+			new_tile = "cerys-empty-space-3"
+		end
+	elseif common.DEBUG_DISABLE_FREEZING then
 		if existing_tile == "cerys-ice-on-water" then
 			new_tile = "cerys-water-puddles"
 		elseif existing_tile == "cerys-ash-cracks-frozen" then
@@ -289,7 +294,7 @@ function Public.create_cryo_plants(surface, area)
 end
 
 function Public.create_crushers(surface, area)
-	for _, p in ipairs(crusher_positions) do
+	for _, p in ipairs(crusher_positions) do -- Fortunately these positions also work on ribbonworlds
 		if
 			p.x >= area.left_top.x
 			and p.x < area.right_bottom.x
@@ -331,12 +336,17 @@ function Public.create_crushers(surface, area)
 end
 
 function Public.create_lithium_brine(surface, area)
+	local adjusted_lithium_position = {
+		x = common.LITHIUM_POSITION.x * common.get_cerys_surface_stretch_factor(surface),
+		y = common.LITHIUM_POSITION.y / common.get_cerys_surface_stretch_factor(surface),
+	}
+
 	if
 		not (
-			common.LITHIUM_POSITION.x >= area.left_top.x
-			and common.LITHIUM_POSITION.x < area.right_bottom.x
-			and common.LITHIUM_POSITION.y >= area.left_top.y
-			and common.LITHIUM_POSITION.y < area.right_bottom.y
+			adjusted_lithium_position.x >= area.left_top.x
+			and adjusted_lithium_position.x < area.right_bottom.x
+			and adjusted_lithium_position.y >= area.left_top.y
+			and adjusted_lithium_position.y < area.right_bottom.y
 		)
 	then
 		return
@@ -346,14 +356,13 @@ function Public.create_lithium_brine(surface, area)
 		local angle = math.random() * 2 * math.pi
 		local distance = math.random() * 21
 		local test_pos = {
-			x = common.LITHIUM_POSITION.x + math.cos(angle) * distance,
-			y = common.LITHIUM_POSITION.y + math.sin(angle) * distance,
+			x = adjusted_lithium_position.x + math.cos(angle) * distance,
+			y = adjusted_lithium_position.y + math.sin(angle) * distance,
 		}
 
 		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 11, 1)
 
 		if position then
-			log("creating lithium brine at " .. position.x .. ", " .. position.y)
 			surface.create_entity({
 				name = "lithium-brine",
 				position = position,
