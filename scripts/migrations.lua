@@ -158,10 +158,10 @@ function Public.run_migrations()
 
 	if lib.is_newer_version(last_seen_version, "1.3.9") then
 		for _, rod in pairs(storage.cerys.charging_rods) do
-			if not rod.circuit_controlled then
+			if rod.circuit_controlled == nil then
 				rod.circuit_controlled = false
 			end
-			if not rod.control_signal then
+			if rod.control_signal == nil then
 				rod.control_signal = { type = "virtual", name = "signal-P" }
 			end
 		end

@@ -2,6 +2,7 @@
 Version: 1.4.11
 Date: ????
   Changes:
+    - Fixed charging rod circuit control checkboxes becoming disabled when players join in multiplayer.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.10
 Date: 2025-02-12
