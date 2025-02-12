@@ -169,6 +169,13 @@ function Public.run_migrations()
 
 	if lib.is_newer_version(last_seen_version, "1.3.12") then
 		if storage.radiative_towers and storage.radiative_towers.towers then
+			for r = 1, 17 do
+				local existing_lamps = surface.find_entities_filtered({ name = "radiative-tower-lamp-" .. r })
+				for _, lamp in pairs(existing_lamps) do
+					lamp.destroy()
+				end
+			end
+
 			for _, tower in pairs(storage.radiative_towers.towers) do
 				local e = tower.entity
 
