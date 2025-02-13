@@ -2,6 +2,7 @@
 Version: 1.4.24
 Date: ????
   Changes:
+    - Slightly decreased the methane produced from methane ice dissociation (but it's still much higher than last week.)
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.23
 Date: 2025-02-13

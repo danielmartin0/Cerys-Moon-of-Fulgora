@@ -174,7 +174,7 @@ data:extend({
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 20 },
-			{ type = "fluid", name = "methane", amount = 100 },
+			{ type = "fluid", name = "methane", amount = 80 },
 		},
 		allow_productivity = true,
 		enabled = false,
