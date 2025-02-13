@@ -1,3 +1,7 @@
+if not storage.cerys then
+	return
+end
+
 storage.radiative_towers = storage.radiative_towers or {
 	towers = {},
 	contracted_towers = {},

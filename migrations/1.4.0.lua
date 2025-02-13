@@ -1,3 +1,7 @@
+if not storage.cerys then
+	return
+end
+
 local surface = game.surfaces["cerys"]
 if not surface or not surface.valid then
 	return
