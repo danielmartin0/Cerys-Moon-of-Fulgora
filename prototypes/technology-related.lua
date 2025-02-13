@@ -327,7 +327,7 @@ data:extend({
 		},
 		prerequisites = { "holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "3^(L-1)*400",
+			count_formula = "2.5^(L-1)*400",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
