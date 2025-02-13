@@ -17,12 +17,12 @@ local reactor = {
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
 	damaged_trigger_effect = hit_effects.entity(),
 	drawing_box_vertical_extension = 3,
-	consumption = "700kW",
+	consumption = common.HARDCORE_ON and "1100kW" or "700kW",
 	energy_source = {
 		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
 		emissions_per_minute = { pollution = 5 },
-		effectivity = 0.54 * (common.HARDCORE_ON and 0.7 or 1),
+		effectivity = 0.54,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
@@ -33,7 +33,7 @@ local reactor = {
 	},
 	heat_buffer = {
 		max_temperature = 200,
-		specific_heat = "70kJ",
+		specific_heat = common.HARDCORE_ON and "110kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 0,
 		heat_picture = apply_heat_pipe_glow(

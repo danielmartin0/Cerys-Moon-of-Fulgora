@@ -39,7 +39,7 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 	end
 
 	if reactor.stage == repair.REACTOR_STAGE_ENUM.frozen then
-		if not e.frozen and game.tick > reactor.creation_tick + 300 then
+		if (not e.frozen) and game.tick > reactor.creation_tick + 300 then
 			local e2 = surface.create_entity({
 				name = "cerys-fulgoran-reactor-wreck",
 				position = e.position,
