@@ -14,14 +14,16 @@ function Public.tick_1_update_background_renderings(surface)
 			local r = storage.background_renderings[player.index]
 
 			if on_cerys then
-				if not r then
-					local planet_stretch = common.get_cerys_surface_stretch_factor(surface) ^ 2
+				local stretch = common.get_cerys_surface_stretch_factor(surface)
+				local planet_stretch = stretch ^ 2
+				local extra_y_offset = -20 * (stretch - 1)
 
+				if not r then
 					storage.background_renderings[player.index] = rendering.draw_sprite({
 						sprite = "fulgora-background",
 						target = {
 							x = player.position.x + PLANET_OFFSET.x,
-							y = player.position.y + PLANET_OFFSET.y - (1 / planet_stretch - 1) * 40,
+							y = player.position.y + PLANET_OFFSET.y + extra_y_offset,
 						},
 						surface = player.surface,
 						render_layer = "zero",
@@ -35,7 +37,7 @@ function Public.tick_1_update_background_renderings(surface)
 				if r.valid then
 					r.target = {
 						x = player.position.x * PLANET_PARALLAX + PLANET_OFFSET.x,
-						y = player.position.y * PLANET_PARALLAX + PLANET_OFFSET.y,
+						y = player.position.y * PLANET_PARALLAX + PLANET_OFFSET.y + extra_y_offset,
 					}
 				else
 					r.destroy()
