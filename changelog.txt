@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.17
-Date: ????
+Date: 2025-02-13
   Changes:
     - Support for Cerys on ribbonworlds. Existing Cerys surfaces on ribbonworld saves will be deleted when the save is loaded.
     - The empty space around Cerys on newly generated maps no longer destroys dropped items. This change is partially for 'realism' and partially to increase the necessity of recyclers.
