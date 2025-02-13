@@ -2,6 +2,7 @@
 Version: 1.4.18
 Date: ????
   Changes:
+    - Ribbonworld Cerys maps now show an elongated Fulgora in the background.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.17
 Date: 2025-02-13

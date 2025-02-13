@@ -168,7 +168,7 @@ function Public.cerys_tick(surface, tick)
 
 	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or 12
 
-	background.tick_1_update_background_renderings()
+	background.tick_1_update_background_renderings(surface)
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 	crusher.tick_1_check_crusher_quality_upgrades(surface)
