@@ -2,6 +2,7 @@
 Version: 1.4.23
 Date: ????
   Changes:
+    - Further reduced the research cost of the plutonium weaponry technology.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.22
 Date: 2025-02-13
