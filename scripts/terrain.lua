@@ -74,6 +74,13 @@ local tower_positions = hex_grid_positions({
 	noise_scale = 500,
 })
 
+if common.HARDCORE_ON then
+	tower_positions[#tower_positions + 1] = {
+		x = 0,
+		y = 20,
+	}
+end
+
 local cryo_plant_positions = hex_grid_positions({
 	seed = 4100,
 	grid_scale = 2.2,

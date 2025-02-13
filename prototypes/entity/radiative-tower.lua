@@ -17,7 +17,7 @@ local reactor = {
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
 	damaged_trigger_effect = hit_effects.entity(),
 	drawing_box_vertical_extension = 3,
-	consumption = common.HARDCORE_ON and "1100kW" or "700kW",
+	consumption = common.HARDCORE_ON and "1000kW" or "700kW",
 	energy_source = {
 		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
@@ -33,7 +33,7 @@ local reactor = {
 	},
 	heat_buffer = {
 		max_temperature = 200,
-		specific_heat = common.HARDCORE_ON and "110kJ" or "70kJ",
+		specific_heat = common.HARDCORE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 0,
 		heat_picture = apply_heat_pipe_glow(

@@ -6,7 +6,7 @@ end
 local common = require("common")
 local radiative_towers = require("scripts.radiative-tower")
 
-surface.brightness_visual_weights = { 0.2, 0.23, 0.21 }
+surface.brightness_visual_weights = common.BRIGHTNESS_VISUAL_WEIGHTS
 
 if storage.radiative_towers and storage.radiative_towers.towers then
 	for r = 1, common.LAMP_COUNT do
@@ -46,7 +46,7 @@ end
 
 if surface.map_gen_settings.height < common.CERYS_RADIUS * 1.5 then
 	game.print(
-		"[CERYS]: Deleting ribbonworld Cerys that was created prior to Cerys v1.4.9. (Ribbonworld support was added in this version.)"
+		"[CERYS]: Deleting ribbonworld Cerys that was created prior to Cerys v1.4.17. (Ribbonworld support was added in this version.)"
 	)
 	game.delete_surface("cerys")
 end
