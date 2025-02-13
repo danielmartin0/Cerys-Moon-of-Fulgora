@@ -1,5 +1,3 @@
-local merge = require("lib").merge
-
 local CIV_AGE_MY = 600
 
 local U235_NATURAL_AMOUNT = 1 - 0.992745
@@ -15,8 +13,8 @@ local U235_RATIO = (U235_NATURAL_AMOUNT / U238_NATURAL_AMOUNT)
 log("Cerys U235/U238 ratio: " .. U235_RATIO)
 
 data:extend({
-
-	merge(data.raw.recipe["scrap-recycling"], {
+	{
+		type = "recipe",
 		name = "cerys-nuclear-scrap-recycling",
 		icons = {
 			{
@@ -30,14 +28,17 @@ data:extend({
 				icon = "__quality__/graphics/icons/recycling-top.png",
 			},
 		},
+		category = "recycling-or-hand-crafting",
 		subgroup = "cerys-processes",
 		order = "a-a",
+		enabled = false,
+		auto_recycle = false,
+		energy_required = 0.4,
 		ingredients = {
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 1 },
 		},
 		results = {},
-		enabled = false,
-	}),
+	},
 })
 
 local RECYCLING_PROBABILITIES_PERCENT = {

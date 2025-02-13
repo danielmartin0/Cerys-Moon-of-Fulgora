@@ -2,6 +2,7 @@
 Version: 1.4.16
 Date: ????
   Changes:
+    - Increased the processing time of nuclear scrap recycling.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.15
 Date: 2025-02-12
