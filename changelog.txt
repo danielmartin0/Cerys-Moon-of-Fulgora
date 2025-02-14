@@ -2,6 +2,7 @@
 Version: 1.4.26
 Date: ????
   Changes:
+    - Methane production from methane ice dissociation dropped by 25%.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.25
 Date: 2025-02-14
