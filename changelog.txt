@@ -2,6 +2,7 @@
 Version: 1.4.27
 Date: ????
   Changes:
+    - Steam turbines produced by nuclear scrap recycling reduced by 20%.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.26
 Date: 2025-02-14
