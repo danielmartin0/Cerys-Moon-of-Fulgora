@@ -2,11 +2,7 @@
 Version: 1.4.30
 Date: ????
   Changes:
----------------------------------------------------------------------------------------------------
-Version: 1.4.29
-Date: 2025-02-15
-  Changes:
-    - Significant (~50%) buff to light oil production.
+    - Significant (~33%) buff to light oil produced per methane ice.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.28
 Date: 2025-02-15
