@@ -134,7 +134,7 @@ data:extend({
 			{
 				type = "item",
 				name = "ancient-structure-repair-part",
-				amount = 5,
+				amount = 2,
 			},
 		},
 		results = {},
