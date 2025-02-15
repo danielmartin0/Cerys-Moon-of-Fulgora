@@ -168,7 +168,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 6,
+		energy_required = 4,
 		ingredients = {
 			{ type = "item", name = "methane-ice", amount = 30 },
 		},
