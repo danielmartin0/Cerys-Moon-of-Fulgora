@@ -168,12 +168,12 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 4,
+		energy_required = 3,
 		ingredients = {
 			{ type = "item", name = "methane-ice", amount = 30 },
 		},
 		results = {
-			{ type = "fluid", name = "light-oil", amount = 40 },
+			{ type = "fluid", name = "light-oil", amount = 30 },
 			{ type = "fluid", name = "methane", amount = 100 },
 		},
 		allow_productivity = true,

@@ -1,22 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.35
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 1.4.34
 Date: 2025-02-15
   Changes:
-    - Adjusted the crafting time of methane ice dissociation.
+    - Adjustments to the methane ice dissociation recipe. Fewer plants are now needed to scale up production of light oil.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.32
 Date: 2025-02-15
   Changes:
     - Reduced the number of repair parts needed to repair the Fulgoran crusher.
----------------------------------------------------------------------------------------------------
-Version: 1.4.31
-Date: 2025-02-15
-  Changes:
-    - Significant (~33%) buff to light oil produced per methane ice.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.28
 Date: 2025-02-15
