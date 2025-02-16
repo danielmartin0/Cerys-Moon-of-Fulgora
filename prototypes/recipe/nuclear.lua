@@ -85,10 +85,10 @@ data:extend({
 		energy_required = 45,
 		results = {
 			{ type = "fluid", name = "steam", amount = 50, temperature = 80 },
-			{ type = "item", name = "uranium-238", amount = 3 },
+			{ type = "item", name = "uranium-238", amount = 4, probability = 50 / 100 },
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
-			{ type = "item", name = "plutonium-238", amount = 1, probability = 50 / 100 },
-			{ type = "item", name = "plutonium-239", amount = 4 },
+			{ type = "item", name = "plutonium-238", amount = 1 },
+			{ type = "item", name = "plutonium-239", amount = 6 },
 		},
 		subgroup = "plutonium-processing",
 		order = "c-c",
