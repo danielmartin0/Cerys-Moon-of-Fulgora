@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.38
-Date: ????
-  Changes:
+Date: 2025-02-16
+  Info:
+    - Removed extra character that prevented changelog from being displayed in-game.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.37
 Date: 2025-02-15
@@ -38,7 +39,7 @@ Date: 2025-02-14
   Balancing:
     - The recipe to upgrade Fulgoran crusher quality now mentions that quality upgrades give the crusher additional module slots.
   Info:
-      - Reordered the cerys-repair row in Factoriopedia.
+    - Reordered the cerys-repair row in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.22
 Date: 2025-02-13
