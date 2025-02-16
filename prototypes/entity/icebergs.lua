@@ -5,13 +5,13 @@ data:extend({
 		name = "cerys-methane-iceberg-huge",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-a[huge]",
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-huge"].minable, {
-			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.15,
+			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.1,
 			results = {
 				{ type = "item", name = "methane-ice", amount_min = 8, amount_max = 15 },
 			},
 		}),
 		autoplace = {
-			probability_expression = "cerys_methane_iceberg_large",
+			probability_expression = "cerys_methane_iceberg_huge",
 		},
 		pictures = {
 			{
@@ -58,13 +58,13 @@ data:extend({
 		name = "cerys-methane-iceberg-big",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-b[big]",
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-big"].minable, {
-			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.15,
+			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.1,
 			results = {
 				{ type = "item", name = "methane-ice", amount_min = 5, amount_max = 6 },
 			},
 		}),
 		autoplace = {
-			probability_expression = "cerys_methane_iceberg_large",
+			probability_expression = "cerys_methane_iceberg_big",
 		},
 		pictures = {
 			{

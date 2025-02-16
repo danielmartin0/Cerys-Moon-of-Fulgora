@@ -81,8 +81,8 @@ local size_to_probability_expression = {
 	small = "0.01 * (cerys_ruin_density)",
 	medium = "0.008 * (cerys_ruin_density - 0.1)",
 	big = "0.0055 * (cerys_ruin_density - 0.3)",
-	huge = "0.0022 * (cerys_ruin_density - 0.4)",
-	colossal = "0.0011 * (cerys_ruin_density - 0.5)",
+	huge = "0.0025 * (cerys_ruin_density - 0.4)",
+	colossal = "0.0013 * (cerys_ruin_density - 0.5)",
 }
 
 for _, size in ipairs(sizes) do

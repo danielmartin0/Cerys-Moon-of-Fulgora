@@ -2,6 +2,8 @@
 Version: 1.4.40
 Date: ????
   Changes:
+    - Reworked the spawning of decoratives on Cerys.
+    - Methane icebergs are now faster to mine.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.39
 Date: 2025-02-16

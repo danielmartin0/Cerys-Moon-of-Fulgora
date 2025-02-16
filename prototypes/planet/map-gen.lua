@@ -179,20 +179,6 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "cerys_ruin_density",
-		expression = "multioctave_noise{\z
-			x = cerys_x_surface, \z
-			y = cerys_y_surface, \z
-			seed0 = map_seed, \z
-			seed1 = 200, \z
-			octaves = 3, \z
-			persistence = 0.4, \z
-			input_scale = 3, \z
-			output_scale = 2} - 0.5",
-	},
-
-	{
-		type = "noise-expression",
 		name = "cerys_nuclear_scrap_forced_spot_radius",
 		expression = "20 * (slider_rescale(control:cerys_nuclear_scrap:size, 2)^(1/2))",
 	},
@@ -304,36 +290,80 @@ data:extend({
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_methane_iceberg_large",
-		expression = "0.02 + multioctave_noise{\z
-			x = cerys_x_surface, \z
-			y = cerys_y_surface, \z
-			seed0 = map_seed, \z
-			seed1 = 3100, \z
-			octaves = 4, \z
-			persistence = 0.6, \z
-			input_scale = 1 / 8, \z
-			output_scale = 0.001}\z
-			- 10 * cerys_all_resources\z
-			- 10 * cerys_water",
-	},
-	{
-		type = "noise-expression",
-		name = "cerys_methane_iceberg_small",
-		expression = "0.075 + multioctave_noise{\z
-			x = cerys_x_surface, \z
-			y = cerys_y_surface, \z
-			seed0 = map_seed, \z
-			seed1 = 3100, \z
-			octaves = 4, \z
-			persistence = 0.6, \z
-			input_scale = 1 / 8, \z
-			output_scale = 0.01}\z
+		name = "cerys_methane_iceberg_huge",
+		expression = "-0.6 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 1000, input_scale = 1/14}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_ash_flats",
+		name = "cerys_methane_iceberg_big",
+		expression = "-0.7 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 2000, input_scale = 1/12}\z
+			- 10 * cerys_all_resources",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_methane_iceberg_medium",
+		expression = "-0.4 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 3000, input_scale = 1/10}\z
+			- 10 * cerys_all_resources",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_methane_iceberg_small",
+		expression = "-0.2 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 4000, input_scale = 1/8}\z
+			- 10 * cerys_all_resources",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_methane_iceberg_tiny",
+		expression = "-0.1 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 5000, input_scale = 1/7}\z
+			- 10 * cerys_all_resources",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_ruin_tiny",
+		expression = "-0.6 \z
+			+ rpi(0.2) \z
+			- min(0, decorative_knockout) \z
+			+ decorative_mix_noise{seed = 6000, input_scale = 1/7}\z
+			- 10 * cerys_all_resources",
+	},
+
+	{
+		type = "noise-expression",
+		name = "cerys_ruin_density",
+		expression = "multioctave_noise{\z
+			x = cerys_x_surface, \z
+			y = cerys_y_surface, \z
+			seed0 = map_seed, \z
+			seed1 = 200, \z
+			octaves = 3, \z
+			persistence = 0.4, \z
+			input_scale = 3, \z
+			output_scale = 2} - 0.5",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_ash_flats", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_methane_iceberg_large", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
 		expression = "0",
 	},
 })
