@@ -2,6 +2,7 @@
 Version: 1.4.42
 Date: ????
   Changes:
+    - New upload due to reports of being unable to download the mod.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.41
 Date: 2025-02-17
