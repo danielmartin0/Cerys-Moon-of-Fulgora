@@ -1,5 +1,3 @@
-local restrict_surface_conditions = require("lib").restrict_surface_conditions
-
 -- TODO: Comb through these item categories for broader compatibility improvements.
 
 --== Mulana seems to be overriding science packs to have min oxygen of 1, whereas oxygen is afaik supposed to be used to restrict burner items.
@@ -22,7 +20,7 @@ for _, pack in pairs(data.raw["tool"]) do
 end
 
 if data.raw.recipe["electric-engine-unit-from-carbon"] then
-	restrict_surface_conditions(data.raw.recipe["electric-engine-unit-from-carbon"], {
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["electric-engine-unit-from-carbon"], {
 		property = "temperature",
 		min = 255,
 	})

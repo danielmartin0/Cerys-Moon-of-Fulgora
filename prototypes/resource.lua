@@ -14,7 +14,7 @@ data:extend({
 		icon_size = 64,
 		order = "w-a[nuclear-scrap]",
 		minable = merge(data.raw.resource["scrap"].minable, {
-			mining_time = 0.4,
+			mining_time = 0.45,
 			result = "cerys-nuclear-scrap",
 		}),
 		stages = {
