@@ -360,8 +360,8 @@ for i = 1, common.LAMP_COUNT do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.78, b = 0.78 } },
-			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.78, b = 0.78 } },
+			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.81 } },
+			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.81 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {

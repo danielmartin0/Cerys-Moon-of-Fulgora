@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.43
 Date: ????
-  Changes:
+  Balancing:
+    - Resource spawns adjusted to better reflect their usage.
+  Graphics:
+    - Tweaked the color of the radiative towers at night.
+  Info:
+    - Item description updates.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.42
 Date: 2025-02-17

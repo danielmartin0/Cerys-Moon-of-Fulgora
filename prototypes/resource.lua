@@ -4,8 +4,16 @@ local merge = require("lib").merge
 -- data.raw.resource["crude-oil"].created_effect = create_tiles("snow-flat")
 
 local stage_counts_2 = { 15000 * 100, 9500 * 100, 5500 * 100, 2900 * 100, 1300 * 100, 400 * 100, 150 * 100, 80 * 100 }
-local stage_counts_3 =
-	{ 15000 * 1000, 9500 * 1000, 5500 * 1000, 2900 * 1000, 1300 * 1000, 400 * 1000, 150 * 1000, 80 * 1000 } -- our graphics needed a bit of a bump
+local stage_counts_3 = {
+	15000 * 10000,
+	9500 * 10000,
+	5500 * 10000,
+	2900 * 10000,
+	1300 * 10000,
+	400 * 10000,
+	150 * 10000,
+	80 * 10000,
+} -- our graphics needed a bit of a bump
 
 data:extend({
 	merge(data.raw.resource["scrap"], {

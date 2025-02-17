@@ -26,6 +26,12 @@ data:extend({
 
 	{
 		type = "noise-expression",
+		name = "surface_distance",
+		expression = "map_distance * cerys_surface_distance_over_map_distance",
+	},
+
+	{
+		type = "noise-expression",
 		name = "cerys_stretch_factor",
 		expression = "cerys_radius / min(map_height / 2, cerys_radius)",
 	},
@@ -201,16 +207,17 @@ data:extend({
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 10, \z
 				output_scale = 220} \z
-				- (280 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
+				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 200 * cerys_script_occupied_terrain \z
-			- 10000 * cerys_water",
+			- 10000 * cerys_water \z
+			 + min(0, (map_distance - 20) * 10)", -- Large scrap patches in the center of the map look unpleasant
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
-		expression = "40 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
+		expression = "22 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
@@ -248,7 +255,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_methane_ice_forced_spot_radius",
-		expression = "20 * (slider_rescale(control:cerys_methane_ice:size, 2)^(1/2))",
+		expression = "32 * (slider_rescale(control:cerys_methane_ice:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
@@ -267,9 +274,9 @@ data:extend({
 				seed1 = 600, \z
 				octaves = 3, \z
 				persistence = 0.4, \z
-				input_scale = slider_rescale(control:cerys_methane_ice:frequency, 3) / 7, \z
+				input_scale = slider_rescale(control:cerys_methane_ice:frequency, 3) / 8, \z
 				output_scale = 1} \z
-				* (130 - 0.2 * map_distance * cerys_surface_distance_over_map_distance) - (140 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
+				* (130 - 0.2 * surface_distance) - (130 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
 			- 400 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water",
