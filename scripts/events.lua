@@ -62,13 +62,7 @@ script.on_event({
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_heating_tower(entity)
 	elseif entity.name == "cerys-charging-rod" then
-		if event.robot then
-			rods.robot_built_charging_rod(entity, event.tags or {})
-		else
-			rods.built_charging_rod(entity, event.tags or {})
-		end
-	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
-		rods.built_ghost_charging_rod(entity, entity.tags)
+		rods.built_charging_rod(entity, event.tags or {})
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
 			return
@@ -90,7 +84,6 @@ script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 	local cursor_stack = player.cursor_stack
 
-	rods.on_pre_build(event)
 	pre_blueprint_pasted.on_pre_build(event)
 
 	if cursor_stack and cursor_stack.valid_for_read then

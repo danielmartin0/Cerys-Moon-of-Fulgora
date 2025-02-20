@@ -11,20 +11,16 @@ Public.built_charging_rod = function(entity, tags)
 
 	Public.register_charging_rod(entity)
 
-	if tags and tags.is_negative ~= nil then
-		Public.rod_set_state(entity, tags.is_negative)
-	end
-end
-
-Public.robot_built_charging_rod = function(entity, tags)
-	if not (entity and entity.valid) then
-		return
-	end
-
-	Public.register_charging_rod(entity)
-
-	if tags and tags.is_negative ~= nil then
-		Public.rod_set_state(entity, tags.is_negative)
+	if tags then
+		if tags.is_negative ~= nil then
+			Public.rod_set_state(entity, tags.is_negative)
+		end
+		if tags.circuit_controlled ~= nil then
+			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = tags.circuit_controlled
+		end
+		if tags.control_signal ~= nil then
+			storage.cerys.charging_rods[entity.unit_number].control_signal = tags.control_signal
+		end
 	end
 end
 
@@ -54,17 +50,7 @@ Public.rod_set_state = function(entity, negative)
 	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
 		local tags = entity.tags or {}
 		tags.is_negative = negative
-		tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
-			and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
-		tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
-			and storage.cerys.charging_rods[entity.unit_number].control_signal
 		entity.tags = tags
-	end
-end
-
-Public.built_ghost_charging_rod = function(entity, tags)
-	if tags and tags.is_negative ~= nil then
-		Public.rod_set_state(entity, tags.is_negative)
 	end
 end
 
@@ -195,6 +181,9 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		end
 	end
 
+	local rod_circuit_data = entity.name == "cerys-charging-rod" and storage.cerys.charging_rods[entity.unit_number]
+		or (entity.tags or {})
+
 	if not relative[gui_key] then
 		local main_frame = relative.add({
 			type = "frame",
@@ -237,8 +226,6 @@ script.on_event(defines.events.on_gui_opened, function(event)
 			direction = "vertical",
 		})
 
-		local rod = storage.cerys.charging_rods[entity.unit_number]
-
 		content_frame.add({
 			type = "switch",
 			left_label_caption = { "cerys.charging-rod-negative-polarity-label" },
@@ -246,48 +233,46 @@ script.on_event(defines.events.on_gui_opened, function(event)
 			name = "charging-rod-switch",
 			allow_none_state = false,
 			switch_state = "right",
-			enabled = entity.name == "cerys-charging-rod" and not rod.circuit_controlled, -- ghosts not supported
+			enabled = not (rod_circuit_data and rod_circuit_data.circuit_controlled),
 		})
 
-		if entity.name == "cerys-charging-rod" then -- We don't support circuit control for ghosts yet
-			content_frame.add({
-				type = "line",
-				direction = "horizontal",
-			})
+		content_frame.add({
+			type = "line",
+			direction = "horizontal",
+		})
 
-			content_frame.add({
-				type = "checkbox",
-				name = "circuit-control-checkbox",
-				caption = "Set polarity from circuit",
-				state = rod.circuit_controlled,
-				tooltip = "The polarity of the charging rod will be negative if the selected circuit network signal is zero.",
-			})
+		content_frame.add({
+			type = "checkbox",
+			name = "circuit-control-checkbox",
+			caption = "Set polarity from circuit",
+			state = rod_circuit_data.circuit_controlled and true or false,
+			tooltip = "The polarity of the charging rod will be negative if the selected circuit network signal is zero.",
+		})
 
-			local flow = content_frame.add({
-				type = "flow",
-				direction = "horizontal",
-				name = "signal_flow",
-				style = "player_input_horizontal_flow",
-			})
-			flow.style.horizontally_stretchable = true
+		local flow = content_frame.add({
+			type = "flow",
+			direction = "horizontal",
+			name = "signal_flow",
+			style = "player_input_horizontal_flow",
+		})
+		flow.style.horizontally_stretchable = true
 
-			local signal_label = flow.add({
-				type = "label",
-				caption = "Control signal:",
-				style = "label",
-			})
-			signal_label.style.minimal_width = 110 -- Why is this needed?
-			signal_label.style.horizontally_stretchable = true
-			signal_label.style.font_color = rod.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+		local signal_label = flow.add({
+			type = "label",
+			caption = "Control signal:",
+			style = "label",
+		})
+		signal_label.style.minimal_width = 110 -- Why is this needed?
+		signal_label.style.horizontally_stretchable = true
+		signal_label.style.font_color = rod_circuit_data.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 
-			flow.add({
-				type = "choose-elem-button",
-				name = "control-signal-button",
-				elem_type = "signal",
-				signal = rod.control_signal,
-				enabled = rod.circuit_controlled,
-			})
-		end
+		flow.add({
+			type = "choose-elem-button",
+			name = "control-signal-button",
+			elem_type = "signal",
+			signal = rod_circuit_data.control_signal,
+			enabled = rod_circuit_data.circuit_controlled and true or false,
+		})
 	end
 
 	local switch = relative[gui_key]["content"]["charging-rod-switch"]
@@ -301,18 +286,15 @@ script.on_event(defines.events.on_gui_opened, function(event)
 
 	switch.switch_state = is_negative and "left" or "right"
 
-	if entity.name == "cerys-charging-rod" then
-		local rod = storage.cerys.charging_rods[entity.unit_number]
-		local content = relative[gui_key]["content"]
-		local checkbox = content["circuit-control-checkbox"]
-		local signal_flow = content["signal_flow"]
+	local content = relative[gui_key]["content"]
+	local checkbox = content["circuit-control-checkbox"]
+	local signal_flow = content["signal_flow"]
 
-		checkbox.state = rod.circuit_controlled
-		content["charging-rod-switch"].enabled = not rod.circuit_controlled
-		signal_flow["control-signal-button"].enabled = rod.circuit_controlled
-		signal_flow["control-signal-button"].elem_value = rod.control_signal
-		signal_flow.children[1].style.font_color = rod.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
-	end
+	checkbox.state = rod_circuit_data.circuit_controlled and true or false
+	content["charging-rod-switch"].enabled = not rod_circuit_data.circuit_controlled and true or false
+	signal_flow["control-signal-button"].enabled = rod_circuit_data.circuit_controlled and true or false
+	signal_flow["control-signal-button"].elem_value = rod_circuit_data.control_signal
+	signal_flow.children[1].style.font_color = rod_circuit_data.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 end)
 
 script.on_event(defines.events.on_gui_switch_state_changed, function(event)
@@ -364,26 +346,48 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 		return
 	end
 
+	if
+		not (
+			source.name == "cerys-charging-rod"
+			or (source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod")
+		)
+	then
+		return
+	end
+	if
+		not (
+			destination.name == "cerys-charging-rod"
+			or (destination.name == "entity-ghost" and destination.ghost_name == "cerys-charging-rod")
+		)
+	then
+		return
+	end
+
 	if not storage.cerys then
 		return
 	end
 
 	local negative
-	local source_rod = storage.cerys.charging_rods[source.unit_number]
 	if source.name == "cerys-charging-rod" then
 		negative = storage.cerys.charging_rod_is_negative[source.unit_number]
-		if source_rod and destination.name == "cerys-charging-rod" then
-			local dest_rod = storage.cerys.charging_rods[destination.unit_number]
-			if dest_rod then
-				dest_rod.circuit_controlled = source_rod.circuit_controlled
-				dest_rod.control_signal = source_rod.control_signal
-			end
-		end
-	elseif source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod" then
+	else
 		negative = source.tags.is_negative
 	end
 
 	Public.rod_set_state(destination, negative)
+
+	local source_circuit_data = source.name == "cerys-charging-rod" and storage.cerys.charging_rods[source.unit_number]
+		or (source.tags or {})
+
+	if destination.name == "cerys-charging-rod" then
+		storage.cerys.charging_rods[destination.unit_number].circuit_controlled = source_circuit_data.circuit_controlled
+		storage.cerys.charging_rods[destination.unit_number].control_signal = source_circuit_data.control_signal
+	else
+		local tags = destination.tags or {}
+		tags.circuit_controlled = source_circuit_data.circuit_controlled
+		tags.control_signal = source_circuit_data.control_signal
+		destination.tags = tags
+	end
 end)
 
 script.on_event(defines.events.on_entity_cloned, function(event)
@@ -429,6 +433,10 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 			if entity.name == "cerys-charging-rod" and storage.cerys then
 				local tags = blueprint.get_blueprint_entity_tags(blueprint_entity_number) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
+				tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
+					and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
+				tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
+					and storage.cerys.charging_rods[entity.unit_number].control_signal
 				blueprint.set_blueprint_entity_tags(blueprint_entity_number, tags)
 			end
 		end
@@ -445,31 +453,15 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 			then
 				local tags = cursor_stack.get_blueprint_entity_tags(1) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[source_entity.unit_number]
+				tags.circuit_controlled = storage.cerys.charging_rods[source_entity.unit_number]
+					and storage.cerys.charging_rods[source_entity.unit_number].circuit_controlled
+				tags.control_signal = storage.cerys.charging_rods[source_entity.unit_number]
+					and storage.cerys.charging_rods[source_entity.unit_number].control_signal
 				cursor_stack.set_blueprint_entity_tags(1, tags)
 			end
 		end
 	end
 end)
-
-function Public.on_pre_build(event)
-	local player = game.players[event.player_index]
-
-	if not (player and player.valid) then
-		return
-	end
-
-	local blueprint = player.cursor_stack
-
-	if not (blueprint and blueprint.valid_for_read) then
-		return
-	end
-
-	if event.ghost_name == "cerys-charging-rod" then
-		local tags = blueprint.get_blueprint_entity_tags(event.blueprint_entity_number) or {}
-		event.tags = event.tags or {}
-		event.tags.is_negative = tags.is_negative
-	end
-end
 
 script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 	if event.element.name ~= "circuit-control-checkbox" then
@@ -486,12 +478,13 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 		return
 	end
 
-	local rod = storage.cerys.charging_rods[entity.unit_number]
-	if not rod then
-		return
+	if entity.name == "cerys-charging-rod" then
+		storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
+	else
+		local tags = entity.tags or {}
+		tags.circuit_controlled = event.element.state
+		entity.tags = tags
 	end
-
-	rod.circuit_controlled = event.element.state
 
 	local content_frame = event.element.parent
 	content_frame["charging-rod-switch"].enabled = not event.element.state
@@ -520,12 +513,13 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 		return
 	end
 
-	local rod = storage.cerys.charging_rods[entity.unit_number]
-	if not rod then
-		return
+	if entity.name == "cerys-charging-rod" then
+		storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
+	else
+		local tags = entity.tags or {}
+		tags.control_signal = event.element.elem_value
+		entity.tags = tags
 	end
-
-	rod.control_signal = event.element.elem_value
 end)
 
 return Public

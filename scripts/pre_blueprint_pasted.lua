@@ -31,7 +31,6 @@ local function rotate_point(point, axis, clockwise)
 	return rotated_point
 end
 
-
 local function rotate_box(corner1, corner2, axis, clockwise)
 	corner1 = { x = corner1[1] or corner1.x, y = corner1[2] or corner1.y }
 	corner2 = { x = corner2[1] or corner2.x, y = corner2[2] or corner2.y }
@@ -60,7 +59,6 @@ local function rotate_box(corner1, corner2, axis, clockwise)
 	end
 	return left_top, right_bottom
 end
-
 
 local function round(number, place)
 	place = place or 0
@@ -189,7 +187,6 @@ local function get_center_of_coordinates(corner1, corner2)
 end
 
 function Public.on_pre_build(event)
-
 	local player = game.players[event.player_index] -- Player who placed the blueprint
 	local mouse_pos = event.position -- Position of the MOUSE when placing the blueprint.
 	local direction = event.direction
@@ -202,7 +199,7 @@ function Public.on_pre_build(event)
 		return
 	end
 
-	if (cursor_stack.name ~= "blueprint") then
+	if cursor_stack.name ~= "blueprint" then
 		-- TODO: Handle blueprint books
 		return
 	end
@@ -242,25 +239,24 @@ function Public.on_pre_build(event)
 	local pasted_positions = {}
 	for entity_index, entity in pairs(blueprint_entities) do
 		if
-			entity.type == "car"
-			or entity.type == "spider-vehicle"
-			or entity.type == "locomotive"
-			or entity.type == "cargo-wagon"
-			or entity.type == "fluid-wagon"
-			or entity.type == "artillery-wagon"
+			not (
+				entity.type == "car"
+				or entity.type == "spider-vehicle"
+				or entity.type == "locomotive"
+				or entity.type == "cargo-wagon"
+				or entity.type == "fluid-wagon"
+				or entity.type == "artillery-wagon"
+			)
 		then
-			goto skipvehicle
+			pasted_positions[entity_index] = get_pasted_position(
+				mouse_pos,
+				center_pos,
+				entity,
+				event.direction,
+				event.flip_horizontal,
+				event.flip_vertical
+			)
 		end
-		pasted_positions[entity_index] =get_pasted_position(
-			mouse_pos,
-			center_pos,
-			entity,
-			event.direction,
-			event.flip_horizontal,
-			event.flip_vertical
-		)
-
-		::skipvehicle::
 	end
 
 	local surface = player.surface
@@ -277,7 +273,18 @@ function Public.on_pre_build(event)
 				and existing_rod.position.x == position.x
 				and existing_rod.position.y == position.y
 			then
-				rods.rod_set_state(existing_rod, entity.tags and entity.tags.is_negative)
+				entity.tags = entity.tags or {}
+				rods.rod_set_state(existing_rod, entity.tags.is_negative)
+
+				local rod_data = storage.cerys.charging_rods[existing_rod.unit_number]
+				if rod_data then
+					if entity.tags.circuit_controlled then
+						rod_data.circuit_controlled = entity.tags.circuit_controlled
+					end
+					if entity.tags.control_signal then
+						rod_data.control_signal = entity.tags.control_signal
+					end
+				end
 			end
 		end
 	end

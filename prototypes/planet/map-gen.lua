@@ -279,7 +279,8 @@ data:extend({
 				* (130 - 0.2 * surface_distance) - (130 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
 			- 400 * cerys_script_occupied_terrain \z
-			- 10000 * cerys_water",
+			- 10000 * cerys_water \z
+			+ min(0, (map_distance - 20) * 10)", -- Large scrap patches in the center of the map look unpleasant
 	},
 
 	{

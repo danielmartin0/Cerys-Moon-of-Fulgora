@@ -2,6 +2,10 @@
 Version: 1.4.45
 Date: ????
   Changes:
+    - Overly large ore patches no longer have a chance of spawning in the center of the map.
+    - Circuit controls on charging rod ghosts can now be configured.
+  Bugfixes:
+    - Fixed most remaining bugs with charging rod circuit control pasting.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.44
 Date: 2025-02-17
