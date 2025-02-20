@@ -1,6 +1,6 @@
 ### Credits
 
-This file specifies code and assets used in Cerys, Moon of Fulgora from other sources.
+This file specifies open-source assets used in Cerys, Moon of Fulgora.
 
 #### Fulgora graphic
 
@@ -8,6 +8,13 @@ This file specifies code and assets used in Cerys, Moon of Fulgora from other so
 - **Source**: [Sharper Planets](https://mods.factorio.com/mod/sharper_planets)
 - **License**: [MIT](https://opensource.org/license/MIT)
 - **Changes**: No.
+
+#### Cerysian science pack icon
+
+- **Creators**: [Hornwitser](https://mods.factorio.com/user/Hornwitser)
+- **Source**: [Quality Glassware](https://mods.factorio.com/mod/quality_glassware)
+- **License**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- **Changes**: Yes. Icon recolored, quality upscaled.
 
 #### Methane icon
 
@@ -36,10 +43,3 @@ This file specifies code and assets used in Cerys, Moon of Fulgora from other so
 - **Source**: [Sci-fi Future Building 2 Simple Dome](https://sketchfab.com/3d-models/sci-fi-future-building-2-simple-dome-d885fdb25ed846779fc711917fbeeed2)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes. Remixed, shadows added.
-
-#### Flare stack & Vent stack
-
-- **Creators**: GotLag
-- **Source**: [Flare Stack](https://mods.factorio.com/mod/Flare%20Stack)
-- **License**: [MIT](https://opensource.org/license/MIT)
-- **Changes**: Yes. New technology icon adapted from original graphics. Code modified to support 2.0 and better distinguish venting and flaring recipes.

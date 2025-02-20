@@ -211,7 +211,8 @@ data:extend({
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 200 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z
-			 + min(0, (map_distance - 20) * 10)", -- Large scrap patches in the center of the map look unpleasant
+			 + min(0, (((xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
+			(yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 30) * 10)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{
@@ -230,11 +231,14 @@ data:extend({
 		expression = "((cerys_nitrogen_rich_minerals_forced_spot_radius / \z
 			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
 			(cerys_y_surface + 18)^2)^(1/2)) - 1)^3 \z
-			+ ((0.275 * cerys_nitrogen_rich_minerals_forced_spot_radius / \z
+			+ (0.22 * cerys_nitrogen_rich_minerals_forced_spot_radius / \z
 			((cerys_x_surface - 8)^2 + \z
 			(cerys_y_surface - 64)^2)^(1/2)) \z
-			- 1)",
-	}, -- Main patch is on the left to encourage the player to start far from the final zone. The other patch is a hint patch.
+			+ (0.22 * cerys_nitrogen_rich_minerals_forced_spot_radius / \z
+			((cerys_x_surface + 8)^2 + \z
+			(cerys_y_surface + 64)^2)^(1/2)) \z
+			- 1",
+	}, -- Main patch is on the left to encourage the player to start far from the final zone. The other patches are hint patches.
 
 	{
 		type = "noise-expression",
@@ -280,7 +284,8 @@ data:extend({
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
 			- 400 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z
-			+ min(0, (map_distance - 20) * 10)", -- Large scrap patches in the center of the map look unpleasant
+			 + min(0, (((xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
+			(yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 40) * 10)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{

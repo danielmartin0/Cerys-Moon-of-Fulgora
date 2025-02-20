@@ -191,29 +191,6 @@ for name, entity in pairs(data.raw["boiler"]) do
 end
 -- TODO: Restrict modded furnaces
 
---== Water puddles collisions ==--
-
-for _, entity in pairs(data.raw["offshore-pump"]) do
-	if entity.tile_buildability_rules then
-		for _, rule in pairs(entity.tile_buildability_rules) do
-			if rule.required_tiles and rule.required_tiles.layers and rule.required_tiles.layers.water_tile then
-				rule.required_tiles.layers.cerys_water_tile = true
-			end
-			if rule.colliding_tiles and rule.colliding_tiles.layers and rule.colliding_tiles.layers.water_tile then
-				rule.colliding_tiles.layers.cerys_water_tile = true
-			end
-		end
-	end
-end
-
-for key, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
-	if mask.layers and mask.layers.water_tile then
-		local new_mask = util.table.deepcopy(mask)
-		new_mask.layers.cerys_water_tile = true
-		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
-	end
-end
-
 --== Atomic projectiles ==--
 -- Ensuring that nuclear ground tiles don't get set on Cerys water spots.
 
@@ -224,9 +201,6 @@ local function add_cerys_layers_to_masks(tbl)
 
 	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_tile then
 		tbl.layers.cerys_tile = true
-	end
-	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_water_tile then
-		tbl.layers.cerys_water_tile = true
 	end
 
 	for _, v in pairs(tbl) do

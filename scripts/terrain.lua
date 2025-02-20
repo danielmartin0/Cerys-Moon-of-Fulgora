@@ -108,6 +108,10 @@ local crusher_positions = {
 		x = 107,
 		y = 25.5,
 	},
+	{
+		x = -74,
+		y = -75.5,
+	},
 }
 
 --== Terrain & entity generation ==--

@@ -17,12 +17,11 @@ local reactor = {
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
 	damaged_trigger_effect = hit_effects.entity(),
 	drawing_box_vertical_extension = 3,
-	consumption = common.HARDCORE_ON and "1000kW" or "700kW",
 	energy_source = {
 		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
 		emissions_per_minute = { pollution = 5 },
-		effectivity = 0.54,
+		effectivity = 1,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
@@ -31,8 +30,9 @@ local reactor = {
 			maximum_intensity = 0.15,
 		},
 	},
+	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
-		max_temperature = 200,
+		max_temperature = 150,
 		specific_heat = common.HARDCORE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 0,
@@ -360,8 +360,8 @@ for i = 1, common.LAMP_COUNT do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.81 } },
-			light_when_colored = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.81 } },
+			light = { intensity = 0.65, size = 4.5 * i, color = { r = 1, g = 0.89, b = 0.89 } },
+			light_when_colored = { intensity = 0.65, size = 4.5 * i, color = { r = 1, g = 0.89, b = 0.89 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {

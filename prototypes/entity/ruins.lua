@@ -7,8 +7,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "iron-gear-wheel", -- To build recycler and provide initial iron for assembling machines and miners
-				amount_min = math.ceil(collision_area * 1.3),
-				amount_max = math.ceil(collision_area * 1.5),
+				amount_min = math.ceil(collision_area * 1.8),
+				amount_max = math.ceil(collision_area * 2.1),
 			},
 			{
 				type = "item",
@@ -19,8 +19,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "concrete", -- To build recycler and protect buildings
-				amount_min = math.ceil(collision_area * 0.35),
-				amount_max = math.ceil(collision_area * 0.4),
+				amount_min = math.ceil(collision_area * 0.17),
+				amount_max = math.ceil(collision_area * 0.18),
 			},
 		},
 	}
@@ -78,11 +78,11 @@ local sizes = { "small", "medium", "big", "huge", "colossal" }
 local ruins = {}
 
 local size_to_probability_expression = {
-	small = "0.01 * (cerys_ruin_density)",
-	medium = "0.008 * (cerys_ruin_density - 0.1)",
-	big = "0.0055 * (cerys_ruin_density - 0.3)",
-	huge = "0.0025 * (cerys_ruin_density - 0.4)",
-	colossal = "0.0013 * (cerys_ruin_density - 0.5)",
+	small = "0.008 * (cerys_ruin_density)",
+	medium = "0.01 * (cerys_ruin_density - 0.1)",
+	big = "0.0065 * (cerys_ruin_density - 0.3)",
+	huge = "0.0022 * (cerys_ruin_density - 0.4)", -- Looks similar to cryoplants
+	colossal = "0.0022 * (cerys_ruin_density - 0.5)",
 }
 
 for _, size in ipairs(sizes) do

@@ -19,12 +19,12 @@ local CHANCE_MUTATE_BELT_URANIUM = 1 / 1210
 local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 12100
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
-	["small-metallic-asteroid-planetary"] = 1.1,
-	["medium-metallic-asteroid-planetary"] = 1.1,
+	["small-metallic-asteroid-planetary"] = 0.9,
+	["medium-metallic-asteroid-planetary"] = 1.4,
 	["small-carbonic-asteroid-planetary"] = 4.4,
 	["medium-carbonic-asteroid-planetary"] = 2.2,
-	["small-oxide-asteroid-planetary"] = 4.4,
-	["medium-oxide-asteroid-planetary"] = 2.2,
+	["small-oxide-asteroid-planetary"] = 4,
+	["medium-oxide-asteroid-planetary"] = 2,
 }
 
 local MAX_CHUNKS_ON_GROUND = 15
@@ -264,8 +264,14 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
-							local irradiated =
-								Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
+							local irradiated = Public.irradiate_inventory(
+								surface,
+								inv,
+								e.force,
+								e.position,
+								probability_multiplier,
+								true
+							)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -446,7 +452,7 @@ function Public.irradiation_chance_effect(surface, position)
 	end
 end
 
-function Public.irradiate_inventory(surface, inv, force, position, probability_multiplier)
+function Public.irradiate_inventory(surface, inv, force, position, probability_multiplier, no_effect)
 	local uranium_count = 0
 	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
@@ -497,8 +503,10 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 
 	local effect_count = math.ceil(uranium_count / 1000)
 
-	for _ = 1, effect_count do
-		Public.irradiation_chance_effect(surface, position)
+	if not no_effect then
+		for _ = 1, effect_count do
+			Public.irradiation_chance_effect(surface, position)
+		end
 	end
 
 	return mutated

@@ -22,7 +22,7 @@ data:extend({
 		icon_size = 64,
 		order = "w-a[nuclear-scrap]",
 		minable = merge(data.raw.resource["scrap"].minable, {
-			mining_time = 0.45,
+			mining_time = 0.44,
 			result = "cerys-nuclear-scrap",
 		}),
 		stages = {
@@ -50,6 +50,7 @@ data:extend({
 		name = "cerys-nitrogen-rich-minerals",
 		order = "w-b[nuclear-scrap]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
+			mining_time = 2,
 			result = "cerys-nitrogen-rich-minerals",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals.png",
@@ -79,6 +80,7 @@ data:extend({
 		name = "methane-ice",
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
+			mining_time = 0.6,
 			result = "methane-ice",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
@@ -98,9 +100,9 @@ data:extend({
 			probability_expression = "cerys_methane_ice",
 			richness_expression = "10 + 1000 * cerys_methane_ice ^ 2",
 		},
-		map_color = { 0.75, 0.8, 1 },
+		map_color = { 159, 194, 165 },
 		map_grid = true,
-		stage_counts = stage_counts_2,
+		stage_counts = stage_counts_3,
 		factoriopedia_simulation = "nil",
 	}),
 })

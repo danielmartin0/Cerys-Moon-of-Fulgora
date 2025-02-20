@@ -35,11 +35,11 @@ end
 
 data.raw.technology["flare-stack-item-venting-electric-tech"].enabled = false
 data.raw.technology["flare-stack-item-venting-tech"].enabled = false
-data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerys-science-pack" }
+data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysian-science-pack" }
 data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	count = 50,
 	ingredients = {
-		{ "cerys-science-pack", 1 },
+		{ "cerysian-science-pack", 1 },
 	},
 	time = 60,
 }

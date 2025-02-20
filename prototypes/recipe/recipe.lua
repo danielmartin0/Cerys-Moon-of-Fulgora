@@ -1,6 +1,34 @@
 data:extend({
 	{
 		type = "recipe",
+		name = "cerysian-science-pack",
+		always_show_made_in = true,
+		category = "fulgoran-cryogenics",
+		enabled = false,
+		energy_required = 2,
+		ingredients = {
+			{ type = "item", name = "superconductor", amount = 3 },
+			{ type = "item", name = "uranium-238", amount = 5 },
+			{ type = "fluid", name = "nitric-acid", amount = 50 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
+		},
+		results = { { type = "item", name = "cerysian-science-pack", amount = 1 } },
+		surface_conditions = {
+			{
+				property = "magnetic-field",
+				min = 120,
+				max = 120,
+			},
+			{
+				property = "pressure",
+				min = 5,
+				max = 5,
+			},
+		},
+		allow_productivity = true,
+	},
+	{
+		type = "recipe",
 		name = "cerys-hydrogen-bomb",
 		enabled = false,
 		energy_required = 50,
@@ -138,9 +166,9 @@ data:extend({
 		name = "cerys-lab",
 		energy_required = 5,
 		ingredients = {
-			{ type = "item", name = "transport-belt", amount = 5 },
-			{ type = "item", name = "advanced-circuit", amount = 25 },
-			{ type = "item", name = "iron-plate", amount = 25 },
+			{ type = "item", name = "transport-belt", amount = 6 },
+			{ type = "item", name = "advanced-circuit", amount = 30 },
+			{ type = "item", name = "iron-gear-wheel", amount = 15 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,
@@ -168,13 +196,13 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 4.5,
+		energy_required = 5,
 		ingredients = {
-			{ type = "item", name = "methane-ice", amount = 30 },
+			{ type = "item", name = "methane-ice", amount = 40 },
 		},
 		results = {
-			{ type = "fluid", name = "light-oil", amount = 30 },
-			{ type = "fluid", name = "methane", amount = 100 },
+			{ type = "fluid", name = "light-oil", amount = 40 },
+			{ type = "fluid", name = "methane", amount = 120 },
 		},
 		allow_productivity = true,
 		enabled = false,
@@ -191,7 +219,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-nitrogen-rich-mineral-processing.png",
 		icon_size = 64,
 		category = "fulgoran-cryogenics",
-		energy_required = 2,
+		energy_required = 0.5,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
@@ -200,7 +228,7 @@ data:extend({
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },
-			{ type = "fluid", name = "ammonia", amount = 50 },
+			{ type = "fluid", name = "ammonia", amount = 25 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",

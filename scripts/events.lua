@@ -11,6 +11,8 @@ local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
 local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
+local lighting = require("scripts.lighting")
+
 local Public = {}
 
 -- Highest-level file besides control.lua.
@@ -166,6 +168,10 @@ function Public.cerys_tick(surface, tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 	crusher.tick_1_check_crusher_quality_upgrades(surface)
 
+	if tick % 3 == 0 then
+		lighting.tick_3_update_light_position()
+	end
+
 	if
 		player_looking_at_surface or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
 	then
@@ -266,7 +272,7 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["moon-discovery-cerys"].research_recursive()
 		player.force.technologies["recycling"].research_recursive()
 		player.force.technologies["bulk-inserter"].research_recursive()
-		player.force.technologies["railway"].research_recursive()
+		player.force.technologies["automated-rail-transportation"].research_recursive()
 		player.force.technologies["uranium-ammo"].research_recursive()
 		player.force.technologies["solar-energy"].research_recursive() -- if not for energy shield prerequisite, this tech might need to be a prerequisite
 		player.force.technologies["steel-axe"].research_recursive()
@@ -282,7 +288,7 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["toolbelt"].research_recursive()
 		player.force.technologies["lamp"].research_recursive()
 		player.force.technologies["mining-productivity-1"].research_recursive()
-		player.force.technologies["laser"].research_recursive()
+		player.force.technologies["laser-shooting-speed-3"].research_recursive()
 		player.force.technologies["physical-projectile-damage-6"].research_recursive()
 		player.force.technologies["fission-reactor-equipment"].research_recursive()
 		player.force.technologies["automation-3"].research_recursive()
@@ -290,18 +296,26 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["nuclear-fuel-reprocessing"].research_recursive()
 		player.force.technologies["effect-transmission"].research_recursive()
 		player.force.technologies["electromagnetic-plant"].research_recursive()
-		player.force.technologies["laser-turret"].research_recursive()
+		player.force.technologies["discharge-defense-equipment"].research_recursive()
 		player.force.technologies["repair-pack"].research_recursive()
 		player.force.technologies["gun-turret"].research_recursive()
 		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
 		player.force.technologies["research-speed-2"].research_recursive()
-		player.force.technologies["inserter-capacity-bonus-2"].research_recursive()
+		player.force.technologies["inserter-capacity-bonus-3"].research_recursive()
 		player.force.technologies["worker-robots-speed-2"].research_recursive()
 		player.force.technologies["worker-robots-storage-2"].research_recursive()
 		player.force.technologies["battery-equipment"].research_recursive()
 		player.force.technologies["belt-immunity-equipment"].research_recursive()
 		player.force.technologies["exoskeleton-equipment"].research_recursive()
 		player.force.technologies["personal-roboport-equipment"].research_recursive()
+		player.force.technologies["night-vision-equipment"].research_recursive()
+		player.force.technologies["stronger-explosives-3"].research_recursive()
+		player.force.technologies["fluid-wagon"].research_recursive()
+		player.force.technologies["land-mine"].research_recursive()
+		player.force.technologies["atomic-bomb"].research_recursive()
+		player.force.technologies["braking-force-2"].research_recursive()
+		player.force.technologies["elevated-rail"].research_recursive()
+		player.force.technologies["gate"].research_recursive()
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then

@@ -47,6 +47,7 @@ Public.GAS_NAMES = {
 Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 17
 Public.BRIGHTNESS_VISUAL_WEIGHTS = { 0.2, 0.23, 0.21 }
+Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 75
 
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
 	local stretch_factor = Public.CERYS_RADIUS

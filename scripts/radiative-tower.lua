@@ -5,7 +5,7 @@ local common = require("common")
 Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
 local MAX_HEATING_RADIUS = 16
-local TEMPERATURE_LOSS_RATE = 1 / 175
+local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
 
@@ -208,7 +208,8 @@ function Public.apply_temperature_drop(valid_tower)
 		valid_tower.last_radius = heating_radius
 	end
 
-	local temperature_to_apply_loss_for = math.min(temperature_above_zero, MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
+	local temperature_to_apply_loss_for =
+		math.min(math.max(temperature_above_zero, 30), MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
 
 	e.temperature = e.temperature
 		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)

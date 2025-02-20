@@ -21,6 +21,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
+		collision_mask = { layers = {}, not_colliding_with_itself = true },
 	})
 
 	local existing_physical_res = nil

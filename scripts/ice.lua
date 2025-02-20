@@ -156,6 +156,24 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- ["cerys-dry-ice-smooth-land-melting"] = function(surface, pos)
 	-- 	melt_dry_ice(surface, pos)
 	-- end,
+	["cerys-water-puddles-freezing"] = function(surface, pos)
+		local colliding_entities = surface.find_entities_filtered({
+			area = {
+				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+			},
+			type = "offshore-pump",
+		})
+
+		for _, entity in pairs(colliding_entities) do
+			entity.die()
+		end
+
+		surface.create_entity({
+			name = "water-splash",
+			position = { x = pos.x + 0.5, y = pos.y + 0.5 },
+		})
+	end,
 	["cerys-ice-on-water-melting"] = function(surface, pos)
 		local colliding_entities = surface.find_entities_filtered({
 			area = {
@@ -168,7 +186,7 @@ Public.TILE_TRANSITION_EFFECTS = {
 		for _, entity in pairs(colliding_entities) do
 			if entity and entity.valid and entity.type ~= "asteroid" and entity.type ~= "offshore-pump" then
 				if entity.type ~= "offshore-pump" and entity.prototype.create_ghost_on_death then
-					Public.place_ghost_concrete_under_entity(surface, entity)
+					Public.place_ghost_foundation_under_entity(surface, entity)
 				end
 
 				entity.die()
@@ -225,12 +243,16 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- end,
 }
 
-function Public.place_ghost_concrete_under_entity(surface, entity)
+function Public.place_ghost_foundation_under_entity(surface, entity)
 	for i = -entity.tile_width / 2 + 0.5, entity.tile_width / 2 - 0.5 do
 		for j = -entity.tile_height / 2 + 0.5, entity.tile_height / 2 - 0.5 do
 			local tile = surface.get_tile(entity.position.x + i, entity.position.y + j)
 
-			if tile and tile.valid then
+			if
+				tile
+				and tile.valid
+				and (tile.name == "cerys-ice-on-water-melting" or tile.name == "cerys-ice-on-water")
+			then
 				local ghosts = tile.get_tile_ghosts()
 
 				local has_floor_layer = false
@@ -248,7 +270,7 @@ function Public.place_ghost_concrete_under_entity(surface, entity)
 						force = entity.force,
 						name = "tile-ghost",
 						position = { x = entity.position.x + i, y = entity.position.y + j },
-						ghost_name = "concrete",
+						ghost_name = "foundation",
 					})
 				end
 			end

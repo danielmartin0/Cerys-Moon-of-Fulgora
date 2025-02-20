@@ -2,7 +2,7 @@
 data.raw.lab["cerys-lab"].inputs = {
 	"automation-science-pack",
 	"logistic-science-pack",
-	"cerys-science-pack",
+	"cerysian-science-pack",
 	"utility-science-pack",
 } -- Also set elsewhere
 
@@ -34,6 +34,25 @@ for prototype in pairs(defines.prototypes.entity) do
 		end
 		if not entity.minable then
 			entity.next_upgrade = nil
+		end
+	end
+end
+
+if data.raw.recipe["electric-engine-unit-from-carbon"] then
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["electric-engine-unit-from-carbon"], {
+		property = "temperature",
+		min = 255,
+	})
+end
+
+-- Prevent burner inserters from being restricted on Cerys:
+if data.raw["inserter"]["burner-inserter"] then
+	local burner_inserter = data.raw["inserter"]["burner-inserter"]
+	if burner_inserter.surface_conditions then
+		for i, surface_condition in pairs(burner_inserter.surface_conditions) do
+			if surface_condition.property and surface_condition.property == "oxygen" then
+				table.remove(burner_inserter.surface_conditions, i)
+			end
 		end
 	end
 end

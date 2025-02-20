@@ -256,7 +256,6 @@ data:extend({
 							tile_collision_mask = {
 								layers = {
 									water_tile = true,
-									cerys_water_tile = true,
 								},
 							},
 						},
@@ -455,7 +454,6 @@ data:extend({
 											tile_collision_mask = {
 												layers = {
 													water_tile = true,
-													cerys_water_tile = true,
 												},
 											},
 										},
@@ -533,7 +531,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -556,7 +553,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -579,7 +575,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -602,7 +597,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -625,7 +619,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},

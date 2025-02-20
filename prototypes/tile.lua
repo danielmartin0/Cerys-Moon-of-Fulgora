@@ -153,18 +153,13 @@ rock_ice_transitions_between_transitions[1].water_patch.filename =
 table.insert(water_tile_type_names, "cerys-water-puddles")
 table.insert(water_tile_type_names, "cerys-water-puddles-freezing")
 
---== Collision Masks ==--
+--== Ground collision mask ==--
+
 local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 	layers = merge((tile_collision_masks.ground().layers or {}), {
 		cerys_tile = true,
 	}),
 })
-
-local cerys_shallow_water_collision_mask = { layers = {
-	resource = true,
-	floor = true,
-	cerys_water_tile = true,
-} }
 
 --== Rock & Rock Ice ==--
 
@@ -346,27 +341,51 @@ data:extend({
 
 --== Water & Water Ice ==--
 
-local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
+local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
 	subgroup = "cerys-tiles",
-	collision_mask = cerys_shallow_water_collision_mask,
+	collision_mask = {
+		layers = {
+			water_tile = true,
+			floor = true,
+			resource = true,
+		},
+	},
+	effect = "cerys-water-puddles-2",
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
-	default_cover_tile = "concrete",
+	default_cover_tile = "foundation",
 })
 
 data:extend({
-	merge(cerys_brash_ice_base, {
+	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles",
 		frozen_variant = "cerys-water-puddles-freezing",
 		autoplace = {
 			probability_expression = "0",
 		},
 	}),
-	merge(cerys_brash_ice_base, {
+	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles-freezing",
 		thawed_variant = "cerys-water-puddles",
+	}),
+	merge(data.raw["tile-effect"]["brash-ice-2"], {
+		name = "cerys-water-puddles-2",
+		water = merge(data.raw["tile-effect"]["brash-ice-2"].water, {
+			textures = {
+				{
+					filename = "__space-age__/graphics/terrain/gleba/watercaustics.png",
+					width = 512,
+					height = 512,
+				},
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-shallow-water.png",
+					width = 512 * 4,
+					height = 512 * 2,
+				},
+			},
+		}),
 	}),
 })
 

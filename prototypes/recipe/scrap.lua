@@ -10,7 +10,7 @@ local U235_RATIO = (U235_NATURAL_AMOUNT / U238_NATURAL_AMOUNT)
 	* math.pow(0.5, CIV_AGE_MY / HALF_LIFE_235_MY)
 	/ math.pow(0.5, CIV_AGE_MY / HALF_LIFE_238_MY)
 
-log("Cerys U235/U238 ratio: " .. U235_RATIO)
+log("[CERYS]: U235/U238 ratio is " .. U235_RATIO)
 
 data:extend({
 	{
@@ -46,11 +46,11 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["advanced-circuit"] = 11,
 	["copper-cable"] = 7, -- initial power poles
 	["uranium-238"] = 6,
-	["stone-brick"] = 2, -- some of the stone brick for furnaces comes from the reactor excavation
-	["pipe"] = 1.4, -- Initial pipes and extra iron for iron production chain. Pointedly small.
+	["pipe"] = 2, -- Initial pipes and extra initial iron. Pointedly small.
+	["stone-brick"] = 1, -- some of the stone brick for furnaces comes from the reactor excavation
 	["transport-belt"] = 0.9, -- Belt cubes and distance transport, initial iron. Pointedly small.
+	["heat-pipe"] = 0.4,
 	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
-	["heat-pipe"] = 0.35,
 	["steam-turbine"] = 0.2,
 	["centrifuge"] = 0.2,
 	["uranium-235"] = 6 * U235_RATIO,
