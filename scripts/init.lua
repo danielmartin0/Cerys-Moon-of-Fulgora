@@ -1,7 +1,7 @@
 local common = require("common")
 local repair = require("reactor-repair")
 local terrain = require("terrain")
-
+local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
 function Public.initialize_cerys(surface) -- Must run before terrain generation
@@ -20,7 +20,7 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 		surface = game.planets["cerys"].create_surface()
 	end
 
-	surface.min_brightness = 0.2
+	surface.min_brightness = common.MIN_BRIGHTNESS
 	surface.brightness_visual_weights = common.BRIGHTNESS_VISUAL_WEIGHTS
 
 	Public.ensure_cerys_storage_and_tables()
@@ -76,6 +76,8 @@ script.on_init(function()
 	if common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value then
 		Public.initialize_cerys()
 	end
+
+	picker_dollies.add_picker_dollies_blacklists()
 end)
 
 script.on_event(defines.events.on_surface_created, function(event)

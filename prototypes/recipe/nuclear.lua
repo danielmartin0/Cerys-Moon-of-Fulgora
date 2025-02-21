@@ -9,7 +9,7 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "steel-plate", amount = 500 },
+			{ type = "item", name = "copper-plate", amount = 500 },
 			{ type = "item", name = "processing-unit", amount = 500 },
 			{ type = "item", name = "lithium-plate", amount = 500 },
 		},

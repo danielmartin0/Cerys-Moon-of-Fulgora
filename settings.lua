@@ -71,6 +71,12 @@ data:extend({
 		setting_type = "startup",
 		default_value = true,
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-disable-kofi-toast",
+		setting_type = "runtime-global",
+		default_value = false,
+	},
 })
 
 data:extend({

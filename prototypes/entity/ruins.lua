@@ -7,8 +7,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "iron-gear-wheel", -- To build recycler and provide initial iron for assembling machines and miners
-				amount_min = math.ceil(collision_area * 1.8),
-				amount_max = math.ceil(collision_area * 2.1),
+				amount_min = math.ceil(collision_area * 1.7),
+				amount_max = math.ceil(collision_area * 2),
 			},
 			{
 				type = "item",

@@ -85,7 +85,7 @@ data:extend({
 					sound = {
 						filename = "__base__/sound/accumulator-working.ogg",
 						volume = 1,
-						speed = 0.8,
+						speed = 0.77,
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,
@@ -95,7 +95,7 @@ data:extend({
 					sound = {
 						filename = "__base__/sound/accumulator-discharging.ogg",
 						volume = 1,
-						speed = 0.8,
+						speed = 0.77,
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,

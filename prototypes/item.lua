@@ -3,6 +3,30 @@ local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
 
 data:extend({
+	{
+		type = "item",
+		name = "cerys-radiative-tower",
+		hidden_in_factoriopedia = true,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+		icon_size = 200,
+		subgroup = "environmental-protection",
+		order = "z-d[radiative-tower]",
+		default_import_location = "cerys",
+		weight = 100 * 1000,
+		stack_size = 20,
+		place_result = "cerys-radiative-tower",
+	},
+
+	merge(data.raw.tool["electromagnetic-science-pack"], {
+		name = "cerysian-science-pack",
+		localised_description = "nil",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
+		icon_size = 64,
+		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
+		order = "j-a[cerys]",
+		default_import_location = "cerys",
+	}),
+
 	merge(data.raw.item["fission-reactor-equipment"], {
 		name = "mixed-oxide-reactor-equipment",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-reactor-equipment.png",

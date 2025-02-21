@@ -5,6 +5,7 @@ local common = require("common")
 Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
 local MAX_HEATING_RADIUS = 16
+local MAX_HEATING_RADIUS_PLAYER = 12
 local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
@@ -16,7 +17,7 @@ local function ensure_storage_tables()
 	}
 end
 
-Public.register_heating_tower_contracted = function(entity)
+Public.register_radiative_tower_contracted = function(entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -52,7 +53,41 @@ Public.register_heating_tower_contracted = function(entity)
 	}
 end
 
-Public.register_heating_tower = function(entity)
+Public.register_player_radiative_tower = function(entity)
+	ensure_storage_tables()
+
+	if not (entity and entity.valid) then
+		return
+	end
+
+	local surface = entity.surface
+
+	if not (surface and surface.valid) then
+		return
+	end
+
+	-- local position = entity.position
+	-- local force = entity.force
+	-- local quality = entity.quality
+
+	-- entity.destroy()
+
+	-- local tower = surface.create_entity({
+	-- 	name = "cerys-radiative-tower",
+	-- 	position = position,
+	-- 	force = force,
+	-- 	quality = quality,
+	-- 	create_build_effect_smoke = false,
+	-- })
+
+	storage.radiative_towers.towers[entity.unit_number] = {
+		entity = entity,
+		reactors = {},
+		is_player_tower = true,
+	}
+end
+
+Public.register_radiative_tower = function(entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -84,8 +119,6 @@ Public.register_heating_tower = function(entity)
 		},
 		surface = entity.surface,
 	})
-
-	-- TODO: Create lamps for each heating radius that don't require power
 
 	storage.radiative_towers.towers[entity.unit_number] = {
 		entity = entity,
@@ -127,13 +160,13 @@ function Public.radiative_heaters_temperature_tick()
 
 			storage.radiative_towers.towers[unit_number] = nil
 		else
-			Public.apply_temperature_drop(tower)
+			Public.apply_temperature_drop(tower, tower.is_player_tower)
 		end
 	end
 end
 
-function Public.heating_radius_from_temperature_above_zero(temperature_above_zero)
-	local max_heating_radius = MAX_HEATING_RADIUS
+function Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
+	local max_heating_radius = is_player_tower and MAX_HEATING_RADIUS_PLAYER or MAX_HEATING_RADIUS
 	local temperature_interval = TEMPERATURE_INTERVAL
 
 	if common.HARDCORE_ON then
@@ -144,12 +177,12 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))
 end
 
-function Public.apply_temperature_drop(valid_tower)
+function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local e = valid_tower.entity
 
 	local temperature_above_zero = e.temperature - Public.TEMPERATURE_ZERO
 
-	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero)
+	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
 
 	if common.DEBUG_HEATERS_FUELED then
 		heating_radius = MAX_HEATING_RADIUS

@@ -13,7 +13,8 @@
         "Flare Stack >= 3.0.3",
         "PlanetsLib >= 1.2.6",
         "? Planet-Hopper",
-        "? visible-planets >= 1.2.11"
+        "? visible-planets >= 1.2.11",
+        "! PlutoniumEnergy"
     ],
     "space_travel_required": true,
     "package": {

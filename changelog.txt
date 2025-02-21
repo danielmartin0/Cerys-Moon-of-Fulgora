@@ -1,37 +1,35 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: ????
-  Info:
-    - 2.0.0 reduces grind in earlier sections of the game. Note that Cerys is still trickier than most vanilla planets. It also includes one breaking change: Cerysian science packs now require repair parts instead of ammonia.
   Features:
-    
+    - Version 2.0! Constructable radiative heaters, reduced grind, and dynamic lighting on Cerys. One breaking change: Cerysian science packs now require repair parts instead of ammonia.
   Changes:
-    - Concrete can now only be placed over Cerys water if the water if frozen.
-    - Offshore pumps now explode when their ice freezes over (leaving a ghost).
-    - Asteroids on Cerys no longer prevent building placement.
-    - Crafting Cerysian science now requires ancient structure repair parts instead of ammonia, making repair parts less of a one-off product. It also takes 3 superconductors (from 1), and 5 U-238 (from 6).
-    - 'Moon discovery Cerys' no longer has 'Planet discovery Fulgora' as a prerequisite, indicating that Cerys can be completed first.
+    - Concrete can now only be placed over Cerys water if the water is frozen.
+    - Cerysian science packs now require ancient structure repair parts instead of ammonia, making repair parts less of a one-off product. It also now 3 superconductors (from 1), and 5 U-238 (from 6).
+    - Offshore pumps explode when their ice freezes over (leaving a ghost).
     - Ancient structure repair parts moved to the Intermediate Products tab.
+    - Asteroids on Cerys no longer prevent building placement.
   Balancing:
-    - Fulgoran ruins provide more gears (+40%), less concrete (-55%), and are more common.
+    - Endgame science productivity bonuses no longer apply to Cerys technologies.
+    - Changed to nuclear scrap recycling: pipes (+42%), heat pipes (+14%), stone bricks (-50%).
+    - Fulgoran ruins provide more gears (+32%), less concrete (-55%), and are more common.
     - Ammonia produced by nitrogen-rich mineral processing reduced (-50%).
     - Heating towers now heat up and cool down faster (+100%) and have a max temperature of 150 (from 200).
-    - Changed to scrap recycling yields: pipes (+42%), heat pipes (+14%), stone bricks (-50%).
-    - Dropped the cost of repairing Fulgoran assemblers: cryogenic plants (-25%), crushers (-25%).
-    - Changes to asteroid spawns: Small metallic (-18%), medium metallic (+27%), oxide (-9%).
+    - Tweaks to Fulgoran repair costs: parts for cryogenic plants (-25%), parts for crushers (-25%), processing units for crushers (+50%).
     - Changes to mining speeds: Methane ice crystals (+67%), nitrogen-rich minerals (-50%).
-    - Changes to crafting speeds: ancient structure repair parts (-20%), methane ice dissociation (-16%), nitrogen-rich mineral processing (+300%).
+    - Changes to asteroid spawns: Small metallic (-18%), medium metallic (+27%), oxide (-9%).
     - Crushers have increased energy consumption (+60%).
-    - Tweaks to research costs. In particular, Advanced structure repair no longer requires logistic science.
-    - Crafting Cerys labs now require iron gear wheels instead of iron plates.
-    - Nuclear fuel reprocessing now produces additional U-238, enabling self-sustaining mixed-oxide reactors on space platforms.
-    - Increased the initial tech loudout in 'Start on Cerys' mode.
+    - Changes to crafting speeds: ancient structure repair parts (-20%), methane ice dissociation (-16%), nitrogen-rich mineral processing (+300%).
+    - Various tech tree tweaks.
+    - New recipe for Cerys labs.
     - An extra crusher spawns on Cerys.
+    - Nuclear fuel reprocessing now produces more U-238 to support self-sustaining mixed-oxide reactors in space.
+    - Increased the initial tech loudout in 'Start on Cerys' mode.
   Graphics:
-    - Graphical improvements, including a new icon for the Cerysian science pack (thanks Hornwitser!)
+    - Graphical improvements.
   Modding:
-    - More compatibility: If Fulgora has been hidden or removed, Cerys orbits another planet with lightning. More electric engine recipes are excluded on Cerys.
-    - Cerys' behavior of overriding certain recycling recipes to their vanilla form is now configurable.
+    - Compatibility patches: If Fulgora has been hidden or removed, Cerys orbits another planet with lightning. More electric engine recipes are excluded on Cerys. Compatibility with Picker Dollies.
+    - New setting to stop Cerys overwriting certain recycling recipes to their vanilla form.
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.45
 Date: 2025-02-20

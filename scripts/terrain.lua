@@ -207,6 +207,7 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 		if is_rock then
 			new_tile = "cerys-dry-ice-on-land"
 		else
+			-- new_tile = "dirt-1"
 			new_tile = "cerys-dry-ice-on-water"
 		end
 	end

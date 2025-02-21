@@ -12,28 +12,11 @@ local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
 local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
+local picker_dollies = require("compat.picker-dollies")
 
 local Public = {}
 
 -- Highest-level file besides control.lua.
-
-script.on_configuration_changed(function()
-	local surface = game.surfaces["cerys"]
-
-	if not (surface and surface.valid) then
-		return
-	end
-
-	if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
-		if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
-			nuclear_reactor.register_reactor_if_missing(surface)
-
-			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
-				init.create_reactor(surface)
-			end
-		end
-	end
-end)
 
 script.on_event({
 	defines.events.on_pre_surface_cleared,
@@ -62,7 +45,7 @@ script.on_event({
 	end
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
-		radiative_towers.register_heating_tower(entity)
+		radiative_towers.register_radiative_tower(entity)
 	elseif entity.name == "cerys-charging-rod" then
 		rods.built_charging_rod(entity, event.tags or {})
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
@@ -79,6 +62,8 @@ script.on_event({
 		repair.scaffold_on_build(entity, player)
 	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
+	elseif entity.type == "solar-panel" then
+		lighting.register_solar_panel(entity)
 	end
 end)
 
@@ -226,6 +211,7 @@ function Public.cerys_tick(surface, tick)
 	if tick % 60 == 0 then
 		space.spawn_asteroid(surface)
 		cooling.tick_60_cool_heat_entities()
+		Public.check_thankyou_toast(surface)
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
@@ -252,11 +238,16 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			return
 		end
 
-		radiative_towers.register_heating_tower_contracted(entity)
+		radiative_towers.register_radiative_tower_contracted(entity)
 	elseif effect_id == "cerys-fulgoran-crusher-created" then
 		local entity = event.target_entity
 		if entity and entity.valid then
 			crusher.register_crusher(entity)
+		end
+	elseif effect_id == "cerys-player-radiative-tower-created" then
+		local entity = event.target_entity
+		if entity and entity.valid then
+			radiative_towers.register_player_radiative_tower(entity)
 		end
 	end
 end)
@@ -269,53 +260,53 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 			player.exit_cutscene()
 		end
 
-		player.force.technologies["moon-discovery-cerys"].research_recursive()
-		player.force.technologies["recycling"].research_recursive()
-		player.force.technologies["bulk-inserter"].research_recursive()
-		player.force.technologies["automated-rail-transportation"].research_recursive()
-		player.force.technologies["uranium-ammo"].research_recursive()
-		player.force.technologies["solar-energy"].research_recursive() -- if not for energy shield prerequisite, this tech might need to be a prerequisite
-		player.force.technologies["steel-axe"].research_recursive()
 		player.force.technologies["advanced-combinators"].research_recursive()
-		player.force.technologies["electric-mining-drill"].research_recursive()
-		player.force.technologies["radar"].research_recursive()
-		player.force.technologies["construction-robotics"].research_recursive()
-		player.force.technologies["electric-energy-distribution-2"].research_recursive()
-		player.force.technologies["efficiency-module-2"].research_recursive()
-		player.force.technologies["productivity-module-2"].research_recursive()
-		player.force.technologies["speed-module-2"].research_recursive()
-		player.force.technologies["quality-module-2"].research_recursive()
-		player.force.technologies["toolbelt"].research_recursive()
-		player.force.technologies["lamp"].research_recursive()
-		player.force.technologies["mining-productivity-1"].research_recursive()
-		player.force.technologies["laser-shooting-speed-3"].research_recursive()
-		player.force.technologies["physical-projectile-damage-6"].research_recursive()
-		player.force.technologies["fission-reactor-equipment"].research_recursive()
+		player.force.technologies["atomic-bomb"].research_recursive()
+		player.force.technologies["automated-rail-transportation"].research_recursive()
 		player.force.technologies["automation-3"].research_recursive()
-		player.force.technologies["logistics-3"].research_recursive()
-		player.force.technologies["nuclear-fuel-reprocessing"].research_recursive()
-		player.force.technologies["effect-transmission"].research_recursive()
-		player.force.technologies["electromagnetic-plant"].research_recursive()
-		player.force.technologies["discharge-defense-equipment"].research_recursive()
-		player.force.technologies["repair-pack"].research_recursive()
-		player.force.technologies["gun-turret"].research_recursive()
-		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
-		player.force.technologies["research-speed-2"].research_recursive()
-		player.force.technologies["inserter-capacity-bonus-3"].research_recursive()
-		player.force.technologies["worker-robots-speed-2"].research_recursive()
-		player.force.technologies["worker-robots-storage-2"].research_recursive()
 		player.force.technologies["battery-equipment"].research_recursive()
 		player.force.technologies["belt-immunity-equipment"].research_recursive()
-		player.force.technologies["exoskeleton-equipment"].research_recursive()
-		player.force.technologies["personal-roboport-equipment"].research_recursive()
-		player.force.technologies["night-vision-equipment"].research_recursive()
-		player.force.technologies["stronger-explosives-3"].research_recursive()
-		player.force.technologies["fluid-wagon"].research_recursive()
-		player.force.technologies["land-mine"].research_recursive()
-		player.force.technologies["atomic-bomb"].research_recursive()
 		player.force.technologies["braking-force-2"].research_recursive()
+		player.force.technologies["bulk-inserter"].research_recursive()
+		player.force.technologies["construction-robotics"].research_recursive()
+		player.force.technologies["discharge-defense-equipment"].research_recursive()
+		player.force.technologies["effect-transmission"].research_recursive()
+		player.force.technologies["efficiency-module-2"].research_recursive()
+		player.force.technologies["electric-energy-distribution-2"].research_recursive()
+		player.force.technologies["electric-mining-drill"].research_recursive()
+		player.force.technologies["electromagnetic-plant"].research_recursive()
 		player.force.technologies["elevated-rail"].research_recursive()
+		player.force.technologies["exoskeleton-equipment"].research_recursive()
+		player.force.technologies["fission-reactor-equipment"].research_recursive()
+		player.force.technologies["fluid-wagon"].research_recursive()
 		player.force.technologies["gate"].research_recursive()
+		player.force.technologies["gun-turret"].research_recursive()
+		player.force.technologies["inserter-capacity-bonus-3"].research_recursive()
+		player.force.technologies["lamp"].research_recursive()
+		player.force.technologies["land-mine"].research_recursive()
+		player.force.technologies["laser-shooting-speed-3"].research_recursive()
+		player.force.technologies["logistics-3"].research_recursive()
+		player.force.technologies["mining-productivity-2"].research_recursive()
+		player.force.technologies["moon-discovery-cerys"].research_recursive()
+		player.force.technologies["night-vision-equipment"].research_recursive()
+		player.force.technologies["nuclear-fuel-reprocessing"].research_recursive()
+		player.force.technologies["personal-roboport-equipment"].research_recursive()
+		player.force.technologies["physical-projectile-damage-6"].research_recursive()
+		player.force.technologies["productivity-module-2"].research_recursive()
+		player.force.technologies["quality-module-2"].research_recursive()
+		player.force.technologies["radar"].research_recursive()
+		player.force.technologies["recycling"].research_recursive()
+		player.force.technologies["repair-pack"].research_recursive()
+		player.force.technologies["research-speed-2"].research_recursive()
+		player.force.technologies["solar-energy"].research_recursive()
+		player.force.technologies["speed-module-2"].research_recursive()
+		player.force.technologies["steel-axe"].research_recursive()
+		player.force.technologies["stronger-explosives-3"].research_recursive()
+		player.force.technologies["toolbelt"].research_recursive()
+		player.force.technologies["uranium-ammo"].research_recursive()
+		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
+		player.force.technologies["worker-robots-speed-2"].research_recursive()
+		player.force.technologies["worker-robots-storage-2"].research_recursive()
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then
@@ -377,6 +368,73 @@ script.on_event({
 			end
 		end
 	end
+end)
+
+script.on_configuration_changed(function()
+	local surface = game.surfaces["cerys"]
+
+	if surface and surface.valid then
+		if storage.cerys then -- Why this check? The surface could have been generated in a non-standard way, and if that is the case, we want to let on_chunk_generated initialize the cerys storage before doing anything else.
+			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
+				nuclear_reactor.register_reactor_if_missing(surface)
+
+				if
+					not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
+				then
+					init.create_reactor(surface)
+				end
+			end
+		end
+	end
+
+	picker_dollies.add_picker_dollies_blacklists()
+end)
+
+function Public.check_thankyou_toast(surface)
+	if storage.thankyou_message_timer and game.tick >= storage.thankyou_message_timer then
+		storage.thankyou_message_timer = nil
+
+		if settings.global["cerys-disable-kofi-toast"].value then
+			return
+		end
+
+		surface.print({
+			"",
+			"[font=default-game] >>",
+			{ "cerys.kofi-toast" },
+			"[/font]",
+		}, { color = { 164, 135, 255 } })
+	end
+end
+
+script.on_event(defines.events.on_rocket_launch_ordered, function(event)
+	if storage.thankyou_message_triggered then
+		return
+	end
+
+	if
+		not (
+			event.rocket
+			and event.rocket.valid
+			and event.rocket.name ~= "planet-hopper"
+			and event.rocket.surface
+			and event.rocket.surface.valid
+			and event.rocket.surface.name == "cerys"
+			and event.rocket.cargo_pod
+			and event.rocket.cargo_pod.valid
+			and event.rocket.cargo_pod.get_passenger()
+		)
+	then
+		return
+	end
+
+	local player = event.rocket.cargo_pod.get_passenger().player
+	if not (player and player.valid) then
+		return
+	end
+
+	storage.thankyou_message_triggered = true
+	storage.thankyou_message_timer = game.tick + 5 * 60
 end)
 
 return Public

@@ -1,6 +1,19 @@
 data:extend({
 	{
 		type = "recipe",
+		name = "cerys-radiative-tower",
+		category = "crafting",
+		energy_required = 6,
+		ingredients = {
+			{ type = "item", name = "refined-concrete", amount = 20 },
+			{ type = "item", name = "steel-plate", amount = 20 },
+			{ type = "item", name = "processing-unit", amount = 10 },
+		},
+		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
+		enabled = true, -- TODO: Remove
+	},
+	{
+		type = "recipe",
 		name = "cerysian-science-pack",
 		always_show_made_in = true,
 		category = "fulgoran-cryogenics",
@@ -168,7 +181,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "transport-belt", amount = 6 },
 			{ type = "item", name = "advanced-circuit", amount = 30 },
-			{ type = "item", name = "iron-gear-wheel", amount = 15 },
+			{ type = "item", name = "copper-plate", amount = 15 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,

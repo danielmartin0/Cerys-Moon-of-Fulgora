@@ -46,7 +46,10 @@ Public.GAS_NAMES = {
 
 Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 17
-Public.BRIGHTNESS_VISUAL_WEIGHTS = { 0.2, 0.23, 0.21 }
+Public.DAY_LENGTH_MINUTES = 5 -- Fulgora is 3 minutes
+Public.BRIGHTNESS_VISUAL_WEIGHTS = { 1 / 0.85, 1 / 0.85, 1 / 085 }
+Public.BRIGHTNESS_VISUAL_WEIGHTS = { 500, 500, 500 }
+Public.MIN_BRIGHTNESS = 0
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 75
 
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
@@ -54,8 +57,8 @@ function Public.get_cerys_surface_stretch_factor(cerys_surface)
 		/ math.min(cerys_surface.map_gen_settings.height / 2, Public.CERYS_RADIUS)
 	if stretch_factor > 3 then
 		-- crash the game, the reactor's probably on water:
-		local foo = nil
-		game.print(foo.bar)
+		local too_much_ribbons = nil
+		game.print(too_much_ribbons.oh_dear)
 	end
 	return stretch_factor
 end

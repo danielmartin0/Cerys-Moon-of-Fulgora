@@ -24,11 +24,6 @@ local reactor = {
 		effectivity = 1,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
-		light_flicker = {
-			color = { 1, 0.57, 0.57 },
-			minimum_intensity = 0.15,
-			maximum_intensity = 0.15,
-		},
 	},
 	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
@@ -73,7 +68,12 @@ local reactor = {
 	},
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
-	circuit_connector = circuit_connector_definitions["heating-tower"],
+	circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
+		variation = 30,
+		main_offset = util.by_pixel(5, -5),
+		shadow_offset = util.by_pixel(27, 8),
+		show_shadow = false,
+	}),
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	autoplace = {
 		probability_expression = "0",

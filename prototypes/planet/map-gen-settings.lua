@@ -14,6 +14,7 @@ planet_map_gen.cerys = function()
 			["tile"] = {
 				treat_missing_as_default = false,
 				settings = {
+					-- ["dirt-1"] = {},
 					["cerys-empty-space-3"] = {},
 					["cerys-ice-on-water"] = {},
 					["cerys-water-puddles"] = {},

@@ -197,7 +197,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nuclear_scrap",
-		expression = "max(0, ceil(cerys_nuclear_scrap_forced - 0.1)) + \z
+		expression = "max(0, ceil(cerys_nuclear_scrap_forced)) + \z
 			max(0, multioctave_noise{\z
 				x = cerys_x_surface, \z
 				y = cerys_y_surface, \z
@@ -206,7 +206,7 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 10, \z
-				output_scale = 220} \z
+				output_scale = 230} \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 200 * cerys_script_occupied_terrain \z
@@ -218,7 +218,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
-		expression = "22 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
+		expression = "24 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
@@ -277,10 +277,10 @@ data:extend({
 				seed0 = map_seed, \z
 				seed1 = 600, \z
 				octaves = 3, \z
-				persistence = 0.4, \z
-				input_scale = slider_rescale(control:cerys_methane_ice:frequency, 3) / 8, \z
-				output_scale = 1} \z
-				* (130 - 0.2 * surface_distance) - (130 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
+				persistence = 0.5, \z
+				input_scale = slider_rescale(control:cerys_methane_ice:frequency, 3) / 10, \z
+				output_scale = 1} * (150 - 0.4 * surface_distance) \z
+				- (130 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
 			- 400 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z

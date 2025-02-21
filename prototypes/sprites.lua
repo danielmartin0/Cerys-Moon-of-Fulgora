@@ -1,6 +1,25 @@
 data:extend({
 	{
 		type = "sprite",
+		name = "cerys-solar-light",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png", -- 2400-width circle, 60px Gaussian blur. higher blur looks better but has more artifacts
+		priority = "extra-high-no-scale",
+		width = 4096,
+		height = 4096,
+		draw_as_light = true,
+	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-inverted",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png",
+		priority = "extra-high-no-scale",
+		width = 4096,
+		height = 4096,
+		draw_as_light = true,
+		invert_colors = true,
+	},
+	{
+		type = "sprite",
 		name = "cerys-solar-wind-particle",
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
 		priority = "extra-high-no-scale",

@@ -44,7 +44,7 @@ PlanetsLib:extend({
 		},
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
-			["day-night-cycle"] = 4.5 * 60 * 60, -- Fulgora is 3m
+			["day-night-cycle"] = common.DAY_LENGTH_MINUTES * 60 * 60,
 			["magnetic-field"] = 120, -- Fulgora is 99
 			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,

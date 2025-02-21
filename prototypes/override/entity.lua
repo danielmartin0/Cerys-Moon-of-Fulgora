@@ -1,4 +1,8 @@
-if data.raw.planet.fulgora.lightning_properties and data.raw.planet.fulgora.lightning_properties.priority_rules then
+if
+	data.raw.planet.fulgora
+	and data.raw.planet.fulgora.lightning_properties
+	and data.raw.planet.fulgora.lightning_properties.priority_rules
+then
 	table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 		type = "prototype",
 		string = "cerys-charging-rod",
