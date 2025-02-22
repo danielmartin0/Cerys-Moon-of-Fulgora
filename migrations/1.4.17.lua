@@ -10,8 +10,6 @@ end
 local common = require("common")
 local radiative_towers = require("scripts.radiative-tower")
 
-surface.brightness_visual_weights = common.BRIGHTNESS_VISUAL_WEIGHTS
-
 if storage.radiative_towers and storage.radiative_towers.towers then
 	for r = 1, common.LAMP_COUNT do
 		local existing_lamps = surface.find_entities_filtered({ name = "radiative-tower-lamp-" .. r })

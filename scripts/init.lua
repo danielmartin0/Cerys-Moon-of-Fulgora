@@ -20,9 +20,6 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 		surface = game.planets["cerys"].create_surface()
 	end
 
-	surface.min_brightness = common.MIN_BRIGHTNESS
-	surface.brightness_visual_weights = common.BRIGHTNESS_VISUAL_WEIGHTS
-
 	Public.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)
 

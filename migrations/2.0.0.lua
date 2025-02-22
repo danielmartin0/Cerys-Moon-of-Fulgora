@@ -1,3 +1,5 @@
+local common = require("common")
+
 if not storage.cerys then
 	return
 end

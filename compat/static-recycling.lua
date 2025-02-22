@@ -1,4 +1,4 @@
-if settings.startup["cerys-preserve-vanilla-recycling-recipes"].value then
+if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 	data.raw["recipe"]["pipe-recycling"]["ingredients"] = { { type = "item", name = "pipe", amount = 1 } }
 	data.raw["recipe"]["pipe-recycling"]["results"] = {
 		{ type = "item", name = "iron-plate", amount = 0, extra_count_fraction = 0.25 },

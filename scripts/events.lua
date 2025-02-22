@@ -154,7 +154,7 @@ function Public.cerys_tick(surface, tick)
 	crusher.tick_1_check_crusher_quality_upgrades(surface)
 
 	if tick % 3 == 0 then
-		lighting.tick_3_update_light_position()
+		lighting.tick_3_update_lights()
 	end
 
 	if

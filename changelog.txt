@@ -1,8 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: ????
-  Features:
-    - Version 2.0! Constructable radiative heaters, reduced grind, and dynamic lighting on Cerys. One breaking change: Cerysian science packs now require repair parts instead of ammonia.
+  Info:
+    - Version 2.0! Dynamic lighting on Cerys, greatly reduced grind, and player-buildable radiative heaters.
+    - One breaking change: Cerysian science packs now require repair parts instead of ammonia.
   Changes:
     - Concrete can now only be placed over Cerys water if the water is frozen.
     - Cerysian science packs now require ancient structure repair parts instead of ammonia, making repair parts less of a one-off product. It also now 3 superconductors (from 1), and 5 U-238 (from 6).

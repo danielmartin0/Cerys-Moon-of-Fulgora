@@ -2,9 +2,10 @@ local common = require("common")
 
 local Public = {}
 
+-- local DAY_LENGTH = 0.5 * 60 * 60
 local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
-function Public.tick_3_update_light_position()
+function Public.tick_3_update_lights()
 	if not storage.cerys then
 		return
 	end
@@ -15,43 +16,63 @@ function Public.tick_3_update_light_position()
 		return
 	end
 
+	if settings.global["cerys-dynamic-lighting"].value then
+		surface.brightness_visual_weights = { 1000000, 1000000, 1000000 }
+		surface.min_brightness = 0
+	else
+		surface.brightness_visual_weights = { 0.2, 0.23, 0.21 }
+		surface.min_brightness = 0.2
+		surface.solar_power_multiplier = 1
+		return
+	end
+
+	local R = common.get_cerys_semimajor_axis(surface)
+	local box_over_circle = common.SOLAR_IMAGE_SIZE / common.SOLAR_IMAGE_CIRCLE_SIZE
+
 	storage.cerys.light = storage.cerys.light or {}
 	storage.cerys.solar_panels = storage.cerys.solar_panels or {}
 
 	local elapsed_ticks = game.tick - (storage.cerys.creation_tick or 0)
-	local modulo_ticks = elapsed_ticks % DAY_LENGTH
-	local daytime
-	if modulo_ticks < DAY_LENGTH * 5 / 10 then
-		daytime = 0
-	elseif modulo_ticks < DAY_LENGTH * 7 / 10 then
-		daytime = 0.5 * (modulo_ticks - DAY_LENGTH * 5 / 10) / (DAY_LENGTH * 2 / 10)
-	elseif modulo_ticks < DAY_LENGTH * 8 / 10 then
-		daytime = 0.5
+
+	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
+
+	local adjusted_daytime
+	if daytime < 5 / 10 then
+		adjusted_daytime = 0
+	elseif daytime < 7 / 10 then
+		adjusted_daytime = 0.5 * (daytime - 5 / 10) / (2 / 10)
+	elseif daytime < 8 / 10 then
+		adjusted_daytime = 0.5
 	else
-		daytime = 0.5 + 0.5 * (modulo_ticks - DAY_LENGTH * 8 / 10) / (DAY_LENGTH * 2 / 10)
+		adjusted_daytime = 0.5 + 0.5 * (daytime - 8 / 10) / (2 / 10)
 	end
+	-- local adjusted_daytime = daytime
 
-	local phase = (daytime + 0.25) * 2 * math.pi
+	local phase = (adjusted_daytime + 0.25) * 2 * math.pi
 
-	local rescaled_phase = (1 - math.sin(phase % math.pi)) * ((phase % math.pi) < math.pi / 2 and 1 or -1)
+	-- local naive_x = (1 - (phase % math.pi) / (math.pi / 2))
+	local naive_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
 
-	local R = common.get_cerys_semimajor_axis(surface)
-	local box_over_circle = 4096 / 2400 -- From the original svg
+	local regularized_naive_x = math.max(math.min(naive_x, 0.9), -0.9)
 
-	-- These factors make it different to the simple transit of a circle:
-	local regularized_rescaled_phase = math.max(math.min(rescaled_phase, 0.92), -0.92)
-	local circle_scaling_effect = 1 / (1 - math.abs(regularized_rescaled_phase))
-	local elbow_room_factor = 1 + 0.5 * math.sin(phase) ^ 4 -- So the circle isn't a perfectly snug fit
+	-- local circle_scaling_effect = 1
+	local circle_scaling_effect = 1 / (1 - math.abs(regularized_naive_x))
 
-	local light_position = { x = R * regularized_rescaled_phase * circle_scaling_effect + R * rescaled_phase, y = 0 }
+	-- local elbow_room_factor = 1
+	local elbow_room_factor = 1 + 0.4 * math.sin(phase) ^ 4
 
-	local scale_1 = box_over_circle / 64 * (R * circle_scaling_effect) * elbow_room_factor
-	local scale_2 = box_over_circle / 64 * (R * circle_scaling_effect) * elbow_room_factor
+	local light_x = R * regularized_naive_x * circle_scaling_effect + R * naive_x
+	local light_radius = (R * circle_scaling_effect) * elbow_room_factor
 
 	local light_1 = storage.cerys.light.rendering_1
 	local light_2 = storage.cerys.light.rendering_2
 
-	if (phase % (2 * math.pi)) < math.pi then
+	local light_scale = light_radius * box_over_circle / 64
+	local light_position = { x = light_x, y = 0 }
+
+	local is_white_circle = (phase % (2 * math.pi)) < math.pi
+
+	if is_white_circle then
 		if light_2 then
 			light_2.destroy()
 			storage.cerys.light.rendering_2 = nil
@@ -59,13 +80,13 @@ function Public.tick_3_update_light_position()
 
 		if light_1 and light_1.valid then
 			light_1.target = light_position
-			light_1.x_scale = scale_1
-			light_1.y_scale = scale_1 * 1.05
+			light_1.x_scale = light_scale
+			light_1.y_scale = light_scale
 		else
 			light_1 = rendering.draw_sprite({
 				sprite = "cerys-solar-light",
-				x_scale = scale_1,
-				y_scale = scale_1,
+				x_scale = light_scale,
+				y_scale = light_scale,
 				target = light_position,
 				surface = surface,
 			})
@@ -80,13 +101,13 @@ function Public.tick_3_update_light_position()
 
 		if light_2 and light_2.valid then
 			light_2.target = light_position
-			light_2.x_scale = scale_2
-			light_2.y_scale = scale_2 * 1.05
+			light_2.x_scale = light_scale
+			light_2.y_scale = light_scale
 		else
 			light_2 = rendering.draw_sprite({
 				sprite = "cerys-solar-light-inverted",
-				x_scale = scale_2,
-				y_scale = scale_2,
+				x_scale = light_scale,
+				y_scale = light_scale,
 				target = light_position,
 				surface = surface,
 			})
@@ -108,47 +129,93 @@ function Public.tick_3_update_light_position()
 		})
 	end
 
-	-- local total_brightness = 0
-	-- local panel_count = 0
+	local total_brightness = 0
+	local panel_count = 0
 
-	-- for unit_number, panel in pairs(storage.cerys.solar_panels) do
-	-- 	if panel.entity.valid then
-	-- 		local dx = panel.entity.position.x - light_position.x
-	-- 		local dy = panel.entity.position.y - light_position.y
-	-- 		local d = (dx * dx + dy * dy) ^ (1 / 2)
+	local ideal_circle_scaling_effect = 1 / (1 - math.abs(naive_x))
+	local ideal_light_x = R * naive_x * ideal_circle_scaling_effect + R * naive_x
+	local ideal_light_radius = (R * ideal_circle_scaling_effect) * elbow_room_factor
 
-	-- 		local relative_d = d / R
+	for unit_number, panel in pairs(storage.cerys.solar_panels) do
+		if panel.entity and panel.entity.valid then
+			-- if panel.entity.is_connected_to_electric_network() then
+			if naive_x == 1 then
+				total_brightness = total_brightness + 0.5
+				panel_count = panel_count + 1
+			else
+				local relative_x = (panel.entity.position.x - ideal_light_x) / ideal_light_radius
+				local relative_y = panel.entity.position.y / ideal_light_radius
 
-	-- 		local min_d = 0.2
-	-- 		local max_d = 1.1
+				local d = (relative_x * relative_x + relative_y * relative_y) ^ (1 / 2)
 
-	-- 		local efficiency
-	-- 		if relative_d <= min_d then
-	-- 			efficiency = 1
-	-- 		elseif relative_d <= max_d then
-	-- 			efficiency = (max_d - relative_d) / (max_d - min_d)
-	-- 		else
-	-- 			efficiency = 0
-	-- 		end
+				local d1 = 0.8
+				local d2 = 1.2
 
-	-- 		log("distance: " .. relative_d .. " efficiency: " .. efficiency)
+				local efficiency
+				if d <= d1 then
+					if is_white_circle then
+						efficiency = 1
+					else
+						efficiency = 0
+					end
+				elseif d <= d2 then
+					if is_white_circle then
+						efficiency = (d2 - d) / (d2 - d1)
+					else
+						efficiency = (d - d1) / (d2 - d1)
+					end
+				else
+					if is_white_circle then
+						efficiency = 0
+					else
+						efficiency = 1
+					end
+				end
 
-	-- 		total_brightness = total_brightness + efficiency
-	-- 		panel_count = panel_count + 1
-	-- 	else
-	-- 		storage.cerys.solar_panels[unit_number] = nil
-	-- 	end
-	-- end
+				total_brightness = total_brightness + efficiency
+				panel_count = panel_count + 1
+			end
+			-- end
+		else
+			storage.cerys.solar_panels[unit_number] = nil
+		end
+	end
 
-	-- local solar_power_multiplier = panel_count > 0 and (total_brightness / panel_count) or 1
-	-- surface.solar_power_multiplier = math.ceil(solar_power_multiplier * 50) / 50
+	local desired_solar_power_multiplier
+	if panel_count > 0 then
+		desired_solar_power_multiplier = total_brightness / panel_count
+	else
+		desired_solar_power_multiplier = 1
+	end
 
-	surface.daytime = daytime
+	local desired_solar_panel_bar_fullness = desired_solar_power_multiplier
 
-	surface.min_brightness = common.MIN_BRIGHTNESS
-	-- surface.daytime = 0
-	-- surface.daytime = 0.46 - 0.2 * solar_power_multiplier
-	surface.brightness_visual_weights = common.BRIGHTNESS_VISUAL_WEIGHTS
+	local game_daytime = 0.45 - 0.1995 * desired_solar_panel_bar_fullness -- Any closer to 0.25 and the engine complains
+
+	if desired_solar_panel_bar_fullness == 1 then
+		game_daytime = game_daytime - 1 / 3000 -- Somehow this helps avoid an oscillating value in the UI
+	end
+
+	surface.daytime = game_daytime
+	local vanilla_solar_power_multiplier = Public.vanilla_solar_power_multiplier(game_daytime)
+
+	if desired_solar_power_multiplier == 0 or desired_solar_power_multiplier == 1 then
+		surface.solar_power_multiplier = 1
+	else
+		surface.solar_power_multiplier = desired_solar_power_multiplier / vanilla_solar_power_multiplier
+	end
+end
+
+function Public.vanilla_solar_power_multiplier(daytime)
+	if daytime < 0.25 or daytime > 0.75 then
+		return 1
+	elseif daytime < 0.45 then
+		return 1 - (daytime - 0.25) / 0.2
+	elseif daytime < 0.55 then
+		return 0
+	else
+		return (daytime - 0.55) / 0.2
+	end
 end
 
 function Public.register_solar_panel(entity)
