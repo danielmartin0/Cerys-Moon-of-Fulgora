@@ -1,10 +1,11 @@
 local common = require("common")
 
+-- if settings.startup["cerys-dynamic-lighting"].value then
 data:extend({
 	{
 		type = "sprite",
 		name = "cerys-solar-light",
-		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png", -- 2400-width circle, 60px Gaussian blur. higher blur looks better but has more artifacts
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png",
 		priority = "no-atlas",
 		width = common.SOLAR_IMAGE_SIZE,
 		height = common.SOLAR_IMAGE_SIZE,
@@ -20,6 +21,10 @@ data:extend({
 		draw_as_light = true,
 		invert_colors = true,
 	},
+})
+-- end
+
+data:extend({
 	{
 		type = "sprite",
 		name = "cerys-solar-wind-particle",

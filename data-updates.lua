@@ -4,7 +4,7 @@ require("prototypes.override.entity")
 require("prototypes.override.recipe")
 require("prototypes.override.item")
 
---== Find a suitable planet for Cerys to orbit if Fulgora is gone: ==--
+--== Find a suitable planet for Cerys to orbit if Fulgora is gone. ==--
 
 if not data.raw.planet["fulgora"] or data.raw.planet["fulgora"].hidden then
 	local new_planet = nil

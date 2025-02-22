@@ -162,6 +162,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "coal-synthesis",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "uranium-238-recycling-2",
+			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",

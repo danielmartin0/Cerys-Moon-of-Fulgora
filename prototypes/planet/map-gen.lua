@@ -1,7 +1,6 @@
 local common = require("common")
 
 data:extend({
-
 	{
 		type = "noise-expression",
 		name = "cerys_radius",
@@ -11,7 +10,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "map_distance",
-		expression = "(xx^2 + yy^2)^(1/2)",
+		expression = "(cerys_xx^2 + cerys_yy^2)^(1/2)",
 	},
 
 	{
@@ -50,7 +49,7 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "yy",
+		name = "cerys_yy",
 		expression = "y * cerys_stretch_factor",
 	},
 
@@ -68,7 +67,7 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "xx",
+		name = "cerys_xx",
 		expression = "x / cerys_stretch_factor",
 	},
 
@@ -160,10 +159,10 @@ data:extend({
 		type = "noise-expression",
 		name = "cerys_script_occupied_terrain",
 		expression = "max(0, \z
-		(1 / ((xx - (" .. tostring(common.REACTOR_POSITION.x) .. "))^2 + \z
-			(yy - (" .. tostring(common.REACTOR_POSITION.y) .. "))^2)^(1/2)) + \z
-			(1 / ((xx - (" .. tostring(common.LITHIUM_POSITION.x) .. "))^2 + \z
-			(yy - (" .. tostring(common.LITHIUM_POSITION.y) .. "))^2)^(1/2))\z
+		(1 / ((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x) .. "))^2 + \z
+			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y) .. "))^2)^(1/2)) + \z
+			(1 / ((cerys_xx - (" .. tostring(common.LITHIUM_POSITION.x) .. "))^2 + \z
+			(cerys_yy - (" .. tostring(common.LITHIUM_POSITION.y) .. "))^2)^(1/2))\z
 		)",
 	},
 	{
@@ -211,8 +210,8 @@ data:extend({
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 200 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z
-			 + min(0, (((xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
-			(yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 30) * 10)", -- Large patches in the center of the map look unpleasant
+			 + min(0, (((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
+			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 35) * 10)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{
@@ -284,8 +283,8 @@ data:extend({
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
 			- 400 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z
-			 + min(0, (((xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
-			(yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 40) * 10)", -- Large patches in the center of the map look unpleasant
+			 + min(0, (((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
+			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 40) * 10)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{
@@ -305,54 +304,54 @@ data:extend({
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_huge",
 		expression = "-0.6 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 1000, input_scale = 1/14}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 1000, input_scale = 1/14}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_big",
 		expression = "-0.7 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 2000, input_scale = 1/12}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 2000, input_scale = 1/12}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_medium",
 		expression = "-0.4 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 3000, input_scale = 1/10}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 3000, input_scale = 1/10}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_small",
 		expression = "-0.2 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 4000, input_scale = 1/8}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 4000, input_scale = 1/8}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_tiny",
 		expression = "-0.1 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 5000, input_scale = 1/7}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 5000, input_scale = 1/7}\z
 			- 10 * cerys_all_resources",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_ruin_tiny",
 		expression = "-0.6 \z
-			+ rpi(0.2) \z
-			- min(0, decorative_knockout) \z
-			+ decorative_mix_noise{seed = 6000, input_scale = 1/7}\z
+			+ cerys_rpi(0.2) \z
+			- min(0, cerys_decorative_knockout) \z
+			+ cerys_decorative_mix_noise{seed = 6000, input_scale = 1/7}\z
 			- 10 * cerys_all_resources",
 	},
 
@@ -378,5 +377,36 @@ data:extend({
 		type = "noise-expression",
 		name = "cerys_methane_iceberg_large", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
 		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "xx", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "yy", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-function",
+		name = "cerys_rpi", -- adapted from vanilla
+		parameters = { "survival" },
+		expression = "random_penalty{x = cerys_x_surface, y = cerys_y_surface, source = 1, amplitude = 1/survival} - 1",
+	},
+	{
+		type = "noise-function",
+		name = "cerys_decorative_mix_noise", -- adapted from vanilla
+		parameters = { "seed", "input_scale" },
+		expression = "-0.25\z
+		+ abs(multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, persistence = 0.65, seed0 = map_seed, seed1 = seed + 500, octaves = 2, input_scale = input_scale, output_scale = 0.8, offset_y = seed})\z
+		+ basis_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = seed, input_scale = input_scale, output_scale = 0.1, offset_x = seed}\z
+		+ basis_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = seed, input_scale = input_scale / 2, output_scale = 0.15, offset_x = seed}\z
+		+ basis_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = seed, input_scale = input_scale / 4, output_scale = 0.2, offset_x = seed}",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_decorative_knockout", -- adapted from vanilla
+		expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, persistence = 0.7, seed0 = map_seed, seed1 = 1300000, octaves = 2, input_scale = 1/2.5}",
 	},
 })

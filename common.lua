@@ -7,7 +7,8 @@ Public.DEBUG_NUCLEAR_REACTOR_START = false
 
 Public.HARDCORE_ON = settings.startup["cerys-hardcore-mode"].value
 
-Public.CERYS_RADIUS = 142
+Public.CERYS_RADIUS = 128
+-- Public.CERYS_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION = { x = 20, y = 29 }
 Public.LITHIUM_POSITION = { x = 111, y = -5 }
@@ -15,7 +16,7 @@ Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 17
 Public.DAY_LENGTH_MINUTES = 5 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 75
-Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400
+Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 
 Public.ROCK_TILES = {

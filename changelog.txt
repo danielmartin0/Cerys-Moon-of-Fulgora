@@ -2,22 +2,23 @@
 Version: 2.0.0
 Date: ????
   Info:
-    - Version 2.0! Dynamic lighting on Cerys, greatly reduced grind, and player-buildable radiative heaters.
-    - One breaking change: Cerysian science packs now require repair parts instead of ammonia.
+    - Version 2.0! Smaller moon surface, reduced gameplay grind, dynamic lighting, and player-buildable radiative heaters. Other changes are listed below.
+    - One change is breaking: Cerysian science packs now require repair parts instead of ammonia.
   Changes:
     - Concrete can now only be placed over Cerys water if the water is frozen.
-    - Cerysian science packs now require ancient structure repair parts instead of ammonia, making repair parts less of a one-off product. It also now 3 superconductors (from 1), and 5 U-238 (from 6).
     - Offshore pumps explode when their ice freezes over (leaving a ghost).
-    - Ancient structure repair parts moved to the Intermediate Products tab.
     - Asteroids on Cerys no longer prevent building placement.
+    - Rebalanced recipe for Cerysian science packs including ancient structure repair parts instead of ammonia.
+    - Ancient structure repair parts moved to the Intermediate Products tab.
+    - Uranium-238 recycling is now unlocked by a late-game tech rather than being banned completely.
   Balancing:
     - Endgame science productivity bonuses no longer apply to Cerys technologies.
     - Changed to nuclear scrap recycling: pipes (+42%), heat pipes (+14%), stone bricks (-50%).
-    - Fulgoran ruins provide more gears (+32%), less concrete (-55%), and are more common.
+    - Fulgoran ruins provide more gears (+32%) and less concrete (-55%).
     - Ammonia produced by nitrogen-rich mineral processing reduced (-50%).
     - Heating towers now heat up and cool down faster (+100%) and have a max temperature of 150 (from 200).
     - Tweaks to Fulgoran repair costs: parts for cryogenic plants (-25%), parts for crushers (-25%), processing units for crushers (+50%).
-    - Changes to mining speeds: Methane ice crystals (+67%), nitrogen-rich minerals (-50%).
+    - Changes to resource mining speeds: Methane ice crystals (+123%), nitrogen-rich minerals (-50%).
     - Changes to asteroid spawns: Small metallic (-18%), medium metallic (+27%), oxide (-9%).
     - Crushers have increased energy consumption (+60%).
     - Changes to crafting speeds: ancient structure repair parts (-20%), methane ice dissociation (-16%), nitrogen-rich mineral processing (+300%).

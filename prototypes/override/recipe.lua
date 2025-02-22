@@ -1,3 +1,6 @@
+local lib = require("lib")
+local merge = lib.merge
+
 --== Relaxations ==--
 
 if data.raw.recipe["recycler"] then
@@ -69,6 +72,12 @@ end
 --== Forbid recycling certain items on Cerys ==--
 
 if data.raw.recipe["uranium-238-recycling"] then
+	data:extend({
+		merge(data.raw.recipe["uranium-238-recycling"], {
+			name = "uranium-238-recycling-2", -- unlocked by a late-game tech
+			enabled = false,
+		}),
+	})
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], magnetic_field_restriction)
 end
 if data.raw.recipe["construction-robot-recycling"] then

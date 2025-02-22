@@ -80,7 +80,7 @@ data:extend({
 		name = "methane-ice",
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
-			mining_time = 0.6,
+			mining_time = 0.45,
 			result = "methane-ice",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",

@@ -73,28 +73,28 @@ data:extend({
 		name = "cerys-technology-compatibility-mode",
 		setting_type = "startup",
 		default_value = false,
-		order = "b",
+		order = "c",
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-quality-mechanics",
 		setting_type = "startup",
 		default_value = false,
-		order = "c",
+		order = "d",
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-enforce-vanilla-recycling-recipes",
 		setting_type = "startup",
 		default_value = true,
-		order = "d",
+		order = "e",
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-flare-stack-item-venting",
 		setting_type = "startup",
 		default_value = true,
-		order = "e",
+		order = "f",
 	},
 })
 
