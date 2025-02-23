@@ -140,15 +140,6 @@ data:extend({
 		order = "b-c",
 		default_import_location = "cerys",
 	}),
-	merge(data.raw.tool["electromagnetic-science-pack"], {
-		name = "fulgoran-cryogenics-progress",
-		localised_description = "nil",
-		hidden = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-cryogenics-progress.png",
-		icon_size = 200,
-		weight = 1 * 1000 * 1000000,
-		order = "j-a[cerys]-b[fulgoran-cryogenics-progress]",
-	}),
 	merge(data.raw.item["lab"], {
 		name = "cerys-lab",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png",

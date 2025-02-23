@@ -31,6 +31,7 @@ Date: ????
     - Fixed the method by which players can date the Fulgoran civilization giving an 'incorrect' value.
   Graphics:
     - Various graphical improvements.
+    - New icon for Fulgoran Cryogenics Progress to avoid confusion with science packs.
   Modding:
     - Full compatibility with Factory Planner. 'Technology compatibility mode' has been removed for now.
     - New setting to stop Cerys overwriting certain recycling recipes to their vanilla form.
