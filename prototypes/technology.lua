@@ -106,7 +106,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
-			count = 150,
+			count = 100,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -148,7 +148,7 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-plutonium-enhanced-fuel-reprocessing",
+		name = "cerys-mixed-oxide-waste-reprocessing",
 		effects = {
 			{
 				type = "unlock-recipe",
@@ -156,11 +156,7 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "nuclear-waste-solution-centrifuging",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "coal-synthesis",
+				recipe = "mixed-oxide-waste-centrifuging",
 			},
 			{
 				type = "unlock-recipe",
@@ -231,7 +227,7 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-lubricant-synthesis",
-			"cerys-plutonium-enhanced-fuel-reprocessing",
+			"cerys-mixed-oxide-waste-reprocessing",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"

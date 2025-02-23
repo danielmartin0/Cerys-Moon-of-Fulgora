@@ -15,21 +15,21 @@ local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 30
 local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 1210
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 12100
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 1100
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 11000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
-	["small-metallic-asteroid-planetary"] = 0.9,
-	["medium-metallic-asteroid-planetary"] = 1.4,
-	["small-carbonic-asteroid-planetary"] = 4.4,
-	["medium-carbonic-asteroid-planetary"] = 2.2,
+	["small-metallic-asteroid-planetary"] = 0.8,
+	["medium-metallic-asteroid-planetary"] = 1.3,
+	["small-carbonic-asteroid-planetary"] = 4,
+	["medium-carbonic-asteroid-planetary"] = 2,
 	["small-oxide-asteroid-planetary"] = 4,
 	["medium-oxide-asteroid-planetary"] = 2,
 }
 
 local MAX_CHUNKS_ON_GROUND = 15
 
-function Public.spawn_asteroid(surface)
+function Public.try_spawn_asteroid(surface)
 	local random_value = math.random() * 100
 	local chosen_name = nil
 	local running_total = 0
@@ -355,7 +355,6 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								has_uranium = true
 
 								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
-									* item.stack.count
 									* probability_multiplier
 									* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 

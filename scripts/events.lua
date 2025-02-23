@@ -177,7 +177,7 @@ function Public.cerys_tick(surface, tick)
 		end
 
 		if tick % (9 * solar_wind_tick_multiplier) == 0 then
-			local spawn_chance = 0.5 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
+			local spawn_chance = 0.45 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
 				space.spawn_solar_wind_particle(surface)
 			end
@@ -213,7 +213,7 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if tick % 60 == 0 then
-		space.spawn_asteroid(surface)
+		space.try_spawn_asteroid(surface)
 		cooling.tick_60_cool_heat_entities()
 		Public.check_thankyou_toast(surface)
 	end

@@ -1,3 +1,4 @@
+local common = require("common")
 local merge = require("lib").merge
 
 data:extend({
@@ -45,7 +46,7 @@ data:extend({
 	}),
 
 	merge(data.raw.recipe["nuclear-fuel-reprocessing"], {
-		name = "nuclear-waste-solution-centrifuging",
+		name = "mixed-oxide-waste-centrifuging",
 		always_show_made_in = true,
 		enabled = false,
 		icons = {
@@ -80,13 +81,13 @@ data:extend({
 		},
 		main_product = "",
 		ingredients = {
-			{ type = "fluid", name = "nuclear-waste-solution", amount = 50 },
+			{ type = "fluid", name = "mixed-oxide-waste-solution", amount = 50 },
 		},
 		energy_required = 45,
 		results = {
 			{ type = "fluid", name = "steam", amount = 50, temperature = 80 },
-			{ type = "item", name = "uranium-238", amount = 10 },
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
+			{ type = "item", name = "uranium-238", amount = (50 / 100 * common.REPROCESSING_U238_TO_U235_RATIO) },
 			{ type = "item", name = "plutonium-238", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 6 },
 		},
@@ -129,7 +130,7 @@ data:extend({
 			{ type = "fluid", name = "nitric-acid", amount = 20 },
 		},
 		results = {
-			{ type = "fluid", name = "nuclear-waste-solution", amount = 20 },
+			{ type = "fluid", name = "mixed-oxide-waste-solution", amount = 20 },
 		},
 		allow_decomposition = false,
 		allow_productivity = true, -- Partial opt-out of plutonium gameplay

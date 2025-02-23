@@ -68,7 +68,7 @@ end
 
 local tower_positions = hex_grid_positions({
 	seed = 2104,
-	grid_scale = 1,
+	grid_scale = 1.07,
 	avoid_final_region = true,
 	noise_size = 40,
 	noise_scale = 500,
@@ -83,9 +83,9 @@ end
 
 local cryo_plant_positions = hex_grid_positions({
 	seed = 4100,
-	grid_scale = 2.2,
+	grid_scale = 2,
 	avoid_final_region = false,
-	displacement = { x = 0, y = -4.5 },
+	displacement = { x = 2, y = -3.5 },
 	noise_size = 17,
 	noise_scale = 100,
 })
@@ -93,24 +93,20 @@ local cryo_plant_positions = hex_grid_positions({
 -- Mostly water positions:
 local crusher_positions = {
 	{
+		x = 20,
+		y = -81.5,
+	},
+	{
 		x = 15,
-		y = -92.5,
+		y = 58.5,
 	},
 	{
-		x = 11,
-		y = 66.5,
+		x = -66,
+		y = 53.5,
 	},
 	{
-		x = -72,
-		y = 59.5,
-	},
-	{
-		x = 107,
-		y = 25.5,
-	},
-	{
-		x = -74,
-		y = -75.5,
+		x = -31,
+		y = -46.5,
 	},
 }
 
@@ -227,8 +223,6 @@ function Public.create_towers(surface, area)
 		then
 			local p2 = { x = p.x, y = p.y }
 
-			Public.ensure_solid_foundation(surface, p2, 3, 4)
-
 			local colliding_simple_entities = surface.find_entities_filtered({
 				type = "simple-entity",
 				area = {
@@ -247,6 +241,8 @@ function Public.create_towers(surface, area)
 					force = "player",
 				})
 			then
+				Public.ensure_solid_foundation(surface, p2, 3, 4)
+
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-radiative-tower-contracted-container",
 					position = p2,
@@ -284,7 +280,7 @@ function Public.create_cryo_plants(surface, area)
 				entity.destroy()
 			end
 
-			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 5, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
+			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 3, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
 				Public.ensure_solid_foundation(surface, p3, 5, 5)
@@ -388,13 +384,15 @@ function Public.ensure_solid_foundation(surface, center, width, height)
 	local tiles = {}
 	for dx = -width / 2 + 0.5, width / 2 - 0.5 do
 		for dy = -height / 2 + 0.5, height / 2 - 0.5 do
-			local tile_underneath = surface.get_tile(center.x + dx, center.y + dy)
-			local tile_underneath_is_water = tile_underneath and tile_underneath.name == "cerys-dry-ice-on-water"
+			local x, y = center.x + dx, center.y + dy
+			local tile_underneath = surface.get_tile(x, y)
+			local tile_underneath_is_water = tile_underneath
+				and (tile_underneath.name == "cerys-dry-ice-on-water" or tile_underneath.name == "cerys-ice-on-water")
 
 			if tile_underneath_is_water then
 				table.insert(tiles, {
 					name = "cerys-concrete",
-					position = { x = math.floor(center.x) + dx, y = math.floor(center.y) + dy },
+					position = { x = x, y = y },
 				})
 			end
 		end

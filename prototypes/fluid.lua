@@ -26,7 +26,7 @@ data:extend({
 
 	{
 		type = "fluid",
-		name = "nuclear-waste-solution",
+		name = "mixed-oxide-waste-solution",
 		subgroup = "fluid",
 		default_temperature = 15,
 		base_color = { 0.7, 0.5, 1 }, -- nitric
@@ -36,6 +36,6 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-waste-solution-nitric.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
-		order = "b[new-fluid]-j[cerys]-b[nuclear-waste-solution]",
+		order = "b[new-fluid]-j[cerys]-b[mixed-oxide-waste-solution]",
 	},
 })

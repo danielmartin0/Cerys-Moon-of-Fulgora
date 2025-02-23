@@ -18,6 +18,7 @@ Public.DAY_LENGTH_MINUTES = 5 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 75
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
+Public.REPROCESSING_U238_TO_U235_RATIO = 20
 
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",
@@ -55,7 +56,7 @@ Public.GAS_NAMES = {
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
 	local stretch_factor = Public.CERYS_RADIUS
 		/ math.min(cerys_surface.map_gen_settings.height / 2, Public.CERYS_RADIUS)
-	if stretch_factor > 3 then
+	if cerys_surface.map_gen_settings.height < 128 then
 		-- crash the game, the reactor's probably on water:
 		local too_much_ribbons = nil
 		game.print(too_much_ribbons.oh_dear)

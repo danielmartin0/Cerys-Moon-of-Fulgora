@@ -68,7 +68,7 @@ data:extend({
 		autoplace = {
 			order = "b",
 			probability_expression = "cerys_nitrogen_rich_minerals",
-			richness_expression = "5000 + 1000 * cerys_nitrogen_rich_minerals ^ 2",
+			richness_expression = "ceil(500 + 100 * cerys_nitrogen_rich_minerals ^ 2)",
 		},
 		map_color = { 0, 0, 0 },
 		map_grid = true,

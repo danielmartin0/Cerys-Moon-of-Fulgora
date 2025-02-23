@@ -1,12 +1,11 @@
-local CIV_AGE_MY = 600
+local common = require("common")
 
-local U235_NATURAL_AMOUNT = 1 - 0.992745
-local U238_NATURAL_AMOUNT = 0.992745
+local CIV_AGE_MY = 2400
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
 
-local U235_RATIO = (U235_NATURAL_AMOUNT / U238_NATURAL_AMOUNT)
+local U235_RATIO = (1 / common.REPROCESSING_U238_TO_U235_RATIO)
 	* math.pow(0.5, CIV_AGE_MY / HALF_LIFE_235_MY)
 	/ math.pow(0.5, CIV_AGE_MY / HALF_LIFE_238_MY)
 

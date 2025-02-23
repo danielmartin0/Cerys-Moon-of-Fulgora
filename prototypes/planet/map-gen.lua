@@ -96,11 +96,6 @@ data:extend({
 			input_scale = 1 / 10, \z
 			output_scale = 1 / 40}",
 	},
-	{
-		type = "noise-expression",
-		name = "cerys_reactor_correction",
-		expression = "clamp(lerp(0, 1, map_distance / 100), 0, 1)",
-	},
 
 	{
 		type = "noise-expression",
@@ -157,21 +152,11 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "cerys_script_occupied_terrain",
-		expression = "max(0, \z
-		(1 / ((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x) .. "))^2 + \z
-			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y) .. "))^2)^(1/2)) + \z
-			(1 / ((cerys_xx - (" .. tostring(common.LITHIUM_POSITION.x) .. "))^2 + \z
-			(cerys_yy - (" .. tostring(common.LITHIUM_POSITION.y) .. "))^2)^(1/2))\z
-		)",
-	},
-	{
-		type = "noise-expression",
 		name = "cerys_water",
 		-- Heavily tuned:
 		expression = "max(0, multioctave_noise{\z
-			x = (cerys_x_surface * 0.2 + 77), \z
-			y = (cerys_y_surface * 0.2 + 77), \z
+			x = (cerys_x_surface * 0.22 + 77), \z
+			y = (cerys_y_surface * 0.22 + 77), \z
 			seed0 = 0, \z
 			seed1 = 1610, \z
 			octaves = 4, \z
@@ -185,13 +170,13 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nuclear_scrap_forced_spot_radius",
-		expression = "20 * (slider_rescale(control:cerys_nuclear_scrap:size, 2)^(1/2))",
+		expression = "16 * (slider_rescale(control:cerys_nuclear_scrap:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_nuclear_scrap_forced",
 		expression = "((cerys_nuclear_scrap_forced_spot_radius / \z
-			((cerys_x_surface + 40)^2 + (cerys_y_surface + 70)^2)^(1/2)) - 1)^3",
+			((cerys_x_surface + 38)^2 + (cerys_y_surface + 70)^2)^(1/2)) - 1)^3",
 	},
 	{
 		type = "noise-expression",
@@ -204,94 +189,106 @@ data:extend({
 				seed1 = 400, \z
 				octaves = 3, \z
 				persistence = 0.4, \z
-				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 10, \z
+				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 6, \z
 				output_scale = 230} \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
-			- 200 * cerys_script_occupied_terrain \z
 			- 10000 * cerys_water \z
-			 + min(0, (((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
-			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 35) * 10)", -- Large patches in the center of the map look unpleasant
+			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
+			 + min(0, (((cerys_xx - ("
+			.. tostring(common.REACTOR_POSITION.x / 2)
+			.. "))^2 + \z
+			(cerys_yy - ("
+			.. tostring(common.REACTOR_POSITION.y / 2)
+			.. "))^2)^(1/2) - 32) * 8)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{
 		type = "noise-expression",
-		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
-		expression = "24 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
+		name = "cerys_methane_ice_forced_spot_radius",
+		expression = "28 * (slider_rescale(control:cerys_methane_ice:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_smoothed_nitrogen_x_coordinate", -- To make it easier to discover the patch, while letting it get quite close to the moon edge.
-		expression = "cerys_x_surface * 0.7 + 80",
+		name = "cerys_methane_ice_forced",
+		expression = "10 * ((cerys_methane_ice_forced_spot_radius / \z
+			((cerys_x_surface + 10)^2 + (cerys_y_surface - 80)^2)^(1/2)) - 1) + \z
+			7 * ((cerys_methane_ice_forced_spot_radius / \z
+			((cerys_x_surface + 17)^2 + (cerys_y_surface + 75)^2)^(1/2)) - 1.1)",
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_nitrogen_rich_minerals_forced",
-		expression = "((cerys_nitrogen_rich_minerals_forced_spot_radius / \z
-			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
-			(cerys_y_surface + 18)^2)^(1/2)) - 1)^3 \z
-			+ (0.22 * cerys_nitrogen_rich_minerals_forced_spot_radius / \z
-			((cerys_x_surface - 8)^2 + \z
-			(cerys_y_surface - 64)^2)^(1/2)) \z
-			+ (0.22 * cerys_nitrogen_rich_minerals_forced_spot_radius / \z
-			((cerys_x_surface + 8)^2 + \z
-			(cerys_y_surface + 64)^2)^(1/2)) \z
-			- 1",
-	}, -- Main patch is on the left to encourage the player to start far from the final zone. The other patches are hint patches.
-
-	{
-		type = "noise-expression",
-		name = "cerys_nitrogen_rich_minerals",
-		expression = "max(0, -(30 / slider_rescale(control:cerys_nitrogen_rich_minerals:size, 1.2) \z
-				/ slider_rescale(control:cerys_nitrogen_rich_minerals:frequency, 1.2)) + 10 * ceil(cerys_nitrogen_rich_minerals_forced) + \z
-			multioctave_noise{\z
+		name = "cerys_methane_ice",
+		expression = "max(0, ceil(cerys_methane_ice_forced)) \z
+			+ max(0, multioctave_noise{\z
 				x = cerys_x_surface, \z
 				y = cerys_y_surface, \z
 				seed0 = map_seed, \z
 				seed1 = 500, \z
 				octaves = 3, \z
 				persistence = 0.4, \z
-				input_scale = slider_rescale(control:cerys_nitrogen_rich_minerals:size, 3) / 5, \z
-				output_scale = 10})",
+				input_scale = slider_rescale(control:cerys_methane_ice:size, 3) / 9, \z
+				output_scale = 230} \z
+				- (260 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
+				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2))) \z
+			- 10000 * cerys_water \z
+			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
+			 + min(0, (((cerys_xx - ("
+			.. tostring(common.REACTOR_POSITION.x / 2)
+			.. "))^2 + \z
+			(cerys_yy - ("
+			.. tostring(common.REACTOR_POSITION.y / 2)
+			.. "))^2)^(1/2) - 35) * 10)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{
 		type = "noise-expression",
-		name = "cerys_methane_ice_forced_spot_radius",
-		expression = "32 * (slider_rescale(control:cerys_methane_ice:size, 2)^(1/2))",
+		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
+		expression = "25 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_methane_ice_forced",
-		expression = "10 * ((cerys_methane_ice_forced_spot_radius / \z
-			((cerys_x_surface + 10)^2 + (cerys_y_surface - 80)^2)^(1/2)) - 1)",
+		name = "cerys_smoothed_nitrogen_x_coordinate", -- To make it easier to discover the patch, while letting it get quite close to the moon edge.
+		expression = "cerys_x_surface * 0.7 + 70",
 	},
+
+	{
+		type = "noise-function",
+		name = "cerys_nitrogen_rich_minerals_forced",
+		parameters = { "radius" },
+		expression = "((radius / \z
+			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
+			(cerys_y_surface + 18)^2)^(1/2)) - 1)^3 \z
+			+ (0.22 * radius / \z
+			((cerys_x_surface - 8)^2 + \z
+			(cerys_y_surface - 64)^2)^(1/2)) \z
+			+ (0.22 * radius / \z
+			((cerys_x_surface + 8)^2 + \z
+			(cerys_y_surface + 64)^2)^(1/2)) \z
+			- 0.2",
+	}, -- Main patch is on the left to encourage the player to start far from the final zone. The others are hint patches.
+
 	{
 		type = "noise-expression",
-		name = "cerys_methane_ice",
-		expression = "max(0, ceil(cerys_methane_ice_forced)) + \z
-			max(0, multioctave_noise{\z
+		name = "cerys_nitrogen_rich_minerals",
+		expression = "max(0, -(30 / slider_rescale(control:cerys_nitrogen_rich_minerals:size, 1.2) \z
+				/ slider_rescale(control:cerys_nitrogen_rich_minerals:frequency, 1.2)) + 10 * cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius) + \z
+			multioctave_noise{\z
 				x = cerys_x_surface, \z
 				y = cerys_y_surface, \z
 				seed0 = map_seed, \z
 				seed1 = 600, \z
 				octaves = 3, \z
-				persistence = 0.5, \z
-				input_scale = slider_rescale(control:cerys_methane_ice:frequency, 3) / 10, \z
-				output_scale = 1} * (150 - 0.4 * surface_distance) \z
-				- (130 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
-				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2)))\z
-			- 400 * cerys_script_occupied_terrain \z
-			- 10000 * cerys_water \z
-			 + min(0, (((cerys_xx - (" .. tostring(common.REACTOR_POSITION.x / 3) .. "))^2 + \z
-			(cerys_yy - (" .. tostring(common.REACTOR_POSITION.y / 3) .. "))^2)^(1/2) - 40) * 10)", -- Large patches in the center of the map look unpleasant
+				persistence = 0.4, \z
+				input_scale = slider_rescale(control:cerys_nitrogen_rich_minerals:size, 3) / 5, \z
+				output_scale = 12})",
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_all_forced_resources",
 		expression = "max(0, cerys_nuclear_scrap_forced) + \z
-			max(0, cerys_nitrogen_rich_minerals_forced) + \z
+			max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius)) + \z
 			max(0, cerys_methane_ice_forced)",
 	},
 
@@ -368,6 +365,7 @@ data:extend({
 			input_scale = 3, \z
 			output_scale = 2} - 0.5",
 	},
+
 	{
 		type = "noise-expression",
 		name = "cerys_ash_flats", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
@@ -386,6 +384,16 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "yy", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_reactor_correction", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_script_occupied_terrain", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
 		expression = "0",
 	},
 	{
