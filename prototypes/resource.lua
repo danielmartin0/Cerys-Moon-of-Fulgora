@@ -38,7 +38,7 @@ data:extend({
 		autoplace = {
 			order = "b",
 			probability_expression = "cerys_nuclear_scrap",
-			richness_expression = "10 + 1000 * cerys_nuclear_scrap ^ 2",
+			richness_expression = "10 + 100 * cerys_nuclear_scrap ^ 3",
 		},
 		map_color = { 0.18, 0.22, 0.2 },
 		map_grid = true,

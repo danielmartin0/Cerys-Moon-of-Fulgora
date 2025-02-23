@@ -170,17 +170,17 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nuclear_scrap_forced_spot_radius",
-		expression = "16 * (slider_rescale(control:cerys_nuclear_scrap:size, 2)^(1/2))",
+		expression = "3 * (slider_rescale(control:cerys_nuclear_scrap:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_nuclear_scrap_forced",
 		expression = "((cerys_nuclear_scrap_forced_spot_radius / \z
-			((cerys_x_surface + 38)^2 + (cerys_y_surface + 70)^2)^(1/2)) - 1)^3",
+			((cerys_x_surface + 11)^2 + (cerys_y_surface - 1)^2)^(1/2)) - 1)^3",
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_nuclear_scrap", -- biased towards center of the map, but not the exact center
+		name = "cerys_nuclear_scrap", -- biased towards center of the map, but not the exact center (as large patches in the center of the map look unpleasant)
 		expression = "max(0, ceil(cerys_nuclear_scrap_forced)) + \z
 			max(0, multioctave_noise{\z
 				x = cerys_x_surface, \z
@@ -190,17 +190,18 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 6, \z
-				output_scale = 230} * (1.2 - 0.4 * map_distance / cerys_radius) \z
+				output_scale = 250} * (1.2 - 0.4 * map_distance / cerys_radius) \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 10000 * cerys_water \z
 			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
-			 + min(0, (((cerys_xx - ("
-			.. tostring(common.REACTOR_POSITION.x / 2)
+			+ min(0, ((cerys_xx^2 + cerys_yy^2)^(1/2) - 35) * 8) \z
+			+ min(0, (((cerys_xx - ("
+			.. tostring(common.REACTOR_POSITION.x)
 			.. "))^2 + \z
 			(cerys_yy - ("
-			.. tostring(common.REACTOR_POSITION.y / 2)
-			.. "))^2)^(1/2) - 32) * 8)", -- Large patches in the center of the map look unpleasant
+			.. tostring(common.REACTOR_POSITION.y)
+			.. "))^2)^(1/2) - 40) * 8)",
 	},
 
 	{
@@ -233,12 +234,13 @@ data:extend({
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2))) \z
 			- 10000 * cerys_water \z
 			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
-			 + min(0, (((cerys_xx - ("
-			.. tostring(common.REACTOR_POSITION.x / 2)
+			+ min(0, ((cerys_xx^2 + cerys_yy^2)^(1/2) - 40) * 8) \z
+			+ min(0, (((cerys_xx - ("
+			.. tostring(common.REACTOR_POSITION.x)
 			.. "))^2 + \z
 			(cerys_yy - ("
-			.. tostring(common.REACTOR_POSITION.y / 2)
-			.. "))^2)^(1/2) - 35) * 10)", -- Large patches in the center of the map look unpleasant
+			.. tostring(common.REACTOR_POSITION.y)
+			.. "))^2)^(1/2) - 40) * 8)", -- Large patches in the center of the map look unpleasant
 	},
 
 	{

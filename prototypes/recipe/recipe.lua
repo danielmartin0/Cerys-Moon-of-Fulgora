@@ -181,7 +181,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "transport-belt", amount = 6 },
 			{ type = "item", name = "advanced-circuit", amount = 30 },
-			{ type = "item", name = "copper-plate", amount = 15 },
+			{ type = "item", name = "copper-plate", amount = 30 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,
