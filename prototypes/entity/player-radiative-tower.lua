@@ -19,7 +19,7 @@ data:extend({
 			type = "burner",
 			fuel_categories = { "chemical-or-radiative" },
 			emissions_per_minute = { pollution = 5 },
-			effectivity = 1,
+			effectivity = 0.9,
 			fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 			burnt_inventory_size = 0,
 		},
