@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: ????
+Date: 2025-02-23
   Info:
     - Version 2.0! Headline features: Smaller moon surface, dynamic lighting, reduced gameplay grind, player-constructable radiative heaters. One breaking change: Cerysian science packs now require repair parts instead of ammonia.
   Changes:
