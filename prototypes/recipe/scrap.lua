@@ -1,6 +1,6 @@
 local common = require("common")
 
-local CIV_AGE_MY = 2400
+local CIV_AGE_MY = 2600
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500

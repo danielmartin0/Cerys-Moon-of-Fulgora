@@ -167,37 +167,37 @@ data:extend({
 	},
 })
 
-if not settings.startup["cerys-technology-compatibility-mode"].value then
-	data:extend({
-		{
-			type = "recipe",
-			name = "cerys-discover-fulgoran-cryogenics",
-			subgroup = "cerys-repair",
-			order = "c",
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
-			icon_size = 64,
-			energy_required = 3,
-			enabled = true,
-			hide_from_player_crafting = true,
-			category = "fulgoran-cryogenics",
-			ingredients = common.HARDCORE_ON and {
-				{ type = "item", name = "solid-fuel", amount = 40 },
-				{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
-				{ type = "item", name = "advanced-circuit", amount = 30 },
-				{ type = "item", name = "uranium-238", amount = 20 },
-				{ type = "item", name = "copper-cable", amount = 20 },
-				{ type = "item", name = "stone-brick", amount = 6 },
-				{ type = "item", name = "transport-belt", amount = 3 },
-				{ type = "item", name = "holmium-plate", amount = 2 },
-				{ type = "item", name = "heat-pipe", amount = 1 },
-				{ type = "item", name = "steam-turbine", amount = 1 },
-			} or { { type = "item", name = "cerys-nuclear-scrap", amount = 20 } },
-			results = {
-				{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
-			},
-			allow_quality = false,
-			allow_productivity = false,
-			hide_from_signal_gui = true,
+-- if not settings.startup["cerys-technology-compatibility-mode"].value then
+data:extend({
+	{
+		type = "recipe",
+		name = "cerys-discover-fulgoran-cryogenics",
+		subgroup = "cerys-repair",
+		order = "c",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
+		icon_size = 64,
+		energy_required = 3,
+		enabled = true,
+		hide_from_player_crafting = true,
+		category = "fulgoran-cryogenics",
+		ingredients = common.HARDCORE_ON and {
+			{ type = "item", name = "solid-fuel", amount = 40 },
+			{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
+			{ type = "item", name = "advanced-circuit", amount = 30 },
+			{ type = "item", name = "uranium-238", amount = 20 },
+			{ type = "item", name = "copper-cable", amount = 20 },
+			{ type = "item", name = "stone-brick", amount = 6 },
+			{ type = "item", name = "transport-belt", amount = 3 },
+			{ type = "item", name = "holmium-plate", amount = 2 },
+			{ type = "item", name = "heat-pipe", amount = 1 },
+			{ type = "item", name = "steam-turbine", amount = 1 },
+		} or { { type = "item", name = "cerys-nuclear-scrap", amount = 20 } },
+		results = {
+			{ type = "research-progress", research_item = "fulgoran-cryogenics-progress", amount = 1 },
 		},
-	})
-end
+		allow_quality = false,
+		allow_productivity = false,
+		hide_from_signal_gui = true,
+	},
+})
+-- end

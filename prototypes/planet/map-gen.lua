@@ -180,7 +180,7 @@ data:extend({
 	},
 	{
 		type = "noise-expression",
-		name = "cerys_nuclear_scrap",
+		name = "cerys_nuclear_scrap", -- biased towards center of the map, but not the exact center
 		expression = "max(0, ceil(cerys_nuclear_scrap_forced)) + \z
 			max(0, multioctave_noise{\z
 				x = cerys_x_surface, \z
@@ -190,7 +190,7 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 6, \z
-				output_scale = 230} \z
+				output_scale = 230} * (1.2 - 0.4 * map_distance / cerys_radius) \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 10000 * cerys_water \z
@@ -228,7 +228,7 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_methane_ice:size, 3) / 9, \z
-				output_scale = 230} \z
+				output_scale = 240} \z
 				- (260 / slider_rescale(control:cerys_methane_ice:size, 1.2) \z
 				/ slider_rescale(control:cerys_methane_ice:frequency, 1.2))) \z
 			- 10000 * cerys_water \z

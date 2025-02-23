@@ -85,14 +85,14 @@ end)
 script.on_event(defines.events.on_research_finished, function(event)
 	local research = event.research
 
-	if not settings.startup["cerys-technology-compatibility-mode"].value then
-		if research.name == "cerys-fulgoran-cryogenics" then
-			research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
-		elseif research.name == "cerys-nuclear-scrap-recycling" then
-			-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
-			research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
-		end
+	-- if not settings.startup["cerys-technology-compatibility-mode"].value then
+	if research.name == "cerys-fulgoran-cryogenics" then
+		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
+	elseif research.name == "cerys-nuclear-scrap-recycling" then
+		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
+		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
 	end
+	-- end
 end)
 
 script.on_event(defines.events.on_player_changed_surface, function(event)

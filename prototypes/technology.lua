@@ -461,13 +461,13 @@ local cryogenics_tech = {
 	allows_productivity = false,
 }
 
-if settings.startup["cerys-technology-compatibility-mode"].value then
-	cryogenics_tech.unit = nil
-	cryogenics_tech.research_trigger = {
-		type = "craft-item",
-		item = "ancient-structure-repair-part",
-		count = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED,
-	}
-end
+-- if settings.startup["cerys-technology-compatibility-mode"].value then
+-- 	cryogenics_tech.unit = nil
+-- 	cryogenics_tech.research_trigger = {
+-- 		type = "craft-item",
+-- 		item = "ancient-structure-repair-part",
+-- 		count = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED,
+-- 	}
+-- end
 
 data:extend({ cryogenics_tech })

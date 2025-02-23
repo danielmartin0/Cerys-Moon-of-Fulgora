@@ -29,15 +29,6 @@ data:extend({
 	},
 	{
 		type = "double-setting",
-		name = "cerys-gamma-radiation-damage-multiplier",
-		setting_type = "runtime-global",
-		default_value = 1.0,
-		minimum_value = 0.0,
-		maximum_value = 100.0,
-		order = "e",
-	},
-	{
-		type = "double-setting",
 		name = "cerys-solar-wind-spawn-rate-percentage",
 		setting_type = "runtime-global",
 		default_value = 100.0,
@@ -67,13 +58,6 @@ data:extend({
 		setting_type = "startup",
 		default_value = false,
 		order = "a",
-	},
-	{
-		type = "bool-setting",
-		name = "cerys-technology-compatibility-mode",
-		setting_type = "startup",
-		default_value = false,
-		order = "c",
 	},
 	{
 		type = "bool-setting",
