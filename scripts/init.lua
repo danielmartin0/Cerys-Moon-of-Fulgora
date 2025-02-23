@@ -23,8 +23,6 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	Public.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)
 
-	storage.cerys.creation_tick = game.tick
-
 	return surface
 end
 

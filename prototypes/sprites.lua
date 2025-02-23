@@ -1,6 +1,6 @@
 local common = require("common")
 
--- if settings.startup["cerys-dynamic-lighting"].value then
+-- if settings.startup["cerys-dynamic-lighting"].value then -- although turning this off fixes a 2.0.35 crash on minimal graphics settings, it's not checked here so that players can change it midgame
 data:extend({
 	{
 		type = "sprite",

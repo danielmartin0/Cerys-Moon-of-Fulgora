@@ -1,7 +1,9 @@
-local common = require("common")
-
 if not storage.cerys then
 	return
+end
+
+if not storage.cerys.first_visit_tick then
+	storage.cerys.first_visit_tick = game.tick
 end
 
 local surface = game.surfaces["cerys"]

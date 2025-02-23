@@ -100,7 +100,11 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	local new_surface = player.surface
 
 	if new_surface.name == "cerys" then
-		new_surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(new_surface) * 2 / 32)
+		if storage.cerys and not storage.cerys.first_visit_tick then
+			storage.cerys.first_visit_tick = game.tick
+
+			new_surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(new_surface) * 2 / 32)
+		end
 	end
 end)
 

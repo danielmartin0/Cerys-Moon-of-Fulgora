@@ -16,17 +16,26 @@ function Public.tick_3_update_lights()
 		return
 	end
 
-	local elapsed_ticks = game.tick - (storage.cerys.creation_tick or 0)
+	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
 
+	if settings.global["cerys-dynamic-lighting"].value and elapsed_ticks < 10 * 60 then -- Avoid cargo pod graphical issue on first visit
+		surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
+		surface.min_brightness = 0.2
+		surface.solar_power_multiplier = 1
+		surface.daytime = 0
+		storage.cerys.lighting_last_seen = nil
+		return
+	end
+
 	if settings.global["cerys-dynamic-lighting"].value then
-		if storage.dynamic_lighting_last_seen ~= "dynamic" then
+		if storage.cerys.lighting_last_seen ~= "dynamic" then
 			surface.brightness_visual_weights = { 1000000, 1000000, 1000000 }
 			surface.min_brightness = 0
-			storage.dynamic_lighting_last_seen = "dynamic"
+			storage.cerys.lighting_last_seen = "dynamic"
 		end
 	else
-		if storage.dynamic_lighting_last_seen ~= "static" then
+		if storage.cerys.lighting_last_seen ~= "static" then
 			surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
 			surface.min_brightness = 0.2
 			surface.solar_power_multiplier = 1
@@ -42,7 +51,7 @@ function Public.tick_3_update_lights()
 				storage.cerys.light.rendering_3.destroy()
 				storage.cerys.light.rendering_3 = nil
 			end
-			storage.dynamic_lighting_last_seen = "static"
+			storage.cerys.lighting_last_seen = "static"
 		end
 		surface.daytime = daytime
 		return
@@ -99,10 +108,10 @@ function Public.tick_3_update_lights()
 			light_2.destroy()
 			storage.cerys.light.rendering_2 = nil
 
-			if storage.cerys.light.flag_rendering_2 then
-				storage.cerys.light.flag_rendering_2.destroy()
-				storage.cerys.light.flag_rendering_2 = nil
-			end
+			-- if storage.cerys.light.flag_rendering_2 then
+			-- 	storage.cerys.light.flag_rendering_2.destroy()
+			-- 	storage.cerys.light.flag_rendering_2 = nil
+			-- end
 		end
 
 		if light_1 and light_1.valid then
@@ -110,7 +119,7 @@ function Public.tick_3_update_lights()
 			light_1.x_scale = light_scale
 			light_1.y_scale = light_scale
 
-			storage.cerys.light.flag_rendering_1.target = light_position
+			-- storage.cerys.light.flag_rendering_1.target = light_position
 		else
 			light_1 = rendering.draw_sprite({
 				sprite = "cerys-solar-light",
@@ -122,23 +131,23 @@ function Public.tick_3_update_lights()
 
 			storage.cerys.light.rendering_1 = light_1
 
-			storage.cerys.light.flag_rendering_1 = rendering.draw_sprite({
-				sprite = "utility/spawn_flag",
-				target = light_position,
-				x_scale = 3,
-				y_scale = 3,
-				surface = surface,
-			})
+			-- storage.cerys.light.flag_rendering_1 = rendering.draw_sprite({
+			-- 	sprite = "utility/spawn_flag",
+			-- 	target = light_position,
+			-- 	x_scale = 3,
+			-- 	y_scale = 3,
+			-- 	surface = surface,
+			-- })
 		end
 	else
 		if light_1 then
 			light_1.destroy()
 			storage.cerys.light.rendering_1 = nil
 
-			if storage.cerys.light.flag_rendering_1 then
-				storage.cerys.light.flag_rendering_1.destroy()
-				storage.cerys.light.flag_rendering_1 = nil
-			end
+			-- if storage.cerys.light.flag_rendering_1 then
+			-- 	storage.cerys.light.flag_rendering_1.destroy()
+			-- 	storage.cerys.light.flag_rendering_1 = nil
+			-- end
 		end
 
 		if light_2 and light_2.valid then
@@ -146,7 +155,7 @@ function Public.tick_3_update_lights()
 			light_2.x_scale = light_scale
 			light_2.y_scale = light_scale
 
-			storage.cerys.light.flag_rendering_2.target = light_position
+			-- storage.cerys.light.flag_rendering_2.target = light_position
 		else
 			light_2 = rendering.draw_sprite({
 				sprite = "cerys-solar-light-inverted",
@@ -158,13 +167,13 @@ function Public.tick_3_update_lights()
 
 			storage.cerys.light.rendering_2 = light_2
 
-			storage.cerys.light.flag_rendering_2 = rendering.draw_sprite({
-				sprite = "utility/spawn_flag",
-				target = light_position,
-				x_scale = 3,
-				y_scale = 3,
-				surface = surface,
-			})
+			-- storage.cerys.light.flag_rendering_2 = rendering.draw_sprite({
+			-- 	sprite = "utility/spawn_flag",
+			-- 	target = light_position,
+			-- 	x_scale = 3,
+			-- 	y_scale = 3,
+			-- 	surface = surface,
+			-- })
 		end
 	end
 
