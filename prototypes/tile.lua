@@ -349,6 +349,7 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 			water_tile = true,
 			floor = true,
 			resource = true,
+			cerys_tile = true,
 		},
 	},
 	effect = "cerys-water-puddles-2",
