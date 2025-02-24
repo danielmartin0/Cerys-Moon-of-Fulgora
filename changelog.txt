@@ -1,8 +1,4 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.0.11
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.0.9
 Date: 2025-02-24
   Bugfixes:
@@ -17,7 +13,7 @@ Date: 2025-02-23
     - Concrete can now only be placed over Cerys water if the water is frozen.
     - Offshore pumps explode when their ice freezes over (leaving a ghost).
     - Asteroids on Cerys no longer prevent building placement.
-    - Ancient structure repair parts moved to the Intermediate Products tab.
+    - Moved the repair part and scaffold items to the Intermediate Products tab.
     - Improvements to resource and iceberg map generation.
     - Nuclear waste solution has been renamed Mixed-oxide waste solution.
     - The Mixed-oxide waste reprocessing technology no longer unlocks Coal synthesis.
