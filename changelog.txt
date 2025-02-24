@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.14
-Date: ????
+Date: 2025-02-24
   Bugfixes:
     - Fixed issue in which player radiative heaters were buildable before unlocking the technology.
 ---------------------------------------------------------------------------------------------------
