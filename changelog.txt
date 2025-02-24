@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.9
-Date: ????
+Date: 2025-02-24
   Bugfixes:
     - Fixed existing Cerysian science packs being deleted when loading pre-2.0.0 saves.
     - Fixed Discover Fulgoran Cryogenics recipe being always unlocked for players that were previously playing on Technology Compatibility Mode.
