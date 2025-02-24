@@ -246,32 +246,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-radiative-heaters",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-radiative-tower",
-			},
-		},
-		prerequisites = {
-			"cerys-lubricant-synthesis",
-		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
-		icon_size = 200,
-		unit = {
-			count = 800,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-plutonium-weaponry",
 		effects = {
 			{
@@ -471,3 +445,34 @@ local cryogenics_tech = {
 -- end
 
 data:extend({ cryogenics_tech })
+
+if settings.startup["cerys-player-constructable-radiative-towers"].value then
+	data:extend({
+		{
+			type = "technology",
+			name = "cerys-radiative-heaters",
+			effects = {
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-radiative-tower",
+				},
+			},
+			prerequisites = {
+				"cerys-lubricant-synthesis",
+			},
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
+			icon_size = 200,
+			unit = {
+				count = 800,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		},
+	})
+end

@@ -80,6 +80,13 @@ data:extend({
 		default_value = true,
 		order = "f",
 	},
+	{
+		type = "bool-setting",
+		name = "cerys-player-constructable-radiative-towers",
+		setting_type = "startup",
+		default_value = true,
+		order = "g",
+	},
 })
 
 data:extend({

@@ -1,17 +1,22 @@
-data:extend({
-	{
-		type = "recipe",
-		name = "cerys-radiative-tower",
-		category = "crafting",
-		energy_required = 6,
-		ingredients = {
-			{ type = "item", name = "refined-concrete", amount = 20 },
-			{ type = "item", name = "steel-plate", amount = 20 },
-			{ type = "item", name = "processing-unit", amount = 10 },
+if settings.startup["cerys-player-constructable-radiative-towers"].value then
+	data:extend({
+		{
+			type = "recipe",
+			name = "cerys-radiative-tower",
+			category = "crafting",
+			energy_required = 6,
+			ingredients = {
+				{ type = "item", name = "refined-concrete", amount = 20 },
+				{ type = "item", name = "steel-plate", amount = 20 },
+				{ type = "item", name = "processing-unit", amount = 10 },
+			},
+			results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
+			enabled = false,
 		},
-		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
-		enabled = false,
-	},
+	})
+end
+
+data:extend({
 	{
 		type = "recipe",
 		name = "cerysian-science-pack",

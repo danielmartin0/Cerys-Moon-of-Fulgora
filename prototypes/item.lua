@@ -2,21 +2,25 @@ local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
 
-data:extend({
-	{
-		type = "item",
-		name = "cerys-radiative-tower",
-		hidden_in_factoriopedia = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
-		icon_size = 200,
-		subgroup = "environmental-protection",
-		order = "z-d[radiative-tower]",
-		default_import_location = "cerys",
-		weight = 100 * 1000,
-		stack_size = 20,
-		place_result = "cerys-radiative-tower",
-	},
+if settings.startup["cerys-player-constructable-radiative-towers"].value then
+	data:extend({
+		{
+			type = "item",
+			name = "cerys-radiative-tower",
+			hidden_in_factoriopedia = true,
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+			icon_size = 200,
+			subgroup = "environmental-protection",
+			order = "z-d[radiative-tower]",
+			default_import_location = "cerys",
+			weight = 100 * 1000,
+			stack_size = 20,
+			place_result = "cerys-radiative-tower",
+		},
+	})
+end
 
+data:extend({
 	merge(data.raw.tool["electromagnetic-science-pack"], {
 		name = "cerysian-science-pack",
 		localised_description = "nil",
