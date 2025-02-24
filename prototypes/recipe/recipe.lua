@@ -10,7 +10,7 @@ data:extend({
 			{ type = "item", name = "processing-unit", amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
-		enabled = true, -- TODO: Remove
+		enabled = false,
 	},
 	{
 		type = "recipe",
