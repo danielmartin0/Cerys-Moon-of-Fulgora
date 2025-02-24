@@ -2,6 +2,7 @@
 Version: 2.0.16
 Date: ????
   Changes:
+    - Removed incompatibility mark with Plutonium Energy. Although they do not work together well and we have no plans for a patch, adding this mark is likely too disruptive a way of communicating this.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.14
 Date: 2025-02-24
