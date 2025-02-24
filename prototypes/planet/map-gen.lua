@@ -189,7 +189,7 @@ data:extend({
 				seed1 = 400, \z
 				octaves = 3, \z
 				persistence = 0.4, \z
-				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 6, \z
+				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 4, \z
 				output_scale = 250} * (1.2 - 0.4 * map_distance / cerys_radius) \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z

@@ -13,7 +13,17 @@ local stage_counts_3 = {
 	400 * 10000,
 	150 * 10000,
 	80 * 10000,
-} -- our graphics needed a bit of a bump
+}
+local stage_counts_4 = {
+	15000 * 40000,
+	9500 * 40000,
+	5500 * 40000,
+	2900 * 40000,
+	1300 * 40000,
+	400 * 40000,
+	150 * 40000,
+	80 * 40000,
+}
 
 data:extend({
 	merge(data.raw.resource["scrap"], {
@@ -27,7 +37,7 @@ data:extend({
 		}),
 		stages = {
 			sheet = {
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-scrap.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-scrap-2.png",
 				priority = "extra-high",
 				size = 128,
 				frame_count = 8,
@@ -43,7 +53,7 @@ data:extend({
 		map_color = { 0.18, 0.22, 0.2 },
 		map_grid = true,
 		factoriopedia_simulation = "nil",
-		stage_counts = stage_counts_3,
+		stage_counts = stage_counts_4,
 	}),
 
 	merge(data.raw.resource["iron-ore"], {
@@ -80,7 +90,7 @@ data:extend({
 		name = "methane-ice",
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
-			mining_time = 0.45,
+			mining_time = 0.43,
 			result = "methane-ice",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
