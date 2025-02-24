@@ -1,8 +1,4 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.0.13
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.0.9
 Date: 2025-02-24
   Bugfixes:
@@ -21,7 +17,7 @@ Date: 2025-02-23
     - Improvements to resource and iceberg map generation.
     - Nuclear waste solution has been renamed Mixed-oxide waste solution.
     - The Mixed-oxide waste reprocessing technology no longer unlocks Coal synthesis.
-    - Tweaks to the recipe for Cerys labs.
+    - Tweaks to the recipe for Cerys labs and the reactor scaffold.
     - Recycling of Uranium-238 on Cerys is now secretly unlocked by a late-game tech rather than being banned forever.
   Balancing:
     - Changed to nuclear scrap recycling: pipes (+36%), heat pipes (+100%), stone bricks (-50%).
