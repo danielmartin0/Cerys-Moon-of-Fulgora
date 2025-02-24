@@ -16,7 +16,6 @@ data:extend({
 		type = "tool",
 		name = "fulgoran-cryogenics-progress",
 		hidden = true,
-		localised_description = "nil",
 		icon = "__PlanetsLib__/graphics/icons/research-progress-product.png",
 		icon_size = 64,
 		subgroup = "science-pack",
