@@ -1,3 +1,5 @@
+local merge = require("lib").merge
+
 if data.raw.recipe["superconductor"] then
 	data.raw.recipe["superconductor"].category = "electromagnetics-or-fulgoran-cryogenics"
 end
@@ -20,3 +22,23 @@ end
 if data.raw.recipe["plutonium-239-recycling"] then
 	data.raw.recipe["plutonium-239-recycling"].energy_required = 1 -- Dropping the energy of the U->Pu dummy recipe affects this for some reason
 end
+
+data:extend({
+	{
+		type = "recipe",
+		name = "cerys-construction-bot-recycling",
+		enabled = false,
+		energy_required = 1,
+		ingredients = {
+			{ "construction-robot", 1 },
+		},
+		result = "construction-robot",
+	},
+})
+
+data:extend({
+	merge(data.raw.recipe["construction-robot-recycling"], {
+		name = "cerys-construction-bot-recycling",
+		enabled = false,
+	}),
+})

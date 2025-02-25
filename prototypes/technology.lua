@@ -333,24 +333,50 @@ data:extend({
 	},
 })
 
+local cargo_drops_base =
+	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
+
 data:extend({
-	merge(
-		PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256),
-		{
-			prerequisites = { "holmium-plate-productivity-1" }, -- Should be on the bottom row
-			unit = {
-				count = common.HARDCORE_ON and 4000 or 1500,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerysian-science-pack", 1 },
-					{ "utility-science-pack", 1 },
-				},
-				time = 60,
+	merge(cargo_drops_base, {
+		prerequisites = { "holmium-plate-productivity-1" }, -- Should be on the bottom row
+		unit = {
+			count = common.HARDCORE_ON and 4000 or 1500,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
 			},
-			allows_productivity = false,
-		}
-	),
+			time = 60,
+		},
+		effects = merge(cargo_drops_base.effects, {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-construction-bot-recycling",
+			},
+		}),
+		allows_productivity = false,
+	}),
+	{
+		type = "technology",
+		name = "cerys-nice-try-sukaz",
+		hidden = true,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-construction-bot-recycling",
+			},
+		},
+		prerequisites = { "moon-discovery-cerys" },
+		unit = {
+			count = 1,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+			},
+			time = 60,
+		},
+		icons = cargo_drops_base.icons,
+	},
 })
 
 local discovery_tech = {
