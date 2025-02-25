@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.0
-Date: 2025-02-24
+Date: 2025-02-25
   Bugfixes:
     - Fixed issue in which player radiative heaters were buildable before unlocking the technology.
     - Fixed existing Cerysian science packs being deleted when loading pre-2.0.0 saves.
