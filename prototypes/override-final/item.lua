@@ -6,3 +6,6 @@ data.raw.item["stone-brick"].place_as_tile.condition_size = data.raw.item["stone
 
 table.insert(data.raw.item["foundation"].place_as_tile.tile_condition, "cerys-water-puddles")
 table.insert(data.raw.item["foundation"].place_as_tile.tile_condition, "cerys-water-puddles-freezing")
+
+table.insert(data.raw.item["ice-platform"].place_as_tile.tile_condition, "cerys-water-puddles")
+table.insert(data.raw.item["ice-platform"].place_as_tile.tile_condition, "cerys-water-puddles-freezing")

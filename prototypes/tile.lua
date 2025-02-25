@@ -350,13 +350,14 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 			floor = true,
 			resource = true,
 			cerys_tile = true,
+			doodad = true,
 		},
 	},
 	effect = "cerys-water-puddles-2",
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
-	-- default_cover_tile = "foundation",
+	default_cover_tile = "ice-platform",
 })
 
 data:extend({

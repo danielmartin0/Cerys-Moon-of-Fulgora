@@ -160,7 +160,7 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "uranium-238-recycling-2",
+				recipe = "cerys-uranium-238-recycling",
 			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
@@ -352,7 +352,11 @@ data:extend({
 		effects = merge(cargo_drops_base.effects, {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-construction-bot-recycling",
+				recipe = "cerys-construction-robot-recycling",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-exoskeleton-equipment-recycling",
 			},
 		}),
 		allows_productivity = false,
@@ -364,7 +368,11 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-construction-bot-recycling",
+				recipe = "construction-robot-recycling",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "exoskeleton-equipment-recycling",
 			},
 		},
 		prerequisites = { "moon-discovery-cerys" },
