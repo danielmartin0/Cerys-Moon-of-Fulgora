@@ -90,25 +90,14 @@ local cryo_plant_positions = hex_grid_positions({
 	noise_scale = 100,
 })
 
--- Mostly water positions:
-local crusher_positions = {
-	{
-		x = 20,
-		y = -81.5,
-	},
-	{
-		x = 15,
-		y = 58.5,
-	},
-	{
-		x = -66,
-		y = 53.5,
-	},
-	{
-		x = -31,
-		y = -46.5,
-	},
-}
+local crusher_positions = hex_grid_positions({
+	seed = 1400,
+	grid_scale = 3.7,
+	avoid_final_region = false,
+	noise_size = 15,
+	displacement = { x = 20, y = -20 },
+	noise_scale = 240,
+})
 
 --== Terrain & entity generation ==--
 
@@ -322,7 +311,7 @@ function Public.create_crushers(surface, area)
 				entity.destroy()
 			end
 
-			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 7, 3)
+			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 3, 3)
 
 			if p3 then
 				Public.ensure_solid_foundation(surface, { x = p3.x, y = p3.y }, 4, 3)

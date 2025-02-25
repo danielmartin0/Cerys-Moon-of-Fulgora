@@ -2,6 +2,7 @@
 Version: 2.1.3
 Date: ????
   Changes:
+    - Crushers are no longer forced to spawn on water.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.2
 Date: 2025-02-25
