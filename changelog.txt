@@ -2,6 +2,9 @@
 Version: 2.1.1
 Date: ????
   Changes:
+    - Fixed ice decoratives on Cerys failing to spawn.
+  Balancing:
+    - Adjusted the 2.0 buff to heat pipes in scrap recycling down to +71%.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2025-02-25

@@ -389,7 +389,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 	name = "cerys-ice-decal-white",
 	render_layer = "decorative",
 	autoplace = {
-		probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 11000, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.005} + -0.01",
+		probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 11000, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.005} + 0.005",
 		tile_restriction = common.ROCK_TILES,
 	},
 	pictures = {
