@@ -79,6 +79,15 @@ local reactor = {
 		probability_expression = "0",
 	},
 	map_color = { 143, 0, 0 },
+	radius_visualisation_specification = {
+		distance = 16,
+		sprite = {
+			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+			tint = { r = 1, g = 0, b = 0, a = 0.5 },
+			height = 64,
+			width = 64,
+		},
+	},
 }
 
 local frozen_reactor = merge(reactor, {
@@ -126,6 +135,15 @@ local rising_reactor_base = merge(reactor, {
 	map_color = CONTRACTED_MAP_COLOR,
 	working_sound = "nil",
 	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	radius_visualisation_specification = {
+		distance = 16,
+		sprite = {
+			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+			tint = { r = 1, g = 0, b = 0, a = 0.5 },
+			height = 64,
+			width = 64,
+		},
+	},
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
@@ -264,6 +282,15 @@ local container = {
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
 	map_color = CONTRACTED_MAP_COLOR,
+	radius_visualisation_specification = {
+		distance = 16,
+		sprite = {
+			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+			tint = { r = 1, g = 0, b = 0, a = 0.5 },
+			height = 64,
+			width = 64,
+		},
+	},
 }
 
 reactor.fast_replaceable_group = "fulgoran-radiative-tower"

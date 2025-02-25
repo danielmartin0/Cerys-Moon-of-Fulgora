@@ -2,6 +2,9 @@
 Version: 2.1.4
 Date: ????
   Changes:
+    - Radiative heaters now show a visualization of their heating range.
+  Balancing:
+    - +1 range for player-constructable radiative heaters.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.3
 Date: 2025-02-25

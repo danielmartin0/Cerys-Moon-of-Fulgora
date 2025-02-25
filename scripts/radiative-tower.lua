@@ -5,7 +5,7 @@ local common = require("common")
 Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
 local MAX_HEATING_RADIUS = 16
-local MAX_HEATING_RADIUS_PLAYER = 12
+local MAX_HEATING_RADIUS_PLAYER = 13
 local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6

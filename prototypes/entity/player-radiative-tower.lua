@@ -100,6 +100,15 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					},
 				},
 			},
+			radius_visualisation_specification = {
+				distance = 13,
+				sprite = {
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+					tint = { r = 1, g = 0, b = 0, a = 0.5 },
+					height = 64,
+					width = 64,
+				},
+			},
 		},
 	})
 end
