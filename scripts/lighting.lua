@@ -82,7 +82,7 @@ function Public.tick_3_update_lights()
 	local bounded_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
 	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2))
 
-	local regularized_bounded_x = math.max(math.min(bounded_x, 0.87), -0.87)
+	local regularized_bounded_x = math.max(math.min(bounded_x, 0.83), -0.83)
 	-- local regularized_bounded_x = math.tanh(bounded_x) * 0.9 / math.tanh(1) -- Changing size whilst it's huge is not good
 
 	local circle_scaling_effect = 1 / (1 - math.abs(regularized_bounded_x))
@@ -96,33 +96,43 @@ function Public.tick_3_update_lights()
 	local light_radius = (R * circle_scaling_effect) * elbow_room_factor
 
 	local is_white_circle = (phase % (2 * math.pi)) < math.pi
+	local use_rectangle = math.abs(bounded_x) > 0.83
 
 	local light_1 = storage.cerys.light.rendering_1
 	local light_2 = storage.cerys.light.rendering_2
 
-	local light_scale = light_radius * box_over_circle / 64
+	if use_rectangle then
+		light_x = (R * bounded_x + R * (is_white_circle and 1 or -1)) * 0.7 -- not an exact science
+	end
 	local light_position = { x = light_x, y = 0 }
+	local light_scale = light_radius * box_over_circle / 64
+	if use_rectangle then
+		light_scale = light_scale * 0.65 -- not an exact science
+	end
+	local rectangle_sprite = phase > math.pi / 4 and "cerys-solar-light-rectangle-inverted"
+		or "cerys-solar-light-rectangle"
 
 	if is_white_circle then
 		if light_2 then
 			light_2.destroy()
 			storage.cerys.light.rendering_2 = nil
 
-			-- if storage.cerys.light.flag_rendering_2 then
-			-- 	storage.cerys.light.flag_rendering_2.destroy()
-			-- 	storage.cerys.light.flag_rendering_2 = nil
-			-- end
+			if storage.cerys.light.flag_rendering_2 then
+				storage.cerys.light.flag_rendering_2.destroy()
+				storage.cerys.light.flag_rendering_2 = nil
+			end
 		end
 
 		if light_1 and light_1.valid then
 			light_1.target = light_position
 			light_1.x_scale = light_scale
 			light_1.y_scale = light_scale
+			light_1.sprite = use_rectangle and rectangle_sprite or "cerys-solar-light"
 
-			-- storage.cerys.light.flag_rendering_1.target = light_position
+			storage.cerys.light.flag_rendering_1.target = light_position
 		else
 			light_1 = rendering.draw_sprite({
-				sprite = "cerys-solar-light",
+				sprite = use_rectangle and rectangle_sprite or "cerys-solar-light",
 				x_scale = light_scale,
 				y_scale = light_scale,
 				target = light_position,
@@ -131,34 +141,35 @@ function Public.tick_3_update_lights()
 
 			storage.cerys.light.rendering_1 = light_1
 
-			-- storage.cerys.light.flag_rendering_1 = rendering.draw_sprite({
-			-- 	sprite = "utility/spawn_flag",
-			-- 	target = light_position,
-			-- 	x_scale = 3,
-			-- 	y_scale = 3,
-			-- 	surface = surface,
-			-- })
+			storage.cerys.light.flag_rendering_1 = rendering.draw_sprite({
+				sprite = "utility/spawn_flag",
+				target = light_position,
+				x_scale = 3,
+				y_scale = 3,
+				surface = surface,
+			})
 		end
 	else
 		if light_1 then
 			light_1.destroy()
 			storage.cerys.light.rendering_1 = nil
 
-			-- if storage.cerys.light.flag_rendering_1 then
-			-- 	storage.cerys.light.flag_rendering_1.destroy()
-			-- 	storage.cerys.light.flag_rendering_1 = nil
-			-- end
+			if storage.cerys.light.flag_rendering_1 then
+				storage.cerys.light.flag_rendering_1.destroy()
+				storage.cerys.light.flag_rendering_1 = nil
+			end
 		end
 
 		if light_2 and light_2.valid then
 			light_2.target = light_position
 			light_2.x_scale = light_scale
 			light_2.y_scale = light_scale
+			light_2.sprite = use_rectangle and rectangle_sprite or "cerys-solar-light-inverted"
 
-			-- storage.cerys.light.flag_rendering_2.target = light_position
+			storage.cerys.light.flag_rendering_2.target = light_position
 		else
 			light_2 = rendering.draw_sprite({
-				sprite = "cerys-solar-light-inverted",
+				sprite = use_rectangle and rectangle_sprite or "cerys-solar-light-inverted",
 				x_scale = light_scale,
 				y_scale = light_scale,
 				target = light_position,
@@ -167,13 +178,13 @@ function Public.tick_3_update_lights()
 
 			storage.cerys.light.rendering_2 = light_2
 
-			-- storage.cerys.light.flag_rendering_2 = rendering.draw_sprite({
-			-- 	sprite = "utility/spawn_flag",
-			-- 	target = light_position,
-			-- 	x_scale = 3,
-			-- 	y_scale = 3,
-			-- 	surface = surface,
-			-- })
+			storage.cerys.light.flag_rendering_2 = rendering.draw_sprite({
+				sprite = "utility/spawn_flag",
+				target = light_position,
+				x_scale = 3,
+				y_scale = 3,
+				surface = surface,
+			})
 		end
 	end
 

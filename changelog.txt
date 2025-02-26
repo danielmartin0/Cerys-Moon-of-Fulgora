@@ -2,6 +2,7 @@
 Version: 2.1.7
 Date: ????
   Changes:
+    - Small improvements to the dynamic lighting transition.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.6
 Date: 2025-02-26

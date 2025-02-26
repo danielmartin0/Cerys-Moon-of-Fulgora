@@ -1,6 +1,5 @@
 local common = require("common")
 
--- if settings.startup["cerys-dynamic-lighting"].value then -- although turning this off fixes a 2.0.35 crash on minimal graphics settings, it's not checked here so that players can change it midgame
 data:extend({
 	{
 		type = "sprite",
@@ -21,8 +20,26 @@ data:extend({
 		draw_as_light = true,
 		invert_colors = true,
 	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-rectangle",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light-rectangle.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-rectangle-inverted",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light-rectangle.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+		invert_colors = true,
+	},
 })
--- end
 
 data:extend({
 	{
