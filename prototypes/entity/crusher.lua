@@ -56,8 +56,8 @@ local crusher = {
 			filename = "__space-age__/sound/entity/crusher/crusher-loop.ogg",
 			volume = 1,
 			speed = 0.4,
+			audible_distance_modifier = 1,
 		},
-		audible_distance_modifier = 1,
 		fade_in_ticks = 4,
 		fade_out_ticks = 40,
 		max_sounds_per_prototype = 3,
@@ -153,8 +153,11 @@ local wreck = merge(crusher, {
 	map_color = { 212, 93, 93 },
 	working_sound = {
 		-- TODO: Improve this sound
-		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },
-		audible_distance_modifier = 0.5,
+		sound = {
+			audible_distance_modifier = 0.5,
+			filename = "__base__/sound/assembling-machine-t2-1.ogg",
+			volume = 0.45,
+		},
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
 	},

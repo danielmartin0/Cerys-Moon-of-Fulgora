@@ -227,8 +227,8 @@ local reactor_wreck = merge(reactor_wreck_base, {
 		},
 	},
 	working_sound = {
-		sound = { filename = "__base__/sound/burner-mining-drill-1.ogg", volume = 1 },
-		audible_distance_modifier = 1,
+		sound = { audible_distance_modifier = 1, filename = "__base__/sound/burner-mining-drill-1.ogg", volume = 1 },
+
 		fade_in_ticks = 0,
 		fade_out_ticks = 0,
 	},
@@ -370,8 +370,8 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 		},
 	},
 	working_sound = {
-		sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 1 },
-		audible_distance_modifier = 1,
+		sound = { audible_distance_modifier = 1, filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 1 },
+
 		fade_in_ticks = 0,
 		fade_out_ticks = 0,
 	},

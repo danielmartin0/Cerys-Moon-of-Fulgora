@@ -1,15 +1,20 @@
-local merge = require("lib").merge
-
 data:extend({
-	merge(data.raw.fluid["steam"], {
+	{
+		type = "fluid",
 		name = "methane",
+		subgroup = "fluid",
+		default_temperature = 15,
+		gas_temperature = 15,
+		max_temperature = 535,
+		heat_capacity = "0.22kJ",
 		order = "b[new-fluid]-c[fulgora]-a[cerys]-a[methane]",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		base_color = { r = 0.5, g = 0.5, b = 1, a = 1 },
 		flow_color = { r = 1, g = 1, b = 1, a = 0 },
-	}),
+		auto_barrel = false,
+	},
 
 	{
 		type = "fluid",

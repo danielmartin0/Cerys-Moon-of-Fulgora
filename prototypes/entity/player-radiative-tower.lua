@@ -71,11 +71,10 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 			close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 			working_sound = {
-				sound = { filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
+				sound = { audible_distance_modifier = 0.9, filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
 				max_sounds_per_prototype = 3,
 				fade_in_ticks = 4,
 				fade_out_ticks = 20,
-				audible_distance_modifier = 0.9,
 			},
 			default_temperature_signal = { type = "virtual", name = "signal-T" },
 			circuit_wire_max_distance = reactor_circuit_wire_max_distance,
