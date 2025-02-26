@@ -1,3 +1,4 @@
+local lib = require("lib")
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
 local space = require("scripts.space")
@@ -44,9 +45,19 @@ script.on_event({
 		return
 	end
 
+	local on_cerys = entity.surface and entity.surface.valid and entity.surface.name == "cerys"
+
+	if on_cerys and entity.type == "tile-ghost" then
+		local tile = entity.surface.get_tile(entity.position.x, entity.position.y)
+		if tile and lib.find(common.SPACE_TILES_AROUND_CERYS, tile.name) then
+			entity.destroy()
+			return
+		end
+	end
+
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
-	elseif entity.name == "cerys-charging-rod" then
+	elseif on_cerys and entity.name == "cerys-charging-rod" then
 		rods.built_charging_rod(entity, event.tags or {})
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
@@ -62,7 +73,7 @@ script.on_event({
 		repair.scaffold_on_build(entity, player)
 	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
-	elseif entity.type == "solar-panel" then
+	elseif on_cerys and entity.type == "solar-panel" then
 		lighting.register_solar_panel(entity)
 	end
 end)
