@@ -170,8 +170,8 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	local temperature_interval = TEMPERATURE_INTERVAL
 
 	if common.HARDCORE_ON then
-		max_heating_radius = 10.5
-		temperature_interval = temperature_interval * 16 / 10.5
+		max_heating_radius = 10
+		temperature_interval = temperature_interval * 16 / 10
 	end
 
 	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))
