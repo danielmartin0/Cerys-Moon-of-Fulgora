@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.15
-Date: ????
+Date: 2025-02-26
   Balancing:
     - Holmium plate productivity research on Cerys is now affected by force research productivity bonuses.
 ---------------------------------------------------------------------------------------------------
