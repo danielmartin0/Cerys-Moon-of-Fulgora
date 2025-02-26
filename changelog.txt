@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.6
-Date: ????
+Date: 2025-02-26
   Bugfixes:
     - Fixed that ghost concrete could be placed in the empty space around Cerys.
     - Fixed issue in which solar panels built outside of Cerys by players who previously visited Cerys could affect the solar power brightness calculation on Cerys.
