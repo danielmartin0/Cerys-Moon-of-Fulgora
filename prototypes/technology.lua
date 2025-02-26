@@ -300,7 +300,6 @@ data:extend({
 			time = 60,
 		},
 		upgrade = true,
-		allows_productivity = false,
 	},
 	{
 		type = "technology",
@@ -329,7 +328,6 @@ data:extend({
 		},
 		max_level = "infinite",
 		upgrade = true,
-		allows_productivity = false,
 	},
 })
 
