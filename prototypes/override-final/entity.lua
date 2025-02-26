@@ -192,7 +192,7 @@ end
 -- TODO: Restrict modded furnaces
 
 --== Atomic projectiles ==--
--- Ensuring that nuclear ground tiles don't get set on Cerys water spots.
+-- Ensuring that nuclear ground tiles don't get set on Cerys tiles.
 
 local function add_cerys_layers_to_masks(tbl)
 	if type(tbl) ~= "table" then
