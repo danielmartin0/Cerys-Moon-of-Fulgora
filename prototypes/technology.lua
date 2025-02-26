@@ -264,7 +264,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 800,
+			count = 1200,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -338,7 +338,7 @@ local cargo_drops_base =
 
 data:extend({
 	merge(cargo_drops_base, {
-		prerequisites = { "holmium-plate-productivity-1" }, -- Should be on the bottom row
+		prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
 		unit = {
 			count = common.HARDCORE_ON and 4000 or 1500,
 			ingredients = {
@@ -491,13 +491,11 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					recipe = "cerys-radiative-tower",
 				},
 			},
-			prerequisites = {
-				"cerys-lubricant-synthesis",
-			},
+			prerequisites = { "cerys-applications-of-radioactivity" },
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 			icon_size = 200,
 			unit = {
-				count = 800,
+				count = 600,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
