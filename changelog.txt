@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.11
-Date: ????
+Date: 2025-02-26
   Changes:
     - Radiative tower visualizations are more transparent and no longer show until the tower is ready to heat.
 ---------------------------------------------------------------------------------------------------
