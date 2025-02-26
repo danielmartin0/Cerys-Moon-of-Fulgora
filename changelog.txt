@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.12
-Date: ????
+Date: 2025-02-26
   Changes:
     - Added second 'Breaking change' entry to the 2.0 changelog, now we know about it. (Namely: Concrete sitting on water will unfortunately explode when the save loads.)
 ---------------------------------------------------------------------------------------------------
