@@ -4,6 +4,7 @@ data.raw.lab["cerys-lab"].inputs = {
 	"logistic-science-pack",
 	"cerysian-science-pack",
 	"utility-science-pack",
+	"cryogenic-science-pack",
 } -- Also set elsewhere
 
 data.raw.lab["cerys-lab-dummy"].inputs = {

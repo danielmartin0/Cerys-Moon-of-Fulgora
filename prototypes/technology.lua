@@ -264,7 +264,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 1200,
+			count = 800,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -491,11 +491,13 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					recipe = "cerys-radiative-tower",
 				},
 			},
-			prerequisites = { "cerys-applications-of-radioactivity" },
+			prerequisites = {
+				"cerys-applications-of-radioactivity",
+			},
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 			icon_size = 200,
 			unit = {
-				count = 600,
+				count = 1000,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -507,4 +509,8 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			allows_productivity = false,
 		},
 	})
+
+	if data.raw.tool["cryogenic-science-pack"] then
+		table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
+	end
 end
