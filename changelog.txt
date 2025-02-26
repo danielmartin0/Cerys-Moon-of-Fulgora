@@ -2,7 +2,8 @@
 Version: 2.1.10
 Date: 2025-02-26
   Changes:
-    - Tech dependency tweak.
+    - Cryogenic science is now required to research player-constructable radiative heaters.
+    - Small tweaks to other research requirements.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.9
 Date: 2025-02-26
