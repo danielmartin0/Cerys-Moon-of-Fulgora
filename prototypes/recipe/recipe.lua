@@ -12,6 +12,18 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			},
 			results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
 			enabled = false,
+			surface_conditions = {
+				{
+					property = "magnetic-field",
+					min = 120,
+					max = 120,
+				},
+				{
+					property = "pressure",
+					min = 5,
+					max = 5,
+				},
+			},
 		},
 	})
 end

@@ -2,6 +2,7 @@
 Version: 2.1.14
 Date: ????
   Changes:
+    - Player-constructable radiative heaters can now only be crafted on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.13
 Date: 2025-02-26
