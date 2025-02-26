@@ -102,14 +102,15 @@ function Public.tick_3_update_lights()
 	local light_2 = storage.cerys.light.rendering_2
 
 	if use_rectangle then
-		light_x = (R * bounded_x + R * (is_white_circle and 1 or -1)) * 0.7 -- not an exact science
+		light_x = R * math.cos((phase + math.pi / 2) % math.pi) * 0.7 -- constant factor is not an exact science
 	end
 	local light_position = { x = light_x, y = 0 }
 	local light_scale = light_radius * box_over_circle / 64
 	if use_rectangle then
 		light_scale = light_scale * 0.65 -- not an exact science
 	end
-	local rectangle_sprite = phase > math.pi / 4 and "cerys-solar-light-rectangle-inverted"
+	local rectangle_sprite = ((phase % (2 * math.pi)) > math.pi / 2 and (phase % (2 * math.pi)) < 3 * math.pi / 2)
+			and "cerys-solar-light-rectangle-inverted"
 		or "cerys-solar-light-rectangle"
 
 	if is_white_circle then
@@ -129,7 +130,9 @@ function Public.tick_3_update_lights()
 			light_1.y_scale = light_scale
 			light_1.sprite = use_rectangle and rectangle_sprite or "cerys-solar-light"
 
-			-- storage.cerys.light.flag_rendering_1.target = light_position
+			-- if storage.cerys.light.flag_rendering_1 then
+			-- 	storage.cerys.light.flag_rendering_1.target = light_position
+			-- end
 		else
 			light_1 = rendering.draw_sprite({
 				sprite = use_rectangle and rectangle_sprite or "cerys-solar-light",
@@ -166,7 +169,9 @@ function Public.tick_3_update_lights()
 			light_2.y_scale = light_scale
 			light_2.sprite = use_rectangle and rectangle_sprite or "cerys-solar-light-inverted"
 
-			-- storage.cerys.light.flag_rendering_2.target = light_position
+			-- if storage.cerys.light.flag_rendering_2 then
+			-- 	storage.cerys.light.flag_rendering_2.target = light_position
+			-- end
 		else
 			light_2 = rendering.draw_sprite({
 				sprite = use_rectangle and rectangle_sprite or "cerys-solar-light-inverted",
