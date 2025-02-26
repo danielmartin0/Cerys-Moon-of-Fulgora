@@ -16,6 +16,8 @@ function Public.tick_3_update_lights()
 		return
 	end
 
+	storage.cerys.light = storage.cerys.light or {}
+
 	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
 
@@ -62,8 +64,6 @@ function Public.tick_3_update_lights()
 
 	--== Graphics ==--
 	-- Commented lines are typically less polished versions.
-
-	storage.cerys.light = storage.cerys.light or {}
 
 	local stretched_daytime
 	if daytime < 50 / 100 then
@@ -116,6 +116,11 @@ function Public.tick_3_update_lights()
 		if light_2 then
 			light_2.destroy()
 			storage.cerys.light.rendering_2 = nil
+
+			-- if storage.cerys.light.flag_rendering_2 then
+			-- 	storage.cerys.light.flag_rendering_2.destroy()
+			-- 	storage.cerys.light.flag_rendering_2 = nil
+			-- end
 		end
 
 		if light_1 and light_1.valid then
