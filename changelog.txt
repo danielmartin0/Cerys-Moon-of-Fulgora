@@ -2,6 +2,7 @@
 Version: 2.1.12
 Date: ????
   Changes:
+    - Added second 'Breaking change' entry to the 2.0 changelog, now we know about it. (Namely: Concrete sitting on water will unfortunately explode when the save loads.)
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.11
 Date: 2025-02-26
@@ -71,7 +72,8 @@ Date: 2025-02-25
 Version: 2.0.0
 Date: 2025-02-23
   Info:
-    - Version 2.0! Headline features: Smaller moon surface, dynamic lighting, reduced gameplay grind, player-constructable radiative heaters. One breaking change: Cerysian science packs now require repair parts instead of ammonia.
+    - Version 2.0! Headline features: Smaller moon surface, dynamic lighting, reduced gameplay grind, player-constructable radiative heaters.
+    - Two breaking changes: 1) Cerysian science packs now require repair parts instead of ammonia. 2) Concrete sitting on water will explode when the save loads, as this is how Cerys water now works.
   Changes:
     - Concrete can now only be placed over Cerys water if the water is frozen.
     - Offshore pumps explode when their ice freezes over (leaving a ghost).
