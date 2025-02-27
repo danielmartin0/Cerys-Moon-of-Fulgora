@@ -16,12 +16,12 @@ This file specifies open-source assets used in Cerys, Moon of Fulgora.
 - **License**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - **Changes**: Yes. Icon recolored, quality upscaled.
 
-#### Methane icon
+#### Methane and Nitric Acid icons
 
 - **Creators**: [malcolmriley](https://github.com/malcolmriley)
 - **Source**: [Unused Renders](https://github.com/malcolmriley/unused-renders)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Changes**: Yes. Icon recolored to be more vivid.
+- **Changes**: Yes. Icons brightened to be a bit more vivid.
 
 #### Sci-fi Nuclear Reactor
 
