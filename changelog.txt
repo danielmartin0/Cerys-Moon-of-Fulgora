@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.2.0
-Date: ????
+Date: 2025-02-28
   Changes:
     - Reworked the dynamic lighting calculation of solar panel brightness on Cerys.
     - 'Radiative heaters' renamed to 'Radiative towers'.
