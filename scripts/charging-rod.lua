@@ -371,7 +371,7 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	if source.name == "cerys-charging-rod" then
 		negative = storage.cerys.charging_rod_is_negative[source.unit_number]
 	else
-		negative = source.tags.is_negative
+		negative = source.tags and source.tags.is_negative
 	end
 
 	Public.rod_set_state(destination, negative)
