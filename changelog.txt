@@ -1,8 +1,4 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.2.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.2.0
 Date: 2025-02-28
   Changes:
@@ -12,7 +8,7 @@ Date: 2025-02-28
     - Fixed pre-2.0 saves having some unthawable ice on the border of Cerys in 2.0.
     - Removed 'neighbour bonus' notes for radiative towers in Factoriopedia.
   Balancing:
-    - Reduced the sulfuric acid required (-20%) and ammonia produced (-20%) in the nitrogen-rich mineral processing recipe.
+    - Increased the amount of light oil produced by methane ice dissociation (+50%).
   Graphics:
     - New heat graphic for player-constructable radiative towers.
 ---------------------------------------------------------------------------------------------------
