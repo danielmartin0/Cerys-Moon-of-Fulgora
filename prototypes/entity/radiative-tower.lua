@@ -38,6 +38,7 @@ local reactor = {
 			})
 		),
 	},
+	neighbour_bonus = 0,
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back", {

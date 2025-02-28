@@ -313,6 +313,7 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
+			-- quality = scaffold_quality, -- Avoid locking players to a lower quality than they're happy with. In case you're wondering, it's not possible (as of 2.0.28) to fast-replace a higher-quality scaffold on an existing reactor.
 		})
 
 		if e and e.valid then

@@ -48,12 +48,12 @@ function Public.tick_ice(surface)
 			name = TRANSITION_TILE_NAMES,
 			area = {
 				left_top = {
-					x = -common.CERYS_RADIUS * 1.05 * stretch_factor,
-					y = -common.CERYS_RADIUS * 1.05 / stretch_factor,
+					x = -common.CERYS_RADIUS * 1.1 * stretch_factor,
+					y = -common.CERYS_RADIUS * 1.1 / stretch_factor,
 				},
 				right_bottom = {
-					x = common.CERYS_RADIUS * 1.05 * stretch_factor,
-					y = common.CERYS_RADIUS * 1.05 / stretch_factor,
+					x = common.CERYS_RADIUS * 1.1 * stretch_factor,
+					y = common.CERYS_RADIUS * 1.1 / stretch_factor,
 				},
 			},
 		})

@@ -1,7 +1,16 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.1.17
+Version: 2.2.0
 Date: ????
   Changes:
+    - Reworked the dynamic lighting calculation of solar panel brightness on Cerys.
+    - 'Radiative heaters' renamed to 'Radiative towers'.
+  Bugfixes:
+    - Fixed pre-2.0 saves having some unthawable ice on the border of Cerys in 2.0.
+    - Removed 'neighbour bonus' notes for radiative towers in Factoriopedia.
+  Balancing:
+    - Reduced the sulfuric acid required (-20%) and ammonia produced (-20%) in the nitrogen-rich mineral processing recipe.
+  Graphics:
+    - New heat graphic for player-constructable radiative towers.
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.16
 Date: 2025-02-26

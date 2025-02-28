@@ -52,6 +52,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					},
 				},
 			},
+			neighbour_bonus = 0,
 			picture = {
 				layers = {
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower", {

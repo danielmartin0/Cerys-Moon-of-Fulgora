@@ -213,49 +213,40 @@ function Public.tick_3_update_lights()
 	local total_brightness = 0
 	local panel_count = 0
 
-	local ideal_circle_scaling_effect = 1 / (1 - math.abs(bounded_x))
-	local ideal_light_x = R * bounded_x * ideal_circle_scaling_effect + R * bounded_x
-	local ideal_light_radius = (R * ideal_circle_scaling_effect) * elbow_room_factor
-
 	for unit_number, panel in pairs(storage.cerys.solar_panels) do
 		if panel.entity and panel.entity.valid then
-			-- if panel.entity.is_connected_to_electric_network() then
-			if bounded_x == 1 then
-				total_brightness = total_brightness + 0.5
-				panel_count = panel_count + 1
-			else
-				local relative_x = (panel.entity.position.x - ideal_light_x) / ideal_light_radius
-				local relative_y = panel.entity.position.y / ideal_light_radius
+			-- if panel.entity.is_connected_to_electric_network() then -- doesn't work?
+			local x = panel.entity.position.x
+			local y = panel.entity.position.y
 
-				local d = (relative_x * relative_x + relative_y * relative_y) ^ (1 / 2)
-
-				local d1 = 0.8
-				local d2 = 1.2
-
-				local efficiency
-				if d <= d1 then
-					if is_white_circle then
-						efficiency = 1
-					else
-						efficiency = 0
-					end
-				elseif d <= d2 then
-					if is_white_circle then
-						efficiency = (d2 - d) / (d2 - d1)
-					else
-						efficiency = (d - d1) / (d2 - d1)
-					end
-				else
-					if is_white_circle then
-						efficiency = 0
-					else
-						efficiency = 1
-					end
-				end
-
-				total_brightness = total_brightness + efficiency
-				panel_count = panel_count + 1
+			local d = math.sqrt(x ^ 2 + y ^ 2)
+			if d > R * 0.99 then
+				x = x / d * R * 0.99
+				y = y / d * R * 0.99
 			end
+
+			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
+			local adjusted_longitude = 3 * panel_longitude_radians / 4 -- Feels better
+
+			local angle = (phase - math.pi / 2 + adjusted_longitude) % (2 * math.pi)
+
+			local penumbra_size = math.pi / 10 -- must be <= math.pi / 4
+
+			local efficiency
+			if angle < math.pi / 2 - penumbra_size then
+				efficiency = 1
+			elseif angle < math.pi / 2 + penumbra_size then
+				efficiency = 1 - (angle - (math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
+			elseif angle < 3 * math.pi / 2 - penumbra_size then
+				efficiency = 0
+			elseif angle < 3 * math.pi / 2 + penumbra_size then
+				efficiency = (angle - (3 * math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
+			else
+				efficiency = 1
+			end
+
+			total_brightness = total_brightness + efficiency
+			panel_count = panel_count + 1
 			-- end
 		else
 			storage.cerys.solar_panels[unit_number] = nil
