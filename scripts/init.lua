@@ -26,13 +26,30 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	return surface
 end
 
+function Public.unresearch_cerys_technologies()
+	for _, force in pairs(game.forces) do
+		for tech_name, tech in pairs(force.technologies) do
+			if tech.researched then
+				if
+					string.sub(tech_name, 1, 6) == "cerys-"
+					or tech_name == "cerysian-science-pack"
+					or tech_name == "planetslib-cerys-cargo-drops"
+					or tech_name == "flare-stack-fluid-venting-tech"
+				then
+					tech.researched = false
+				end
+			end
+		end
+	end
+end
+
 function Public.create_reactor(surface)
 	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
 		or "cerys-fulgoran-reactor-wreck-frozen"
 
 	local adjusted_reactor_position = {
-		x = math.ceil(common.REACTOR_POSITION.x * common.get_cerys_surface_stretch_factor(surface)),
-		y = math.ceil(common.REACTOR_POSITION.y / common.get_cerys_surface_stretch_factor(surface)),
+		x = math.ceil(common.REACTOR_POSITION_SEED.x),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / common.get_cerys_surface_stretch_factor(surface)),
 	}
 
 	local entities = surface.find_entities_filtered({

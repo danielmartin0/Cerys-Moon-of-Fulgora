@@ -1,6 +1,6 @@
 ### Credits
 
-This file specifies open-source assets used in Cerys, Moon of Fulgora.
+This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 
 #### Fulgora graphic
 
@@ -43,3 +43,10 @@ This file specifies open-source assets used in Cerys, Moon of Fulgora.
 - **Source**: [Sci-fi Future Building 2 Simple Dome](https://sketchfab.com/3d-models/sci-fi-future-building-2-simple-dome-d885fdb25ed846779fc711917fbeeed2)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes. Remixed, shadows added.
+
+#### Centrifuge tint graphics & code
+
+- **Creators**: [NullPointerExcept](https://mods.factorio.com/user/NullPointerExcept)
+- **Source**: [Centrifuge tint 2.0](https://mods.factorio.com/mod/centrifuge-tint)
+- **License**: [MIT](https://opensource.org/license/MIT)
+- **Changes**: No.

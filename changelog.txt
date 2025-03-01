@@ -1,7 +1,24 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.2.4
+Version: 2.3.0
 Date: ????
   Changes:
+    - Nuclear scrap recycling no longer provides stone bricks.
+    - If the Cerys surface somehow becomes deleted, the Cerys tech tree is reset.
+    - Ribbonworld Cerys maps are now even thinner.
+  Balancing:
+    - Changes to nuclear scrap recycling results: heat pipes (+83%), advanced circuits (+10%), centrifuges (-15%), steam turbines (-15%), stone bricks (-100% as mentioned above)
+    - More iron gear wheels (+9%) from Fulgoran ruins
+    - Methane ice mining speed reduced by 20%.
+  Bugfixes:
+    - The cryogenic science pack technology is now correctly listed as a prerequisite for the radiative heaters technology.
+    - Fixed that on Hardcore Cerys ribbonworld the Fulgoran reactor could not be defrosted.
+    - Fixed that on super-ribbonworlds lithium brine spots could not be defrosted.
+  Graphics:
+    - The vanilla centrifuge now has a blue tint when crafting 'mixed-oxide waste centrifuging'.
+  Info:
+    - Added a performance warning when a player constructs their 250th charging rod on Cerys.
+  Optimizations:
+    - Performance improvements to surface cooling.
 ---------------------------------------------------------------------------------------------------
 Version: 2.2.3
 Date: 2025-02-28

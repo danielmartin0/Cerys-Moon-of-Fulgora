@@ -9,30 +9,24 @@ data:extend({
 
 	{
 		type = "noise-expression",
-		name = "map_distance",
+		name = "cerys_map_distance",
 		expression = "(cerys_xx^2 + cerys_yy^2)^(1/2)",
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_surface_distance_over_map_distance",
-		expression = "(map_distance / cerys_radius) + \z
-			((map_distance / cerys_radius)^3) / 6 + \z
-			3 * ((map_distance / cerys_radius)^5) / 40 + \z
-			5 * ((map_distance / cerys_radius)^7) / 112 + \z
-			35 * ((map_distance / cerys_radius)^9) / 1152", -- series expansion
-	},
-
-	{
-		type = "noise-expression",
-		name = "surface_distance",
-		expression = "map_distance * cerys_surface_distance_over_map_distance",
+		expression = "(cerys_map_distance / cerys_radius) + \z
+			((cerys_map_distance / cerys_radius)^3) / 6 + \z
+			3 * ((cerys_map_distance / cerys_radius)^5) / 40 + \z
+			5 * ((cerys_map_distance / cerys_radius)^7) / 112 + \z
+			35 * ((cerys_map_distance / cerys_radius)^9) / 1152", -- series expansion
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_stretch_factor",
-		expression = "cerys_radius / min(map_height / 2, cerys_radius)",
+		expression = common.cerys_surface_stretch_factor_for_math(),
 	},
 
 	{
@@ -74,13 +68,13 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_surface",
-		expression = "cerys_radius_wobble + (cerys_radius - map_distance) / 50",
+		expression = "cerys_radius_wobble + (cerys_radius - cerys_map_distance) / 50",
 	},
 
 	{
 		type = "noise-expression",
 		name = "cerys_surface_inner",
-		expression = "cerys_radius_wobble + (cerys_radius - 2 - map_distance) / 50",
+		expression = "cerys_radius_wobble + (cerys_radius - 2 - cerys_map_distance) / 50",
 	},
 
 	{
@@ -190,17 +184,17 @@ data:extend({
 				octaves = 3, \z
 				persistence = 0.4, \z
 				input_scale = slider_rescale(control:cerys_nuclear_scrap:size, 3) / 4, \z
-				output_scale = 250} * (1.2 - 0.4 * map_distance / cerys_radius) \z
+				output_scale = 250} * (1.2 - 0.4 * cerys_map_distance / cerys_radius) \z
 				- (260 / slider_rescale(control:cerys_nuclear_scrap:size, 1.2) \z
 				/ slider_rescale(control:cerys_nuclear_scrap:frequency, 1.2))) \z
 			- 10000 * cerys_water \z
 			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
 			+ min(0, ((cerys_xx^2 + cerys_yy^2)^(1/2) - 35) * 8) \z
-			+ min(0, (((cerys_xx - ("
-			.. tostring(common.REACTOR_POSITION.x)
+			+ min(0, (((x - ("
+			.. tostring(common.REACTOR_POSITION_SEED.x)
 			.. "))^2 + \z
 			(cerys_yy - ("
-			.. tostring(common.REACTOR_POSITION.y)
+			.. tostring(common.REACTOR_POSITION_SEED.y)
 			.. "))^2)^(1/2) - 40) * 8)",
 	},
 
@@ -235,11 +229,11 @@ data:extend({
 			- 10000 * cerys_water \z
 			- 10000 * max(0, cerys_nitrogen_rich_minerals_forced(cerys_nitrogen_rich_minerals_forced_spot_radius * 1.2)) \z
 			+ min(0, ((cerys_xx^2 + cerys_yy^2)^(1/2) - 40) * 8) \z
-			+ min(0, (((cerys_xx - ("
-			.. tostring(common.REACTOR_POSITION.x)
+			+ min(0, (((x - ("
+			.. tostring(common.REACTOR_POSITION_SEED.x)
 			.. "))^2 + \z
 			(cerys_yy - ("
-			.. tostring(common.REACTOR_POSITION.y)
+			.. tostring(common.REACTOR_POSITION_SEED.y)
 			.. "))^2)^(1/2) - 40) * 8)", -- Large patches in the center of the map look unpleasant
 	},
 
@@ -396,6 +390,17 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_script_occupied_terrain", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+
+	{
+		type = "noise-expression",
+		name = "surface_distance", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "map_distance", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
 		expression = "0",
 	},
 	{

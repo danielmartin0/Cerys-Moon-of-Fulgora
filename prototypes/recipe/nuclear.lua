@@ -93,6 +93,10 @@ data:extend({
 		},
 		subgroup = "plutonium-processing",
 		order = "c-c",
+		crafting_machine_tint = {
+			primary = { r = 0.384, g = 0.271, b = 1 },
+			secondary = { r = 0.384, g = 0.271, b = 1 },
+		},
 	}),
 
 	merge(data.raw.recipe["sulfuric-acid"], {

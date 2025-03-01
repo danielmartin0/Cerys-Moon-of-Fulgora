@@ -1,3 +1,5 @@
+local common = require("common")
+
 local Public = {}
 
 local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
@@ -5,6 +7,10 @@ local GUI_KEY = "cerys-gui-charging-rod"
 local GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
 
 Public.built_charging_rod = function(entity, tags)
+	if not storage.cerys then
+		return
+	end
+
 	if not (entity and entity.valid) then
 		return
 	end
@@ -20,6 +26,23 @@ Public.built_charging_rod = function(entity, tags)
 		end
 		if tags.control_signal ~= nil then
 			storage.cerys.charging_rods[entity.unit_number].control_signal = tags.control_signal
+		end
+	end
+
+	if not storage.cerys.given_charging_rod_performance_warning then
+		local registered_charging_rod_count = 0
+		for _, rod in pairs(storage.cerys.charging_rods) do
+			if rod.entity and rod.entity.valid then
+				registered_charging_rod_count = registered_charging_rod_count + 1
+			end
+		end
+
+		if registered_charging_rod_count >= 250 then
+			storage.cerys.given_charging_rod_performance_warning = true
+
+			game.print({
+				"[CERYS]: 250 charging rods detected. Please note that each charging rod can affect game performance when a player is on Cerys and solar wind is nearby.",
+			}, { color = common.WARN_COLOR })
 		end
 	end
 end

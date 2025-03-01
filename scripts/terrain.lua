@@ -6,10 +6,6 @@ local common = require("common")
 
 local Public = {}
 
-local function final_region(x, y)
-	return -(((y / 64) ^ 2) + (30 - x) / 32)
-end
-
 --== Entity positions ==--
 
 local hex_scale = 22
@@ -25,7 +21,6 @@ local max_rows = math.ceil(2 * max_radius / hex_height)
 
 local function hex_grid_positions(args)
 	local seed = args.seed
-	local avoid_final_region = args.avoid_final_region or false
 	local grid_scale = args.grid_scale or 1
 	local noise_size = args.noise_size or 40
 	local noise_scale = args.noise_scale or 500
@@ -42,9 +37,6 @@ local function hex_grid_positions(args)
 				place = false
 			end
 			if x == 0 and y == 0 then
-				place = false
-			end
-			if avoid_final_region and final_region(x, y) > 0 then
 				place = false
 			end
 
@@ -69,22 +61,13 @@ end
 local tower_positions = hex_grid_positions({
 	seed = 2104,
 	grid_scale = 1.07,
-	avoid_final_region = true,
 	noise_size = 40,
 	noise_scale = 500,
 })
 
-if common.HARDCORE_ON then
-	tower_positions[#tower_positions + 1] = {
-		x = 0,
-		y = 20,
-	}
-end
-
 local cryo_plant_positions = hex_grid_positions({
 	seed = 4100,
 	grid_scale = 2,
-	avoid_final_region = false,
 	displacement = { x = 2, y = -3.5 },
 	noise_size = 17,
 	noise_scale = 100,
@@ -93,7 +76,6 @@ local cryo_plant_positions = hex_grid_positions({
 local crusher_positions = hex_grid_positions({
 	seed = 1400,
 	grid_scale = 3.7,
-	avoid_final_region = false,
 	noise_size = 15,
 	displacement = { x = 20, y = -20 },
 	noise_scale = 240,
@@ -109,7 +91,10 @@ function Public.on_cerys_chunk_generated(event, surface)
 	local hidden_tiles = {}
 
 	local seed = event.surface.map_gen_settings.seed
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
 	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+
+	--== Empty space ==--
 
 	for x = area.left_top.x, area.right_bottom.x - 1 do
 		for y = area.left_top.y, area.right_bottom.y - 1 do
@@ -136,6 +121,17 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
+	--== Structures ==--
+
+	if common.HARDCORE_ON then -- extra tower to heat reactor
+		local displacement_from_corner = { x = -4, y = -2 }
+
+		tower_positions[#tower_positions + 1] = {
+			x = math.ceil(common.REACTOR_POSITION_SEED.x) - 16 + displacement_from_corner.x,
+			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) - 11 + displacement_from_corner.y,
+		}
+	end
+
 	Public.create_towers(surface, area)
 	Public.create_cryo_plants(surface, area)
 	Public.create_crushers(surface, area)
@@ -156,6 +152,24 @@ function Public.on_cerys_chunk_generated(event, surface)
 			end
 		end
 	end
+
+	--== Reactor concrete ==--
+
+	local adjusted_reactor_position = {
+		x = math.ceil(common.REACTOR_POSITION_SEED.x),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor),
+	}
+
+	if
+		adjusted_reactor_position.x >= area.left_top.x
+		and adjusted_reactor_position.x < area.right_bottom.x
+		and adjusted_reactor_position.y >= area.left_top.y
+		and adjusted_reactor_position.y < area.right_bottom.y
+	then
+		Public.ensure_solid_foundation(surface, adjusted_reactor_position, 34, 24)
+	end
+
+	--== Other ==--
 
 	surface.create_decoratives({ check_collision = true, decoratives = decoratives })
 
@@ -203,25 +217,22 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 end
 
 function Public.create_towers(surface, area)
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+
 	for _, p in ipairs(tower_positions) do
+		local xx = p.x / stretch_factor
+		local yy = p.y * stretch_factor
+
 		if
-			p.x >= area.left_top.x
+			(((yy / 64) ^ 2) + (30 - xx) / 32) > 0
+			and p.x >= area.left_top.x
 			and p.x < area.right_bottom.x
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
 		then
 			local p2 = { x = p.x, y = p.y }
 
-			local colliding_simple_entities = surface.find_entities_filtered({
-				type = "simple-entity",
-				area = {
-					left_top = { x = p2.x - 1.5, y = p2.y - 2 },
-					right_bottom = { x = p2.x + 1.5, y = p2.y + 2 },
-				},
-			})
-			for _, entity in ipairs(colliding_simple_entities) do
-				entity.destroy()
-			end
+			Public.deal_with_existing_entities(surface, p2, 3, 4)
 
 			if
 				surface.can_place_entity({
@@ -258,16 +269,7 @@ function Public.create_cryo_plants(surface, area)
 		then
 			local p2 = { x = p.x + 0.5, y = p.y + 0.5 }
 
-			local colliding_simple_entities = surface.find_entities_filtered({
-				type = "simple-entity",
-				area = {
-					left_top = { x = p2.x - 2.5, y = p2.y - 2.5 },
-					right_bottom = { x = p2.x + 2.5, y = p2.y + 2.5 },
-				},
-			})
-			for _, entity in ipairs(colliding_simple_entities) do
-				entity.destroy()
-			end
+			Public.deal_with_existing_entities(surface, p2, 5, 5)
 
 			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 3, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
@@ -300,16 +302,7 @@ function Public.create_crushers(surface, area)
 		then
 			local p2 = { x = p.x, y = p.y }
 
-			local colliding_simple_entities = surface.find_entities_filtered({
-				type = "simple-entity",
-				area = {
-					left_top = { x = p2.x - 2, y = p2.y - 1.5 },
-					right_bottom = { x = p2.x + 2, y = p2.y + 1.5 },
-				},
-			})
-			for _, entity in ipairs(colliding_simple_entities) do
-				entity.destroy()
-			end
+			Public.deal_with_existing_entities(surface, p2, 4, 3)
 
 			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 3, 3)
 
@@ -332,10 +325,42 @@ function Public.create_crushers(surface, area)
 	end
 end
 
+function Public.deal_with_existing_entities(surface, position, width, height)
+	local colliding_simple_entities = surface.find_entities_filtered({
+		type = "simple-entity",
+		area = {
+			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
+		},
+	})
+	for _, entity in ipairs(colliding_simple_entities) do
+		entity.destroy()
+	end
+
+	local colliding_characters = surface.find_entities_filtered({
+		type = "character",
+		area = {
+			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
+		},
+	})
+	for _, character in ipairs(colliding_characters) do
+		local desired_position = {
+			x = character.position.x - 6,
+			y = character.position.y - 6,
+		}
+
+		local new_position = surface.find_non_colliding_position("character", desired_position, 1, 1)
+			or desired_position
+
+		character.teleport(new_position)
+	end
+end
+
 function Public.create_lithium_brine(surface, area)
 	local adjusted_lithium_position = {
-		x = common.LITHIUM_POSITION.x * common.get_cerys_surface_stretch_factor(surface),
-		y = common.LITHIUM_POSITION.y / common.get_cerys_surface_stretch_factor(surface),
+		x = common.LITHIUM_ACTUAL_POSITION.x,
+		y = common.LITHIUM_ACTUAL_POSITION.y,
 	}
 
 	if

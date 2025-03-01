@@ -135,6 +135,35 @@ script.on_event(defines.events.on_tick, function(event)
 
 	local surface = game.get_surface("cerys")
 	if not (surface and surface.valid) then
+		if tick % 180 == 0 then
+			local should_reset = false
+			for _, force in pairs(game.forces) do
+				if force.technologies["moon-discovery-cerys"] then
+					for tech_name, tech in pairs(force.technologies) do
+						if tech.researched and tech_name:sub(1, 6) == "cerys-" then
+							for _, prereq in pairs(tech.prerequisites) do
+								if prereq.name == "moon-discovery-cerys" or prereq.name:sub(1, 6) == "cerys-" then
+									should_reset = true
+									break
+								end
+							end
+							if should_reset then
+								break
+							end
+						end
+					end
+				end
+				if should_reset then
+					break
+				end
+			end
+
+			if should_reset then
+				-- If there's no Cerys surface, we need to reset the Cerys experience.
+				init.unresearch_cerys_technologies()
+			end
+		end
+
 		return
 	end
 

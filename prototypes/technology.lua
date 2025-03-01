@@ -510,5 +510,8 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 
 	if data.raw.tool["cryogenic-science-pack"] then
 		table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
+		if data.raw.technology["cryogenic-science-pack"] then
+			table.insert(data.raw.technology["cerys-radiative-heaters"].prerequisites, "cryogenic-science-pack")
+		end
 	end
 end

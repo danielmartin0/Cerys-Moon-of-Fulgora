@@ -15,8 +15,8 @@ function Public.tick_1_update_background_renderings(surface)
 
 			if on_cerys then
 				local stretch = common.get_cerys_surface_stretch_factor(surface)
-				local planet_stretch = stretch ^ 2
-				local extra_y_offset = -20 * (stretch - 1)
+				local planet_stretch = stretch
+				local extra_y_offset = -5 * (stretch - 1)
 
 				if not r then
 					storage.background_renderings[player.index] = rendering.draw_sprite({

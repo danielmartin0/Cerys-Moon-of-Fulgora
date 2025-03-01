@@ -42,16 +42,15 @@ data:extend({
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 23,
-	["advanced-circuit"] = 11,
+	["advanced-circuit"] = 12,
 	["copper-cable"] = 7, -- initial power poles
 	["uranium-238"] = 6,
 	["pipe"] = 1.8, -- Initial pipes and extra initial iron. Pointedly small.
-	["stone-brick"] = 1, -- some of the stone brick for furnaces comes from the reactor excavation
+	["heat-pipe"] = 1.1, -- per each: 2.5 steel plate, 5 copper plate
 	["transport-belt"] = 0.9, -- Belt cubes and distance transport, initial iron. Pointedly small.
-	["heat-pipe"] = 0.6,
 	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
-	["steam-turbine"] = 0.2,
-	["centrifuge"] = 0.2,
+	["steam-turbine"] = 0.17, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
+	["centrifuge"] = 0.17, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
 	["uranium-235"] = 6 * U235_RATIO,
 }
 
