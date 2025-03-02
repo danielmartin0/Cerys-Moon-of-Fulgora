@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2
-Date: ????
+Date: 2025-03-02
   Modding:
     - AAI Industry compatibility: Stone is once again obtainable from nuclear scrap recycling.
     - Distant Misfires compatibility: Cerys asteroids once again have a collision mask if this mod is installed, allowing them to be shot down.
