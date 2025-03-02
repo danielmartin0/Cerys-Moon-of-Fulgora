@@ -2,6 +2,7 @@
 Version: 2.3.1
 Date: ????
   Changes:
+    - Changes to nuclear scrap recycling results: centrifuges (+6%), steam turbines (+6%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.0
 Date: 2025-03-01
@@ -10,7 +11,7 @@ Date: 2025-03-01
     - If the Cerys surface somehow becomes deleted, the Cerys tech tree is reset.
     - Ribbonworld Cerys maps are now even thinner.
   Balancing:
-    - Changes to nuclear scrap recycling results: heat pipes (+83%), advanced circuits (+10%), centrifuges (-15%), steam turbines (-15%), stone bricks (-100% as mentioned above)
+    - Changes to nuclear scrap recycling results: heat pipes (+83%), advanced circuits (+10%), centrifuges (-15%), steam turbines (-15%), stone bricks (-100% as mentioned above).
     - More iron gear wheels (+9%) from Fulgoran ruins
     - Methane ice mining speed reduced by 20%.
   Bugfixes:
