@@ -1,27 +1,53 @@
 if mods["PlutoniumEnergy"] then
-	data.raw.technology["plutonium-processing"] = nil
-	data.raw.technology["plutonium-reprocessing"] = nil
-	data.raw.technology["plutonium-ammo"] = nil
-	data.raw.technology["plutonium-nuclear-power"] = nil
-	data.raw.technology["MOX-nuclear-power"] = nil
-	data.raw.technology["fission-reactor-equipment-from-MOX-fuel"] = nil
-	data.raw.technology["fission-reactor-equipment-from-plutonium"] = nil
-	data.raw.technology["plutonium-atomic-bomb"] = nil
-	data.raw.technology["nuclear-breeding"] = nil
-	data.raw.technology["breeder-fuel-cell-from-uranium-cell"] = nil
-	data.raw.technology["breeder-fuel-cell-from-MOX-fuel-cell"] = nil
-
-	table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
-		type = "unlock-recipe",
-		recipe = "plutonium-cannon-shell",
-	})
-	table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
-		type = "unlock-recipe",
-		recipe = "explosive-plutonium-cannon-shell",
-	})
-	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
-		type = "unlock-recipe",
-		recipe = "MOX-reactor",
-	})
-	table.insert(data.raw.reactor["MOX-reactor"].energy_source.fuel_categories, "nuclear-mixed-oxide")
+	if data.raw.technology["plutonium-processing"] then
+		data.raw.technology["plutonium-processing"].hidden = true
+	end
+	if data.raw.technology["plutonium-reprocessing"] then
+		data.raw.technology["plutonium-reprocessing"].hidden = true
+	end
+	if data.raw.technology["plutonium-ammo"] then
+		data.raw.technology["plutonium-ammo"].hidden = true
+	end
+	if data.raw.technology["plutonium-nuclear-power"] then
+		data.raw.technology["plutonium-nuclear-power"].hidden = true
+	end
+	if data.raw.technology["MOX-nuclear-power"] then
+		data.raw.technology["MOX-nuclear-power"].hidden = true
+	end
+	if data.raw.technology["fission-reactor-equipment-from-MOX-fuel"] then
+		data.raw.technology["fission-reactor-equipment-from-MOX-fuel"].hidden = true
+	end
+	if data.raw.technology["fission-reactor-equipment-from-plutonium"] then
+		data.raw.technology["fission-reactor-equipment-from-plutonium"].hidden = true
+	end
+	if data.raw.technology["nuclear-breeding"] then
+		data.raw.technology["nuclear-breeding"].hidden = true
+	end
+	if data.raw.technology["breeder-fuel-cell-from-uranium-cell"] then
+		data.raw.technology["breeder-fuel-cell-from-uranium-cell"].hidden = true
+	end
+	if data.raw.technology["breeder-fuel-cell-from-MOX-fuel-cell"] then
+		data.raw.technology["breeder-fuel-cell-from-MOX-fuel-cell"].hidden = true
+	end
+	if data.raw.recipe["plutonium-cannon-shell"] then
+		table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
+			type = "unlock-recipe",
+			recipe = "plutonium-cannon-shell",
+		})
+	end
+	if data.raw.recipe["explosive-plutonium-cannon-shell"] then
+		table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
+			type = "unlock-recipe",
+			recipe = "explosive-plutonium-cannon-shell",
+		})
+	end
+	if data.raw.recipe["MOX-reactor"] then
+		table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
+			type = "unlock-recipe",
+			recipe = "MOX-reactor",
+		})
+	end
+	if data.raw.reactor["MOX-reactor"] then
+		table.insert(data.raw.reactor["MOX-reactor"].energy_source.fuel_categories, "nuclear-mixed-oxide")
+	end
 end
