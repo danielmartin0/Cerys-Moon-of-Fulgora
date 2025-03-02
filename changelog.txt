@@ -2,6 +2,7 @@
 Version: 2.3.3
 Date: ????
   Changes:
+    - Fixed missing Factoriopedia info for gamma radiation.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2025-03-02
