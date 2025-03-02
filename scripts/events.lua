@@ -119,7 +119,15 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	end
 end)
 
--- Cerys tick:
+local function unresearch_successors(tech)
+	for _, successor in pairs(tech.successors) do
+		if successor.researched then
+			successor.researched = false
+		end
+		unresearch_successors(successor)
+	end
+end
+
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
@@ -133,47 +141,33 @@ script.on_event(defines.events.on_tick, function(event)
 		radiative_towers.radiative_heaters_temperature_tick()
 	end
 
-	local surface = game.get_surface("cerys")
-	if not (surface and surface.valid) then
-		if tick % 180 == 0 then
-			local should_reset = false
-			for _, force in pairs(game.forces) do
-				if force.technologies["moon-discovery-cerys"] then
-					for tech_name, tech in pairs(force.technologies) do
-						if tech.researched and tech_name:sub(1, 6) == "cerys-" then
-							for _, prereq in pairs(tech.prerequisites) do
-								if prereq.name == "moon-discovery-cerys" or prereq.name:sub(1, 6) == "cerys-" then
-									should_reset = true
-									break
-								end
-							end
-							if should_reset then
-								break
-							end
-						end
-					end
-				end
-				if should_reset then
-					break
-				end
-			end
+	local surface
+	if storage.cerys then
+		surface = game.get_surface("cerys")
+		if surface and surface.valid then
+			Public.cerys_tick(surface, tick)
+		end
+	end
 
-			if should_reset then
-				-- If there's no Cerys surface, we need to reset the Cerys experience.
-				init.unresearch_cerys_technologies()
-			end
+	if tick % (60 * 8) == 0 then
+		if not surface then
+			surface = game.surfaces["cerys"]
 		end
 
-		return
-	end
+		if surface and surface.valid and not storage.cerys then
+			-- Something has gone wrong, so delete the surface to avoid play on a broken world.
+			game.delete_surface("cerys")
+		end
 
-	if not storage.cerys then
-		-- Something has gone wrong, so delete the surface to avoid play on a broken world.
-		game.delete_surface("cerys")
-		return
+		if not (surface and surface.valid) then
+			for _, force in pairs(game.forces) do
+				local tech = force.technologies["moon-discovery-cerys"]
+				if tech then
+					unresearch_successors(tech)
+				end
+			end
+		end
 	end
-
-	Public.cerys_tick(surface, tick)
 end)
 
 function Public.cerys_tick(surface, tick)
