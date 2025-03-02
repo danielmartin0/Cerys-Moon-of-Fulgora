@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.4
-Date: ????
+Date: 2025-03-02
   Modding:
     - Added a simple compatibility patch for Plutonium Energy. PE recipes that could be considered unnecessarily complicated duplicates of simpler Cerys recipes are hidden from the tech tree.
 ---------------------------------------------------------------------------------------------------
