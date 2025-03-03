@@ -138,6 +138,7 @@ local function melt_dry_ice(surface, pos)
 			"cerys-methane-iceberg-medium",
 			"cerys-methane-iceberg-small",
 			"cerys-methane-iceberg-tiny",
+			"cerys-ice-decal-white",
 		},
 		position = pos,
 	})
