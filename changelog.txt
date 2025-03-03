@@ -2,6 +2,7 @@
 Version: 2.3.6
 Date: ????
   Changes:
+    - Bumped minimum Factorio version by one version.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.5
 Date: 2025-03-03
@@ -11,7 +12,7 @@ Date: 2025-03-03
 Version: 2.3.4
 Date: 2025-03-02
   Modding:
-    - Added a simple compatibility patch for Plutonium Energy. PE recipes that could be considered complicated duplicates of Cerys recipes are hidden from the tech tree.
+    - Added a simple compatibility patch for Plutonium Energy. PE recipes that could be considered complex duplicates of Cerys recipes are hidden from the tech tree.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.3
 Date: 2025-03-02
