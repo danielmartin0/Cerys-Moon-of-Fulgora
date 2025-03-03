@@ -138,9 +138,18 @@ local function melt_dry_ice(surface, pos)
 			"cerys-methane-iceberg-medium",
 			"cerys-methane-iceberg-small",
 			"cerys-methane-iceberg-tiny",
-			"cerys-ice-decal-white",
 		},
 		position = pos,
+	})
+
+	surface.destroy_decoratives({
+		name = {
+			"cerys-ice-decal-white",
+		},
+		area = {
+			left_top = { x = pos.x - 2, y = pos.y - 2 },
+			right_bottom = { x = pos.x + 2, y = pos.y + 2 },
+		},
 	})
 end
 
