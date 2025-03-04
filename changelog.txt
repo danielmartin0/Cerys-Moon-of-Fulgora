@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.8
-Date: ????
+Date: 2025-03-04
   Info:
     - Moon Discovery Cerys and the Cerys description in Factoriopedia have been updated with things-to-know on arrival.
   Modding:
