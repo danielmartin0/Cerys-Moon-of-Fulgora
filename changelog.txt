@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.9
 Date: ????
-  Changes:
+  Balancing:
+    - Reduced rate of plutonium production by 17%.
+  Graphics:
+    - Shadows on Cerys are slightly darker.
+  Modding:
     - Removed old Muluna compatibility code.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.8

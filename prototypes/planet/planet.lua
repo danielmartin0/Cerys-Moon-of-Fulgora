@@ -54,7 +54,9 @@ PlanetsLib:extend({
 		asteroid_spawn_influence = 1,
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),
 		persistent_ambient_sounds = {},
-		surface_render_parameters = {},
+		surface_render_parameters = {
+			shadow_opacity = 0.6, -- Slightly sharper, though too sharp doesn't play well with dynamic lighting
+		},
 		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
 	},
 })
