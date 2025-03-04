@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.8
 Date: ????
-  Changes:
+  Info:
+    - Moon Discovery Cerys and the Cerys description in Factoriopedia have been updated with things-to-know on arrival.
+  Modding:
+    - More Picker Dollies compatibility: Fixed that player-constructable radiative towers could be moved separate from their heating effect.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.7
 Date: 2025-03-03
