@@ -10,6 +10,11 @@ local ASTEROIDS_TO_CLONE = {
 	"medium-oxide-asteroid",
 }
 
+if mods["cupric-asteroids"] then
+  table.insert(ASTEROIDS_TO_CLONE, "small-cupric-asteroid")
+  table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
+end
+
 local ASTEROID_HEALTH_MULTIPLIER = common.HARDCORE_ON and 8 or 2.5
 local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = 10
 
@@ -18,6 +23,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 
 	local e = merge(original, {
 		name = asteroid_name .. name_suffix,
+    localised_name = {"entity-name.planetary-asteroid", {"entity-name."..asteroid_name}},
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
