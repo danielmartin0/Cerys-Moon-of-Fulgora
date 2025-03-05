@@ -61,6 +61,13 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-player-constructable-radiative-towers",
+		setting_type = "startup",
+		default_value = true,
+		order = "b",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-disable-quality-mechanics",
 		setting_type = "startup",
 		default_value = false,
@@ -79,13 +86,6 @@ data:extend({
 		setting_type = "startup",
 		default_value = true,
 		order = "f",
-	},
-	{
-		type = "bool-setting",
-		name = "cerys-player-constructable-radiative-towers",
-		setting_type = "startup",
-		default_value = true,
-		order = "g",
 	},
 })
 

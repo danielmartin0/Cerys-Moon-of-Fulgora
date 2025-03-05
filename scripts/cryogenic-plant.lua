@@ -215,11 +215,11 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 	for _, plant in pairs(plants) do
 		storage.cerys.cryo_upgrade_monitor[plant.unit_number] = nil -- We'll re-add it shortly if we need to
 
-		if plant and plant.valid and plant.quality and plant.quality.next then
+		if plant and plant.valid then
 			local recipe, recipe_quality = plant.get_recipe()
 
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality" then
-				if plant.quality.next.name == recipe_quality.name then
+				if plant.quality and plant.quality.next and plant.quality.next.name == recipe_quality.name then
 					storage.cerys.cryo_upgrade_monitor[plant.unit_number] = {
 						entity = plant,
 						quality_upgrading_to = recipe_quality.name,
@@ -247,7 +247,11 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 						end
 					end
 
-					plant.set_recipe(recipe, plant.quality.next)
+					if plant.quality and plant.quality.next then
+						plant.set_recipe(recipe, plant.quality.next)
+					else
+						plant.set_recipe(nil)
+					end
 				end
 			end
 		end

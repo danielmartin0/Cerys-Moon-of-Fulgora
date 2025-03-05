@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.10
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that legendary Fulgoran cryogenic plants could craft the quality upgrade recipe.
+    - Fixed that in creative mode it was impossible to unlock all Cerys technologies.
+  Balancing:
+    - Increased the mining time of Cerysian ruins (+32%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.9
 Date: 2025-03-04

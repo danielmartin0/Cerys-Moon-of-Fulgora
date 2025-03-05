@@ -20,20 +20,6 @@ local Public = {}
 -- Highest-level file besides control.lua.
 
 script.on_event({
-	defines.events.on_pre_surface_cleared,
-	defines.events.on_pre_surface_deleted,
-}, function(event)
-	local surface_index = event.surface_index
-	local surface = game.surfaces[surface_index]
-
-	if not (surface and surface.valid and surface.name == "cerys") then
-		return
-	end
-
-	storage.cerys = nil
-end)
-
-script.on_event({
 	defines.events.on_built_entity,
 	defines.events.on_robot_built_entity,
 	defines.events.on_space_platform_built_entity,
@@ -119,15 +105,6 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	end
 end)
 
-local function unresearch_successors(tech)
-	for _, successor in pairs(tech.successors) do
-		if successor.researched then
-			successor.researched = false
-		end
-		unresearch_successors(successor)
-	end
-end
-
 script.on_event(defines.events.on_tick, function(event)
 	local tick = event.tick
 
@@ -149,23 +126,13 @@ script.on_event(defines.events.on_tick, function(event)
 		end
 	end
 
-	if tick % (60 * 8) == 0 then
-		if not surface then
-			surface = game.surfaces["cerys"]
-		end
+	if tick % (60 * 15) == 0 then
+		surface = surface or game.surfaces["cerys"]
+		local valid = surface and surface.valid
 
-		if surface and surface.valid and not storage.cerys then
+		if valid and not storage.cerys then
 			-- Something has gone wrong, so delete the surface to avoid play on a broken world.
 			game.delete_surface("cerys")
-		end
-
-		if not (surface and surface.valid) then
-			for _, force in pairs(game.forces) do
-				local tech = force.technologies["moon-discovery-cerys"]
-				if tech then
-					unresearch_successors(tech)
-				end
-			end
 		end
 	end
 end)
@@ -474,6 +441,36 @@ script.on_event(defines.events.on_rocket_launch_ordered, function(event)
 
 	storage.thankyou_message_triggered = true
 	storage.thankyou_message_timer = game.tick + 5 * 60
+end)
+
+local function unresearch_successors(tech)
+	for _, successor in pairs(tech.successors) do
+		if successor.researched then
+			successor.researched = false
+		end
+		unresearch_successors(successor)
+	end
+end
+
+script.on_event({
+	defines.events.on_pre_surface_cleared,
+	defines.events.on_pre_surface_deleted,
+}, function(event)
+	local surface_index = event.surface_index
+	local surface = game.surfaces[surface_index]
+
+	if not (surface and surface.valid and surface.name == "cerys") then
+		return
+	end
+
+	for _, force in pairs(game.forces) do
+		local tech = force.technologies["moon-discovery-cerys"]
+		if tech then
+			unresearch_successors(tech)
+		end
+	end
+
+	storage.cerys = nil
 end)
 
 return Public

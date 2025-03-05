@@ -2,7 +2,7 @@ local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
 	local results = {
 		mining_particle = "stone-particle",
-		mining_time = (1 / 4) * 0.3 * collision_area ^ 0.75,
+		mining_time = (1 / 3) * 0.3 * collision_area ^ 0.75,
 		results = {
 			{
 				type = "item",
