@@ -2,6 +2,7 @@
 Version: 2.3.11
 Date: ????
   Changes:
+    - Re-add Muluna compatibility code to allow science packs to be crafted on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.10
 Date: 2025-03-05
