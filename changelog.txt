@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.10
-Date: ????
+Date: 2025-03-05
   Bugfixes:
     - Fixed that legendary Fulgoran cryogenic plants could craft the quality upgrade recipe.
     - Fixed that in creative mode it was impossible to unlock all Cerys technologies.
