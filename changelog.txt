@@ -2,6 +2,7 @@
 Version: 2.3.13
 Date: ????
   Changes:
+    - Fixed the mod failing to download for some users.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.11
 Date: 2025-03-05
