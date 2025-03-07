@@ -27,6 +27,11 @@ local ASTEROID_TO_PERCENTAGE_RATE = {
 	["medium-oxide-asteroid-planetary"] = 2,
 }
 
+if script.active_mods["cupric-asteroids"] then
+  ASTEROID_TO_PERCENTAGE_RATE["small-cupric-asteroid-planetary"] = 0.8
+  ASTEROID_TO_PERCENTAGE_RATE["medium-cupric-asteroid-planetary"] = 1.3
+end
+
 local MAX_CHUNKS_ON_GROUND = 15
 
 function Public.try_spawn_asteroid(surface)
