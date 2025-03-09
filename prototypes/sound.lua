@@ -103,7 +103,7 @@ data:extend({
 		name = "cerys-5",
 		planet = "cerys",
 	}),
-	merge(data.raw["ambient-sound"]["aquilo-8"], {
+	merge(data.raw["ambient-sound"]["space-6"], {
 		name = "cerys-6",
 		planet = "cerys",
 	}),

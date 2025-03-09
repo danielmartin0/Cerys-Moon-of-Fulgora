@@ -92,7 +92,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 		icon_size = 256,
 		unit = {
-			count = 100,
+			count = 50,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -106,7 +106,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
-			count = 100,
+			count = 120,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -495,7 +495,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 			icon_size = 200,
 			unit = {
-				count = 1000,
+				count = 1500,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },

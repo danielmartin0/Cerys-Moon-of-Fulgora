@@ -178,7 +178,7 @@ function Public.cerys_tick(surface, tick)
 		end
 
 		if tick % (9 * solar_wind_tick_multiplier) == 0 then
-			local spawn_chance = 0.45 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
+			local spawn_chance = 0.225 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
 				space.spawn_solar_wind_particle(surface)
 			end
@@ -279,7 +279,6 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["efficiency-module-2"].research_recursive()
 		player.force.technologies["electric-energy-distribution-2"].research_recursive()
 		player.force.technologies["electric-mining-drill"].research_recursive()
-		player.force.technologies["electromagnetic-plant"].research_recursive()
 		player.force.technologies["elevated-rail"].research_recursive()
 		player.force.technologies["exoskeleton-equipment"].research_recursive()
 		player.force.technologies["fission-reactor-equipment"].research_recursive()
@@ -471,6 +470,43 @@ script.on_event({
 	end
 
 	storage.cerys = nil
+end)
+
+script.on_event(defines.events.on_entity_damaged, function(event)
+	local entity = event.entity
+
+	if
+		not (
+			entity
+			and entity.valid
+			and entity.type == "asteroid"
+			and entity.surface
+			and entity.surface.valid
+			and entity.surface.name == "cerys"
+		)
+	then
+		return
+	end
+
+	local cause = event.cause
+
+	if not (cause and cause.valid and cause.type == "character") then
+		return
+	end
+
+	if not (event.damage_type.name == "physical") then
+		return
+	end
+
+	local no_weapon = not (
+		cause.get_inventory(defines.inventory.character_guns)
+		and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index]
+		and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index].valid_for_read
+	)
+
+	if no_weapon then
+		entity.health = entity.health - 2 -- Allow melee on asteroids for funsies
+	end
 end)
 
 return Public

@@ -66,31 +66,31 @@ function Public.tick_3_update_lights()
 	-- Commented lines are typically less polished versions.
 
 	local stretched_daytime
-	if daytime < 50 / 100 then
+	if daytime < 44 / 100 then
 		stretched_daytime = 0
-	elseif daytime < 70 / 100 then
-		stretched_daytime = 0.5 * (daytime - 50 / 100) / (20 / 100)
-	elseif daytime < 80 / 100 then
+	elseif daytime < 68 / 100 then
+		stretched_daytime = 0.5 * (daytime - 44 / 100) / (24 / 100)
+	elseif daytime < 76 / 100 then
 		stretched_daytime = 0.5
 	else
-		stretched_daytime = 0.5 + 0.5 * (daytime - 80 / 100) / (20 / 100)
+		stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
 	end
 	-- local stretched_daytime = daytime
 
-	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- Day should be at pi/2
+	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- midday should be phase = pi/2
 
 	local bounded_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
-	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2))
+	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2)) -- for testing
 
 	local regularized_bounded_x = math.max(math.min(bounded_x, 0.83), -0.83)
-	-- local regularized_bounded_x = math.tanh(bounded_x) * 0.9 / math.tanh(1) -- Changing size whilst it's huge is not good
+	-- local regularized_bounded_x = math.tanh(bounded_x) * 0.9 / math.tanh(1) -- Changing size whilst it's huge causes large moving artifacts
 
 	local circle_scaling_effect = 1 / (1 - math.abs(regularized_bounded_x))
-	-- local circle_scaling_effect = 1
+	-- local circle_scaling_effect = 1 -- for testing
 
 	-- Helps avoid a) the circle being a snug fit, b) graphical overflow of the negative circle's image boundary
 	local elbow_room_factor = 1 + 0.4 * math.sin(phase) ^ 4
-	-- local elbow_room_factor = 1
+	-- local elbow_room_factor = 1 -- for testing
 
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
 	local light_radius = (R * circle_scaling_effect) * elbow_room_factor
@@ -226,11 +226,11 @@ function Public.tick_3_update_lights()
 			end
 
 			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
-			local adjusted_longitude = 3 * panel_longitude_radians / 4 -- Feels better
+			local adjusted_longitude = 2 * panel_longitude_radians / 3 -- This multiplication accounts for a 2d–3d perspective issue.
 
 			local angle = (phase - math.pi / 2 + adjusted_longitude) % (2 * math.pi)
 
-			local penumbra_size = math.pi / 10 -- must be <= math.pi / 4
+			local penumbra_size = math.pi / 14 -- must be <= math.pi / 4
 
 			local efficiency
 			if angle < math.pi / 2 - penumbra_size then

@@ -44,14 +44,14 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 23,
 	["advanced-circuit"] = 12,
 	["copper-cable"] = 7, -- initial power poles
-	["uranium-238"] = 6,
+	["uranium-238"] = 4,
 	["pipe"] = 1.8, -- Initial pipes and extra initial iron. Pointedly small.
-	["heat-pipe"] = 1.1, -- per each: 2.5 steel plate, 5 copper plate
+	["heat-pipe"] = 1, -- per each: 2.5 steel plate, 5 copper plate
 	["transport-belt"] = 0.9, -- Belt cubes and distance transport, initial iron. Pointedly small.
 	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
 	["steam-turbine"] = 0.18, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
 	["centrifuge"] = 0.18, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
-	["uranium-235"] = 6 * U235_RATIO,
+	["uranium-235"] = 4 * U235_RATIO,
 }
 
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do

@@ -5,18 +5,18 @@ local Public = {}
 
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
-local SOLAR_WIND_MIN_VELOCITY = 0.225
+local SOLAR_WIND_MIN_VELOCITY = 0.15
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
-local ROD_DEFLECTION_STRENGTH = 4
+local ROD_DEFLECTION_STRENGTH = 8 / 4.5
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 30
+local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 50
 local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 1330
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 13300
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 591
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 5910
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
@@ -28,8 +28,8 @@ local ASTEROID_TO_PERCENTAGE_RATE = {
 }
 
 if script.active_mods["cupric-asteroids"] then
-  ASTEROID_TO_PERCENTAGE_RATE["small-cupric-asteroid-planetary"] = 0.8
-  ASTEROID_TO_PERCENTAGE_RATE["medium-cupric-asteroid-planetary"] = 1.3
+	ASTEROID_TO_PERCENTAGE_RATE["small-cupric-asteroid-planetary"] = 0.8
+	ASTEROID_TO_PERCENTAGE_RATE["medium-cupric-asteroid-planetary"] = 1.3
 end
 
 local MAX_CHUNKS_ON_GROUND = 15
@@ -110,8 +110,8 @@ function Public.spawn_solar_wind_particle(surface)
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.05
-	local y_velocity = 0.3 * (math.random() - 0.5) ^ 3
+	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3
+	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3
 
 	return { x = x_velocity, y = y_velocity }
 end
@@ -438,7 +438,7 @@ function Public.irradiation_chance_effect(surface, position)
 		volume_modifier = 0.13,
 	})
 
-	for _ = 1, 12 do
+	for _ = 1, 8 do
 		surface.create_particle({
 			name = "solar-wind-exposure-particle",
 			position = {

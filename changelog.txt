@@ -1,7 +1,23 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.3.15
+Version: 2.4.0
 Date: ????
+  Balancing:
+    - Adjusted yields from Cerysian ruins: iron gear wheels (-5%), solar panels (-12.5%).
+    - Significantly reduced power draw of Fulgoran cryogenic plants (-33%).
+    - Tweaked the repair cost of Fulgoran machines: crusher (-33%), reactor (+20%).
+    - Increased methane ice required for the dissociation recipe (+25%) and decreased the crafting speed (-23%).
+    - Decreased crafting speed of ancient structure repair parts (-11%).
+    - Decreased mining speed of nitrogen-rich minerals (-11%).
+    - Changes to nuclear scrap recycling: heat pipes (-9%), uranium (-33%).
+    - Increased steel required in the reactor scaffold recipe.
+    - Small quantitative tweaks to technology costs.
+    - Planetary asteroids now have a special weakness to melee damage.
+    - Electromagnetic plants are removed from the initial tech loadout when starting the game on Cerys.
   Changes:
+    - Slowed the day-night dynamic lighting transition. Existing saves may notice a shifted time of day when first loading into 2.4.0.
+    - Slowed the speed of solar wind particles. (They follow the same paths, just more slowly.)
+  Sounds:
+    - Adjusted the Cerys music tracks.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.14
 Date: 2025-03-07

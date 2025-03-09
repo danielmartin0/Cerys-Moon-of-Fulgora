@@ -6,7 +6,7 @@ data:extend({
 		name = "ancient-structure-repair-part",
 		category = "advanced-crafting-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 3,
+		energy_required = 3.4,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
 			{ type = "item", name = "engine-unit", amount = 1 },
@@ -24,7 +24,7 @@ data:extend({
 		energy_required = 20,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 100 },
+			{ type = "item", name = "steel-plate", amount = 200 },
 			{ type = "item", name = "refined-concrete", amount = 500 },
 			{ type = "item", name = "processing-unit", amount = 100 },
 		},
