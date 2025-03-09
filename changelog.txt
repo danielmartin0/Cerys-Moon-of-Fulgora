@@ -1,7 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.9
 Date: ????
+  Balancing:
+    - Increased the speed of methane ice dissociation (+18%).
+    - Increased the speed of methane ice mining (+10%).
+    - Reverted the increase in methane produced by dissociation.
+    - Changes to nuclear scrap recycling: solid fuel (+9%).
   Changes:
+    - Effect transmission removed as a prerequisite for Moon Discovery Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.8
 Date: 2025-03-09

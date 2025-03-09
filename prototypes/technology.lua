@@ -404,7 +404,6 @@ local discovery_tech = {
 		"quality-module-2",
 		"productivity-module-2",
 		"energy-shield-equipment", -- if removed, solar energy needs to be added
-		"effect-transmission",
 	},
 	unit = {
 		count = 250,
