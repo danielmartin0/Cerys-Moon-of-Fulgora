@@ -1,8 +1,4 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.4.11
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.4.10
 Date: 2025-03-09
   Changes:
@@ -13,7 +9,6 @@ Date: 2025-03-09
   Balancing:
     - Increased the speed of methane ice dissociation (+18%).
     - Increased the speed of methane ice mining (+10%).
-    - Reverted the increase in methane produced by dissociation.
     - Changes to nuclear scrap recycling: solid fuel (+9%).
   Changes:
     - Effect transmission removed as a prerequisite for Moon Discovery Cerys.
@@ -53,7 +48,6 @@ Date: 2025-03-09
     - Increased speed of nuclear scrap recycling (+5%).
     - Cerysian ruins yield more iron gear wheels (+5%), more solar panels (+2%), more processing units (+23%).
     - Reduced speed of mining Cerysian ruins (-50%).
-    - Increased methane produced by dissociation (+50%).
     - Reduced the cost of upgrading Fulgoran cryogenic plant quality (-50%).
     - Small quantitative tweaks to technology costs.
     - Reduced damage from gamma radiation (-8%).
