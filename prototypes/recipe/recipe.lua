@@ -232,7 +232,7 @@ data:extend({
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 100 },
+			{ type = "fluid", name = "methane", amount = 150 },
 		},
 		allow_productivity = true,
 		enabled = false,
@@ -272,7 +272,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "lubricant-synthesis",
+		name = "cerys-lubricant-synthesis",
 		category = "fulgoran-cryogenics",
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",

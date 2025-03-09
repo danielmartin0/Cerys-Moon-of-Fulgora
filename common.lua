@@ -56,6 +56,13 @@ Public.GAS_NAMES = {
 	"fusion-plasma",
 }
 
+Public.SOFTBANNED_RESOURCES = {
+	"heavy-oil",
+	"crude-oil",
+	"coal",
+	-- "stone", -- having stone is OK as long as you don't make power
+}
+
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
 	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARDCORE_ON and 2.4 or 1.6)
 	local max_stretch_factor = 6

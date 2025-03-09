@@ -1,7 +1,19 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.3
 Date: ????
-  Changes:
+  Balancing:
+    - Changes to nuclear scrap recycling: transport belts (+11%), advanced circuits (+8%), heat pipes (-10%).
+    - Increased speed of nuclear scrap recycling (+5%).
+    - Cerysian ruins yield more iron gear wheels (+5%), more solar panels (+2%), more processing units (+23%).
+    - Reduced speed of mining Cerysian ruins (-50%).
+    - Increased methane produced by dissociation (+50%).
+    - Reduced the cost of upgrading Fulgoran cryogenic plant quality (-50%).
+    - Small quantitative tweaks to technology costs.
+    - Reduced damage from gamma radiation (-8%).
+  Modding:
+    - Automatic bans of recipes from other mods that produce restricted items on Cerys (and meet a few other criteria).
+  Info:
+    - Fixed that the Factoriopedia entry for gamma radiation referenced 'fluids' rather than 'liquids'.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.0-2.4.2
 Date: 2025-03-09

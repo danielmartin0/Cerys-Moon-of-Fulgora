@@ -92,7 +92,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 40,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -106,7 +106,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
-			count = 120,
+			count = 100,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -183,7 +183,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "lubricant-synthesis",
+				recipe = "cerys-lubricant-synthesis",
 			},
 		},
 		prerequisites = { "cerys-advanced-structure-repair" },
@@ -338,7 +338,7 @@ data:extend({
 	merge(cargo_drops_base, {
 		prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
 		unit = {
-			count = common.HARDCORE_ON and 4000 or 1500,
+			count = common.HARDCORE_ON and 4000 or 1200,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

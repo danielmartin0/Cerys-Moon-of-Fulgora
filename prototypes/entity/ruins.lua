@@ -1,14 +1,16 @@
 local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
+	local fulgoran_ruin_mining_time = 0.3 * collision_area ^ 0.75
+
 	local results = {
 		mining_particle = "stone-particle",
-		mining_time = (1 / 3) * 0.3 * collision_area ^ 0.75,
+		mining_time = (2 / 3) * fulgoran_ruin_mining_time,
 		results = {
 			{
 				type = "item",
 				name = "iron-gear-wheel", -- To build recycler and provide initial iron for assembling machines and miners
-				amount_min = math.ceil(collision_area * 1.8),
-				amount_max = math.ceil(collision_area * 2.0),
+				amount_min = math.ceil(collision_area * 1.9),
+				amount_max = math.ceil(collision_area * 2.1),
 			},
 			{
 				type = "item",
@@ -29,8 +31,8 @@ local function ruin_minable_results(collision_area)
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
-			amount_min = math.ceil(collision_area / 11.4),
-			amount_max = math.ceil(collision_area / 9.1),
+			amount_min = math.ceil(collision_area / 11),
+			amount_max = math.ceil(collision_area / 9),
 		})
 	else
 		table.insert(results.results, {
@@ -41,18 +43,18 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 8 then
+	if collision_area >= 6.5 then
 		table.insert(results.results, {
 			type = "item",
 			name = "processing-unit", -- To build recycler
-			amount = math.ceil(collision_area / 8),
+			amount = math.ceil(collision_area / 6.5),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "processing-unit",
 			amount = 1,
-			probability = collision_area / 8,
+			probability = collision_area / 6.5,
 		})
 	end
 

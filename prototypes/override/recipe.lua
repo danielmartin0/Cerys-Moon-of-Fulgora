@@ -24,10 +24,6 @@ local magnetic_field_restriction = {
 	max = 119,
 }
 
-if data.raw.recipe["coal-synthesis"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["coal-synthesis"], magnetic_field_restriction)
-end
-
 if data.raw.recipe["lab"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["lab"], magnetic_field_restriction)
 end
