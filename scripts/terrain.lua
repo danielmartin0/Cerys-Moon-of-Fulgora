@@ -271,7 +271,7 @@ function Public.create_cryo_plants(surface, area)
 
 			Public.deal_with_existing_entities(surface, p2, 5, 5)
 
-			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 3, 1) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
+			local p3 = surface.find_non_colliding_position("cerys-fulgoran-cryogenic-plant-wreck-frozen", p2, 1.5, 1.2) -- searching too far will bias cryogenic plants to spawn on the edge of the moon
 
 			if p3 then
 				Public.ensure_solid_foundation(surface, p3, 5, 5)

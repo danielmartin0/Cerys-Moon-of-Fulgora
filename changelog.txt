@@ -2,6 +2,8 @@
 Version: 2.4.5
 Date: ????
   Changes:
+    - Slightly adjusted the spawn of Fulgoran cryogenic plant wrecks.
+    - Nuclear scrap recycling produces more pipes (+11%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.4
 Date: 2025-03-09
