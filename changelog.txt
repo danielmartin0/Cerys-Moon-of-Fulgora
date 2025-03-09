@@ -2,6 +2,7 @@
 Version: 2.4.7
 Date: ????
   Changes:
+    - Changes to nuclear scrap recycling: pipes (-10%), transport belts (+10%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.6
 Date: 2025-03-09
