@@ -2,6 +2,7 @@
 Version: 2.4.10
 Date: ????
   Changes:
+    - Superconductors required in the Cerysian science pack recipe dropped from 3 to 2.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.9
 Date: 2025-03-09

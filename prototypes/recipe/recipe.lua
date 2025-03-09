@@ -37,7 +37,7 @@ data:extend({
 		enabled = false,
 		energy_required = 2,
 		ingredients = {
-			{ type = "item", name = "superconductor", amount = 3 },
+			{ type = "item", name = "superconductor", amount = 2 },
 			{ type = "item", name = "uranium-238", amount = 5 },
 			{ type = "fluid", name = "nitric-acid", amount = 50 },
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
