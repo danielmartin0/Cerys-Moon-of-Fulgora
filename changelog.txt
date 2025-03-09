@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.0
-Date: ????
+Date: 2025-03-09
   Balancing:
     - Adjusted yields from Cerysian ruins: iron gear wheels (-5%), solar panels (-12.5%).
     - Significantly reduced power draw of Fulgoran cryogenic plants (-33%).
