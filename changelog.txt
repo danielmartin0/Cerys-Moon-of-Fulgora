@@ -1,13 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.4.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.4.0
 Date: 2025-03-09
   Balancing:
-    - Adjusted yields from Cerysian ruins: iron gear wheels (-5%), solar panels (-12.5%).
     - Significantly reduced power draw of Fulgoran cryogenic plants (-33%).
+    - Cerysian ruins yield fewer solar panels (-12.5%).
     - Tweaked the repair cost of Fulgoran machines: crusher (-33%), reactor (+20%).
     - Increased methane ice required for the dissociation recipe (+25%) and decreased the crafting speed (-23%).
     - Decreased crafting speed of ancient structure repair parts (-11%).
