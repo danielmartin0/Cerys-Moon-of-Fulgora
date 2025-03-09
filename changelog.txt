@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.6
-Date: ????
+Date: 2025-03-09
   Bugfixes:
     - Fixed that radiative towers had a graphical flicker effect like heating towers.
   Graphics:
