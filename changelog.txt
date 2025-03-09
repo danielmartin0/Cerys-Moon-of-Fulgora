@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.3
-Date: ????
+Date: 2025-03-09
   Balancing:
     - Changes to nuclear scrap recycling: transport belts (+11%), advanced circuits (+8%), heat pipes (-10%).
     - Increased speed of nuclear scrap recycling (+5%).
