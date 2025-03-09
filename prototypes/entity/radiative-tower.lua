@@ -24,6 +24,12 @@ local reactor = {
 		effectivity = 1,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
+		light_flicker =
+		{
+		  color = {0,0,0},
+		  minimum_intensity = 0,
+		  maximum_intensity = 0
+		} -- Needed to disable the flicker effect
 	},
 	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
@@ -370,8 +376,8 @@ for i = 1, common.LAMP_COUNT do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.65, size = 4.5 * i, color = { r = 1, g = 0.89, b = 0.89 } },
-			light_when_colored = { intensity = 0.65, size = 4.5 * i, color = { r = 1, g = 0.89, b = 0.89 } },
+			light = { intensity = 0.39, size = 4.5 * i, color = { r = 1, g = 0.88, b = 0.88 } },
+			light_when_colored = { intensity = 0.39, size = 4.5 * i, color = { r = 1, g = 0.88, b = 0.88 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {
