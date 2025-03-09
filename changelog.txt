@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.9
-Date: ????
+Date: 2025-03-09
   Balancing:
     - Increased the speed of methane ice dissociation (+18%).
     - Increased the speed of methane ice mining (+10%).
