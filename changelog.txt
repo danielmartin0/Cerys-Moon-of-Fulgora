@@ -2,6 +2,7 @@
 Version: 2.4.4
 Date: ????
   Changes:
+    - Reduced the patch size (-14%) and decreased the mining speed (-11%) of nitrogen-rich minerals.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.3
 Date: 2025-03-09
