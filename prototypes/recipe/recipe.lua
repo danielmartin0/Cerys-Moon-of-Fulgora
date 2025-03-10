@@ -142,7 +142,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-charging-rod",
 		enabled = false,
-		category = "electronics",
+		category = "crafting-or-fulgoran-cryogenics",
 		surface_conditions = {
 			{
 				property = "magnetic-field",
