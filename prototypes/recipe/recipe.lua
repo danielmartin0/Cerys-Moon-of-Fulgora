@@ -157,9 +157,9 @@ data:extend({
 		},
 		energy_required = 5,
 		ingredients = {
-			{ type = "item", name = "superconductor", amount = 6 }, -- Let's not have them make too many
-			{ type = "item", name = "steel-plate", amount = 12 },
-			{ type = "item", name = "copper-cable", amount = 6 },
+			{ type = "item", name = "superconductor", amount = 8 },
+			{ type = "item", name = "steel-plate", amount = 8 },
+			{ type = "item", name = "holmium-plate", amount = 16 }, -- For holmium plate qualitycycling
 		},
 		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},

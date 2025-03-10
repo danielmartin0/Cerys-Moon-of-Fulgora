@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.4.13
+Version: 2.5.0
 Date: ????
   Changes:
+    - Charging rod recipe reworked to include holmium plates, making charging rods qualitycycling an avenue to obtain quality holmium plates.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.12
 Date: 2025-03-10
