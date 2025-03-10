@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.12
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed new bug introduced yesterday in which nights were slightly longer than intended.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.10
 Date: 2025-03-09

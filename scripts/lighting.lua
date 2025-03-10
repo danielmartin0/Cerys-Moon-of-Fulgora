@@ -66,10 +66,10 @@ function Public.tick_3_update_lights()
 	-- Commented lines are typically less polished versions.
 
 	local stretched_daytime
-	if daytime < 44 / 100 then
+	if daytime < 46 / 100 then
 		stretched_daytime = 0
-	elseif daytime < 68 / 100 then
-		stretched_daytime = 0.5 * (daytime - 44 / 100) / (24 / 100)
+	elseif daytime < 70 / 100 then
+		stretched_daytime = 0.5 * (daytime - 46 / 100) / (24 / 100)
 	elseif daytime < 76 / 100 then
 		stretched_daytime = 0.5
 	else
@@ -77,7 +77,7 @@ function Public.tick_3_update_lights()
 	end
 	-- local stretched_daytime = daytime
 
-	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- midday should be phase = pi/2
+	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- puts midday at phase = pi/2
 
 	local bounded_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
 	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2)) -- for testing
