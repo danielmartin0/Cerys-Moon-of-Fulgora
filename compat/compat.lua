@@ -59,7 +59,6 @@ end
 --== Automated recipe bans ==--
 
 for _, recipe in pairs(data.raw.recipe) do
-	log("[CERYS] Recipe: " .. recipe.name)
 	if recipe.results then
 		local should_ban = false
 
