@@ -1,6 +1,6 @@
 local common = require("common")
 
-local CIV_AGE_MY = 2600
+local CIV_AGE_MY = 1800
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
@@ -8,8 +8,6 @@ local HALF_LIFE_238_MY = 4500
 local U235_RATIO = (1 / common.REPROCESSING_U238_TO_U235_RATIO)
 	* math.pow(0.5, CIV_AGE_MY / HALF_LIFE_235_MY)
 	/ math.pow(0.5, CIV_AGE_MY / HALF_LIFE_238_MY)
-
-log("[CERYS]: U235/U238 ratio is " .. U235_RATIO)
 
 data:extend({
 	{
@@ -63,3 +61,6 @@ for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 		show_details_in_recipe_tooltip = false,
 	})
 end
+
+log("[CERYS]: U235/U238 ratio is " .. U235_RATIO)
+log("[CERYS]: U235 amount is " .. 4 * U235_RATIO)
