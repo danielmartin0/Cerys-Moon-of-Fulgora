@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.19
-Date: ????
+Date: 2025-03-11
   Changes:
     - Fixed that players rejoining multiplayer games had their armor wiped when playing Cerys Start mode.
 ---------------------------------------------------------------------------------------------------
