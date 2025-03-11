@@ -1,7 +1,8 @@
 local rods = require("scripts.charging-rod")
 
--- This code is adapted from bunshaman's library. For its MIT license, please see https://opensource.org/license/mit.
--- Hopefully Factorio will support this event so that we can later replace this code.
+-- This code is adapted from bunshaman's library. For its MIT license, please see https://opensource.org/license/mit. Obviously it is excluded from the license of this mod.
+-- This code still has bugs including when pasting multiple charging rods in the same blueprint.
+-- Hopefully Factorio will support this event later so that we can replace this code.
 
 local Public = {}
 

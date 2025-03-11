@@ -258,8 +258,15 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 end)
 
 script.on_event(defines.events.on_player_joined_game, function(event)
-	if common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value then
-		local player = game.players[event.player_index]
+	local player = game.players[event.player_index]
+
+	storage.players_seen = storage.players_seen or {}
+
+	if
+		(common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value)
+		and not storage.players_seen[player.index]
+	then
+		storage.players_seen[player.index] = true
 
 		if player.controller_type == defines.controllers.cutscene then
 			player.exit_cutscene()
