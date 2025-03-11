@@ -1,11 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.17
 Date: ????
-  Changes:
+  Balancing:
+    - Further reduced the power draw of Fulgoran cryogenic plants (-9%).
+    - Slightly increased the number of solar panels in Cerysian ruins.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.16
 Date: 2025-03-11
-  Changes:
+  Balancing:
     - Adjusted the implied age of the Fulgoran civ from 2600MY to 1800MY, thereby increasing the amount of U235 in nuclear scrap (+94%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.15
