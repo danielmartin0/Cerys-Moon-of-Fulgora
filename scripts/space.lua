@@ -438,7 +438,7 @@ function Public.irradiation_chance_effect(surface, position)
 		volume_modifier = 0.13,
 	})
 
-	for _ = 1, 8 do
+	for _ = 1, 9 do
 		surface.create_particle({
 			name = "solar-wind-exposure-particle",
 			position = {
