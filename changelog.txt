@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.17
-Date: ????
+Date: 2025-03-11
   Balancing:
     - Further reduced the power draw of Fulgoran cryogenic plants (-9%).
     - Slightly increased the number of solar panels in Cerysian ruins.
