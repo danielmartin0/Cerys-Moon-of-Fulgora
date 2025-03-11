@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.16
-Date: ????
+Date: 2025-03-11
   Changes:
     - Adjusted the implied age of the Fulgoran civ from 2600MY to 1800MY, thereby increasing the amount of U235 in nuclear scrap (+94%).
 ---------------------------------------------------------------------------------------------------
