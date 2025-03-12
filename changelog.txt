@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.20
 Date: ????
-  Changes:
+  Modding:
+    - For now, removed some compatibility code to fix all incorrect next_upgrade fields defined by all other mods. This is a larger change than intended and we are likely to make more specific fixes in future so as not to implicate Cerys in unrelated problems.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.19
 Date: 2025-03-11
