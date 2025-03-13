@@ -266,6 +266,10 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		(common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value)
 		and not storage.players_seen[player.index]
 	then
+		if not storage.cerys and (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) then
+			init.initialize_cerys()
+		end
+
 		storage.players_seen[player.index] = true
 
 		if player.controller_type == defines.controllers.cutscene then

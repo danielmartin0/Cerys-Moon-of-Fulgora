@@ -2,6 +2,7 @@
 Version: 2.4.21
 Date: ????
   Changes:
+    - Renamed setting 'New games start on Cerys' to 'Start on Cerys' to clarify that this setting also affects new players joining on existing saves.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.20
 Date: 2025-03-12
