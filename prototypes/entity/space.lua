@@ -11,8 +11,8 @@ local ASTEROIDS_TO_CLONE = {
 }
 
 if mods["cupric-asteroids"] then
-  table.insert(ASTEROIDS_TO_CLONE, "small-cupric-asteroid")
-  table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
+	table.insert(ASTEROIDS_TO_CLONE, "small-cupric-asteroid")
+	table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
 end
 
 local ASTEROID_HEALTH_MULTIPLIER = common.HARDCORE_ON and 8 or 2.5
@@ -23,7 +23,9 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 
 	local e = merge(original, {
 		name = asteroid_name .. name_suffix,
-    localised_name = {"entity-name.planetary-asteroid", {"entity-name."..asteroid_name}},
+		localised_name = { "entity-name.planetary-asteroid", { "entity-name." .. asteroid_name } },
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/planetary-" .. asteroid_name .. ".png",
+		icon_size = 64,
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,

@@ -165,12 +165,6 @@ function Public.radiative_heaters_temperature_tick()
 		else
 			Public.apply_temperature_drop(tower, tower.is_player_tower)
 		end
-
-		-- Necessary code to clean up after a migration:
-		if tower.reactor_to_clean_up and tower.reactor_to_clean_up.valid then
-			tower.reactor_to_clean_up.destroy()
-			tower.reactor_to_clean_up = nil
-		end
 	end
 end
 
@@ -197,17 +191,50 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 		heating_radius = MAX_HEATING_RADIUS
 	end
 
-	if not valid_tower.last_radius then
-		valid_tower.last_radius = 0
-	end
+	valid_tower.reactors = valid_tower.reactors or {}
+	valid_tower.last_radius = valid_tower.last_radius or 0
 
 	local skip = (heating_radius == valid_tower.last_radius - 1) -- Don't update the reactor in this case, avoiding reactor count oscillation
 
-	if heating_radius ~= valid_tower.last_radius and not skip then
-		if not valid_tower.reactors then
-			valid_tower.reactors = {}
+	local need_to_regenerate_reactors = false
+	for r = 1, valid_tower.last_radius do
+		if
+			not valid_tower.reactors[r]
+			or not valid_tower.reactors[r].north
+			or not valid_tower.reactors[r].north.valid
+			or not valid_tower.reactors[r].south
+			or not valid_tower.reactors[r].south.valid
+		then
+			need_to_regenerate_reactors = true
+			break
+		end
+	end
+
+	local need_to_regenerate_lamps = valid_tower.last_radius > 0
+		and (not valid_tower.current_lamp or not valid_tower.current_lamp.valid)
+
+	if need_to_regenerate_reactors or need_to_regenerate_lamps then
+		skip = false
+
+		for r, reactor in pairs(valid_tower.reactors or {}) do
+			if reactor.north and reactor.north.valid then
+				reactor.north.destroy()
+			end
+			if reactor.south and reactor.south.valid then
+				reactor.south.destroy()
+			end
+		end
+		valid_tower.reactors = {}
+
+		if valid_tower.current_lamp and valid_tower.current_lamp.valid then
+			valid_tower.current_lamp.destroy()
+			valid_tower.current_lamp = nil
 		end
 
+		valid_tower.last_radius = 0
+	end
+
+	if heating_radius ~= valid_tower.last_radius and not skip then
 		if heating_radius > valid_tower.last_radius then
 			for r = valid_tower.last_radius + 1, heating_radius do
 				-- Sadly the Fulgoran tower entities are rectangular, so in order to heat edges on the north and south edges we need two hidden reactors:
