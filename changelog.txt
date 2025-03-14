@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.4.25
+Version: 2.5.1
 Date: ????
-  Changes:
+  Info:
+    - Changelog fix.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.0
-Date: ????
+Date: 2025-03-14
   Bugfixes:
-    - Fixed a bug in which extra hidden reactors and lamps could be created for radiative towers. The Cerys surface may momentarily ice over when loading into 2.4.24.
+    - Fixed a bug in which extra hidden reactors and lamps could be created for radiative towers. The Cerys surface may momentarily ice over when loading into 2.5.0.
   Graphics:
     - Reduced the brightness of radiative towers at night.
     - Added a 'p' to the icon for planetary asteroids to help distinguish them when setting turret filters.
