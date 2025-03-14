@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.23
-Date: ????
-  Changes:
+Date: 2025-03-14
+  Info:
+    - Changelog update.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.22
 Date: 2025-03-14
   Bugfixes:
-    - Fixed that entities on the north and south borders of Fulgoran radiative towers heating areas were unheated, unlike those on the east and west borders. The visualisation range of these towers has been adjusted to better match their new behavior.
+    - Fixed that entities on the north and south borders of Fulgoran radiative towers heating areas were unheated, unlike those on the east and west borders. This change means that marginally more entities are heated than before. The visualisation range has also been slightly adjusted.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.21
 Date: 2025-03-13
