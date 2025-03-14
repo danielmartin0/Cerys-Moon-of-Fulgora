@@ -24,12 +24,11 @@ local reactor = {
 		effectivity = 1,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
-		light_flicker =
-		{
-		  color = {0,0,0},
-		  minimum_intensity = 0,
-		  maximum_intensity = 0
-		} -- Needed to disable the flicker effect
+		light_flicker = {
+			color = { 0, 0, 0 },
+			minimum_intensity = 0,
+			maximum_intensity = 0,
+		}, -- Needed to disable the flicker effect
 	},
 	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
@@ -86,7 +85,7 @@ local reactor = {
 	},
 	map_color = { 143, 0, 0 },
 	radius_visualisation_specification = {
-		distance = common.HARDCORE_ON and 10 or 16,
+		distance = common.HARDCORE_ON and 10.5 or 16.5, -- Accounting for x and y being different
 		sprite = {
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
 			tint = { r = 0.7, g = 0, b = 0, a = 0.05 },

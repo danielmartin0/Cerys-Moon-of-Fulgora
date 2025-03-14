@@ -139,8 +139,11 @@ function Public.radiative_heaters_temperature_tick()
 		if not (e and e.valid) then
 			if tower.reactors then
 				for _, reactor in pairs(tower.reactors) do
-					if reactor and reactor.valid then
-						reactor.destroy()
+					if reactor.north and reactor.north.valid then
+						reactor.north.destroy()
+					end
+					if reactor.south and reactor.south.valid then
+						reactor.south.destroy()
 					end
 				end
 			end
@@ -161,6 +164,12 @@ function Public.radiative_heaters_temperature_tick()
 			storage.radiative_towers.towers[unit_number] = nil
 		else
 			Public.apply_temperature_drop(tower, tower.is_player_tower)
+		end
+
+		-- Necessary code to clean up after a migration:
+		if tower.reactor_to_clean_up and tower.reactor_to_clean_up.valid then
+			tower.reactor_to_clean_up.destroy()
+			tower.reactor_to_clean_up = nil
 		end
 	end
 end
@@ -201,21 +210,41 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 
 		if heating_radius > valid_tower.last_radius then
 			for r = valid_tower.last_radius + 1, heating_radius do
-				local new_reactor = e.surface.create_entity({
+				-- Sadly the Fulgoran tower entities are rectangular, so in order to heat edges on the north and south edges we need two hidden reactors:
+				local reactor_north = e.surface.create_entity({
 					name = "hidden-reactor-" .. r,
-					position = e.position,
+					position = { x = e.position.x, y = e.position.y - (is_player_tower and 0 or 0.5) },
 					force = e.force,
 				})
-				new_reactor.destructible = false
-				new_reactor.minable_flag = false
+				reactor_north.destructible = false
+				reactor_north.minable_flag = false
+				reactor_north.temperature = 40
 
-				new_reactor.temperature = 40
-				valid_tower.reactors[r] = new_reactor
+				local reactor_south = e.surface.create_entity({
+					name = "hidden-reactor-" .. r,
+					position = { x = e.position.x, y = e.position.y + (is_player_tower and 0 or 0.5) },
+					force = e.force,
+				})
+				reactor_south.destructible = false
+				reactor_south.minable_flag = false
+				reactor_south.temperature = 40
+
+				-- Store both reactors in a table
+				valid_tower.reactors[r] = {
+					north = reactor_north,
+					south = reactor_south,
+				}
 			end
 		elseif heating_radius < valid_tower.last_radius then
 			for r = valid_tower.last_radius, heating_radius + 1, -1 do
-				if valid_tower.reactors[r] and valid_tower.reactors[r].valid then
-					valid_tower.reactors[r].destroy()
+				if valid_tower.reactors[r] then
+					-- Destroy both reactors
+					if valid_tower.reactors[r].north and valid_tower.reactors[r].north.valid then
+						valid_tower.reactors[r].north.destroy()
+					end
+					if valid_tower.reactors[r].south and valid_tower.reactors[r].south.valid then
+						valid_tower.reactors[r].south.destroy()
+					end
 					valid_tower.reactors[r] = nil
 				end
 			end
