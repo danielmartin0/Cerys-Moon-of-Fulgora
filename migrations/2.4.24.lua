@@ -68,12 +68,15 @@ for _, lamp in pairs(lamps) do
 end
 
 for _, tower in pairs(storage.radiative_towers.towers) do
-	if tower.entity and tower.entity.valid then
+	if
+		tower.entity
+		and tower.entity.valid
+		and tower.entity.surface
+		and tower.entity.surface.valid
+		and tower.entity.surface.name == "cerys"
+	then
 		tower.reactors = {}
 		tower.last_radius = nil
-		if tower.current_lamp and tower.current_lamp.valid then
-			tower.current_lamp.destroy()
-			tower.current_lamp = nil
-		end
+		tower.current_lamp = nil
 	end
 end

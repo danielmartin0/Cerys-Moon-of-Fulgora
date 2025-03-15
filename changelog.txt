@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.3
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed a bug in which composite radiative tower entities on planets other than Cerys could leave behind their hidden lamps and reactors after being deleted.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.2
 Date: 2025-03-15
