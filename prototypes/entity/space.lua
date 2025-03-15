@@ -24,8 +24,6 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local e = merge(original, {
 		name = asteroid_name .. name_suffix,
 		localised_name = { "entity-name.planetary-asteroid", { "entity-name." .. asteroid_name } },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/planetary-" .. asteroid_name .. ".png",
-		icon_size = 64,
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
@@ -33,6 +31,16 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 
 	if not mods["distant-misfires"] then
 		e.collision_mask = { layers = {}, not_colliding_with_itself = true }
+	end
+
+	if
+		string.find(asteroid_name, "metallic")
+		or string.find(asteroid_name, "oxide")
+		or string.find(asteroid_name, "carbonic")
+	then
+		-- TODO: Add 'p' symbol for cupric etc asteroids
+		e.icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/planetary-" .. asteroid_name .. ".png"
+		e.icon_size = 64
 	end
 
 	local existing_physical_res = nil
