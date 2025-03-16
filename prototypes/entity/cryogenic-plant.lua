@@ -17,7 +17,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		"advanced-crafting-or-fulgoran-cryogenics",
 	},
 	module_slots = 9,
-	crafting_speed = 0.9,
+	crafting_speed = 1,
 	energy_usage = "400kW", -- If this is too high, it stops players solving their problems by expanding.
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
