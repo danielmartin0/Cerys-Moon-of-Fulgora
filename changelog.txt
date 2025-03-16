@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.6
-Date: ????
+Date: 2025-03-16
   Balancing:
     - Increased the energy consumption of robots on Cerys (+100%). (Gravity on Cerys has been increased by a factor of 10 to achieve this.)
     - Reduced the crafting speed of the Fulgoran cryogenic plant (-28%).
