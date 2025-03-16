@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.5
 Date: ????
-  Changes:
+  Modding:
+    - Restored code to workaround a crash in 5dim on startup that could be seemingly attributed to Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.4
 Date: 2025-03-16
