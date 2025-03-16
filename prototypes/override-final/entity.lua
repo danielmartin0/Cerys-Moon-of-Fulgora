@@ -131,7 +131,7 @@ end
 
 local gravity_condition = {
 	property = "gravity",
-	min = 0.1,
+	min = 0.2,
 }
 
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do

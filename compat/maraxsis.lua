@@ -9,7 +9,7 @@ if mods["maraxsis"] then
 	if data.raw.recipe["rocket-part"].surface_conditions then
 		PlanetsLib.relax_surface_conditions(data.raw.recipe["rocket-part"], {
 			property = "gravity",
-			min = 0.1,
+			min = 0.2,
 		})
 	end
 

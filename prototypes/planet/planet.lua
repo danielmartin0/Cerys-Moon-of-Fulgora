@@ -48,7 +48,7 @@ PlanetsLib:extend({
 			["magnetic-field"] = 120, -- Fulgora is 99
 			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
-			gravity = 0.1, -- 0.1 is minimum for chests
+			gravity = 0.2, -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,

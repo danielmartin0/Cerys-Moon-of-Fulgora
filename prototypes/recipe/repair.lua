@@ -6,7 +6,7 @@ data:extend({
 		name = "ancient-structure-repair-part",
 		category = "advanced-crafting-or-fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 3.4,
+		energy_required = 3,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
 			{ type = "item", name = "engine-unit", amount = 1 },
@@ -59,7 +59,7 @@ data:extend({
 		order = "e",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
 		icon_size = 64,
-		energy_required = 30,
+		energy_required = 25,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {
@@ -176,7 +176,7 @@ data:extend({
 		order = "d",
 		icon = "__PlanetsLib__/graphics/icons/research-progress-product.png",
 		icon_size = 64,
-		energy_required = 3,
+		energy_required = 2.5,
 		enabled = true,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
