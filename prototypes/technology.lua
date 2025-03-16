@@ -334,6 +334,15 @@ data:extend({
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
 
+cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+	type = "unlock-recipe",
+	recipe = "cerys-construction-robot-recycling",
+}
+cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+	type = "unlock-recipe",
+	recipe = "cerys-exoskeleton-equipment-recycling",
+}
+
 data:extend({
 	merge(cargo_drops_base, {
 		prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
@@ -347,16 +356,6 @@ data:extend({
 			},
 			time = 60,
 		},
-		effects = merge(cargo_drops_base.effects, {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-construction-robot-recycling",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-exoskeleton-equipment-recycling",
-			},
-		}),
 		allows_productivity = false,
 	}),
 	{
