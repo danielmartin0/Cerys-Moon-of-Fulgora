@@ -2,6 +2,7 @@
 Version: 2.5.4
 Date: ????
   Changes:
+    - Adjusted the error messaging on trying to recycle construction robots or exoskeletons.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.3
 Date: 2025-03-15
