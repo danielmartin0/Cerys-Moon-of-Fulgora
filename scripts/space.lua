@@ -237,20 +237,6 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 	end
 end
 
-local container_names = {}
-for _, e in pairs(prototypes["entity"]) do
-	if e.type == "container" or e.type == "logistic-container" then
-		table.insert(container_names, e.name)
-	end
-end
-
-local belt_names = {}
-for _, e in pairs(prototypes["entity"]) do
-	if e.type == "transport-belt" then
-		table.insert(belt_names, e.name)
-	end
-end
-
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
@@ -306,7 +292,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 		end
 
 		local containers = surface.find_entities_filtered({
-			name = container_names,
+			type = { "container", "logistic-container" },
 			position = particle.position,
 			radius = 0.75,
 		})
@@ -339,7 +325,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
 		if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
 			local belts = surface.find_entities_filtered({
-				name = belt_names,
+				type = "transport-belt",
 				position = particle.position,
 				radius = 0.5,
 			})
