@@ -63,8 +63,8 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 10 },
-			{ type = "item", name = "advanced-circuit", amount = 10 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 5 },
+			{ type = "item", name = "advanced-circuit", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,
