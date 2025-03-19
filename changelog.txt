@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.15
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that asteroids could not be damaged by shotguns. (Their new collision mask means they will once again obstruct building placement.)
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.14
 Date: 2025-03-18
