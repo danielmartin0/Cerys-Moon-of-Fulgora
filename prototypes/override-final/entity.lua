@@ -1,6 +1,4 @@
 local lib = require("lib")
-local restrict_surface_conditions = lib.restrict_surface_conditions
-local relax_surface_conditions = lib.relax_surface_conditions
 
 for _, machine in pairs(data.raw["assembling-machine"]) do
 	if machine.crafting_categories then
@@ -133,20 +131,20 @@ end
 
 local gravity_condition = {
 	property = "gravity",
-	min = 0.1,
+	min = 0.2,
 }
 
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
-	relax_surface_conditions(entity, gravity_condition)
+	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
 end
 if data.raw["car"]["car"] then
-	relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
 end
 if data.raw["car"]["tank"] then
-	relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
 end
 if data.raw["spider-vehicle"]["spidertron"] then
-	relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
 end
 
 --== Restrictions ==--
@@ -158,27 +156,27 @@ local magnetic_field_restriction = {
 
 for name, entity in pairs(data.raw["reactor"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		restrict_surface_conditions(entity, magnetic_field_restriction)
+		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["lab"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		restrict_surface_conditions(entity, magnetic_field_restriction)
+		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
 	if name ~= "cerys-charging-rod" then
-		restrict_surface_conditions(entity, magnetic_field_restriction)
+		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
 for _, entity in pairs(data.raw["fusion-reactor"]) do
-	restrict_surface_conditions(entity, magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 for _, entity in pairs(data.raw["fusion-generator"]) do
-	restrict_surface_conditions(entity, magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 for _, entity in pairs(data.raw["burner-generator"]) do
-	restrict_surface_conditions(entity, magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 
 local ten_pressure_condition = {
@@ -188,36 +186,13 @@ local ten_pressure_condition = {
 
 for name, entity in pairs(data.raw["boiler"]) do
 	if name ~= "heat-exchanger" then
-		restrict_surface_conditions(entity, ten_pressure_condition)
+		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
 	end
 end
 -- TODO: Restrict modded furnaces
 
---== Water puddles collisions ==--
-
-for _, entity in pairs(data.raw["offshore-pump"]) do
-	if entity.tile_buildability_rules then
-		for _, rule in pairs(entity.tile_buildability_rules) do
-			if rule.required_tiles and rule.required_tiles.layers and rule.required_tiles.layers.water_tile then
-				rule.required_tiles.layers.cerys_water_tile = true
-			end
-			if rule.colliding_tiles and rule.colliding_tiles.layers and rule.colliding_tiles.layers.water_tile then
-				rule.colliding_tiles.layers.cerys_water_tile = true
-			end
-		end
-	end
-end
-
-for key, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
-	if mask.layers and mask.layers.water_tile then
-		local new_mask = util.table.deepcopy(mask)
-		new_mask.layers.cerys_water_tile = true
-		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
-	end
-end
-
 --== Atomic projectiles ==--
--- Ensuring that nuclear ground tiles don't get set on Cerys water spots.
+-- Ensuring that nuclear ground tiles don't get set on Cerys tiles.
 
 local function add_cerys_layers_to_masks(tbl)
 	if type(tbl) ~= "table" then
@@ -226,9 +201,6 @@ local function add_cerys_layers_to_masks(tbl)
 
 	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_tile then
 		tbl.layers.cerys_tile = true
-	end
-	if tbl.layers and tbl.layers.water_tile and not tbl.layers.cerys_water_tile then
-		tbl.layers.cerys_water_tile = true
 	end
 
 	for _, v in pairs(tbl) do

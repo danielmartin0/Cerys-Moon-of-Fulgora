@@ -1,4 +1,6 @@
 local merge = require("lib").merge
+local common = require("common")
+
 local ASTEROIDS_TO_CLONE = {
 	"small-metallic-asteroid",
 	"small-carbonic-asteroid",
@@ -8,17 +10,38 @@ local ASTEROIDS_TO_CLONE = {
 	"medium-oxide-asteroid",
 }
 
-local ASTEROID_HEALTH_MULTIPLIER = 2.5
+if mods["cupric-asteroids"] then
+	table.insert(ASTEROIDS_TO_CLONE, "small-cupric-asteroid")
+	table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
+end
+
+local ASTEROID_HEALTH_MULTIPLIER = common.HARDCORE_ON and 8 or 2.5
 local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = 10
+
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local original = data.raw.asteroid[asteroid_name]
 
 	local e = merge(original, {
 		name = asteroid_name .. name_suffix,
+		localised_name = { "entity-name.planetary-asteroid", { "entity-name." .. asteroid_name } },
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
 	})
+
+	if not mods["distant-misfires"] then
+		e.collision_mask = { layers = {}, not_colliding_with_itself = true }
+	end
+
+	if
+		string.find(asteroid_name, "metallic")
+		or string.find(asteroid_name, "oxide")
+		or string.find(asteroid_name, "carbonic")
+	then
+		-- TODO: Add 'p' symbol for cupric etc asteroids
+		e.icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/planetary-" .. asteroid_name .. ".png"
+		e.icon_size = 64
+	end
 
 	local existing_physical_res = nil
 	for _, resistance in pairs(e.resistances) do
@@ -77,6 +100,7 @@ local solar_wind_particle = {
 		layers = {
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
+				tint = { r = 1, g = 1, b = 1, a = 0.8 },
 				apply_runtime_tint = true,
 				size = 32,
 				scale = 0.6,

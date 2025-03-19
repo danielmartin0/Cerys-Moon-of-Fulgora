@@ -34,15 +34,15 @@ local crusher = {
 		},
 	},
 	damaged_trigger_effect = hit_effects.entity(),
-	module_slots = 1, -- 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules
+	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {
 		{ inventory_index = defines.inventory.furnace_modules, shift = { 0, 0.3 } },
 	},
 	icon_draw_specification = { shift = { 0, -0.45 } },
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
-	crafting_categories = { "crushing" },
-	crafting_speed = 0.5,
-	energy_usage = "600kW",
+	crafting_categories = { "crushing", "crusher-quality-upgrades" },
+	crafting_speed = 0.4,
+	energy_usage = common.HARDCORE_ON and "4000kW" or "2000kW",
 	heating_energy = "200kW",
 	energy_source = {
 		type = "electric",
@@ -56,11 +56,11 @@ local crusher = {
 			filename = "__space-age__/sound/entity/crusher/crusher-loop.ogg",
 			volume = 1,
 			speed = 0.4,
+			audible_distance_modifier = 1,
 		},
-		audible_distance_modifier = 1,
 		fade_in_ticks = 4,
 		fade_out_ticks = 40,
-		max_sounds_per_type = 3,
+		max_sounds_per_prototype = 3,
 	},
 	-- water_reflection = {...},
 	graphics_set = {
@@ -88,15 +88,39 @@ local crusher = {
 	autoplace = {
 		probability_expression = "0",
 	},
-	map_color = { 153, 158, 255 },
+	map_color = { 212, 93, 93 },
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-crusher-created",
+			},
+		},
+	},
 }
+
+local quality_variants = {}
+for _, quality in pairs(data.raw.quality) do
+	if quality.level and quality.level > 0 then
+		local quality_crusher = merge(crusher, {
+			name = "cerys-fulgoran-crusher-quality-" .. quality.level,
+			localised_name = { "entity-name.cerys-fulgoran-crusher" },
+			module_slots = math.ceil(quality.level),
+			hidden = true,
+		})
+
+		table.insert(quality_variants, quality_crusher)
+	end
+end
 
 local wreck = merge(crusher, {
 	name = "cerys-fulgoran-crusher-wreck",
-	hidden_in_factoriopedia = true,
+	hidden = true,
 	crafting_categories = { "crusher-repair" },
 	fixed_recipe = "cerys-repair-crusher",
-	fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "uncommon",
+	-- fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "uncommon",
 	fast_replaceable_group = "cerys-fulgoran-crusher",
 	crafting_speed = 1,
 	energy_source = {
@@ -126,11 +150,14 @@ local wreck = merge(crusher, {
 			},
 		},
 	},
-	map_color = { 53, 54, 89 },
+	map_color = { 212, 93, 93 },
 	working_sound = {
 		-- TODO: Improve this sound
-		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },
-		audible_distance_modifier = 0.5,
+		sound = {
+			audible_distance_modifier = 0.5,
+			filename = "__base__/sound/assembling-machine-t2-1.ogg",
+			volume = 0.45,
+		},
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
 	},
@@ -161,3 +188,4 @@ local wreck_frozen = merge(wreck, {
 })
 
 data:extend({ crusher, wreck, wreck_frozen })
+data:extend(quality_variants)

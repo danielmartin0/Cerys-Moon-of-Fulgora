@@ -41,11 +41,29 @@ function Public.tick_ice(surface)
 		storage.transitioning_tiles[surface.index] = {}
 	end
 
-	local transitioning_tiles = surface.find_tiles_filtered({
-		name = TRANSITION_TILE_NAMES,
-		position = { x = 0, y = 0 },
-		radius = common.MOON_RADIUS * 1.1,
-	})
+	local transitioning_tiles
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+	if stretch_factor > 1 then
+		transitioning_tiles = surface.find_tiles_filtered({
+			name = TRANSITION_TILE_NAMES,
+			area = {
+				left_top = {
+					x = -common.CERYS_RADIUS * 1.1 * stretch_factor,
+					y = -common.CERYS_RADIUS * 1.1 / stretch_factor,
+				},
+				right_bottom = {
+					x = common.CERYS_RADIUS * 1.1 * stretch_factor,
+					y = common.CERYS_RADIUS * 1.1 / stretch_factor,
+				},
+			},
+		})
+	else
+		transitioning_tiles = surface.find_tiles_filtered({
+			name = TRANSITION_TILE_NAMES,
+			position = { x = 0, y = 0 },
+			radius = common.CERYS_RADIUS * 1.05,
+		})
+	end
 
 	if #transitioning_tiles > 0 then
 		local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
@@ -123,6 +141,16 @@ local function melt_dry_ice(surface, pos)
 		},
 		position = pos,
 	})
+
+	surface.destroy_decoratives({
+		name = {
+			"cerys-ice-decal-white",
+		},
+		area = {
+			left_top = { x = pos.x - 2, y = pos.y - 2 },
+			right_bottom = { x = pos.x + 2, y = pos.y + 2 },
+		},
+	})
 end
 
 Public.TILE_TRANSITION_EFFECTS = {
@@ -138,6 +166,24 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- ["cerys-dry-ice-smooth-land-melting"] = function(surface, pos)
 	-- 	melt_dry_ice(surface, pos)
 	-- end,
+	["cerys-water-puddles-freezing"] = function(surface, pos)
+		local colliding_entities = surface.find_entities_filtered({
+			area = {
+				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+			},
+			type = "offshore-pump",
+		})
+
+		for _, entity in pairs(colliding_entities) do
+			entity.die()
+		end
+
+		surface.create_entity({
+			name = "water-splash",
+			position = { x = pos.x + 0.5, y = pos.y + 0.5 },
+		})
+	end,
 	["cerys-ice-on-water-melting"] = function(surface, pos)
 		local colliding_entities = surface.find_entities_filtered({
 			area = {
@@ -150,7 +196,7 @@ Public.TILE_TRANSITION_EFFECTS = {
 		for _, entity in pairs(colliding_entities) do
 			if entity and entity.valid and entity.type ~= "asteroid" and entity.type ~= "offshore-pump" then
 				if entity.type ~= "offshore-pump" and entity.prototype.create_ghost_on_death then
-					Public.place_ghost_concrete_under_entity(surface, entity)
+					Public.place_ghost_foundation_under_entity(surface, entity)
 				end
 
 				entity.die()
@@ -207,12 +253,16 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- end,
 }
 
-function Public.place_ghost_concrete_under_entity(surface, entity)
+function Public.place_ghost_foundation_under_entity(surface, entity)
 	for i = -entity.tile_width / 2 + 0.5, entity.tile_width / 2 - 0.5 do
 		for j = -entity.tile_height / 2 + 0.5, entity.tile_height / 2 - 0.5 do
 			local tile = surface.get_tile(entity.position.x + i, entity.position.y + j)
 
-			if tile and tile.valid then
+			if
+				tile
+				and tile.valid
+				and (tile.name == "cerys-ice-on-water-melting" or tile.name == "cerys-ice-on-water")
+			then
 				local ghosts = tile.get_tile_ghosts()
 
 				local has_floor_layer = false
@@ -230,7 +280,7 @@ function Public.place_ghost_concrete_under_entity(surface, entity)
 						force = entity.force,
 						name = "tile-ghost",
 						position = { x = entity.position.x + i, y = entity.position.y + j },
-						ghost_name = "concrete",
+						ghost_name = "foundation",
 					})
 				end
 			end

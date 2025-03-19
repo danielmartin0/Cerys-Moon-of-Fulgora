@@ -20,6 +20,7 @@ local neutron_damage_effect = {
 
 local base_neutron = {
 	type = "projectile",
+	hidden = true,
 	acceleration = 0,
 	direction_only = true,
 	map_color = { 0.8, 0.8, 0.8 },
@@ -37,7 +38,7 @@ local create_neutron = {
 	type = "area",
 	target_entities = false,
 	trigger_from_target = true,
-	radius = 1337,
+	radius = 12,
 	action_delivery = {
 		type = "projectile",
 		projectile = "cerys-neutron-projectile",
@@ -53,7 +54,7 @@ local create_neutron_slow = {
 	type = "area",
 	target_entities = false,
 	trigger_from_target = true,
-	radius = 1337,
+	radius = 6,
 	action_delivery = {
 		type = "projectile",
 		projectile = "cerys-neutron-projectile-2",
@@ -69,7 +70,7 @@ local create_neutron_very_slow = {
 	type = "area",
 	target_entities = false,
 	trigger_from_target = true,
-	radius = 1337,
+	radius = 6,
 	action_delivery = {
 		type = "projectile",
 		projectile = "cerys-neutron-projectile-3",
@@ -255,7 +256,6 @@ data:extend({
 							tile_collision_mask = {
 								layers = {
 									water_tile = true,
-									cerys_water_tile = true,
 								},
 							},
 						},
@@ -284,8 +284,6 @@ data:extend({
 							play_on_target_position = false,
 							-- min_distance = 200,
 							max_distance = 3000,
-							-- volume_modifier = 1,
-							audible_distance_modifier = 5,
 						},
 						{
 							type = "play-sound",
@@ -293,8 +291,6 @@ data:extend({
 							play_on_target_position = false,
 							-- min_distance = 200,
 							max_distance = 1000,
-							-- volume_modifier = 1,
-							audible_distance_modifier = 5,
 						},
 						{
 							type = "damage",
@@ -359,7 +355,7 @@ data:extend({
 								target_entities = false,
 								trigger_from_target = true,
 								repeat_count = 3000,
-								radius = 85,
+								radius = 110,
 								action_delivery = {
 									type = "projectile",
 									projectile = "hydrogen-bomb-wave",
@@ -454,7 +450,6 @@ data:extend({
 											tile_collision_mask = {
 												layers = {
 													water_tile = true,
-													cerys_water_tile = true,
 												},
 											},
 										},
@@ -532,7 +527,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -555,7 +549,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -578,7 +571,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -601,7 +593,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},
@@ -624,7 +615,6 @@ data:extend({
 										tile_collision_mask = {
 											layers = {
 												water_tile = true,
-												cerys_water_tile = true,
 											},
 										},
 									},

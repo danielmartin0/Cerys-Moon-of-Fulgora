@@ -1,10 +1,18 @@
-if data.raw.planet.fulgora.lightning_properties and data.raw.planet.fulgora.lightning_properties.priority_rules then
+--=== Fulgora lightning priority rules ==--
+
+if
+	data.raw.planet.fulgora
+	and data.raw.planet.fulgora.lightning_properties
+	and data.raw.planet.fulgora.lightning_properties.priority_rules
+then
 	table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 		type = "prototype",
 		string = "cerys-charging-rod",
 		priority_bonus = 250,
 	})
 end
+
+--== Centrifuges ==--
 
 local pipe_picture = assembler3pipepictures()
 pipe_picture.north = util.empty_sprite()
@@ -40,6 +48,28 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 			end
 		end
 	end
+end
+
+local centrifuge = data.raw["assembling-machine"]["centrifuge"]
+if
+	centrifuge
+	and centrifuge.graphics_set
+	and centrifuge.graphics_set.working_visualisations
+	and centrifuge.graphics_set.working_visualisations[1]
+	and centrifuge.graphics_set.working_visualisations[2]
+	and centrifuge.graphics_set.working_visualisations[2].animation
+	and centrifuge.graphics_set.working_visualisations[2].animation.layers
+then
+	centrifuge.graphics_set.default_recipe_tint = { primary = { 0, 1, 0.2 } }
+	centrifuge.graphics_set.recipe_not_set_tint = { primary = { 0, 1, 0.2 } }
+
+	centrifuge.graphics_set.working_visualisations[1].apply_recipe_tint = "primary"
+	centrifuge.graphics_set.working_visualisations[2].apply_recipe_tint = "primary"
+
+	local layers = centrifuge.graphics_set.working_visualisations[2].animation.layers
+	layers[1].filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-C-light.png"
+	layers[2].filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-B-light.png"
+	layers[3].filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/centrifuge/centrifuge-A-light.png"
 end
 
 --== Flare stack ==--

@@ -4,7 +4,7 @@ data:extend({
 	{
 		type = "sound",
 		name = "cerys-radiation-exposure",
-		audible_distance_modifier = 1, --multiplies the default 40 tiles of audible distance by this number
+		audible_distance_modifier = 0.7, --multiplies the default 40 tiles of audible distance by this number
 		category = "game-effect",
 		priority = 180,
 		variations = {
@@ -103,7 +103,7 @@ data:extend({
 		name = "cerys-5",
 		planet = "cerys",
 	}),
-	merge(data.raw["ambient-sound"]["aquilo-8"], {
+	merge(data.raw["ambient-sound"]["space-6"], {
 		name = "cerys-6",
 		planet = "cerys",
 	}),

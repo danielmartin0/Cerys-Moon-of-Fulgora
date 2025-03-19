@@ -7,6 +7,8 @@ data:extend({
 	{
 		type = "accumulator",
 		name = "cerys-charging-rod",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon_size = 128,
 		flags = { "placeable-neutral", "player-creation" },
 		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
 		max_health = 200,
@@ -83,7 +85,7 @@ data:extend({
 					sound = {
 						filename = "__base__/sound/accumulator-working.ogg",
 						volume = 1,
-						speed = 0.8,
+						speed = 0.77,
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,
@@ -93,7 +95,7 @@ data:extend({
 					sound = {
 						filename = "__base__/sound/accumulator-discharging.ogg",
 						volume = 1,
-						speed = 0.8,
+						speed = 0.77,
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,
@@ -101,14 +103,23 @@ data:extend({
 				},
 			},
 		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
-		icon_size = 128,
+		circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
+			variation = 18,
+			main_offset = util.by_pixel(0, -20),
+			shadow_offset = util.by_pixel(4.5, -7),
+			show_shadow = false,
+		}),
+		circuit_wire_max_distance = default_circuit_wire_max_distance,
 	},
 
 	{
 		type = "simple-entity",
 		name = "cerys-charging-rod-animation-blue",
 		hidden = true,
+		collision_mask = { layers = {} },
+		collision_box = { { 0, 0 }, { 0, 0 } },
+		selection_box = { { -0, -0 }, { 0, 0 } },
+		selectable_in_game = false,
 		random_animation_offset = true,
 		animations = {
 			layers = {
@@ -123,7 +134,7 @@ data:extend({
 					blend_mode = "additive",
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					animation_speed = 0.08,
+					animation_speed = 0.05,
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-b.png",
@@ -135,7 +146,7 @@ data:extend({
 					blend_mode = "additive",
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					animation_speed = 0.08,
+					animation_speed = 0.05,
 				},
 			},
 		},
@@ -144,6 +155,10 @@ data:extend({
 		type = "simple-entity",
 		name = "cerys-charging-rod-animation-red",
 		hidden = true,
+		collision_mask = { layers = {} },
+		collision_box = { { 0, 0 }, { 0, 0 } },
+		selection_box = { { -0, -0 }, { 0, 0 } },
+		selectable_in_game = false,
 		random_animation_offset = true,
 		animations = {
 			layers = {
@@ -158,7 +173,7 @@ data:extend({
 					blend_mode = "additive",
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					animation_speed = 0.13,
+					animation_speed = 0.05,
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-r.png",
@@ -170,7 +185,7 @@ data:extend({
 					blend_mode = "additive",
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					animation_speed = 0.13,
+					animation_speed = 0.05,
 				},
 			},
 		},

@@ -1,6 +1,6 @@
 ### Credits
 
-This file specifies code and assets used in Cerys, Moon of Fulgora from other sources.
+This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 
 #### Fulgora graphic
 
@@ -9,12 +9,19 @@ This file specifies code and assets used in Cerys, Moon of Fulgora from other so
 - **License**: [MIT](https://opensource.org/license/MIT)
 - **Changes**: No.
 
-#### Methane icon
+#### Cerysian science pack icon
+
+- **Creators**: [Hornwitser](https://mods.factorio.com/user/Hornwitser)
+- **Source**: [Quality Glassware](https://mods.factorio.com/mod/quality_glassware)
+- **License**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+- **Changes**: Yes. Icon recolored, quality upscaled.
+
+#### Methane and Nitric Acid icons
 
 - **Creators**: [malcolmriley](https://github.com/malcolmriley)
 - **Source**: [Unused Renders](https://github.com/malcolmriley/unused-renders)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Changes**: Yes. Icon recolored to be more vivid.
+- **Changes**: Yes. Icons brightened to be a bit more vivid.
 
 #### Sci-fi Nuclear Reactor
 
@@ -37,9 +44,9 @@ This file specifies code and assets used in Cerys, Moon of Fulgora from other so
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes. Remixed, shadows added.
 
-#### Flare stack & Vent stack
+#### Centrifuge tint graphics & code
 
-- **Creators**: GotLag
-- **Source**: [Flare Stack](https://mods.factorio.com/mod/Flare%20Stack)
+- **Creators**: [NullPointerExcept](https://mods.factorio.com/user/NullPointerExcept)
+- **Source**: [Centrifuge tint 2.0](https://mods.factorio.com/mod/centrifuge-tint)
 - **License**: [MIT](https://opensource.org/license/MIT)
-- **Changes**: Yes. New technology icon adapted from original graphics. Code modified to support 2.0 and better distinguish venting and flaring recipes.
+- **Changes**: No.

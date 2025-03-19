@@ -60,7 +60,7 @@ data:extend({
 	{
 		type = "optimized-particle",
 		name = "solar-wind-exposure-particle",
-		life_time = (60 * 0.32),
+		life_time = (60 * 0.30),
 		render_layer = "projectile",
 		render_layer_when_on_ground = "corpse",
 		regular_trigger_effect_frequency = 2,
@@ -73,7 +73,7 @@ data:extend({
 				frame_count = 12,
 				variation_count = 7,
 				tint = { r = 0.8, g = 0.8, b = 1 },
-				scale = 0.8,
+				scale = 0.78,
 				draw_as_glow = true,
 				shift = util.by_pixel(1.5, -1),
 			},

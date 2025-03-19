@@ -1,35 +1,40 @@
 local common = require("common")
+local find = require("lib").find
 
 local Public = {}
 
-local OUT_OF_BOUNDS_D2 = (common.MOON_RADIUS * (2 ^ (1 / 2)) * 1.5 + 5) ^ 2
-local SOLAR_WIND_MIN_VELOCITY = 0.2
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.MOON_RADIUS + 150) * 2.5
+local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
+local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
+local SOLAR_WIND_MIN_VELOCITY = 0.15
+local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
-local ROD_DEFLECTION_STRENGTH = 5
+local ROD_DEFLECTION_STRENGTH = 8 / 4.5
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = 1 / 30
-local COOLDOWN_DISTANCE = 1.5
+local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 50
+local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 1000
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 10000
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 887
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8870
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
-	["small-metallic-asteroid-planetary"] = 1,
-	["medium-metallic-asteroid-planetary"] = 1,
+	["small-metallic-asteroid-planetary"] = 0.8,
+	["medium-metallic-asteroid-planetary"] = 1.3,
 	["small-carbonic-asteroid-planetary"] = 4,
 	["medium-carbonic-asteroid-planetary"] = 2,
 	["small-oxide-asteroid-planetary"] = 4,
 	["medium-oxide-asteroid-planetary"] = 2,
 }
 
+if script.active_mods["cupric-asteroids"] then
+	ASTEROID_TO_PERCENTAGE_RATE["small-cupric-asteroid-planetary"] = 0.8
+	ASTEROID_TO_PERCENTAGE_RATE["medium-cupric-asteroid-planetary"] = 1.3
+end
+
 local MAX_CHUNKS_ON_GROUND = 15
 
-function Public.spawn_asteroid(surface, y_position)
-	y_position = y_position or -(common.MOON_RADIUS + 60)
-
+function Public.try_spawn_asteroid(surface)
 	local random_value = math.random() * 100
 	local chosen_name = nil
 	local running_total = 0
@@ -45,7 +50,25 @@ function Public.spawn_asteroid(surface, y_position)
 		return
 	end
 
-	local x = math.random(-common.MOON_RADIUS * 1.5, common.MOON_RADIUS * 1.5)
+	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local x = math.random(-semimajor_axis - 70, semimajor_axis + 70)
+
+	local y_position = -(common.CERYS_RADIUS + ASTEROID_SPAWN_DISTANCE_FROM_EDGE)
+
+	if y_position < -surface.map_gen_settings.height / 2 then
+		local trial_position = -surface.map_gen_settings.height / 2 + 0.5
+		local tile_1 = surface.get_tile(0, trial_position - 32)
+		local tile_2 = surface.get_tile(0, trial_position)
+
+		if tile_1 and tile_1.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_1.name) then
+			y_position = trial_position - 32
+		elseif tile_2 and tile_2.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_2.name) then
+			y_position = trial_position
+		else
+			surface.set_tiles({ { name = "cerys-empty-space-3", position = { 0, trial_position } } })
+			y_position = trial_position
+		end
+	end
 
 	local e = surface.create_entity({
 		name = chosen_name,
@@ -58,9 +81,12 @@ function Public.spawn_asteroid(surface, y_position)
 end
 
 function Public.spawn_solar_wind_particle(surface)
-	local y = math.random(-common.MOON_RADIUS - 6, common.MOON_RADIUS + 6)
+	local d = common.CERYS_RADIUS / common.get_cerys_surface_stretch_factor(surface)
 
-	local x = -(common.MOON_RADIUS + math.random(60, 70))
+	local y = math.random(-d - 8, d + 8)
+
+	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
 	-- local e = surface.create_entity({
 	-- 	name = "cerys-solar-wind-particle",
@@ -84,8 +110,8 @@ function Public.spawn_solar_wind_particle(surface)
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1
-	local y_velocity = 0.3 * (math.random() - 0.5) ^ 3
+	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3
+	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3
 
 	return { x = x_velocity, y = y_velocity }
 end
@@ -159,15 +185,19 @@ function Public.tick_1_move_solar_wind()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_solar_wind_particles()
+function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
+		local semimajor_axis = common.get_cerys_semimajor_axis(surface)
 
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
-		elseif particle.position.x ^ 2 + particle.position.y ^ 2 > OUT_OF_BOUNDS_D2 then
+		elseif
+			math.abs(particle.position.x) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
+			or math.abs(particle.position.y) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
+		then
 			kill = true
 		end
 
@@ -186,14 +216,15 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_asteroids()
+function Public.tick_240_clean_up_cerys_asteroids(surface)
 	local i = 1
 	while i <= #storage.cerys.asteroids do
 		local e = storage.cerys.asteroids[i]
 
 		if e and e.valid then
-			local d2 = e.position.x ^ 2 + e.position.y ^ 2
-			if d2 > OUT_OF_BOUNDS_D2 then
+			local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+
+			if e.position.y > (semimajor_axis + ASTEROID_SPAWN_DISTANCE_FROM_EDGE + 5) then
 				e.destroy()
 
 				table.remove(storage.cerys.asteroids, i)
@@ -206,26 +237,12 @@ function Public.tick_240_clean_up_cerys_asteroids()
 	end
 end
 
-local container_names = {}
-for _, e in pairs(prototypes["entity"]) do
-	if e.type == "container" or e.type == "logistic-container" then
-		table.insert(container_names, e.name)
-	end
-end
-
-local belt_names = {}
-for _, e in pairs(prototypes["entity"]) do
-	if e.type == "transport-belt" then
-		table.insert(belt_names, e.name)
-	end
-end
-
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not Public.particle_is_in_cooldown(particle) then
 			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 0.75 })
+				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then
 				local e = chars[1]
 				if e and e.valid then
@@ -238,8 +255,14 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
-							local irradiated =
-								Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
+							local irradiated = Public.irradiate_inventory(
+								surface,
+								inv,
+								e.force,
+								e.position,
+								probability_multiplier,
+								true
+							)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -257,7 +280,11 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								})
 							end
 
-							e.damage(15, game.forces.neutral, "laser")
+							particle.irradiation_tick = game.tick
+
+							local damage = common.HARDCORE_ON and 180 or 15
+
+							e.damage(damage, game.forces.neutral, "laser")
 						end
 					end
 				end
@@ -265,7 +292,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 		end
 
 		local containers = surface.find_entities_filtered({
-			name = container_names,
+			type = { "container", "logistic-container" },
 			position = particle.position,
 			radius = 0.75,
 		})
@@ -282,7 +309,8 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 					local inv = e.get_inventory(defines.inventory.chest)
 					if inv and inv.valid then
-						local irradiated = Public.irradiate_inventory(surface, inv, e.position, probability_multiplier)
+						local irradiated =
+							Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
 						if irradiated then
 							surface.create_entity({
 								name = "plutonium-explosion",
@@ -297,7 +325,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
 		if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
 			local belts = surface.find_entities_filtered({
-				name = belt_names,
+				type = "transport-belt",
 				position = particle.position,
 				radius = 0.5,
 			})
@@ -318,7 +346,6 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								has_uranium = true
 
 								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
-									* item.stack.count
 									* probability_multiplier
 									* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 
@@ -334,6 +361,15 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 										count = item.stack.count,
 										quality = item.stack.quality,
 									})
+
+									if e.force and e.force.valid then
+										e.force
+											.get_item_production_statistics(surface)
+											.on_flow("plutonium-239", item.stack.count)
+										e.force
+											.get_item_production_statistics(surface)
+											.on_flow("uranium-238", -item.stack.count)
+									end
 
 									surface.create_entity({
 										name = "plutonium-explosion",
@@ -388,7 +424,7 @@ function Public.irradiation_chance_effect(surface, position)
 		volume_modifier = 0.13,
 	})
 
-	for _ = 1, 12 do
+	for _ = 1, 9 do
 		surface.create_particle({
 			name = "solar-wind-exposure-particle",
 			position = {
@@ -406,7 +442,7 @@ function Public.irradiation_chance_effect(surface, position)
 	end
 end
 
-function Public.irradiate_inventory(surface, inv, position, probability_multiplier)
+function Public.irradiate_inventory(surface, inv, force, position, probability_multiplier, no_effect)
 	local uranium_count = 0
 	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
@@ -445,6 +481,11 @@ function Public.irradiate_inventory(surface, inv, position, probability_multipli
 					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
 				end
 
+				if force and force.valid then
+					force.get_item_production_statistics(surface).on_flow("plutonium-239", number_mutated)
+					force.get_item_production_statistics(surface).on_flow("uranium-238", -number_mutated)
+				end
+
 				mutated = true
 			end
 		end
@@ -452,8 +493,10 @@ function Public.irradiate_inventory(surface, inv, position, probability_multipli
 
 	local effect_count = math.ceil(uranium_count / 1000)
 
-	for _ = 1, effect_count do
-		Public.irradiation_chance_effect(surface, position)
+	if not no_effect then
+		for _ = 1, effect_count do
+			Public.irradiation_chance_effect(surface, position)
+		end
 	end
 
 	return mutated

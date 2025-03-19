@@ -4,12 +4,10 @@ local max_health = 2000
 
 local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	name = "cerys-mixed-oxide-reactor",
-	subgroup = "energy",
-	order = "z-f[nuclear-energy]-a[reactor]-a[mixed-oxide-reactor]",
 	max_health = max_health,
 	collision_box = { { -3.2, -3.2 }, { 3.2, 3.2 } },
 	selection_box = { { -3.5, -3.5 }, { 3.5, 3.5 } },
-	minable = { mining_time = 1, result = "cerys-mixed-oxide-reactor" },
+	minable = { mining_time = 0.5, result = "cerys-mixed-oxide-reactor" },
 	lower_layer_picture = "nil",
 	heat_lower_layer_picture = "nil",
 	energy_source = {

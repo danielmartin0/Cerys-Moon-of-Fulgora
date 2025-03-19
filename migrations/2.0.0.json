@@ -1,0 +1,8 @@
+{
+    "technology": [
+        ["cerys-science-pack", "cerysian-science-pack"],
+        ["cerys-plutonium-enhanced-fuel-reprocessing", "cerys-mixed-oxide-waste-reprocessing"]
+    ],
+    "fluid": [["nuclear-waste-solution", "mixed-oxide-waste-solution"]],
+    "recipe": [["nuclear-waste-solution-centrifuging", "mixed-oxide-waste-centrifuging"]]
+}

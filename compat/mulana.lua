@@ -1,3 +1,5 @@
+-- TODO: Comb through these item categories for broader compatibility improvements.
+
 --== Mulana seems to be overriding science packs to have min oxygen of 1, whereas oxygen is afaik supposed to be used to restrict burner items.
 
 for _, pack in pairs(data.raw["tool"]) do

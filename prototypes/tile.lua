@@ -38,7 +38,7 @@ local original_ice_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "empty-space", "cerys-empty-space", "cerys-empty-space-2", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -153,18 +153,13 @@ rock_ice_transitions_between_transitions[1].water_patch.filename =
 table.insert(water_tile_type_names, "cerys-water-puddles")
 table.insert(water_tile_type_names, "cerys-water-puddles-freezing")
 
---== Collision Masks ==--
+--== Ground collision mask ==--
+
 local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 	layers = merge((tile_collision_masks.ground().layers or {}), {
 		cerys_tile = true,
 	}),
 })
-
-local cerys_shallow_water_collision_mask = { layers = {
-	resource = true,
-	floor = true,
-	cerys_water_tile = true,
-} }
 
 --== Rock & Rock Ice ==--
 
@@ -201,7 +196,7 @@ local original_rock_transitions = {
 		},
 	},
 	{
-		to_tiles = { "out-of-map", "cerys-empty-space", "cerys-empty-space-2", "empty-space", "oil-ocean-shallow" }, -- Note that we added cerys-empty-space to the list
+		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
 
 		background_layer_offset = 1,
@@ -346,27 +341,53 @@ data:extend({
 
 --== Water & Water Ice ==--
 
-local cerys_brash_ice_base = merge(data.raw.tile["brash-ice"], {
+local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
 	subgroup = "cerys-tiles",
-	collision_mask = cerys_shallow_water_collision_mask,
+	collision_mask = {
+		layers = {
+			water_tile = true,
+			floor = true,
+			resource = true,
+			cerys_tile = true,
+			doodad = true,
+		},
+	},
+	effect = "cerys-water-puddles-2",
 	autoplace = "nil",
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
-	default_cover_tile = "concrete",
+	default_cover_tile = "ice-platform",
 })
 
 data:extend({
-	merge(cerys_brash_ice_base, {
+	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles",
 		frozen_variant = "cerys-water-puddles-freezing",
 		autoplace = {
 			probability_expression = "0",
 		},
 	}),
-	merge(cerys_brash_ice_base, {
+	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles-freezing",
 		thawed_variant = "cerys-water-puddles",
+	}),
+	merge(data.raw["tile-effect"]["brash-ice-2"], {
+		name = "cerys-water-puddles-2",
+		water = merge(data.raw["tile-effect"]["brash-ice-2"].water, {
+			textures = {
+				{
+					filename = "__space-age__/graphics/terrain/gleba/watercaustics.png",
+					width = 512,
+					height = 512,
+				},
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-shallow-water.png",
+					width = 512 * 4,
+					height = 512 * 2,
+				},
+			},
+		}),
 	}),
 })
 
@@ -599,7 +620,7 @@ cerys_concrete.collision_mask.layers.cerys_tile = true
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space", -- Legacy tile. No longer created, but exists in old saves.
+	name = "cerys-empty-space", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
 })
 if not cerys_empty.collision_mask then
@@ -610,7 +631,7 @@ table.insert(out_of_map_tile_type_names, "cerys-empty-space")
 
 local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space-2",
+	name = "cerys-empty-space-2", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
 	default_cover_tile = "nil",
 	collision_mask = {
@@ -621,8 +642,21 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 })
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
+local cerys_empty_3 = merge(data.raw.tile["empty-space"], {
+	subgroup = "cerys-tiles",
+	name = "cerys-empty-space-3",
+	default_cover_tile = "nil",
+	collision_mask = {
+		colliding_with_tiles_only = true,
+		not_colliding_with_itself = true,
+		layers = data.raw.tile["empty-space"].collision_mask.layers,
+	},
+})
+table.insert(out_of_map_tile_type_names, "cerys-empty-space-3")
+
 data:extend({
 	cerys_concrete,
 	cerys_empty,
 	cerys_empty_2,
+	cerys_empty_3,
 })

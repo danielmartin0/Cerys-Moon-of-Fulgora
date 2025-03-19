@@ -1,3 +1,5 @@
+local common = require("common")
+
 local Public = {}
 
 Public.REACTOR_STAGE_ENUM = {
@@ -9,7 +11,7 @@ Public.REACTOR_STAGE_ENUM = {
 }
 
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = 12
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARDCORE_ON and 600 or 300
 
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
@@ -158,6 +160,14 @@ function Public.reactor_repair_check(surface, reactor)
 			e2.minable_flag = false
 			e2.destructible = false
 
+			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+			if input_inv and input_inv.valid then
+				local contents = input_inv.get_contents()
+				for _, item in pairs(contents) do
+					surface.spill_item_stack({ position = e.position, stack = item })
+				end
+			end
+
 			local module_inv = e.get_module_inventory()
 			if module_inv and module_inv.valid then
 				local contents = module_inv.get_contents()
@@ -213,43 +223,36 @@ function Public.reactor_repair_check(surface, reactor)
 			reactor.rendering2 = r2
 		end
 
-		local processing_units = 0
-		local repair_parts = 0
-		local chips_count = 0
-		local repair_count = 0
+		local inventory_chips = 0
+		local inventory_repair_parts = 0
 
 		if e and e.valid then
 			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+
 			if input_inv and input_inv.valid then
-				if settings.startup["cerys-disable-quality-mechanics"].value then
-					processing_units = input_inv.get_item_count({ name = "processing-unit" })
-					repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part" })
-				else
-					processing_units = input_inv.get_item_count({ name = "processing-unit", quality = "rare" })
-					repair_parts =
-						input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = "rare" })
-				end
+				inventory_chips = input_inv.get_item_count({ name = "processing-unit" })
+				inventory_repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part" })
 			end
-			chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + processing_units
-			repair_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 		end
 
-		local quality_text = settings.startup["cerys-disable-quality-mechanics"].value and "" or ",quality=rare"
+		local chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_chips
 
-		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 200, 0 }
+		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 185, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
-			"[item=processing-unit" .. quality_text .. "]",
+			"[item=processing-unit]",
 			chips_count,
 			recipes_needed * 1,
 		}
 
-		r2.color = repair_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 200, 0 }
+		local repair_parts_count = 2 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_repair_parts
+
+		r2.color = repair_parts_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
-			"[item=ancient-structure-repair-part" .. quality_text .. "]",
-			repair_count,
-			recipes_needed * 1,
+			"[item=ancient-structure-repair-part]",
+			repair_parts_count,
+			recipes_needed * 2,
 		}
 	end
 end
@@ -310,6 +313,7 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
+			-- quality = scaffold_quality, -- Avoid locking players to a lower quality than they're happy with. In case you're wondering, it's not possible (as of 2.0.28) to fast-replace a higher-quality scaffold on an existing reactor.
 		})
 
 		if e and e.valid then

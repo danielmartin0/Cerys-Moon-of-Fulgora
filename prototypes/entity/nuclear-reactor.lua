@@ -75,7 +75,7 @@ local fulgoran_reactor = {
 	order = "d",
 	heat_buffer = {
 		max_temperature = 2000, -- from 1000
-		specific_heat = "800MJ", -- from 10MJ
+		specific_heat = "640MJ", -- from 10MJ
 		max_transfer = "300GW", -- from 10GW
 		minimum_glow_temperature = 0,
 		connections = make_heat_buffer_connections(22),
@@ -147,7 +147,7 @@ local fulgoran_reactor = {
 	close_sound = { filename = "__base__/sound/open-close/nuclear-close.ogg", volume = 0.8 },
 	working_sound = {
 		sound = reactor_sound,
-		max_sounds_per_type = 3,
+		max_sounds_per_prototype = 3,
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
 	},
@@ -227,8 +227,8 @@ local reactor_wreck = merge(reactor_wreck_base, {
 		},
 	},
 	working_sound = {
-		sound = { filename = "__base__/sound/burner-mining-drill-1.ogg", volume = 1 },
-		audible_distance_modifier = 1,
+		sound = { audible_distance_modifier = 1, filename = "__base__/sound/burner-mining-drill-1.ogg", volume = 1 },
+
 		fade_in_ticks = 0,
 		fade_out_ticks = 0,
 	},
@@ -307,9 +307,8 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 	type = "assembling-machine",
 	crafting_categories = { "nuclear-reactor-repair" },
 	fixed_recipe = "cerys-repair-nuclear-reactor",
-	fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "rare",
 	crafting_speed = 1,
-	module_slots = 2,
+	module_slots = 0, -- Apart from feeling a bit cheap, they would fall out of the machine
 	allowed_effects = { "speed", "productivity" },
 	energy_usage = "100kW",
 	energy_source = {
@@ -371,8 +370,8 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 		},
 	},
 	working_sound = {
-		sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 1 },
-		audible_distance_modifier = 1,
+		sound = { audible_distance_modifier = 1, filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 1 },
+
 		fade_in_ticks = 0,
 		fade_out_ticks = 0,
 	},

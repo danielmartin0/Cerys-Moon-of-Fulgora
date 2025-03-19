@@ -1,7 +1,7 @@
 local common = require("common")
 local repair = require("reactor-repair")
 local terrain = require("terrain")
-
+local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
 function Public.initialize_cerys(surface) -- Must run before terrain generation
@@ -20,9 +20,6 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 		surface = game.planets["cerys"].create_surface()
 	end
 
-	surface.min_brightness = 0.2
-	surface.brightness_visual_weights = { 0.12, 0.15, 0.12 }
-
 	Public.ensure_cerys_storage_and_tables()
 	Public.create_reactor(surface)
 
@@ -33,10 +30,15 @@ function Public.create_reactor(surface)
 	local name = common.DEBUG_NUCLEAR_REACTOR_START and "cerys-fulgoran-reactor"
 		or "cerys-fulgoran-reactor-wreck-frozen"
 
+	local adjusted_reactor_position = {
+		x = math.ceil(common.REACTOR_POSITION_SEED.x),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / common.get_cerys_surface_stretch_factor(surface)),
+	}
+
 	local entities = surface.find_entities_filtered({
 		area = {
-			{ common.REACTOR_POSITION.x - 11, common.REACTOR_POSITION.y - 11 },
-			{ common.REACTOR_POSITION.x + 11, common.REACTOR_POSITION.y + 11 },
+			{ adjusted_reactor_position.x - 15, adjusted_reactor_position.y - 11 },
+			{ adjusted_reactor_position.x + 15, adjusted_reactor_position.y + 11 },
 		},
 	})
 
@@ -50,7 +52,7 @@ function Public.create_reactor(surface)
 
 	local e = surface.create_entity({
 		name = name,
-		position = common.REACTOR_POSITION,
+		position = adjusted_reactor_position,
 		force = "player",
 	})
 
@@ -68,9 +70,7 @@ function Public.create_reactor(surface)
 end
 
 script.on_init(function()
-	if common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value then
-		Public.initialize_cerys()
-	end
+	picker_dollies.add_picker_dollies_blacklists()
 end)
 
 script.on_event(defines.events.on_surface_created, function(event)

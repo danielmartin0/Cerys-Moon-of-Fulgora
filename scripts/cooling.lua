@@ -1,10 +1,24 @@
+local common = require("common")
+
 local Public = {}
 
-local TEMPERATURE_LOSS_RATE = 0.75
+local TEMPERATURE_LOSS_RATE = 0.6
 
 function Public.tick_300_find_heat_entities(surface)
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+
 	storage.cerys.heat_entities = surface.find_entities_filtered({
 		type = { "heat-pipe", "boiler" },
+		area = {
+			left_top = {
+				x = -common.CERYS_RADIUS * 1.2 * stretch_factor,
+				y = -common.CERYS_RADIUS * 1.2 / stretch_factor,
+			},
+			right_bottom = {
+				x = common.CERYS_RADIUS * 1.2 * stretch_factor,
+				y = common.CERYS_RADIUS * 1.2 / stretch_factor,
+			},
+		},
 	})
 end
 

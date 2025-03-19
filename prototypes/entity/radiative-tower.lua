@@ -17,23 +17,23 @@ local reactor = {
 	selection_box = { { -1.5, -2 }, { 1.5, 2 } },
 	damaged_trigger_effect = hit_effects.entity(),
 	drawing_box_vertical_extension = 3,
-	consumption = "700kW",
 	energy_source = {
 		type = "burner",
 		fuel_categories = { "chemical-or-radiative" },
-		emissions_per_minute = { pollution = 10 },
-		effectivity = 0.54,
+		emissions_per_minute = { pollution = 5 },
+		effectivity = 1,
 		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
 			color = { 0, 0, 0 },
-			minimum_intensity = 0.7,
-			maximum_intensity = 0.95,
-		},
+			minimum_intensity = 0,
+			maximum_intensity = 0,
+		}, -- Needed to disable the flicker effect
 	},
+	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
-		max_temperature = 200,
-		specific_heat = "70kJ",
+		max_temperature = 150,
+		specific_heat = common.HARDCORE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 0,
 		heat_picture = apply_heat_pipe_glow(
@@ -43,6 +43,7 @@ local reactor = {
 			})
 		),
 	},
+	neighbour_bonus = 0,
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back", {
@@ -65,20 +66,33 @@ local reactor = {
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	working_sound = {
-		sound = { filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
-		max_sounds_per_type = 2,
+		sound = { audible_distance_modifier = 0.9, filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
+		max_sounds_per_prototype = 3,
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
-		audible_distance_modifier = 0.9,
 	},
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
-	circuit_connector = circuit_connector_definitions["heating-tower"],
+	circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
+		variation = 30,
+		main_offset = util.by_pixel(5, -5),
+		shadow_offset = util.by_pixel(27, 8),
+		show_shadow = false,
+	}),
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	autoplace = {
 		probability_expression = "0",
 	},
 	map_color = { 143, 0, 0 },
+	radius_visualisation_specification = {
+		distance = common.HARDCORE_ON and 10.5 or 16.5, -- Accounting for x and y being different
+		sprite = {
+			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+			tint = { r = 0.7, g = 0, b = 0, a = 0.05 },
+			height = 64,
+			width = 64,
+		},
+	},
 }
 
 local frozen_reactor = merge(reactor, {
@@ -126,6 +140,7 @@ local rising_reactor_base = merge(reactor, {
 	map_color = CONTRACTED_MAP_COLOR,
 	working_sound = "nil",
 	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	radius_visualisation_specification = "nil",
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
@@ -281,7 +296,7 @@ data:extend({
 	container,
 })
 
-for i = 1, 17 do
+for i = 1, common.LAMP_COUNT do
 	data:extend({
 		{
 			type = "reactor",
@@ -360,15 +375,17 @@ for i = 1, 17 do
 				axially_symmetrical = false,
 				direction_count = 1,
 			},
-			light = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
-			light_when_colored = { intensity = 0.2, size = 4 * i, color = { r = 1, g = 0.5, b = 0.5 } },
+			light = { intensity = 0.25, size = 4.5 * i, color = { r = 1, g = 0.875, b = 0.875 } },
+			light_when_colored = { intensity = 0.25, size = 4.5 * i, color = { r = 1, g = 0.875, b = 0.875 } },
 			energy_usage_per_tick = "1kW",
 			always_on = true,
 			energy_source = {
 				type = "void",
 			},
-			glow_size = 100,
-			glow_color_intensity = 5,
+			-- I believe these do nothing when picture_on is blank:
+			-- glow_size = 6,
+			-- glow_color_intensity = 1,
+			-- glow_render_mode = "additive",
 		}),
 	})
 end

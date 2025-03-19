@@ -1,3 +1,5 @@
+local common = require("common")
+
 local Public = {}
 
 Public.CRYO_WRECK_STAGE_ENUM = {
@@ -5,9 +7,10 @@ Public.CRYO_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 100
-Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 200 -- Making this different to the default value is actually a bad idea, as players will think it will also be higher for the third repair.
-Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = 200
+-- Having more than two distinct values is a bad idea:
+Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED
+Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 150
+Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = 150
 
 function Public.tick_15_check_broken_cryo_plants(surface)
 	if not storage.cerys.broken_cryo_plants then
@@ -85,7 +88,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 					storage.cerys.second_unfrozen_cryo_plant = e.unit_number
 				end
 
-				if not plant.rendering then
+				if not (plant.rendering and plant.rendering.valid) then
 					plant.rendering = rendering.draw_text({
 						text = "",
 						surface = surface,
@@ -112,7 +115,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 
 				local repair_parts_count = products_finished + (e.is_crafting() and 1 or 0) + repair_parts
 
-				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 200, 0 }
+				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 				plant.rendering.text = {
 					"cerys.repair-remaining-description",
 					"[item=ancient-structure-repair-part]",
@@ -212,11 +215,11 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 	for _, plant in pairs(plants) do
 		storage.cerys.cryo_upgrade_monitor[plant.unit_number] = nil -- We'll re-add it shortly if we need to
 
-		if plant and plant.valid and plant.quality and plant.quality.next then
+		if plant and plant.valid then
 			local recipe, recipe_quality = plant.get_recipe()
 
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality" then
-				if plant.quality.next.name == recipe_quality.name then
+				if plant.quality and plant.quality.next and plant.quality.next.name == recipe_quality.name then
 					storage.cerys.cryo_upgrade_monitor[plant.unit_number] = {
 						entity = plant,
 						quality_upgrading_to = recipe_quality.name,
@@ -244,7 +247,11 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 						end
 					end
 
-					plant.set_recipe(recipe, plant.quality.next)
+					if plant.quality and plant.quality.next then
+						plant.set_recipe(recipe, plant.quality.next)
+					else
+						plant.set_recipe(nil)
+					end
 				end
 			end
 		end
@@ -304,9 +311,11 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 							local old_modules = e.get_module_inventory()
 							local new_modules = e2.get_module_inventory()
 
-							local modules = old_modules.get_contents()
-							for _, m in pairs(modules) do
-								new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
+							if old_modules and old_modules.valid and new_modules and new_modules.valid then
+								local modules = old_modules.get_contents()
+								for _, m in pairs(modules) do
+									new_modules.insert({ name = m.name, count = m.count, quality = m.quality })
+								end
 							end
 						end
 					end

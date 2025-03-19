@@ -2,7 +2,35 @@ local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
 
+if settings.startup["cerys-player-constructable-radiative-towers"].value then
+	data:extend({
+		{
+			type = "item",
+			name = "cerys-radiative-tower",
+			hidden_in_factoriopedia = true,
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+			icon_size = 200,
+			subgroup = "environmental-protection",
+			order = "z-d[radiative-tower]",
+			default_import_location = "cerys",
+			weight = 100 * 1000,
+			stack_size = 20,
+			place_result = "cerys-radiative-tower",
+		},
+	})
+end
+
 data:extend({
+	merge(data.raw.tool["electromagnetic-science-pack"], {
+		name = "cerysian-science-pack",
+		localised_description = "nil",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
+		icon_size = 64,
+		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
+		order = "j-a[cerys]",
+		default_import_location = "cerys",
+	}),
+
 	merge(data.raw.item["fission-reactor-equipment"], {
 		name = "mixed-oxide-reactor-equipment",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-reactor-equipment.png",
@@ -17,8 +45,8 @@ data:extend({
 		name = "cerys-fulgoran-reactor-scaffold",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/scaffold.png",
 		icon_size = 64,
-		subgroup = "tool",
-		order = "b[repair]-b[reactor-repair-scaffolding]",
+		subgroup = "cerys-repair",
+		order = "b",
 		inventory_move_sound = item_sounds.metal_large_inventory_move,
 		pick_sound = item_sounds.metal_large_inventory_pickup,
 		drop_sound = item_sounds.metal_large_inventory_move,
@@ -30,8 +58,8 @@ data:extend({
 		name = "ancient-structure-repair-part",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
 		icon_size = 64,
-		subgroup = "tool",
-		order = "b[repair]-b[ancient-structure-repair-part]",
+		subgroup = "cerys-repair",
+		order = "a",
 		inventory_move_sound = item_sounds.repair_pack_inventory_move,
 		pick_sound = item_sounds.repair_pack_inventory_pickup,
 		drop_sound = item_sounds.repair_pack_inventory_move,
@@ -115,15 +143,6 @@ data:extend({
 		subgroup = "plutonium-processing",
 		order = "b-c",
 		default_import_location = "cerys",
-	}),
-	merge(data.raw.tool["electromagnetic-science-pack"], {
-		name = "fulgoran-cryogenics-progress",
-		localised_description = "nil",
-		hidden = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/empty-science-pack.png",
-		icon_size = 64,
-		weight = 1 * 1000 * 1000000,
-		order = "j-a[cerys]-b[fulgoran-cryogenics-progress]",
 	}),
 	merge(data.raw.item["lab"], {
 		name = "cerys-lab",

@@ -23,6 +23,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "crusher-quality-upgrades",
+	},
+	{
+		type = "recipe-category",
 		name = "fulgoran-cryogenics",
 	},
 	{

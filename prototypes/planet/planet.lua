@@ -17,7 +17,7 @@ PlanetsLib:extend({
 			sprite = {
 				type = "sprite",
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit.png",
-				size = 332,
+				size = 335,
 				scale = 0.25,
 			},
 		},
@@ -44,17 +44,19 @@ PlanetsLib:extend({
 		},
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
-			["day-night-cycle"] = 4.5 * 60 * 60, -- Fulgora is 3m
+			["day-night-cycle"] = common.DAY_LENGTH_MINUTES * 60 * 60,
 			["magnetic-field"] = 120, -- Fulgora is 99
 			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
-			gravity = 0.1, -- 0.1 is minimum for chests
+			gravity = 0.2, -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),
 		persistent_ambient_sounds = {},
-		surface_render_parameters = {},
+		surface_render_parameters = {
+			shadow_opacity = 0.6, -- Slightly darker due to no atmosphere, though too dark doesn't play well with dynamic lighting
+		},
 		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
 	},
 })

@@ -2,10 +2,11 @@ local Public = {}
 
 local common = require("common")
 
-local TEMPERATURE_ZERO = 15
+Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
 local MAX_HEATING_RADIUS = 16
-local TEMPERATURE_LOSS_RATE = 1 / 175
+local MAX_HEATING_RADIUS_PLAYER = 13
+local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
 
@@ -16,7 +17,7 @@ local function ensure_storage_tables()
 	}
 end
 
-Public.register_heating_tower_contracted = function(entity)
+Public.register_radiative_tower_contracted = function(entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -52,7 +53,41 @@ Public.register_heating_tower_contracted = function(entity)
 	}
 end
 
-Public.register_heating_tower = function(entity)
+Public.register_player_radiative_tower = function(entity)
+	ensure_storage_tables()
+
+	if not (entity and entity.valid) then
+		return
+	end
+
+	local surface = entity.surface
+
+	if not (surface and surface.valid) then
+		return
+	end
+
+	-- local position = entity.position
+	-- local force = entity.force
+	-- local quality = entity.quality
+
+	-- entity.destroy()
+
+	-- local tower = surface.create_entity({
+	-- 	name = "cerys-radiative-tower",
+	-- 	position = position,
+	-- 	force = force,
+	-- 	quality = quality,
+	-- 	create_build_effect_smoke = false,
+	-- })
+
+	storage.radiative_towers.towers[entity.unit_number] = {
+		entity = entity,
+		reactors = {},
+		is_player_tower = true,
+	}
+end
+
+Public.register_radiative_tower = function(entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -85,8 +120,6 @@ Public.register_heating_tower = function(entity)
 		surface = entity.surface,
 	})
 
-	-- TODO: Create lamps for each heating radius that don't require power
-
 	storage.radiative_towers.towers[entity.unit_number] = {
 		entity = entity,
 		reactors = {},
@@ -106,8 +139,11 @@ function Public.radiative_heaters_temperature_tick()
 		if not (e and e.valid) then
 			if tower.reactors then
 				for _, reactor in pairs(tower.reactors) do
-					if reactor and reactor.valid then
-						reactor.destroy()
+					if reactor.north and reactor.north.valid then
+						reactor.north.destroy()
+					end
+					if reactor.south and reactor.south.valid then
+						reactor.south.destroy()
 					end
 				end
 			end
@@ -127,70 +163,133 @@ function Public.radiative_heaters_temperature_tick()
 
 			storage.radiative_towers.towers[unit_number] = nil
 		else
-			Public.apply_temperature_drop(tower)
+			Public.apply_temperature_drop(tower, tower.is_player_tower)
 		end
 	end
 end
 
-function Public.apply_temperature_drop(valid_tower)
+function Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
+	local max_heating_radius = is_player_tower and MAX_HEATING_RADIUS_PLAYER or MAX_HEATING_RADIUS
+	local temperature_interval = TEMPERATURE_INTERVAL
+
+	if common.HARDCORE_ON then
+		max_heating_radius = 10
+		temperature_interval = temperature_interval * 16 / 10
+	end
+
+	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))
+end
+
+function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local e = valid_tower.entity
 
-	local temperature_above_zero = e.temperature - TEMPERATURE_ZERO
+	local temperature_above_zero = e.temperature - Public.TEMPERATURE_ZERO
 
-	local heating_radius = math.min(MAX_HEATING_RADIUS, math.floor(temperature_above_zero / TEMPERATURE_INTERVAL))
+	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
 
 	if common.DEBUG_HEATERS_FUELED then
 		heating_radius = MAX_HEATING_RADIUS
 	end
 
-	if not valid_tower.last_radius then
-		valid_tower.last_radius = 0
-	end
+	valid_tower.reactors = valid_tower.reactors or {}
+	valid_tower.last_radius = valid_tower.last_radius or 0
 
 	local skip = (heating_radius == valid_tower.last_radius - 1) -- Don't update the reactor in this case, avoiding reactor count oscillation
 
-	if heating_radius ~= valid_tower.last_radius and not skip then
-		if not valid_tower.reactors then
-			valid_tower.reactors = {}
+	local need_to_regenerate_reactors = false
+	for r = 1, valid_tower.last_radius do
+		if
+			not valid_tower.reactors[r]
+			or not valid_tower.reactors[r].north
+			or not valid_tower.reactors[r].north.valid
+			or not valid_tower.reactors[r].south
+			or not valid_tower.reactors[r].south.valid
+		then
+			need_to_regenerate_reactors = true
+			break
 		end
-		if not valid_tower.lamps then
-			valid_tower.lamps = {}
-		end
+	end
 
-		if heating_radius > valid_tower.last_radius then -- If radius increased, add new reactors and lamps
-			for r = valid_tower.last_radius + 1, heating_radius do
-				local new_reactor = e.surface.create_entity({
-					name = "hidden-reactor-" .. r,
-					position = e.position,
-					force = e.force,
-				})
-				new_reactor.destructible = false
-				new_reactor.minable_flag = false
+	local need_to_regenerate_lamps = valid_tower.last_radius > 0
+		and (not valid_tower.current_lamp or not valid_tower.current_lamp.valid)
 
-				new_reactor.temperature = 40
-				valid_tower.reactors[r] = new_reactor
+	if need_to_regenerate_reactors or need_to_regenerate_lamps then
+		skip = false
 
-				local new_lamp = e.surface.create_entity({
-					name = "radiative-tower-lamp-" .. r,
-					position = e.position,
-					force = e.force,
-				})
-				valid_tower.lamps[r] = new_lamp
-
-				new_lamp.destructible = false
-				new_lamp.minable_flag = false
+		for r, reactor in pairs(valid_tower.reactors or {}) do
+			if reactor.north and reactor.north.valid then
+				reactor.north.destroy()
 			end
-		elseif heating_radius < valid_tower.last_radius then -- If radius decreased, remove excess reactors and lamps
+			if reactor.south and reactor.south.valid then
+				reactor.south.destroy()
+			end
+		end
+		valid_tower.reactors = {}
+
+		if valid_tower.current_lamp and valid_tower.current_lamp.valid then
+			valid_tower.current_lamp.destroy()
+			valid_tower.current_lamp = nil
+		end
+
+		valid_tower.last_radius = 0
+	end
+
+	if heating_radius ~= valid_tower.last_radius and not skip then
+		if heating_radius > valid_tower.last_radius then
+			for r = valid_tower.last_radius + 1, heating_radius do
+				-- Sadly the Fulgoran tower entities are rectangular, so in order to heat edges on the north and south edges we need two hidden reactors:
+				local reactor_north = e.surface.create_entity({
+					name = "hidden-reactor-" .. r,
+					position = { x = e.position.x, y = e.position.y - (is_player_tower and 0 or 0.5) },
+					force = e.force,
+				})
+				reactor_north.destructible = false
+				reactor_north.minable_flag = false
+				reactor_north.temperature = 40
+
+				local reactor_south = e.surface.create_entity({
+					name = "hidden-reactor-" .. r,
+					position = { x = e.position.x, y = e.position.y + (is_player_tower and 0 or 0.5) },
+					force = e.force,
+				})
+				reactor_south.destructible = false
+				reactor_south.minable_flag = false
+				reactor_south.temperature = 40
+
+				-- Store both reactors in a table
+				valid_tower.reactors[r] = {
+					north = reactor_north,
+					south = reactor_south,
+				}
+			end
+		elseif heating_radius < valid_tower.last_radius then
 			for r = valid_tower.last_radius, heating_radius + 1, -1 do
-				if valid_tower.reactors[r] and valid_tower.reactors[r].valid then
-					valid_tower.reactors[r].destroy()
+				if valid_tower.reactors[r] then
+					-- Destroy both reactors
+					if valid_tower.reactors[r].north and valid_tower.reactors[r].north.valid then
+						valid_tower.reactors[r].north.destroy()
+					end
+					if valid_tower.reactors[r].south and valid_tower.reactors[r].south.valid then
+						valid_tower.reactors[r].south.destroy()
+					end
 					valid_tower.reactors[r] = nil
 				end
-				if valid_tower.lamps[r] and valid_tower.lamps[r].valid then
-					valid_tower.lamps[r].destroy()
-					valid_tower.lamps[r] = nil
-				end
 			end
+		end
+
+		if valid_tower.current_lamp and valid_tower.current_lamp.valid then
+			valid_tower.current_lamp.destroy()
+		end
+
+		if heating_radius > 0 then
+			local new_lamp = e.surface.create_entity({
+				name = "radiative-tower-lamp-" .. heating_radius,
+				position = e.position,
+				force = e.force,
+			})
+			new_lamp.destructible = false
+			new_lamp.minable_flag = false
+			valid_tower.current_lamp = new_lamp
 		end
 	end
 
@@ -198,7 +297,8 @@ function Public.apply_temperature_drop(valid_tower)
 		valid_tower.last_radius = heating_radius
 	end
 
-	local temperature_to_apply_loss_for = math.min(temperature_above_zero, MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
+	local temperature_to_apply_loss_for =
+		math.min(math.max(temperature_above_zero, 30), MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
 
 	e.temperature = e.temperature
 		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)

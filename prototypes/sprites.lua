@@ -1,3 +1,46 @@
+local common = require("common")
+
+data:extend({
+	{
+		type = "sprite",
+		name = "cerys-solar-light",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-inverted",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+		invert_colors = true,
+	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-rectangle",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light-rectangle.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+	},
+	{
+		type = "sprite",
+		name = "cerys-solar-light-rectangle-inverted",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-light-rectangle.png",
+		priority = "no-atlas",
+		width = common.SOLAR_IMAGE_SIZE,
+		height = common.SOLAR_IMAGE_SIZE,
+		draw_as_light = true,
+		invert_colors = true,
+	},
+})
+
 data:extend({
 	{
 		type = "sprite",

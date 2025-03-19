@@ -9,10 +9,10 @@ Public.REACTOR_TICK_INTERVAL = 3
 local TEMPERATURE_ZERO = 15
 local TEMPERATURE_LOSS_RATE = 2.5
 
-local RANGE_SQUARED = 67 ^ 2
+local RANGE_SQUARED = 61 ^ 2
 local DAMAGE_TICK_DELAY = 30
 
-local BASE_DAMAGE = 65
+local BASE_DAMAGE = 60
 
 local RADIATION_BAIL_CHANCE = 0.2
 
@@ -39,7 +39,7 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 	end
 
 	if reactor.stage == repair.REACTOR_STAGE_ENUM.frozen then
-		if not e.frozen and game.tick > reactor.creation_tick + 300 then
+		if (not e.frozen) and game.tick > reactor.creation_tick + 300 then
 			local e2 = surface.create_entity({
 				name = "cerys-fulgoran-reactor-wreck",
 				position = e.position,
@@ -124,7 +124,7 @@ function Public.tick_2_radiation(surface)
 		return
 	end
 
-	local damage = BASE_DAMAGE * settings.global["cerys-gamma-radiation-damage-multiplier"].value
+	local damage = BASE_DAMAGE * (common.HARDCORE_ON and 2 or 1)
 
 	local i = 1
 	while i <= #storage.cerys.radiation_particles do
