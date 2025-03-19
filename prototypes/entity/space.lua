@@ -29,10 +29,6 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
 	})
 
-	if not mods["distant-misfires"] then
-		e.collision_mask = { layers = {}, not_colliding_with_itself = true }
-	end
-
 	if
 		string.find(asteroid_name, "metallic")
 		or string.find(asteroid_name, "oxide")
