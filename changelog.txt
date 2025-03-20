@@ -2,6 +2,9 @@
 Version: 2.5.18
 Date: ????
   Changes:
+    - Moved some vanilla surface condition changes to data-final-fixes. Note that these are implemented in a compatibility-friendly form via PlanetsLib.
+    - Added a pressure restriction to all modded furnaces with burner energy sources.
+    - Changed the restrictions on entities with type burner-generator to be from pressure instead of magnetic-field.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.17
 Date: 2025-03-19

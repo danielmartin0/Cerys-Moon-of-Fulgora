@@ -175,21 +175,27 @@ end
 for _, entity in pairs(data.raw["fusion-generator"]) do
 	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 end
-for _, entity in pairs(data.raw["burner-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
 
 local ten_pressure_condition = {
 	property = "pressure",
 	min = 10,
 }
 
+for _, entity in pairs(data.raw["burner-generator"]) do
+	PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
+end
+
 for name, entity in pairs(data.raw["boiler"]) do
 	if name ~= "heat-exchanger" then
 		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
 	end
 end
--- TODO: Restrict modded furnaces
+
+for _, entity in pairs(data.raw["furnace"]) do
+	if entity.energy_source and entity.energy_source.type == "burner" then
+		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
+	end
+end
 
 --== Atomic projectiles ==--
 -- Ensuring that nuclear ground tiles don't get set on Cerys tiles.
