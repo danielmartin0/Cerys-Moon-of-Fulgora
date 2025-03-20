@@ -10,7 +10,7 @@
     "dependencies": [
         "base >= 2.0.29",
         "space-age >= 2.0.29",
-        "Flare Stack >= 3.0.3",
+        "Flare Stack >= 3.0.6",
         "PlanetsLib >= 1.2.12",
         "? Planet-Hopper",
         "? visible-planets >= 1.2.11",

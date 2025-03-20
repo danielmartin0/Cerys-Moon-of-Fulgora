@@ -2,6 +2,7 @@
 Version: 2.5.19
 Date: ????
   Changes:
+    - Flare stacks are now faster to mine. (Bumped Flare Stack dependency version to 3.0.6.)
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.18
 Date: 2025-03-20
