@@ -14,7 +14,8 @@
         "PlanetsLib >= 1.2.12",
         "? Planet-Hopper",
         "? visible-planets >= 1.2.11",
-        "(?) PlutoniumEnergy"
+        "(?) PlutoniumEnergy",
+        "(?) limit-special-building-surfaces"
     ],
     "space_travel_required": true,
     "package": {

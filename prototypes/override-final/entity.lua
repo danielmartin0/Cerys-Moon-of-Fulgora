@@ -103,50 +103,6 @@ if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energ
 	table.insert(data.raw.reactor["heating-tower"].energy_source.fuel_categories, "chemical-or-radiative")
 end
 
---== Relaxations ==--
-
--- local eased_pressure_restriction = {
--- 	property = "pressure",
--- 	min = 5,
--- }
-
--- Vanilla and modded roboports:
-for _, entity in pairs(data.raw["roboport"]) do
-	for _, condition in pairs(entity.surface_conditions or {}) do
-		if condition.property == "pressure" and condition.min and condition.min > 5 then
-			condition.min = 5
-		end
-	end
-end
--- Vanilla and modded burner inserters (to help with freeze reboots):
-for _, entity in pairs(data.raw["inserter"]) do
-	if entity.energy_source.type == "burner" and entity.surface_conditions then
-		for _, condition in pairs(entity.surface_conditions) do
-			if condition.property == "pressure" and condition.min and condition.min > 5 then
-				condition.min = 5
-			end
-		end
-	end
-end
-
-local gravity_condition = {
-	property = "gravity",
-	min = 0.2,
-}
-
-for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
-	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
-end
-if data.raw["car"]["car"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
-end
-if data.raw["car"]["tank"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
-end
-if data.raw["spider-vehicle"]["spidertron"] then
-	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
-end
-
 --== Restrictions ==--
 
 local magnetic_field_restriction = {
@@ -191,10 +147,70 @@ for name, entity in pairs(data.raw["boiler"]) do
 	end
 end
 
+--== Relaxations ==--
+
+-- local eased_pressure_restriction = {
+-- 	property = "pressure",
+-- 	min = 5,
+-- }
+
+-- Vanilla and modded roboports:
+for _, entity in pairs(data.raw["roboport"]) do
+	for _, condition in pairs(entity.surface_conditions or {}) do
+		if condition.property == "pressure" and condition.min and condition.min > 5 then
+			condition.min = 5
+		end
+	end
+end
+-- Vanilla and modded burner inserters (to help with freeze reboots):
+for _, entity in pairs(data.raw["inserter"]) do
+	if entity.energy_source.type == "burner" and entity.surface_conditions then
+		for _, condition in pairs(entity.surface_conditions) do
+			if condition.property == "pressure" and condition.min and condition.min > 5 then
+				condition.min = 5
+			end
+		end
+	end
+end
+
+local gravity_condition = {
+	property = "gravity",
+	min = 0.2,
+}
+
+for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
+	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
+end
+if data.raw["car"]["car"] then
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
+end
+if data.raw["car"]["tank"] then
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+end
+if data.raw["spider-vehicle"]["spidertron"] then
+	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+end
+
+--== Relaxations/restrictions with no effect on vanilla (for compatibility) ==--
+
 for _, entity in pairs(data.raw["furnace"]) do
 	if entity.energy_source and entity.energy_source.type == "burner" then
 		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
 	end
+end
+
+if data.raw["assembling-machine"]["electromagnetic-plant"] then
+	PlanetsLib.relax_surface_conditions(data.raw["assembling-machine"]["electromagnetic-plant"], {
+		property = "magnetic-field",
+		max = 120,
+	})
+end
+
+if data.raw.recipe["quantum-processor"] then
+	PlanetsLib.relax_surface_conditions(data.raw.recipe["quantum-processor"], {
+		property = "magnetic-field",
+		max = 120,
+	})
 end
 
 --== Atomic projectiles ==--
