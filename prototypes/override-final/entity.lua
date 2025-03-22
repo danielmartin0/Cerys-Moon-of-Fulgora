@@ -64,43 +64,51 @@ for _, character in pairs(data.raw.character) do -- there are alt-skin mods with
 	end
 end
 
-if data.raw.furnace["stone-furnace"] and data.raw.furnace["stone-furnace"].energy_source.fuel_categories then
-	table.insert(data.raw.furnace["stone-furnace"].energy_source.fuel_categories, "chemical-or-radiative")
+--== Fuel categories ==--
+
+local function update_fuel_categories(entity)
+	if entity.energy_source and entity.energy_source.fuel_categories then
+		for _, category in pairs(entity.energy_source.fuel_categories) do
+			if category == "chemical" then
+				if not lib.find(entity.energy_source.fuel_categories, "chemical-or-radiative") then
+					table.insert(entity.energy_source.fuel_categories, "chemical-or-radiative")
+				end
+				break
+			end
+		end
+	end
 end
 
-if data.raw.furnace["steel-furnace"] and data.raw.furnace["steel-furnace"].energy_source.fuel_categories then
-	table.insert(data.raw.furnace["steel-furnace"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, locomotive in pairs(data.raw.locomotive) do
+	update_fuel_categories(locomotive)
 end
 
-if data.raw.boiler["boiler"] and data.raw.boiler["boiler"].energy_source.fuel_categories then
-	table.insert(data.raw.boiler["boiler"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, drill in pairs(data.raw["mining-drill"]) do
+	update_fuel_categories(drill)
 end
 
-if data.raw.inserter["burner-inserter"] and data.raw.inserter["burner-inserter"].energy_source.fuel_categories then
-	table.insert(data.raw.inserter["burner-inserter"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, inserter in pairs(data.raw.inserter) do
+	update_fuel_categories(inserter)
 end
 
-if data.raw.car["car"] and data.raw.car["car"].energy_source.fuel_categories then
-	table.insert(data.raw.car["car"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, boiler in pairs(data.raw.boiler) do
+	update_fuel_categories(boiler)
 end
 
-if data.raw.car["tank"] and data.raw.car["tank"].energy_source.fuel_categories then
-	table.insert(data.raw.car["tank"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, furnace in pairs(data.raw.furnace) do
+	update_fuel_categories(furnace)
 end
 
-if
-	data.raw["mining-drill"]["burner-mining-drill"]
-	and data.raw["mining-drill"]["burner-mining-drill"].energy_source.fuel_categories
-then
-	table.insert(data.raw["mining-drill"]["burner-mining-drill"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, car in pairs(data.raw.car) do
+	update_fuel_categories(car)
 end
 
-if data.raw.locomotive["locomotive"] and data.raw.locomotive["locomotive"].energy_source.fuel_categories then
-	table.insert(data.raw.locomotive["locomotive"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, generator in pairs(data.raw["burner-generator"]) do
+	update_fuel_categories(generator)
 end
 
-if data.raw.reactor["heating-tower"] and data.raw.reactor["heating-tower"].energy_source.fuel_categories then
-	table.insert(data.raw.reactor["heating-tower"].energy_source.fuel_categories, "chemical-or-radiative")
+for _, reactor in pairs(data.raw.reactor) do
+	update_fuel_categories(reactor)
 end
 
 --== Restrictions ==--

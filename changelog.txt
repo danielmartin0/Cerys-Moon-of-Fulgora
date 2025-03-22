@@ -2,6 +2,7 @@
 Version: 2.5.23
 Date: ????
   Changes:
+    - Added charging rods to the Picker Dollies blacklist.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.22
 Date: 2025-03-22
