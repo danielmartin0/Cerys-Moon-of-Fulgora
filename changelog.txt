@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.22
-Date: ????
+Date: 2025-03-22
   Bugfixes:
     - Fixed that the option to disable quality on Cerys still increased the reactor repair cost, even though the base repair cost no longer requires rare components.
 ---------------------------------------------------------------------------------------------------
