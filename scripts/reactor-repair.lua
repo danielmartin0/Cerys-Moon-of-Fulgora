@@ -111,9 +111,7 @@ function Public.reactor_excavation_check(surface, reactor)
 end
 
 function Public.reactor_repair_recipes_needed()
-	local multiplier = settings.startup["cerys-disable-quality-mechanics"].value and 50 or 1
-
-	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED * multiplier)
+	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
 end
 
 function Public.reactor_repair_check(surface, reactor)
