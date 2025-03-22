@@ -473,6 +473,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 				and source_entity.valid
 				and source_entity.name == "cerys-charging-rod"
 				and storage.cerys
+				and #cursor_stack.get_blueprint_entities() > 0
 			then
 				local tags = cursor_stack.get_blueprint_entity_tags(1) or {}
 				tags.is_negative = storage.cerys.charging_rod_is_negative[source_entity.unit_number]

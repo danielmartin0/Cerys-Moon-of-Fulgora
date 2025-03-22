@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.24
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed a crash in charging-rod.lua when creating blueprints containing zero entities.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.23
 Date: 2025-03-22
