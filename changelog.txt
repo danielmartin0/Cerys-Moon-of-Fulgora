@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.0
-Date: ????
+Date: 2025-03-23
   Changes:
     - Empty space tiles around Cerys now void items (on all saves). This change makes Cerys play more differently to Fulgora and makes it easier to play overall, despite any concerns about realism.
 ---------------------------------------------------------------------------------------------------
