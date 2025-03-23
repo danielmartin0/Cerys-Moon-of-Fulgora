@@ -228,7 +228,7 @@ data:extend({
 		auto_recycle = false,
 		energy_required = 5.5,
 		ingredients = {
-			{ type = "item", name = "methane-ice", amount = 40 },
+			{ type = "item", name = "methane-ice", amount = 50 },
 		},
 		results = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
@@ -253,8 +253,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 15 }, -- 1 iron => 50 sulfuric acid.
-			{ type = "fluid", name = "water", amount = 50 },
+			{ type = "fluid", name = "sulfuric-acid", amount = 10 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "water", amount = 40 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },

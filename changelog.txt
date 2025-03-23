@@ -1,13 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.5.27
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.5.25
+Version: 2.5.25-2.5.27
 Date: 2025-03-23
   Balancing:
-    - Sulfuric acid required for nitrogen-rich mineral processing reduced (-25%).
-    - Methane ice needed for dissociation recipe reduced (-20%).
+    - Reduced the sulfuric acid needed for nitrogen-rich mineral processing (20 -> 10).
+    - Slightly reduced the energy draw of the Fulgoran cryogenic plant (-5%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.24
 Date: 2025-03-22
