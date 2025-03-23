@@ -1,13 +1,13 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.5.28
+Version: 2.6.0
 Date: ????
   Changes:
+    - Empty space tiles around Cerys now void items (on all saves). This change makes Cerys play more differently to Fulgora and makes it easier to play overall, despite any concerns about realism.
 ---------------------------------------------------------------------------------------------------
-Version: 2.5.25-2.5.27
+Version: 2.5.25
 Date: 2025-03-23
   Balancing:
     - Reduced the sulfuric acid needed for nitrogen-rich mineral processing (20 -> 10).
-    - Slightly reduced the energy draw of the Fulgoran cryogenic plant (-5%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.24
 Date: 2025-03-22

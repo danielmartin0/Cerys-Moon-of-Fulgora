@@ -651,6 +651,7 @@ local cerys_empty_3 = merge(data.raw.tile["empty-space"], {
 		not_colliding_with_itself = true,
 		layers = data.raw.tile["empty-space"].collision_mask.layers,
 	},
+	destroys_dropped_items = true, -- Now that we've added this line, this tile can be migrated to cerys-empty-space-2 in future
 })
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-3")
 
