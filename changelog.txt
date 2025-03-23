@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.3
 Date: ????
-  Changes:
+  Modding:
+    - Moon Discovery Cerys is now prevented from being given hidden prerequisites by other mods.
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.0
 Date: 2025-03-23

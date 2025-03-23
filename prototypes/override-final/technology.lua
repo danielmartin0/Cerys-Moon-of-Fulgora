@@ -43,3 +43,17 @@ data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	},
 	time = 60,
 }
+
+--== Prevent hidden prerequisites on Moon Discovery Cerys ==--
+
+local tech = data.raw.technology["moon-discovery-cerys"]
+if tech and tech.prerequisites then
+	local valid_prereqs = {}
+	for _, prereq_name in ipairs(tech.prerequisites) do
+		local prereq_tech = data.raw.technology[prereq_name]
+		if prereq_tech and not prereq_tech.hidden then
+			table.insert(valid_prereqs, prereq_name)
+		end
+	end
+	tech.prerequisites = valid_prereqs
+end
