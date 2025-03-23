@@ -89,8 +89,8 @@ data:extend({
 		order = "c-a",
 		fuel_value = "4GJ",
 		default_import_location = "cerys",
-		fuel_acceleration_multiplier = 4,
-		fuel_top_speed_multiplier = 1.25,
+		fuel_acceleration_multiplier = 5,
+		fuel_top_speed_multiplier = 1.5,
 	}),
 	merge(data.raw.item["uranium-235"], {
 		name = "plutonium-238",
