@@ -277,6 +277,28 @@ data:extend({
 	},
 	{
 		type = "technology",
+		name = "cerys-holmium-recrystallization",
+		icon = "__space-age__/graphics/technology/holmium-processing.png",
+		icon_size = 256,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "holmium-recrystallization",
+			},
+		},
+		prerequisites = { "cerys-lubricant-synthesis" },
+		unit = {
+			count = 500,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+	},
+	{
+		type = "technology",
 		name = "holmium-plate-productivity-1",
 		icons = util.technology_icon_constant_recipe_productivity(
 			"__space-age__/graphics/technology/holmium-processing.png"
@@ -289,9 +311,9 @@ data:extend({
 				change = 0.1,
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "cerys-lubricant-synthesis" },
+		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
-			count = 1000,
+			count = 500,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -317,7 +339,7 @@ data:extend({
 		},
 		prerequisites = { "holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*1000",
+			count_formula = "2^(L-1)*500",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

@@ -31,6 +31,33 @@ end
 data:extend({
 	{
 		type = "recipe",
+		name = "holmium-recrystallization",
+		ingredients = {
+			{ type = "fluid", name = "holmium-solution", amount = 50 },
+			{ type = "item", name = "holmium-ore", amount = 1 },
+		},
+		results = {
+			{ type = "item", name = "holmium-plate", amount = 5 },
+		},
+		energy_required = data.raw.recipe["holmium-plate"].energy_required * 5,
+		category = "fulgoran-cryogenics",
+		enabled = false,
+		auto_recycle = false,
+		icons = {
+			{
+				icon = "__space-age__/graphics/icons/holmium-plate.png",
+				icon_size = 64,
+			},
+			{
+				icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
+				icon_size = 64,
+				size = 0.5,
+				shift = { -8, -8 },
+			},
+		},
+	},
+	{
+		type = "recipe",
 		name = "cerysian-science-pack",
 		always_show_made_in = true,
 		category = "fulgoran-cryogenics",
