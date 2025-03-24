@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.2
-Date: ????
+Date: 2025-03-24
   Changes:
     - Added an optional setting (off by default) to make the highest level of the braking technology infinite.
     - Plutonium fuel can no longer be crafted in centrifuges.
