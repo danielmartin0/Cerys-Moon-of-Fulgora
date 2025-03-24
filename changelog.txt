@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.4
-Date: 2025-03-23
+Date: 2025-03-24
   Balancing:
     - Reduced the armor grid size of mixed-oxide reactor equipment (4x4->3x3) and increased the power output per square (+7%).
     - Plutonium fuel can now be crafted in Fulgoran cryogenic plants.
