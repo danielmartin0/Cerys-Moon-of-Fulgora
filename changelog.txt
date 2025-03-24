@@ -2,6 +2,7 @@
 Version: 2.7.3
 Date: ????
   Changes:
+    - Added strong disclaimers to certain technology rewards that they are to be used outside of Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.2
 Date: 2025-03-24
