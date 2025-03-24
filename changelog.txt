@@ -3,7 +3,11 @@ Version: 2.6.4
 Date: 2025-03-23
   Balancing:
     - Reduced the armor grid size of mixed-oxide reactor equipment (4x4->3x3) and increased the power output per square (+7%).
-    - Increased plutonium fuel's train acceleration multiplier (+20%) and top speed multiplier (+20%).
+    - Plutonium fuel can now be crafted in Fulgoran cryogenic plants.
+    - Increased plutonium fuel's train acceleration multiplier (+20%), top speed multiplier (+20%) and fuel value (+25%).
+    - Higher-quality player-constructible radiative towers now lose heat more slowly (15% per level).
+    - Mixed-oxide waste reprocessing now produces less plutonium-239 (-66%), making plutonium reprocessing no longer net-positive with maxxed out vanilla productivity modules.
+    - Increased the generation rate of Pu-239 (+16%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.3
 Date: 2025-03-23

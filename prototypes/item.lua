@@ -87,7 +87,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "plutonium-processing",
 		order = "c-a",
-		fuel_value = "4GJ",
+		fuel_value = "5GJ",
 		default_import_location = "cerys",
 		fuel_acceleration_multiplier = 5,
 		fuel_top_speed_multiplier = 1.5,

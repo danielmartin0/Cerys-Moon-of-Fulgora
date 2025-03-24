@@ -1,5 +1,4 @@
 local common = require("common")
-local merge = require("lib").merge
 
 data:extend({
 	{
@@ -35,20 +34,26 @@ data:extend({
 		allow_productivity = true,
 	},
 
-	merge(data.raw.recipe["fission-reactor-equipment"], {
+	{
+		type = "recipe",
 		name = "mixed-oxide-reactor-equipment",
+		enabled = false,
+		energy_required = 10,
 		ingredients = {
 			{ type = "item", name = "processing-unit", amount = 200 },
 			{ type = "item", name = "low-density-structure", amount = 50 },
 			{ type = "item", name = "plutonium-238", amount = 20 },
 		},
 		results = { { type = "item", name = "mixed-oxide-reactor-equipment", amount = 1 } },
-	}),
+	},
 
-	merge(data.raw.recipe["nuclear-fuel-reprocessing"], {
+	{
+		type = "recipe",
 		name = "mixed-oxide-waste-centrifuging",
 		always_show_made_in = true,
 		enabled = false,
+		auto_recycle = false,
+		category = "centrifuging",
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-waste-solution-nitric.png",
@@ -89,7 +94,7 @@ data:extend({
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
 			{ type = "item", name = "uranium-238", amount = (50 / 100 * common.REPROCESSING_U238_TO_U235_RATIO) },
 			{ type = "item", name = "plutonium-238", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 6 },
+			{ type = "item", name = "plutonium-239", amount = 2, extra_count_fraction = 0.25 },
 		},
 		subgroup = "plutonium-processing",
 		order = "c-c",
@@ -97,9 +102,12 @@ data:extend({
 			primary = { r = 0.384, g = 0.271, b = 1 },
 			secondary = { r = 0.384, g = 0.271, b = 1 },
 		},
-	}),
+		allow_decomposition = false,
+		allow_productivity = true,
+	},
 
-	merge(data.raw.recipe["sulfuric-acid"], {
+	{
+		type = "recipe",
 		name = "mixed-oxide-cell-reprocessing",
 		category = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
 		always_show_made_in = true,
@@ -137,11 +145,16 @@ data:extend({
 			{ type = "fluid", name = "mixed-oxide-waste-solution", amount = 20 },
 		},
 		allow_decomposition = false,
-		allow_productivity = true, -- Partial opt-out of plutonium gameplay
-		-- crafting_machine_tint = {}
+		allow_productivity = true,
 		subgroup = "plutonium-processing",
 		order = "c-a",
-	}),
+		crafting_machine_tint = {
+			primary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+			secondary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+			tertiary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+			quaternary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+		},
+	},
 
 	{
 		type = "recipe",
@@ -161,7 +174,7 @@ data:extend({
 		always_show_made_in = true,
 		energy_required = 90,
 		enabled = false,
-		category = "centrifuging",
+		category = "centrifuging-or-fulgoran-cryogenics",
 		subgroup = "plutonium-processing",
 		order = "c-a",
 		ingredients = {

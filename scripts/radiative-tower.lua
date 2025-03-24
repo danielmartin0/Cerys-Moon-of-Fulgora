@@ -300,10 +300,13 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local temperature_to_apply_loss_for =
 		math.min(math.max(temperature_above_zero, 30), MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
 
+	local quality_factor = math.max(0.1, 1 - 0.15 * (e.quality.level or 0))
+
 	e.temperature = e.temperature
 		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
 			* TEMPERATURE_LOSS_RATE
 			* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
+			* quality_factor
 
 	if valid_tower.frozen then
 		if temperature_above_zero > 1 then

@@ -55,6 +55,15 @@ for _, machine in pairs(data.raw["assembling-machine"]) do
 				break
 			end
 		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "centrifuging" then
+				if not lib.find(machine.crafting_categories, "centrifuging-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "centrifuging-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
 	end
 end
 
