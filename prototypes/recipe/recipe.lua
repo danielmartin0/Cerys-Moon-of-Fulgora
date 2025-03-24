@@ -32,6 +32,8 @@ data:extend({
 	{
 		type = "recipe",
 		name = "holmium-recrystallization",
+		subgroup = "cerys-processes",
+		order = "e-b",
 		ingredients = {
 			{ type = "fluid", name = "holmium-solution", amount = 50 },
 			{ type = "item", name = "holmium-ore", amount = 1 },

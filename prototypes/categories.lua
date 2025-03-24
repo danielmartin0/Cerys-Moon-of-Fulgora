@@ -55,10 +55,6 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "centrifuging-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
 		name = "no-machine",
 	},
 	{

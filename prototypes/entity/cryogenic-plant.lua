@@ -15,7 +15,6 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		"cryogenics-or-fulgoran-cryogenics",
 		"crafting-or-fulgoran-cryogenics",
 		"advanced-crafting-or-fulgoran-cryogenics",
-		"centrifuging-or-fulgoran-cryogenics",
 	},
 	module_slots = 9,
 	crafting_speed = 1,

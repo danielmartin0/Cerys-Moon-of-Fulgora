@@ -172,9 +172,9 @@ data:extend({
 		type = "recipe",
 		name = "plutonium-fuel",
 		always_show_made_in = true,
-		energy_required = 90,
+		energy_required = 5,
 		enabled = false,
-		category = "centrifuging-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
 		subgroup = "plutonium-processing",
 		order = "c-a",
 		ingredients = {
