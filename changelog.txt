@@ -1,13 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.7.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 2.7.0
 Date: 2025-03-24
   Changes:
     - Breaking change: Mixed-oxide cell reprocessing can no longer be performed in Fulgoran cryogenic plants, reducing the number of modules available. Correspondingly, the changes to Mixed-oxide waste reprocessing and Pu-239 generation in v2.6.4 have been mostly reverted, leaving only an 8% reduction in Pu-239 from reprocessing and a 4% increase in the other method of Pu-239 generation.
-    - Mixed-oxide reactors are now constructible on Cerys.
     - Holmium recrystallization has been added to the Cerys technology tree.
   Balancing:
     - Reduced the research cost of the holmium plate productivity technologies (-50%).
