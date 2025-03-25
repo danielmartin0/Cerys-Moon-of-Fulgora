@@ -123,7 +123,7 @@ function Public.tick_12_check_charging_rods()
 			end
 		end
 
-		local polarity_fraction = (e.energy / max_charging_rod_energy) * (negative and 1 or -1)
+		local polarity_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 		rod.polarity_fraction = polarity_fraction
 
 		if polarity_fraction > 0.999 then

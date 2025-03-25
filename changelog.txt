@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.4
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that quality charging rods [REDACTED] due to their higher energy capacity. We may bring quality dependence back as an intentional feature.
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.3
 Date: 2025-03-24
