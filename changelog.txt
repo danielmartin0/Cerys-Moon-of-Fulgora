@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.9
-Date: ????
+Date: 2025-03-27
   Balancing:
     - Increased the sulfuric acid needed for nitrogen-rich mineral processing (10 -> 15). This partially reverts the change in version 2.5.25.
   Info:
