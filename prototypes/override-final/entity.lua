@@ -140,17 +140,17 @@ for _, entity in pairs(data.raw["fusion-generator"]) do
 	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 end
 
+for _, entity in pairs(data.raw["burner-generator"]) do
+	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
+end
+
 local ten_pressure_condition = {
 	property = "pressure",
 	min = 10,
 }
 
-for _, entity in pairs(data.raw["burner-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
-end
-
-for name, entity in pairs(data.raw["boiler"]) do
-	if name ~= "heat-exchanger" then
+for _, entity in pairs(data.raw["boiler"]) do
+	if entity.energy_source.type ~= "heat" then
 		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
 	end
 end
