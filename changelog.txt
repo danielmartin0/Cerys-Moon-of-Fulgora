@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.11
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that trigger technologies on Cerys had the allow_productivity flag set to true.
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.10
 Date: 2025-03-27
