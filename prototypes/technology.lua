@@ -20,7 +20,6 @@ data:extend({
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nitrogen-rich-mineral-processing.png",
 		icon_size = 256,
-		allows_productivity = false,
 	},
 	{
 		type = "technology",
@@ -50,7 +49,6 @@ data:extend({
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-scrap.png",
 		icon_size = 256,
-		allows_productivity = false,
 	},
 	{
 		type = "technology",
@@ -73,7 +71,6 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerysian-science-pack.png",
 		icon_size = 256,
 		essential = true,
-		allows_productivity = false,
 	},
 	{
 		type = "technology",
