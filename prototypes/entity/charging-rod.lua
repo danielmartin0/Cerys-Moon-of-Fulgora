@@ -80,11 +80,12 @@ data:extend({
 			{ property = "magnetic-field", min = 120, max = 120 },
 		},
 		working_sound = {
+			max_sounds_per_prototype = 4,
 			main_sounds = {
 				{
 					sound = {
 						filename = "__base__/sound/accumulator-working.ogg",
-						volume = 1,
+						volume = 0.9,
 						speed = 0.77,
 					},
 					match_volume_to_activity = true,
@@ -94,7 +95,7 @@ data:extend({
 				{
 					sound = {
 						filename = "__base__/sound/accumulator-discharging.ogg",
-						volume = 1,
+						volume = 0.9,
 						speed = 0.77,
 					},
 					match_volume_to_activity = true,

@@ -1,7 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.13
 Date: ????
-  Changes:
+  Balancing:
+    - Reduced the repair cost of the first defrosted Fulgoran cryogenic plant (-20%) and decreased the repair cost of later plants (+20%).
+    - Processing units now require fewer electronic circuits when crafted using nitric acid (-25%).
+    - Adjustments to nuclear scrap recycling: heat pipes (-11%), pipes (-5%).
+  Bugfixes:
+    - Fixed that plutonium fuel appeared green when sitting on belts.
+  Sounds:
+    - Reduced the volume of charging rod charging sounds.
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.12
 Date: 2025-04-01

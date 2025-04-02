@@ -43,9 +43,9 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["advanced-circuit"] = 13,
 	["copper-cable"] = 7, -- initial power poles
 	["uranium-238"] = 4,
-	["pipe"] = 1.8, -- Initial pipes and extra initial iron. Pointedly small.
+	["pipe"] = 1.6, -- Initial pipes and extra initial iron. Pointedly small.
 	["transport-belt"] = 1.1, -- Belt cubes and distance transport, initial iron. Pointedly small.
-	["heat-pipe"] = 0.9, -- per each: 2.5 steel plate, 5 copper plate
+	["heat-pipe"] = 0.8, -- per each: 2.5 steel plate, 5 copper plate
 	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
 	["steam-turbine"] = 0.18, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
 	["centrifuge"] = 0.18, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
@@ -56,7 +56,7 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 -- stone bricks can still be acquired (without smelting) from recycling concrete
 -- stone is also required with Rusting Iron for derusting
 if mods["aai-industry"] or mods["Rocs-Rusting-Iron"] then
-  RECYCLING_PROBABILITIES_PERCENT["stone"] = 1
+	RECYCLING_PROBABILITIES_PERCENT["stone"] = 1
 end
 
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
