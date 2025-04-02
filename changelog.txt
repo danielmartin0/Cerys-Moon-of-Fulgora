@@ -1,16 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.7.14
+Version: 2.8.0
 Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.7.13
-Date: 2025-04-02
   Balancing:
-    - Reduced the repair cost of the first defrosted Fulgoran cryogenic plant (-20%) and decreased the repair cost of later plants (+20%).
+    - Reduced the repair cost of the first defrosted Fulgoran cryogenic plant (-20%) and decreased the cost of later plants (+20%).
     - Processing units now require fewer electronic circuits when crafted using nitric acid (-25%).
     - Adjustments to nuclear scrap recycling: heat pipes (-11%), pipes (-5%).
+    - Reduced the research costs of Fulgoran machine quality upgrades (-25%), lubricant synthesis (-20%) and holmium recrystallization (-20%), and increased the research cost of player-constructible radiative heaters (+33%).
+  Changes:
+    - Removed Quality module 2 as a prerequisite for Moon Discovery Cerys.
   Bugfixes:
-    - Fixed that plutonium fuel appeared green when sitting on belts.
+    - Fixed that plutonium fuel appeared green rather than blue when sitting on belts.
   Sounds:
     - Reduced the volume of charging rod charging sounds.
 ---------------------------------------------------------------------------------------------------

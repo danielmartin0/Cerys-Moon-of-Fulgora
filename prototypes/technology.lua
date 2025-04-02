@@ -89,7 +89,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 		icon_size = 256,
 		unit = {
-			count = 40,
+			count = 30,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -187,7 +187,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -285,7 +285,7 @@ data:extend({
 		},
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -419,7 +419,6 @@ local discovery_tech = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
 		"kovarex-enrichment-process",
-		"quality-module-2",
 		"productivity-module-2",
 		"energy-shield-equipment", -- if removed, solar energy needs to be added
 	},
@@ -512,7 +511,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 			icon_size = 200,
 			unit = {
-				count = 1500,
+				count = 2000,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
