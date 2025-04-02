@@ -139,7 +139,7 @@ data:extend({
 		enabled = false,
 		energy_required = 1.8,
 		ingredients = {
-			{ type = "item", name = "electronic-circuit", amount = 15 },
+			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
 			{ type = "fluid", name = "nitric-acid", amount = 5 },
 		},

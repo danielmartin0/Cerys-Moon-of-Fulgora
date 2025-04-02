@@ -1,18 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.8.1
 Date: 2025-04-02
-  Changes:
+  Info:
     - Changelog fix.
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.0
 Date: 2025-04-02
   Balancing:
     - Reduced the repair cost of the first defrosted Fulgoran cryogenic plant (-20%) and increased the cost of later plants (+20%).
-    - Processing units now require fewer electronic circuits when crafted using nitric acid (-25%).
+    - Processing units now require fewer electronic circuits when crafted using nitric acid (-20%).
     - Adjustments to nuclear scrap recycling: heat pipes (-11%), pipes (-5%).
     - Reduced the research costs of Fulgoran machine quality upgrades (-25%), lubricant synthesis (-20%) and holmium recrystallization (-20%), and increased the research cost of player-constructible radiative heaters (+33%).
   Changes:
