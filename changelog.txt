@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.4
 Date: ????
-  Changes:
+  Balancing:
+    - Tweaked the Fulgoran cryogenic plant repair costs to 60, 200, 200... .
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.3
 Date: 2025-04-02
   Balancing:
-    - Tweaked the Fulgoran cryogenic plant repair costs from 60, 180, 180, ... to 100, 100, 200, ...
     - Slightly tweaked the electronic circuits needed in the recipe 'Processing units from nitric acid' (+7%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.2

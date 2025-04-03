@@ -9,7 +9,7 @@ Public.CRYO_WRECK_STAGE_ENUM = {
 
 -- Having more than two distinct values is a bad idea:
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED
-Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 100
+Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = 200
 Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = 200
 
 function Public.tick_15_check_broken_cryo_plants(surface)
