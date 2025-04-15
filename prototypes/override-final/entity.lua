@@ -222,7 +222,7 @@ if data.raw.recipe["quantum-processor"] then
 end
 
 --== Atomic projectiles ==--
--- Ensuring that nuclear ground tiles don't get set on Cerys tiles.
+-- Makes the Cerys surface less vulnerable to nuclear explosions. (This no longer affects vanilla, but can affect modded projectiles.)
 
 local function add_cerys_layers_to_masks(tbl)
 	if type(tbl) ~= "table" then

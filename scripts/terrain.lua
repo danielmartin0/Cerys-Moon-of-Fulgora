@@ -326,17 +326,6 @@ function Public.create_crushers(surface, area)
 end
 
 function Public.deal_with_existing_entities(surface, position, width, height)
-	local colliding_simple_entities = surface.find_entities_filtered({
-		type = "simple-entity",
-		area = {
-			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
-			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
-		},
-	})
-	for _, entity in ipairs(colliding_simple_entities) do
-		entity.destroy()
-	end
-
 	local colliding_characters = surface.find_entities_filtered({
 		type = "character",
 		area = {
@@ -354,6 +343,18 @@ function Public.deal_with_existing_entities(surface, position, width, height)
 			or desired_position
 
 		character.teleport(new_position)
+	end
+
+	local colliding_entities = surface.find_entities_filtered({
+		area = {
+			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
+		},
+	})
+	for _, entity in ipairs(colliding_entities) do
+		if entity.prototype.type and entity.prototype.type ~= "assembling-machine" then
+			entity.destroy()
+		end
 	end
 end
 

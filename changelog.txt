@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.8
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed issue in Start on Cerys mode in which certain entity spawns could prevent a key radiative tower from spawning.
+  Graphics:
+    - The Cerys Cargo drop technology effect icon now displays the icon of the planet.
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.7
 Date: 2025-04-14
