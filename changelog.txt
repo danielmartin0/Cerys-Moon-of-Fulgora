@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.8
-Date: ????
+Date: 2025-04-15
   Bugfixes:
     - Fixed issue in Start on Cerys mode in which certain entity spawns could prevent a key radiative tower from spawning.
   Graphics:
