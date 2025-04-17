@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.0
-Date: ????
+Date: 2025-04-17
   Changes:
     - Positive charging rods now attract, negative now repel. This is to better match the implied physics. Existing bases work the same — all existing positive rods have been made negative and vice-versa.
     - Added support for the keybinding 'Toggle Entity' to flip charging rod polarity.
