@@ -33,8 +33,11 @@ end
 
 --== Flare stack ==--
 
-data.raw.technology["flare-stack-item-venting-electric-tech"].enabled = false
-data.raw.technology["flare-stack-item-venting-tech"].enabled = false
+if settings.startup["cerys-disable-flare-stack-item-venting"].value then
+	data.raw.technology["flare-stack-item-venting-electric-tech"].enabled = false
+	data.raw.technology["flare-stack-item-venting-tech"].enabled = false
+end
+
 data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysian-science-pack" }
 data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	count = 25,
