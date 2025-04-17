@@ -1,4 +1,5 @@
 require("prototypes.categories")
+require("prototypes.custom-input")
 require("prototypes.collision-layers")
 require("prototypes.decoratives")
 require("prototypes.entity.charging-rod")

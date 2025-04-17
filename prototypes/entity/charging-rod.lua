@@ -1,7 +1,8 @@
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
-
 local merge = require("lib").merge
+
+-- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
 
 data:extend({
 	{
@@ -125,7 +126,7 @@ data:extend({
 		animations = {
 			layers = {
 				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/flowinglight_b.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/flowinglight_r.png",
 					priority = "extra-high-no-scale",
 					width = 440,
 					height = 1000,
@@ -136,9 +137,10 @@ data:extend({
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
 					animation_speed = 0.05,
+					run_mode = "backward",
 				},
 				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-b.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-r.png",
 					priority = "extra-high-no-scale",
 					width = 440,
 					height = 1000,
@@ -148,6 +150,7 @@ data:extend({
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
 					animation_speed = 0.05,
+					run_mode = "backward",
 				},
 			},
 		},
@@ -164,7 +167,7 @@ data:extend({
 		animations = {
 			layers = {
 				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/flowinglight_r.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/flowinglight_b.png",
 					priority = "extra-high-no-scale",
 					width = 440,
 					height = 1000,
@@ -175,9 +178,10 @@ data:extend({
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
 					animation_speed = 0.05,
+					run_mode = "backward",
 				},
 				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-r.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/light-b.png",
 					priority = "extra-high-no-scale",
 					width = 440,
 					height = 1000,
@@ -187,6 +191,7 @@ data:extend({
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
 					animation_speed = 0.05,
+					run_mode = "backward",
 				},
 			},
 		},

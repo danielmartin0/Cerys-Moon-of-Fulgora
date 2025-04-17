@@ -43,7 +43,13 @@ script.on_event({
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
-	elseif on_cerys and entity.name == "cerys-charging-rod" then
+	elseif
+		on_cerys
+		and (
+			entity.name == "cerys-charging-rod"
+			or entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod"
+		)
+	then
 		rods.built_charging_rod(entity, event.tags or {})
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
