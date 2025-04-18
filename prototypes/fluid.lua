@@ -7,6 +7,7 @@ data:extend({
 		gas_temperature = 15,
 		max_temperature = 535,
 		heat_capacity = "0.22kJ",
+		fuel_value = "5kJ",
 		order = "b[new-fluid]-c[fulgora]-a[cerys]-a[methane]",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane.png",
 		icon_size = 64,

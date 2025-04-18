@@ -1,14 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.9.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.9.0
+Version: 2.9.0-2.9.1
 Date: 2025-04-17
   Changes:
     - Positive charging rods now attract, negative now repel. This is to better match the implied physics. Existing bases work the same — all existing positive rods have been made negative and vice-versa.
     - Added support for the keybinding 'Toggle Entity' to flip charging rod polarity.
     - Newly created charging rods now start positive.
+    - Methane now has a fuel value.
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.9
 Date: 2025-04-17
