@@ -560,13 +560,17 @@ script.on_event("cerys-toggle-entity", function(event)
 		return
 	end
 
-	local is_ghost = e.name == "entity-ghost"
-
 	if
-		not (e and e.valid and (e.name == "cerys-charging-rod" or (is_ghost and e.ghost_name == "cerys-charging-rod")))
+		not (
+			e
+			and e.valid
+			and (e.name == "cerys-charging-rod" or (e.name == "entity-ghost" and e.ghost_name == "cerys-charging-rod"))
+		)
 	then
 		return
 	end
+
+	local is_ghost = e.name == "entity-ghost"
 
 	local current_state
 	if is_ghost then
