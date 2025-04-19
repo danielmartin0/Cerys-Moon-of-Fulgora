@@ -2,7 +2,7 @@ local Public = {}
 
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_CERYS_START = false
-Public.DEBUG_HEATERS_FUELED = true
+Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 
 Public.HARDCORE_ON = settings.startup["cerys-hardcore-mode"].value
