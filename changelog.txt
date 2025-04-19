@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.9.2
+Date: 2025-04-19
+  Changes:
+    - Ancient structure repair parts can no longer be stacked in the input inventories of machine wrecks.
+---------------------------------------------------------------------------------------------------
 Version: 2.9.0-2.9.1
 Date: 2025-04-17
   Changes:
