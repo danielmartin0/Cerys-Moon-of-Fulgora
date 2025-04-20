@@ -189,6 +189,13 @@ local gravity_condition = {
 	min = 0.2,
 }
 
+if data.raw.planet.muluna then
+	gravity_condition = {
+		property = "gravity",
+		min = 0.1,
+	}
+end
+
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
 	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
 end
