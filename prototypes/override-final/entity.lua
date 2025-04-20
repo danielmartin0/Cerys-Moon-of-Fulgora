@@ -111,51 +111,7 @@ for _, reactor in pairs(data.raw.reactor) do
 	update_fuel_categories(reactor)
 end
 
---== Restrictions ==--
-
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
-for name, entity in pairs(data.raw["reactor"]) do
-	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for name, entity in pairs(data.raw["lab"]) do
-	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for name, entity in pairs(data.raw["accumulator"]) do
-	if name ~= "cerys-charging-rod" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for _, entity in pairs(data.raw["fusion-reactor"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-for _, entity in pairs(data.raw["fusion-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-
-for _, entity in pairs(data.raw["burner-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-
-local ten_pressure_condition = {
-	property = "pressure",
-	min = 10,
-}
-
-for _, entity in pairs(data.raw["boiler"]) do
-	if entity.energy_source.type ~= "heat" then
-		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
-	end
-end
-
---== Relaxations ==--
+--== Surface Condition Relaxations ==--
 
 -- local eased_pressure_restriction = {
 -- 	property = "pressure",

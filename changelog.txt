@@ -2,6 +2,7 @@
 Version: 2.9.5
 Date: ????
   Changes:
+    - Moved surface condition restrictions from data-final-fixes to data-updates. This makes it easier for other mods to add exceptions for compatibility.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.4
 Date: 2025-04-20
