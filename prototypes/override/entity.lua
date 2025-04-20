@@ -43,6 +43,14 @@ for _, entity in pairs(data.raw["boiler"]) do
 	end
 end
 
+-- No effect on vanilla:
+
+for _, entity in pairs(data.raw["furnace"]) do
+	if entity.energy_source and entity.energy_source.type == "burner" then
+		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
+	end
+end
+
 --=== Fulgora lightning priority rules ==--
 
 if

@@ -155,13 +155,17 @@ if data.raw["spider-vehicle"]["spidertron"] then
 	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
 end
 
---== Relaxations/restrictions with no effect on vanilla (for compatibility) ==--
+local magnetic_field_restriction = {
+	property = "magnetic-field",
+	max = 119,
+}
 
-for _, entity in pairs(data.raw["furnace"]) do
-	if entity.energy_source and entity.energy_source.type == "burner" then
-		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
-	end
-end
+local ten_pressure_condition = {
+	property = "pressure",
+	min = 10,
+}
+
+--== Relaxations with no effect on vanilla (for compatibility) ==--
 
 if data.raw["assembling-machine"]["electromagnetic-plant"] then
 	PlanetsLib.relax_surface_conditions(data.raw["assembling-machine"]["electromagnetic-plant"], {

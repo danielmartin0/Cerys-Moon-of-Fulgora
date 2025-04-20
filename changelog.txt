@@ -2,6 +2,7 @@
 Version: 2.9.6
 Date: ????
   Changes:
+    - Fixed a crash related to surface conditions.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.5
 Date: 2025-04-20
