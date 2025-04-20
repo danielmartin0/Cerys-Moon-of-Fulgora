@@ -133,12 +133,15 @@ for name, entity in pairs(data.raw["accumulator"]) do
 		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
 	end
 end
-for _, entity in pairs(data.raw["fusion-reactor"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-for _, entity in pairs(data.raw["fusion-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
+-- for _, entity in pairs(data.raw["fusion-reactor"]) do
+-- 	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
+-- end
+-- for _, entity in pairs(data.raw["fusion-generator"]) do
+-- 	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
+-- end
+
+PlanetsLib.restrict_surface_conditions(data.raw["fusion-reactor"]["fusion-reactor"], magnetic_field_restriction)
+PlanetsLib.restrict_surface_conditions(data.raw["fusion-generator"]["fusion-generator"], magnetic_field_restriction)
 
 for _, entity in pairs(data.raw["burner-generator"]) do
 	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
