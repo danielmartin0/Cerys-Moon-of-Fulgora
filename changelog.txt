@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.4
 Date: ????
-  Changes:
+  Bugfixes:
+    - Reverted the change to prevent ancient structure repair parts from stacking in machines. This prevented certain repairs from occurring.
+    - Fixed an issue with the color of the reactor repair indicator rendering.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.3
 Date: 2025-04-19

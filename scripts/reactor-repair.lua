@@ -245,7 +245,7 @@ function Public.reactor_repair_check(surface, reactor)
 
 		local repair_parts_count = 2 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_repair_parts
 
-		r2.color = repair_parts_count >= recipes_needed * 4 and { 0, 255, 0 } or { 255, 185, 0 }
+		r2.color = repair_parts_count >= recipes_needed * 2 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
 			"[item=ancient-structure-repair-part]",
