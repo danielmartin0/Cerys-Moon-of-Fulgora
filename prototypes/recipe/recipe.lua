@@ -132,6 +132,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "processing-units-from-nitric-acid",
+		auto_recycle = false,
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "d-c",
