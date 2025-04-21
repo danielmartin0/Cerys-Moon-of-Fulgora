@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.7
-Date: ????
+Date: 2025-04-21
   Bugfixes:
     - Fixed that the Processing units from nitric acid recipe caused processing unit recycling to return 20% fewer electronic circuits than in vanilla.
   Changes:
