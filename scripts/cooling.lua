@@ -30,7 +30,7 @@ function Public.tick_60_cool_heat_entities()
 	local i = 1
 	while i <= #storage.cerys.heat_entities do
 		local e = storage.cerys.heat_entities[i]
-		if e.valid then
+		if e.valid and e.temperature then
 			if e.temperature > 15 then
 				e.temperature = math.max(15, e.temperature - TEMPERATURE_LOSS_RATE)
 			end
