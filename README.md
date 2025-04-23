@@ -46,7 +46,7 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 
 ## Notes
 
-- Cerys is more difficult than most vanilla planets. (For a trickier version still, install [Hardcore Cerys](https://mods.factorio.com/mod/Rocs-Hardcore-Cerys).)
+- Cerys is more difficult than most vanilla planets. (For a trickier version still, install [Hard Mode Cerys](https://mods.factorio.com/mod/Rocs-Hardcore-Cerys).)
 - Dynamic lighting on Cerys can be disabled in the settings if you find it distracting.
 - If you would like to visit Cerys without being trapped, use the QoL mod [Planet Hopper](https://mods.factorio.com/mod/Planet-Hopper).
 - This mod originally contained a revamp of [GotLag’s Flare Stack](https://mods.factorio.com/mods/GotLag/Flare%20Stack). We later assisted snouz to port the original mod to 2.0. As a result, with Cerys installed, the flare stack technology is moved to the Cerys tech tree.
