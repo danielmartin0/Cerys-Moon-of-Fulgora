@@ -13,13 +13,13 @@ data:extend({
 		default_value = true,
 		order = "b",
 	},
-	{
-		type = "bool-setting",
-		name = "cerys-disable-quality-mechanics",
-		setting_type = "startup",
-		default_value = false,
-		order = "c",
-	},
+	-- {
+	-- 	type = "bool-setting",
+	-- 	name = "cerys-disable-quality-mechanics",
+	-- 	setting_type = "startup",
+	-- 	default_value = false,
+	-- 	order = "c",
+	-- },
 	{
 		type = "bool-setting",
 		name = "cerys-enforce-vanilla-recycling-recipes",
