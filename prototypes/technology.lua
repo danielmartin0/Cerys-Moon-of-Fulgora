@@ -74,33 +74,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-fulgoran-machine-quality-upgrades",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-crusher-quality",
-			},
-		},
-		prerequisites = { "cerysian-science-pack" },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
-		icon_size = 256,
-		unit = {
-			count = 30,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
 			count = 100,
@@ -349,6 +322,45 @@ data:extend({
 		upgrade = true,
 	},
 })
+
+local quality_upgrades = false
+for _, quality in pairs(data.raw.quality) do
+	if quality.level and quality.level > 0 then
+		quality_upgrades = true
+	end
+end
+
+if quality_upgrades then
+	data:extend({
+		{
+			type = "technology",
+			name = "cerys-fulgoran-machine-quality-upgrades",
+			effects = {
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+				},
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-upgrade-fulgoran-crusher-quality",
+				},
+			},
+			prerequisites = { "cerysian-science-pack" },
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
+			icon_size = 256,
+			unit = {
+				count = 30,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		},
+	})
+end
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
