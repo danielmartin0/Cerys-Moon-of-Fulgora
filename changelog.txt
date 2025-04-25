@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.9
-Date: ????
+Date: 2025-04-25
   Changes:
     - Removed the setting to disable quality mechanics on Cerys. This now happens automatically when the player does not have higher quality tiers available.
 ---------------------------------------------------------------------------------------------------
