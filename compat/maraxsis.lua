@@ -1,3 +1,5 @@
+local lib = require("lib")
+
 if mods["maraxsis"] then
 	if data.raw.recipe["maraxsis-petroleum-gas-cracking"] then
 		PlanetsLib.restrict_surface_conditions(data.raw.recipe["maraxsis-petroleum-gas-cracking"], {
@@ -17,6 +19,20 @@ if mods["maraxsis"] then
 		PlanetsLib.restrict_surface_conditions(data.raw.recipe["maraxsis-sublimation"], {
 			property = "temperature",
 			min = 255,
+		})
+	end
+
+	if data.raw["fusion-generator"]["maraxsis-oversized-steam-turbine"] then
+		PlanetsLib.remove_surface_condition(data.raw["fusion-generator"]["maraxsis-oversized-steam-turbine"], {
+			property = "magnetic-field",
+			max = 119,
+		})
+	end
+
+	if data.raw["fusion-generator"]["muluna-cycling-steam-turbine"] then
+		PlanetsLib.remove_surface_condition(data.raw["fusion-generator"]["muluna-cycling-steam-turbine"], {
+			property = "magnetic-field",
+			max = 119,
 		})
 	end
 end

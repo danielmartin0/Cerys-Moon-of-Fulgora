@@ -2,6 +2,7 @@
 Version: 2.9.12
 Date: ????
   Changes:
+    - Disabled the autoban for Maraxsis and Muluna fusion-generator steam turbine entitites.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.11
 Date: 2025-04-26
