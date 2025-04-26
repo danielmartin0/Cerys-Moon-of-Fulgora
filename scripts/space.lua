@@ -506,6 +506,7 @@ local ASTEROIDS_TO_DROPS = {
 	["small-metallic-asteroid-planetary"] = { ["metallic-asteroid-chunk"] = 1 },
 	["small-carbonic-asteroid-planetary"] = { ["carbonic-asteroid-chunk"] = 1 },
 	["small-oxide-asteroid-planetary"] = { ["oxide-asteroid-chunk"] = 1 },
+	["small-cupric-asteroid-planetary"] = { ["cupric-asteroid-chunk"] = 1 },
 }
 
 script.on_event(defines.events.on_entity_died, function(event)

@@ -2,6 +2,7 @@
 Version: 2.9.11
 Date: ????
   Changes:
+    - Fixed that asteroids from the Cupric asteroids mod would not drop chunks.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.10
 Date: 2025-04-26
