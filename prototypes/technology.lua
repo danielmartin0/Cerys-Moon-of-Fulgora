@@ -365,30 +365,35 @@ end
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
 
-cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-	type = "unlock-recipe",
-	recipe = "cerys-construction-robot-recycling",
-}
-cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-	type = "unlock-recipe",
-	recipe = "cerys-exoskeleton-equipment-recycling",
-}
+if not settings.startup["cerys-sandbox-mode"].value then
+	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+		type = "unlock-recipe",
+		recipe = "cerys-construction-robot-recycling",
+	}
+	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+		type = "unlock-recipe",
+		recipe = "cerys-exoskeleton-equipment-recycling",
+	}
+
+	data:extend({
+		merge(cargo_drops_base, {
+			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
+			unit = {
+				count = common.HARDCORE_ON and 4000 or 1200,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		}),
+	})
+end
 
 data:extend({
-	merge(cargo_drops_base, {
-		prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
-		unit = {
-			count = common.HARDCORE_ON and 4000 or 1200,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	}),
 	{
 		type = "technology",
 		name = "cerys-nice-try-sukaz",

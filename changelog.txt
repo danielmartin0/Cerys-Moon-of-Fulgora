@@ -2,6 +2,7 @@
 Version: 2.9.13
 Date: ????
   Changes:
+    - Added 'Sandbox mode' to the settings, which disables the cargo drops restriction. This circumvents the intended gameplay but provides a shorter freestyle experience.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.12
 Date: 2025-04-26

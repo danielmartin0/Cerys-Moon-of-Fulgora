@@ -43,6 +43,13 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-sandbox-mode",
+		setting_type = "startup",
+		default_value = false,
+		order = "z",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-dynamic-lighting",
 		setting_type = "runtime-global",
 		default_value = true,
