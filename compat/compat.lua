@@ -111,10 +111,7 @@ for _, recipe in pairs(data.raw.recipe) do
 
 		if should_ban then
 			log("[CERYS] Restricting temperature: " .. recipe.name)
-			PlanetsLib.restrict_surface_conditions(recipe, {
-				property = "temperature",
-				min = 255,
-			})
+			PlanetsLib.restrict_surface_conditions(recipe, common.TEMPERATURE_MIN)
 		end
 	end
 end

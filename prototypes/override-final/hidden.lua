@@ -1,3 +1,4 @@
+local common = require("common")
 local merge = require("lib").merge
 
 data:extend({
@@ -16,11 +17,6 @@ data:extend({
 	},
 })
 
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
 if data.raw.recipe["construction-robot-recycling"] then
 	data:extend({
 		merge(data.raw.recipe["construction-robot-recycling"], {
@@ -29,7 +25,7 @@ if data.raw.recipe["construction-robot-recycling"] then
 		}),
 	})
 
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["construction-robot-recycling"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["construction-robot-recycling"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["exoskeleton-equipment-recycling"] then
@@ -42,7 +38,7 @@ if data.raw.recipe["exoskeleton-equipment-recycling"] then
 
 	PlanetsLib.restrict_surface_conditions(
 		data.raw.recipe["exoskeleton-equipment-recycling"],
-		magnetic_field_restriction
+		common.MAGNETIC_FIELD_MAX
 	)
 end
 
@@ -53,5 +49,5 @@ if data.raw.recipe["uranium-238-recycling"] then
 			enabled = false,
 		}),
 	})
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.MAGNETIC_FIELD_MAX)
 end

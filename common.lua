@@ -1,5 +1,22 @@
 local Public = {}
 
+Public.GRAVITY_MIN = {
+	property = "gravity",
+	min = 0.2,
+}
+Public.MAGNETIC_FIELD_MAX = {
+	property = "magnetic-field",
+	max = 119,
+}
+Public.TEN_PRESSURE_MIN = {
+	property = "pressure",
+	min = 10,
+}
+Public.TEMPERATURE_MIN = {
+	property = "temperature",
+	min = 255,
+}
+
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_CERYS_START = false
 Public.DEBUG_HEATERS_FUELED = false

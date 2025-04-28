@@ -1,3 +1,4 @@
+local common = require("common")
 local lib = require("lib")
 
 for _, machine in pairs(data.raw["assembling-machine"]) do
@@ -137,33 +138,18 @@ for _, entity in pairs(data.raw["inserter"]) do
 	end
 end
 
-local gravity_condition = {
-	property = "gravity",
-	min = 0.2,
-}
-
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
-	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
+	PlanetsLib.relax_surface_conditions(entity, common.GRAVITY_MIN)
 end
 if data.raw["car"]["car"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], common.GRAVITY_MIN)
 end
 if data.raw["car"]["tank"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], common.GRAVITY_MIN)
 end
 if data.raw["spider-vehicle"]["spidertron"] then
-	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], common.GRAVITY_MIN)
 end
-
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
-local ten_pressure_condition = {
-	property = "pressure",
-	min = 10,
-}
 
 --== Relaxations with no effect on vanilla (for compatibility) ==--
 
