@@ -2,7 +2,7 @@
 Version: 2.9.14
 Date: ????
   Changes:
-    - Refactored surface condition code to make the code clearer to other modders.
+    - Code improvements.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.13
 Date: 2025-04-27

@@ -1,6 +1,6 @@
 local common = require("common")
-local repair = require("reactor-repair")
-local terrain = require("terrain")
+local repair = require("scripts.reactor-repair")
+local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
