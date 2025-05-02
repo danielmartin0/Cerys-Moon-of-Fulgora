@@ -2,6 +2,7 @@
 Version: 2.9.14
 Date: ????
   Changes:
+    - The recycling recipes which Cerys prevents other mods from changing now include concrete. Note this behavior can be disabled by a setting.
     - Code improvements.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.13

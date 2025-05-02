@@ -68,6 +68,12 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		{ type = "item", name = "advanced-circuit", amount = 0, extra_count_fraction = 0.5 },
 	}
 
+	data.raw["recipe"]["concrete-recycling"]["ingredients"] = { { type = "item", name = "concrete", amount = 1 } }
+	data.raw["recipe"]["concrete-recycling"]["results"] = {
+		{ type = "item", name = "stone-brick", amount = 0, extra_count_fraction = 0.125 },
+		{ type = "item", name = "iron-ore", amount = 0, extra_count_fraction = 0.025 },
+	}
+
 	local RECYCLE_TO_ITSELF = {
 		"solid-fuel",
 		"steel-plate",
