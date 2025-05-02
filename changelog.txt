@@ -1,14 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.10.6
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.10.0-2.10.5
+Version: 2.10.0-2.10.6
 Date: 2025-05-02
   Changes:
     - Nuclear scrap recycling no longer provides copper cable.
     - Mining Cerysian ruins now provides copper cable.
-    - Days on Cerys are now longer (5 minutes -> 6 minutes).
+    - Days on Cerys are now longer (5 minutes -> 6 minutes). This may cause a one-off change in time of day when loading your save.
     - Ancient structure repair parts can no longer be stacked in the input inventories of machine wrecks.
   Balancing:
     - Reactor repair cost changed from [300 processing units, 600 repair parts] to [500 processing units, 500 repair parts].
