@@ -5,7 +5,7 @@ Date: 2025-05-02
     - Nuclear scrap recycling no longer provides copper cable.
     - Mining Cerysian ruins now provides copper cable.
   Balancing:
-    - Nuclear scrap recycling produces more advanced circuits (13% -> 14%).
+    - Nuclear scrap recycling now produces more advanced circuits (13% -> 14%).
     - Nuclear scrap recycling now produces more pipes (1.6% -> 1.7%).
     - Nuclear scrap recycling now produces fewer heat pipes (0.8% -> 0.7%).
 ---------------------------------------------------------------------------------------------------
