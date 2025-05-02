@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.10.5
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.10.0-2.10.4
+Version: 2.10.0-2.10.5
 Date: 2025-05-02
   Changes:
     - Nuclear scrap recycling no longer provides copper cable.
@@ -17,6 +13,8 @@ Date: 2025-05-02
     - Nuclear scrap recycling now produces more advanced circuits (13% -> 14%).
     - Nuclear scrap recycling now produces more pipes (1.6% -> 1.7%).
     - Nuclear scrap recycling now produces fewer heat pipes (0.8% -> 0.7%).
+  Bugfixes:
+    - Science productivity bonuses no longer apply to the Flare Stack fluid venting tech.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.17
 Date: 2025-05-02

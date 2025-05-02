@@ -46,6 +46,7 @@ data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	},
 	time = 60,
 }
+data.raw.technology["flare-stack-fluid-venting-tech"].allows_productivity = false
 
 --== Prevent hidden prerequisites on Moon Discovery Cerys ==--
 
