@@ -284,7 +284,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 							local damage = common.HARDCORE_ON and 180 or 15
 
-							e.damage(damage, game.forces.neutral, "laser")
+							e.damage(damage, game.forces.neutral, "impact")
 						end
 					end
 				end

@@ -2,6 +2,7 @@
 Version: 2.9.16
 Date: ????
   Changes:
+    - The impact damage type is now used for all radiation damage.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.15
 Date: 2025-05-02
