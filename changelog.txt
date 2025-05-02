@@ -2,6 +2,7 @@
 Version: 2.9.17
 Date: ????
   Changes:
+    - Bumped the required version of PlanetsLib to fix a crash.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.16
 Date: 2025-05-02
