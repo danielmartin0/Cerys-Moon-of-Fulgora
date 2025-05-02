@@ -74,20 +74,20 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 12 then
+	if collision_area >= 10 then
 		-- Initial power poles
 		table.insert(results.results, {
 			type = "item",
 			name = "copper-cable",
 			amount_min = 1,
-			amount_max = math.floor(collision_area / 12),
+			amount_max = math.floor(collision_area / 10),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "copper-cable",
 			amount = 1,
-			probability = collision_area / 12,
+			probability = collision_area / 10,
 		})
 	end
 
