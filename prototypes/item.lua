@@ -57,6 +57,7 @@ data:extend({
 		type = "item",
 		name = "ancient-structure-repair-part",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
+		flags = { "not-stackable" },
 		icon_size = 64,
 		subgroup = "cerys-repair",
 		order = "a",

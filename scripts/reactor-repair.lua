@@ -11,7 +11,7 @@ Public.REACTOR_STAGE_ENUM = {
 }
 
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARDCORE_ON and 600 or 300
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARDCORE_ON and 1000 or 500
 
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
@@ -235,7 +235,7 @@ function Public.reactor_repair_check(surface, reactor)
 
 		local chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_chips
 
-		r1.color = chips_count >= recipes_needed and { 0, 255, 0 } or { 255, 185, 0 }
+		r1.color = chips_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
 			"[item=processing-unit]",
@@ -243,14 +243,14 @@ function Public.reactor_repair_check(surface, reactor)
 			recipes_needed * 1,
 		}
 
-		local repair_parts_count = 2 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_repair_parts
+		local repair_parts_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_repair_parts
 
-		r2.color = repair_parts_count >= recipes_needed * 2 and { 0, 255, 0 } or { 255, 185, 0 }
+		r2.color = repair_parts_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
 			"[item=ancient-structure-repair-part]",
 			repair_parts_count,
-			recipes_needed * 2,
+			recipes_needed * 1,
 		}
 	end
 end
