@@ -328,7 +328,6 @@ script.on_event(defines.events.on_player_joined_game, function(event)
 		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
 		player.force.technologies["worker-robots-speed-2"].research_recursive()
 		player.force.technologies["worker-robots-storage-2"].research_recursive()
-		-- player.force.technologies["moon-discovery-cerys"].researched = true
 
 		local surface = game.surfaces["cerys"]
 		if surface and surface.valid and player.surface.name ~= "cerys" then

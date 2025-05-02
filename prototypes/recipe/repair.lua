@@ -64,7 +64,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "advanced-circuit", amount = 1 },
+			{ type = "item", name = "advanced-circuit", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,
@@ -106,7 +106,7 @@ data:extend({
 		category = "nuclear-reactor-repair",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 5 },
 		},
 		results = {},
 		allow_quality = false,

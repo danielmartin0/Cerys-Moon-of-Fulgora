@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.10.7
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 2.10.0-2.10.6
+Version: 2.10.0-2.10.7
 Date: 2025-05-02
   Changes:
     - Nuclear scrap recycling no longer provides copper cable.
@@ -12,7 +8,7 @@ Date: 2025-05-02
     - Ancient structure repair parts can no longer be stacked in the input inventories of machine wrecks.
   Balancing:
     - Reactor repair cost changed from [300 processing units, 600 repair parts] to [500 processing units, 500 repair parts].
-    - Upgrading the quality of Fulgoran machines is now much less expensive, requiring only 1 item of each quality rather than 5.
+    - Upgrading the quality of Fulgoran machines now requires many fewer repair parts per level (5 -> 1).
     - Increased the science packs required by the Fulgoran machine quality upgrades technology (30 -> 40).
     - Nuclear scrap recycling now produces more advanced circuits (13% -> 14%).
     - Nuclear scrap recycling now produces more pipes (1.6% -> 1.7%).
