@@ -143,7 +143,7 @@ function Public.tick_2_radiation(surface)
 						})
 					end
 
-					char.damage(damage, game.forces.neutral, "laser")
+					char.damage(damage, game.forces.neutral, "impact")
 					particle.irradiation_tick = game.tick
 				end
 			end

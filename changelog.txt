@@ -2,6 +2,8 @@
 Version: 2.9.15
 Date: ????
   Changes:
+    - Damage dealt by gamma radiation is now type 'impact' instead of type 'laser'. This makes it unlikely that player armor will provide any protection.
+    - The mod Wooden Cerys: Lunaponics is now mandatory if playing Cerys alongside Lignumis.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.14
 Date: 2025-05-02

@@ -1,3 +1,4 @@
+require("compat.forced-mods")
 require("prototypes.categories")
 require("prototypes.custom-input")
 require("prototypes.collision-layers")
