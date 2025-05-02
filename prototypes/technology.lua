@@ -349,7 +349,7 @@ if quality_upgrades then
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 			icon_size = 256,
 			unit = {
-				count = 30,
+				count = 40,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
