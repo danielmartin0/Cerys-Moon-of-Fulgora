@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.9.18
+Version: 2.10.0
 Date: ????
   Changes:
+    - Nuclear scrap recycling no longer provides copper cable.
+    - Mining Cerysian ruins now provides copper cable.
+  Balancing:
+    - Nuclear scrap recycling produces more advanced circuits (13% -> 14%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.17
 Date: 2025-05-02

@@ -40,8 +40,7 @@ data:extend({
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
-	["advanced-circuit"] = 13,
-	["copper-cable"] = 7, -- initial power poles
+	["advanced-circuit"] = 14,
 	["uranium-238"] = 4,
 	["pipe"] = 1.6, -- Initial pipes and extra initial iron. Pointedly small.
 	["transport-belt"] = 1.1, -- Belt cubes and distance transport, initial iron. Pointedly small.

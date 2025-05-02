@@ -21,8 +21,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "concrete", -- To build recycler and protect buildings
-				amount_min = math.ceil(collision_area * 0.21),
-				amount_max = math.ceil(collision_area * 0.23),
+				amount_min = math.ceil(collision_area * 0.19),
+				amount_max = math.ceil(collision_area * 0.21),
 			},
 		},
 	}
@@ -58,18 +58,36 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 20 then
+	if collision_area >= 18 then
+		-- Power through the night
 		table.insert(results.results, {
 			type = "item",
-			name = "cerys-charging-rod", -- Power through the night
-			amount = math.floor(collision_area / 20),
+			name = "cerys-charging-rod",
+			amount = math.floor(collision_area / 18),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			probability = 0.12,
+			probability = collision_area / 18,
+		})
+	end
+
+	if collision_area >= 12 then
+		-- Initial power poles
+		table.insert(results.results, {
+			type = "item",
+			name = "copper-cable",
+			amount_min = 1,
+			amount_max = math.floor(collision_area / 12),
+		})
+	else
+		table.insert(results.results, {
+			type = "item",
+			name = "copper-cable",
+			amount = 1,
+			probability = collision_area / 12,
 		})
 	end
 
