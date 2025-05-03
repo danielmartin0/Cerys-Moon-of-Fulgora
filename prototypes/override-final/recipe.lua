@@ -18,6 +18,9 @@ end
 if data.raw.recipe["ammonia-rocket-fuel"] then
 	data.raw.recipe["ammonia-rocket-fuel"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
+if data.raw.recipe["fusion-power-cell"] then
+	data.raw.recipe["fusion-power-cell"].category = "cryogenics-or-fulgoran-cryogenics"
+end
 
 if data.raw.recipe["plutonium-239-recycling"] then
 	data.raw.recipe["plutonium-239-recycling"].energy_required = 1 -- Dropping the energy of the U->Pu dummy recipe affects this for some reason

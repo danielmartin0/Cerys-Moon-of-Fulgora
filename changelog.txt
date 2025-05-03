@@ -2,6 +2,7 @@
 Version: 2.10.10
 Date: ????
   Changes:
+    - Players that have unlocked fusion power cells are now able to craft them in Fulgoran cryogenic plants.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.9
 Date: 2025-05-03
