@@ -245,87 +245,6 @@ data:extend({
 		},
 		allows_productivity = false,
 	},
-	{
-		type = "technology",
-		name = "cerys-holmium-recrystallization",
-		icon = "__space-age__/graphics/technology/holmium-processing.png",
-		icon_size = 256,
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "holmium-recrystallization",
-			},
-		},
-		prerequisites = { "cerys-lubricant-synthesis" },
-		unit = {
-			count = 400,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-	},
-	{
-		type = "technology",
-		name = "holmium-plate-productivity-1",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = {
-			{
-				type = "change-recipe-productivity",
-				recipe = "holmium-plate",
-				change = 0.1,
-			},
-			{
-				type = "change-recipe-productivity",
-				recipe = "holmium-recrystallization",
-				change = 0.1,
-			},
-		},
-		prerequisites = { "cerys-lubricant-synthesis" },
-		unit = {
-			count = 500,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		upgrade = true,
-	},
-	{
-		type = "technology",
-		name = "holmium-plate-productivity-2",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = {
-			{
-				type = "change-recipe-productivity",
-				recipe = "holmium-plate",
-				change = 0.1,
-			},
-		},
-		prerequisites = { "holmium-plate-productivity-1" },
-		unit = {
-			count_formula = "2^(L-1)*500",
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		max_level = "infinite",
-		upgrade = true,
-	},
 })
 
 local quality_upgrades = false
@@ -553,3 +472,162 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 		end
 	end
 end
+
+local holmium_productivity_effects_1 = {}
+local holmium_productivity_effects_2 = {}
+if data.raw.recipe["holmium-plate"] then
+	table.insert(holmium_productivity_effects_1, {
+		type = "change-recipe-productivity",
+		recipe = "holmium-plate",
+		change = 0.1,
+	})
+	table.insert(holmium_productivity_effects_2, {
+		type = "change-recipe-productivity",
+		recipe = "holmium-plate",
+		change = 0.1,
+	})
+end
+table.insert(holmium_productivity_effects_1, {
+	type = "unlock-recipe",
+	recipe = "holmium-recrystallization",
+})
+table.insert(holmium_productivity_effects_1, {
+	type = "change-recipe-productivity",
+	recipe = "holmium-recrystallization",
+	change = 0.1,
+})
+table.insert(holmium_productivity_effects_2, {
+	type = "change-recipe-productivity",
+	recipe = "holmium-recrystallization",
+	change = 0.1,
+})
+
+local engine_productivity_effects = {}
+if data.raw.recipe["engine-unit"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "engine-unit",
+		change = 0.1,
+	})
+end
+if data.raw.recipe["electric-engine-unit"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "electric-engine-unit",
+		change = 0.1,
+	})
+end
+if data.raw.recipe["motor"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "motor",
+		change = 0.1,
+	})
+end
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-1",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects_1,
+		prerequisites = { "cerys-lubricant-synthesis" },
+		unit = {
+			count = 500,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-2",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects_2,
+		prerequisites = { "cerys-holmium-plate-productivity-1" },
+		unit = {
+			count_formula = "2^(L-1)*500",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-1",
+		icons = {
+			{
+				icon = "__base__/graphics/icons/engine-unit.png",
+				icon_size = 64,
+			},
+			{
+				icon = "__core__/graphics/icons/technology/constants/constant-recipe-productivity.png",
+				icon_size = 128,
+				scale = 0.5,
+				shift = { 50, 50 },
+				floating = true,
+			},
+		},
+		icon_size = 64,
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-lubricant-synthesis" },
+		unit = {
+			count_formula = "2^(L-1)*1000",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-2",
+		icons = {
+			{
+				icon = "__base__/graphics/icons/engine-unit.png",
+				icon_size = 64,
+			},
+			{
+				icon = "__core__/graphics/icons/technology/constants/constant-recipe-productivity.png",
+				icon_size = 128,
+				scale = 0.5,
+				shift = { 50, 50 },
+				floating = true,
+			},
+		},
+		icon_size = 64,
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-engine-unit-productivity-1" },
+		unit = {
+			count_formula = "2^(L-1)*1000",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
+})

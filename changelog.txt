@@ -2,6 +2,8 @@
 Version: 2.10.11
 Date: ????
   Changes:
+    - New infinite technology for Cerys: engine unit productivity.
+    - Holmium plate recrystallization has been folded into Holmium plate productivity 1.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.10
 Date: 2025-05-03
