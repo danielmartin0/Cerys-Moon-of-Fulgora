@@ -280,6 +280,11 @@ data:extend({
 				recipe = "holmium-plate",
 				change = 0.1,
 			},
+			{
+				type = "change-recipe-productivity",
+				recipe = "holmium-recrystallization",
+				change = 0.1,
+			},
 		},
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
