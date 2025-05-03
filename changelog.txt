@@ -6,12 +6,12 @@ Date: 2025-05-03
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.13
 Date: 2025-05-03
-  Changes:
+  Bugfixes:
     - Fixed that saves lost their holmium plate productivity progress when upgrading since 2.10.11. Note that 2.10.11-2.10.12 saves will be still not be loaded correctly.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.12
 Date: 2025-05-03
-  Changes:
+  Bugfixes:
     - Fixed that Discover Fulgoran Cryogenics could remain enabled on certain saves.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.11
