@@ -2,6 +2,7 @@
 Version: 2.10.12
 Date: ????
   Changes:
+    - Fixed that Discover Fulgoran Cryogenics could remain enabled on certain saves.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.11
 Date: 2025-05-03
