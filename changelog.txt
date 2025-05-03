@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.9
-Date: ????
+Date: 2025-05-03
   Bugfixes:
     - The holmium plate productivity technology now affects the holmium recrystallization recipe.
 ---------------------------------------------------------------------------------------------------
