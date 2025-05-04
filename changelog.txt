@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.22
-Date: ????
+Date: 2025-05-04
   Bugfixes:
     - Added a caching safeguard against on_chunk_generated being fired twice for the same chunk on a Cerys surface.
 ---------------------------------------------------------------------------------------------------
