@@ -303,7 +303,7 @@ if not settings.startup["cerys-sandbox-mode"].value then
 		merge(cargo_drops_base, {
 			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
 			unit = {
-				count = common.HARDCORE_ON and 4000 or 1200,
+				count = common.HARD_MODE_ON and 4000 or 1200,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },

@@ -180,7 +180,7 @@ data:extend({
 		enabled = true,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
-		ingredients = common.HARDCORE_ON and {
+		ingredients = common.HARD_MODE_ON and {
 			{ type = "item", name = "solid-fuel", amount = 40 },
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
 			{ type = "item", name = "advanced-circuit", amount = 30 },

@@ -15,7 +15,7 @@ if mods["cupric-asteroids"] then
 	table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
 end
 
-local ASTEROID_HEALTH_MULTIPLIER = common.HARDCORE_ON and 8 or 2.5
+local ASTEROID_HEALTH_MULTIPLIER = common.HARD_MODE_ON and 8 or 2.5
 local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = 10
 
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)

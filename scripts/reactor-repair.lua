@@ -11,7 +11,7 @@ Public.REACTOR_STAGE_ENUM = {
 }
 
 Public.REACTOR_STONE_BRICKS_TO_EXCAVATE = 8000
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARDCORE_ON and 1000 or 400
+Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARD_MODE_ON and 1000 or 400
 
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 

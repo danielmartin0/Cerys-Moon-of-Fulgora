@@ -26,7 +26,7 @@ Public.DEBUG_CERYS_START = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 
-Public.HARDCORE_ON = settings.startup["cerys-hardcore-mode"].value
+Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
 Public.CERYS_RADIUS = 128
 -- Public.CERYS_RADIUS = 142
@@ -86,7 +86,7 @@ Public.SOFTBANNED_RESOURCES = {
 }
 
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
-	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARDCORE_ON and 2.4 or 1.6)
+	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARD_MODE_ON and 2.4 or 1.6)
 	local max_stretch_factor = 6
 
 	local stretch_factor = math.min(
@@ -98,7 +98,7 @@ function Public.get_cerys_surface_stretch_factor(cerys_surface)
 end
 
 function Public.cerys_surface_stretch_factor_for_math()
-	if Public.HARDCORE_ON then
+	if Public.HARD_MODE_ON then
 		return "min(6, (cerys_radius * 2.4) / min(map_height / 2, cerys_radius * 2.4))"
 	else
 		return "min(6, (cerys_radius * 1.6) / min(map_height / 2, cerys_radius * 1.6))"

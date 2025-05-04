@@ -11,7 +11,7 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) *
 local ROD_DEFLECTION_STRENGTH = 8 / 4.5
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 50
+local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 1 / 50
 local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
@@ -282,7 +282,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 							particle.irradiation_tick = game.tick
 
-							local damage = common.HARDCORE_ON and 80 or 5
+							local damage = common.HARD_MODE_ON and 80 or 5
 
 							e.damage(damage, game.forces.neutral, "impact")
 						end
