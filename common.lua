@@ -77,6 +77,7 @@ Public.SOFTBANNED_RESOURCES = {
 	"heavy-oil",
 	"crude-oil",
 	"coal",
+	"steam",
 	-- "stone", -- having stone is OK as long as you don't make power
 }
 
