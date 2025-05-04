@@ -2,6 +2,7 @@
 Version: 2.10.16
 Date: ????
   Changes:
+    - Removed the 'Start on Cerys' setting, as this feature is now a standalone mod.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.15
 Date: 2025-05-03

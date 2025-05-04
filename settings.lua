@@ -1,13 +1,6 @@
 data:extend({
 	{
 		type = "bool-setting",
-		name = "cerys-start-on-cerys",
-		setting_type = "startup",
-		default_value = false,
-		order = "a",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-player-constructable-radiative-towers",
 		setting_type = "startup",
 		default_value = true,

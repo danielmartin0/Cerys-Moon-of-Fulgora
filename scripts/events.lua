@@ -193,10 +193,6 @@ function Public.cerys_tick(surface, tick)
 		end
 	end
 
-	if (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) and tick == 30 then
-		surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(surface) * 2 / 32)
-	end
-
 	if player_looking_at_surface and tick % 2 == 0 then
 		nuclear_reactor.tick_2_radiation(surface)
 	end
@@ -257,105 +253,6 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		local entity = event.target_entity
 		if entity and entity.valid then
 			radiative_towers.register_player_radiative_tower(entity)
-		end
-	end
-end)
-
-script.on_event(defines.events.on_player_joined_game, function(event)
-	local player = game.players[event.player_index]
-
-	storage.players_seen = storage.players_seen or {}
-
-	if
-		(common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value)
-		and not storage.players_seen[player.index]
-	then
-		if not storage.cerys and (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) then
-			init.initialize_cerys()
-		end
-
-		storage.players_seen[player.index] = true
-
-		if player.controller_type == defines.controllers.cutscene then
-			player.exit_cutscene()
-		end
-
-		player.force.technologies["advanced-combinators"].research_recursive()
-		player.force.technologies["atomic-bomb"].research_recursive()
-		player.force.technologies["automated-rail-transportation"].research_recursive()
-		player.force.technologies["automation-3"].research_recursive()
-		player.force.technologies["battery-equipment"].research_recursive()
-		player.force.technologies["belt-immunity-equipment"].research_recursive()
-		player.force.technologies["braking-force-2"].research_recursive()
-		player.force.technologies["bulk-inserter"].research_recursive()
-		player.force.technologies["construction-robotics"].research_recursive()
-		player.force.technologies["discharge-defense-equipment"].research_recursive()
-		player.force.technologies["effect-transmission"].research_recursive()
-		player.force.technologies["efficiency-module-2"].research_recursive()
-		player.force.technologies["electric-energy-distribution-2"].research_recursive()
-		player.force.technologies["electric-mining-drill"].research_recursive()
-		player.force.technologies["elevated-rail"].research_recursive()
-		player.force.technologies["exoskeleton-equipment"].research_recursive()
-		player.force.technologies["fission-reactor-equipment"].research_recursive()
-		player.force.technologies["fluid-wagon"].research_recursive()
-		player.force.technologies["gate"].research_recursive()
-		player.force.technologies["gun-turret"].research_recursive()
-		player.force.technologies["inserter-capacity-bonus-3"].research_recursive()
-		player.force.technologies["lamp"].research_recursive()
-		player.force.technologies["land-mine"].research_recursive()
-		player.force.technologies["laser-shooting-speed-3"].research_recursive()
-		player.force.technologies["logistics-3"].research_recursive()
-		player.force.technologies["mining-productivity-2"].research_recursive()
-		player.force.technologies["moon-discovery-cerys"].research_recursive()
-		player.force.technologies["night-vision-equipment"].research_recursive()
-		player.force.technologies["nuclear-fuel-reprocessing"].research_recursive()
-		player.force.technologies["personal-roboport-equipment"].research_recursive()
-		player.force.technologies["physical-projectile-damage-6"].research_recursive()
-		player.force.technologies["productivity-module-2"].research_recursive()
-		player.force.technologies["quality-module-2"].research_recursive()
-		player.force.technologies["radar"].research_recursive()
-		player.force.technologies["recycling"].research_recursive()
-		player.force.technologies["repair-pack"].research_recursive()
-		player.force.technologies["research-speed-2"].research_recursive()
-		player.force.technologies["solar-energy"].research_recursive()
-		player.force.technologies["speed-module-2"].research_recursive()
-		player.force.technologies["steel-axe"].research_recursive()
-		player.force.technologies["stronger-explosives-3"].research_recursive()
-		player.force.technologies["toolbelt"].research_recursive()
-		player.force.technologies["uranium-ammo"].research_recursive()
-		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
-		player.force.technologies["worker-robots-speed-2"].research_recursive()
-		player.force.technologies["worker-robots-storage-2"].research_recursive()
-
-		local surface = game.surfaces["cerys"]
-		if surface and surface.valid and player.surface.name ~= "cerys" then
-			local p = { x = 0, y = 0 }
-			local p2 = surface.find_non_colliding_position("character", { x = 0, y = 0 }, 20, 0.5)
-			player.teleport(p2 or p, surface)
-			player.clear_items_inside()
-
-			local armor = player.insert({ name = "power-armor", count = 1 })
-			local inv = player.get_inventory(defines.inventory.character_armor)
-
-			if armor > 0 and inv and inv.valid then
-				local armor_item = inv[1]
-
-				if armor_item and armor_item.valid then
-					local grid = armor_item.grid
-					if grid then
-						grid.put({ name = "fission-reactor-equipment" })
-						grid.put({ name = "exoskeleton-equipment" })
-						grid.put({ name = "exoskeleton-equipment" })
-						grid.put({ name = "personal-roboport-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-					end
-				end
-			end
 		end
 	end
 end)
