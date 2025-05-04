@@ -178,10 +178,6 @@ end
 
 --luacheck: ignore
 function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
-	if x < 1 and x > -1 and y < 1 and y > -1 then
-		game.print(x .. " " .. y .. " " .. existing_tile .. " " .. serpent.block(tiles))
-	end
-
 	local new_tile = nil
 
 	local is_rock = find(common.ROCK_TILES, existing_tile)
