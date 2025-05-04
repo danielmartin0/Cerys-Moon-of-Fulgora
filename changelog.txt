@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.19
-Date: ????
+Date: 2025-05-04
   Changes:
     - Autobans extended to modded steam-producing recipes that do not consume any constricted resources.
 ---------------------------------------------------------------------------------------------------
