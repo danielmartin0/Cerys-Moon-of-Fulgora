@@ -282,7 +282,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 							particle.irradiation_tick = game.tick
 
-							local damage = common.HARDCORE_ON and 120 or 15
+							local damage = common.HARDCORE_ON and 80 or 5
 
 							e.damage(damage, game.forces.neutral, "impact")
 						end
