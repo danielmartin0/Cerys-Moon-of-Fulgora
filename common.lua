@@ -2,11 +2,15 @@ local Public = {}
 
 Public.GRAVITY_MIN = {
 	property = "gravity",
-	min = 0.2,
+	min = 0.15,
 }
 Public.MAGNETIC_FIELD_MAX = {
 	property = "magnetic-field",
 	max = 119,
+}
+Public.FIVE_PRESSURE_MIN = {
+	property = "pressure",
+	min = 5,
 }
 Public.TEN_PRESSURE_MIN = {
 	property = "pressure",

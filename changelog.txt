@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.21
 Date: ????
-  Changes:
+  Balancing:
+    - Robot power multiplier on Cerys reduced (4x -> 3x).
+    - Gravity surface property on Cerys adjusted from 0.2 to 0.15. Surface condition relaxations/restrictions have been adjusted appropriately.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.20
 Date: 2025-05-04

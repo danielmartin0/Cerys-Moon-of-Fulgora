@@ -114,27 +114,14 @@ end
 
 --== Surface Condition Relaxations ==--
 
--- local eased_pressure_restriction = {
--- 	property = "pressure",
--- 	min = 5,
--- }
-
 -- Vanilla and modded roboports:
 for _, entity in pairs(data.raw["roboport"]) do
-	for _, condition in pairs(entity.surface_conditions or {}) do
-		if condition.property == "pressure" and condition.min and condition.min > 5 then
-			condition.min = 5
-		end
-	end
+	PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
 end
 -- Vanilla and modded burner inserters (to help with freeze reboots):
 for _, entity in pairs(data.raw["inserter"]) do
 	if entity.energy_source.type == "burner" and entity.surface_conditions then
-		for _, condition in pairs(entity.surface_conditions) do
-			if condition.property == "pressure" and condition.min and condition.min > 5 then
-				condition.min = 5
-			end
-		end
+		PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
 	end
 end
 
