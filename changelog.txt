@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.24
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed mixed-oxide waste centrifuging getting caught up in today's autoban changes and being banned on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.23
 Date: 2025-05-04

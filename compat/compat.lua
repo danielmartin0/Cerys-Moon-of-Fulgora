@@ -71,7 +71,8 @@ for _, recipe in pairs(data.raw.recipe) do
 		local produces_lubricant = false
 		local produces_barrel = false
 		local ends_in_recycling = recipe.name.sub(recipe.name, -10) == "-recycling"
-		local starts_with_cerys = recipe.name.sub(recipe.name, 1, 6) == "cerys-"
+		local is_cerys_recipe = recipe.name.sub(recipe.name, 1, 6) == "cerys-"
+			or recipe.name == "mixed-oxide-waste-centrifuging"
 
 		for _, product in pairs(recipe.results) do
 			if product.name and (find(common.SOFTBANNED_RESOURCES, product.name)) then
@@ -94,7 +95,7 @@ for _, recipe in pairs(data.raw.recipe) do
 			end
 		end
 
-		local excluded = produces_barrel or ends_in_recycling or requires_softbanned or starts_with_cerys
+		local excluded = produces_barrel or ends_in_recycling or requires_softbanned or is_cerys_recipe
 
 		if not excluded then
 			if produces_softbanned then
