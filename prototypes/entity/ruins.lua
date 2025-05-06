@@ -112,6 +112,8 @@ for _, size in ipairs(sizes) do
 	base_entity.order = "b[decorative]-l[rock]-j[ruin]-b[cerys]-e[" .. size .. "]"
 	base_entity.icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-ruin-" .. size .. ".png"
 	base_entity.icon_size = 64
+	base_entity.dying_trigger_effect = nil 
+	base_entity.remains_when_mined = nil	-- fix for things like fulgora extended; it shouldn't leave anything behind
 
 	local collision_area = (base_entity.collision_box[2][1] - base_entity.collision_box[1][1])
 		* (base_entity.collision_box[2][2] - base_entity.collision_box[1][2])
