@@ -27,19 +27,19 @@ local function ruin_minable_results(collision_area)
 		},
 	}
 
-	if collision_area >= 8 then
+	if collision_area >= 7 then
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
-			amount_min = math.ceil(collision_area / 10),
-			amount_max = math.ceil(collision_area / 8),
+			amount_min = math.ceil(collision_area / 9),
+			amount_max = math.ceil(collision_area / 7),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
 			amount = 1,
-			probability = collision_area / 8,
+			probability = collision_area / 7,
 		})
 	end
 
