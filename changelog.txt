@@ -2,7 +2,7 @@
 Version: 2.10.25
 Date: 2025-05-06
   Balancing:
-    - Increased the solar panels (+12%) obtained by mining Cerysian ruins.
+    - Increased the solar panels obtained from mining Cerysian ruins (+12%).
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.24
 Date: 2025-05-05
