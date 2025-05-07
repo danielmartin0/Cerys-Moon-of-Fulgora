@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.28
-Date: ????
+Date: 2025-05-07
   Info:
     - Improved the instructions to the user on the crash in which Lignumis is installed without Wooden Cerys: Lunaponics.
 ---------------------------------------------------------------------------------------------------
