@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.10.26
+Date: 2025-05-06
+  Balancing:
+    - Improved the instructions to the user on the crash in which Lignumis is installed without Wooden Cerys: Lunaponics.
+---------------------------------------------------------------------------------------------------
 Version: 2.10.25
 Date: 2025-05-06
   Balancing:

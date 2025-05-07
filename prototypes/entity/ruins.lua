@@ -31,7 +31,7 @@ local function ruin_minable_results(collision_area)
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
-			amount_min = math.ceil(collision_area / 9),
+			amount_min = math.ceil(collision_area / 8),
 			amount_max = math.ceil(collision_area / 7),
 		})
 	else
