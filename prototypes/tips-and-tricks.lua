@@ -24,7 +24,7 @@ data:extend({
 			planet = "cerys",
 			generate_map = false,
 			init = [[
-			
+
 			game.simulation.camera_position = { 0.5,0.5 }
 
 			for x = -11, 11 do
@@ -74,13 +74,13 @@ data:extend({
 				end
 			end
 
-			game.surfaces[1].create_entity{name="cerys-ruin-big", position = {1, -4}}
+			game.surfaces[1].create_entity{name="cerys-ruin-big", position = {-1, -4}}
 			game.surfaces[1].create_entity{name="cerys-ruin-medium", position = {-8, -1}}
 			game.surfaces[1].create_entity{name="cerys-methane-iceberg-big", position = {7, -3}}
 			game.surfaces[1].create_entity{name="cerys-methane-iceberg-big", position = {9, -5}}
 
 			game.surfaces[1].create_decoratives{decoratives = {{name = "cerys-ruin-tiny", position = {4, -1}}}}
-			game.surfaces[1].create_decoratives{decoratives = {{name = "cerys-ruin-tiny", position = {-4, -4}}}}
+			game.surfaces[1].create_decoratives{decoratives = {{name = "cerys-ruin-tiny", position = {3, -4}}}}
 			game.surfaces[1].create_decoratives{decoratives = {{name = "cerys-ruin-tiny", position = {0, 0}}}}
 			
 			game.surfaces[1].create_entity{name = "cerys-nuclear-scrap", amount = 50, position = {-3, 2}}
