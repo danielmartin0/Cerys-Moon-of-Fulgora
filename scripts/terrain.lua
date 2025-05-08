@@ -183,8 +183,8 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 	local is_rock = find(common.ROCK_TILES, existing_tile)
 
 	if find(common.SPACE_TILES_AROUND_CERYS, existing_tile) then -- Ribbonworld etc
-		if existing_tile ~= "cerys-empty-space-3" then
-			new_tile = "cerys-empty-space-3"
+		if existing_tile ~= "cerys-empty-space-2" then
+			new_tile = "cerys-empty-space-2"
 		end
 	elseif common.DEBUG_DISABLE_FREEZING then
 		if existing_tile == "cerys-ice-on-water" then
@@ -375,15 +375,17 @@ function Public.create_lithium_brine(surface, area)
 		return
 	end
 
-	for _ = 1, 27 do
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+
+	for _ = 1, 10 do
 		local angle = math.random() * 2 * math.pi
-		local distance = math.random() * 21
+		local d = ((math.random()) ^ (1 / 2)) * 58
 		local test_pos = {
-			x = adjusted_lithium_position.x + math.cos(angle) * distance,
-			y = adjusted_lithium_position.y + math.sin(angle) * distance,
+			x = adjusted_lithium_position.x + math.cos(angle) * d / 3 * stretch_factor,
+			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
 		}
 
-		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 11, 1)
+		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 5, 1)
 
 		if position then
 			surface.create_entity({

@@ -300,7 +300,7 @@ for i = 1, common.LAMP_COUNT do
 	data:extend({
 		{
 			type = "reactor",
-			name = "hidden-reactor-" .. i,
+			name = "cerys-hidden-reactor-" .. i,
 			subgroup = "cerys-entities",
 			icon = "__space-age__/graphics/icons/heating-tower.png",
 			hidden = true,

@@ -642,22 +642,8 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 })
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
-local cerys_empty_3 = merge(data.raw.tile["empty-space"], {
-	subgroup = "cerys-tiles",
-	name = "cerys-empty-space-3",
-	default_cover_tile = "nil",
-	collision_mask = {
-		colliding_with_tiles_only = true,
-		not_colliding_with_itself = true,
-		layers = data.raw.tile["empty-space"].collision_mask.layers,
-	},
-	destroys_dropped_items = true, -- Now that we've added this line, this tile can be migrated to cerys-empty-space-2 in future
-})
-table.insert(out_of_map_tile_type_names, "cerys-empty-space-3")
-
 data:extend({
 	cerys_concrete,
 	cerys_empty,
 	cerys_empty_2,
-	cerys_empty_3,
 })

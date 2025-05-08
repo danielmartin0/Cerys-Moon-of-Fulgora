@@ -65,7 +65,7 @@ function Public.try_spawn_asteroid(surface)
 		elseif tile_2 and tile_2.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_2.name) then
 			y_position = trial_position
 		else
-			surface.set_tiles({ { name = "cerys-empty-space-3", position = { 0, trial_position } } })
+			surface.set_tiles({ { name = "cerys-empty-space-2", position = { 0, trial_position } } })
 			y_position = trial_position
 		end
 	end

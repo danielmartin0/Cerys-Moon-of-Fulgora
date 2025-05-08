@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.10.31
+Version: 2.11.0
 Date: ????
   Changes:
+    - Added a Cerys Briefing to the Tips and Tricks.
+    - Slightly adjusted the moon's position on the spacemap.
+  Balancing:
+    - Fewer lithium brine deposits spawn on Cerys and they are more spaced out.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.30
 Date: 2025-05-07

@@ -32,7 +32,7 @@ Public.CERYS_RADIUS = 128
 -- Public.CERYS_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION_SEED = { x = 20, y = 29 }
-Public.LITHIUM_ACTUAL_POSITION = { x = 100, y = -4 }
+Public.LITHIUM_ACTUAL_POSITION = { x = 93, y = 0 }
 Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 17
 Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
@@ -67,7 +67,6 @@ Public.SPACE_TILES_AROUND_CERYS = {
 	"empty-space",
 	"cerys-empty-space",
 	"cerys-empty-space-2",
-	"cerys-empty-space-3",
 }
 
 Public.GAS_NAMES = {

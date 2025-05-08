@@ -270,7 +270,7 @@ script.on_event({
 	local tiles = event.tiles
 	for _, tile in pairs(tiles) do
 		local hidden_tile = surface.get_hidden_tile(tile.position)
-		if hidden_tile == "cerys-empty-space-2" or hidden_tile == "cerys-empty-space-3" then
+		if hidden_tile == "cerys-empty-space-2" then
 			surface.set_tiles({ {
 				name = hidden_tile,
 				position = tile.position,
