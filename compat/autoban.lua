@@ -1,3 +1,7 @@
+local lib = require("lib")
+local find = lib.find
+local common = require("common")
+
 --== Automated recipe bans ==--
 
 for _, recipe in pairs(data.raw.recipe) do
