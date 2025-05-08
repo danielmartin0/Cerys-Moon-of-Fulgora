@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.11.0
-Date: ????
+Date: 2025-05-08
   Changes:
     - Added a Cerys Briefing to the Tips and Tricks.
     - Slightly adjusted the moon's position on the spacemap.
