@@ -10,24 +10,32 @@ for _, recipe in pairs(data.raw.recipe) do
 		local produces_electric_engine_unit = false
 		local produces_lubricant = false
 		local produces_barrel = false
+		local produces_science_pack = false
+
 		local ends_in_recycling = recipe.name.sub(recipe.name, -10) == "-recycling"
 		local is_cerys_recipe = recipe.name.sub(recipe.name, 1, 6) == "cerys-"
 			or recipe.name == "mixed-oxide-waste-centrifuging"
 
 		for _, product in pairs(recipe.results) do
-			if product.name and (find(common.SOFTBANNED_RESOURCES, product.name)) then
-				produces_softbanned = true
-			end
-			if product.name == "electric-engine-unit" then
-				produces_electric_engine_unit = true
-			end
-			if product.name == "lubricant" then
-				produces_lubricant = true
-			end
-			if product.name == "barrel" then
-				produces_barrel = true
+			if product.name then
+				if find(common.SOFTBANNED_RESOURCES, product.name) then
+					produces_softbanned = true
+				end
+				if product.name == "electric-engine-unit" then
+					produces_electric_engine_unit = true
+				end
+				if product.name == "lubricant" then
+					produces_lubricant = true
+				end
+				if product.name == "barrel" then
+					produces_barrel = true
+				end
+				if data.raw.tool[product.name] then
+					produces_science_pack = true
+				end
 			end
 		end
+
 		for _, ingredient in pairs(recipe.ingredients or {}) do
 			if find(common.SOFTBANNED_RESOURCES, ingredient.name) then
 				requires_softbanned = true
@@ -35,7 +43,11 @@ for _, recipe in pairs(data.raw.recipe) do
 			end
 		end
 
-		local excluded = produces_barrel or ends_in_recycling or requires_softbanned or is_cerys_recipe
+		local excluded = produces_barrel
+			or ends_in_recycling
+			or requires_softbanned
+			or is_cerys_recipe
+			or produces_science_pack
 
 		if not excluded then
 			if produces_softbanned then
