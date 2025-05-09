@@ -1,25 +1,18 @@
 data:extend({
 	{
 		type = "bool-setting",
-		name = "cerys-start-on-cerys",
-		setting_type = "startup",
-		default_value = false,
-		order = "a",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-player-constructable-radiative-towers",
 		setting_type = "startup",
 		default_value = true,
 		order = "b",
 	},
-	{
-		type = "bool-setting",
-		name = "cerys-disable-quality-mechanics",
-		setting_type = "startup",
-		default_value = false,
-		order = "c",
-	},
+	-- {
+	-- 	type = "bool-setting",
+	-- 	name = "cerys-disable-quality-mechanics",
+	-- 	setting_type = "startup",
+	-- 	default_value = false,
+	-- 	order = "c",
+	-- },
 	{
 		type = "bool-setting",
 		name = "cerys-enforce-vanilla-recycling-recipes",
@@ -40,6 +33,13 @@ data:extend({
 		setting_type = "startup",
 		default_value = false,
 		order = "f",
+	},
+	{
+		type = "bool-setting",
+		name = "cerys-sandbox-mode",
+		setting_type = "startup",
+		default_value = false,
+		order = "z",
 	},
 	{
 		type = "bool-setting",

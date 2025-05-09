@@ -1,6 +1,6 @@
 local common = require("common")
-local repair = require("reactor-repair")
-local terrain = require("terrain")
+local repair = require("scripts.reactor-repair")
+local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
@@ -96,7 +96,12 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 		Public.initialize_cerys(surface)
 	end
 
-	terrain.on_cerys_chunk_generated(event, surface)
+	-- I have no clue why, but request_to_generate_chunks followed by force_generate_chunk_requests means this event gets fired twice. Therefore this cache protection.
+	storage.cerys.chunk_generated_cache = storage.cerys.chunk_generated_cache or {}
+	if not storage.cerys.chunk_generated_cache[event.position.x .. "," .. event.position.y] then
+		storage.cerys.chunk_generated_cache[event.position.x .. "," .. event.position.y] = true
+		terrain.on_cerys_chunk_generated(event, surface)
+	end
 end)
 
 function Public.delete_cerys_storage_if_necessary()

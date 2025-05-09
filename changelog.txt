@@ -1,7 +1,264 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.8.6
+Version: 2.11.11
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 2.11.10
+Date: 2025-05-08
+  Changes:
+    - Russian translation updated.
+---------------------------------------------------------------------------------------------------
+Version: 2.11.9
+Date: 2025-05-08
+  Bugfixes:
+    - Fixed a startup crash.
+---------------------------------------------------------------------------------------------------
+Version: 2.11.7
+Date: 2025-05-08
+  Changes:
+    - Cerys autobans no longer apply to recipes that produce science packs.
+---------------------------------------------------------------------------------------------------
+Version: 2.11.0-2.11.6
+Date: 2025-05-08
+  Changes:
+    - Added a Cerys Briefing to the Tips and Tricks.
+    - Slightly adjusted the moon's position on the spacemap.
+  Balancing:
+    - Fewer lithium brine deposits spawn on Cerys and they are more spaced out.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.30
+Date: 2025-05-07
+  Info:
+    - Improved the instructions to the user on the crash in which Lignumis is installed without Wooden Cerys: Lunaponics.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.27
+Date: 2025-05-07
+  Modding:
+    - Fixed that Fulgora Extended if present would cause Cerysian ruins to spawn entities when mined.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.26
+Date: 2025-05-07
+  Info:
+    - Improved the instructions to the user on the crash in which Lignumis is installed without Wooden Cerys: Lunaponics.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.25
+Date: 2025-05-06
+  Balancing:
+    - Increased the solar panels obtained from mining Cerysian ruins (+12%).
+---------------------------------------------------------------------------------------------------
+Version: 2.10.24
+Date: 2025-05-05
+  Bugfixes:
+    - Fixed mixed-oxide waste centrifuging getting caught up in today's autoban changes and being banned on Cerys.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.23
+Date: 2025-05-04
+  Bugfixes:
+    - Removed debugging print on generating the surface.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.22
+Date: 2025-05-04
+  Bugfixes:
+    - Added a caching safeguard against on_chunk_generated being fired twice for the same chunk on a Cerys surface.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.21
+Date: 2025-05-04
+  Balancing:
+    - Robot power multiplier on Cerys reduced (4x -> 3x).
+    - Gravity surface property on Cerys adjusted from 0.2 to 0.15. Surface condition relaxations/restrictions have been adjusted appropriately.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.20
+Date: 2025-05-04
+  Balancing:
+    - Gamma radiation damage increased (60 -> 70).
+---------------------------------------------------------------------------------------------------
+Version: 2.10.19
+Date: 2025-05-04
+  Changes:
+    - Autobans extended to modded steam-producing recipes that do not consume any constricted resources.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.17-2.10.18
+Date: 2025-05-04
+  Changes:
+    - Damage dealt by solar wind reduced, since the new 'impact' damage type makes it more deadly.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.16
+Date: 2025-05-04
+  Changes:
+    - Removed the 'Start on Cerys' setting, as this feature is now a standalone mod.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.15
+Date: 2025-05-03
+  Balancing:
+    - Decreased the Pu239 obtained by reprocessing (-9%).
+---------------------------------------------------------------------------------------------------
+Version: 2.10.14
+Date: 2025-05-03
+  Graphics:
+    - Improved the quality of the engine unit productivity technology icon.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.13
+Date: 2025-05-03
+  Bugfixes:
+    - Fixed that saves lost their holmium plate productivity progress when upgrading since 2.10.11. Note that 2.10.11-2.10.12 saves will be still not be loaded correctly.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.12
+Date: 2025-05-03
+  Bugfixes:
+    - Fixed that Discover Fulgoran Cryogenics could remain enabled on certain saves.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.11
+Date: 2025-05-03
+  Changes:
+    - New infinite technology for Cerys: engine unit productivity.
+    - Holmium plate recrystallization has been folded into Holmium plate productivity 1.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.10
+Date: 2025-05-03
+  Changes:
+    - Players that have unlocked fusion power cells are now able to craft them in Fulgoran cryogenic plants.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.9
+Date: 2025-05-03
+  Bugfixes:
+    - The holmium plate productivity technology now affects the holmium recrystallization recipe.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.8
+Date: 2025-05-02
+  Balancing:
+    - Reactor repair cost dropped by 20%.
+---------------------------------------------------------------------------------------------------
+Version: 2.10.0-2.10.7
+Date: 2025-05-02
+  Changes:
+    - Nuclear scrap recycling no longer provides copper cable.
+    - Mining Cerysian ruins now provides copper cable.
+    - Days on Cerys are now longer (5 minutes -> 6 minutes). This may cause a one-off change in time of day when loading your save.
+    - Ancient structure repair parts can no longer be stacked in the input inventories of machine wrecks.
+  Balancing:
+    - Reactor repair cost changed from [300 processing units, 600 repair parts] to [500 processing units, 500 repair parts].
+    - Upgrading the quality of Fulgoran machines now requires many fewer repair parts per level (5 -> 1).
+    - Increased the science packs required by the Fulgoran machine quality upgrades technology (30 -> 40).
+    - Nuclear scrap recycling now produces more advanced circuits (13% -> 14%).
+    - Nuclear scrap recycling now produces more pipes (1.6% -> 1.7%).
+    - Nuclear scrap recycling now produces fewer heat pipes (0.8% -> 0.7%).
+  Bugfixes:
+    - Science productivity bonuses no longer apply to the Flare Stack fluid venting tech.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.17
+Date: 2025-05-02
+  Changes:
+    - Bumped the required version of PlanetsLib to fix a crash.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.16
+Date: 2025-05-02
+  Changes:
+    - The impact damage type is now used for all radiation damage.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.15
+Date: 2025-05-02
+  Changes:
+    - Damage dealt by gamma radiation is now type 'impact' instead of type 'laser'. This makes it unlikely that player armor will provide any protection.
+    - The mod Wooden Cerys: Lunaponics is now mandatory if playing Cerys alongside Lignumis.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.14
+Date: 2025-05-02
+  Changes:
+    - The recycling recipes which Cerys prevents other mods from changing now include concrete. Note this behavior can be disabled by a setting.
+    - Code improvements.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.13
+Date: 2025-04-27
+  Changes:
+    - Added 'Sandbox mode' to the settings, which disables the cargo drops restriction. This circumvents the intended gameplay but provides a shorter freestyle experience.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.12
+Date: 2025-04-26
+  Changes:
+    - Disabled the autoban for Maraxsis and Muluna fusion-generator steam turbine entitites.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.11
+Date: 2025-04-26
+  Changes:
+    - Fixed that asteroids from the Cupric asteroids mod would not drop chunks.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.10
+Date: 2025-04-26
+  Changes:
+    - Chinese translation updated.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.9
+Date: 2025-04-25
+  Changes:
+    - Removed the setting to disable quality mechanics on Cerys. This now happens automatically when the player does not have higher quality tiers available.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.8
+Date: 2025-04-23
+  Modding:
+    - Support for modded boilers that have no temperature.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.7
+Date: 2025-04-21
+  Bugfixes:
+    - Fixed that the Processing units from nitric acid recipe caused processing unit recycling to return 20% fewer electronic circuits than in vanilla.
+  Changes:
+    - The option to hold vanilla recycling recipes fixed now affects advanced circuits and processing units.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.6
+Date: 2025-04-20
+  Changes:
+    - Fixed a crash related to surface conditions.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.5
+Date: 2025-04-20
+  Changes:
+    - Moved surface condition restrictions from data-final-fixes to data-updates. This makes it easier for other mods to add exceptions for compatibility.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.4
+Date: 2025-04-20
+  Bugfixes:
+    - Reverted the change to prevent ancient structure repair parts from stacking in machines. This prevented certain repairs from occurring.
+    - Fixed an issue with the color of the reactor repair indicator rendering.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.3
+Date: 2025-04-19
+  Bugfixes:
+    - Fixed crash on player firing weapons.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.2
+Date: 2025-04-19
+  Changes:
+    - Ancient structure repair parts can no longer be stacked in the input inventories of machine wrecks.
+---------------------------------------------------------------------------------------------------
+Version: 2.9.0-2.9.1
+Date: 2025-04-17
+  Changes:
+    - Positive charging rods now attract, negative now repel. This is to better match the implied physics. Existing bases work the same — all existing positive rods have been made negative and vice-versa.
+    - Added support for the keybinding 'Toggle Entity' to flip charging rod polarity.
+    - Newly created charging rods now start positive.
+    - Methane now has a fuel value.
+---------------------------------------------------------------------------------------------------
+Version: 2.8.9
+Date: 2025-04-17
+  Bugfixes:
+    - Fixed that Flare Stack item venting entities could not be re-enabled.
+---------------------------------------------------------------------------------------------------
+Version: 2.8.8
+Date: 2025-04-15
+  Bugfixes:
+    - Fixed issue in Start on Cerys mode in which certain entity spawns could prevent a key radiative tower from spawning.
+  Graphics:
+    - The Cerys Cargo drop technology effect icon now displays the icon of the planet.
+---------------------------------------------------------------------------------------------------
+Version: 2.8.7
+Date: 2025-04-14
+  Changes:
+    - Japanese translation updated.
+---------------------------------------------------------------------------------------------------
+Version: 2.8.6
+Date: 2025-04-06
+  Locale:
+    - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 2.8.5
 Date: 2025-04-03

@@ -51,7 +51,7 @@ function Public.tick_15_check_broken_crushers(surface)
 						if e and e.valid and input_inv and input_inv.valid then
 							local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
 							if input_inv2 and input_inv2.valid then
-								for _, c in pairs(contents) do
+								for _, c in pairs(contents or {}) do
 									local new_count = c.count
 									input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
 								end

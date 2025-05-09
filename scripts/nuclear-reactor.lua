@@ -12,7 +12,7 @@ local TEMPERATURE_LOSS_RATE = 2.5
 local RANGE_SQUARED = 61 ^ 2
 local DAMAGE_TICK_DELAY = 30
 
-local BASE_DAMAGE = 60
+local BASE_DAMAGE = 70
 
 local RADIATION_BAIL_CHANCE = 0.2
 
@@ -124,7 +124,7 @@ function Public.tick_2_radiation(surface)
 		return
 	end
 
-	local damage = BASE_DAMAGE * (common.HARDCORE_ON and 2 or 1)
+	local damage = BASE_DAMAGE * (common.HARD_MODE_ON and 2 or 1)
 
 	local i = 1
 	while i <= #storage.cerys.radiation_particles do
@@ -143,7 +143,7 @@ function Public.tick_2_radiation(surface)
 						})
 					end
 
-					char.damage(damage, game.forces.neutral, "laser")
+					char.damage(damage, game.forces.neutral, "impact")
 					particle.irradiation_tick = game.tick
 				end
 			end

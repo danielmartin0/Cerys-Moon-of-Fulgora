@@ -12,17 +12,17 @@ PlanetsLib:extend({
 				type = "planet",
 				name = "fulgora",
 			},
-			distance = 1.3,
-			orientation = 0.7,
+			distance = 1.39,
+			orientation = 0.49,
 			sprite = {
 				type = "sprite",
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit.png",
-				size = 335,
+				size = 379,
 				scale = 0.25,
 			},
 		},
 		subgroup = "satellites",
-		label_orientation = 0.55,
+		label_orientation = 0.51,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys.png",
 		icon_size = 256,
 		starmap_icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/starmap-planet-cerys.png",
@@ -48,7 +48,7 @@ PlanetsLib:extend({
 			["magnetic-field"] = 120, -- Fulgora is 99
 			["solar-power"] = 120, -- No atmosphere
 			pressure = 5,
-			gravity = 0.2, -- 0.1 is minimum for chests
+			gravity = 0.15, -- 0.1 is minimum for chests
 			temperature = 251,
 		},
 		asteroid_spawn_influence = 1,

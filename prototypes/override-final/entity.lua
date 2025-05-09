@@ -1,3 +1,4 @@
+local common = require("common")
 local lib = require("lib")
 
 for _, machine in pairs(data.raw["assembling-machine"]) do
@@ -111,101 +112,33 @@ for _, reactor in pairs(data.raw.reactor) do
 	update_fuel_categories(reactor)
 end
 
---== Restrictions ==--
-
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
-for name, entity in pairs(data.raw["reactor"]) do
-	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for name, entity in pairs(data.raw["lab"]) do
-	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for name, entity in pairs(data.raw["accumulator"]) do
-	if name ~= "cerys-charging-rod" then
-		PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-	end
-end
-for _, entity in pairs(data.raw["fusion-reactor"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-for _, entity in pairs(data.raw["fusion-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-
-for _, entity in pairs(data.raw["burner-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, magnetic_field_restriction)
-end
-
-local ten_pressure_condition = {
-	property = "pressure",
-	min = 10,
-}
-
-for _, entity in pairs(data.raw["boiler"]) do
-	if entity.energy_source.type ~= "heat" then
-		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
-	end
-end
-
---== Relaxations ==--
-
--- local eased_pressure_restriction = {
--- 	property = "pressure",
--- 	min = 5,
--- }
+--== Surface Condition Relaxations ==--
 
 -- Vanilla and modded roboports:
 for _, entity in pairs(data.raw["roboport"]) do
-	for _, condition in pairs(entity.surface_conditions or {}) do
-		if condition.property == "pressure" and condition.min and condition.min > 5 then
-			condition.min = 5
-		end
-	end
+	PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
 end
 -- Vanilla and modded burner inserters (to help with freeze reboots):
 for _, entity in pairs(data.raw["inserter"]) do
 	if entity.energy_source.type == "burner" and entity.surface_conditions then
-		for _, condition in pairs(entity.surface_conditions) do
-			if condition.property == "pressure" and condition.min and condition.min > 5 then
-				condition.min = 5
-			end
-		end
+		PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
 	end
 end
-
-local gravity_condition = {
-	property = "gravity",
-	min = 0.2,
-}
 
 for _, entity in pairs(data.raw["cargo-landing-pad"] or {}) do
-	PlanetsLib.relax_surface_conditions(entity, gravity_condition)
+	PlanetsLib.relax_surface_conditions(entity, common.GRAVITY_MIN)
 end
 if data.raw["car"]["car"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["car"], common.GRAVITY_MIN)
 end
 if data.raw["car"]["tank"] then
-	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["car"]["tank"], common.GRAVITY_MIN)
 end
 if data.raw["spider-vehicle"]["spidertron"] then
-	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], gravity_condition)
+	PlanetsLib.relax_surface_conditions(data.raw["spider-vehicle"]["spidertron"], common.GRAVITY_MIN)
 end
 
---== Relaxations/restrictions with no effect on vanilla (for compatibility) ==--
-
-for _, entity in pairs(data.raw["furnace"]) do
-	if entity.energy_source and entity.energy_source.type == "burner" then
-		PlanetsLib.restrict_surface_conditions(entity, ten_pressure_condition)
-	end
-end
+--== Relaxations with no effect on vanilla (for compatibility) ==--
 
 if data.raw["assembling-machine"]["electromagnetic-plant"] then
 	PlanetsLib.relax_surface_conditions(data.raw["assembling-machine"]["electromagnetic-plant"], {
@@ -222,7 +155,7 @@ if data.raw.recipe["quantum-processor"] then
 end
 
 --== Atomic projectiles ==--
--- Ensuring that nuclear ground tiles don't get set on Cerys tiles.
+-- Makes the Cerys surface less vulnerable to nuclear explosions. (This no longer affects vanilla, but can affect modded projectiles.)
 
 local function add_cerys_layers_to_masks(tbl)
 	if type(tbl) ~= "table" then

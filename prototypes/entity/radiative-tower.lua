@@ -30,10 +30,10 @@ local reactor = {
 			maximum_intensity = 0,
 		}, -- Needed to disable the flicker effect
 	},
-	consumption = common.HARDCORE_ON and "1850kW" or "1300kW",
+	consumption = common.HARD_MODE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
 		max_temperature = 150,
-		specific_heat = common.HARDCORE_ON and "100kJ" or "70kJ",
+		specific_heat = common.HARD_MODE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 0,
 		heat_picture = apply_heat_pipe_glow(
@@ -85,7 +85,7 @@ local reactor = {
 	},
 	map_color = { 143, 0, 0 },
 	radius_visualisation_specification = {
-		distance = common.HARDCORE_ON and 10.5 or 16.5, -- Accounting for x and y being different
+		distance = common.HARD_MODE_ON and 10.5 or 16.5, -- Accounting for x and y being different
 		sprite = {
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
 			tint = { r = 0.7, g = 0, b = 0, a = 0.05 },
@@ -300,7 +300,7 @@ for i = 1, common.LAMP_COUNT do
 	data:extend({
 		{
 			type = "reactor",
-			name = "hidden-reactor-" .. i,
+			name = "cerys-hidden-reactor-" .. i,
 			subgroup = "cerys-entities",
 			icon = "__space-age__/graphics/icons/heating-tower.png",
 			hidden = true,

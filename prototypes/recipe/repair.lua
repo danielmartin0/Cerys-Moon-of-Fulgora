@@ -63,7 +63,7 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 5 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 			{ type = "item", name = "advanced-circuit", amount = 5 },
 		},
 		results = {},
@@ -105,8 +105,8 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "nuclear-reactor-repair",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 2 },
-			{ type = "item", name = "processing-unit", amount = 1 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 5 },
 		},
 		results = {},
 		allow_quality = false,
@@ -155,8 +155,8 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "crusher-quality-upgrades",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 5 },
-			{ type = "item", name = "processing-unit", amount = 5 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 1 },
 		},
 		results = {},
 		allow_quality = true,
@@ -180,7 +180,7 @@ data:extend({
 		enabled = true,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
-		ingredients = common.HARDCORE_ON and {
+		ingredients = common.HARD_MODE_ON and {
 			{ type = "item", name = "solid-fuel", amount = 40 },
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
 			{ type = "item", name = "advanced-circuit", amount = 30 },

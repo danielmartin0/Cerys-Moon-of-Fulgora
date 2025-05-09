@@ -21,25 +21,25 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "concrete", -- To build recycler and protect buildings
-				amount_min = math.ceil(collision_area * 0.21),
-				amount_max = math.ceil(collision_area * 0.23),
+				amount_min = math.ceil(collision_area * 0.19),
+				amount_max = math.ceil(collision_area * 0.21),
 			},
 		},
 	}
 
-	if collision_area >= 8 then
+	if collision_area >= 7 then
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
-			amount_min = math.ceil(collision_area / 10),
-			amount_max = math.ceil(collision_area / 8),
+			amount_min = math.ceil(collision_area / 8),
+			amount_max = math.ceil(collision_area / 7),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
 			amount = 1,
-			probability = collision_area / 8,
+			probability = collision_area / 7,
 		})
 	end
 
@@ -58,18 +58,36 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 20 then
+	if collision_area >= 18 then
+		-- Power through the night
 		table.insert(results.results, {
 			type = "item",
-			name = "cerys-charging-rod", -- Power through the night
-			amount = math.floor(collision_area / 20),
+			name = "cerys-charging-rod",
+			amount = math.floor(collision_area / 18),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			probability = 0.12,
+			probability = collision_area / 18,
+		})
+	end
+
+	if collision_area >= 9 then
+		-- Initial power poles
+		table.insert(results.results, {
+			type = "item",
+			name = "copper-cable",
+			amount_min = 1,
+			amount_max = math.floor(collision_area / 9),
+		})
+	else
+		table.insert(results.results, {
+			type = "item",
+			name = "copper-cable",
+			amount = 1,
+			probability = collision_area / 9,
 		})
 	end
 
@@ -94,6 +112,8 @@ for _, size in ipairs(sizes) do
 	base_entity.order = "b[decorative]-l[rock]-j[ruin]-b[cerys]-e[" .. size .. "]"
 	base_entity.icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-ruin-" .. size .. ".png"
 	base_entity.icon_size = 64
+	base_entity.dying_trigger_effect = nil 
+	base_entity.remains_when_mined = nil	-- fix for things like fulgora extended; it shouldn't leave anything behind
 
 	local collision_area = (base_entity.collision_box[2][1] - base_entity.collision_box[1][1])
 		* (base_entity.collision_box[2][2] - base_entity.collision_box[1][2])

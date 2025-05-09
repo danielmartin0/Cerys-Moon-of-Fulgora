@@ -1,3 +1,4 @@
+require("compat.autoban")
 require("prototypes.override-final.entity")
 require("prototypes.override-final.item")
 require("prototypes.override-final.hidden")

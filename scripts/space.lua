@@ -11,7 +11,7 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) *
 local ROD_DEFLECTION_STRENGTH = 8 / 4.5
 local ROD_MAX_RANGE_SQUARED = 25 * 25
 
-local CHANCE_DAMAGE_CHARACTER = common.HARDCORE_ON and 1 or 1 / 50
+local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 1 / 50
 local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
@@ -65,7 +65,7 @@ function Public.try_spawn_asteroid(surface)
 		elseif tile_2 and tile_2.valid and find(common.SPACE_TILES_AROUND_CERYS, tile_2.name) then
 			y_position = trial_position
 		else
-			surface.set_tiles({ { name = "cerys-empty-space-3", position = { 0, trial_position } } })
+			surface.set_tiles({ { name = "cerys-empty-space-2", position = { 0, trial_position } } })
 			y_position = trial_position
 		end
 	end
@@ -282,9 +282,9 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 
 							particle.irradiation_tick = game.tick
 
-							local damage = common.HARDCORE_ON and 180 or 15
+							local damage = common.HARD_MODE_ON and 80 or 5
 
-							e.damage(damage, game.forces.neutral, "laser")
+							e.damage(damage, game.forces.neutral, "impact")
 						end
 					end
 				end
@@ -506,6 +506,7 @@ local ASTEROIDS_TO_DROPS = {
 	["small-metallic-asteroid-planetary"] = { ["metallic-asteroid-chunk"] = 1 },
 	["small-carbonic-asteroid-planetary"] = { ["carbonic-asteroid-chunk"] = 1 },
 	["small-oxide-asteroid-planetary"] = { ["oxide-asteroid-chunk"] = 1 },
+	["small-cupric-asteroid-planetary"] = { ["cupric-asteroid-chunk"] = 1 },
 }
 
 script.on_event(defines.events.on_entity_died, function(event)

@@ -43,7 +43,13 @@ script.on_event({
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
-	elseif on_cerys and entity.name == "cerys-charging-rod" then
+	elseif
+		on_cerys
+		and (
+			entity.name == "cerys-charging-rod"
+			or entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod"
+		)
+	then
 		rods.built_charging_rod(entity, event.tags or {})
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
@@ -82,14 +88,12 @@ end)
 script.on_event(defines.events.on_research_finished, function(event)
 	local research = event.research
 
-	-- if not settings.startup["cerys-technology-compatibility-mode"].value then
 	if research.name == "cerys-fulgoran-cryogenics" then
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
 	elseif research.name == "cerys-nuclear-scrap-recycling" then
 		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
 	end
-	-- end
 end)
 
 script.on_event(defines.events.on_player_changed_surface, function(event)
@@ -189,10 +193,6 @@ function Public.cerys_tick(surface, tick)
 		end
 	end
 
-	if (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) and tick == 30 then
-		surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(surface) * 2 / 32)
-	end
-
 	if player_looking_at_surface and tick % 2 == 0 then
 		nuclear_reactor.tick_2_radiation(surface)
 	end
@@ -257,106 +257,6 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_player_joined_game, function(event)
-	local player = game.players[event.player_index]
-
-	storage.players_seen = storage.players_seen or {}
-
-	if
-		(common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value)
-		and not storage.players_seen[player.index]
-	then
-		if not storage.cerys and (common.DEBUG_CERYS_START or settings.startup["cerys-start-on-cerys"].value) then
-			init.initialize_cerys()
-		end
-
-		storage.players_seen[player.index] = true
-
-		if player.controller_type == defines.controllers.cutscene then
-			player.exit_cutscene()
-		end
-
-		player.force.technologies["advanced-combinators"].research_recursive()
-		player.force.technologies["atomic-bomb"].research_recursive()
-		player.force.technologies["automated-rail-transportation"].research_recursive()
-		player.force.technologies["automation-3"].research_recursive()
-		player.force.technologies["battery-equipment"].research_recursive()
-		player.force.technologies["belt-immunity-equipment"].research_recursive()
-		player.force.technologies["braking-force-2"].research_recursive()
-		player.force.technologies["bulk-inserter"].research_recursive()
-		player.force.technologies["construction-robotics"].research_recursive()
-		player.force.technologies["discharge-defense-equipment"].research_recursive()
-		player.force.technologies["effect-transmission"].research_recursive()
-		player.force.technologies["efficiency-module-2"].research_recursive()
-		player.force.technologies["electric-energy-distribution-2"].research_recursive()
-		player.force.technologies["electric-mining-drill"].research_recursive()
-		player.force.technologies["elevated-rail"].research_recursive()
-		player.force.technologies["exoskeleton-equipment"].research_recursive()
-		player.force.technologies["fission-reactor-equipment"].research_recursive()
-		player.force.technologies["fluid-wagon"].research_recursive()
-		player.force.technologies["gate"].research_recursive()
-		player.force.technologies["gun-turret"].research_recursive()
-		player.force.technologies["inserter-capacity-bonus-3"].research_recursive()
-		player.force.technologies["lamp"].research_recursive()
-		player.force.technologies["land-mine"].research_recursive()
-		player.force.technologies["laser-shooting-speed-3"].research_recursive()
-		player.force.technologies["logistics-3"].research_recursive()
-		player.force.technologies["mining-productivity-2"].research_recursive()
-		player.force.technologies["moon-discovery-cerys"].research_recursive()
-		player.force.technologies["night-vision-equipment"].research_recursive()
-		player.force.technologies["nuclear-fuel-reprocessing"].research_recursive()
-		player.force.technologies["personal-roboport-equipment"].research_recursive()
-		player.force.technologies["physical-projectile-damage-6"].research_recursive()
-		player.force.technologies["productivity-module-2"].research_recursive()
-		player.force.technologies["quality-module-2"].research_recursive()
-		player.force.technologies["radar"].research_recursive()
-		player.force.technologies["recycling"].research_recursive()
-		player.force.technologies["repair-pack"].research_recursive()
-		player.force.technologies["research-speed-2"].research_recursive()
-		player.force.technologies["solar-energy"].research_recursive()
-		player.force.technologies["speed-module-2"].research_recursive()
-		player.force.technologies["steel-axe"].research_recursive()
-		player.force.technologies["stronger-explosives-3"].research_recursive()
-		player.force.technologies["toolbelt"].research_recursive()
-		player.force.technologies["uranium-ammo"].research_recursive()
-		player.force.technologies["weapon-shooting-speed-4"].research_recursive()
-		player.force.technologies["worker-robots-speed-2"].research_recursive()
-		player.force.technologies["worker-robots-storage-2"].research_recursive()
-		-- player.force.technologies["moon-discovery-cerys"].researched = true
-
-		local surface = game.surfaces["cerys"]
-		if surface and surface.valid and player.surface.name ~= "cerys" then
-			local p = { x = 0, y = 0 }
-			local p2 = surface.find_non_colliding_position("character", { x = 0, y = 0 }, 20, 0.5)
-			player.teleport(p2 or p, surface)
-			player.clear_items_inside()
-
-			local armor = player.insert({ name = "power-armor", count = 1 })
-			local inv = player.get_inventory(defines.inventory.character_armor)
-
-			if armor > 0 and inv and inv.valid then
-				local armor_item = inv[1]
-
-				if armor_item and armor_item.valid then
-					local grid = armor_item.grid
-					if grid then
-						grid.put({ name = "fission-reactor-equipment" })
-						grid.put({ name = "exoskeleton-equipment" })
-						grid.put({ name = "exoskeleton-equipment" })
-						grid.put({ name = "personal-roboport-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-						grid.put({ name = "battery-mk2-equipment" })
-					end
-				end
-			end
-		end
-	end
-end)
-
 -- It seems to be impossible to prevent this with collision masks:
 script.on_event({
 	defines.events.on_robot_built_tile,
@@ -370,7 +270,7 @@ script.on_event({
 	local tiles = event.tiles
 	for _, tile in pairs(tiles) do
 		local hidden_tile = surface.get_hidden_tile(tile.position)
-		if hidden_tile == "cerys-empty-space-2" or hidden_tile == "cerys-empty-space-3" then
+		if hidden_tile == "cerys-empty-space-2" then
 			surface.set_tiles({ {
 				name = hidden_tile,
 				position = tile.position,
@@ -387,6 +287,18 @@ script.on_event({
 end)
 
 script.on_configuration_changed(function()
+	for _, force in pairs(game.forces) do
+		if
+			force.recipes["cerys-discover-fulgoran-cryogenics"]
+			and force.technologies["cerys-fulgoran-cryogenics"]
+			and force.technologies["cerys-fulgoran-cryogenics"].researched
+		then
+			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
+		else
+			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
+		end
+	end
+
 	local surface = game.surfaces["cerys"]
 
 	if surface and surface.valid then

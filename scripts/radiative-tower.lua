@@ -172,7 +172,7 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	local max_heating_radius = is_player_tower and MAX_HEATING_RADIUS_PLAYER or MAX_HEATING_RADIUS
 	local temperature_interval = TEMPERATURE_INTERVAL
 
-	if common.HARDCORE_ON then
+	if common.HARD_MODE_ON then
 		max_heating_radius = 10
 		temperature_interval = temperature_interval * 16 / 10
 	end
@@ -239,7 +239,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 			for r = valid_tower.last_radius + 1, heating_radius do
 				-- Sadly the Fulgoran tower entities are rectangular, so in order to heat edges on the north and south edges we need two hidden reactors:
 				local reactor_north = e.surface.create_entity({
-					name = "hidden-reactor-" .. r,
+					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y - (is_player_tower and 0 or 0.5) },
 					force = e.force,
 				})
@@ -248,7 +248,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 				reactor_north.temperature = 40
 
 				local reactor_south = e.surface.create_entity({
-					name = "hidden-reactor-" .. r,
+					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y + (is_player_tower and 0 or 0.5) },
 					force = e.force,
 				})

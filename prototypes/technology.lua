@@ -74,33 +74,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-fulgoran-machine-quality-upgrades",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-crusher-quality",
-			},
-		},
-		prerequisites = { "cerysian-science-pack" },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
-		icon_size = 256,
-		unit = {
-			count = 30,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
 			count = 100,
@@ -272,111 +245,79 @@ data:extend({
 		},
 		allows_productivity = false,
 	},
-	{
-		type = "technology",
-		name = "cerys-holmium-recrystallization",
-		icon = "__space-age__/graphics/technology/holmium-processing.png",
-		icon_size = 256,
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "holmium-recrystallization",
-			},
-		},
-		prerequisites = { "cerys-lubricant-synthesis" },
-		unit = {
-			count = 400,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-	},
-	{
-		type = "technology",
-		name = "holmium-plate-productivity-1",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = {
-			{
-				type = "change-recipe-productivity",
-				recipe = "holmium-plate",
-				change = 0.1,
-			},
-		},
-		prerequisites = { "cerys-lubricant-synthesis" },
-		unit = {
-			count = 500,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		upgrade = true,
-	},
-	{
-		type = "technology",
-		name = "holmium-plate-productivity-2",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = {
-			{
-				type = "change-recipe-productivity",
-				recipe = "holmium-plate",
-				change = 0.1,
-			},
-		},
-		prerequisites = { "holmium-plate-productivity-1" },
-		unit = {
-			count_formula = "2^(L-1)*500",
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		max_level = "infinite",
-		upgrade = true,
-	},
 })
+
+local quality_upgrades = false
+for _, quality in pairs(data.raw.quality) do
+	if quality.level and quality.level > 0 then
+		quality_upgrades = true
+	end
+end
+
+if quality_upgrades then
+	data:extend({
+		{
+			type = "technology",
+			name = "cerys-fulgoran-machine-quality-upgrades",
+			effects = {
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+				},
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-upgrade-fulgoran-crusher-quality",
+				},
+			},
+			prerequisites = { "cerysian-science-pack" },
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
+			icon_size = 256,
+			unit = {
+				count = 40,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		},
+	})
+end
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
 
-cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-	type = "unlock-recipe",
-	recipe = "cerys-construction-robot-recycling",
-}
-cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-	type = "unlock-recipe",
-	recipe = "cerys-exoskeleton-equipment-recycling",
-}
+if not settings.startup["cerys-sandbox-mode"].value then
+	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+		type = "unlock-recipe",
+		recipe = "cerys-construction-robot-recycling",
+	}
+	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
+		type = "unlock-recipe",
+		recipe = "cerys-exoskeleton-equipment-recycling",
+	}
+
+	data:extend({
+		merge(cargo_drops_base, {
+			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
+			unit = {
+				count = common.HARD_MODE_ON and 4000 or 1200,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		}),
+	})
+end
 
 data:extend({
-	merge(cargo_drops_base, {
-		prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
-		unit = {
-			count = common.HARDCORE_ON and 4000 or 1200,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	}),
 	{
 		type = "technology",
 		name = "cerys-nice-try-sukaz",
@@ -531,3 +472,136 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 		end
 	end
 end
+
+local holmium_productivity_effects_1 = {}
+local holmium_productivity_effects_2 = {}
+if data.raw.recipe["holmium-plate"] then
+	table.insert(holmium_productivity_effects_1, {
+		type = "change-recipe-productivity",
+		recipe = "holmium-plate",
+		change = 0.1,
+	})
+	table.insert(holmium_productivity_effects_2, {
+		type = "change-recipe-productivity",
+		recipe = "holmium-plate",
+		change = 0.1,
+	})
+end
+table.insert(holmium_productivity_effects_1, {
+	type = "unlock-recipe",
+	recipe = "holmium-recrystallization",
+})
+table.insert(holmium_productivity_effects_1, {
+	type = "change-recipe-productivity",
+	recipe = "holmium-recrystallization",
+	change = 0.1,
+})
+table.insert(holmium_productivity_effects_2, {
+	type = "change-recipe-productivity",
+	recipe = "holmium-recrystallization",
+	change = 0.1,
+})
+
+local engine_productivity_effects = {}
+if data.raw.recipe["engine-unit"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "engine-unit",
+		change = 0.1,
+	})
+end
+if data.raw.recipe["electric-engine-unit"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "electric-engine-unit",
+		change = 0.1,
+	})
+end
+if data.raw.recipe["motor"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "motor",
+		change = 0.1,
+	})
+end
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-1",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects_1,
+		prerequisites = { "cerys-lubricant-synthesis" },
+		unit = {
+			count = 500,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-2",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects_2,
+		prerequisites = { "cerys-holmium-plate-productivity-1" },
+		unit = {
+			count_formula = "2^(L-1)*500",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-1",
+		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-lubricant-synthesis" },
+		unit = {
+			count_formula = "2^(L-1)*1000",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-2",
+		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-engine-unit-productivity-1" },
+		unit = {
+			count_formula = "2^(L-1)*1000",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
+})

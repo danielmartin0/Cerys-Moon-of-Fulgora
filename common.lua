@@ -1,20 +1,41 @@
 local Public = {}
 
+Public.GRAVITY_MIN = {
+	property = "gravity",
+	min = 0.15,
+}
+Public.MAGNETIC_FIELD_MAX = {
+	property = "magnetic-field",
+	max = 119,
+}
+Public.FIVE_PRESSURE_MIN = {
+	property = "pressure",
+	min = 5,
+}
+Public.TEN_PRESSURE_MIN = {
+	property = "pressure",
+	min = 10,
+}
+Public.TEMPERATURE_MIN = {
+	property = "temperature",
+	min = 255,
+}
+
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_CERYS_START = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 
-Public.HARDCORE_ON = settings.startup["cerys-hardcore-mode"].value
+Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
 Public.CERYS_RADIUS = 128
 -- Public.CERYS_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION_SEED = { x = 20, y = 29 }
-Public.LITHIUM_ACTUAL_POSITION = { x = 100, y = -4 }
+Public.LITHIUM_ACTUAL_POSITION = { x = 93, y = 0 }
 Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 17
-Public.DAY_LENGTH_MINUTES = 5 -- Fulgora is 3 minutes
+Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 60
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
@@ -46,7 +67,6 @@ Public.SPACE_TILES_AROUND_CERYS = {
 	"empty-space",
 	"cerys-empty-space",
 	"cerys-empty-space-2",
-	"cerys-empty-space-3",
 }
 
 Public.GAS_NAMES = {
@@ -60,11 +80,12 @@ Public.SOFTBANNED_RESOURCES = {
 	"heavy-oil",
 	"crude-oil",
 	"coal",
+	"steam",
 	-- "stone", -- having stone is OK as long as you don't make power
 }
 
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
-	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARDCORE_ON and 2.4 or 1.6)
+	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARD_MODE_ON and 2.4 or 1.6)
 	local max_stretch_factor = 6
 
 	local stretch_factor = math.min(
@@ -76,7 +97,7 @@ function Public.get_cerys_surface_stretch_factor(cerys_surface)
 end
 
 function Public.cerys_surface_stretch_factor_for_math()
-	if Public.HARDCORE_ON then
+	if Public.HARD_MODE_ON then
 		return "min(6, (cerys_radius * 2.4) / min(map_height / 2, cerys_radius * 2.4))"
 	else
 		return "min(6, (cerys_radius * 1.6) / min(map_height / 2, cerys_radius * 1.6))"

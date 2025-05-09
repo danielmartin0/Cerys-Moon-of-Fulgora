@@ -1,0 +1,26 @@
+{
+    "tile": [["cerys-empty-space-3", "cerys-empty-space-2"]],
+    "entity": [
+        ["hidden-reactor", "cerys-hidden-reactor"],
+        ["hidden-reactor-1", "cerys-hidden-reactor-1"],
+        ["hidden-reactor-2", "cerys-hidden-reactor-2"],
+        ["hidden-reactor-3", "cerys-hidden-reactor-3"],
+        ["hidden-reactor-4", "cerys-hidden-reactor-4"],
+        ["hidden-reactor-5", "cerys-hidden-reactor-5"],
+        ["hidden-reactor-6", "cerys-hidden-reactor-6"],
+        ["hidden-reactor-7", "cerys-hidden-reactor-7"],
+        ["hidden-reactor-8", "cerys-hidden-reactor-8"],
+        ["hidden-reactor-9", "cerys-hidden-reactor-9"],
+        ["hidden-reactor-10", "cerys-hidden-reactor-10"],
+        ["hidden-reactor-11", "cerys-hidden-reactor-11"],
+        ["hidden-reactor-12", "cerys-hidden-reactor-12"],
+        ["hidden-reactor-13", "cerys-hidden-reactor-13"],
+        ["hidden-reactor-14", "cerys-hidden-reactor-14"],
+        ["hidden-reactor-15", "cerys-hidden-reactor-15"],
+        ["hidden-reactor-16", "cerys-hidden-reactor-16"],
+        ["hidden-reactor-17", "cerys-hidden-reactor-17"],
+        ["hidden-reactor-18", "cerys-hidden-reactor-18"],
+        ["hidden-reactor-19", "cerys-hidden-reactor-19"],
+        ["hidden-reactor-20", "cerys-hidden-reactor-20"]
+    ]
+}

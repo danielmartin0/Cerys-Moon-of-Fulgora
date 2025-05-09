@@ -1,3 +1,5 @@
+local common = require("common")
+
 if data.raw.recipe["superconductor"] then
 	data.raw.recipe["superconductor"].category = "electromagnetics-or-fulgoran-cryogenics"
 end
@@ -15,6 +17,9 @@ if data.raw.recipe["battery"] then
 end
 if data.raw.recipe["ammonia-rocket-fuel"] then
 	data.raw.recipe["ammonia-rocket-fuel"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
+end
+if data.raw.recipe["fusion-power-cell"] then
+	data.raw.recipe["fusion-power-cell"].category = "cryogenics-or-fulgoran-cryogenics"
 end
 
 if data.raw.recipe["plutonium-239-recycling"] then
@@ -39,52 +44,38 @@ end
 
 --== Restrictions ==--
 
-local magnetic_field_restriction = {
-	property = "magnetic-field",
-	max = 119,
-}
-
 if data.raw.recipe["lab"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["lab"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["lab"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["accumulator"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["accumulator"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["accumulator"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["nuclear-reactor"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["nuclear-reactor"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["nuclear-reactor"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["fusion-reactor"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-reactor"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-reactor"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["fusion-generator"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-generator"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-generator"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["fusion-power-cell"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-power-cell"], magnetic_field_restriction)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-power-cell"], common.MAGNETIC_FIELD_MAX)
 end
 
 if data.raw.recipe["boiler"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["boiler"], {
-		property = "pressure",
-		min = 10,
-	})
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["boiler"], common.TEN_PRESSURE_MIN)
 end
 
 if data.raw.recipe["steam-engine"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["steam-engine"], {
-		property = "pressure",
-		min = 10,
-	})
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["steam-engine"], common.TEN_PRESSURE_MIN)
 end
 
 if data.raw.recipe["rocket-fuel"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], {
-		property = "temperature",
-		min = 255,
-	})
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], common.TEMPERATURE_MIN)
 end

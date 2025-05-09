@@ -40,12 +40,11 @@ data:extend({
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
-	["advanced-circuit"] = 13,
-	["copper-cable"] = 7, -- initial power poles
+	["advanced-circuit"] = 14,
 	["uranium-238"] = 4,
-	["pipe"] = 1.6, -- Initial pipes and extra initial iron. Pointedly small.
+	["pipe"] = 1.7, -- Initial pipes and extra initial iron. Pointedly small.
 	["transport-belt"] = 1.1, -- Belt cubes and distance transport, initial iron. Pointedly small.
-	["heat-pipe"] = 0.8, -- per each: 2.5 steel plate, 5 copper plate
+	["heat-pipe"] = 0.7, -- per each: 2.5 steel plate, 5 copper plate
 	["holmium-plate"] = 0.5, -- 2.5 would be matching fulgora
 	["steam-turbine"] = 0.18, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
 	["centrifuge"] = 0.18, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit

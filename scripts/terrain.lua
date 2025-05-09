@@ -123,7 +123,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 
 	--== Structures ==--
 
-	if common.HARDCORE_ON then -- extra tower to heat reactor
+	if common.HARD_MODE_ON then -- extra tower to heat reactor
 		local displacement_from_corner = { x = -4, y = -2 }
 
 		tower_positions[#tower_positions + 1] = {
@@ -183,8 +183,8 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 	local is_rock = find(common.ROCK_TILES, existing_tile)
 
 	if find(common.SPACE_TILES_AROUND_CERYS, existing_tile) then -- Ribbonworld etc
-		if existing_tile ~= "cerys-empty-space-3" then
-			new_tile = "cerys-empty-space-3"
+		if existing_tile ~= "cerys-empty-space-2" then
+			new_tile = "cerys-empty-space-2"
 		end
 	elseif common.DEBUG_DISABLE_FREEZING then
 		if existing_tile == "cerys-ice-on-water" then
@@ -326,17 +326,6 @@ function Public.create_crushers(surface, area)
 end
 
 function Public.deal_with_existing_entities(surface, position, width, height)
-	local colliding_simple_entities = surface.find_entities_filtered({
-		type = "simple-entity",
-		area = {
-			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
-			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
-		},
-	})
-	for _, entity in ipairs(colliding_simple_entities) do
-		entity.destroy()
-	end
-
 	local colliding_characters = surface.find_entities_filtered({
 		type = "character",
 		area = {
@@ -354,6 +343,18 @@ function Public.deal_with_existing_entities(surface, position, width, height)
 			or desired_position
 
 		character.teleport(new_position)
+	end
+
+	local colliding_entities = surface.find_entities_filtered({
+		area = {
+			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
+		},
+	})
+	for _, entity in ipairs(colliding_entities) do
+		if entity.prototype.type and entity.prototype.type ~= "assembling-machine" then
+			entity.destroy()
+		end
 	end
 end
 
@@ -374,15 +375,17 @@ function Public.create_lithium_brine(surface, area)
 		return
 	end
 
-	for _ = 1, 27 do
+	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+
+	for _ = 1, 10 do
 		local angle = math.random() * 2 * math.pi
-		local distance = math.random() * 21
+		local d = ((math.random()) ^ (1 / 2)) * 58
 		local test_pos = {
-			x = adjusted_lithium_position.x + math.cos(angle) * distance,
-			y = adjusted_lithium_position.y + math.sin(angle) * distance,
+			x = adjusted_lithium_position.x + math.cos(angle) * d / 3 * stretch_factor,
+			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
 		}
 
-		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 11, 1)
+		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 5, 1)
 
 		if position then
 			surface.create_entity({

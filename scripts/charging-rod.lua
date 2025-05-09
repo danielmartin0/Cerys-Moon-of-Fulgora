@@ -1,10 +1,11 @@
 local common = require("common")
-
 local Public = {}
 
+-- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
+
 local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
-local GUI_KEY = "cerys-gui-charging-rod"
-local GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
+Public.GUI_KEY = "cerys-gui-charging-rod"
+Public.GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
 
 Public.built_charging_rod = function(entity, tags)
 	if not storage.cerys then
@@ -20,13 +21,18 @@ Public.built_charging_rod = function(entity, tags)
 	if tags then
 		if tags.is_negative ~= nil then
 			Public.rod_set_state(entity, tags.is_negative)
+		else
+			Public.rod_set_state(entity, true)
 		end
+
 		if tags.circuit_controlled ~= nil then
 			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = tags.circuit_controlled
 		end
 		if tags.control_signal ~= nil then
 			storage.cerys.charging_rods[entity.unit_number].control_signal = tags.control_signal
 		end
+	else
+		Public.rod_set_state(entity, true)
 	end
 
 	if not storage.cerys.given_charging_rod_performance_warning then
@@ -94,7 +100,7 @@ function Public.tick_12_check_charging_rods()
 
 		for _, player in pairs(game.connected_players) do
 			if player.opened == e then
-				local gui = player.gui.relative[GUI_KEY]
+				local gui = player.gui.relative[Public.GUI_KEY]
 				if gui then
 					local switch = gui.content["charging-rod-switch"]
 					if not switch.enabled then -- Only sync disabled switches (circuit controlled)
@@ -195,7 +201,7 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		return
 	end
 
-	local gui_key = entity.name == "cerys-charging-rod" and GUI_KEY or GUI_KEY_GHOST
+	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
 
 	local relative = player.gui.relative
 	if relative[gui_key] then
@@ -340,7 +346,7 @@ script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 	local is_negative = event.element.switch_state == "left"
 	Public.rod_set_state(entity, is_negative)
 
-	local gui_key = entity.name == "cerys-charging-rod" and GUI_KEY or GUI_KEY_GHOST
+	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
 
 	for _, other_player in pairs(game.connected_players) do
 		if
@@ -543,6 +549,50 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 		local tags = entity.tags or {}
 		tags.control_signal = event.element.elem_value
 		entity.tags = tags
+	end
+end)
+
+script.on_event("cerys-toggle-entity", function(event)
+	local p = game.players[event.player_index]
+	local e = p.selected
+
+	if not storage.cerys then
+		return
+	end
+
+	if
+		not (
+			e
+			and e.valid
+			and (e.name == "cerys-charging-rod" or (e.name == "entity-ghost" and e.ghost_name == "cerys-charging-rod"))
+		)
+	then
+		return
+	end
+
+	local is_ghost = e.name == "entity-ghost"
+
+	local current_state
+	if is_ghost then
+		current_state = (e.tags and e.tags.is_negative) or false
+	else
+		current_state = storage.cerys.charging_rod_is_negative[e.unit_number]
+	end
+
+	local new_state = not current_state
+	Public.rod_set_state(e, new_state)
+
+	local gui_key = is_ghost and Public.GUI_KEY_GHOST or Public.GUI_KEY
+	for _, player in pairs(game.connected_players) do
+		if player.opened == e then
+			local gui = player.gui.relative[gui_key]
+			if gui and gui.valid and gui.content and gui.content.valid then
+				local switch = gui.content["charging-rod-switch"]
+				if switch and switch.valid then
+					switch.switch_state = new_state and "left" or "right"
+				end
+			end
+		end
 	end
 end)
 
