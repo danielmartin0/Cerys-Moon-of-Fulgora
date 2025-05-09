@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.11.11
-Date: ????
+Date: 2025-05-09
   Locale:
     - Chinese translation updated.
     - Japanese translation updated.
