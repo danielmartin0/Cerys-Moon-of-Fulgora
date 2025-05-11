@@ -172,7 +172,7 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	local max_heating_radius = is_player_tower and MAX_HEATING_RADIUS_PLAYER or MAX_HEATING_RADIUS
 	local temperature_interval = TEMPERATURE_INTERVAL
 
-	if common.HARD_MODE_ON then
+	if common.HARD_MODE_ON and not is_player_tower then
 		max_heating_radius = 10
 		temperature_interval = temperature_interval * 16 / 10
 	end

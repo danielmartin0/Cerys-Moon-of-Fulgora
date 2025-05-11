@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.11.12
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that Hard Cerys would also reduce the heating radius of player-constructed radiative towers.
 ---------------------------------------------------------------------------------------------------
 Version: 2.11.11
 Date: 2025-05-09
