@@ -24,10 +24,10 @@ Many frozen structures lie embedded in the surface. Though made of new materials
     - Uncover ancient wrecks from multiple layers of ice and repair them by various methods.
     - Defrost your factory with a new mechanic, different to Aquilo.
     - The play area of the moon is finite. Terrain curves as you approach the moon's edge and the day-night boundary travels across the surface.
-    - Solve the workings of plutonium and unlock devastating weaponry.
-- Traditional mining is combined with a new scrap recycling chain based on nuclear components.
-- It is said that due to the solar wind, cargo pods cannot drop resources onto Cerys without researching a specific technology. Construction bots are excepted.
-- Designed for maximum compatibility with zero changes to the vanilla items, recipes or features.
+    - Solve the workings of plutonium to unlock devastating weaponry for offworld.
+- Traditional mining is combined with a scrap recycling chain based on nuclear components.
+- It is said that due to the solar wind, cargo pod drops to Cerys are restricted without researching a specific technology.
+- Designed for maximum compatibility with zero changes to vanilla items, recipes or features.
 - On first playthrough, Cerys is equal parts puzzle game and Space Age planet.
 
 ---
@@ -44,12 +44,15 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 
 ---
 
-## Notes
+## Further notes
 
-- Cerys is more difficult than most vanilla planets. (For a trickier version still, install [Hard Mode Cerys](https://mods.factorio.com/mod/Rocs-Hardcore-Cerys).)
-- Dynamic lighting on Cerys can be disabled in the settings if you find it distracting.
-- If you would like to visit Cerys without being trapped, use the QoL mod [Planet Hopper](https://mods.factorio.com/mod/Planet-Hopper).
-- This mod originally contained a revamp of [GotLag’s Flare Stack](https://mods.factorio.com/mods/GotLag/Flare%20Stack). We later assisted snouz to port the original mod to 2.0. As a result, with Cerys installed, the flare stack technology is moved to the Cerys tech tree.
+Cerys launched in 2024 as one of the first planet mods for Space Age.
+
+The mod is balanced around vanilla Space Age and plays nicely with new or existing saves. It is possible to start a new game on the moon with the [Cerys Start](https://mods.factorio.com/mod/Cerys-Start) mod (which includes an optional speedrunning mode.) The difficulty is higher than most vanilla planets.
+
+At launch, Cerys contained a port of [GotLag’s Flare Stack](https://mods.factorio.com/mods/GotLag/Flare%20Stack). We later assisted snouz to port the original mod to 2.0. As a result, with Cerys installed, the Flare stack technology is moved to the Cerys tech tree.
+
+We advise caution with modded warehouses on first playthrough as these can interfere with the discovery process for some players. A minority of players find the dynamic lighting system distracting—please bear in mind this can be disabled in the mod settings.
 
 ---
 
@@ -62,13 +65,19 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 
 ### Credits
 
-- Gameplay, code and design: [thesixthroc](https://mods.factorio.com/user/thesixthroc).
-    - I enjoy talking to players, please find me in [Discord](https://discord.gg/VuVhYUBbWE).
-- Art and creative collaboration: [Tserup](https://mods.factorio.com/user/Tserup).
-- Special thanks:
-    - snouz for contributing graphical polish.
-    - Quezler and notnotmelon for a few code fixes.
-    - NekoBaron, rjdunlap, xbarsigma, Preceti, notnotmelon, LunarNex, Ellthan, Tetlanesh, Sapheroni, Volodath and others for playtests, feedback and discussion.
+Gameplay, code and design is by [thesixthroc](https://mods.factorio.com/user/thesixthroc). I enjoy talking to players, please find me in [Discord](https://discord.gg/VuVhYUBbWE). Certain commercial projects might also be welcome.
+
+Art and creative collaboration by [Tserup](https://mods.factorio.com/user/Tserup).
+
+Special thanks:
+
+- snouz for graphical polish and the full port of Flare Stack.
+- bunshaman for their partial implementation of custom entity setting blueprint pasting that was adapted for charging rods in this mod.
+- Quezler for improving support for fluid inputs on centrifuges.
+- notnotmelon for helping make the radiative towers work on other planets and surfaces.
+- NekoBaron, rjdunlap, xbarsigma, Preceti, notnotmelon, LunarNex, Ellthan, Tetlanesh, Sapheroni, Volodath, Fallen, Citizen Joe, Another Zach, Frontrider, sourcerator and Ellthan for playtests, feedback and discussion.
+- HealdollEmily for providing the upscaled graphic of Fulgora currently used as a backdrop.
+- Creators of open-source assets we adapted for the mod, as detailed in the [credits file](https://github.com/danielmartin0/Cerys-Moon-of-Fulgora/blob/main/Credits.md).
 
 ---
 

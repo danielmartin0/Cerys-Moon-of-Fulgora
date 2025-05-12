@@ -292,10 +292,6 @@ local cargo_drops_base =
 if not settings.startup["cerys-sandbox-mode"].value then
 	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
 		type = "unlock-recipe",
-		recipe = "cerys-construction-robot-recycling",
-	}
-	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-		type = "unlock-recipe",
 		recipe = "cerys-exoskeleton-equipment-recycling",
 	}
 
@@ -323,10 +319,6 @@ data:extend({
 		name = "cerys-nice-try-sukaz",
 		hidden = true,
 		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "construction-robot-recycling",
-			},
 			{
 				type = "unlock-recipe",
 				recipe = "exoskeleton-equipment-recycling",
