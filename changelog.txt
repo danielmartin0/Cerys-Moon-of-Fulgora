@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.11.14
-Date: ????
+Date: 2025-05-12
   Bugfixes:
     - Attempted fix for a crash on the 'Toggle Entity' keybinding when using other mods that pay attention to this keybinding.
 ---------------------------------------------------------------------------------------------------
