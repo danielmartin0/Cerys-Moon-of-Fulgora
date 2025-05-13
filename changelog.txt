@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.1
-Date: ????
+Date: 2025-05-13
   Changes:
     - Reapplied the experimental-specific changes that were reverted in 2.13.1.
     - Bumped the required version of Factorio to experimental once more.
