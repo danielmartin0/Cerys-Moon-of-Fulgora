@@ -1,35 +1,45 @@
 local common = require("common")
 
 if data.raw.recipe["superconductor"] then
-	data.raw.recipe["superconductor"].additional_categories = data.raw.recipe["superconductor"].additional_categories
-		or {}
+	if not data.raw.recipe["superconductor"].additional_categories then
+		data.raw.recipe["superconductor"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["superconductor"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["sulfuric-acid"] then
-	data.raw.recipe["sulfuric-acid"].additional_categories = data.raw.recipe["sulfuric-acid"].additional_categories
-		or {}
+	if not data.raw.recipe["sulfuric-acid"].additional_categories then
+		data.raw.recipe["sulfuric-acid"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["sulfuric-acid"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["plastic-bar"] then
-	data.raw.recipe["plastic-bar"].additional_categories = data.raw.recipe["plastic-bar"].additional_categories or {}
+	if not data.raw.recipe["plastic-bar"].additional_categories then
+		data.raw.recipe["plastic-bar"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["plastic-bar"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["lithium"] then
-	data.raw.recipe["lithium"].additional_categories = data.raw.recipe["lithium"].additional_categories or {}
+	if not data.raw.recipe["lithium"].additional_categories then
+		data.raw.recipe["lithium"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["lithium"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["battery"] then
-	data.raw.recipe["battery"].additional_categories = data.raw.recipe["battery"].additional_categories or {}
+	if not data.raw.recipe["battery"].additional_categories then
+		data.raw.recipe["battery"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["battery"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["ammonia-rocket-fuel"] then
-	data.raw.recipe["ammonia-rocket-fuel"].additional_categories = data.raw.recipe["ammonia-rocket-fuel"].additional_categories
-		or {}
+	if not data.raw.recipe["ammonia-rocket-fuel"].additional_categories then
+		data.raw.recipe["ammonia-rocket-fuel"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["ammonia-rocket-fuel"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["fusion-power-cell"] then
-	data.raw.recipe["fusion-power-cell"].additional_categories = data.raw.recipe["fusion-power-cell"].additional_categories
-		or {}
+	if not data.raw.recipe["fusion-power-cell"].additional_categories then
+		data.raw.recipe["fusion-power-cell"].additional_categories = {}
+	end
 	table.insert(data.raw.recipe["fusion-power-cell"].additional_categories, "fulgoran-cryogenics")
 end
 
