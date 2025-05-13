@@ -4,7 +4,8 @@ data:extend({
 	{
 		type = "recipe",
 		name = "ancient-structure-repair-part",
-		category = "advanced-crafting-or-fulgoran-cryogenics",
+		category = "advanced-crafting",
+		additional_categories = { "fulgoran-cryogenics" },
 		enabled = false,
 		energy_required = 3,
 		ingredients = {
