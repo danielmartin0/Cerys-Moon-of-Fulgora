@@ -516,6 +516,13 @@ if data.raw.recipe["motor"] then
 		change = 0.1,
 	})
 end
+if data.raw.recipe["electric-motor"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "electric-motor",
+		change = 0.1,
+	})
+end
 
 data:extend({
 	{
