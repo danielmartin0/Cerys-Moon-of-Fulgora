@@ -107,7 +107,7 @@ data:extend({
 		category = "nuclear-reactor-repair",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 5 },
+			{ type = "item", name = "processing-unit", amount = 1 },
 		},
 		results = {},
 		allow_quality = false,
@@ -157,7 +157,7 @@ data:extend({
 		category = "crusher-quality-upgrades",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,
