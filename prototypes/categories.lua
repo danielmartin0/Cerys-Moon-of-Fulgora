@@ -31,30 +31,6 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "electromagnetics-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
-		name = "chemistry-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
-		name = "chemistry-or-cryogenics-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
-		name = "cryogenics-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
-		name = "crafting-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
-		name = "advanced-crafting-or-fulgoran-cryogenics",
-	},
-	{
-		type = "recipe-category",
 		name = "no-machine",
 	},
 	{
