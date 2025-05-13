@@ -1,12 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.2
-Date: ????
-  Changes:
+Date: 2025-05-13
+  Info:
+    - Clarified the previous changelogs.
+    - Corrected an entry in Factoriopedia.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.1
 Date: 2025-05-13
   Changes:
-    - Reapplied the experimental-specific changes that were reverted in 2.13.1.
+    - Reapplied the experimental-specific changes that were reverted in 2.13.0.
     - Bumped the required version of Factorio to experimental once more.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.0
@@ -14,7 +16,7 @@ Date: 2025-05-13
   Bugfixes:
     - Corrected a bug in which repairing the reactor required 5 processing units per recipe, rather than 1. (The bump to 5 was instead intended to apply to a quality upgrade recipe.)
   Info:
-    - This is a special release for the current stable version of Factorio.
+    - This is a special release for the current stable version of Factorio. The following update will again be for experimental versions.
 ---------------------------------------------------------------------------------------------------
 Version: 2.12.3
 Date: 2025-05-13
