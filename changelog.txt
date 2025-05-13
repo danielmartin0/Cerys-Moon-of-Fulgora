@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.12.1
 Date: ????
-  Changes:
+  Compatibility:
+    - Better compatibility with modded crafting machines.
 ---------------------------------------------------------------------------------------------------
 Version: 2.12.0
 Date: 2025-05-12
@@ -54,7 +55,7 @@ Date: 2025-05-07
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.27
 Date: 2025-05-07
-  Modding:
+  Compatibility:
     - Fixed that Fulgora Extended if present would cause Cerysian ruins to spawn entities when mined.
 ---------------------------------------------------------------------------------------------------
 Version: 2.10.26
@@ -215,7 +216,7 @@ Date: 2025-04-25
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.8
 Date: 2025-04-23
-  Modding:
+  Compatibility:
     - Support for modded boilers that have no temperature.
 ---------------------------------------------------------------------------------------------------
 Version: 2.9.7
@@ -317,7 +318,7 @@ Date: 2025-04-02
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.12
 Date: 2025-04-01
-  Modding:
+  Compatibility:
     - Compatibility with Rusting Iron.
 ---------------------------------------------------------------------------------------------------
 Version: 2.7.11
@@ -376,7 +377,7 @@ Date: 2025-03-24
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.3
 Date: 2025-03-23
-  Modding:
+  Compatibility:
     - Moon Discovery Cerys is now prevented from being given hidden prerequisites by other mods.
 ---------------------------------------------------------------------------------------------------
 Version: 2.6.0
@@ -411,7 +412,7 @@ Date: 2025-03-20
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.20
 Date: 2025-03-20
-  Modding:
+  Compatibility:
     - Compatibility with Limit Special Building Surfaces.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.19
@@ -467,7 +468,7 @@ Date: 2025-03-16
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.5
 Date: 2025-03-16
-  Modding:
+  Compatibility:
     - Restored code to workaround a crash in 5dim on startup that could be seemingly attributed to Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.4
@@ -482,7 +483,7 @@ Date: 2025-03-15
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.2
 Date: 2025-03-15
-  Modding:
+  Compatibility:
     - Restored compatibility with mods that add new asteroid types.
 ---------------------------------------------------------------------------------------------------
 Version: 2.5.1
@@ -515,7 +516,7 @@ Date: 2025-03-13
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.20
 Date: 2025-03-12
-  Modding:
+  Compatibility:
     - For now, removed some compatibility code to fix all incorrect next_upgrade fields defined by all other mods. This is a larger change than intended and we are likely to make more specific fixes in future so as not to implicate Cerys in unrelated problems.
 ---------------------------------------------------------------------------------------------------
 Version: 2.4.19
@@ -611,7 +612,7 @@ Date: 2025-03-09
     - Reduced the cost of upgrading Fulgoran cryogenic plant quality (-50%).
     - Small quantitative tweaks to technology costs.
     - Reduced damage from gamma radiation (-8%).
-  Modding:
+  Compatibility:
     - Automatic bans of recipes from other mods that produce restricted items on Cerys (and meet a few other criteria).
   Info:
     - Fixed that the Factoriopedia entry for gamma radiation referenced 'fluids' rather than 'liquids'.
@@ -638,7 +639,7 @@ Date: 2025-03-09
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.14
 Date: 2025-03-07
-  Modding:
+  Compatibility:
     - Support for the mod Cupric Asteroids — such asteroids will now spawn on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.13
@@ -665,14 +666,14 @@ Date: 2025-03-04
     - Reduced rate of plutonium production by 17%.
   Graphics:
     - Shadows on Cerys are slightly darker.
-  Modding:
+  Compatibility:
     - Removed old Muluna compatibility code.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.8
 Date: 2025-03-04
   Info:
     - Moon Discovery Cerys and the Cerys description in Factoriopedia have been updated with things-to-know on arrival.
-  Modding:
+  Compatibility:
     - More Picker Dollies compatibility: Fixed that player-constructable radiative towers could be moved separate from their heating effect.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.7
@@ -692,7 +693,7 @@ Date: 2025-03-03
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.4
 Date: 2025-03-02
-  Modding:
+  Compatibility:
     - Added a simple compatibility patch for Plutonium Energy. PE recipes that could be considered complex duplicates of Cerys recipes are hidden from the tech tree.
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.3
@@ -702,7 +703,7 @@ Date: 2025-03-02
 ---------------------------------------------------------------------------------------------------
 Version: 2.3.2
 Date: 2025-03-02
-  Modding:
+  Compatibility:
     - AAI Industry compatibility: Stone is once again obtainable from nuclear scrap recycling.
     - Distant Misfires compatibility: Cerys asteroids once again have a collision mask if this mod is installed, allowing them to be shot down.
   Optimizations:
@@ -840,7 +841,7 @@ Date: 2025-02-25
     - Fixed issue in which player radiative heaters were buildable before unlocking the technology.
     - Fixed existing Cerysian science packs being deleted when loading pre-2.0.0 saves.
     - Fixed Discover Fulgoran Cryogenics recipe being always unlocked for players that were previously playing on Technology Compatibility Mode.
-  Modding:
+  Compatibility:
     - Added setting to control whether player-constructable radiative heaters are available.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
@@ -877,7 +878,7 @@ Date: 2025-02-23
   Graphics:
     - Various graphical improvements.
     - New icon for Fulgoran Cryogenics Progress to avoid confusion with science packs.
-  Modding:
+  Compatibility:
     - Full compatibility with Factory Planner. 'Technology compatibility mode' has been removed for now.
     - New setting to stop Cerys overwriting certain recycling recipes to their vanilla form.
     - Compatibility with Picker Dollies.
@@ -1077,12 +1078,12 @@ Date: 2025-02-10
     - Radiative towers on Cerys now belong to the player force rather than the neutral force, making their solid fuel consumption appear in production statistics.
     - The charging rod circuit control GUI now initializes correctly.
     - Adjusted the flickering light on the radiative tower.
-  Modding:
+  Compatibility:
     - Muluna compatibility: Burner inserters are no longer forbidden on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.14
 Date: 2025-02-10
-  Modding:
+  Compatibility:
     - Muluna compatibility: 'Carbon-lubricated electric engine unit' is no longer craftable on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.13
@@ -1112,7 +1113,7 @@ Date: 2025-02-09
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.8
 Date: 2025-02-08
-  Modding:
+  Compatibility:
     - Support for Roc's Hardcore Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.7
@@ -1225,7 +1226,7 @@ Date: 2025-02-01
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.48
 Date: 2025-01-30
-  Modding:
+  Compatibility:
     - Compatibility with modded burner generator equipment.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.47
@@ -1352,12 +1353,12 @@ Date: 2025-01-22
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.26
 Date: 2025-01-22
-  Modding:
+  Compatibility:
     - More mod compatibilities.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.25
 Date: 2025-01-22
-  Modding:
+  Compatibility:
     - Compatibility with mods that mess with the default charging rod in the data stage.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.24
@@ -1401,7 +1402,7 @@ Date: 2025-01-21
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.18
 Date: 2025-01-21
-  Modding:
+  Compatibility:
     - Further compatibility fixes, especially for 5-dim.
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.17
@@ -1502,7 +1503,7 @@ Date: 2025-01-19
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.27
 Date: 2025-01-19
-  Modding:
+  Compatibility:
     - Added Planet Hopper as an optional dependency. Although there is no specific compatibility, players may like to use Planet hoppers to pause gameplay on Cerys and resume later.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.26
@@ -1524,7 +1525,7 @@ Version: 0.9.23
 Date: 2025-01-18
   Balancing:
     - Fulgoran cryogenic plants can now once again process nuclear waste solution, but the mixed-oxide fuel cell reprocessing loop has been nerfed to compensate.
-  Modding:
+  Compatibility:
     - Fulgoran cryogenic plants can now be placed in the map editor.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.22
@@ -1588,7 +1589,7 @@ Date: 2025-01-15
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.12
 Date: 2025-01-15
-  Modding:
+  Compatibility:
     - Optional dependency added: Wooden Cerys: Lunaponics.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.11
@@ -1636,7 +1637,7 @@ Date: 2025-01-12
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.4
 Date: 2025-01-12
-  Modding:
+  Compatibility:
     - Assorted compatibility fixes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.3
@@ -1662,7 +1663,7 @@ Date: 2025-01-11
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.1
 Date: 2025-01-11
-  Modding:
+  Compatibility:
     - To improve mod compatibility, Cerysian labs, science packs and technology prototypes are defined in data-final-fixes.lua for now.
 ---------------------------------------------------------------------------------------------------
 Version: 0.9.0
@@ -1678,7 +1679,7 @@ Date: 2025-01-11
     - Old Cerys icon replaced.
   Control:
     - Added mod settings to control whether fallen asteroid chunks on Cerys should be automatically picked up by bots and/or players.
-  Modding:
+  Compatibility:
     - Centrifuge fluid boxes introduced by Cerys are now moddable by others mods without data collisions (thanks Quezler!)
   Optimizations:
     - Performance optimizations for solar wind.
@@ -1707,7 +1708,7 @@ Date: 2025-01-10
   Balancing:
     - Sulfuric acid required for nitrogen-rich minerals processing recipe very slightly increased.
     - Exoskeletons can no longer be recycled on Cerys.
-  Modding:
+  Compatibility:
     - Maraxsis compatibility: Maraxsis' sublimation recipe now has a minimum surface temperature condition of 255K.
     - Prevent other mods from overriding inputs or next upgrade of the Cerys lab, reactor, and cryogenic plant.
 ---------------------------------------------------------------------------------------------------
@@ -1718,7 +1719,7 @@ Date: 2025-01-09
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.8
 Date: 2025-01-07
-  Modding:
+  Compatibility:
     - Compatibility with AAI Industry: nuclear scrap recycling contains stone instead of stone bricks.
   Graphics:
     - Fixed the icon for mixed oxide fuel cells on belts.
@@ -1730,7 +1731,7 @@ Date: 2025-01-07
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.6
 Date: 2025-01-07
-  Modding:
+  Compatibility:
     - For compatibility with Factory Planner, Black Market and other mods, a startup setting has been included to switch the Fulgoran Cryogenics technology from recipe-based to trigger-based. This prevents certain crashes.
 ---------------------------------------------------------------------------------------------------
 Version: 0.8.5
@@ -1815,7 +1816,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.14
 Date: 2025-01-05
-  Modding:
+  Compatibility:
     - Subtle bugfix to the helper function override_surface_conditions, improving certain mod compatibilities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.13
@@ -1840,7 +1841,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.9
 Date: 2025-01-05
-  Modding:
+  Compatibility:
     - Restrictions on building various modded reactors, labs, accumulators, and fusion reactors on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.8
@@ -1870,7 +1871,7 @@ Date: 2025-01-05
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.3
 Date: 2025-01-05
-  Modding:
+  Compatibility:
     - Maraxsis compatibility: rocket parts are once again craftable on Cerys if Maraxsis is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.2
@@ -1887,7 +1888,7 @@ Date: 2025-01-05
     - Charging rods no longer have a 4 tile vertical offset for their deflection effect, making it easier for players to understand specifically how they work without looking at the code.
   Balancing:
     - Increased the input energy flow limit of charging rods.
-  Modding:
+  Compatibility:
     - Compatibility with Factorio+.
 ---------------------------------------------------------------------------------------------------
 Version: 0.7.0
@@ -1916,7 +1917,7 @@ Date: 2025-01-05
     - The light indicator on charging rods is now red for positive, blue for negative.
     - Icons for the Discover Fulgoran Cryogenics recipe & science item switched to an empty bottle.
     - Various graphical fixes.
-  Modding:
+  Compatibility:
     - Better mod compatibility with surface conditions set by other mods.
     - Asteroid chunks can now drop onto modded transport belts.
   Optimizations:
@@ -2033,7 +2034,7 @@ Date: 2024-12-31
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.25
 Date: 2024-12-31
-  Modding:
+  Compatibility:
     - When Cerys is enabled, solid fuel can now once again be used with entities from other mods that take solid fuel.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.24
@@ -2071,14 +2072,14 @@ Date: 2024-12-30
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.18
 Date: 2024-12-30
-  Modding:
+  Compatibility:
     - Compatibility with Visible Planets in Space: Fulgora now appears in the background behind Cerys.
   Info:
     - Updated movie poster.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.17
 Date: 2024-12-30
-  Modding:
+  Compatibility:
     - PlanetsLib version dependency updated.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.16
@@ -2098,7 +2099,7 @@ Date: 2024-12-30
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.13
 Date: 2024-12-30
-  Modding:
+  Compatibility:
     - Dependency on 'Surfaces Have Temperature' mod replaced by dependency on 'PlanetsLib'.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.12
@@ -2109,7 +2110,7 @@ Date: 2024-12-29
     - Asteroids on Cerys are now tougher, with more health and physical resistance.
     - Reactor excavation recipe now proceeds faster.
     - Asteroid laser resistance lowered from 100% to 99%.
-  Modding:
+  Compatibility:
     - Recycling recipes of items found in nuclear scrap are now prevented from being modified by the introduction of new recipes for those items in other mods.
     - Added compatibility with most modded centrifuges.
   Graphics:
@@ -2136,7 +2137,7 @@ Version: 0.5.8
 Date: 2024-12-28
   Graphics:
     - Improvements to icon quality and size.
-  Modding:
+  Compatibility:
     - Minimum version enforced on Surfaces Have Temperature mod.
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.7
@@ -2219,7 +2220,7 @@ Date: 2024-12-27
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.26
 Date: 2024-12-27
-  Modding:
+  Compatibility:
     - Maraxsis compatibility: Maraxsis petroleum cracking to heavy oil recipe is now forbidden on Cerys.
     - Description update.
 ---------------------------------------------------------------------------------------------------
@@ -2227,7 +2228,7 @@ Version: 0.4.24
 Date: 2024-12-26
   Bugfixes:
     - Attempted workaround for base game bug complaining about missing 'cerys_ash_flats' on some saves.
-  Modding:
+  Compatibility:
     - Compatibility with mods that remove the 'fuel_categories' field from entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.23
@@ -2284,7 +2285,7 @@ Date: 2024-12-26
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.13
 Date: 2024-12-26
-  Modding:
+  Compatibility:
     - Prepublish script.
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.12
@@ -2389,7 +2390,7 @@ Version: 0.3.37
 Date: 2024-12-25
   Changes:
     - Methane ice input per output increased further.
-  Modding:
+  Compatibility:
     - Added compatibility for mods that add alternate character entities.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.36
@@ -2449,12 +2450,12 @@ Date: 2024-12-25
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.26
 Date: 2024-12-25
-  Modding:
+  Compatibility:
     - Switched API for other modders to 'parent_body = fulgora' and 'planet_type = moon'.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.25
 Date: 2024-12-25
-  Modding:
+  Compatibility:
     - Added 'parent_planet' field to Cerys for the purposes of other modders.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.24
@@ -2494,7 +2495,7 @@ Date: 2024-12-24
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.17
 Date: 2024-12-24
-  Modding:
+  Compatibility:
     - Added safety clause to handle case of mod or command generating the Cerys surface.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.16
@@ -2506,7 +2507,7 @@ Version: 0.3.15
 Date: 2024-12-24
   Bugfixes:
     - Workaround implemented for base game bug with '/cheat cerys' in which chunks were generated twice, leading to non-ideal dry ice configuration.
-  Modding:
+  Compatibility:
     - For Any Planet Start, centrifuge recipe unlock removed from Cerys discovery as the player can obtain these from nuclear scrap.
   Info:
     - In-game notice added to users who generated Cerys during the brief window in which reactor initialization was broken.
@@ -2537,17 +2538,17 @@ Date: 2024-12-24
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.10
 Date: 2024-12-24
-  Modding:
+  Compatibility:
     - Lab compatibility with Tenebris.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.9
 Date: 2024-12-24
-  Modding:
+  Compatibility:
     - Added compatibility for Factorio HD Age: Space Age Terrain Aquilo.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.8
 Date: 2024-12-24
-  Modding:
+  Compatibility:
     - Mod compatibility tweaks.
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.7
