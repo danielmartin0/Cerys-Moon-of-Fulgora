@@ -3,6 +3,8 @@ Version: 2.13.0
 Date: ????
   Bugfixes:
     - Corrected a bug in which repairing the reactor required 5 processing units per recipe, rather than 1. (The bump to 5 was instead intended to apply to a quality upgrade recipe.)
+  Info:
+    - This is a special release for the current stable version of Factorio.
 ---------------------------------------------------------------------------------------------------
 Version: 2.12.3
 Date: 2025-05-13
