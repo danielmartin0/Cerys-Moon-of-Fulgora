@@ -1,36 +1,25 @@
 local common = require("common")
 
 if data.raw.recipe["superconductor"] then
-	data.raw.recipe["superconductor"].additional_categories = data.raw.recipe["superconductor"].additional_categories
-		or {}
-	table.insert(data.raw.recipe["superconductor"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["superconductor"].category = "electromagnetics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["sulfuric-acid"] then
-	data.raw.recipe["sulfuric-acid"].additional_categories = data.raw.recipe["sulfuric-acid"].additional_categories
-		or {}
-	table.insert(data.raw.recipe["sulfuric-acid"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["sulfuric-acid"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["plastic-bar"] then
-	data.raw.recipe["plastic-bar"].additional_categories = data.raw.recipe["plastic-bar"].additional_categories or {}
-	table.insert(data.raw.recipe["plastic-bar"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["plastic-bar"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["lithium"] then
-	data.raw.recipe["lithium"].additional_categories = data.raw.recipe["lithium"].additional_categories or {}
-	table.insert(data.raw.recipe["lithium"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["lithium"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["battery"] then
-	data.raw.recipe["battery"].additional_categories = data.raw.recipe["battery"].additional_categories or {}
-	table.insert(data.raw.recipe["battery"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["battery"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["ammonia-rocket-fuel"] then
-	data.raw.recipe["ammonia-rocket-fuel"].additional_categories = data.raw.recipe["ammonia-rocket-fuel"].additional_categories
-		or {}
-	table.insert(data.raw.recipe["ammonia-rocket-fuel"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["ammonia-rocket-fuel"].category = "chemistry-or-cryogenics-or-fulgoran-cryogenics"
 end
 if data.raw.recipe["fusion-power-cell"] then
-	data.raw.recipe["fusion-power-cell"].additional_categories = data.raw.recipe["fusion-power-cell"].additional_categories
-		or {}
-	table.insert(data.raw.recipe["fusion-power-cell"].additional_categories, "fulgoran-cryogenics")
+	data.raw.recipe["fusion-power-cell"].category = "cryogenics-or-fulgoran-cryogenics"
 end
 
 if data.raw.recipe["plutonium-239-recycling"] then

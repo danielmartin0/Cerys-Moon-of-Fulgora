@@ -1,6 +1,70 @@
 local common = require("common")
 local lib = require("lib")
 
+for _, machine in pairs(data.raw["assembling-machine"]) do
+	if machine.crafting_categories then
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "chemistry-or-cryogenics" then
+				if not lib.find(machine.crafting_categories, "chemistry-or-cryogenics-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "chemistry-or-cryogenics-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "chemistry" then
+				if not lib.find(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "chemistry-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "electromagnetics" then
+				if not lib.find(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "electromagnetics-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "cryogenics" then
+				if not lib.find(machine.crafting_categories, "cryogenics-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "cryogenics-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "crafting" then
+				if not lib.find(machine.crafting_categories, "crafting-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "crafting-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+
+		for _, category in pairs(machine.crafting_categories) do
+			if category == "advanced-crafting" then
+				if not lib.find(machine.crafting_categories, "advanced-crafting-or-fulgoran-cryogenics") then
+					table.insert(machine.crafting_categories, "advanced-crafting-or-fulgoran-cryogenics")
+				end
+				break
+			end
+		end
+	end
+end
+
+for _, character in pairs(data.raw.character) do -- there are alt-skin mods with different characters
+	if character.crafting_categories then
+		table.insert(character.crafting_categories, "crafting-or-fulgoran-cryogenics")
+	end
+end
+
 --== Fuel categories ==--
 
 local function update_fuel_categories(entity)
