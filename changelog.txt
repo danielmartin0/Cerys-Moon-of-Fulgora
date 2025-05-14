@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.4
 Date: ????
-  Changes:
+  Optimizations:
+    - Improved the performance of dynamic lighting when no player is looking at Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.3
 Date: 2025-05-14
