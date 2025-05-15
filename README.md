@@ -2,7 +2,7 @@
 
 ---
 
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/movie-poster.png)
+![Movie poster for Cerys](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/movie-poster.png)
 
 ---
 
@@ -10,11 +10,11 @@
 
 You discover Cerys, a moon of Fulgora whose ruins lie frozen under a thick layer of dry ice. As you touch down, methane ice crystals scatter into the vacuum. Asteroids wander overhead, along with a gentle solar wind under Fulgora’s magnetic influence.
 
+[![Cerys briefing video](https://files.catbox.moe/wbgrjf.mp4)](https://files.catbox.moe/wbgrjf.mp4)
+
 Many frozen structures lie embedded in the surface. Though made of new materials, they bear the hallmarks of the Fulgorans. As you explore, it becomes apparent that without lightning, they turned to another source of power.
 
----
-
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/explore.png)
+![Engineer casting flashlight on Cerys ruins](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/explore.png)
 
 ---
 
@@ -40,7 +40,7 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 
 ---
 
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing-and-factory.png)
+![Landing on Cerys and factories on Cerys](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing-and-factory.png)
 
 ---
 
@@ -85,4 +85,4 @@ Special thanks:
 
 ---
 
-![](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering-2.png)
+![Space platform hovering over Cerys](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/hovering-2.png)
