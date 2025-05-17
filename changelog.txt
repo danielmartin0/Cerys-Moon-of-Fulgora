@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.5
-Date: ????
+Date: 2025-05-17
   Changes:
     - Spawned some additional radiative towers on new saves. This includes a second tower in range of the reactor, as well as heating some cryogenic plants that could otherwise not be heated until late-game.
   Graphics:
