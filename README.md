@@ -10,7 +10,7 @@
 
 You discover Cerys, a moon of Fulgora whose ruins lie frozen under a thick layer of dry ice. As you touch down, methane ice crystals scatter into the vacuum. Asteroids wander overhead, along with a gentle solar wind under Fulgora’s magnetic influence.
 
-[![Cerys briefing video](https://files.catbox.moe/wbgrjf.mp4)](https://files.catbox.moe/wbgrjf.mp4)
+[![Cerys briefing video](https://files.catbox.moe/uhd8hb.mp4)](https://files.catbox.moe/uhd8hb.mp4)
 
 Many frozen structures lie embedded in the surface. Though made of new materials, they bear the hallmarks of the Fulgorans. As you explore, it becomes apparent that without lightning, they turned to another source of power.
 
@@ -37,8 +37,6 @@ Many frozen structures lie embedded in the surface. Though made of new materials
 - _"one of the best mods ever made. every recipe has a purpose. does not waste your time."_ — notnotmelon
 - _“This is a GREAT mod”_ — MelodicBreadfruit938
 - _"Extremely impressed at how several space age systems work together"_ — PlzPuddingPlz
-
----
 
 ![Landing on Cerys and factories on Cerys](https://raw.githubusercontent.com/danielmartin0/Cerys-Moon-of-Fulgora/main/images/landing-and-factory.png)
 

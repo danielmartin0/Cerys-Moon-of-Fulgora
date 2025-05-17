@@ -123,15 +123,6 @@ function Public.on_cerys_chunk_generated(event, surface)
 
 	--== Structures ==--
 
-	if common.HARD_MODE_ON then -- extra tower to heat reactor
-		local displacement_from_corner = { x = -4, y = -2 }
-
-		tower_positions[#tower_positions + 1] = {
-			x = math.ceil(common.REACTOR_POSITION_SEED.x) - 16 + displacement_from_corner.x,
-			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) - 11 + displacement_from_corner.y,
-		}
-	end
-
 	Public.create_towers(surface, area)
 	Public.create_cryo_plants(surface, area)
 	Public.create_crushers(surface, area)
@@ -219,41 +210,78 @@ end
 function Public.create_towers(surface, area)
 	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
 
+	local positions = {}
 	for _, p in ipairs(tower_positions) do
 		local xx = p.x / stretch_factor
 		local yy = p.y * stretch_factor
 
+		if (((yy / 64) ^ 2) + (30 - xx) / 32) > 0 then
+			table.insert(positions, p)
+		end
+	end
+
+	if common.HARD_MODE_ON then
+		-- needed to heat reactor:
+		local displacement_from_corner = { x = -4, y = -2 }
+
+		table.insert(positions, {
+			x = math.ceil(common.REACTOR_POSITION_SEED.x) - 16 + displacement_from_corner.x,
+			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) - 11 + displacement_from_corner.y,
+		})
+	else
+		local displacement_from_corner = { x = 9, y = 2 }
+
+		table.insert(positions, {
+			x = math.ceil(common.REACTOR_POSITION_SEED.x) + 16 + displacement_from_corner.x,
+			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) + 11 + displacement_from_corner.y,
+		})
+	end
+
+	table.insert(positions, {
+		x = 33.5,
+		y = -41,
+	})
+	table.insert(positions, {
+		x = -93.5,
+		y = -80,
+	})
+
+	local positions_in_area = {}
+	for _, p in ipairs(positions) do
 		if
-			(((yy / 64) ^ 2) + (30 - xx) / 32) > 0
-			and p.x >= area.left_top.x
+			p.x >= area.left_top.x
 			and p.x < area.right_bottom.x
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
 		then
-			local p2 = { x = p.x, y = p.y }
+			table.insert(positions_in_area, p)
+		end
+	end
 
-			Public.deal_with_existing_entities(surface, p2, 3, 4)
+	for _, p in ipairs(positions_in_area) do
+		local p2 = { x = p.x, y = p.y }
 
-			if
-				surface.can_place_entity({
-					name = "cerys-fulgoran-radiative-tower-contracted-container",
-					position = p2,
-					force = "player",
-				})
-			then
-				Public.ensure_solid_foundation(surface, p2, 3, 4)
+		Public.deal_with_existing_entities(surface, p2, 3, 4)
 
-				local e = surface.create_entity({
-					name = "cerys-fulgoran-radiative-tower-contracted-container",
-					position = p2,
-					force = "player",
-				})
-				script.raise_script_built({ entity = e })
+		if
+			surface.can_place_entity({
+				name = "cerys-fulgoran-radiative-tower-contracted-container",
+				position = p2,
+				force = "player",
+			})
+		then
+			Public.ensure_solid_foundation(surface, p2, 3, 4)
 
-				if e and e.valid then
-					e.minable_flag = false
-					e.destructible = false
-				end
+			local e = surface.create_entity({
+				name = "cerys-fulgoran-radiative-tower-contracted-container",
+				position = p2,
+				force = "player",
+			})
+			script.raise_script_built({ entity = e })
+
+			if e and e.valid then
+				e.minable_flag = false
+				e.destructible = false
 			end
 		end
 	end

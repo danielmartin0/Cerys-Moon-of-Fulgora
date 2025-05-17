@@ -2,6 +2,9 @@
 Version: 2.13.5
 Date: ????
   Changes:
+    - Spawned some additional radiative towers on new saves. This includes a second tower in range of the reactor, as well as heating some cryogenic plants that could otherwise not be heated until late-game.
+  Graphics:
+    - Changed the icon of Fulgoran reactor excavation.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.4
 Date: 2025-05-14
