@@ -570,7 +570,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-engine-unit-productivity-1",
-		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
@@ -587,7 +587,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-engine-unit-productivity-2",
-		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
