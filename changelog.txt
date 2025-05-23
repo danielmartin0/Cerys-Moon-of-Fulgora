@@ -2,6 +2,7 @@
 Version: 2.13.7
 Date: ????
   Changes:
+    - Special release for stable Factorio to pick up map gen changes.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.6
 Date: 2025-05-19
