@@ -8,8 +8,8 @@
     "description": "Fulgora's moon of puzzles. Ancient wrecks embedded in thick ice can seemingly be repaired, including a colossal nuclear reactor that could transform the possibilities on the surface... if you can get it working.\n\nCerys is a polished and complete planet mod that does not modify the vanilla game, so is easy to include in existing saves.",
     "homepage": "https://discord.gg/VuVhYUBbWE",
     "dependencies": [
-        "base >= 2.0.47",
-        "space-age >= 2.0.47",
+        "base >= 2.0.51",
+        "space-age >= 2.0.51",
         "Flare Stack >= 3.0.6",
         "PlanetsLib >= 1.4.1",
         "? Planet-Hopper",
