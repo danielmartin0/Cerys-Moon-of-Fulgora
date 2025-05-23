@@ -9,12 +9,6 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	max_health = 35000,
 	crafting_categories = {
 		"fulgoran-cryogenics",
-		"electromagnetics-or-fulgoran-cryogenics",
-		"chemistry-or-fulgoran-cryogenics",
-		"chemistry-or-cryogenics-or-fulgoran-cryogenics",
-		"cryogenics-or-fulgoran-cryogenics",
-		"crafting-or-fulgoran-cryogenics",
-		"advanced-crafting-or-fulgoran-cryogenics",
 	},
 	module_slots = 9,
 	crafting_speed = 1,

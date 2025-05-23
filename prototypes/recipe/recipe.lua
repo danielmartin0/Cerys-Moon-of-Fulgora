@@ -136,7 +136,8 @@ data:extend({
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "d-c",
-		category = "cryogenics-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "cryogenics" },
 		enabled = false,
 		energy_required = 1.8,
 		ingredients = {
@@ -172,7 +173,8 @@ data:extend({
 		type = "recipe",
 		name = "cerys-charging-rod",
 		enabled = false,
-		category = "crafting-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "crafting" },
 		surface_conditions = {
 			{
 				property = "magnetic-field",
