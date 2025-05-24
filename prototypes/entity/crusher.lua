@@ -26,13 +26,6 @@ local crusher = {
 	},
 	collision_box = { { -1.7, -1.2 }, { 1.7, 1.2 } },
 	selection_box = { { -2, -1.5 }, { 2, 1.5 } },
-	surface_conditions = {
-		{
-			property = "gravity",
-			min = 0,
-			max = 5,
-		},
-	},
 	damaged_trigger_effect = hit_effects.entity(),
 	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {

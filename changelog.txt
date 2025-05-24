@@ -2,6 +2,7 @@
 Version: 2.13.11
 Date: ????
   Changes:
+    - Reworked Cerys recipe & entity bans to use a custom surface condition for better mod compatibility.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.10
 Date: 2025-05-23

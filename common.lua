@@ -4,10 +4,6 @@ Public.GRAVITY_MIN = {
 	property = "gravity",
 	min = 0.15,
 }
-Public.MAGNETIC_FIELD_MAX = {
-	property = "magnetic-field",
-	max = 119,
-}
 Public.FIVE_PRESSURE_MIN = {
 	property = "pressure",
 	min = 5,
@@ -16,9 +12,13 @@ Public.TEN_PRESSURE_MIN = {
 	property = "pressure",
 	min = 10,
 }
-Public.TEMPERATURE_MIN = {
-	property = "temperature",
-	min = 255,
+Public.AMBIENT_RADIATION_MAX = {
+	property = "cerys-ambient-radiation",
+	max = 200,
+}
+Public.AMBIENT_RADIATION_MIN = {
+	property = "cerys-ambient-radiation",
+	min = 400,
 }
 
 Public.DEBUG_DISABLE_FREEZING = false

@@ -1,3 +1,4 @@
+local common = require("common")
 local merge = require("lib").merge
 
 local max_health = 2000
@@ -173,10 +174,7 @@ local mixed_oxide_reactor = merge(data.raw.reactor["nuclear-reactor"], {
 	-- 	sound = sound_variations("__base__/sound/nuclear-reactor", 2, 1),
 	-- }),
 	fast_replaceable_group = "mixed-oxide-reactor",
-	surface_conditions = { {
-		property = "magnetic-field",
-		max = 119,
-	} },
+	surface_conditions = { common.AMBIENT_RADIATION_MAX },
 })
 
 data:extend({

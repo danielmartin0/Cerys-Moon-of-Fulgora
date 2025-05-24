@@ -1,6 +1,7 @@
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
 local merge = require("lib").merge
+local common = require("common")
 
 -- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
 
@@ -78,7 +79,7 @@ data:extend({
 			charge_animation_is_looped = true,
 		}),
 		surface_conditions = {
-			{ property = "magnetic-field", min = 120, max = 120 },
+			common.AMBIENT_RADIATION_MIN,
 		},
 		working_sound = {
 			max_sounds_per_prototype = 4,

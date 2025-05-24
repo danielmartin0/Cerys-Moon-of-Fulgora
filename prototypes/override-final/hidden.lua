@@ -27,7 +27,7 @@ if data.raw.recipe["exoskeleton-equipment-recycling"] then
 
 	PlanetsLib.restrict_surface_conditions(
 		data.raw.recipe["exoskeleton-equipment-recycling"],
-		common.MAGNETIC_FIELD_MAX
+		common.AMBIENT_RADIATION_MAX
 	)
 end
 
@@ -38,5 +38,5 @@ if data.raw.recipe["uranium-238-recycling"] then
 			enabled = false,
 		}),
 	})
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.MAGNETIC_FIELD_MAX)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.AMBIENT_RADIATION_MAX)
 end

@@ -6,7 +6,10 @@ local common = require("common")
 
 if data.raw["inserter"]["burner-inserter"] then
 	local burner_inserter = data.raw["inserter"]["burner-inserter"]
-	PlanetsLib.relax_surface_conditions(burner_inserter, common.TEMPERATURE_MIN)
+	PlanetsLib.relax_surface_conditions(burner_inserter, {
+		property = "temperature",
+		min = 255,
+	})
 	PlanetsLib.relax_surface_conditions(burner_inserter, {
 		property = "oxygen",
 		min = 0,

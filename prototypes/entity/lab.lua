@@ -1,3 +1,4 @@
+local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
 
@@ -14,11 +15,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 	selection_box = { { -2.5, -2 }, { 2.5, 2 } },
 	minable = { mining_time = 0.2, result = "cerys-lab" },
 	surface_conditions = {
-		{
-			property = "magnetic-field",
-			min = 120,
-			max = 120,
-		},
+		common.AMBIENT_RADIATION_MIN,
 	},
 	energy_usage = "60kW",
 	researching_speed = 2,
