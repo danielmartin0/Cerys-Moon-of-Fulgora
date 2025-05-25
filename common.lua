@@ -42,6 +42,9 @@ Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 20
 Public.WARN_COLOR = { r = 255, g = 90, b = 54 }
 
+Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS = 16
+Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE = 10
+
 -- TODO: Add widths and heights of map generated factory entities
 
 Public.ROCK_TILES = {

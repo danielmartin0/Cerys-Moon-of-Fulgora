@@ -4,7 +4,7 @@ local common = require("common")
 
 Public.TEMPERATURE_ZERO = 15
 local TEMPERATURE_INTERVAL = 6
-local MAX_HEATING_RADIUS = 16
+local MAX_HEATING_RADIUS = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS
 local MAX_HEATING_RADIUS_PLAYER = 13
 local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
@@ -173,8 +173,10 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	local temperature_interval = TEMPERATURE_INTERVAL
 
 	if common.HARD_MODE_ON and not is_player_tower then
-		max_heating_radius = 10
-		temperature_interval = temperature_interval * 16 / 10
+		max_heating_radius = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE
+		temperature_interval = temperature_interval
+			* common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS
+			/ common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE
 	end
 
 	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))

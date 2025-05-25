@@ -2,6 +2,7 @@
 Version: 2.13.12
 Date: ????
   Changes:
+    - Added an autofix script for historical saves that don't have a radiative tower near their reactor.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.11
 Date: 2025-05-24
