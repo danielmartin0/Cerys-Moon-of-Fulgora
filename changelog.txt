@@ -2,6 +2,8 @@
 Version: 2.13.16
 Date: ????
   Changes:
+    - Changelog clarifications.
+    - Updated license.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.15
 Date: 2025-05-28
@@ -31,7 +33,7 @@ Date: 2025-05-24
 Version: 2.13.10
 Date: 2025-05-23
   Balancing:
-    - Halved the fuel cell consumption rate of the Fulgoran reactor. This change also reduces the heat output by half.
+    - Halved the fuel cell consumption rate of the Fulgoran reactor. Note that the heat produced by one fuel cell is unchanged, they are just consumed more slowly. This change also halves the rate at which heat is emitted to heat pipes.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.9
 Date: 2025-05-23
