@@ -278,6 +278,7 @@ function Public.create_towers(surface, area)
 				force = "player",
 			})
 			script.raise_script_built({ entity = e })
+			
 
 			if e and e.valid then
 				e.minable_flag = false
