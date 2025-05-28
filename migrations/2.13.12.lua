@@ -1,3 +1,4 @@
+local radiative_towers = require("scripts.radiative-tower")
 local common = require("common")
 
 if not storage.cerys then
@@ -61,5 +62,7 @@ if towers_found == 0 then
 	if e and e.valid then
 		e.minable_flag = false
 		e.destructible = false
+
+		radiative_towers.register_radiative_tower_contracted(e)
 	end
 end
