@@ -2,6 +2,8 @@
 Version: 2.13.17
 Date: ????
   Changes:
+    - Completed the migration to ambient radiation surface conditions by removing the temperature restriction on the rocket fuel recipe.
+    - The temperature surface condition is no longer flipped on by Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.16
 Date: 2025-05-28

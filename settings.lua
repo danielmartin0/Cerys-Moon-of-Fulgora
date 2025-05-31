@@ -106,5 +106,3 @@ data:extend({
 		hidden = true,
 	},
 })
-
-data.raw["bool-setting"]["PlanetsLib-enable-temperature"].forced_value = true

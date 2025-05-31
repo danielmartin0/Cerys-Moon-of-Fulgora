@@ -98,8 +98,5 @@ if data.raw.recipe["steam-engine"] then
 end
 
 if data.raw.recipe["rocket-fuel"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], {
-		property = "temperature",
-		min = 255,
-	})
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], common.AMBIENT_RADIATION_MAX)
 end
