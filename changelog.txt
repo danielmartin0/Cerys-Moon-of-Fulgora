@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.17
-Date: ????
+Date: 2025-06-02
   Changes:
     - The PlanetsLib temperature surface condition is no longer enabled by Cerys.
   Bugfixes:
