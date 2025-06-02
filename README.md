@@ -8,7 +8,7 @@
 
 # Cerys
 
-This repo is for Cerys, a mod for Factorio: Space Age. It is available on the [Factorio Mod Portal](https://mods.factorio.com/mod/Cerys-Moon-of-Fulgora).
+Cerys is a mod for Factorio: Space Age. It is available on the [Factorio Mod Portal](https://mods.factorio.com/mod/Cerys-Moon-of-Fulgora).
 
 ---
 
