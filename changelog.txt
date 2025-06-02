@@ -2,8 +2,11 @@
 Version: 2.13.17
 Date: ????
   Changes:
-    - Completed the migration to ambient radiation surface conditions by removing the temperature restriction on the rocket fuel recipe.
-    - The temperature surface condition is no longer flipped on by Cerys.
+    - The PlanetsLib temperature surface condition is no longer enabled by Cerys.
+  Bugfixes:
+    - Fixed that Cerys could affect whether the rocket fuel recipe could be crafted on other planets.
+  Locale:
+    - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.16
 Date: 2025-05-28
