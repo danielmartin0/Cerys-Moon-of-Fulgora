@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.14.2
 Date: ????
-  Changes:
+  Compatibility:
+    - Players using both Wooden Logistics and Fulgora Coralmium Agriculture are now warned to install Wooden Cerys: Lunaponics.
 ---------------------------------------------------------------------------------------------------
 Version: 2.14.0-2.14.1
 Date: 2025-06-03

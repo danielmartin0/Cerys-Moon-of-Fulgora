@@ -1,5 +1,10 @@
 local Public = {}
 
+Public.DEBUG_DISABLE_FREEZING = false
+Public.DEBUG_CERYS_START = false
+Public.DEBUG_HEATERS_FUELED = false
+Public.DEBUG_NUCLEAR_REACTOR_START = false
+
 Public.GRAVITY_MIN = {
 	property = "gravity",
 	min = 0.15,
@@ -20,11 +25,6 @@ Public.AMBIENT_RADIATION_MIN = {
 	property = "cerys-ambient-radiation",
 	min = 400,
 }
-
-Public.DEBUG_DISABLE_FREEZING = false
-Public.DEBUG_CERYS_START = false
-Public.DEBUG_HEATERS_FUELED = false
-Public.DEBUG_NUCLEAR_REACTOR_START = false
 
 Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
