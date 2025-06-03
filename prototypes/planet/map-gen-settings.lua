@@ -19,7 +19,7 @@ planet_map_gen.cerys = function()
 					["cerys-water-puddles"] = {},
 					["cerys-ash-cracks-frozen"] = {},
 					["cerys-ash-dark-frozen"] = {},
-					["cerys-ash-light-frozen"] = {},
+					-- ["cerys-ash-light-frozen"] = {},
 					["cerys-pumice-stones-frozen"] = {},
 				},
 			},

@@ -115,20 +115,7 @@ data:extend({
 			octaves = 5, \z
 			persistence = 0.7, \z
 			input_scale = 1 / 2, \z
-			output_scale = 1}",
-	},
-	{
-		type = "noise-expression",
-		name = "cerys_ash_light",
-		expression = "multioctave_noise{\z
-			x = cerys_x_surface, \z
-			y = cerys_y_surface, \z
-			seed0 = map_seed, \z
-			seed1 = 6400, \z
-			octaves = 5, \z
-			persistence = 0.7, \z
-			input_scale = 1 / 2, \z
-			output_scale = 1}",
+			output_scale = 1} + 0.1",
 	},
 	{
 		type = "noise-expression",
@@ -137,11 +124,11 @@ data:extend({
 			x = cerys_x_surface, \z
 			y = cerys_y_surface, \z
 			seed0 = map_seed, \z
-			seed1 = 6500, \z
+			seed1 = 6400, \z
 			octaves = 5, \z
 			persistence = 0.7, \z
 			input_scale = 1 / 2, \z
-			output_scale = 1}",
+			output_scale = 1} + 0.1",
 	},
 
 	{
