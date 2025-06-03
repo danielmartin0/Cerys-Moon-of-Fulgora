@@ -184,8 +184,6 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 			new_tile = "cerys-ash-cracks"
 		elseif existing_tile == "cerys-ash-dark-frozen" then
 			new_tile = "cerys-ash-dark"
-		elseif existing_tile == "cerys-ash-flats-frozen" then
-			new_tile = "cerys-ash-flats"
 		elseif existing_tile == "cerys-ash-light-frozen" then
 			new_tile = "cerys-ash-light"
 		elseif existing_tile == "cerys-pumice-stones-frozen" then
@@ -278,7 +276,6 @@ function Public.create_towers(surface, area)
 				force = "player",
 			})
 			script.raise_script_built({ entity = e })
-			
 
 			if e and e.valid then
 				e.minable_flag = false

@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.13.19
+Version: 2.14.0
 Date: ????
-  Changes:
+  Graphics:
+    - Fixed the tile transitions between rock tiles on Cerys.
+    - Added more variation to the generated rock tiles on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 2.13.17
 Date: 2025-06-02

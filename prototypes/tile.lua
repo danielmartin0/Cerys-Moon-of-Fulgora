@@ -139,7 +139,6 @@ local rock_ice_transitions = util.table.deepcopy(data.raw.tile["ice-rough"].tran
 rock_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2.png"
 table.insert(rock_ice_transitions[1].to_tiles, "cerys-ash-cracks")
 table.insert(rock_ice_transitions[1].to_tiles, "cerys-ash-dark")
-table.insert(rock_ice_transitions[1].to_tiles, "cerys-ash-flats")
 table.insert(rock_ice_transitions[1].to_tiles, "cerys-ash-light")
 table.insert(rock_ice_transitions[1].to_tiles, "cerys-pumice-stones")
 
@@ -163,11 +162,10 @@ local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 
 --== Rock & Rock Ice ==--
 
-local original_rock_transitions = {
+local adjusted_original_rock_transitions = {
 	{
 		to_tiles = water_tile_type_names,
 		transition_group = water_transition_group_id,
-
 		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
 		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
 		effect_map_layout = {
@@ -184,10 +182,9 @@ local original_rock_transitions = {
 		transition_group = lava_transition_group_id,
 		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
 		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-lightmap.png" },
-		-- this added the lightmap spritesheet
 		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
 		effect_map_layout = {
-			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			spritesheet = "__space-age__/graphics/terrain/effect-maps/lava-dirt-mask.png",
 			inner_corner_count = 8,
 			outer_corner_count = 8,
 			side_count = 8,
@@ -198,22 +195,20 @@ local original_rock_transitions = {
 	{
 		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
-
 		background_layer_offset = 1,
 		background_layer_group = "zero",
 		offset_background_layer_by_tile_layer = true,
-
 		spritesheet = "__space-age__/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png",
 		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
 		overlay_enabled = false,
 	},
 }
-
+-- stylua: ignore
 local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
-	sprite_usage_surface = "nil",
+	sprite_usage_surface = "any",
 	collision_mask = cerys_ground_collision_mask,
 	subgroup = "cerys-tiles",
-	transitions = original_rock_transitions,
+	transitions = adjusted_original_rock_transitions,
 })
 
 -- stylua: ignore
@@ -232,7 +227,7 @@ local lightmap_spritesheet = {
 	},
 }
 
-local function create_base_tile(name)
+local function create_base_tile(name, layer)
 	return merge(cerys_rock_base, {
 		name = name,
 		frozen_variant = name .. "-frozen",
@@ -240,10 +235,11 @@ local function create_base_tile(name)
 			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. ".png",
 			lightmap_spritesheet
 		),
+		layer = layer,
 	})
 end
 
-local function create_frozen_variant(name)
+local function create_frozen_variant(name, layer)
 	local noise_var = string.gsub(name, "%-", "_")
 	return merge(cerys_rock_base, {
 		name = name .. "-frozen",
@@ -251,7 +247,7 @@ local function create_frozen_variant(name)
 			probability_expression = "if(cerys_surface>0, 1000 + " .. noise_var .. ", -1000)",
 		},
 		thawed_variant = name,
-		layer = 48,
+		layer = layer,
 		variants = tile_variations_template_with_transitions(
 			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png",
 			lightmap_spritesheet
@@ -259,8 +255,8 @@ local function create_frozen_variant(name)
 	})
 end
 
-local function create_melting_variant(name)
-	local frozen_variant = create_frozen_variant(name)
+local function create_melting_variant(name, layer)
+	local frozen_variant = create_frozen_variant(name, layer)
 	return merge(frozen_variant, {
 		name = frozen_variant.name .. "-from-dry-ice",
 		thawed_variant = "nil",
@@ -268,25 +264,21 @@ local function create_melting_variant(name)
 end
 
 data:extend({
-	create_base_tile("cerys-ash-cracks"),
-	create_frozen_variant("cerys-ash-cracks"),
-	create_melting_variant("cerys-ash-cracks"),
+	create_base_tile("cerys-ash-cracks", vulcanus_tile_offset + 6),
+	create_frozen_variant("cerys-ash-cracks", vulcanus_tile_offset + 100 + 6),
+	create_melting_variant("cerys-ash-cracks", vulcanus_tile_offset + 200 + 6),
 
-	create_base_tile("cerys-ash-dark"),
-	create_frozen_variant("cerys-ash-dark"),
-	create_melting_variant("cerys-ash-dark"),
+	create_base_tile("cerys-ash-dark", vulcanus_tile_offset + 13),
+	create_frozen_variant("cerys-ash-dark", vulcanus_tile_offset + 100 + 13),
+	create_melting_variant("cerys-ash-dark", vulcanus_tile_offset + 200 + 13),
 
-	create_base_tile("cerys-ash-flats"),
-	create_frozen_variant("cerys-ash-flats"),
-	create_melting_variant("cerys-ash-flats"),
+	create_base_tile("cerys-ash-light", vulcanus_tile_offset + 14),
+	create_frozen_variant("cerys-ash-light", vulcanus_tile_offset + 100 + 14),
+	create_melting_variant("cerys-ash-light", vulcanus_tile_offset + 200 + 14),
 
-	create_base_tile("cerys-ash-light"),
-	create_frozen_variant("cerys-ash-light"),
-	create_melting_variant("cerys-ash-light"),
-
-	create_base_tile("cerys-pumice-stones"),
-	create_frozen_variant("cerys-pumice-stones"),
-	create_melting_variant("cerys-pumice-stones"),
+	create_base_tile("cerys-pumice-stones", vulcanus_tile_offset + 15),
+	create_frozen_variant("cerys-pumice-stones", vulcanus_tile_offset + 100 + 15),
+	create_melting_variant("cerys-pumice-stones", vulcanus_tile_offset + 200 + 15),
 })
 
 --== Water & Water Ice ==--

@@ -54,9 +54,6 @@ Public.ROCK_TILES = {
 	"cerys-ash-dark",
 	"cerys-ash-dark-frozen",
 	"cerys-ash-dark-frozen-from-dry-ice",
-	-- "cerys-ash-flats", -- Never included in the published mod
-	-- "cerys-ash-flats-frozen", -- Never included in the published mod
-	-- "cerys-ash-flats-frozen-from-dry-ice", -- Never included in the published mod
 	"cerys-ash-light",
 	"cerys-ash-light-frozen",
 	"cerys-ash-light-frozen-from-dry-ice",
