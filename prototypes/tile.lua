@@ -102,7 +102,7 @@ local original_ice_transitions_between_transitions = {
 
 --== Transitions ==--
 
-local water_ice_transitions = original_ice_transitions
+local water_ice_transitions = util.table.deepcopy(original_ice_transitions)
 water_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2.png"
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles-freezing")
