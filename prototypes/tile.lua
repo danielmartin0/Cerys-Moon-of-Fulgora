@@ -265,20 +265,20 @@ end
 
 data:extend({
 	create_base_tile("cerys-ash-cracks", vulcanus_tile_offset + 6),
-	create_frozen_variant("cerys-ash-cracks", vulcanus_tile_offset + 100 + 6),
-	create_melting_variant("cerys-ash-cracks", vulcanus_tile_offset + 200 + 6),
+	create_frozen_variant("cerys-ash-cracks", vulcanus_tile_offset + 20 + 6),
+	create_melting_variant("cerys-ash-cracks", vulcanus_tile_offset + 30 + 6),
 
 	create_base_tile("cerys-ash-dark", vulcanus_tile_offset + 13),
-	create_frozen_variant("cerys-ash-dark", vulcanus_tile_offset + 100 + 13),
-	create_melting_variant("cerys-ash-dark", vulcanus_tile_offset + 200 + 13),
+	create_frozen_variant("cerys-ash-dark", vulcanus_tile_offset + 20 + 13),
+	create_melting_variant("cerys-ash-dark", vulcanus_tile_offset + 30 + 13),
 
 	create_base_tile("cerys-ash-light", vulcanus_tile_offset + 14),
-	create_frozen_variant("cerys-ash-light", vulcanus_tile_offset + 100 + 14),
-	create_melting_variant("cerys-ash-light", vulcanus_tile_offset + 200 + 14),
+	create_frozen_variant("cerys-ash-light", vulcanus_tile_offset + 20 + 14),
+	create_melting_variant("cerys-ash-light", vulcanus_tile_offset + 30 + 14),
 
 	create_base_tile("cerys-pumice-stones", vulcanus_tile_offset + 15),
-	create_frozen_variant("cerys-pumice-stones", vulcanus_tile_offset + 100 + 15),
-	create_melting_variant("cerys-pumice-stones", vulcanus_tile_offset + 200 + 15),
+	create_frozen_variant("cerys-pumice-stones", vulcanus_tile_offset + 20 + 15),
+	create_melting_variant("cerys-pumice-stones", vulcanus_tile_offset + 30 + 15),
 })
 
 --== Water & Water Ice ==--
