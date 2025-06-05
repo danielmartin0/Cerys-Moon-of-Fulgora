@@ -80,10 +80,10 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			default_temperature_signal = { type = "virtual", name = "signal-T" },
 			circuit_wire_max_distance = reactor_circuit_wire_max_distance,
 			circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
-				variation = 30,
-				main_offset = util.by_pixel(5, -5),
-				shadow_offset = util.by_pixel(27, 8),
-				show_shadow = false,
+				variation = 7,
+				main_offset = util.by_pixel(-37.5, 7.5),
+				shadow_offset = util.by_pixel(-37.5, 7.5),
+				show_shadow = true,
 			}),
 			minable = { mining_time = 0.2, result = "cerys-radiative-tower" },
 			autoplace = {

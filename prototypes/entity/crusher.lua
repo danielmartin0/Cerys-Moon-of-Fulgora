@@ -17,7 +17,32 @@ local crusher = {
 	corpse = "electric-furnace-remnants",
 	dying_explosion = "electric-furnace-explosion",
 	circuit_wire_max_distance = 9,
-	circuit_connector = circuit_connector_definitions["crusher"],
+	circuit_connector = circuit_connector_definitions.create_vector(universal_connector_template, {
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+	}),
 	resistances = {
 		{
 			type = "fire",
