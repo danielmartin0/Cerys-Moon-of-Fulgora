@@ -418,11 +418,13 @@ data:extend({
 		name = "cerys-dry-ice-on-water",
 		thawed_variant = "cerys-dry-ice-on-water-melting",
 		collision_mask = cerys_ground_collision_mask,
+		layer = 80,
 	}),
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water-melting",
 		frozen_variant = "cerys-dry-ice-on-water",
 		collision_mask = cerys_ground_collision_mask,
+		layer = 81,
 	}),
 })
 
@@ -447,15 +449,8 @@ local dry_ice_rough_land_variants = tile_variations_template(
 	}
 )
 
-local cerys_dry_ice_rough_land_base = merge(data.raw.tile["ice-rough"], {
-	subgroup = "cerys-tiles",
-	transitions = dry_ice_transitions,
-	transitions_between_transitions = dry_ice_transitions_between_transitions,
-	collision_mask = cerys_ground_collision_mask,
-	autoplace = "nil",
+local cerys_dry_ice_rough_land_base = merge(cerys_dry_ice_rough_base, {
 	variants = dry_ice_rough_land_variants,
-	sprite_usage_surface = "nil",
-	layer_group = "ground-artificial", -- Above crater decals
 	map_color = { 92, 138, 116 },
 })
 
@@ -463,10 +458,12 @@ data:extend({
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land",
 		thawed_variant = "cerys-dry-ice-on-land-melting",
+		layer = 82,
 	}),
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land-melting",
 		frozen_variant = "cerys-dry-ice-on-land",
+		layer = 83,
 	}),
 })
 
