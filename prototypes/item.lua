@@ -73,7 +73,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 128,
 		subgroup = "energy",
-		order = "e[accumulator]-b[charging-rod]",
+		order = "e[accumulator]-z[charging-rod]",
 		inventory_move_sound = item_sounds.electric_small_inventory_move,
 		pick_sound = item_sounds.electric_small_inventory_pickup,
 		drop_sound = item_sounds.electric_small_inventory_move,

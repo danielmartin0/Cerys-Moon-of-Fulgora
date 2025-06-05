@@ -32,7 +32,18 @@ data:extend({
 		drawing_box_vertical_extension = 4.3,
 		open_sound = sounds.electric_network_open,
 		close_sound = sounds.electric_network_close,
-		factoriopedia_simulation = "nil",
+		factoriopedia_simulation = {
+			init = [[
+    require("__core__/lualib/story")
+    game.simulation.camera_zoom = 1.4
+    game.simulation.camera_position = {0, -2}
+    game.surfaces[1].create_entity{name = "cerys-charging-rod", position = {0, 0}}
+    game.surfaces[1].create_entity({
+      name = "cerys-charging-rod-animation-blue",
+      position = { x = 0, y = 1 },
+    })
+			]],
+		},
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
