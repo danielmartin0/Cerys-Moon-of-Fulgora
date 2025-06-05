@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.15.2
 Date: ????
-  Changes:
+  Compatibility:
+    - To improve compatibility, the optional infinite braking force technology is now a new infinite technology at level 8, rather than a change to make level 7 infinite.
 ---------------------------------------------------------------------------------------------------
 Version: 2.15.0
 Date: ????
