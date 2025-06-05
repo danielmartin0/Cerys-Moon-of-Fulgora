@@ -200,6 +200,8 @@ frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 		"cerys-pumice-stones",
 		"cerys-water-puddles",
 		"cerys-water-puddles-freezing",
+		"cerys-ice-on-water",
+		"cerys-ice-on-water-melting",
 	},
 	transition_group = water_transition_group_id,
 	spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2-transparent.png",
@@ -241,19 +243,19 @@ local function create_melting_variant(name, layer)
 end
 
 data:extend({
-	create_base_tile("cerys-ash-cracks", 5 + 1),
+	create_base_tile("cerys-ash-cracks", 5),
 	create_frozen_variant("cerys-ash-cracks", 10),
 	create_melting_variant("cerys-ash-cracks", 10),
 
-	create_base_tile("cerys-ash-dark", 5 + 2),
+	create_base_tile("cerys-ash-dark", 6),
 	create_frozen_variant("cerys-ash-dark", 10),
 	create_melting_variant("cerys-ash-dark", 10),
 
-	create_base_tile("cerys-ash-light", 5 + 3),
+	create_base_tile("cerys-ash-light", 7),
 	create_frozen_variant("cerys-ash-light", 10),
 	create_melting_variant("cerys-ash-light", 10),
 
-	create_base_tile("cerys-pumice-stones", 5 + 4),
+	create_base_tile("cerys-pumice-stones", 8),
 	create_frozen_variant("cerys-pumice-stones", 10),
 	create_melting_variant("cerys-pumice-stones", 10),
 })
@@ -340,7 +342,7 @@ local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	collision_mask = cerys_ground_collision_mask,
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
-	layer = 80,
+	layer = 9,
 	layer_group = "ground-artificial", -- Above crater decals
 })
 
