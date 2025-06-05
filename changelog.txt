@@ -1,9 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.15.3
+Version: 2.16.0
 Date: ????
-  Changes:
+  Graphics:
+    - Replaced the graphics for frozen rock tiles, greatly improving tiling and tile transitions.
+    - File size optimizations.
 ---------------------------------------------------------------------------------------------------
-Version: 2.15.2
+Version: 2.15.1
 Date: 2025-06-05
   Compatibility:
     - To improve compatibility, the optional infinite braking force technology is now a new infinite technology at level 8, rather than a change to make level 7 infinite.
