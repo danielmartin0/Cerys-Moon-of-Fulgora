@@ -4,7 +4,10 @@ local tile_collision_masks = require("__base__/prototypes/tile/tile-collision-ma
 local tile_graphics = require("__base__/prototypes/tile/tile-graphics")
 local tile_spritesheet_layout = tile_graphics.tile_spritesheet_layout
 
-local original_ice_transitions = {
+table.insert(water_tile_type_names, "cerys-water-puddles")
+table.insert(water_tile_type_names, "cerys-water-puddles-freezing")
+
+local adjusted_original_ice_transitions = {
 	{
 		to_tiles = water_tile_type_names,
 		transition_group = water_transition_group_id,
@@ -51,7 +54,7 @@ local original_ice_transitions = {
 	},
 }
 
-local original_ice_transitions_between_transitions = {
+local adjusted_original_ice_transitions_between_transitions = {
 	{
 		transition_group1 = default_transition_group_id,
 		transition_group2 = water_transition_group_id,
@@ -314,12 +317,9 @@ data:extend({
 	}),
 })
 
-table.insert(water_tile_type_names, "cerys-water-puddles")
-table.insert(water_tile_type_names, "cerys-water-puddles-freezing")
-
 --== Iced Water ==--
 
-local water_ice_transitions = util.table.deepcopy(original_ice_transitions)
+local water_ice_transitions = util.table.deepcopy(adjusted_original_ice_transitions)
 water_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2.png"
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles-freezing")
@@ -328,7 +328,7 @@ table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-dark")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-light")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones")
 
-local water_ice_transitions_between_transitions = original_ice_transitions_between_transitions
+local water_ice_transitions_between_transitions = adjusted_original_ice_transitions_between_transitions
 water_ice_transitions_between_transitions[1].spritesheet =
 	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
 water_ice_transitions_between_transitions[1].water_patch.filename =

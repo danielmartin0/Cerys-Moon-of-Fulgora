@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.1
-Date: ????
-  Changes:
+Date: 2025-06-05
+  Graphics:
+    - Corrected a missing tile transition between Cerys rock and water.
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.0
 Date: 2025-06-05
   Graphics:
-    - Replaced the graphics for frozen rock tiles, greatly improving tiling and tile transitions.
+    - Reworked the graphics for frozen Cerys rock tiles, improving tiling, tile transitions and tile-entity layering.
     - File size optimizations.
 ---------------------------------------------------------------------------------------------------
 Version: 2.15.1
