@@ -17,17 +17,6 @@ data:extend({
 	},
 })
 
-if data.raw.recipe["construction-robot-recycling"] then
-	data:extend({
-		merge(data.raw.recipe["construction-robot-recycling"], {
-			name = "cerys-construction-robot-recycling", -- unlocked by a late-game tech
-			enabled = false,
-		}),
-	})
-
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["construction-robot-recycling"], common.MAGNETIC_FIELD_MAX)
-end
-
 if data.raw.recipe["exoskeleton-equipment-recycling"] then
 	data:extend({
 		merge(data.raw.recipe["exoskeleton-equipment-recycling"], {
@@ -38,7 +27,7 @@ if data.raw.recipe["exoskeleton-equipment-recycling"] then
 
 	PlanetsLib.restrict_surface_conditions(
 		data.raw.recipe["exoskeleton-equipment-recycling"],
-		common.MAGNETIC_FIELD_MAX
+		common.AMBIENT_RADIATION_MAX
 	)
 end
 
@@ -49,5 +38,5 @@ if data.raw.recipe["uranium-238-recycling"] then
 			enabled = false,
 		}),
 	})
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.MAGNETIC_FIELD_MAX)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.AMBIENT_RADIATION_MAX)
 end

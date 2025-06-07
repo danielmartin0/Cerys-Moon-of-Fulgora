@@ -1,32 +1,31 @@
 local common = require("common")
 
 --== Surface Conditions Restrictions ==--
--- This is in data-updates so that other mods can final-fix exceptions if they wish.
 
 for name, entity in pairs(data.raw["reactor"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end
 for name, entity in pairs(data.raw["lab"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
-		PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
 	if name ~= "cerys-charging-rod" then
-		PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end
 for _, entity in pairs(data.raw["fusion-reactor"]) do
-	PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 end
 for _, entity in pairs(data.raw["fusion-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 end
 
 for _, entity in pairs(data.raw["burner-generator"]) do
-	PlanetsLib.restrict_surface_conditions(entity, common.MAGNETIC_FIELD_MAX)
+	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 end
 
 for _, entity in pairs(data.raw["boiler"]) do

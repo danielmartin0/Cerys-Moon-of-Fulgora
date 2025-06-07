@@ -2,6 +2,20 @@ local lib = require("lib")
 local find = lib.find
 local common = require("common")
 
+--== Prevent burner inserters from being restricted on Cerys: ==--
+
+if data.raw["inserter"]["burner-inserter"] then
+	local burner_inserter = data.raw["inserter"]["burner-inserter"]
+	PlanetsLib.relax_surface_conditions(burner_inserter, {
+		property = "temperature",
+		min = 255,
+	})
+	PlanetsLib.relax_surface_conditions(burner_inserter, {
+		property = "oxygen",
+		min = 0,
+	})
+end
+
 -- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs, that is fine.
 data.raw.lab["cerys-lab"].inputs = {
 	"automation-science-pack",
@@ -43,11 +57,4 @@ for prototype in pairs(defines.prototypes.entity) do
 			end
 		end
 	end
-end
-
---== Prevent burner inserters from being restricted on Cerys: ==--
-
-if data.raw["inserter"]["burner-inserter"] then
-	local burner_inserter = data.raw["inserter"]["burner-inserter"]
-	PlanetsLib.remove_surface_condition(burner_inserter, "temperature")
 end

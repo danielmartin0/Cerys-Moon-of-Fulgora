@@ -162,8 +162,9 @@ function Public.cerys_tick(surface, tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 	crusher.tick_1_check_crusher_quality_upgrades(surface)
 
-	if tick % 3 == 0 then
-		lighting.tick_3_update_lights()
+	local lights_check_interval = player_looking_at_surface and 3 or 60
+	if tick % lights_check_interval == 0 then
+		lighting.tick_update_lights()
 	end
 
 	if

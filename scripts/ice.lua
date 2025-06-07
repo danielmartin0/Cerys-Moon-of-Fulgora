@@ -13,7 +13,6 @@ local TILE_TRANSITIONS = {
 	-- ["cerys-dry-ice-smooth-land-melting"] = "nil",
 	["cerys-ash-cracks-frozen-from-dry-ice"] = "cerys-ash-cracks",
 	["cerys-ash-dark-frozen-from-dry-ice"] = "cerys-ash-dark",
-	["cerys-ash-flats-frozen-from-dry-ice"] = "cerys-ash-flats",
 	["cerys-ash-light-frozen-from-dry-ice"] = "cerys-ash-light",
 	["cerys-pumice-stones-frozen-from-dry-ice"] = "cerys-pumice-stones",
 }
@@ -21,7 +20,6 @@ local TILE_TRANSITIONS = {
 local HIDDEN_TILE_TO_MELTING_TILE = {
 	["cerys-ash-cracks-frozen"] = "cerys-ash-cracks-frozen-from-dry-ice",
 	["cerys-ash-dark-frozen"] = "cerys-ash-dark-frozen-from-dry-ice",
-	["cerys-ash-flats-frozen"] = "cerys-ash-flats-frozen-from-dry-ice",
 	["cerys-ash-light-frozen"] = "cerys-ash-light-frozen-from-dry-ice",
 	["cerys-pumice-stones-frozen"] = "cerys-pumice-stones-frozen-from-dry-ice",
 }

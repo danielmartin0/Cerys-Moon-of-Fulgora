@@ -4,7 +4,8 @@ data:extend({
 	{
 		type = "recipe",
 		name = "ancient-structure-repair-part",
-		category = "advanced-crafting-or-fulgoran-cryogenics",
+		category = "advanced-crafting",
+		additional_categories = { "fulgoran-cryogenics" },
 		enabled = false,
 		energy_required = 3,
 		ingredients = {
@@ -79,7 +80,8 @@ data:extend({
 		name = "cerys-excavate-nuclear-reactor",
 		subgroup = "cerys-repair",
 		order = "f",
-		icon = "__base__/graphics/icons/concrete.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
+		icon_size = 64,
 		energy_required = 0.9,
 		enabled = false,
 		hide_from_player_crafting = true,
@@ -106,7 +108,7 @@ data:extend({
 		category = "nuclear-reactor-repair",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 5 },
+			{ type = "item", name = "processing-unit", amount = 1 },
 		},
 		results = {},
 		allow_quality = false,
@@ -156,7 +158,7 @@ data:extend({
 		category = "crusher-quality-upgrades",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 1 },
+			{ type = "item", name = "processing-unit", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,

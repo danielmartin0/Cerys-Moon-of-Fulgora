@@ -24,10 +24,10 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 				fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 				burnt_inventory_size = 0,
 			},
-			consumption = common.HARD_MODE_ON and "1850kW" or "1300kW",
+			consumption = "1300kW",
 			heat_buffer = {
 				max_temperature = 150,
-				specific_heat = common.HARD_MODE_ON and "100kJ" or "70kJ",
+				specific_heat = "70kJ",
 				max_transfer = "1kW",
 				minimum_glow_temperature = 0,
 				heat_picture = {
@@ -80,10 +80,10 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			default_temperature_signal = { type = "virtual", name = "signal-T" },
 			circuit_wire_max_distance = reactor_circuit_wire_max_distance,
 			circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
-				variation = 30,
-				main_offset = util.by_pixel(5, -5),
-				shadow_offset = util.by_pixel(27, 8),
-				show_shadow = false,
+				variation = 7,
+				main_offset = util.by_pixel(-37.5, 7.5),
+				shadow_offset = util.by_pixel(-37.5, 7.5),
+				show_shadow = true,
 			}),
 			minable = { mining_time = 0.2, result = "cerys-radiative-tower" },
 			autoplace = {

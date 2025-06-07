@@ -17,7 +17,32 @@ local crusher = {
 	corpse = "electric-furnace-remnants",
 	dying_explosion = "electric-furnace-explosion",
 	circuit_wire_max_distance = 9,
-	circuit_connector = circuit_connector_definitions["crusher"],
+	circuit_connector = circuit_connector_definitions.create_vector(universal_connector_template, {
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+		{
+			variation = 0,
+			main_offset = util.by_pixel(16.25, 38.25),
+			shadow_offset = util.by_pixel(16.25, 38.25),
+			show_shadow = true,
+		},
+	}),
 	resistances = {
 		{
 			type = "fire",
@@ -26,13 +51,6 @@ local crusher = {
 	},
 	collision_box = { { -1.7, -1.2 }, { 1.7, 1.2 } },
 	selection_box = { { -2, -1.5 }, { 2, 1.5 } },
-	surface_conditions = {
-		{
-			property = "gravity",
-			min = 0,
-			max = 5,
-		},
-	},
 	damaged_trigger_effect = hit_effects.entity(),
 	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {

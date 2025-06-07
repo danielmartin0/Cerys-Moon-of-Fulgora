@@ -19,8 +19,7 @@ planet_map_gen.cerys = function()
 					["cerys-water-puddles"] = {},
 					["cerys-ash-cracks-frozen"] = {},
 					["cerys-ash-dark-frozen"] = {},
-					-- ["cerys-ash-flats-frozen"] = {},
-					-- ["cerys-ash-light-frozen"] = {}, -- TODO: Put this one back when our tile transitions are better
+					-- ["cerys-ash-light-frozen"] = {},
 					["cerys-pumice-stones-frozen"] = {},
 				},
 			},

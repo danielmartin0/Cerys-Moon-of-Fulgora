@@ -1,3 +1,5 @@
+local common = require("common")
+
 if settings.startup["cerys-player-constructable-radiative-towers"].value then
 	data:extend({
 		{
@@ -13,16 +15,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
 			enabled = false,
 			surface_conditions = {
-				{
-					property = "magnetic-field",
-					min = 120,
-					max = 120,
-				},
-				{
-					property = "pressure",
-					min = 5,
-					max = 5,
-				},
+				common.AMBIENT_RADIATION_MIN,
 			},
 		},
 	})
@@ -73,16 +66,7 @@ data:extend({
 		},
 		results = { { type = "item", name = "cerysian-science-pack", amount = 1 } },
 		surface_conditions = {
-			{
-				property = "magnetic-field",
-				min = 120,
-				max = 120,
-			},
-			{
-				property = "pressure",
-				min = 5,
-				max = 5,
-			},
+			common.AMBIENT_RADIATION_MIN,
 		},
 		allow_productivity = true,
 	},
@@ -136,7 +120,8 @@ data:extend({
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "d-c",
-		category = "cryogenics-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "cryogenics" },
 		enabled = false,
 		energy_required = 1.8,
 		ingredients = {
@@ -172,18 +157,10 @@ data:extend({
 		type = "recipe",
 		name = "cerys-charging-rod",
 		enabled = false,
-		category = "crafting-or-fulgoran-cryogenics",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "crafting" },
 		surface_conditions = {
-			{
-				property = "magnetic-field",
-				min = 120,
-				max = 120,
-			},
-			{
-				property = "pressure",
-				min = 5,
-				max = 5,
-			},
+			common.AMBIENT_RADIATION_MIN,
 		},
 		energy_required = 5,
 		ingredients = {
@@ -233,16 +210,7 @@ data:extend({
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,
 		surface_conditions = {
-			{
-				property = "magnetic-field",
-				min = 120,
-				max = 120,
-			},
-			{
-				property = "pressure",
-				min = 5,
-				max = 5,
-			},
+			common.AMBIENT_RADIATION_MIN,
 		},
 	},
 

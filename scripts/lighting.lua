@@ -5,7 +5,7 @@ local Public = {}
 -- local DAY_LENGTH = 0.5 * 60 * 60
 local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
-function Public.tick_3_update_lights()
+function Public.tick_update_lights()
 	if not storage.cerys then
 		return
 	end

@@ -292,10 +292,6 @@ local cargo_drops_base =
 if not settings.startup["cerys-sandbox-mode"].value then
 	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
 		type = "unlock-recipe",
-		recipe = "cerys-construction-robot-recycling",
-	}
-	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-		type = "unlock-recipe",
 		recipe = "cerys-exoskeleton-equipment-recycling",
 	}
 
@@ -323,10 +319,6 @@ data:extend({
 		name = "cerys-nice-try-sukaz",
 		hidden = true,
 		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "construction-robot-recycling",
-			},
 			{
 				type = "unlock-recipe",
 				recipe = "exoskeleton-equipment-recycling",
@@ -524,6 +516,13 @@ if data.raw.recipe["motor"] then
 		change = 0.1,
 	})
 end
+if data.raw.recipe["electric-motor"] then
+	table.insert(engine_productivity_effects, {
+		type = "change-recipe-productivity",
+		recipe = "electric-motor",
+		change = 0.1,
+	})
+end
 
 data:extend({
 	{
@@ -571,7 +570,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-engine-unit-productivity-1",
-		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
@@ -588,7 +587,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-engine-unit-productivity-2",
-		icons = util.technology_icon_constant_productivity("__base__/graphics/technology/engine.png"),
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
@@ -605,3 +604,32 @@ data:extend({
 		upgrade = true,
 	},
 })
+
+if settings.startup["cerys-infinite-braking-technology"].value then
+	data:extend({
+		{
+			type = "technology",
+			name = "braking-force-8",
+			icons = util.technology_icon_constant_braking_force("__base__/graphics/technology/braking-force.png"),
+			effects = {
+				{
+					type = "train-braking-force-bonus",
+					modifier = 0.15,
+				},
+			},
+			prerequisites = { "braking-force-7" },
+			unit = {
+				count_formula = "2^(L-7)*" .. data.raw.technology["braking-force-7"].unit.count,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "chemical-science-pack", 1 },
+					{ "production-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
+			},
+			upgrade = true,
+		},
+	})
+end

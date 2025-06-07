@@ -3,9 +3,7 @@ local Public = {}
 local common = require("common")
 
 Public.TEMPERATURE_ZERO = 15
-local TEMPERATURE_INTERVAL = 6
-local MAX_HEATING_RADIUS = 16
-local MAX_HEATING_RADIUS_PLAYER = 13
+local BASE_TEMPERATURE_INTERVAL = 6
 local TEMPERATURE_LOSS_RATE = 1 / 97
 -- Stefan–Boltzmann has no hold on us here:
 local TEMPERATURE_LOSS_POWER = 1.6
@@ -168,16 +166,23 @@ function Public.radiative_heaters_temperature_tick()
 	end
 end
 
-function Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
-	local max_heating_radius = is_player_tower and MAX_HEATING_RADIUS_PLAYER or MAX_HEATING_RADIUS
-	local temperature_interval = TEMPERATURE_INTERVAL
+function Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower, quality_level)
+	local base_heating_radius = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS
+	local heating_radius = base_heating_radius
 
-	if common.HARD_MODE_ON then
-		max_heating_radius = 10
-		temperature_interval = temperature_interval * 16 / 10
+	if is_player_tower then
+		heating_radius = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_PLAYER
+	elseif common.HARD_MODE_ON then
+		heating_radius = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE
 	end
 
-	return math.floor(math.min(max_heating_radius, temperature_above_zero / temperature_interval))
+	if quality_level and quality_level > 0 then
+		heating_radius = heating_radius + quality_level
+	end
+
+	local temperature_interval = BASE_TEMPERATURE_INTERVAL / (heating_radius / base_heating_radius)
+
+	return math.floor(math.min(heating_radius, temperature_above_zero / temperature_interval))
 end
 
 function Public.apply_temperature_drop(valid_tower, is_player_tower)
@@ -185,10 +190,14 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 
 	local temperature_above_zero = e.temperature - Public.TEMPERATURE_ZERO
 
-	local heating_radius = Public.heating_radius_from_temperature_above_zero(temperature_above_zero, is_player_tower)
+	local heating_radius = Public.heating_radius_from_temperature_above_zero(
+		temperature_above_zero,
+		is_player_tower,
+		e.quality and e.quality.level or 0
+	)
 
 	if common.DEBUG_HEATERS_FUELED then
-		heating_radius = MAX_HEATING_RADIUS
+		heating_radius = common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS
 	end
 
 	valid_tower.reactors = valid_tower.reactors or {}
@@ -297,16 +306,15 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 		valid_tower.last_radius = heating_radius
 	end
 
-	local temperature_to_apply_loss_for =
-		math.min(math.max(temperature_above_zero, 30), MAX_HEATING_RADIUS * TEMPERATURE_INTERVAL)
-
-	local quality_factor = math.max(0.1, 1 - 0.15 * (e.quality.level or 0))
+	local temperature_to_apply_loss_for = math.min(
+		math.max(temperature_above_zero, 30),
+		common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS * BASE_TEMPERATURE_INTERVAL
+	)
 
 	e.temperature = e.temperature
 		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
 			* TEMPERATURE_LOSS_RATE
 			* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
-			* quality_factor
 
 	if valid_tower.frozen then
 		if temperature_above_zero > 1 then

@@ -1,12 +1,13 @@
 local Public = {}
 
+Public.DEBUG_DISABLE_FREEZING = false
+Public.DEBUG_CERYS_START = false
+Public.DEBUG_HEATERS_FUELED = false
+Public.DEBUG_NUCLEAR_REACTOR_START = false
+
 Public.GRAVITY_MIN = {
 	property = "gravity",
 	min = 0.15,
-}
-Public.MAGNETIC_FIELD_MAX = {
-	property = "magnetic-field",
-	max = 119,
 }
 Public.FIVE_PRESSURE_MIN = {
 	property = "pressure",
@@ -16,15 +17,14 @@ Public.TEN_PRESSURE_MIN = {
 	property = "pressure",
 	min = 10,
 }
-Public.TEMPERATURE_MIN = {
-	property = "temperature",
-	min = 255,
+Public.AMBIENT_RADIATION_MAX = {
+	property = "cerys-ambient-radiation",
+	max = 200,
 }
-
-Public.DEBUG_DISABLE_FREEZING = false
-Public.DEBUG_CERYS_START = false
-Public.DEBUG_HEATERS_FUELED = false
-Public.DEBUG_NUCLEAR_REACTOR_START = false
+Public.AMBIENT_RADIATION_MIN = {
+	property = "cerys-ambient-radiation",
+	min = 400,
+}
 
 Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
@@ -34,13 +34,18 @@ Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION_SEED = { x = 20, y = 29 }
 Public.LITHIUM_ACTUAL_POSITION = { x = 93, y = 0 }
 Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
-Public.LAMP_COUNT = 17
+-- Public.LAMP_COUNT = 17
+Public.LAMP_COUNT = 30 -- Accounting for quality
 Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 60
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 20
 Public.WARN_COLOR = { r = 255, g = 90, b = 54 }
+
+Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS = 16
+Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE = 10
+Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_PLAYER = 13
 
 -- TODO: Add widths and heights of map generated factory entities
 
@@ -51,9 +56,6 @@ Public.ROCK_TILES = {
 	"cerys-ash-dark",
 	"cerys-ash-dark-frozen",
 	"cerys-ash-dark-frozen-from-dry-ice",
-	-- "cerys-ash-flats", -- Never included in the published mod
-	-- "cerys-ash-flats-frozen", -- Never included in the published mod
-	-- "cerys-ash-flats-frozen-from-dry-ice", -- Never included in the published mod
 	"cerys-ash-light",
 	"cerys-ash-light-frozen",
 	"cerys-ash-light-frozen-from-dry-ice",

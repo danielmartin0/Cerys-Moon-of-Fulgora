@@ -1,6 +1,7 @@
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
 local merge = require("lib").merge
+local common = require("common")
 
 -- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
 
@@ -31,7 +32,18 @@ data:extend({
 		drawing_box_vertical_extension = 4.3,
 		open_sound = sounds.electric_network_open,
 		close_sound = sounds.electric_network_close,
-		factoriopedia_simulation = "nil",
+		factoriopedia_simulation = {
+			init = [[
+    require("__core__/lualib/story")
+    game.simulation.camera_zoom = 1.4
+    game.simulation.camera_position = {0, -2}
+    game.surfaces[1].create_entity{name = "cerys-charging-rod", position = {0, 0}}
+    game.surfaces[1].create_entity({
+      name = "cerys-charging-rod-animation-blue",
+      position = { x = 0, y = 1 },
+    })
+			]],
+		},
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
@@ -78,7 +90,7 @@ data:extend({
 			charge_animation_is_looped = true,
 		}),
 		surface_conditions = {
-			{ property = "magnetic-field", min = 120, max = 120 },
+			common.AMBIENT_RADIATION_MIN,
 		},
 		working_sound = {
 			max_sounds_per_prototype = 4,
@@ -106,10 +118,10 @@ data:extend({
 			},
 		},
 		circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
-			variation = 18,
-			main_offset = util.by_pixel(0, -20),
-			shadow_offset = util.by_pixel(4.5, -7),
-			show_shadow = false,
+			variation = 24,
+			main_offset = util.by_pixel(-5.125, -29),
+			shadow_offset = util.by_pixel(-5.125, -29),
+			show_shadow = true,
 		}),
 		circuit_wire_max_distance = default_circuit_wire_max_distance,
 	},

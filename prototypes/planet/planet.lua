@@ -3,6 +3,14 @@ local map_gen_settings = require("prototypes.planet.map-gen-settings")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 local planet_catalogue_cerys = require("__Cerys-Moon-of-Fulgora__.prototypes.planet.procession-catalogue-cerys")
 
+data:extend({
+	{
+		type = "surface-property",
+		name = "cerys-ambient-radiation",
+		default_value = 10,
+	},
+})
+
 PlanetsLib:extend({
 	{
 		type = "planet",
@@ -50,6 +58,7 @@ PlanetsLib:extend({
 			pressure = 5,
 			gravity = 0.15, -- 0.1 is minimum for chests
 			temperature = 251,
+			["cerys-ambient-radiation"] = 400,
 		},
 		asteroid_spawn_influence = 1,
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),

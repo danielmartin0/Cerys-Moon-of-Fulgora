@@ -553,12 +553,17 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 end)
 
 script.on_event("cerys-toggle-entity", function(event)
-	local p = game.players[event.player_index]
-	local e = p.selected
-
 	if not storage.cerys then
 		return
 	end
+
+	local player = game.players[event.player_index]
+
+	if not (player and player.valid) then
+		return
+	end
+
+	local e = player.selected
 
 	if
 		not (
