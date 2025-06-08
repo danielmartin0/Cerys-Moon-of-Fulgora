@@ -4,28 +4,10 @@ local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
-function Public.lignumis_compatibility_checks()
-	if script.active_mods["lignumis"] then
-		if not script.active_mods["cerys-lunaponics"] then
-			error(
-				"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
-			)
-		elseif settings.startup["lignumis-inserter-progression"].value then
-			error({ "cerys.lignumis-inserter-compatibility-error" })
-		elseif settings.startup["lignumis-assembler-progression"].value then
-			error({ "cerys.lignumis-assembler-compatibility-error" })
-		end
-	end
-
-	if
-		(script.active_mods["wood-logistics"] and script.active_mods["fulgora-coralmium-agriculture"])
-		and not script.active_mods["cerys-lunaponics"]
-	then
-		error(
-			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
-		)
-	end
-end
+script.on_init(function()
+	picker_dollies.add_picker_dollies_blacklists()
+	Public.startup_compatibility_checks()
+end)
 
 function Public.initialize_cerys(surface) -- Must run before terrain generation
 	if storage.cerys and surface and surface.valid then
@@ -92,12 +74,7 @@ function Public.create_reactor(surface)
 	}
 end
 
-script.on_init(function()
-	picker_dollies.add_picker_dollies_blacklists()
-	Public.lignumis_compatibility_checks()
-end)
-
-script.on_event(defines.events.on_surface_created, function(event)
+function Public.on_surface_created(event)
 	local surface_index = event.surface_index
 	local surface = game.surfaces[surface_index]
 
@@ -106,9 +83,9 @@ script.on_event(defines.events.on_surface_created, function(event)
 	end
 
 	Public.initialize_cerys(surface)
-end)
+end
 
-script.on_event(defines.events.on_chunk_generated, function(event)
+function Public.on_chunk_generated(event)
 	local surface = event.surface
 
 	if not (surface and surface.valid and surface.name == "cerys") then
@@ -126,13 +103,24 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 		storage.cerys.chunk_generated_cache[event.position.x .. "," .. event.position.y] = true
 		terrain.on_cerys_chunk_generated(event, surface)
 	end
-end)
+end
 
 function Public.delete_cerys_storage_if_necessary()
 	local surface = game.surfaces["cerys"]
 	if storage.cerys and not (surface and surface.valid) then
 		-- Reset the cerys table:
 		storage.cerys = nil
+	end
+end
+
+function Public.startup_compatibility_checks()
+	if
+		(script.active_mods["wood-logistics"] and script.active_mods["fulgora-coralmium-agriculture"])
+		and not script.active_mods["cerys-lunaponics"]
+	then
+		error(
+			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
+		)
 	end
 end
 

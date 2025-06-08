@@ -58,6 +58,10 @@ if mods["aai-industry"] or mods["Rocs-Rusting-Iron"] then
 	RECYCLING_PROBABILITIES_PERCENT["stone"] = 1
 end
 
+if mods["lignumis"] then
+	RECYCLING_PROBABILITIES_PERCENT["wood"] = 2
+end
+
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 	table.insert(data.raw.recipe["cerys-nuclear-scrap-recycling"].results, {
 		type = "item",

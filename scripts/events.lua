@@ -317,7 +317,7 @@ script.on_configuration_changed(function()
 	end
 
 	picker_dollies.add_picker_dollies_blacklists()
-	init.lignumis_compatibility_checks()
+	init.startup_compatibility_checks()
 end)
 
 function Public.check_thankyou_toast(surface)
@@ -432,6 +432,14 @@ script.on_event(defines.events.on_entity_damaged, function(event)
 	if no_weapon then
 		entity.health = entity.health - 2 -- Allow melee on asteroids for funsies
 	end
+end)
+
+script.on_event(defines.events.on_surface_created, function(event)
+	init.on_surface_created(event)
+end)
+
+script.on_event(defines.events.on_chunk_generated, function(event)
+	init.on_chunk_generated(event)
 end)
 
 return Public

@@ -2,6 +2,7 @@
 Version: 2.16.8
 Date: ????
   Changes:
+    - If Lignumis is installed, wood is now a product of nuclear scrap recycling. All blocks when installing the Lignumis mod have been removed.
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.7
 Date: 2025-06-08
