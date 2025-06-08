@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.9
-Date: ????
+Date: 2025-06-08
   Changes:
     - Inserted a recommendation in chat on load to remove Wooden Cerys: Lunaponics when playing Cerys alongside Lignumis.
 ---------------------------------------------------------------------------------------------------
