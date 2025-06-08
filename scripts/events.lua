@@ -317,6 +317,7 @@ script.on_configuration_changed(function()
 	end
 
 	picker_dollies.add_picker_dollies_blacklists()
+	init.lignumis_compatibility_checks()
 end)
 
 function Public.check_thankyou_toast(surface)

@@ -4,6 +4,29 @@ local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
+function Public.lignumis_compatibility_checks()
+	if script.active_mods["lignumis"] then
+		if not script.active_mods["cerys-lunaponics"] then
+			error(
+				"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
+			)
+		elseif settings.startup["lignumis-inserter-progression"].value then
+			error({ "cerys.lignumis-inserter-compatibility-error" })
+		elseif settings.startup["lignumis-assembler-progression"].value then
+			error({ "cerys.lignumis-assembler-compatibility-error" })
+		end
+	end
+
+	if
+		(script.active_mods["wood-logistics"] and script.active_mods["fulgora-coralmium-agriculture"])
+		and not script.active_mods["cerys-lunaponics"]
+	then
+		error(
+			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
+		)
+	end
+end
+
 function Public.initialize_cerys(surface) -- Must run before terrain generation
 	if storage.cerys and surface and surface.valid then
 		return
@@ -71,6 +94,7 @@ end
 
 script.on_init(function()
 	picker_dollies.add_picker_dollies_blacklists()
+	Public.lignumis_compatibility_checks()
 end)
 
 script.on_event(defines.events.on_surface_created, function(event)
