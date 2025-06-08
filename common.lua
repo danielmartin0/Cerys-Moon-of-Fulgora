@@ -47,7 +47,7 @@ Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS = 16
 Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE = 10
 Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_PLAYER = 13
 
--- TODO: Add widths and heights of map generated factory entities
+Public.warning_color = { r = 255, g = 60, b = 60 }
 
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",
