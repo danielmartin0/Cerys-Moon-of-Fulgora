@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.11
-Date: ????
+Date: 2025-06-08
   Changes:
     - Removed the chat recommendation to remove Wooden Cerys as the mod will soon be rebalanced to make wood starts on Cerys easier. (It's not yet rebalanced though!)
 ---------------------------------------------------------------------------------------------------
