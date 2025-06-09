@@ -629,6 +629,7 @@ if settings.startup["cerys-infinite-braking-technology"].value then
 				},
 				time = 60,
 			},
+			max_level = "infinite",
 			upgrade = true,
 		},
 	})
