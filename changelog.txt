@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.12
-Date: ????
-  Changes:
+Date: 2025-06-09
+  Bugfixes:
+    - Fixed that the optional infinite braking force technology recently became non-infinite.
 ---------------------------------------------------------------------------------------------------
 Version: 2.16.11
 Date: 2025-06-08
