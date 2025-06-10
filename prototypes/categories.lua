@@ -11,15 +11,15 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "cryogenic-plant-repair",
+		name = "cerys-cryogenic-plant-repair",
 	},
 	{
 		type = "recipe-category",
-		name = "nuclear-reactor-repair",
+		name = "cerys-nuclear-reactor-repair",
 	},
 	{
 		type = "recipe-category",
-		name = "crusher-repair",
+		name = "cerys-crusher-repair",
 	},
 	{
 		type = "recipe-category",
@@ -27,7 +27,7 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "crusher-quality-upgrades",
+		name = "cerys-crusher-quality-upgrades",
 	},
 	{
 		type = "recipe-category",

@@ -58,7 +58,7 @@ local crusher = {
 	},
 	icon_draw_specification = { shift = { 0, -0.45 } },
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
-	crafting_categories = { "crushing", "crusher-quality-upgrades" },
+	crafting_categories = { "crushing", "cerys-crusher-quality-upgrades" },
 	crafting_speed = 0.4,
 	energy_usage = common.HARD_MODE_ON and "4000kW" or "2000kW",
 	heating_energy = "200kW",
@@ -136,7 +136,7 @@ end
 local wreck = merge(crusher, {
 	name = "cerys-fulgoran-crusher-wreck",
 	hidden = true,
-	crafting_categories = { "crusher-repair" },
+	crafting_categories = { "cerys-crusher-repair" },
 	fixed_recipe = "cerys-repair-crusher",
 	-- fixed_quality = settings.startup["cerys-disable-quality-mechanics"].value and "nil" or "uncommon",
 	fast_replaceable_group = "cerys-fulgoran-crusher",
