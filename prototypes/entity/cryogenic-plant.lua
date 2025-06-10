@@ -6,7 +6,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	name = "cerys-fulgoran-cryogenic-plant",
 	subgroup = "cerys-entities",
 	order = "b",
-	max_health = 35000,
+	max_health = 3500,
 	crafting_categories = {
 		"fulgoran-cryogenics",
 	},
