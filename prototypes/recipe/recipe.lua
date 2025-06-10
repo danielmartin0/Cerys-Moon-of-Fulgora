@@ -99,7 +99,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plutonium-239",
-		category = "no-machine",
+		category = "cerys-no-machine",
 		enabled = false,
 		energy_required = 0.1,
 		ingredients = {

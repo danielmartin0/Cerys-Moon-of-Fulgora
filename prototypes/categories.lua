@@ -23,6 +23,10 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
+		name = "cerys-teleporter-repair",
+	},
+	{
+		type = "recipe-category",
 		name = "crusher-quality-upgrades",
 	},
 	{
@@ -31,7 +35,11 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "no-machine",
+		name = "cerys-no-machine",
+	},
+	{
+		type = "recipe-category",
+		name = "cerys-no-recipes",
 	},
 	{
 		type = "item-subgroup",

@@ -147,6 +147,30 @@ data:extend({
 
 	{
 		type = "recipe",
+		name = "cerys-repair-teleporter",
+		subgroup = "cerys-repair",
+		order = "i",
+		icon = "__base__/graphics/icons/advanced-circuit.png",
+		icon_size = 64,
+		energy_required = 1,
+		enabled = false,
+		hide_from_player_crafting = true,
+		category = "cerys-teleporter-repair",
+		ingredients = {
+			{
+				type = "item",
+				name = "advanced-circuit",
+				amount = 1,
+			},
+		},
+		results = {},
+		allow_quality = false,
+		allow_productivity = true,
+		hide_from_signal_gui = true,
+	},
+
+	{
+		type = "recipe",
 		name = "cerys-upgrade-fulgoran-crusher-quality",
 		subgroup = "cerys-repair",
 		enabled = false,
