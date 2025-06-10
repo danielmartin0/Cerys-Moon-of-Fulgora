@@ -605,7 +605,11 @@ data:extend({
 	},
 })
 
-if settings.startup["cerys-infinite-braking-technology"].value then
+if
+	settings.startup["cerys-infinite-braking-technology"].value
+	and data.raw.technology["braking-force-7"]
+	and data.raw.technology["braking-force-7"].max_level ~= "infinite"
+then
 	data:extend({
 		{
 			type = "technology",
