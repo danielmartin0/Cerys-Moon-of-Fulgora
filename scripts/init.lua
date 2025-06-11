@@ -4,6 +4,11 @@ local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
+script.on_init(function()
+	picker_dollies.add_picker_dollies_blacklists()
+	Public.startup_compatibility_checks()
+end)
+
 function Public.initialize_cerys(surface) -- Must run before terrain generation
 	if storage.cerys and surface and surface.valid then
 		return
@@ -69,11 +74,7 @@ function Public.create_reactor(surface)
 	}
 end
 
-script.on_init(function()
-	picker_dollies.add_picker_dollies_blacklists()
-end)
-
-script.on_event(defines.events.on_surface_created, function(event)
+function Public.on_surface_created(event)
 	local surface_index = event.surface_index
 	local surface = game.surfaces[surface_index]
 
@@ -82,9 +83,9 @@ script.on_event(defines.events.on_surface_created, function(event)
 	end
 
 	Public.initialize_cerys(surface)
-end)
+end
 
-script.on_event(defines.events.on_chunk_generated, function(event)
+function Public.on_chunk_generated(event)
 	local surface = event.surface
 
 	if not (surface and surface.valid and surface.name == "cerys") then
@@ -102,13 +103,25 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 		storage.cerys.chunk_generated_cache[event.position.x .. "," .. event.position.y] = true
 		terrain.on_cerys_chunk_generated(event, surface)
 	end
-end)
+end
 
 function Public.delete_cerys_storage_if_necessary()
 	local surface = game.surfaces["cerys"]
 	if storage.cerys and not (surface and surface.valid) then
 		-- Reset the cerys table:
 		storage.cerys = nil
+	end
+end
+
+function Public.startup_compatibility_checks()
+	local has_WU_mods = script.active_mods["wood-logistics"] and script.active_mods["fulgora-coralmium-agriculture"]
+	local has_lignumis = script.active_mods["lignumis"]
+	local has_lunaponics = script.active_mods["cerys-lunaponics"]
+
+	if has_WU_mods and not has_lunaponics then
+		error(
+			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
+		)
 	end
 end
 

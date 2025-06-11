@@ -1,4 +1,33 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.16.13
+Date: ????
+  Changes:
+---------------------------------------------------------------------------------------------------
+Version: 2.16.12
+Date: 2025-06-09
+  Bugfixes:
+    - Fixed that the optional infinite braking force technology recently became non-infinite.
+---------------------------------------------------------------------------------------------------
+Version: 2.16.11
+Date: 2025-06-08
+  Changes:
+    - Removed the chat recommendation to remove Wooden Cerys as the mod will soon be rebalanced to make wood starts on Cerys easier. (It's not yet rebalanced though!)
+---------------------------------------------------------------------------------------------------
+Version: 2.16.9
+Date: 2025-06-08
+  Changes:
+    - Inserted a recommendation in chat on load to remove Wooden Cerys: Lunaponics when playing Cerys alongside Lignumis.
+---------------------------------------------------------------------------------------------------
+Version: 2.16.8
+Date: 2025-06-08
+  Changes:
+    - If Lignumis is installed, wood is now a product of nuclear scrap recycling. All blocks when installing the Lignumis mod have been removed.
+---------------------------------------------------------------------------------------------------
+Version: 2.16.7
+Date: 2025-06-08
+  Compatibility:
+    - Inserted some further compatibility requirements for playing with Lignumis to avoid broken play on Cerys.
+---------------------------------------------------------------------------------------------------
 Version: 2.16.6
 Date: 2025-06-06
   Graphics:
