@@ -23,10 +23,6 @@ data:extend({
 	},
 	{
 		type = "recipe-category",
-		name = "cerys-teleporter-repair",
-	},
-	{
-		type = "recipe-category",
 		name = "cerys-crusher-quality-upgrades",
 	},
 	{

@@ -11,6 +11,7 @@ local background = require("scripts.background")
 local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
+local teleporter = require("scripts.teleporter")
 local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
@@ -65,6 +66,8 @@ script.on_event({
 		repair.scaffold_on_build(entity, player)
 	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
+	elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
+		teleporter.register_frozen_teleporter(entity)
 	elseif on_cerys and entity.type == "solar-panel" then
 		lighting.register_solar_panel(entity)
 	end
@@ -440,6 +443,24 @@ end)
 
 script.on_event(defines.events.on_chunk_generated, function(event)
 	init.on_chunk_generated(event)
+end)
+
+script.on_event(defines.events.on_gui_opened, function(event)
+	local player = game.players[event.player_index]
+	if not (player and player.valid) then
+		return
+	end
+
+	local entity = event.entity
+	if not (entity and entity.valid) then
+		return
+	end
+
+	if entity.name == "cerys-fulgoran-teleporter-frozen" then
+		player.opened = nil
+	elseif entity.name == "cerys-fulgoran-teleporter" then
+		teleporter.toggle_gui(player, entity)
+	end
 end)
 
 return Public

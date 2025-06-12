@@ -23,33 +23,33 @@ local teleporter = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	icon_size = 64,
 })
 
-local wreck = merge(teleporter, {
-	name = "cerys-fulgoran-teleporter-wreck",
+local teleporter_frozen = merge(teleporter, {
+	name = "cerys-fulgoran-teleporter-frozen",
 	hidden_in_factoriopedia = true,
-	crafting_categories = { "cerys-teleporter-repair" },
-	fixed_recipe = "cerys-repair-teleporter",
+	crafting_categories = {
+		"cerys-no-recipes",
+	},
 	fast_replaceable_group = "cerys-fulgoran-teleporter",
 	energy_source = {
 		type = "void",
 	},
-	module_slots = 1,
-	allowed_effects = { "speed", "productivity" },
+	-- graphics_set = {
+	-- 	animation = {
+	-- 		layers = {
+	-- 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-wreck-frozen", {
+	-- 				animation_speed = 0.1,
+	-- 				repeat_count = 48,
+	-- 				scale = 0.5,
+	-- 				shift = util.by_pixel(3, -6),
+	-- 				tint = common.FACTORIO_UNDO_FROZEN_TINT,
+	-- 			}),
+	-- 		},
+	-- 	},
+	-- },
 	-- map_color = { 200, 150, 250 },
-	working_sound = {
-		-- TODO: Improve this sound
-		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },
-		audible_distance_modifier = 0.5,
-		fade_in_ticks = 4,
-		fade_out_ticks = 20,
-	},
-})
-
-local wreck_frozen = merge(wreck, {
-	name = "cerys-fulgoran-teleporter-wreck-frozen",
 })
 
 data:extend({
 	teleporter,
-	wreck,
-	wreck_frozen,
+	teleporter_frozen,
 })
