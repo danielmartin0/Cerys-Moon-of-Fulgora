@@ -49,7 +49,7 @@ end
 if surface.map_gen_settings.height < common.CERYS_RADIUS * 1.5 then
 	game.print(
 		"[CERYS]: Deleting ribbonworld Cerys that was created prior to Cerys v1.4.17. (Ribbonworld support was added in this version.)",
-		{ color = common.warning_color }
+		{ color = common.WARN_COLOR }
 	)
 	game.delete_surface("cerys")
 end

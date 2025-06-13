@@ -47,7 +47,7 @@ for _, corner in pairs(corners) do
 end
 
 if towers_found == 0 then
-	game.print("[CERYS]: Adding missing radiative tower in range of the reactor.", { color = common.warning_color })
+	game.print("[CERYS]: Adding missing radiative tower in range of the reactor.", { color = common.WARN_COLOR })
 
 	local p =
 		surface.find_non_colliding_position("cerys-fulgoran-radiative-tower-contracted-container", corners[1], 10, 0.5)

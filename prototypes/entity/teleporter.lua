@@ -18,7 +18,7 @@ local teleporter = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	autoplace = {
 		probability_expression = "0",
 	},
-	-- map_color = { 83, 17, 150 },
+	map_color = { 0, 255, 20 },
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
 	icon_size = 64,
 })
@@ -46,7 +46,7 @@ local teleporter_frozen = merge(teleporter, {
 	-- 		},
 	-- 	},
 	-- },
-	-- map_color = { 200, 150, 250 },
+	map_color = { 0, 255, 20 },
 })
 
 data:extend({

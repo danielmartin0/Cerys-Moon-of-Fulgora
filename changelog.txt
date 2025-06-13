@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.17.0
 Date: ????
-  Changes:
-    - Added an ancient Fulgoran teleporter to Cerys so that players can always travel to Fulgora.
+  Features:
+    - An Ancient Fulgoran teleporter can now be found on Cerys. It teleports the player to a random location on Fulgora.
   Locale:
     - Chinese translation updated.
   Bugfixes:

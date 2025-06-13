@@ -210,6 +210,8 @@ function Public.cerys_tick(surface, tick)
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		crusher.tick_15_check_broken_crushers(surface)
 		repair.tick_15_nuclear_reactor_repair_check(surface)
+		teleporter.tick_15_check_frozen_teleporter(surface)
+		teleporter.tick_15_check_teleporter_gui()
 	end
 
 	if tick % 20 == 0 then
