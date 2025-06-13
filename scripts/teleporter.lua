@@ -130,15 +130,15 @@ function Public.toggle_gui(player, entity)
 		style = "inside_shallow_frame_with_padding",
 	})
 
-	local horizontal_flow = content_frame.add({
+	local vertical_flow = content_frame.add({
 		type = "flow",
-		name = "preview_button_flow",
-		direction = "horizontal",
-		style = "horizontal_flow",
-		horizontal_spacing = 8,
+		name = "vertical_flow",
+		direction = "vertical",
+		style = "vertical_flow",
+		vertical_spacing = 8,
 	})
 
-	local preview_frame = horizontal_flow.add({
+	local preview_frame = vertical_flow.add({
 		type = "frame",
 		style = "deep_frame_in_shallow_frame",
 	})
@@ -149,17 +149,27 @@ function Public.toggle_gui(player, entity)
 		style = "wide_entity_button",
 	})
 	preview.entity = entity
-	preview.style.width = 200
+	preview.style.width = 300
 	preview.style.height = 200
 
-	local button = horizontal_flow.add({
+	local button_flow = vertical_flow.add({
+		type = "flow",
+		name = "button_flow",
+		direction = "horizontal",
+		style = "horizontal_flow",
+	})
+	button_flow.style.horizontal_align = "center"
+	button_flow.style.top_margin = 8
+	button_flow.style.horizontally_stretchable = true
+
+	local button = button_flow.add({
 		type = "button",
 		name = "cerys_teleporter_button",
 		caption = { "cerys.teleporter-button-text" },
 		style = "green_button",
 		enabled = game.planets.fulgora ~= nil,
+		tooltip = { "cerys.teleporter-button-tooltip" },
 	})
-	button.style.left_margin = 8
 	button.style.minimal_width = 160
 
 	player.opened = frame
@@ -176,7 +186,7 @@ function Public.reset_button_state(player_index)
 		return
 	end
 
-	local button = gui.content_frame.preview_button_flow["cerys_teleporter_button"]
+	local button = gui.content_frame.vertical_flow.button_flow.cerys_teleporter_button
 	if button then
 		button.caption = { "cerys.teleporter-button-text" }
 	end
@@ -201,7 +211,7 @@ script.on_event(defines.events.on_gui_click, function(event)
 		if not state.confirmed then
 			event.element.caption = { "cerys.teleporter-button-text-confirm" }
 			state.confirmed = true
-			state.revert_tick = game.tick + 240
+			state.revert_tick = game.tick + 60 * 2
 		else
 			Public.teleport_to_fulgora(player)
 			Public.reset_button_state(player.index)
