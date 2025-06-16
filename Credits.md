@@ -57,3 +57,17 @@ This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 - **Source**: [Better Sounds](https://mods.factorio.com/user/BetterSounds)
 - **License**: [MIT](https://opensource.org/license/MIT)
 - **Changes**: No.
+
+#### Teleporter component
+
+- **Creators**: [YuokiTani](https://mods.factorio.com/user/preleyzero)
+- **Source**: [Yuoki Industries](https://mods.factorio.com/mod/Yuoki)
+- **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Changes**: Yes, adapted for the teleporter.
+
+#### Teleporter component
+
+- **Creators**: [Hurricane](https://mods.factorio.com/user/Hurricane046)
+- **Source**: [Arc Furnace](https://shorturl.at/AFcDm)
+- **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Changes**: Yes, adapted for the teleporter.
