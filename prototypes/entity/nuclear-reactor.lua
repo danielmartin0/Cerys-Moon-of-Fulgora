@@ -54,7 +54,7 @@ local fulgoran_reactor = {
 	max_health = max_health,
 	corpse = "nuclear-reactor-remnants",
 	dying_explosion = "nuclear-reactor-explosion",
-	consumption = "3GW",
+	consumption = "4GW",
 	neighbour_bonus = 0,
 	energy_source = {
 		type = "burner",
@@ -326,7 +326,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 20,
+					repeat_count = 1,
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
@@ -335,7 +335,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(17, 0),
 					scale = 0.354816,
 					frame_count = 1,
-					repeat_count = 20,
+					repeat_count = 1,
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-front.png",
@@ -344,7 +344,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 20,
+					repeat_count = 1,
 				},
 				-- TODO: Time this laser animation to the crafting time
 				-- {
@@ -365,7 +365,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					scale = 1,
 					draw_as_shadow = true,
 					frame_count = 1,
-					repeat_count = 20,
+					repeat_count = 1,
 				},
 			},
 		},
@@ -379,6 +379,64 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 	map_color = { 0, 104, 120 },
 })
 
+local complete_with_scaffold = merge(cleared_with_scaffold, {
+	name = "cerys-fulgoran-reactor-scaffolded",
+	graphics_set = {
+		animation = {
+			layers = {
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold.png",
+					width = 1058,
+					height = 1022,
+					shift = util.by_pixel(155, 4),
+					scale = 1,
+					frame_count = 1,
+					repeat_count = 1,
+				},
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-0.5.png",
+					width = 2113,
+					height = 2068,
+					scale = 0.354816,
+					shift = util.by_pixel(3, -3),
+					frame_count = 1,
+					repeat_count = 1,
+				},
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-front.png",
+					width = 1058,
+					height = 1022,
+					shift = util.by_pixel(155, 4),
+					scale = 1,
+					frame_count = 1,
+					repeat_count = 1,
+				},
+				-- TODO: Time this laser animation to the crafting time
+				-- {
+				-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-laser.png",
+				-- 	width = 1180,
+				-- 	height = 1300,
+				-- 	shift = util.by_pixel(0, -80),
+				-- 	scale = 0.32,
+				-- 	frame_count = 8,
+				-- 	line_length = 4,
+				-- 	frame_sequence = { 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8, 8 },
+				-- },
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-shadow.png",
+					width = 1058,
+					height = 1022,
+					shift = util.by_pixel(155, 4),
+					scale = 1,
+					draw_as_shadow = true,
+					frame_count = 1,
+					repeat_count = 1,
+				},
+			},
+		},
+	},
+})
+
 data:extend({
 	fulgoran_reactor,
 	reactor_wreck,
@@ -386,4 +444,5 @@ data:extend({
 	reactor_wreck_cleared,
 	scaffold,
 	cleared_with_scaffold,
+	complete_with_scaffold,
 })

@@ -43,6 +43,7 @@ function Public.add_picker_dollies_blacklists()
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-reactor-wreck-cleared", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-reactor-scaffold", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-reactor-wreck-scaffolded", true)
+		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-reactor-scaffolded", true)
 
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-crusher", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-crusher-wreck", true)

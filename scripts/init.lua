@@ -7,6 +7,7 @@ local Public = {}
 script.on_init(function()
 	picker_dollies.add_picker_dollies_blacklists()
 	Public.startup_compatibility_checks()
+	Public.whitelist_construction_robots()
 end)
 
 function Public.initialize_cerys(surface) -- Must run before terrain generation
@@ -130,6 +131,10 @@ function Public.startup_compatibility_checks()
 			"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
 		)
 	end
+end
+
+function Public.whitelist_construction_robots()
+	remote.call("planetslib", "add_to_cargo_drop_item_name_whitelist", "construction-robot", "cerys")
 end
 
 function Public.ensure_cerys_storage_and_tables()

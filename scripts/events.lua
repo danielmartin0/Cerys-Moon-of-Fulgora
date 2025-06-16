@@ -165,7 +165,10 @@ function Public.cerys_tick(surface, tick)
 
 	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or 12
 
-	background.tick_1_update_background_renderings(surface)
+	if not settings.global["cerys-disable-parallax"].value then
+		background.tick_1_update_background_renderings(surface)
+	end
+
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
 	crusher.tick_1_check_crusher_quality_upgrades(surface)
@@ -328,6 +331,7 @@ script.on_configuration_changed(function()
 
 	picker_dollies.add_picker_dollies_blacklists()
 	init.startup_compatibility_checks()
+	init.whitelist_construction_robots()
 end)
 
 function Public.check_thankyou_toast(surface)
@@ -467,6 +471,12 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		player.opened = nil
 	elseif entity.name == "cerys-fulgoran-teleporter" then
 		teleporter.toggle_gui(player, entity)
+	end
+end)
+
+script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
+	if event.setting_type == "runtime-global" and (event.setting == "cerys-disable-parallax") then
+		background.reset_background_renderings()
 	end
 end)
 

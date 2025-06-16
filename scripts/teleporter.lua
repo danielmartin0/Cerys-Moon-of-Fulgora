@@ -59,16 +59,17 @@ function Public.close_gui(player)
 end
 
 function Public.toggle_gui(player, entity)
-	if not (player and player.valid) then
-		return
-	end
-
 	if player.gui.screen.cerys_teleporter_gui then
 		Public.close_gui(player)
 		return
 	end
 
 	if entity.frozen then
+		player.opened = nil
+		return
+	end
+
+	if player.controller_type ~= defines.controllers.character then
 		player.opened = nil
 		return
 	end

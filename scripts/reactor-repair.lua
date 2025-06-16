@@ -385,7 +385,7 @@ function Public.replace_existing_reactor_with_scaffold(surface, reactor_entity, 
 	end
 
 	local e2 = surface.create_entity({
-		name = "cerys-fulgoran-reactor-wreck-scaffolded",
+		name = "cerys-fulgoran-reactor-scaffolded",
 		position = reactor_entity.position,
 		force = player.force,
 		quality = new_quality,

@@ -79,6 +79,13 @@ data:extend({
 		order = "f",
 	},
 	{
+		type = "bool-setting",
+		name = "cerys-disable-parallax",
+		setting_type = "runtime-global",
+		default_value = false,
+		order = "g",
+	},
+	{
 		type = "double-setting",
 		name = "cerys-plutonium-generation-rate-multiplier",
 		setting_type = "runtime-global",

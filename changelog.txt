@@ -1,7 +1,19 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.0.2
+Version: 3.1.0
 Date: ????
-  Changes:
+  Features:
+    - Construction robots are once again allowed in Cerys cargo drops.
+    - Added mod setting to disable the parallax effect on Fulgora viewed from Cerys.
+  Balancing:
+    - Fulgoran reactor power input/output increased (3GW -> 4GW).
+  Bugfixes:
+    - Fixed that the teleporter could be used remotely.
+  Compatibility:
+    - Krastorio 2: Rare metals now appear in nuclear scrap recycling.
+  Graphics:
+    - Graphical improvements to the teleporter and reactor scaffold.
+  Locale:
+    - Chinese translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 3.0.0
 Date: 2025-06-16
@@ -9,7 +21,7 @@ Date: 2025-06-16
     - v3.0 release! There are no breaking changes.
   Features:
     - Cerys is no longer a 'prison': an ancient Fulgoran teleporter now appears on Cerys which can teleport the player to a random location on Fulgora. (Thanks Snouz for providing the graphics!)
-    - The quality of the Fulgoran reactor can now be upgraded by super-force-building a quality scaffold on top of an existing repaired reactor, provided the quality upgrades technology is researched.
+    - The quality of the Fulgoran reactor can now be upgraded by super-force-building a non-ghost quality scaffold on top of an existing repaired reactor, provided the quality upgrades technology is researched.
     - Added a Tips & Tricks entry for the finer details of plutonium, unlocked once 'Applications of radioactivity' is researched.
   Compatibility:
     - Lignumis compatibility: Wood is no longer provided in nuclear scrap recycling and instead Wooden Cerys: Lunaponics is now once again mandatory. This is because Wooden Cerys has been rebalanced to make early wood gameplay easier. (Thanks SafTheLamb!)

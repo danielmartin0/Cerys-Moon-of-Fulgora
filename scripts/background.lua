@@ -53,4 +53,23 @@ function Public.tick_1_update_background_renderings(surface)
 	end
 end
 
+function Public.reset_background_renderings()
+	local surface = game.surfaces["cerys"]
+
+	if not (surface and surface.valid) then
+		return
+	end
+
+	for _, player in pairs(game.players) do
+		local r = storage.background_renderings[player.index]
+
+		if r.valid then
+			r.target = {
+				x = PLANET_OFFSET.x,
+				y = PLANET_OFFSET.y,
+			}
+		end
+	end
+end
+
 return Public

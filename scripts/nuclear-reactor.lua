@@ -21,6 +21,7 @@ Public.REACTOR_NAME_TO_STAGE = {
 	["cerys-fulgoran-reactor-wreck"] = repair.REACTOR_STAGE_ENUM.needs_excavation,
 	["cerys-fulgoran-reactor-wreck-cleared"] = repair.REACTOR_STAGE_ENUM.needs_scaffold,
 	["cerys-fulgoran-reactor-wreck-scaffolded"] = repair.REACTOR_STAGE_ENUM.needs_repair,
+	["cerys-fulgoran-reactor-scaffolded"] = repair.REACTOR_STAGE_ENUM.needs_repair,
 	["cerys-fulgoran-reactor-wreck-frozen"] = repair.REACTOR_STAGE_ENUM.frozen,
 }
 
@@ -238,6 +239,7 @@ function Public.register_reactor_if_missing(surface)
 				"cerys-fulgoran-reactor-wreck",
 				"cerys-fulgoran-reactor-wreck-frozen",
 				"cerys-fulgoran-reactor-wreck-scaffolded",
+				"cerys-fulgoran-reactor-scaffolded",
 			},
 		})
 

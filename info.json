@@ -1,6 +1,6 @@
 {
     "name": "Cerys-Moon-of-Fulgora",
-    "version": "3.0.2",
+    "version": "3.1.0",
     "factorio_version": "2.0",
     "title": "Cerys",
     "author": "thesixthroc",
@@ -11,7 +11,7 @@
         "base >= 2.0.51",
         "space-age >= 2.0.51",
         "Flare Stack >= 3.0.6",
-        "PlanetsLib >= 1.5.1",
+        "PlanetsLib >= 1.6.2",
         "? Planet-Hopper",
         "? visible-planets >= 1.2.11",
         "(?) PlutoniumEnergy",
