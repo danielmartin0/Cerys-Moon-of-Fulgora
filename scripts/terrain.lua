@@ -332,7 +332,7 @@ function Public.create_teleporter()
 
 	local p2 = surface.find_non_colliding_position("cerys-fulgoran-teleporter-frozen", p, 100, 1) or p
 
-	Public.ensure_solid_foundation(surface, p2, 5, 5) -- TODO: Change x and y to match the entity bounds
+	Public.ensure_solid_foundation(surface, p2, 7, 7)
 
 	local e = surface.create_entity({
 		name = "cerys-fulgoran-teleporter-frozen",

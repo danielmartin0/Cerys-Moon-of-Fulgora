@@ -277,15 +277,16 @@ data:extend({
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",
-		name = "cerys-fulgoran-crusher",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/crusher.png",
+		name = "cerys-fulgoran-radiative-tower",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
 		icon_size = 64,
 		subgroup = "cerys-entities",
-		order = "c",
+		order = "a",
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 20,
+		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -304,6 +305,19 @@ data:extend({
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",
+		name = "cerys-fulgoran-crusher",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/crusher.png",
+		icon_size = 64,
+		subgroup = "cerys-entities",
+		order = "c",
+		hidden = true,
+		default_import_location = "cerys",
+		weight = 1000 * 1000,
+		stack_size = 20,
+	},
+	{
+		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
+		type = "item",
 		name = "cerys-fulgoran-reactor",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
 		icon_size = 64,
@@ -317,16 +331,16 @@ data:extend({
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",
-		name = "cerys-fulgoran-radiative-tower",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+		name = "cerys-fulgoran-teleporter",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/teleporter.png",
 		icon_size = 64,
 		subgroup = "cerys-entities",
-		order = "a",
+		order = "e",
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 20,
-		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
+		place_result = "cerys-fulgoran-teleporter",
 	},
 	{
 		type = "ammo",

@@ -29,20 +29,20 @@ function Public.teleport_to_fulgora(player)
 
 	player.play_sound({
 		path = "cerys-teleporter-1",
-		volume_modifier = 0.5,
+		volume_modifier = 0.6,
 	})
 	player.play_sound({
 		path = "cerys-teleporter-2",
-		volume_modifier = 0.5,
+		volume_modifier = 0.6,
 	})
 
 	original_surface.play_sound({
 		path = "cerys-teleporter-1",
-		volume_modifier = 0.5,
+		volume_modifier = 0.6,
 	})
 	original_surface.play_sound({
 		path = "cerys-teleporter-2",
-		volume_modifier = 0.5,
+		volume_modifier = 0.6,
 	})
 end
 
@@ -65,6 +65,11 @@ function Public.toggle_gui(player, entity)
 
 	if player.gui.screen.cerys_teleporter_gui then
 		Public.close_gui(player)
+		return
+	end
+
+	if entity.frozen then
+		player.opened = nil
 		return
 	end
 
@@ -149,8 +154,8 @@ function Public.toggle_gui(player, entity)
 		style = "wide_entity_button",
 	})
 	preview.entity = entity
-	preview.style.width = 300
-	preview.style.height = 200
+	preview.style.width = 280
+	preview.style.height = 280
 
 	local button_flow = vertical_flow.add({
 		type = "flow",
@@ -233,7 +238,24 @@ script.on_event(defines.events.on_gui_closed, function(event)
 	end
 end)
 
-Public.tick_15_check_teleporter_gui = function()
+Public.tick_15_check_teleporter = function()
+	if storage.cerys and storage.cerys.teleporter then
+		local e = storage.cerys.teleporter.entity
+		if e and e.valid then
+			if e.frozen then
+				e.custom_status = {
+					diode = defines.entity_status_diode.red,
+					label = { "entity-status.frozen" },
+				}
+			else
+				e.custom_status = {
+					diode = defines.entity_status_diode.green,
+					label = { "cerys.teleporter-status-label" },
+				}
+			end
+		end
+	end
+
 	if not storage.teleporter_gui then
 		return
 	end
@@ -274,7 +296,13 @@ function Public.unfreeze_teleporter(surface, e)
 	if e2 and e2.valid then
 		e2.minable_flag = false
 		e2.destructible = false
+		e2.custom_status = {
+			diode = defines.entity_status_diode.green,
+			label = { "cerys.teleporter-status-label" },
+		}
 	end
+
+	e.destroy()
 
 	if not storage.cerys then
 		return

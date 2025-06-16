@@ -209,7 +209,7 @@ function Public.tick_1_move_radiation(tick)
 				local d2 = (particle.position.x - (particle.spawn_position and particle.spawn_position.x or 0)) ^ 2
 					+ (particle.position.y - (particle.spawn_position and particle.spawn_position.y or 0)) ^ 2
 
-				if d2 > RANGE_SQUARED then
+				if d2 > RANGE_SQUARED and math.random() < 0.4 then
 					if particle.entity and particle.entity.valid then
 						particle.entity.destroy()
 					end

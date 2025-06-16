@@ -124,6 +124,12 @@ function Public.startup_compatibility_checks()
 			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
 		)
 	end
+
+	if has_lignumis and not has_lunaponics then
+		error(
+			"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
+		)
+	end
 end
 
 function Public.ensure_cerys_storage_and_tables()

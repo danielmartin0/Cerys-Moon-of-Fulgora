@@ -107,34 +107,34 @@ local solar_wind_particle = {
 	},
 }
 
-local gamma_radiation = merge(solar_wind_particle, {
-	map_color = { 0, 1, 0 },
-	name = "cerys-gamma-radiation",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
-	icon_size = 64,
+local neutron_dummy = merge(solar_wind_particle, {
+	map_color = { 0.8, 0.8, 0.8 },
+	name = "cerys-neutron-dummy", -- For Factoriopedia
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
+	icon_size = 48,
 	order = "b",
 	pictures = {
 		layers = {
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
 				size = 32,
-				scale = 0.35,
+				scale = 0.45,
 				draw_as_glow = true,
 			},
 		},
 	},
 })
 
-local neutron_dummy = merge(solar_wind_particle, {
-	map_color = { 0.8, 0.8, 0.8 },
-	name = "cerys-neutron-dummy", -- For Factoriopedia
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
-	icon_size = 48,
+local gamma_radiation = merge(solar_wind_particle, {
+	map_color = { 0, 1, 0 },
+	name = "cerys-gamma-radiation",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
+	icon_size = 64,
 	order = "c",
 	pictures = {
 		layers = {
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
 				size = 32,
 				scale = 0.45,
 				draw_as_glow = true,

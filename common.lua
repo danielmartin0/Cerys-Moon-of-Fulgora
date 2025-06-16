@@ -41,7 +41,7 @@ Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 60
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 20
-Public.TELEPORTER_POSITION_SEED = { x = -80, y = 4 }
+Public.TELEPORTER_POSITION_SEED = { x = -76, y = 4 }
 
 Public.WARN_COLOR = { r = 255, g = 90, b = 54 }
 Public.FRIENDLY_COLOR = { r = 227, g = 250, b = 192 }

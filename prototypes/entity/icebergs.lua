@@ -4,6 +4,8 @@ data:extend({
 	merge(data.raw["simple-entity"]["lithium-iceberg-huge"], {
 		name = "cerys-methane-iceberg-huge",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-a[huge]",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-iceberg-big.png",
+		icon_size = 64,
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-huge"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.1,
 			results = {
@@ -57,6 +59,8 @@ data:extend({
 	merge(data.raw["simple-entity"]["lithium-iceberg-big"], {
 		name = "cerys-methane-iceberg-big",
 		order = "b[decorative]-l[rock]-p[methane-iceberg]-b[big]",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-iceberg-big.png",
+		icon_size = 64,
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-big"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.1,
 			results = {
