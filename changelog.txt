@@ -18,7 +18,7 @@ Date: 2025-06-16
   Bugfixes:
     - Fixed that the teleporter could be used remotely.
   Compatibility:
-    - Krastorio 2: Rare metals now appear in nuclear scrap recycling.
+    - Krastorio 2: Rare metals now appear in nuclear scrap recycling. (This is not a full compatibility patch.)
   Graphics:
     - Graphical improvements to the teleporter and reactor scaffold.
   Locale:
