@@ -5,7 +5,7 @@ local common = require("common")
 local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	name = "cerys-fulgoran-cryogenic-plant",
 	subgroup = "cerys-entities",
-	order = "b",
+	order = "c",
 	max_health = 3500,
 	crafting_categories = {
 		"fulgoran-cryogenics",

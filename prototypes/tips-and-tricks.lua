@@ -211,3 +211,19 @@ data:extend({
 		-- },
 	},
 })
+
+data:extend({
+	{
+		type = "tips-and-tricks-item",
+		name = "cerys-plutonium-generation",
+		category = "space-age",
+		tag = "[item=plutonium-239]",
+		indent = 1,
+		order = "a-z-b[Cerys]-b",
+		trigger = {
+			type = "research",
+			technology = "cerys-applications-of-radioactivity",
+		},
+		dependencies = { "cerys-briefing" },
+	},
+})

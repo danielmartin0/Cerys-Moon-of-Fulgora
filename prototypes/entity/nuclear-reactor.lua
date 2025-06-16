@@ -47,6 +47,8 @@ local fulgoran_reactor = {
 	name = "cerys-fulgoran-reactor",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
 	icon_size = 64,
+	subgroup = "cerys-entities",
+	order = "e",
 	flags = { "placeable-neutral", "player-creation" },
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
 	max_health = max_health,
@@ -71,8 +73,6 @@ local fulgoran_reactor = {
 	damaged_trigger_effect = data.raw["reactor"]["nuclear-reactor"].damaged_trigger_effect,
 	lower_layer_picture = nil,
 	heat_lower_layer_picture = nil,
-	subgroup = "cerys-entities",
-	order = "d",
 	heat_buffer = {
 		max_temperature = 2000, -- from 1000
 		specific_heat = "640MJ", -- from 10MJ
