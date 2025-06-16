@@ -42,7 +42,7 @@ data:extend({
 		energy_required = 1 / 3,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "cryogenic-plant-repair",
+		category = "cerys-cryogenic-plant-repair",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
@@ -85,7 +85,7 @@ data:extend({
 		energy_required = 0.9,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "nuclear-reactor-repair",
+		category = "cerys-nuclear-reactor-repair",
 		ingredients = {},
 		results = {
 			{ type = "item", name = "concrete", amount = 100 },
@@ -105,7 +105,7 @@ data:extend({
 		energy_required = 1 / 5,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "nuclear-reactor-repair",
+		category = "cerys-nuclear-reactor-repair",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 			{ type = "item", name = "processing-unit", amount = 1 },
@@ -126,7 +126,7 @@ data:extend({
 		energy_required = 1 / 3,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "crusher-repair",
+		category = "cerys-crusher-repair",
 		ingredients = {
 			{
 				type = "item",
@@ -155,7 +155,7 @@ data:extend({
 		icon_size = 64,
 		energy_required = 4,
 		hide_from_player_crafting = true,
-		category = "crusher-quality-upgrades",
+		category = "cerys-crusher-quality-upgrades",
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 			{ type = "item", name = "processing-unit", amount = 5 },

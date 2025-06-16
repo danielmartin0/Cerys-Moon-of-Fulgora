@@ -268,6 +268,14 @@ if quality_upgrades then
 					type = "unlock-recipe",
 					recipe = "cerys-upgrade-fulgoran-crusher-quality",
 				},
+				{
+					type = "nothing",
+					icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
+					icon_size = 64,
+					effect_description = {
+						"cerys.reactor-quality-upgrades-description",
+					},
+				},
 			},
 			prerequisites = { "cerysian-science-pack" },
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
@@ -481,16 +489,16 @@ if data.raw.recipe["holmium-plate"] then
 end
 table.insert(holmium_productivity_effects_1, {
 	type = "unlock-recipe",
-	recipe = "holmium-recrystallization",
+	recipe = "maraxsis-holmium-recrystalization",
 })
 table.insert(holmium_productivity_effects_1, {
 	type = "change-recipe-productivity",
-	recipe = "holmium-recrystallization",
+	recipe = "maraxsis-holmium-recrystalization",
 	change = 0.1,
 })
 table.insert(holmium_productivity_effects_2, {
 	type = "change-recipe-productivity",
-	recipe = "holmium-recrystallization",
+	recipe = "maraxsis-holmium-recrystalization",
 	change = 0.1,
 })
 
@@ -605,7 +613,11 @@ data:extend({
 	},
 })
 
-if settings.startup["cerys-infinite-braking-technology"].value then
+if
+	settings.startup["cerys-infinite-braking-technology"].value
+	and data.raw.technology["braking-force-7"]
+	and data.raw.technology["braking-force-7"].max_level ~= "infinite"
+then
 	data:extend({
 		{
 			type = "technology",

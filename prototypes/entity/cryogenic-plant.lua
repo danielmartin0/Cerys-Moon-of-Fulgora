@@ -5,8 +5,8 @@ local common = require("common")
 local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	name = "cerys-fulgoran-cryogenic-plant",
 	subgroup = "cerys-entities",
-	order = "b",
-	max_health = 35000,
+	order = "c",
+	max_health = 3500,
 	crafting_categories = {
 		"fulgoran-cryogenics",
 	},
@@ -267,7 +267,7 @@ cryo_plant.fluid_boxes = {
 local wreck = merge(cryo_plant, {
 	name = "cerys-fulgoran-cryogenic-plant-wreck",
 	hidden_in_factoriopedia = true,
-	crafting_categories = { "cryogenic-plant-repair" },
+	crafting_categories = { "cerys-cryogenic-plant-repair" },
 	fixed_recipe = "cerys-repair-cryogenic-plant",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	crafting_speed = 1,

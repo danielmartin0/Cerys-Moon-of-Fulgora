@@ -5,6 +5,8 @@ local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local reactor = {
 	type = "reactor",
 	name = "cerys-fulgoran-radiative-tower",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+	icon_size = 64,
 	subgroup = "cerys-entities",
 	order = "a",
 	-- The 'player-creation' flag is needed for undocumented reasons: if not set, players cannot drop fuel into this reactor using 'z'.
@@ -61,8 +63,6 @@ local reactor = {
 			}),
 		},
 	},
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
-	icon_size = 64,
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	working_sound = {
@@ -231,10 +231,11 @@ local reactor_base_frozen = merge(reactor_base, {
 local container = {
 	type = "container",
 	name = "cerys-fulgoran-radiative-tower-contracted-container",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+	icon_size = 64,
 	subgroup = "cerys-entities",
 	hidden_in_factoriopedia = true,
 	flags = { "placeable-neutral", "not-deconstructable", "not-blueprintable", "not-flammable" },
-	icon = "__space-age__/graphics/icons/heating-tower.png",
 	created_effect = {
 		type = "direct",
 		action_delivery = {

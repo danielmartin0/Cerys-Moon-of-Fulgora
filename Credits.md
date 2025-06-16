@@ -50,3 +50,10 @@ This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 - **Source**: [Centrifuge tint 2.0](https://mods.factorio.com/mod/centrifuge-tint)
 - **License**: [MIT](https://opensource.org/license/MIT)
 - **Changes**: No.
+
+#### Teleporter sound effects
+
+- **Creators**: [Sam_](https://mods.factorio.com/user/Sam_)
+- **Source**: [Better Sounds](https://mods.factorio.com/user/BetterSounds)
+- **License**: [MIT](https://opensource.org/license/MIT)
+- **Changes**: No.

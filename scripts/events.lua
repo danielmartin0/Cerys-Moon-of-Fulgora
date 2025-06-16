@@ -2,7 +2,7 @@ local lib = require("lib")
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
 local space = require("scripts.space")
-local repair = require("scripts.reactor-repair")
+local reactor_repair = require("scripts.reactor-repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
 local common = require("common")
@@ -11,6 +11,7 @@ local background = require("scripts.background")
 local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
+local teleporter = require("scripts.teleporter")
 local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
@@ -62,9 +63,11 @@ script.on_event({
 			return
 		end
 
-		repair.scaffold_on_build(entity, player)
+		reactor_repair.scaffold_on_build(entity, player)
 	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
+	elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
+		teleporter.register_frozen_teleporter(entity)
 	elseif on_cerys and entity.type == "solar-panel" then
 		lighting.register_solar_panel(entity)
 	end
@@ -72,6 +75,11 @@ end)
 
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
+
+	if not (player and player.valid) then
+		return
+	end
+
 	local cursor_stack = player.cursor_stack
 
 	pre_blueprint_pasted.on_pre_build(event)
@@ -80,7 +88,7 @@ script.on_event(defines.events.on_pre_build, function(event)
 		local item_name = cursor_stack.name
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
-			repair.scaffold_on_pre_build(event)
+			reactor_repair.scaffold_on_pre_build(event)
 		end
 	end
 end)
@@ -206,7 +214,9 @@ function Public.cerys_tick(surface, tick)
 		-- Ideally, match the tick interval of the repair recipes:
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		crusher.tick_15_check_broken_crushers(surface)
-		repair.tick_15_nuclear_reactor_repair_check(surface)
+		reactor_repair.tick_15_nuclear_reactor_repair_check(surface)
+		teleporter.tick_15_check_frozen_teleporter(surface)
+		teleporter.tick_15_check_teleporter()
 	end
 
 	if tick % 20 == 0 then
@@ -440,6 +450,24 @@ end)
 
 script.on_event(defines.events.on_chunk_generated, function(event)
 	init.on_chunk_generated(event)
+end)
+
+script.on_event(defines.events.on_gui_opened, function(event)
+	local player = game.players[event.player_index]
+	if not (player and player.valid) then
+		return
+	end
+
+	local entity = event.entity
+	if not (entity and entity.valid) then
+		return
+	end
+
+	if entity.name == "cerys-fulgoran-teleporter-frozen" then
+		player.opened = nil
+	elseif entity.name == "cerys-fulgoran-teleporter" then
+		teleporter.toggle_gui(player, entity)
+	end
 end)
 
 return Public

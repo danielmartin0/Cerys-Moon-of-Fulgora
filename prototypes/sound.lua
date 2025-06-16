@@ -3,6 +3,20 @@ local merge = require("lib").merge
 data:extend({
 	{
 		type = "sound",
+		name = "cerys-teleporter-1",
+		category = "game-effect",
+		priority = 200,
+		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_1.ogg",
+	},
+	{
+		type = "sound",
+		name = "cerys-teleporter-2",
+		category = "game-effect",
+		priority = 200,
+		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_2.ogg",
+	},
+	{
+		type = "sound",
 		name = "cerys-radiation-exposure",
 		audible_distance_modifier = 0.7, --multiplies the default 40 tiles of audible distance by this number
 		category = "game-effect",

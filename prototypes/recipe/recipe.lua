@@ -21,36 +21,47 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 	})
 end
 
+if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidden optional dependency on Maraxsis
+	if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
+		data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = {}
+	end
+
+	data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = { "fulgoran-cryogenics" }
+else
+	data:extend({
+		{
+			type = "recipe",
+			name = "maraxsis-holmium-recrystalization", -- We use Maraxsis' prefix so that saves work smoothly whether uninstalling/reinstalling Cerys and Maraxsis.
+			subgroup = "cerys-processes",
+			order = "e-b",
+			ingredients = {
+				{ type = "fluid", name = "holmium-solution", amount = 50 },
+				{ type = "item", name = "holmium-ore", amount = 1 },
+			},
+			results = {
+				{ type = "item", name = "holmium-plate", amount = 5 },
+			},
+			energy_required = data.raw.recipe["holmium-plate"].energy_required * 5,
+			category = "fulgoran-cryogenics",
+			enabled = false,
+			auto_recycle = false,
+			icons = {
+				{
+					icon = "__space-age__/graphics/icons/holmium-plate.png",
+					icon_size = 64,
+				},
+				{
+					icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
+					icon_size = 64,
+					size = 0.5,
+					shift = { -8, -8 },
+				},
+			},
+		},
+	})
+end
+
 data:extend({
-	{
-		type = "recipe",
-		name = "holmium-recrystallization",
-		subgroup = "cerys-processes",
-		order = "e-b",
-		ingredients = {
-			{ type = "fluid", name = "holmium-solution", amount = 50 },
-			{ type = "item", name = "holmium-ore", amount = 1 },
-		},
-		results = {
-			{ type = "item", name = "holmium-plate", amount = 5 },
-		},
-		energy_required = data.raw.recipe["holmium-plate"].energy_required * 5,
-		category = "fulgoran-cryogenics",
-		enabled = false,
-		auto_recycle = false,
-		icons = {
-			{
-				icon = "__space-age__/graphics/icons/holmium-plate.png",
-				icon_size = 64,
-			},
-			{
-				icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
-				icon_size = 64,
-				size = 0.5,
-				shift = { -8, -8 },
-			},
-		},
-	},
 	{
 		type = "recipe",
 		name = "cerysian-science-pack",
@@ -99,7 +110,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plutonium-239",
-		category = "no-machine",
+		category = "cerys-no-machine",
 		enabled = false,
 		energy_required = 0.1,
 		ingredients = {

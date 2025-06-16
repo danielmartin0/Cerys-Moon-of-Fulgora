@@ -18,7 +18,7 @@ local towers = surface.find_entities_filtered({
 
 for _, e in ipairs(towers) do
 	if e and e.valid and not storage.radiative_towers.contracted_towers[e.unit_number] then
-		game.print("[CERYS]: Fix applied to bugged radiative tower near the reactor.", { color = common.warning_color })
+		game.print("[CERYS]: Fix applied to bugged radiative tower near the reactor.", { color = common.WARN_COLOR })
 
 		radiative_towers.register_radiative_tower_contracted(e)
 	end

@@ -2,6 +2,7 @@ local simplex_noise = require("scripts.simplex_noise").d2
 local find = require("lib").find
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local crusher = require("scripts.crusher")
+local teleporter = require("scripts.teleporter")
 local common = require("common")
 
 local Public = {}
@@ -316,6 +317,36 @@ function Public.create_cryo_plants(surface, area)
 			end
 		end
 	end
+end
+
+function Public.create_teleporter()
+	local surface = game.surfaces["cerys"]
+	if not (surface and surface.valid) then
+		return
+	end
+
+	local p = {
+		x = common.TELEPORTER_POSITION_SEED.x + math.random(-5, 5),
+		y = common.TELEPORTER_POSITION_SEED.y + math.random(-5, 5),
+	}
+
+	local p2 = surface.find_non_colliding_position("cerys-fulgoran-teleporter-frozen", p, 100, 1) or p
+
+	Public.ensure_solid_foundation(surface, p2, 7, 7)
+
+	local e = surface.create_entity({
+		name = "cerys-fulgoran-teleporter-frozen",
+		position = p2,
+		force = "player",
+	})
+
+	if e and e.valid then
+		e.minable_flag = false
+		e.destructible = false
+		teleporter.register_frozen_teleporter(e)
+	end
+
+	return e
 end
 
 function Public.create_crushers(surface, area)

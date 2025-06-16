@@ -51,14 +51,18 @@ planet_map_gen.cerys = function()
 					["cerys-fulgoran-radiative-tower"] = {}, -- null
 					["cerys-fulgoran-cryogenic-plant"] = {}, -- null
 					["cerys-fulgoran-crusher"] = {}, -- null
+					["cerys-fulgoran-teleporter"] = {}, -- null
 					["cerys-fulgoran-reactor"] = {}, -- null
-					["lithium-brine"] = {
-						frequency = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
-						size = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
-						richness = "none", -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry
+					["lithium-brine"] = { -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry, but overridden below.
+						frequency = "very-low",
+						size = "very-low",
+						richness = "very-low",
 					},
 				},
 			},
+		},
+		property_expression_names = {
+			["entity:lithium-brine:probability"] = "0",
 		},
 	}
 end
