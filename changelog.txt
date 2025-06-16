@@ -8,7 +8,7 @@ Date: 2025-06-16
   Info:
     - v3.0 release! There are no breaking changes.
   Features:
-    - Cerys is no longer a 'prison'. An Ancient Fulgoran teleporter now appears on Cerys which can teleport the player to a random location on Fulgora. (Thanks Snouz for providing the graphics!)
+    - Cerys is no longer a 'prison': an ancient Fulgoran teleporter now appears on Cerys which can teleport the player to a random location on Fulgora. (Thanks Snouz for providing the graphics!)
     - The quality of the Fulgoran reactor can now be upgraded by super-force-building a quality scaffold on top of an existing repaired reactor, provided the quality upgrades technology is researched.
     - Added a Tips & Tricks entry for the finer details of plutonium, unlocked once 'Applications of radioactivity' is researched.
   Compatibility:
