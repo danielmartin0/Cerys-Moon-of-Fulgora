@@ -273,9 +273,9 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		content_frame.add({
 			type = "checkbox",
 			name = "circuit-control-checkbox",
-			caption = "Set polarity from circuit",
+			caption = { "cerys.charging-rod-polarity-circuit-control-label" },
 			state = rod_circuit_data.circuit_controlled and true or false,
-			tooltip = "The polarity of the charging rod will be negative if the selected circuit network signal is zero.",
+			tooltip = { "cerys.charging-rod-polarity-circuit-control-tooltip" },
 		})
 
 		local flow = content_frame.add({
