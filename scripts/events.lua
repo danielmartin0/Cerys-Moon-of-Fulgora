@@ -70,6 +70,8 @@ script.on_event({
 		teleporter.register_frozen_teleporter(entity)
 	elseif on_cerys and entity.type == "solar-panel" then
 		lighting.register_solar_panel(entity)
+	elseif entity.name == "cerys-lab" then
+		entity.backer_name = ""
 	end
 end)
 
