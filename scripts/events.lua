@@ -2,7 +2,7 @@ local lib = require("lib")
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
 local space = require("scripts.space")
-local repair = require("scripts.reactor-repair")
+local reactor_repair = require("scripts.reactor-repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
 local common = require("common")
@@ -63,7 +63,7 @@ script.on_event({
 			return
 		end
 
-		repair.scaffold_on_build(entity, player)
+		reactor_repair.scaffold_on_build(entity, player)
 	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
 		crusher.register_crusher(entity)
 	elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
@@ -75,6 +75,11 @@ end)
 
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
+
+	if not (player and player.valid) then
+		return
+	end
+
 	local cursor_stack = player.cursor_stack
 
 	pre_blueprint_pasted.on_pre_build(event)
@@ -83,7 +88,7 @@ script.on_event(defines.events.on_pre_build, function(event)
 		local item_name = cursor_stack.name
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
-			repair.scaffold_on_pre_build(event)
+			reactor_repair.scaffold_on_pre_build(event)
 		end
 	end
 end)
@@ -209,7 +214,7 @@ function Public.cerys_tick(surface, tick)
 		-- Ideally, match the tick interval of the repair recipes:
 		cryogenic_plant.tick_15_check_broken_cryo_plants(surface)
 		crusher.tick_15_check_broken_crushers(surface)
-		repair.tick_15_nuclear_reactor_repair_check(surface)
+		reactor_repair.tick_15_nuclear_reactor_repair_check(surface)
 		teleporter.tick_15_check_frozen_teleporter(surface)
 		teleporter.tick_15_check_teleporter()
 	end

@@ -4,9 +4,11 @@ Date: ????
   Info:
     - v3.0 release! There are no breaking changes, so don't worry.
   Features:
-    - An Ancient Fulgoran teleporter can now be found on Cerys, which teleports the player to a random location on Fulgora. This means Cerys is never a 'prison'. (Thanks Snouz for the graphics!)
+    - Cerys is no longer a 'prison'! An Ancient Fulgoran teleporter can now be found on Cerys, which teleports the player to a random location on Fulgora. (Thanks Snouz for the graphics!)
+    - The quality of the Fulgoran reactor can now be upgraded by super-force-building a quality scaffold on top of an existing repaired reactor.
   Compatibility:
-    - With Lignumis installed, wood is no longer provided in nuclear scrap recycling and instead Wooden Cerys: Lunaponics is now once mandatory. This mod has been rebalanced to make early wood gameplay easier. (Thanks SafTheLamb!)
+    - Lignumis: Wood is no longer provided in nuclear scrap recycling and instead Wooden Cerys: Lunaponics is now once mandatory. This mod has been rebalanced to make early wood gameplay easier. (Thanks SafTheLamb!)
+    - Maraxsis: Holmium recrystallization recipe merged.
   Balancing:
     - Reduced the concrete obtained by reactor excavation (8000 -> 5000).
     - Increased the range of gamma radiation.

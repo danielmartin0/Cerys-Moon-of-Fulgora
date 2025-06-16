@@ -110,8 +110,12 @@ function Public.reactor_excavation_check(surface, reactor)
 	end
 end
 
-function Public.reactor_repair_recipes_needed()
-	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
+function Public.reactor_repair_recipes_needed(reactor_quality)
+	if reactor_quality.level == 0 then
+		return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
+	else
+		return 10
+	end
 end
 
 function Public.reactor_repair_check(surface, reactor)
@@ -119,7 +123,7 @@ function Public.reactor_repair_check(surface, reactor)
 	local r1 = reactor.rendering1
 	local r2 = reactor.rendering2
 
-	local recipes_needed = Public.reactor_repair_recipes_needed()
+	local recipes_needed = Public.reactor_repair_recipes_needed(e.quality)
 
 	local last_observed = reactor.repair_products_remaining_last_observed
 	if not last_observed then
@@ -228,8 +232,9 @@ function Public.reactor_repair_check(surface, reactor)
 			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
 
 			if input_inv and input_inv.valid then
-				inventory_chips = input_inv.get_item_count({ name = "processing-unit" })
-				inventory_repair_parts = input_inv.get_item_count({ name = "ancient-structure-repair-part" })
+				inventory_chips = input_inv.get_item_count({ name = "processing-unit", quality = e.quality })
+				inventory_repair_parts =
+					input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = e.quality })
 			end
 		end
 
@@ -238,7 +243,7 @@ function Public.reactor_repair_check(surface, reactor)
 		r1.color = chips_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
-			"[item=processing-unit]",
+			"[item=processing-unit,quality=" .. e.quality.name .. "]",
 			chips_count,
 			recipes_needed * 1,
 		}
@@ -248,14 +253,14 @@ function Public.reactor_repair_check(surface, reactor)
 		r2.color = repair_parts_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
-			"[item=ancient-structure-repair-part]",
+			"[item=ancient-structure-repair-part,quality=" .. e.quality.name .. "]",
 			repair_parts_count,
 			recipes_needed * 1,
 		}
 	end
 end
 
-Public.scaffold_on_pre_build = function(event)
+function Public.scaffold_on_pre_build(event)
 	if not event.player_index then
 		return
 	end
@@ -270,19 +275,46 @@ Public.scaffold_on_pre_build = function(event)
 		return
 	end
 
-	local position = event.position
-	local wreck = surface.find_entity("cerys-fulgoran-reactor-wreck-cleared", position)
-	local can_build = wreck and wreck.valid
+	local existing_reactor = surface.find_entity("cerys-fulgoran-reactor", event.position)
 
-	if not storage.cerys.scaffold_build_position_validated then
-		storage.cerys.scaffold_build_position_validated = {}
+	if existing_reactor and existing_reactor.valid then
+		if player.force.technologies["cerys-fulgoran-machine-quality-upgrades"].researched then
+			local item = player.cursor_stack
+
+			if not (item and item.valid) then
+				return
+			end
+
+			local scaffold_quality = item.quality
+
+			if scaffold_quality.level > existing_reactor.quality.level then
+				Public.replace_existing_reactor_with_scaffold(surface, existing_reactor, player, scaffold_quality)
+			else
+				player.print(
+					{ "cerys.reactor-quality-upgrade-scaffold-quality-too-low" },
+					{ color = common.WARN_COLOR }
+				)
+			end
+		else
+			player.print({
+				"cerys.reactor-quality-upgrade-tech-not-researched",
+				"[technology=cerys-fulgoran-machine-quality-upgrades]",
+			}, { color = common.WARN_COLOR })
+		end
+	else
+		local position = event.position
+		local wreck = surface.find_entity("cerys-fulgoran-reactor-wreck-cleared", position)
+		local can_build = wreck and wreck.valid
+
+		if not storage.cerys.scaffold_build_position_validated then
+			storage.cerys.scaffold_build_position_validated = {}
+		end
+
+		storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y] = can_build
 	end
-
-	storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y] = can_build
-	return can_build
 end
 
-Public.scaffold_on_build = function(scaffold_entity, player)
+function Public.scaffold_on_build(scaffold_entity, player)
 	local surface = scaffold_entity.surface
 	local position = scaffold_entity.position
 	local force = scaffold_entity.force
@@ -290,8 +322,6 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 	if not (surface and surface.valid and force and force.valid) then
 		return
 	end
-
-	local scaffold_quality = scaffold_entity.quality
 
 	scaffold_entity.destroy()
 
@@ -311,14 +341,11 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
-			-- quality = scaffold_quality, -- Avoid locking players to a lower quality than they're happy with. In case you're wondering, it's not possible (as of 2.0.28) to fast-replace a higher-quality scaffold on an existing reactor.
 		})
 
-		if e and e.valid then
-			e.minable_flag = false
-			e.destructible = false
-			reactor.entity = e
-		end
+		e.minable_flag = false
+		e.destructible = false
+		reactor.entity = e
 
 		reactor.stage = Public.REACTOR_STAGE_ENUM.needs_repair
 	else
@@ -329,18 +356,49 @@ Public.scaffold_on_build = function(scaffold_entity, player)
 				player.cursor_stack.set_stack({
 					name = "cerys-fulgoran-reactor-scaffold",
 					count = 1,
-					quality = scaffold_quality,
 				})
 			else
 				local inv = player.get_main_inventory()
 				if inv and inv.valid then
-					inv.insert({ name = "cerys-fulgoran-reactor-scaffold", count = 1, quality = scaffold_quality })
+					inv.insert({ name = "cerys-fulgoran-reactor-scaffold", count = 1 })
 				end
 			end
 		end
 	end
 
 	storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y] = nil
+end
+
+function Public.replace_existing_reactor_with_scaffold(surface, reactor_entity, player, new_quality)
+	local reactor = storage.cerys.reactor
+
+	if reactor.stage == Public.REACTOR_STAGE_ENUM.active then
+		local inv = reactor_entity.get_fuel_inventory()
+		if inv and inv.valid then
+			surface.spill_inventory({ position = reactor_entity.position, inventory = inv })
+		end
+	elseif reactor.stage == Public.REACTOR_STAGE_ENUM.needs_repair then
+		local inv = reactor_entity.get_inventory(defines.inventory.assembling_machine_input)
+		if inv and inv.valid then
+			surface.spill_inventory({ position = reactor_entity.position, inventory = inv })
+		end
+	end
+
+	local e2 = surface.create_entity({
+		name = "cerys-fulgoran-reactor-wreck-scaffolded",
+		position = reactor_entity.position,
+		force = player.force,
+		quality = new_quality,
+	})
+
+	reactor_entity.destroy()
+
+	e2.minable_flag = false
+	e2.destructible = false
+	e2.set_recipe("cerys-repair-nuclear-reactor", new_quality)
+	reactor.entity = e2
+
+	reactor.stage = Public.REACTOR_STAGE_ENUM.needs_repair
 end
 
 return Public

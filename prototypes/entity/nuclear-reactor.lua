@@ -178,7 +178,8 @@ local fulgoran_reactor = {
 local reactor_wreck_base = {
 	type = "simple-entity-with-owner",
 	subgroup = "cerys-entities",
-	icon = "__base__/graphics/icons/nuclear-reactor.png",
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
+	icon_size = 64,
 	flags = {
 		"placeable-player",
 		"not-rotatable",
