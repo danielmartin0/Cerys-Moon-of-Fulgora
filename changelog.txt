@@ -8,7 +8,7 @@ Date: ????
     - The quality of the Fulgoran reactor can now be upgraded by super-force-building a quality scaffold on top of an existing repaired reactor.
     - Added a Tips & Tricks entry for the finer details of plutonium, unlocked once 'Applications of radioactivity' is researched.
   Compatibility:
-    - Lignumis compatibility: Wood is no longer provided in nuclear scrap recycling and instead Wooden Cerys: Lunaponics is now once mandatory. This mod has been rebalanced to make early wood gameplay easier. (Thanks SafTheLamb!)
+    - Lignumis compatibility: Wood is no longer provided in nuclear scrap recycling and instead Wooden Cerys: Lunaponics is now once mandatory. This is because Wooden Cerys has been rebalanced to make early wood gameplay easier. (Thanks SafTheLamb!)
     - Maraxsis compatibility: The Cerys and Maraxsis versions of the Holmium recrystallization recipe have been merged.
   Balancing:
     - Reduced the concrete obtained by reactor excavation (8000 -> 5000).
