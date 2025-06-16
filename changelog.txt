@@ -15,7 +15,7 @@ Date: 2025-06-16
     - Construction robots are once again allowed in Cerys cargo drops.
     - Added mod setting to disable the parallax effect on Fulgora viewed from Cerys.
   Balancing:
-    - Fulgoran reactor power input/output increased (3GW -> 4GW).
+    - Fulgoran reactor power input and power output increased (3GW -> 4GW).
   Bugfixes:
     - Fixed that the teleporter could be used remotely.
   Compatibility:
