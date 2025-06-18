@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.4
-Date: ????
+Date: 2025-06-18
   Bugfixes:
     - Fixed that the polarity toggle GUI failed to open when the player opened a charging rod.
     - Fixed a crash.
