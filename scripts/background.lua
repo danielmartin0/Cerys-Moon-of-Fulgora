@@ -63,7 +63,7 @@ function Public.reset_background_renderings()
 	for _, player in pairs(game.players) do
 		local r = storage.background_renderings[player.index]
 
-		if r.valid then
+		if r and r.valid then
 			r.target = {
 				x = PLANET_OFFSET.x,
 				y = PLANET_OFFSET.y,
