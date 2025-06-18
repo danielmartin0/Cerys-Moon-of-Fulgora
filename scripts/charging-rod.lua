@@ -175,11 +175,7 @@ function Public.destroy_blue_light_entity(rod)
 	end
 end
 
-script.on_event(defines.events.on_gui_opened, function(event)
-	if event.gui_type ~= defines.gui_type.entity then
-		return
-	end
-
+function Public.on_gui_opened(event)
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -187,19 +183,6 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	end
 
 	local entity = event.entity
-
-	if
-		not (
-			entity
-			and entity.valid
-			and (
-				entity.name == "cerys-charging-rod"
-				or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-			)
-		)
-	then
-		return
-	end
 
 	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
 
@@ -324,7 +307,7 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	signal_flow["control-signal-button"].enabled = rod_circuit_data.circuit_controlled and true or false
 	signal_flow["control-signal-button"].elem_value = rod_circuit_data.control_signal
 	signal_flow.children[1].style.font_color = rod_circuit_data.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
-end)
+end
 
 script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 	if event.element.name ~= "charging-rod-switch" then

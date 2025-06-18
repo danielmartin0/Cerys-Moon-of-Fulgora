@@ -459,6 +459,10 @@ script.on_event(defines.events.on_chunk_generated, function(event)
 end)
 
 script.on_event(defines.events.on_gui_opened, function(event)
+	if event.gui_type ~= defines.gui_type.entity then
+		return
+	end
+
 	local player = game.players[event.player_index]
 	if not (player and player.valid) then
 		return
@@ -473,6 +477,11 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		player.opened = nil
 	elseif entity.name == "cerys-fulgoran-teleporter" then
 		teleporter.toggle_gui(player, entity)
+	elseif
+		entity.name == "cerys-charging-rod"
+		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
+	then
+		rods.on_gui_opened(event)
 	end
 end)
 
