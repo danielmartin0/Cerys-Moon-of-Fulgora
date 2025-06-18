@@ -2,7 +2,10 @@
 Version: 3.1.6
 Date: ????
   Changes:
-    - Fulgora parallax is now automatically disabled in multiplayer. 
+    - Adjusted a few technology prerequisites.
+    - Fulgora parallax is now disabled in multiplayer by default due to graphical latency.
+  Graphics:
+    - Various graphical improvements.
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.4-3.1.5
 Date: 2025-06-18

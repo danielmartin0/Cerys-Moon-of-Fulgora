@@ -89,6 +89,13 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-disable-parallax-in-multiplayer",
+		setting_type = "runtime-global",
+		default_value = true,
+		order = "h",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-disable-kofi-toast",
 		setting_type = "runtime-global",
 		default_value = false,

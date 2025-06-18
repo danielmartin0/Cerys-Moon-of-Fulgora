@@ -277,11 +277,11 @@ if quality_upgrades then
 					},
 				},
 			},
-			prerequisites = { "cerysian-science-pack" },
+			prerequisites = { "cerys-advanced-structure-repair" },
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 			icon_size = 256,
 			unit = {
-				count = 40,
+				count = 50,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -297,7 +297,9 @@ end
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
 
-if not settings.startup["cerys-sandbox-mode"].value then
+local is_sandbox_mode = settings.startup["cerys-sandbox-mode"].value
+
+if not is_sandbox_mode then
 	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
 		type = "unlock-recipe",
 		recipe = "cerys-exoskeleton-equipment-recycling",
@@ -447,7 +449,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 				},
 			},
 			prerequisites = {
-				"cerys-applications-of-radioactivity",
+				is_sandbox_mode and "cerys-applications-of-radioactivity" or "planetslib-cerys-cargo-drops",
 			},
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 			icon_size = 200,
@@ -475,6 +477,10 @@ end
 
 local holmium_productivity_effects_1 = {}
 local holmium_productivity_effects_2 = {}
+table.insert(holmium_productivity_effects_1, {
+	type = "unlock-recipe",
+	recipe = "maraxsis-holmium-recrystalization",
+})
 if data.raw.recipe["holmium-plate"] then
 	table.insert(holmium_productivity_effects_1, {
 		type = "change-recipe-productivity",
@@ -487,10 +493,6 @@ if data.raw.recipe["holmium-plate"] then
 		change = 0.1,
 	})
 end
-table.insert(holmium_productivity_effects_1, {
-	type = "unlock-recipe",
-	recipe = "maraxsis-holmium-recrystalization",
-})
 table.insert(holmium_productivity_effects_1, {
 	type = "change-recipe-productivity",
 	recipe = "maraxsis-holmium-recrystalization",

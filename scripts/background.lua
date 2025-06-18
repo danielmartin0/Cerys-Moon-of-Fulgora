@@ -6,16 +6,16 @@ local PLANET_OFFSET = { x = 50, y = -30 }
 local PLANET_PARALLAX = 0.35
 
 function Public.tick_1_update_background_renderings(surface)
-	if game.is_multiplayer() then
-		if not storage.last_is_multiplayer then
+	if game.is_multiplayer() and settings.startup["cerys-disable-parallax-in-multiplayer"].value then
+		if not storage.parallax_disabled then
 			Public.reset_background_renderings()
+			storage.parallax_disabled = true
 		end
-		storage.last_is_multiplayer = true
 
 		return
+	else
+		storage.parallax_disabled = false
 	end
-
-	storage.last_is_multiplayer = false
 
 	for _, player in pairs(game.connected_players) do
 		if not (player and player.valid) then
