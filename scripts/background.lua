@@ -6,6 +6,17 @@ local PLANET_OFFSET = { x = 50, y = -30 }
 local PLANET_PARALLAX = 0.35
 
 function Public.tick_1_update_background_renderings(surface)
+	if game.is_multiplayer() then
+		if not storage.last_is_multiplayer then
+			Public.reset_background_renderings()
+		end
+		storage.last_is_multiplayer = true
+
+		return
+	end
+
+	storage.last_is_multiplayer = false
+
 	for _, player in pairs(game.connected_players) do
 		if not (player and player.valid) then
 			storage.background_renderings[player.index] = nil

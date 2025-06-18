@@ -167,9 +167,7 @@ function Public.cerys_tick(surface, tick)
 
 	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or 12
 
-	if not settings.global["cerys-disable-parallax"].value then
-		background.tick_1_update_background_renderings(surface)
-	end
+	background.tick_1_update_background_renderings(surface)
 
 	nuclear_reactor.tick_1_move_radiation(game.tick)
 	cryogenic_plant.tick_1_check_cryo_quality_upgrades(surface)
@@ -485,10 +483,10 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
-	if event.setting_type == "runtime-global" and (event.setting == "cerys-disable-parallax") then
-		background.reset_background_renderings()
-	end
-end)
+-- script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
+-- 	if event.setting_type == "runtime-global" and (event.setting == "cerys-disable-parallax") then
+-- 		background.reset_background_renderings()
+-- 	end
+-- end)
 
 return Public
