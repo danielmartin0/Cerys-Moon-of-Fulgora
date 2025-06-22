@@ -2,7 +2,7 @@
 Version: 3.1.10
 Date: 2025-06-22
   Changes:
-    - Reduced the repair costs for second-or-later cryogenic plants (200 -> 150).
+    - Reduced the repair costs for second-or-later cryogenic plants (200 -> 120).
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.9
 Date: 2025-06-22
