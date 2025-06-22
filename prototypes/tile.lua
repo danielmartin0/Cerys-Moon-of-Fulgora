@@ -265,7 +265,7 @@ data:extend({
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.background_layer_group = "top"
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.background_layer_offset = 1
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.offset_background_layer_by_tile_layer = 1
-log(serpent.block(data.raw.tile["cerys-ash-cracks-frozen"]))
+-- log(serpent.block(data.raw.tile["cerys-ash-cracks-frozen"]))
 
 --== Water ==--
 

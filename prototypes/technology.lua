@@ -76,7 +76,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
-			count = 100,
+			count = 75,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -107,7 +107,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 250,
+			count = 200,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -137,7 +137,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 150,
+			count = 125,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -160,7 +160,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 400,
+			count = 300,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -281,7 +281,7 @@ if quality_upgrades then
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
 			icon_size = 256,
 			unit = {
-				count = 50,
+				count = 40,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -309,7 +309,7 @@ if not is_sandbox_mode then
 		merge(cargo_drops_base, {
 			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
 			unit = {
-				count = common.HARD_MODE_ON and 4000 or 1200,
+				count = common.HARD_MODE_ON and 3000 or 1000,
 				ingredients = {
 					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -545,7 +545,7 @@ data:extend({
 		effects = holmium_productivity_effects_1,
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -565,7 +565,7 @@ data:extend({
 		effects = holmium_productivity_effects_2,
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*500",
+			count_formula = "2^(L-1)*400",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

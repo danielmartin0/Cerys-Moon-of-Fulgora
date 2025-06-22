@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.1.9
+Date: ????-??-??
+  Balancing:
+    - Reduced the cost of various technologies by ~25%.
+  Graphics:
+    - Reverted to the old neutron bomb graphics.
+  Info:
+    - Reduced the prominence of a hint.
+---------------------------------------------------------------------------------------------------
 Version: 3.1.8
 Date: 2025-06-19
   Bugfixes:

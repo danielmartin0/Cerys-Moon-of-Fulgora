@@ -582,24 +582,6 @@ data:extend({
 		name = "cerys-neutron-bomb",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png",
 		icon_size = 64,
-		pictures = {
-			layers = {
-				{
-					size = 64,
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png",
-					scale = 0.5,
-					mipmap_count = 4,
-				},
-				{
-					draw_as_light = true,
-					blend_mode = "additive",
-					size = 64,
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb-lightmap.png",
-					scale = 0.5,
-					tint = { 0.3, 0.3, 0.3, 0.3 },
-				},
-			},
-		},
 		ammo_category = "artillery-shell",
 		ammo_type = {
 			-- range_modifier = 0.25 -- Has no effect

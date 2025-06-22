@@ -173,7 +173,7 @@ function Public.toggle_gui(player, entity)
 		name = "cerys_teleporter_button",
 		caption = { "cerys.teleporter-button-text" },
 		style = "green_button",
-		enabled = game.planets.fulgora ~= nil,
+		enabled = game.planets.fulgora and not game.planets.fulgora.prototype.hidden,
 		tooltip = { "cerys.teleporter-button-tooltip" },
 	})
 	button.style.minimal_width = 160
