@@ -31,7 +31,7 @@ if data.raw.recipe["construction-robot-recycling"] then
 	)
 end
 
-if data.raw.recipe["cerys-exoskeleton-equipment-recycling"] then
+if data.raw.recipe["exoskeleton-equipment-recycling"] then
 	data:extend({
 		merge(data.raw.recipe["exoskeleton-equipment-recycling"], {
 			name = "cerys-exoskeleton-equipment-recycling", -- unlocked by a late-game tech
