@@ -17,7 +17,21 @@ data:extend({
 	},
 })
 
-if data.raw.recipe["exoskeleton-equipment-recycling"] then
+if data.raw.recipe["construction-robot-recycling"] then
+	data:extend({
+		merge(data.raw.recipe["construction-robot-recycling"], {
+			name = "cerys-construction-robot-recycling", -- unlocked by a late-game tech
+			enabled = false,
+		}),
+	})
+
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["construction-robot-recycling"],
+		common.AMBIENT_RADIATION_MAX
+	)
+end
+
+if data.raw.recipe["cerys-exoskeleton-equipment-recycling"] then
 	data:extend({
 		merge(data.raw.recipe["exoskeleton-equipment-recycling"], {
 			name = "cerys-exoskeleton-equipment-recycling", -- unlocked by a late-game tech
