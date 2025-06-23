@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.12
-Date: ????
+Date: 2025-06-23
   Balancing:
     - Technology price multipliers now also scale the number of chunks dropped by asteroids on Cerys (up to a maximum of 20).
 ---------------------------------------------------------------------------------------------------
