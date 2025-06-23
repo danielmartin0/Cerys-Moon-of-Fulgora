@@ -32,7 +32,7 @@ if script.active_mods["cupric-asteroids"] then
 	ASTEROID_TO_PERCENTAGE_RATE["medium-cupric-asteroid-planetary"] = 1.3
 end
 
-local MAX_CHUNKS_ON_GROUND = 15
+local MAX_CHUNKS_ON_GROUND = 20
 
 function Public.try_spawn_asteroid(surface)
 	local random_value = math.random() * 100
@@ -502,12 +502,16 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 	return mutated
 end
 
-local ASTEROIDS_TO_DROPS = {
-	["small-metallic-asteroid-planetary"] = { ["metallic-asteroid-chunk"] = 1 },
-	["small-carbonic-asteroid-planetary"] = { ["carbonic-asteroid-chunk"] = 1 },
-	["small-oxide-asteroid-planetary"] = { ["oxide-asteroid-chunk"] = 1 },
-	["small-cupric-asteroid-planetary"] = { ["cupric-asteroid-chunk"] = 1 },
-}
+local function asteroids_to_drops()
+	local scale = math.floor(math.max(math.min(game.difficulty_settings.technology_price_multiplier, 20), 1))
+
+	return {
+		["small-metallic-asteroid-planetary"] = { ["metallic-asteroid-chunk"] = scale },
+		["small-carbonic-asteroid-planetary"] = { ["carbonic-asteroid-chunk"] = scale },
+		["small-oxide-asteroid-planetary"] = { ["oxide-asteroid-chunk"] = scale },
+		["small-cupric-asteroid-planetary"] = { ["cupric-asteroid-chunk"] = scale },
+	}
+end
 
 script.on_event(defines.events.on_entity_died, function(event)
 	local entity = event.entity
@@ -521,7 +525,7 @@ script.on_event(defines.events.on_entity_died, function(event)
 		return
 	end
 
-	local drop_info = ASTEROIDS_TO_DROPS[entity.name]
+	local drop_info = asteroids_to_drops()[entity.name]
 	if not drop_info then
 		return
 	end
