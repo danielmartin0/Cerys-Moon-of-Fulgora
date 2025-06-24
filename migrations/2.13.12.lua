@@ -52,17 +52,19 @@ if towers_found == 0 then
 	local p =
 		surface.find_non_colliding_position("cerys-fulgoran-radiative-tower-contracted-container", corners[1], 10, 0.5)
 
-	local e = surface.create_entity({
-		name = "cerys-fulgoran-radiative-tower-contracted-container",
-		position = p,
-		force = "player",
-	})
-	script.raise_script_built({ entity = e })
+	if p then
+		local e = surface.create_entity({
+			name = "cerys-fulgoran-radiative-tower-contracted-container",
+			position = p,
+			force = "player",
+		})
+		script.raise_script_built({ entity = e })
 
-	if e and e.valid then
-		e.minable_flag = false
-		e.destructible = false
+		if e and e.valid then
+			e.minable_flag = false
+			e.destructible = false
 
-		radiative_towers.register_radiative_tower_contracted(e)
+			radiative_towers.register_radiative_tower_contracted(e)
+		end
 	end
 end
