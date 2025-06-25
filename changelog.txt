@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.14
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that the Fulgoran teleporter could spawn out of the range of the heating towers.
+  Compatibility:
+    - Krastorio 2: Reduced the scrap metal percentage in nuclear scrap (1% -> 0.3%).
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.13
 Date: 2025-06-23
