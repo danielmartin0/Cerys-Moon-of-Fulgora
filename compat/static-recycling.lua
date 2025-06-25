@@ -53,13 +53,15 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		{ type = "item", name = "copper-cable", amount = 0, extra_count_fraction = 0.75 },
 	}
 
-	data.raw["recipe"]["advanced-circuit-recycling"]["ingredients"] =
-		{ { type = "item", name = "advanced-circuit", amount = 1 } }
-	data.raw["recipe"]["advanced-circuit-recycling"]["results"] = {
-		{ type = "item", name = "copper-cable", amount = 1 },
-		{ type = "item", name = "electronic-circuit", amount = 0, extra_count_fraction = 0.5 },
-		{ type = "item", name = "plastic-bar", amount = 0, extra_count_fraction = 0.5 },
-	}
+	if not data.raw.item["kr-electronic-components"] then
+		data.raw["recipe"]["advanced-circuit-recycling"]["ingredients"] =
+			{ { type = "item", name = "advanced-circuit", amount = 1 } }
+		data.raw["recipe"]["advanced-circuit-recycling"]["results"] = {
+			{ type = "item", name = "copper-cable", amount = 1 },
+			{ type = "item", name = "electronic-circuit", amount = 0, extra_count_fraction = 0.5 },
+			{ type = "item", name = "plastic-bar", amount = 0, extra_count_fraction = 0.5 },
+		}
+	end
 
 	data.raw["recipe"]["processing-unit-recycling"]["ingredients"] =
 		{ { type = "item", name = "processing-unit", amount = 1 } }

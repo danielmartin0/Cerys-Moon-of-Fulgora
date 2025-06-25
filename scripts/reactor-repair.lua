@@ -1,3 +1,4 @@
+local util = require("util")
 local common = require("common")
 
 local Public = {}
@@ -275,9 +276,10 @@ function Public.scaffold_on_pre_build(event)
 		return
 	end
 
-	local existing_reactor = surface.find_entity("cerys-fulgoran-reactor", event.position)
+	local existing_reactor =
+		surface.find_entities_filtered({ name = "cerys-fulgoran-reactor", position = event.position })
 
-	if existing_reactor and existing_reactor.valid then
+	if existing_reactor and existing_reactor[1] and existing_reactor[1].valid then
 		if player.force.technologies["cerys-fulgoran-machine-quality-upgrades"].researched then
 			local item = player.cursor_stack
 
@@ -287,8 +289,8 @@ function Public.scaffold_on_pre_build(event)
 
 			local scaffold_quality = item.quality
 
-			if scaffold_quality.level > existing_reactor.quality.level then
-				Public.replace_existing_reactor_with_scaffold(surface, existing_reactor, player, scaffold_quality)
+			if scaffold_quality.level > existing_reactor[1].quality.level then
+				Public.upgrading_existing_reactor(surface, existing_reactor[1], player, scaffold_quality)
 			else
 				player.print(
 					{ "cerys.reactor-quality-upgrade-scaffold-quality-too-low" },
@@ -369,36 +371,57 @@ function Public.scaffold_on_build(scaffold_entity, player)
 	storage.cerys.scaffold_build_position_validated[position.x .. "," .. position.y] = nil
 end
 
-function Public.replace_existing_reactor_with_scaffold(surface, reactor_entity, player, new_quality)
+function Public.upgrading_existing_reactor(surface, reactor_entity, player, new_quality)
 	local reactor = storage.cerys.reactor
 
-	if reactor.stage == Public.REACTOR_STAGE_ENUM.active then
-		local inv = reactor_entity.get_fuel_inventory()
-		if inv and inv.valid then
-			surface.spill_inventory({ position = reactor_entity.position, inventory = inv })
-		end
-	elseif reactor.stage == Public.REACTOR_STAGE_ENUM.needs_repair then
-		local inv = reactor_entity.get_inventory(defines.inventory.assembling_machine_input)
-		if inv and inv.valid then
-			surface.spill_inventory({ position = reactor_entity.position, inventory = inv })
-		end
+	local old_fuel_inv = reactor_entity.get_fuel_inventory()
+	local old_output_inv = reactor_entity.get_burnt_result_inventory()
+
+	local old_fuel_contents
+	if old_fuel_inv and old_fuel_inv.valid then
+		old_fuel_contents = old_fuel_inv.get_contents()
+	end
+
+	local old_output_contents
+	if old_output_inv and old_output_inv.valid then
+		old_output_contents = old_output_inv.get_contents()
 	end
 
 	local e2 = surface.create_entity({
-		name = "cerys-fulgoran-reactor-scaffolded",
+		name = "cerys-fulgoran-reactor",
 		position = reactor_entity.position,
-		force = player.force,
+		force = reactor_entity.force,
+		fast_replace = true,
 		quality = new_quality,
 	})
 
-	reactor_entity.destroy()
+	if e2 and e2.valid then
+		if old_fuel_contents then
+			local new_fuel_inv = e2.get_fuel_inventory()
+			if new_fuel_inv and new_fuel_inv.valid then
+				for _, item in pairs(old_fuel_contents) do
+					new_fuel_inv.insert(item)
+				end
+			end
+		end
 
-	e2.minable_flag = false
-	e2.destructible = false
-	e2.set_recipe("cerys-repair-nuclear-reactor", new_quality)
-	reactor.entity = e2
+		if old_output_contents then
+			local new_output_inv = e2.get_burnt_result_inventory()
+			if new_output_inv and new_output_inv.valid then
+				for _, item in pairs(old_output_contents) do
+					new_output_inv.insert(item)
+				end
+			end
+		end
 
-	reactor.stage = Public.REACTOR_STAGE_ENUM.needs_repair
+		e2.minable_flag = false
+		e2.destructible = false
+		reactor.entity = e2
+	end
+
+	if reactor_entity and reactor_entity.valid then
+		reactor_entity.destroy()
+	end
 end
 
 return Public
