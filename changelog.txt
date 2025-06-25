@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.2.0
-Date: ????
+Date: 2025-06-25
   Changes:
     - Upgrading the quality of the Fulgoran reactor no longer requires a repair step after the quality scaffold.
   Bugfixes:
