@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.2
-Date: ????
+Date: 2025-06-26
   Compatibility:
     - Krastorio 2: Adjusted Cerys for the fact that K2SO merged the Space Age and K2 lithium items two days ago.
   Balancing:
