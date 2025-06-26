@@ -79,7 +79,6 @@ data:extend({
 		unit = {
 			count = 75,
 			ingredients = {
-				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
 			},
 			time = 60,
@@ -116,7 +115,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 200,
+			count = 250,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -142,7 +141,7 @@ data:extend({
 				recipe = "cerys-uranium-238-recycling",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "flare-stack-fluid-venting-tech" },
+		prerequisites = { "cerys-advanced-structure-repair" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
@@ -169,7 +168,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 300,
+			count = 150,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -212,7 +211,57 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 100,
+			count = 50,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+				{ "utility-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	{
+		type = "technology",
+		name = "cerys-productivity-module-three",
+		localised_description = { "technology-description.productivity-module" },
+		icon = "__base__/graphics/technology/productivity-module-3.png",
+		icon_size = 256,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-productivity-module-3",
+			},
+		},
+		prerequisites = { "cerysian-science-pack", "productivity-module-2" },
+		unit = {
+			count = 75,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	{
+		type = "technology",
+		name = "cerys-overclock-module",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-overclock-module",
+			},
+		},
+		prerequisites = {
+			"cerys-applications-of-radioactivity",
+			"cerys-productivity-module-three",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
+		icon_size = 1024,
+		unit = {
+			count = 400,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -243,7 +292,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 750,
+			count = 600,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -515,7 +564,7 @@ data:extend({
 		effects = holmium_productivity_effects_1,
 		prerequisites = { "cerys-lubricant-synthesis" },
 		unit = {
-			count = 400,
+			count = 250,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -535,7 +584,7 @@ data:extend({
 		effects = holmium_productivity_effects_2,
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*400",
+			count_formula = "2^(L-1)*200",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -552,12 +601,11 @@ data:extend({
 		name = "cerys-engine-unit-productivity-1",
 		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
 		effects = engine_productivity_effects,
-		prerequisites = { "cerys-lubricant-synthesis" },
+		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count_formula = "2^(L-1)*1000",
+			count_formula = "2^(L-1)*100",
 			ingredients = {
 				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
 			},
 			time = 60,
@@ -571,7 +619,24 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*1000",
+			count_formula = "2^(L-1)*100",
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-3",
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-engine-unit-productivity-2" },
+		unit = {
+			count_formula = "2^(L-1)*100",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

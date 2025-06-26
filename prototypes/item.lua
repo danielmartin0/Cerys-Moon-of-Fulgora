@@ -21,6 +21,24 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 end
 
 data:extend({
+	{
+		type = "module",
+		name = "cerys-overclock-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module.png",
+		icon_size = 64,
+		subgroup = "module",
+		order = "c[productivity]-d[productivity-module-4]-a[overclock-module]",
+		color_hint = { text = "O" },
+		category = "productivity",
+		tier = 4,
+		inventory_move_sound = item_sounds.module_inventory_move,
+		pick_sound = item_sounds.module_inventory_pickup,
+		drop_sound = item_sounds.module_inventory_move,
+		stack_size = 50,
+		weight = 20 * 1000,
+		effect = { productivity = 0.17, speed = -0.25, consumption = 1.0, quality = -10.0 },
+		default_import_location = "cerys",
+	},
 	merge(data.raw.tool["electromagnetic-science-pack"], {
 		name = "cerysian-science-pack",
 		localised_description = "nil",
