@@ -4,7 +4,7 @@ Date: 2025-06-26
   Compatibility:
     - Krastorio 2: Adjusted Cerys for the fact that K2SO merged the Space Age and K2 lithium items two days ago.
   Balancing:
-    - Overclock module buffed from 17% productivity to 18% productivity. This matches the arithmetic progression of vanilla.
+    - Overclock module buffed from 17% productivity to 18% productivity and speed debuff changed from -25% to -30%.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.1
 Date: 2025-06-26
