@@ -112,11 +112,7 @@ function Public.reactor_excavation_check(surface, reactor)
 end
 
 function Public.reactor_repair_recipes_needed(reactor_quality)
-	if reactor_quality.level == 0 then
-		return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
-	else
-		return 10
-	end
+	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
 end
 
 function Public.reactor_repair_check(surface, reactor)
@@ -233,9 +229,8 @@ function Public.reactor_repair_check(surface, reactor)
 			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
 
 			if input_inv and input_inv.valid then
-				inventory_chips = input_inv.get_item_count({ name = "processing-unit", quality = e.quality })
-				inventory_repair_parts =
-					input_inv.get_item_count({ name = "ancient-structure-repair-part", quality = e.quality })
+				inventory_chips = input_inv.get_item_count("processing-unit")
+				inventory_repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
 			end
 		end
 
@@ -244,7 +239,7 @@ function Public.reactor_repair_check(surface, reactor)
 		r1.color = chips_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r1.text = {
 			"cerys.repair-remaining-description",
-			"[item=processing-unit,quality=" .. e.quality.name .. "]",
+			"[item=processing-unit]",
 			chips_count,
 			recipes_needed * 1,
 		}
@@ -254,7 +249,7 @@ function Public.reactor_repair_check(surface, reactor)
 		r2.color = repair_parts_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
 			"cerys.repair-remaining-description",
-			"[item=ancient-structure-repair-part,quality=" .. e.quality.name .. "]",
+			"[item=ancient-structure-repair-part]",
 			repair_parts_count,
 			recipes_needed * 1,
 		}
@@ -310,6 +305,7 @@ function Public.scaffold_on_build(scaffold_entity, player)
 	local surface = scaffold_entity.surface
 	local position = scaffold_entity.position
 	local force = scaffold_entity.force
+	local quality = scaffold_entity.quality
 
 	if not (surface and surface.valid and force and force.valid) then
 		return
@@ -333,6 +329,7 @@ function Public.scaffold_on_build(scaffold_entity, player)
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
+			quality = quality,
 		})
 
 		e.minable_flag = false
