@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.0
-Date: ????
+Date: 2025-06-26
   Features:
     - An alternative recipe for Productivity module 3 is now available in the Fulgoran cryoplant.
     - One more planet reward, likely the final to be added: The Overclock module, a type of Tier 4 productivity module with strong productivity at a drawback of inhibiting quality by -100% (along with significantly reduced speed). Quality modules cannot be used when crafting it.
