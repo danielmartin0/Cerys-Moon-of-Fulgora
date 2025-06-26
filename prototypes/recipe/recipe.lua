@@ -69,15 +69,16 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 4 },
-			{ type = "item", name = "advanced-circuit", amount = 5 },
+			{ type = "item", name = "electronic-circuit", amount = 5 },
 			{ type = "item", name = "processing-unit", amount = 5 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 30 },
 		},
 		energy_required = 15,
 		results = { { type = "item", name = "productivity-module-3", amount = 1 } },
 		category = "fulgoran-cryogenics",
 		subgroup = "cerys-processes",
 		order = "d-d",
+		auto_recycle = false,
 	},
 	{
 		type = "recipe",

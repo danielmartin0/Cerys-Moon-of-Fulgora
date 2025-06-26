@@ -1,4 +1,5 @@
 local common = require("common")
+local merge = require("lib").merge
 
 if data.raw.recipe["superconductor"] then
 	if not data.raw.recipe["superconductor"].additional_categories then
@@ -99,4 +100,30 @@ end
 
 if data.raw.recipe["rocket-fuel"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], common.AMBIENT_RADIATION_MAX)
+end
+
+local prod_3_recycling_results_without_biter_eggs = {}
+for _, result in pairs(data.raw.recipe["productivity-module-3-recycling"].results) do
+	if result.name ~= "biter-egg" then
+		table.insert(prod_3_recycling_results_without_biter_eggs, result)
+	end
+end
+
+if data.raw.recipe["productivity-module-3-recycling"] then
+	data:extend({
+		merge(data.raw.recipe["productivity-module-3-recycling"], {
+			name = "cerys-productivity-module-3-recycling",
+			enabled = true,
+			results = prod_3_recycling_results_without_biter_eggs,
+		}),
+	})
+
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["cerys-productivity-module-3-recycling"],
+		common.AMBIENT_RADIATION_MIN
+	)
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["productivity-module-3-recycling"],
+		common.AMBIENT_RADIATION_MAX
+	)
 end

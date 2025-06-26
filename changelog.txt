@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.1
-Date: ????
+Date: 2025-06-26
   Changes:
+    - Adjusted the Fulgoran Cryoplant Prod 3 recipe to require green chips instead of red.
+    - Productivity modules no longer recycle to biter eggs when recycled on Cerys (but still do outside to maintain vanilla compatibility).
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.0
 Date: 2025-06-26
