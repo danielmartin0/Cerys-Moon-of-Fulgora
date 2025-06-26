@@ -1,18 +1,27 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.2.0
 Date: 2025-06-25
-  Changes:
-    - Upgrading the quality of the Fulgoran reactor no longer requires a repair step after the quality scaffold.
-  Bugfixes:
-    - Fixed that the Fulgoran teleporter could spawn out of the range of the heating towers.
-    - Fixed that higher-quality Fulgoran reactors could not be upgraded further.
-  Balancing:
-    - Cryogenic plant repair costs changed again ([60, 120] -> [50, 150]).
+  Info:
+    - This update brings deeper compatibility with Krastorio 2 and Krastorio 2: Spaced Out. It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
   Compatibility:
-    - Krastorio 2: Reduced the scrap metal percentage in nuclear scrap (1% -> 0.3%).
-    - Krastorio 2: Cerys no longer overrides the advanced circuit recycling recipe by default.
+    - Krastorio 2: Merged the Cerys and K2 nitric acid fluids.
+    - Krastorio 2: The Cerys recipe for Nitric acid is now performed in the Fulgoran cryogenic plant using ammonia and oxygen.
+    - Krastorio 2: Utility tech cards now have a surface-specific tweaked recipe for Cerys. This means that reactor repair on Cerys is necessary.
+    - Krastorio 2: The recipes for charging rods and the Fulgoran reactor scaffold now require steel beams instead of steel plates.
+    - Krastorio 2: Rare metals are no longer provided in nuclear scrap recycling.
+    - Krastorio 2: Cerys no longer enforces certain recycling recipes to match vanilla when K2 is installed, namely: electronic circuit, advanced circuit, processing unit, iron gear wheel, steam turbine.
+  Changes:
+    - 'Fulgoran machine quality upgrades' technology folded into 'Advanced structure repair'.
+    - Upgrading the quality of the Fulgoran reactor no longer requires a repair step — just super-force building a quality scaffold on a repaired reactor is enough.
+  Bugfixes:
+    - Fixed that the Fulgoran teleporter could spawn out of range of the heating towers on new saves.
+    - Fixed that higher-quality Fulgoran reactors could not be upgraded again.
+  Balancing:
+    - Reduced the science cost of two technologies: Mixed-oxide waste recycling (125 -> 50) and Plutonium weaponry (800 -> 750).
+    - Partially reverted the reduction to the second-or-later cryogenic plant repair cost (120 -> 150).
+    - Tweaked the recipe costs of the Fulgoran reactor scaffold.
   Locale:
-    - Russian translation updated.
+    - Fixed a few typos.
 ---------------------------------------------------------------------------------------------------
 Version: 3.1.13
 Date: 2025-06-23

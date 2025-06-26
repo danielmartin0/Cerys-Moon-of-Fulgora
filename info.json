@@ -12,7 +12,7 @@
         "space-age >= 2.0.51",
         "Flare Stack >= 3.0.6",
         "PlanetsLib >= 1.6.2",
-        "? Planet-Hopper",
+        "? Krastorio2-spaced-out >= 1.3.5",
         "? visible-planets >= 1.2.11",
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",

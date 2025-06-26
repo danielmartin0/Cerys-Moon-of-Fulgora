@@ -280,28 +280,18 @@ function Public.scaffold_on_pre_build(event)
 		surface.find_entities_filtered({ name = "cerys-fulgoran-reactor", position = event.position })
 
 	if existing_reactor and existing_reactor[1] and existing_reactor[1].valid then
-		if player.force.technologies["cerys-fulgoran-machine-quality-upgrades"].researched then
-			local item = player.cursor_stack
+		local item = player.cursor_stack
 
-			if not (item and item.valid) then
-				return
-			end
+		if not (item and item.valid) then
+			return
+		end
 
-			local scaffold_quality = item.quality
+		local scaffold_quality = item.quality
 
-			if scaffold_quality.level > existing_reactor[1].quality.level then
-				Public.upgrading_existing_reactor(surface, existing_reactor[1], player, scaffold_quality)
-			else
-				player.print(
-					{ "cerys.reactor-quality-upgrade-scaffold-quality-too-low" },
-					{ color = common.WARN_COLOR }
-				)
-			end
+		if scaffold_quality.level > existing_reactor[1].quality.level then
+			Public.upgrading_existing_reactor(surface, existing_reactor[1], player, scaffold_quality)
 		else
-			player.print({
-				"cerys.reactor-quality-upgrade-tech-not-researched",
-				"[technology=cerys-fulgoran-machine-quality-upgrades]",
-			}, { color = common.WARN_COLOR })
+			player.print({ "cerys.reactor-quality-upgrade-scaffold-quality-too-low" }, { color = common.WARN_COLOR })
 		end
 	else
 		local position = event.position

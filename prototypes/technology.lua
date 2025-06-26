@@ -1,3 +1,4 @@
+local compat = require("compat.compat")
 local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
@@ -102,6 +103,14 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-fulgoran-reactor-scaffold",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-upgrade-fulgoran-crusher-quality",
+			},
 		},
 		prerequisites = { "cerysian-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
@@ -137,7 +146,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 125,
+			count = 50,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -234,7 +243,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 800,
+			count = 750,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -246,53 +255,6 @@ data:extend({
 		allows_productivity = false,
 	},
 })
-
-local quality_upgrades = false
-for _, quality in pairs(data.raw.quality) do
-	if quality.level and quality.level > 0 then
-		quality_upgrades = true
-	end
-end
-
-if quality_upgrades then
-	data:extend({
-		{
-			type = "technology",
-			name = "cerys-fulgoran-machine-quality-upgrades",
-			effects = {
-				{
-					type = "unlock-recipe",
-					recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
-				},
-				{
-					type = "unlock-recipe",
-					recipe = "cerys-upgrade-fulgoran-crusher-quality",
-				},
-				{
-					type = "nothing",
-					icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/fulgoran-reactor.png",
-					icon_size = 64,
-					effect_description = {
-						"cerys.reactor-quality-upgrades-description",
-					},
-				},
-			},
-			prerequisites = { "cerys-advanced-structure-repair" },
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant-quality.png",
-			icon_size = 256,
-			unit = {
-				count = 40,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerysian-science-pack", 1 },
-				},
-				time = 60,
-			},
-			allows_productivity = false,
-		},
-	})
-end
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
@@ -406,7 +368,7 @@ local cryogenics_tech = {
 		},
 		{
 			type = "unlock-recipe",
-			recipe = "nitric-acid",
+			recipe = "cerys-nitric-acid",
 		},
 		{
 			type = "unlock-recipe",

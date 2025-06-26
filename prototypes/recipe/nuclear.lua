@@ -1,3 +1,4 @@
+local common_data = require("common-data-only")
 local common = require("common")
 
 data:extend({
@@ -139,7 +140,7 @@ data:extend({
 		main_product = "",
 		ingredients = {
 			{ type = "item", name = "depleted-mixed-oxide-fuel-cell", amount = 1 },
-			{ type = "fluid", name = "nitric-acid", amount = 20 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 20 },
 		},
 		results = {
 			{ type = "fluid", name = "mixed-oxide-waste-solution", amount = 20 },

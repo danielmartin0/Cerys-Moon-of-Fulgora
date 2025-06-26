@@ -1,4 +1,5 @@
 local common = require("common")
+local common_data = require("common-data-only")
 
 if settings.startup["cerys-player-constructable-radiative-towers"].value then
 	data:extend({
@@ -72,7 +73,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 2 },
 			{ type = "item", name = "uranium-238", amount = 5 },
-			{ type = "fluid", name = "nitric-acid", amount = 50 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
 		results = { { type = "item", name = "cerysian-science-pack", amount = 1 } },
@@ -138,7 +139,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = "nitric-acid", amount = 5 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 5 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
@@ -184,7 +185,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "nitric-acid",
+		name = "cerys-nitric-acid",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
 		category = "chemistry",
 		subgroup = "cerys-processes",
@@ -196,7 +197,7 @@ data:extend({
 			{ type = "fluid", name = "water", amount = 25 },
 		},
 		results = {
-			{ type = "fluid", name = "nitric-acid", amount = 50 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
 		allow_productivity = true,
 		enabled = false,

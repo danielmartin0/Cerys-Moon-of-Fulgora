@@ -1,3 +1,5 @@
+local common_data = require("common-data-only")
+
 data:extend({
 	{
 		type = "fluid",
@@ -19,7 +21,7 @@ data:extend({
 
 	{
 		type = "fluid",
-		name = "nitric-acid",
+		name = common_data.NITRIC_ACID_NAME,
 		subgroup = "fluid",
 		default_temperature = 15,
 		base_color = { 0.384, 0.271, 0.792 },

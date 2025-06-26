@@ -1,6 +1,4 @@
-local lib = require("lib")
-local find = lib.find
-local common = require("common")
+local Public = {}
 
 --== Prevent burner inserters from being restricted on Cerys: ==--
 
@@ -16,14 +14,14 @@ if data.raw["inserter"]["burner-inserter"] then
 	})
 end
 
--- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs, that is fine.
+-- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs intentionally, that is fine.
 data.raw.lab["cerys-lab"].inputs = {
 	"automation-science-pack",
 	"logistic-science-pack",
 	"cerysian-science-pack",
 	"utility-science-pack",
 	"cryogenic-science-pack",
-} -- Also set elsewhere
+}
 
 data.raw.lab["cerys-lab-dummy"].inputs = {
 	"fulgoran-cryogenics-progress",
@@ -58,3 +56,5 @@ for prototype in pairs(defines.prototypes.entity) do
 		end
 	end
 end
+
+return Public
