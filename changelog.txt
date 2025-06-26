@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.2
 Date: ????
-  Changes:
+  Compatibility:
+    - Krastorio 2: Adjusted Cerys for the fact that K2SO merged the Space Age and K2 lithium items two days ago.
+  Balancing:
+    - Overclock module buffed from 17% productivity to 18% productivity. This matches the arithmetic progression of vanilla.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.1
 Date: 2025-06-26
@@ -12,8 +15,8 @@ Date: 2025-06-26
 Version: 3.3.0
 Date: 2025-06-26
   Features:
-    - An alternative recipe for Productivity module 3 is now available in the Fulgoran cryoplant.
     - One more planet reward, likely the final to be added: The Overclock module, a type of Tier 4 productivity module with strong productivity at a drawback of inhibiting quality by -100% (along with significantly reduced speed). Quality modules cannot be used when crafting it.
+    - An alternative recipe for Productivity module 3 is now available in the Fulgoran cryoplant.
   Changes:
     - Rearrangements to the tech tree.
 ---------------------------------------------------------------------------------------------------

@@ -124,7 +124,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "atomic-bomb", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 100 },
-			{ type = "item", name = "lithium", amount = 10 },
+			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
 	},
@@ -135,7 +135,7 @@ data:extend({
 		energy_required = 15,
 		ingredients = {
 			{ type = "item", name = "artillery-shell", amount = 1 },
-			{ type = "item", name = "lithium", amount = 1 },
+			{ type = "item", name = common_data.LITHIUM_NAME, amount = 1 },
 			{ type = "item", name = "processing-unit", amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 5 },
 		},
@@ -328,7 +328,7 @@ data:extend({
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
 			{ type = "item", name = "carbon", amount = 10 },
-			{ type = "item", name = "lithium", amount = 5 },
+			{ type = "item", name = common_data.LITHIUM_NAME, amount = 5 },
 		},
 		results = {
 			{ type = "fluid", name = "lubricant", amount = 50 },

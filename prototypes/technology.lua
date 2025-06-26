@@ -1,4 +1,4 @@
-local compat = require("compat.compat")
+local common_data = require("common-data-only")
 local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
@@ -425,7 +425,7 @@ local cryogenics_tech = {
 		},
 		{
 			type = "unlock-recipe",
-			recipe = "lithium",
+			recipe = common_data.LITHIUM_NAME,
 		},
 		{
 			type = "unlock-recipe",
