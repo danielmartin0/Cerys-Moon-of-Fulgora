@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.2.0
-Date: 2025-06-25
+Date: 2025-06-26
   Info:
     - This update brings deeper compatibility with Krastorio 2 and Krastorio 2: Spaced Out. It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
   Compatibility:
