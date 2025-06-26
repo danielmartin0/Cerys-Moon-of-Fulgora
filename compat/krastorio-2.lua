@@ -5,8 +5,6 @@ local merge = lib.merge
 local find = lib.find
 
 if common_data.K2_INSTALLED then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["utility-science-pack"], common.AMBIENT_RADIATION_MAX)
-
 	data:extend({
 		merge(data.raw.recipe["utility-science-pack"], {
 			name = "cerys-utility-science-pack",
@@ -22,6 +20,8 @@ if common_data.K2_INSTALLED then
 			order = "k",
 		}),
 	})
+
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["utility-science-pack"], common.AMBIENT_RADIATION_MAX)
 
 	table.insert(data.raw.technology["cerys-fulgoran-cryogenics"].effects, {
 		type = "unlock-recipe",
