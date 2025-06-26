@@ -23,7 +23,7 @@ if common_data.K2_INSTALLED then
 		}),
 	})
 
-	table.insert(data.raw.technology["cerys-lubricant-synthesis"].effects, {
+	table.insert(data.raw.technology["cerys-fulgoran-cryogenics"].effects, {
 		type = "unlock-recipe",
 		recipe = "cerys-utility-science-pack",
 	})
@@ -50,7 +50,6 @@ if common_data.K2_INSTALLED then
 	}
 	data.raw.recipe["cerys-nitric-acid"].category = "fulgoran-cryogenics"
 	data.raw.recipe["cerys-nitric-acid"].localised_name = { "cerys.nitric-acid-by-ammonia-oxidation" }
-	data.raw.recipe["cerys-nitric-acid"].localised_description = { "" }
 	data.raw.recipe["cerys-nitric-acid"].energy_required = 0.5
 
 	if
