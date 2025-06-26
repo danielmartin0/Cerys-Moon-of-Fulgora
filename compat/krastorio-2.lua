@@ -2,6 +2,7 @@ local common = require("common")
 local common_data = require("common-data-only")
 local lib = require("lib")
 local merge = lib.merge
+local find = lib.find
 
 if common_data.K2_INSTALLED then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["utility-science-pack"], common.AMBIENT_RADIATION_MAX)
@@ -51,4 +52,16 @@ if common_data.K2_INSTALLED then
 	data.raw.recipe["cerys-nitric-acid"].localised_name = { "cerys.nitric-acid-by-ammonia-oxidation" }
 	data.raw.recipe["cerys-nitric-acid"].localised_description = { "" }
 	data.raw.recipe["cerys-nitric-acid"].energy_required = 0.5
+
+	if
+		not find(data.raw.recipe["cerys-hydrogen-bomb"].ingredients, function(ingredient)
+			return ingredient.type == "fluid" and ingredient.name == "kr-hydrogen"
+		end)
+	then
+		table.insert(
+			data.raw.recipe["cerys-hydrogen-bomb"].ingredients,
+			{ type = "fluid", name = "kr-hydrogen", amount = 25 }
+		)
+		data.raw.recipe["cerys-hydrogen-bomb"].category = "chemistry"
+	end
 end

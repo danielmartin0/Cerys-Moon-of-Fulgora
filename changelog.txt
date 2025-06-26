@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.2.0
+Version: 3.2.0-3.2.1
 Date: 2025-06-26
   Info:
     - This update brings deeper compatibility with Krastorio 2 and Krastorio 2: Spaced Out. It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
@@ -10,6 +10,7 @@ Date: 2025-06-26
     - Krastorio 2: The recipes for charging rods and the Fulgoran reactor scaffold now require steel beams instead of steel plates.
     - Krastorio 2: Rare metals are no longer provided in nuclear scrap recycling.
     - Krastorio 2: Cerys no longer enforces certain recycling recipes to match vanilla when K2 is installed, namely: electronic circuit, advanced circuit, processing unit, iron gear wheel, steam turbine.
+    - Krastorio 2: The Cerys hydrogen bomb now requires hydrogen.
   Changes:
     - 'Fulgoran machine quality upgrades' technology folded into 'Advanced structure repair'.
     - Upgrading the quality of the Fulgoran reactor no longer requires a repair step — just super-force building a quality scaffold on a repaired reactor is enough.
