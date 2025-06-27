@@ -3,6 +3,8 @@ Version: 3.3.6
 Date: 2025-06-27
   Changes:
     - Added a mod setting to disable the Yield module technology.
+  Balancing:
+    - Changed the Yield module energy consumption effect from +100% to +120%.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.5
 Date: 2025-06-27
