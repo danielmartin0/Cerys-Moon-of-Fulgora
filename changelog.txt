@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.5
 Date: ????
-  Changes:
+  Compatibility:
+    - Fixed a crash when using both Maraxsis and the 'Remove all cargo drop technologies' mod.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.4
 Date: 2025-06-27

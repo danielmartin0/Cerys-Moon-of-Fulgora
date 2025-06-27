@@ -35,7 +35,9 @@ if mods["maraxsis"] then
 		table.insert(data.raw.technology["cerys-yield-module"].unit.ingredients, { "hydraulic-science-pack", 1 })
 		data.raw.technology["cerys-yield-module"].unit.count = 1000
 		table.insert(data.raw.technology["cerys-yield-module"].prerequisites, "hydraulic-science-pack")
-		table.insert(data.raw.technology["cerys-yield-module"].prerequisites, "planetslib-cerys-cargo-drops")
+		if data.raw.technology["planetslib-cerys-cargo-drops"] then
+			table.insert(data.raw.technology["cerys-yield-module"].prerequisites, "planetslib-cerys-cargo-drops")
+		end
 		table.insert(data.raw.lab["cerys-lab"].inputs, "hydraulic-science-pack")
 	end
 end
