@@ -70,6 +70,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 4 },
 			{ type = "item", name = "electronic-circuit", amount = 5 },
+			{ type = "item", name = "advanced-circuit", amount = 5 },
 			{ type = "item", name = "processing-unit", amount = 5 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 30 },
 		},
@@ -78,7 +79,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		subgroup = "cerys-processes",
 		order = "d-d",
-		auto_recycle = false,
+		auto_recycle = settings.startup["cerys-modify-offworld-prod-3-recycling-recipe"].value and true or false,
 		allow_quality = false,
 	},
 	{

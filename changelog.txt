@@ -1,8 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.7
 Date: 2025-06-27
+  Changes:
+    - Added a setting to remove biter eggs from the vanilla Prod 3 module recycling recipe on all planets, not just Cerys.
+    - Advanced circuits reinstated in the Prod 3 recipe to make quality Prod 3s harder to produce. (Note that quality modules cannot be used on this recipe.)
   Balancing:
     - Nerfed Yield module productivity from 18% to 16%.
+    - Yield modules now increase pollution.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.6
 Date: 2025-06-27
