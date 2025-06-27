@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.3
-Date: ????
+Date: 2025-06-27
   Compatibility:
     - With Maraxsis installed, the Overclock module technology now requires Hydraulic science packs to research.
 ---------------------------------------------------------------------------------------------------
