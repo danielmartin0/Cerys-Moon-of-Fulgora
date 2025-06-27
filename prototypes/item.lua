@@ -36,7 +36,7 @@ data:extend({
 		drop_sound = item_sounds.module_inventory_move,
 		stack_size = 50,
 		weight = 20 * 1000,
-		effect = { productivity = 0.18, speed = -0.3, consumption = 1.2, quality = -10.0, pollution = 0.13 },
+		effect = { productivity = 0.16, speed = -0.3, consumption = 1.2, quality = -10.0, pollution = 0.13 },
 		default_import_location = "cerys",
 	},
 	merge(data.raw.tool["electromagnetic-science-pack"], {

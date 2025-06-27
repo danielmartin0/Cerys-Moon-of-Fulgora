@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.3.8
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 3.3.7
+Version: 3.3.7-3.3.8
 Date: 2025-06-27
   Changes:
     - Added a setting to remove biter eggs from the vanilla Prod 3 module recycling recipe on all planets, not just Cerys.
