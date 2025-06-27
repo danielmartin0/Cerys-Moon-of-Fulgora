@@ -23,11 +23,11 @@ end
 data:extend({
 	{
 		type = "module",
-		name = "cerys-overclock-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module.png",
+		name = "cerys-yield-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/yield-module.png",
 		icon_size = 64,
 		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[overclock-module]",
+		order = "c[productivity]-d[productivity-module-4]-a[yield-module]",
 		color_hint = { text = "O" },
 		category = "productivity",
 		tier = 4,

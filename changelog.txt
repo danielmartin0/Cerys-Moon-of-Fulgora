@@ -2,6 +2,13 @@
 Version: 3.3.4
 Date: ????
   Changes:
+    - Overclock module renamed to Yield module. This name fits better due to the reduced speed.
+    - Yield module technology requiring Maraxsis science packs is now an option, disabled by default.
+  Balancing:
+    - The Cerys recipe for Productivity module 3, as with the Yield module recipe, no longer accepts quality modules.
+    - The Yield module recipe no longer requires advanced circuits.
+  Graphics:
+    - Graphical tweak to the Yield module.
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.3
 Date: 2025-06-27

@@ -29,11 +29,13 @@ if mods["maraxsis"] then
 		)
 	end
 
-	if data.raw.tool["hydraulic-science-pack"] then
-		table.insert(data.raw.technology["cerys-overclock-module"].unit.ingredients, { "hydraulic-science-pack", 1 })
-		data.raw.technology["cerys-overclock-module"].unit.count = 1000
-		table.insert(data.raw.technology["cerys-overclock-module"].prerequisites, "hydraulic-science-pack")
-		table.insert(data.raw.technology["cerys-overclock-module"].prerequisites, "planetslib-cerys-cargo-drops")
+	if
+		settings.startup["cerys-gate-yield-module-behind-maraxsis"].value and data.raw.tool["hydraulic-science-pack"]
+	then
+		table.insert(data.raw.technology["cerys-yield-module"].unit.ingredients, { "hydraulic-science-pack", 1 })
+		data.raw.technology["cerys-yield-module"].unit.count = 1000
+		table.insert(data.raw.technology["cerys-yield-module"].prerequisites, "hydraulic-science-pack")
+		table.insert(data.raw.technology["cerys-yield-module"].prerequisites, "planetslib-cerys-cargo-drops")
 		table.insert(data.raw.lab["cerys-lab"].inputs, "hydraulic-science-pack")
 	end
 end

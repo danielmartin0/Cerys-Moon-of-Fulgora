@@ -6,13 +6,6 @@ data:extend({
 		default_value = true,
 		order = "b",
 	},
-	-- {
-	-- 	type = "bool-setting",
-	-- 	name = "cerys-disable-quality-mechanics",
-	-- 	setting_type = "startup",
-	-- 	default_value = false,
-	-- 	order = "c",
-	-- },
 	{
 		type = "bool-setting",
 		name = "cerys-enforce-vanilla-recycling-recipes",
@@ -113,3 +106,15 @@ data:extend({
 		hidden = true,
 	},
 })
+
+if mods["maraxsis"] then
+	data:extend({
+		{
+			type = "bool-setting",
+			name = "cerys-gate-yield-module-behind-maraxsis",
+			setting_type = "startup",
+			default_value = false,
+			order = "c",
+		},
+	})
+end

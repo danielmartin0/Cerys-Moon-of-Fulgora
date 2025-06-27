@@ -247,18 +247,18 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-overclock-module",
+		name = "cerys-yield-module",
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-overclock-module",
+				recipe = "cerys-yield-module",
 			},
 		},
 		prerequisites = {
 			"cerys-applications-of-radioactivity",
 			"cerys-productivity-module-three",
 		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/yield-module.png",
 		icon_size = 1024,
 		unit = {
 			count = 400,
