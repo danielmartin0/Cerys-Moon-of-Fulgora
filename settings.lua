@@ -1,6 +1,13 @@
 data:extend({
 	{
 		type = "bool-setting",
+		name = "cerys-enable-yield-module-technology",
+		setting_type = "startup",
+		default_value = true,
+		order = "a",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-player-constructable-radiative-towers",
 		setting_type = "startup",
 		default_value = true,

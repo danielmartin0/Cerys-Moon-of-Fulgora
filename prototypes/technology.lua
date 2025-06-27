@@ -247,33 +247,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-yield-module",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-yield-module",
-			},
-		},
-		prerequisites = {
-			"cerys-applications-of-radioactivity",
-			"cerys-productivity-module-three",
-		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/yield-module.png",
-		icon_size = 1024,
-		unit = {
-			count = 400,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-plutonium-weaponry",
 		effects = {
 			{
@@ -304,6 +277,38 @@ data:extend({
 		allows_productivity = false,
 	},
 })
+
+if settings.startup["cerys-enable-yield-module-technology"].value then
+	data:extend({
+		{
+			type = "technology",
+			name = "cerys-yield-module",
+			effects = {
+				{
+					type = "unlock-recipe",
+					recipe = "cerys-yield-module",
+				},
+			},
+			prerequisites = {
+				"cerys-applications-of-radioactivity",
+				"cerys-productivity-module-three",
+			},
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/yield-module.png",
+			icon_size = 1024,
+			unit = {
+				count = 400,
+				ingredients = {
+					{ "automation-science-pack", 1 },
+					{ "logistic-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
+					{ "utility-science-pack", 1 },
+				},
+				time = 60,
+			},
+			allows_productivity = false,
+		},
+	})
+end
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
