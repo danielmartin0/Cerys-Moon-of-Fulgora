@@ -89,6 +89,7 @@ data:extend({
 			{ type = "item", name = "productivity-module-3", amount = 4 },
 			{ type = "item", name = "lithium-plate", amount = 4 },
 			{ type = "item", name = "processing-unit", amount = 7 },
+			{ type = "item", name = "advanced-circuit", amount = 7 },
 			{ type = "item", name = "plutonium-238", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
