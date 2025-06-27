@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.3.4
-Date: ????
+Date: 2025-06-27
   Changes:
     - Overclock module renamed to Yield module. This name fits better due to the reduced speed.
     - Yield module technology requiring Maraxsis science packs is now an option, disabled by default.
