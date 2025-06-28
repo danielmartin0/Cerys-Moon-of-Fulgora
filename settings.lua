@@ -29,13 +29,6 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-gate-drive-module-behind-maraxsis",
-		setting_type = "startup",
-		default_value = false,
-		order = "g",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-sandbox-mode",
 		setting_type = "startup",
 		default_value = false,

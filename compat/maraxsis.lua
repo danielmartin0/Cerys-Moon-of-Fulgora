@@ -29,15 +29,15 @@ if mods["maraxsis"] then
 		)
 	end
 
-	if
-		settings.startup["cerys-gate-drive-module-behind-maraxsis"].value and data.raw.tool["hydraulic-science-pack"]
-	then
-		table.insert(data.raw.technology["cerys-drive-module"].unit.ingredients, { "hydraulic-science-pack", 1 })
-		data.raw.technology["cerys-drive-module"].unit.count = 1000
-		table.insert(data.raw.technology["cerys-drive-module"].prerequisites, "hydraulic-science-pack")
-		if data.raw.technology["planetslib-cerys-cargo-drops"] then
-			table.insert(data.raw.technology["cerys-drive-module"].prerequisites, "planetslib-cerys-cargo-drops")
-		end
-		table.insert(data.raw.lab["cerys-lab"].inputs, "hydraulic-science-pack")
-	end
+	-- if
+	-- 	settings.startup["cerys-gate-drive-module-behind-maraxsis"].value and data.raw.tool["hydraulic-science-pack"]
+	-- then
+	-- 	table.insert(data.raw.technology["cerys-drive-module"].unit.ingredients, { "hydraulic-science-pack", 1 })
+	-- 	data.raw.technology["cerys-drive-module"].unit.count = 1000
+	-- 	table.insert(data.raw.technology["cerys-drive-module"].prerequisites, "hydraulic-science-pack")
+	-- 	if data.raw.technology["planetslib-cerys-cargo-drops"] then
+	-- 		table.insert(data.raw.technology["cerys-drive-module"].prerequisites, "planetslib-cerys-cargo-drops")
+	-- 	end
+	-- 	table.insert(data.raw.lab["cerys-lab"].inputs, "hydraulic-science-pack")
+	-- end
 end
