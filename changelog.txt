@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.4.0
+Version: 3.4.0-3.4.2
 Date: 2025-06-28
   Changes:
     - Due to Cerys' philosophy of avoiding disturbing vanilla, the level 4 productivity module (Yield module) has been removed.

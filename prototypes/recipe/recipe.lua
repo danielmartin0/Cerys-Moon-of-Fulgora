@@ -84,6 +84,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "speed-module-2", amount = 8 },
 			{ type = "item", name = "lithium-plate", amount = 7 },
+			{ type = "item", name = "processing-unit", amount = 7 },
 			{ type = "item", name = "plutonium-238", amount = 7 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
