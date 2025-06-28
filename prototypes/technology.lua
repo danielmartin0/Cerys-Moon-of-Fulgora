@@ -17,7 +17,7 @@ data:extend({
 		},
 		prerequisites = { "cerysian-science-pack", "productivity-module-2" },
 		unit = {
-			count = 50,
+			count = 30,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
