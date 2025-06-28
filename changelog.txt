@@ -1,15 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.4.5
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 3.4.0-3.4.4
+Version: 3.4.0-3.4.5
 Date: 2025-06-28
   Changes:
     - Due to Cerys' philosophy of avoiding disturbing vanilla, the level 4 productivity module (Yield module) has been removed due to its effect on the Space Age endgame.
     - Removed the unlock of Productivity module 3 on Cerys (and the associated special handling of recycling it).
     - Cerys now instead has two new modules with downsides: the Drive module (a Tier 2 prod module) and the Overclock module (a Tier 4 speed module). In the endgame, the Drive module generally becomes obsolete and the Overclock module plays a niche role.
-    - The setting to push Yield modules behind Hydraulic science when Maraxsis is installed now always appears in the settings list for visibility, even if Maraxsis is not installed.
   Balancing:
     - Increased the sulfuric acid in nitrogen-rich mineral processing back to 15 (from 10).
 ---------------------------------------------------------------------------------------------------
