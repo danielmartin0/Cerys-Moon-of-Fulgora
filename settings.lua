@@ -1,42 +1,35 @@
 data:extend({
 	{
 		type = "bool-setting",
-		name = "cerys-enable-yield-module-technology",
+		name = "cerys-disable-flare-stack-item-venting",
 		setting_type = "startup",
 		default_value = true,
 		order = "a",
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-player-constructable-radiative-towers",
+		name = "cerys-enforce-vanilla-recycling-recipes",
 		setting_type = "startup",
 		default_value = true,
 		order = "b",
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-enforce-vanilla-recycling-recipes",
+		name = "cerys-infinite-braking-technology",
 		setting_type = "startup",
-		default_value = true,
+		default_value = false,
 		order = "d",
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-disable-flare-stack-item-venting",
+		name = "cerys-player-constructable-radiative-towers",
 		setting_type = "startup",
 		default_value = true,
 		order = "e",
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-infinite-braking-technology",
-		setting_type = "startup",
-		default_value = false,
-		order = "f",
-	},
-	{
-		type = "bool-setting",
-		name = "cerys-modify-offworld-prod-3-recycling-recipe",
+		name = "cerys-gate-drive-module-behind-maraxsis",
 		setting_type = "startup",
 		default_value = false,
 		order = "g",
@@ -120,15 +113,3 @@ data:extend({
 		hidden = true,
 	},
 })
-
-if mods["maraxsis"] then
-	data:extend({
-		{
-			type = "bool-setting",
-			name = "cerys-gate-yield-module-behind-maraxsis",
-			setting_type = "startup",
-			default_value = false,
-			order = "c",
-		},
-	})
-end

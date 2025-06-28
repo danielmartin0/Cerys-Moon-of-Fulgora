@@ -4,7 +4,54 @@ local lib = require("lib")
 local merge = lib.merge
 
 data:extend({
-
+	{
+		type = "technology",
+		name = "cerys-drive-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/drive-module.png",
+		icon_size = 1024,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-drive-module",
+			},
+		},
+		prerequisites = { "cerysian-science-pack", "productivity-module-2" },
+		unit = {
+			count = 50,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	{
+		type = "technology",
+		name = "cerys-overclock-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
+		icon_size = 1024,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-overclock-module",
+			},
+		},
+		prerequisites = {
+			"cerys-drive-module",
+			"speed-module-2",
+		},
+		unit = {
+			count = 200,
+			ingredients = {
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
 	{
 		type = "technology",
 		name = "cerys-nitrogen-rich-mineral-processing",
@@ -224,29 +271,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-productivity-module-three",
-		localised_description = { "technology-description.productivity-module" },
-		icon = "__base__/graphics/technology/productivity-module-3.png",
-		icon_size = 256,
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-productivity-module-3",
-			},
-		},
-		prerequisites = { "cerysian-science-pack", "productivity-module-2" },
-		unit = {
-			count = 75,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-plutonium-weaponry",
 		effects = {
 			{
@@ -277,38 +301,6 @@ data:extend({
 		allows_productivity = false,
 	},
 })
-
-if settings.startup["cerys-enable-yield-module-technology"].value then
-	data:extend({
-		{
-			type = "technology",
-			name = "cerys-yield-module",
-			effects = {
-				{
-					type = "unlock-recipe",
-					recipe = "cerys-yield-module",
-				},
-			},
-			prerequisites = {
-				"cerys-applications-of-radioactivity",
-				"cerys-productivity-module-three",
-			},
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/yield-module.png",
-			icon_size = 1024,
-			unit = {
-				count = 400,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerysian-science-pack", 1 },
-					{ "utility-science-pack", 1 },
-				},
-				time = 60,
-			},
-			allows_productivity = false,
-		},
-	})
-end
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)

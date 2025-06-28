@@ -109,22 +109,3 @@ for _, result in pairs(data.raw.recipe["productivity-module-3-recycling"].result
 		table.insert(prod_3_recycling_results_without_biter_eggs, result)
 	end
 end
-
-if data.raw.recipe["productivity-module-3-recycling"] then
-	data:extend({
-		merge(data.raw.recipe["productivity-module-3-recycling"], {
-			name = "cerys-productivity-module-3-recycling",
-			enabled = true,
-			results = prod_3_recycling_results_without_biter_eggs,
-		}),
-	})
-
-	PlanetsLib.restrict_surface_conditions(
-		data.raw.recipe["cerys-productivity-module-3-recycling"],
-		common.AMBIENT_RADIATION_MIN
-	)
-	PlanetsLib.restrict_surface_conditions(
-		data.raw.recipe["productivity-module-3-recycling"],
-		common.AMBIENT_RADIATION_MAX
-	)
-end

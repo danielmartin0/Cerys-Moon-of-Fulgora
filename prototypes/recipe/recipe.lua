@@ -32,7 +32,7 @@ else
 	data:extend({
 		{
 			type = "recipe",
-			name = "maraxsis-holmium-recrystalization", -- We use Maraxsis' prefix so that saves work smoothly whether uninstalling/reinstalling Cerys and Maraxsis.
+			name = "maraxsis-holmium-recrystalization", -- We use Maraxsis' prefix so that saves work smoothly whether uninstalling/reinstalling Cerys and Maraxsis. Note that Maraxsis spells it with a single l.
 			subgroup = "cerys-processes",
 			order = "e-b",
 			ingredients = {
@@ -65,39 +65,31 @@ end
 data:extend({
 	{
 		type = "recipe",
-		name = "cerys-productivity-module-3",
+		name = "cerys-drive-module",
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "productivity-module-2", amount = 4 },
+			{ type = "item", name = "productivity-module", amount = 4 },
 			{ type = "item", name = "electronic-circuit", amount = 5 },
-			{ type = "item", name = "advanced-circuit", amount = 5 },
 			{ type = "item", name = "processing-unit", amount = 5 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 30 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
 		},
-		energy_required = 15,
-		results = { { type = "item", name = "productivity-module-3", amount = 1 } },
+		energy_required = 30,
+		results = { { type = "item", name = "cerys-drive-module", amount = 1 } },
 		category = "fulgoran-cryogenics",
-		subgroup = "cerys-processes",
-		order = "d-d",
-		auto_recycle = settings.startup["cerys-modify-offworld-prod-3-recycling-recipe"].value and true or false,
-		allow_quality = false,
 	},
 	{
 		type = "recipe",
-		name = "cerys-yield-module",
+		name = "cerys-overclock-module",
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "productivity-module-3", amount = 4 },
-			{ type = "item", name = "lithium-plate", amount = 4 },
-			{ type = "item", name = "processing-unit", amount = 7 },
-			{ type = "item", name = "advanced-circuit", amount = 7 },
-			{ type = "item", name = "plutonium-238", amount = 4 },
+			{ type = "item", name = "speed-module-2", amount = 8 },
+			{ type = "item", name = "lithium-plate", amount = 7 },
+			{ type = "item", name = "plutonium-238", amount = 7 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
 		energy_required = 60,
-		results = { { type = "item", name = "cerys-yield-module", amount = 1 } },
+		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
 		category = "fulgoran-cryogenics",
-		allow_quality = false,
 	},
 	{
 		type = "recipe",
@@ -299,7 +291,7 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = 10 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "sulfuric-acid", amount = 15 }, -- 1 iron => 50 sulfuric acid.
 			{ type = "fluid", name = "water", amount = 40 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
