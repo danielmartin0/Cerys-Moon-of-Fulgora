@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.4.6
-Date: 2025-06-28
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 3.4.0-3.4.5
+Version: 3.4.0-3.4.6
 Date: 2025-06-28
   Changes:
     - Due to Cerys' philosophy of avoiding disturbing vanilla, the level 4 productivity module (Yield module) has been removed due to its effect on the Space Age endgame.
