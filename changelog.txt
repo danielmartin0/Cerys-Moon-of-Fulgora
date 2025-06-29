@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.4.7
 Date: ????
-  Changes:
+  Balancing:
+    - Changed the quality effect of the Drive module from -2% to -2.5%.
+    - When using Hard Cerys, the Sulfuric acid needed for nitrogen-rich mineral processing is increased from 15 to 35.
+  Compatibility:
+    - The errors reporting a missing Lunaponics mod now fire when the Factorio client boots.
 ---------------------------------------------------------------------------------------------------
 Version: 3.4.0-3.4.6
 Date: 2025-06-28

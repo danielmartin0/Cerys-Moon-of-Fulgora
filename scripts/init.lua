@@ -6,7 +6,6 @@ local Public = {}
 
 script.on_init(function()
 	picker_dollies.add_picker_dollies_blacklists()
-	Public.startup_compatibility_checks()
 	Public.whitelist_construction_robots()
 end)
 
@@ -112,24 +111,6 @@ function Public.delete_cerys_storage_if_necessary()
 	if storage.cerys and not (surface and surface.valid) then
 		-- Reset the cerys table:
 		storage.cerys = nil
-	end
-end
-
-function Public.startup_compatibility_checks()
-	local has_WU_mods = script.active_mods["wood-logistics"] and script.active_mods["fulgora-coralmium-agriculture"]
-	local has_lignumis = script.active_mods["lignumis"]
-	local has_lunaponics = script.active_mods["cerys-lunaponics"]
-
-	if has_WU_mods and not has_lunaponics then
-		error(
-			"\n\nPlaying Cerys alongside Wooden Logistics and Wooden Fulgora requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
-		)
-	end
-
-	if has_lignumis and not has_lunaponics then
-		error(
-			"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
-		)
 	end
 end
 

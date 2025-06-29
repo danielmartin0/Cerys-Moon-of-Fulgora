@@ -330,7 +330,6 @@ script.on_configuration_changed(function()
 	end
 
 	picker_dollies.add_picker_dollies_blacklists()
-	init.startup_compatibility_checks()
 	init.whitelist_construction_robots()
 end)
 
