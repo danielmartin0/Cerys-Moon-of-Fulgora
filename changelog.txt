@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.4.7
-Date: ????
+Date: 2025-06-29
   Balancing:
     - Changed the quality effect of the Drive module from -2% to -2.5%.
     - When using Hard Cerys, the Sulfuric acid needed for nitrogen-rich mineral processing is increased from 15 to 35.
