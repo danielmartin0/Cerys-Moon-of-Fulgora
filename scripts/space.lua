@@ -50,6 +50,10 @@ function Public.try_spawn_asteroid(surface)
 		return
 	end
 
+	if not prototypes.entity[chosen_name] then
+		return
+	end
+
 	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
 	local x = math.random(-semimajor_axis - 70, semimajor_axis + 70)
 
