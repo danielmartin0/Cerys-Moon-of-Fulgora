@@ -71,7 +71,7 @@ data:extend({
 			{ type = "item", name = "speed-module-2", amount = 4 },
 			{ type = "item", name = "advanced-circuit", amount = 4 },
 			{ type = "item", name = "processing-unit", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 15 },
 		},
 		energy_required = 30,
 		results = { { type = "item", name = "speed-module-3", amount = 1 } },
