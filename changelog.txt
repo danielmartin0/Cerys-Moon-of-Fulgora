@@ -13,7 +13,8 @@ Date: 2025-06-30
     - Buffed the Overclock module by reducing the productivity effect (-5% -> -4%).
   Bugfixes:
     - Fixed missing English locale entry for Nitric acid.
-    - Fixed that fusion power cells could not be crafted in Fulgoran cryogenic plants as intended.
+    - Fixed that surface conditions of the fusion power cell recipe prevented it from being crafted in Fulgoran cryogenic plants.
+    - Fixed a crash when Cupric Asteroids is installed but another mod has removed the cupric asteroid entities.
 ---------------------------------------------------------------------------------------------------
 Version: 3.4.8
 Date: 2025-06-29
