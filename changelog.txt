@@ -1,14 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.5.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 3.5.1
 Date: 2025-06-30
   Changes:
     - Renamed 'Speed module 3 by Fulgoran cryogenics' to 'Speed module 3 from Nitric acid' and changed the icon.
   Balancing:
-    - Like the recipe 'Processing units from nitric acid', 'Speed module 3 from Nitric acid' now requires fewer chips (in this case -20% blue chips rather than -20% green chips)
+    - Like the recipe 'Processing units from nitric acid', 'Speed module 3 from Nitric acid' now requires fewer chips than the original recipe.
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.0
 Date: 2025-06-30
