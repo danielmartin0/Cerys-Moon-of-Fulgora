@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.0
-Date: 2025-06-29
+Date: 2025-06-30
   Changes:
     - Drive module replaced by a recipe for Speed module 3. This is because the Overclock module as published ought to require Speed module 3, and this is a slight conceptual simplification if the planet is slightly rebalanced to make speed modules more valuable.
     - Overclock modules no longer require processing units to craft but now require Speed module 3 instead of Speed module 2.
