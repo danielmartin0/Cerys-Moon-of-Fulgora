@@ -166,7 +166,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		additional_categories = { "cryogenics" },
 		enabled = false,
-		energy_required = 2.5,
+		energy_required = 2,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },

@@ -8,7 +8,7 @@ Date: 2025-06-30
     - Cryogenic plants can no longer be placed on Cerys.
   Balancing:
     - Reduced the energy consumption of the Fulgoran cryogenic plant (-16%).
-    - Increased the crafting time of certain Fulgoran cryogenics recipes: Cerysian science pack (2s -> 6s), processing units from nitric acid (1.8s -> 2.5s), methane ice dissociation (5.5s -> 6s).
+    - Increased the crafting time of certain Fulgoran cryogenics recipes: Cerysian science pack (2s -> 6s), processing units from nitric acid (1.8s -> 2s), methane ice dissociation (5.5s -> 6s).
     - Increased the ammonia produced by nitrogen-rich mineral processing (+50%).
     - Buffed the Overclock module by reducing the productivity effect (-5% -> -4%).
   Bugfixes:
