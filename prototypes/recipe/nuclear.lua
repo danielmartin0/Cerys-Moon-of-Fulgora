@@ -168,7 +168,6 @@ data:extend({
 		},
 		results = { { type = "item", name = "plutonium-rounds-magazine", amount = 10 } },
 	},
-
 	{
 		type = "recipe",
 		name = "plutonium-fuel",

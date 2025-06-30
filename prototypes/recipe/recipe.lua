@@ -65,26 +65,28 @@ end
 data:extend({
 	{
 		type = "recipe",
-		name = "cerys-drive-module",
+		name = "cerys-speed-module-3",
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "productivity-module", amount = 4 },
-			{ type = "item", name = "electronic-circuit", amount = 5 },
+			{ type = "item", name = "speed-module-2", amount = 4 },
+			{ type = "item", name = "advanced-circuit", amount = 5 },
 			{ type = "item", name = "processing-unit", amount = 5 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 30,
-		results = { { type = "item", name = "cerys-drive-module", amount = 1 } },
+		results = { { type = "item", name = "speed-module-3", amount = 1 } },
 		category = "fulgoran-cryogenics",
+		subgroup = "cerys-processes",
+		order = "d-d",
+		auto_recycle = false,
 	},
 	{
 		type = "recipe",
 		name = "cerys-overclock-module",
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "speed-module-2", amount = 8 },
+			{ type = "item", name = "speed-module-3", amount = 8 },
 			{ type = "item", name = "lithium-plate", amount = 7 },
-			{ type = "item", name = "processing-unit", amount = 7 },
 			{ type = "item", name = "plutonium-238", amount = 7 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
@@ -98,7 +100,7 @@ data:extend({
 		always_show_made_in = true,
 		category = "fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 2,
+		energy_required = 6,
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 2 },
 			{ type = "item", name = "uranium-238", amount = 5 },
@@ -164,7 +166,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		additional_categories = { "cryogenics" },
 		enabled = false,
-		energy_required = 1.8,
+		energy_required = 2.5,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
@@ -265,7 +267,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 5.5,
+		energy_required = 6,
 		ingredients = {
 			{ type = "item", name = "methane-ice", amount = 50 },
 		},
@@ -293,11 +295,11 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
 			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 35 or 15 }, -- 1 iron => 50 sulfuric acid.
-			{ type = "fluid", name = "water", amount = 40 },
+			{ type = "fluid", name = "water", amount = 35 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },
-			{ type = "fluid", name = "ammonia", amount = 20 },
+			{ type = "fluid", name = "ammonia", amount = 30 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",

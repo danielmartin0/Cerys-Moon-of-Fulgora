@@ -34,6 +34,13 @@ for _, entity in pairs(data.raw["boiler"]) do
 	end
 end
 
+if data.raw["assembling-machine"]["cryogenic-plant"] then
+	PlanetsLib.restrict_surface_conditions(
+		data.raw["assembling-machine"]["cryogenic-plant"],
+		common.AMBIENT_RADIATION_MAX
+	)
+end
+
 -- No effect on vanilla:
 
 for _, entity in pairs(data.raw["furnace"]) do

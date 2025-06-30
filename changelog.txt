@@ -1,4 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.5.0
+Date: 2025-06-29
+  Changes:
+    - Drive module replaced by a recipe for Speed module 3. This is because the Overclock module as published ought to require Speed module 3, and this is a slight conceptual simplification if the planet is slightly rebalanced to make speed modules more valuable.
+    - Overclock modules no longer require processing units to craft but now require Speed module 3 instead of Speed module 2.
+    - Recycling Speed module 3 on Cerys no longer produces tungsten carbide.
+    - Cryogenic plants can no longer be placed on Cerys.
+  Balancing:
+    - Reduced the energy consumption of the Fulgoran cryogenic plant (-16%).
+    - Increased the crafting time of certain Fulgoran cryogenics recipes: Cerysian science pack (2s -> 6s), processing units from nitric acid (1.8s -> 2.5s), methane ice dissociation (5.5s -> 6s).
+    - Increased the ammonia produced by nitrogen-rich mineral processing (+50%).
+    - Buffed the Overclock module by reducing the productivity effect (-5% -> -4%).
+  Bugfixes:
+    - Fixed missing English locale entry for Nitric acid.
+    - Fixed that fusion power cells could not be crafted in Fulgoran cryogenic plants as intended.
+---------------------------------------------------------------------------------------------------
 Version: 3.4.8
 Date: 2025-06-29
   Bugfixes:

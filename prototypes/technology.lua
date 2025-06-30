@@ -6,18 +6,19 @@ local merge = lib.merge
 data:extend({
 	{
 		type = "technology",
-		name = "cerys-drive-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/drive-module.png",
-		icon_size = 1024,
+		name = "cerys-speed-module-three",
+		localised_description = { "technology-description.speed-module" },
+		icon = "__base__/graphics/technology/speed-module-3.png",
+		icon_size = 256,
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-drive-module",
+				recipe = "cerys-speed-module-3",
 			},
 		},
-		prerequisites = { "cerysian-science-pack", "productivity-module-2" },
+		prerequisites = { "cerysian-science-pack", "speed-module-2" },
 		unit = {
-			count = 30,
+			count = 50,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -38,7 +39,7 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-drive-module",
+			"cerys-speed-module-three",
 			"speed-module-2",
 		},
 		unit = {
@@ -600,7 +601,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count_formula = "2^(L-1)*100",
+			count = 50,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -616,7 +617,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*100",
+			count = 200,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -633,7 +634,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-2" },
 		unit = {
-			count_formula = "2^(L-1)*100",
+			count_formula = "2^(L-2)*500",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

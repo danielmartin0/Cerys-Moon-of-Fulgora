@@ -87,10 +87,6 @@ if data.raw.recipe["fusion-generator"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-generator"], common.AMBIENT_RADIATION_MAX)
 end
 
-if data.raw.recipe["fusion-power-cell"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-power-cell"], common.AMBIENT_RADIATION_MAX)
-end
-
 if data.raw.recipe["boiler"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["boiler"], common.TEN_PRESSURE_MIN)
 end
@@ -103,9 +99,25 @@ if data.raw.recipe["rocket-fuel"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], common.AMBIENT_RADIATION_MAX)
 end
 
-local prod_3_recycling_results_without_biter_eggs = {}
-for _, result in pairs(data.raw.recipe["productivity-module-3-recycling"].results) do
-	if result.name ~= "biter-egg" then
-		table.insert(prod_3_recycling_results_without_biter_eggs, result)
+local speed_3_recycling_results_without_tungsten_carbide = {}
+for _, result in pairs(data.raw.recipe["speed-module-3-recycling"].results) do
+	if result.name ~= "tungsten-carbide" then
+		table.insert(speed_3_recycling_results_without_tungsten_carbide, result)
 	end
+end
+
+if data.raw.recipe["speed-module-3-recycling"] then
+	data:extend({
+		merge(data.raw.recipe["speed-module-3-recycling"], {
+			name = "cerys-speed-module-3-recycling",
+			enabled = true,
+			results = speed_3_recycling_results_without_tungsten_carbide,
+		}),
+	})
+
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["cerys-speed-module-3-recycling"],
+		common.AMBIENT_RADIATION_MIN
+	)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["speed-module-3-recycling"], common.AMBIENT_RADIATION_MAX)
 end
