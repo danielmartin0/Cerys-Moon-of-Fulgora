@@ -1,0 +1,6 @@
+{
+    "recipe": [
+        ["processing-units-from-nitric-acid", "cerys-processing-units-from-nitric-acid"],
+        ["cerys-speed-module-3", "cerys-speed-module-3-from-nitric-acid"]
+    ]
+}

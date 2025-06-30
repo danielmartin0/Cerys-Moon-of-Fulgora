@@ -2,6 +2,7 @@
 Version: 3.5.1
 Date: ????
   Changes:
+    - Renamed 'Speed module 3 by Fulgoran cryogenics' to 'Speed module 3 from Nitric acid' and changed the icon.
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.0
 Date: 2025-06-30

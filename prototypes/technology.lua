@@ -13,7 +13,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-speed-module-3",
+				recipe = "cerys-speed-module-3-from-nitric-acid",
 			},
 		},
 		prerequisites = { "cerysian-science-pack", "speed-module-2" },
@@ -419,7 +419,7 @@ local cryogenics_tech = {
 		},
 		{
 			type = "unlock-recipe",
-			recipe = "processing-units-from-nitric-acid",
+			recipe = "cerys-processing-units-from-nitric-acid",
 		},
 		{
 			type = "unlock-recipe",

@@ -65,7 +65,7 @@ end
 data:extend({
 	{
 		type = "recipe",
-		name = "cerys-speed-module-3",
+		name = "cerys-speed-module-3-from-nitric-acid",
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "speed-module-2", amount = 4 },
@@ -79,6 +79,22 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "d-d",
 		auto_recycle = false,
+		icons = {
+			{
+				icon = "__base__/graphics/icons/speed-module-3.png",
+				icon_size = 64,
+				scale = 0.65,
+				shift = { 2, 2 },
+				draw_background = true,
+			},
+			{
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
+				icon_size = 64,
+				scale = 0.45,
+				shift = { -11, -11 },
+				draw_background = true,
+			},
+		},
 	},
 	{
 		type = "recipe",
@@ -158,7 +174,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "processing-units-from-nitric-acid",
+		name = "cerys-processing-units-from-nitric-acid",
 		auto_recycle = false,
 		always_show_made_in = true,
 		subgroup = "cerys-processes",

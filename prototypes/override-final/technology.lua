@@ -16,7 +16,7 @@ for _, technology in pairs(data.raw.technology) do
 		if processing_unit_productivity_change ~= 0 then
 			table.insert(technology.effects, {
 				type = "change-recipe-productivity",
-				recipe = "processing-units-from-nitric-acid",
+				recipe = "cerys-processing-units-from-nitric-acid",
 				change = processing_unit_productivity_change,
 			})
 		end
