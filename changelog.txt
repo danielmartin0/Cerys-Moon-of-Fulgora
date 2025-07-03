@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.3
-Date: 2025-06-30
+Date: 2025-07-03
   Bugfixes:
     - Krastorio 2: Fixed that the K2SO lithium recipe was unlocked by Fulgoran cryogenics rather than the vanilla lithium recipe as intended.
     - Krastorio 2: The plutonium magazine rounds from Cerys are replaced by plutonium rifle magazines and plutonium anti-materiel rifle magazines.
