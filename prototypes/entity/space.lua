@@ -99,7 +99,7 @@ local solar_wind_particle = {
 				tint = { r = 1, g = 1, b = 1, a = 0.8 },
 				apply_runtime_tint = true,
 				size = 32,
-				scale = 0.6,
+				scale = 0.5,
 				draw_as_glow = true,
 				blend_mode = "additive",
 			},

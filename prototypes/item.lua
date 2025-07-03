@@ -36,7 +36,7 @@ data:extend({
 		drop_sound = item_sounds.module_inventory_move,
 		stack_size = 50,
 		weight = 20 * 1000,
-		effect = { speed = 1.0, consumption = 1.4, quality = -0.5, productivity = -0.04, pollution = 0.25 },
+		effect = { speed = 1.0, consumption = 1.4, quality = -0.5, productivity = -0.05, pollution = 0.25 },
 		default_import_location = "cerys",
 	},
 	merge(data.raw.tool["electromagnetic-science-pack"], {
@@ -412,7 +412,7 @@ data:extend({
 		},
 		magazine_size = 10,
 		subgroup = "ammo",
-		order = "a[basic-clips]-d[plutonium-rounds-magazine]",
+		order = "a[basic-clips]-c[uranium-rounds-magazine]-b[plutonium-rounds-magazine]",
 		inventory_move_sound = item_sounds.ammo_small_inventory_move,
 		pick_sound = item_sounds.ammo_small_inventory_pickup,
 		drop_sound = item_sounds.ammo_small_inventory_move,

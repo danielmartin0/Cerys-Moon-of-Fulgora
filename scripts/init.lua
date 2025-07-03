@@ -29,6 +29,9 @@ function Public.initialize_cerys(surface) -- Must run before terrain generation
 	Public.create_reactor(surface)
 	terrain.create_teleporter()
 
+	surface.wind_speed = 0
+	surface.wind_orientation_change = 0
+
 	return surface
 end
 

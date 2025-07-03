@@ -161,7 +161,7 @@ data:extend({
 		type = "recipe",
 		name = "plutonium-rounds-magazine",
 		enabled = false,
-		energy_required = 10,
+		energy_required = 10 * 10,
 		ingredients = {
 			{ type = "item", name = "uranium-rounds-magazine", amount = 10 },
 			{ type = "item", name = "plutonium-238", amount = 1 },

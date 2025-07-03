@@ -20,11 +20,11 @@ if data.raw.recipe["plastic-bar"] then
 	end
 	table.insert(data.raw.recipe["plastic-bar"].additional_categories, "fulgoran-cryogenics")
 end
-if data.raw.recipe[common_data.LITHIUM_NAME] then
-	if not data.raw.recipe[common_data.LITHIUM_NAME].additional_categories then
-		data.raw.recipe[common_data.LITHIUM_NAME].additional_categories = {}
+if data.raw.recipe.lithium then
+	if not data.raw.recipe.lithium.additional_categories then
+		data.raw.recipe.lithium.additional_categories = {}
 	end
-	table.insert(data.raw.recipe[common_data.LITHIUM_NAME].additional_categories, "fulgoran-cryogenics")
+	table.insert(data.raw.recipe.lithium.additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["battery"] then
 	if not data.raw.recipe["battery"].additional_categories then

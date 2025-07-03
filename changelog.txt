@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.5.3
+Date: 2025-06-30
+  Bugfixes:
+    - Krastorio 2: Fixed that the K2SO lithium recipe was unlocked by Fulgoran cryogenics rather than the vanilla lithium recipe as intended.
+    - Krastorio 2: The plutonium magazine rounds from Cerys are replaced by plutonium rifle magazines and plutonium anti-materiel rifle magazines.
+  Balancing:
+    - Reverted buff to Overclock modules. Their productivity effect has been reverted from -4% to -5%.
+    - Greatly increased the crafting time for plutonium magazine rounds since 10 magazines are crafted in one recipe.
+  Graphics:
+    - Reduced the visual size of solar wind.
+    - The speed of wind on Cerys for visual effects is now 0.
+---------------------------------------------------------------------------------------------------
 Version: 3.5.1-3.5.2
 Date: 2025-06-30
   Changes:
@@ -110,7 +122,7 @@ Date: 2025-06-26
 Version: 3.2.0-3.2.2
 Date: 2025-06-26
   Info:
-    - This update brings deeper compatibility with Krastorio 2 and Krastorio 2: Spaced Out. It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
+    - This update brings deeper compatibility with Krastorio 2 (via the Spaced Out mod). It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
   Compatibility:
     - Krastorio 2: Merged the Cerys and K2 nitric acid fluids.
     - Krastorio 2: The Cerys recipe for Nitric acid is now performed in the Fulgoran cryogenic plant using ammonia and oxygen.

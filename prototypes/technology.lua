@@ -423,7 +423,7 @@ local cryogenics_tech = {
 		},
 		{
 			type = "unlock-recipe",
-			recipe = common_data.LITHIUM_NAME,
+			recipe = "lithium",
 		},
 		{
 			type = "unlock-recipe",
