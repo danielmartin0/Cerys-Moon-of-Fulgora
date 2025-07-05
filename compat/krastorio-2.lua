@@ -132,6 +132,7 @@ if common_data.K2_INSTALLED then
 				},
 				results = { { type = "item", name = "kr-plutonium-rifle-magazine", amount = 10 } },
 				energy_required = data.raw.recipe["kr-uranium-rifle-magazine"].energy_required * 10,
+				main_product = mods["maraxsis"] and "kr-plutonium-rifle-magazine" or nil,
 			}),
 			merge(data.raw.projectile["kr-uranium-rifle-magazine-projectile"], {
 				name = "kr-plutonium-rifle-magazine-projectile",
@@ -217,6 +218,7 @@ if common_data.K2_INSTALLED then
 				},
 				results = { { type = "item", name = "kr-plutonium-anti-materiel-rifle-magazine", amount = 10 } },
 				energy_required = data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"].energy_required * 10,
+				main_product = mods["maraxsis"] and "kr-plutonium-anti-materiel-rifle-magazine" or nil,
 			}),
 			merge(data.raw.projectile["kr-uranium-anti-materiel-rifle-magazine-projectile"], {
 				name = "kr-plutonium-anti-materiel-rifle-magazine-projectile",
