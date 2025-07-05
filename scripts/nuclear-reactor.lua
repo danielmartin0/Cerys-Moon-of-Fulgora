@@ -162,7 +162,7 @@ function Public.tick_2_radiation(surface)
 
 					local stop = true
 					for fluid_name, _ in pairs(fluid_contents) do
-						if find(common.GAS_NAMES, fluid_name) then
+						if find(common.KNOWN_GAS_NAMES, fluid_name) then
 							stop = false
 							break
 						end

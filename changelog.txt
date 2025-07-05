@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.4
 Date: ????
-  Changes:
+  Compatibility:
+    - The engine productivity tech now applies to varies modded engine recipes.
+    - Krastorio 2: New prototypes moved from data-final-fixes to data-updates.
+    - Krastorio 2: Fixed a crash when other mods set a main_product value on uranium ammo recipes.
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.3
 Date: 2025-07-03

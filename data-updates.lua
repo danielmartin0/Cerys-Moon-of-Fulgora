@@ -4,3 +4,4 @@ require("prototypes.override.item")
 require("prototypes.override.planet")
 
 require("compat.aai")
+require("compat.krastorio-2-data-updates")
