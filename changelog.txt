@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.1
-Date: ????
+Date: 2025-07-13
   Balancing:
     - Reduced the cost of the Cerys engine unit productivity technologies.
   Compatibility:
