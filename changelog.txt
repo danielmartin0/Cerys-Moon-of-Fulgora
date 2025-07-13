@@ -5,12 +5,14 @@ Date: 2025-07-13
     - Cerys now has a brand-new neoclassical soundtrack. 3 Fulgora tracks remain.
     - Improved the working sound for the Fulgoran cryogenic plant.
   Changes:
-    - Efficiency modules are now obtained from ruins on Cerys.
-    - Shallow Cerys water now has reduced character walking speed.
+    - Cerys ruins now yield efficiency modules and slightly fewer solar panels.
+    - Reduced character walking speed over Cerys water.
+    - Adjusted the default spawn location of the teleporter.
   Balancing:
-    - Fulgoran crushers now have lower energy consumption (2000kW -> 1200kW).
     - Slightly increased various resource amounts obtained from nuclear scrap recycling.
-    - The crafting time of certain recipes in the Fulgoran cryogenic plant has been decreased: plastic, batteries, sulfuric acid and superconductors; and increased for Cerysian science pack, processing units from nitric acid, lubricant synthesis.
+    - Energy consumption changes: Fulgoran crushers (-40%), Fulgoran cryogenic plants (+20%).
+    - Adjusted the crafting time of certain recipes in the Fulgoran cryogenic plant: Decreased for plastic, batteries, sulfuric acid and superconductors, increased for Cerysian science pack, processing units from nitric acid and lubricant synthesis.
+    - Rounded the mining time of methane ice and nuclear scrap to 50%.
     - On Factorio v2.0.58+ the crafting speed of Fulgoran cryogenic plants now increases more strongly with quality.
     - On Factorio v2.0.56+ Fulgoran crushers now gain two module slots per quality level rather than one.
   Info:

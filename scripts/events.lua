@@ -15,6 +15,7 @@ local teleporter = require("scripts.teleporter")
 local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
+local terrain = require("scripts.terrain")
 
 local Public = {}
 
@@ -324,6 +325,21 @@ script.on_configuration_changed(function()
 					not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
 				then
 					init.create_reactor(surface)
+				end
+
+				if not storage.cerys.teleporter and not storage.cerys.frozen_teleporter then
+					local e = terrain.create_teleporter()
+
+					if e and e.valid then
+						game.print(
+							"[CERYS]: Added a Fulgoran Teleporter to the Cerys surface: [gps="
+								.. e.position.x
+								.. ","
+								.. e.position.y
+								.. ",cerys]",
+							{ color = common.FRIENDLY_COLOR }
+						)
+					end
 				end
 			end
 		end

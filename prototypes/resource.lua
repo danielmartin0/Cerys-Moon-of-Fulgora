@@ -32,7 +32,7 @@ data:extend({
 		icon_size = 64,
 		order = "w-a[nuclear-scrap]",
 		minable = merge(data.raw.resource["scrap"].minable, {
-			mining_time = 0.44,
+			mining_time = 0.5,
 			result = "cerys-nuclear-scrap",
 		}),
 		stages = {
@@ -90,7 +90,7 @@ data:extend({
 		name = "methane-ice",
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
-			mining_time = 0.45,
+			mining_time = 0.5,
 			result = "methane-ice",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
