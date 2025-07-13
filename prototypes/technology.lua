@@ -608,7 +608,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count = 200,
+			count = 100,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -625,7 +625,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-2" },
 		unit = {
-			count_formula = "2^(L-2)*500",
+			count_formula = "2^(L-3)*200",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

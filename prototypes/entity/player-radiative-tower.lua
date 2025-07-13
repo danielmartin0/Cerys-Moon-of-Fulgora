@@ -109,7 +109,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					width = 64,
 				},
 			},
-			custom_tooltip_fields = { -- No effect in 2.0.55
+			custom_tooltip_fields = {
 				{
 					name = { "cerys.player-radiative-tower-range-tooltip-name" },
 					value = { "cerys.player-radiative-tower-range-tooltip-value" },

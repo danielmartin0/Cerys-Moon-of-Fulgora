@@ -111,14 +111,14 @@ local crusher = {
 			},
 		},
 	},
-	quality_affects_module_slots = true, -- No effect in 2.0.55
+	quality_affects_module_slots = true,
 	module_slots_quality_bonus = {
 		normal = 0,
 		uncommon = 2,
 		rare = 4,
 		epic = 6,
 		legendary = 10,
-	}, -- No effect in 2.0.55
+	},
 }
 
 local wreck = merge(crusher, {
