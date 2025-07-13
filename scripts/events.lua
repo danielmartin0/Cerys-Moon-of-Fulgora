@@ -124,10 +124,6 @@ script.on_event(defines.events.on_tick, function(event)
 
 	radiative_towers.tick_1_move_radiative_towers()
 
-	if tick % 20 == 0 then
-		radiative_towers.tick_20_contracted_towers()
-	end
-
 	if tick % radiative_towers.TOWER_TEMPERATURE_TICK_INTERVAL == 0 then
 		radiative_towers.radiative_heaters_temperature_tick()
 	end
@@ -137,6 +133,10 @@ script.on_event(defines.events.on_tick, function(event)
 		surface = game.get_surface("cerys")
 		if surface and surface.valid then
 			Public.cerys_tick(surface, tick)
+
+			if tick % 20 == 0 then
+				radiative_towers.tick_20_contracted_towers(surface)
+			end
 		end
 	end
 

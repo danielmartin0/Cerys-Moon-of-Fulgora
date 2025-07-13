@@ -11,6 +11,7 @@ if not data.raw.planet["fulgora"] or data.raw.planet["fulgora"].hidden then
 			break
 		end
 	end
+
 	if new_planet then
 		PlanetsLib:update({
 			type = "planet",

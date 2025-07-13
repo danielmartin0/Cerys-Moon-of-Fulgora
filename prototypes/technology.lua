@@ -522,33 +522,24 @@ table.insert(holmium_productivity_effects_2, {
 })
 
 local engine_productivity_effects = {}
-if data.raw.recipe["engine-unit"] then
-	table.insert(engine_productivity_effects, {
-		type = "change-recipe-productivity",
-		recipe = "engine-unit",
-		change = 0.1,
-	})
-end
-if data.raw.recipe["electric-engine-unit"] then
-	table.insert(engine_productivity_effects, {
-		type = "change-recipe-productivity",
-		recipe = "electric-engine-unit",
-		change = 0.1,
-	})
-end
-if data.raw.recipe["motor"] then
-	table.insert(engine_productivity_effects, {
-		type = "change-recipe-productivity",
-		recipe = "motor",
-		change = 0.1,
-	})
-end
-if data.raw.recipe["electric-motor"] then
-	table.insert(engine_productivity_effects, {
-		type = "change-recipe-productivity",
-		recipe = "electric-motor",
-		change = 0.1,
-	})
+for _, recipe_name in ipairs({
+	"engine-unit",
+	"electric-engine-unit",
+	"motor",
+	"electric-motor",
+	"vgal-advanced-circuit-electric-engine-unit",
+	"vgal-plastic-bar-electric-engine-unit",
+	"vgal-low-density-structure-engine-unit",
+	"vgal-lubricant-engine-unit",
+	"casting-engine-unit",
+}) do
+	if data.raw.recipe[recipe_name] then
+		table.insert(engine_productivity_effects, {
+			type = "change-recipe-productivity",
+			recipe = recipe_name,
+			change = 0.1,
+		})
+	end
 end
 
 data:extend({

@@ -1,7 +1,25 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.5.4
+Version: 3.6.0
 Date: ????
+  Sounds:
+    - Cerys now has a brand-new neoclassical soundtrack. 3 Fulgora tracks remain.
+    - Improved the working sound for the Fulgoran cryogenic plant.
   Changes:
+    - Efficiency modules are now obtained from ruins on Cerys.
+    - Shallow Cerys water now has reduced character walking speed.
+  Balancing:
+    - Fulgoran crushers now have lower energy consumption (2000kW -> 1200kW).
+    - Slightly increased various resource amounts obtained from nuclear scrap recycling.
+    - The crafting time of certain recipes in the Fulgoran cryogenic plant has been decreased: plastic, batteries, sulfuric acid and superconductors; and increased for Cerysian science pack, processing units from nitric acid, lubricant synthesis.
+    - On Factorio v2.0.58+ the crafting speed of Fulgoran cryogenic plants now increases more strongly with quality.
+    - On Factorio v2.0.56+ Fulgoran crushers now gain two module slots per quality level rather than one.
+  Info:
+    - On Factorio v2.0.59+ the tooltips for radiative towers now display their range and the tooltips for Fulgoran crushers now display their module slots per quality level.
+  Compatibility:
+    - The engine productivity tech now applies to varies modded engine recipes.
+    - Krastorio 2: Fixed a crash when other mods set a main_product value on uranium ammo recipes.
+  Optimizations:
+    - Optimization of contracted radiative towers when no player is looking at Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.3
 Date: 2025-07-03

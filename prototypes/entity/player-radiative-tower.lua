@@ -109,6 +109,19 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 					width = 64,
 				},
 			},
+			custom_tooltip_fields = { -- No effect in 2.0.55
+				{
+					name = { "cerys.player-radiative-tower-range-tooltip-name" },
+					value = { "cerys.player-radiative-tower-range-tooltip-value" },
+					quality_values = {
+						normal = { "cerys.player-radiative-tower-range-tooltip-normal" },
+						uncommon = { "cerys.player-radiative-tower-range-tooltip-uncommon" },
+						rare = { "cerys.player-radiative-tower-range-tooltip-rare" },
+						epic = { "cerys.player-radiative-tower-range-tooltip-epic" },
+						legendary = { "cerys.player-radiative-tower-range-tooltip-legendary" },
+					},
+				},
+			},
 		},
 	})
 end

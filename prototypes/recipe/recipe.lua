@@ -42,7 +42,7 @@ else
 			results = {
 				{ type = "item", name = "holmium-plate", amount = 5 },
 			},
-			energy_required = data.raw.recipe["holmium-plate"].energy_required * 5,
+			energy_required = data.raw.recipe["holmium-plate"].energy_required * 10,
 			category = "fulgoran-cryogenics",
 			enabled = false,
 			auto_recycle = false,
@@ -73,7 +73,7 @@ data:extend({
 			{ type = "item", name = "processing-unit", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 15 },
 		},
-		energy_required = 30,
+		energy_required = 60,
 		results = { { type = "item", name = "speed-module-3", amount = 1 } },
 		category = "fulgoran-cryogenics",
 		subgroup = "cerys-processes",
@@ -106,7 +106,7 @@ data:extend({
 			{ type = "item", name = "plutonium-238", amount = 7 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 		},
-		energy_required = 60,
+		energy_required = 120,
 		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
 		category = "fulgoran-cryogenics",
 	},
@@ -116,7 +116,7 @@ data:extend({
 		always_show_made_in = true,
 		category = "fulgoran-cryogenics",
 		enabled = false,
-		energy_required = 6,
+		energy_required = 15,
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 2 },
 			{ type = "item", name = "uranium-238", amount = 5 },
@@ -182,7 +182,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		additional_categories = { "cryogenics" },
 		enabled = false,
-		energy_required = 2,
+		energy_required = 5,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
@@ -221,7 +221,7 @@ data:extend({
 		surface_conditions = {
 			common.AMBIENT_RADIATION_MIN,
 		},
-		energy_required = 5,
+		energy_required = 10,
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 8 },
 			{ type = "item", name = "steel-plate", amount = 8 },
@@ -283,7 +283,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "b-a",
 		auto_recycle = false,
-		energy_required = 6,
+		energy_required = 12,
 		ingredients = {
 			{ type = "item", name = "methane-ice", amount = 50 },
 		},
@@ -306,7 +306,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-nitrogen-rich-mineral-processing.png",
 		icon_size = 64,
 		category = "fulgoran-cryogenics",
-		energy_required = 0.5,
+		energy_required = 1,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
@@ -337,7 +337,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "e-a",
 		enabled = false,
-		energy_required = 5,
+		energy_required = 15,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
 			{ type = "item", name = "carbon", amount = 10 },

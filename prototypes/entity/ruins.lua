@@ -8,19 +8,19 @@ local function ruin_minable_results(collision_area)
 		results = {
 			{
 				type = "item",
-				name = "iron-gear-wheel", -- To build recycler and provide initial iron for assembling machines and miners
+				name = "iron-gear-wheel",
 				amount_min = math.ceil(collision_area * 1.9),
 				amount_max = math.ceil(collision_area * 2.1),
 			},
 			{
 				type = "item",
-				name = "steel-plate", -- To build recycler and other starting items
+				name = "steel-plate",
 				amount_max = math.ceil(collision_area * 0.62),
 				amount_min = math.ceil(collision_area * 0.53),
 			},
 			{
 				type = "item",
-				name = "concrete", -- To build recycler and protect buildings
+				name = "concrete",
 				amount_min = math.ceil(collision_area * 0.19),
 				amount_max = math.ceil(collision_area * 0.21),
 			},
@@ -46,7 +46,7 @@ local function ruin_minable_results(collision_area)
 	if collision_area >= 6.5 then
 		table.insert(results.results, {
 			type = "item",
-			name = "processing-unit", -- To build recycler
+			name = "processing-unit",
 			amount = math.ceil(collision_area / 6.5),
 		})
 	else
@@ -59,7 +59,6 @@ local function ruin_minable_results(collision_area)
 	end
 
 	if collision_area >= 18 then
-		-- Power through the night
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
@@ -74,8 +73,22 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
+	if collision_area >= 10 then
+		table.insert(results.results, {
+			type = "item",
+			name = "efficiency-module",
+			amount = math.floor(collision_area / 10),
+		})
+	else
+		table.insert(results.results, {
+			type = "item",
+			name = "efficiency-module",
+			amount = 1,
+			probability = collision_area / 10,
+		})
+	end
+
 	if collision_area >= 9 then
-		-- Initial power poles
 		table.insert(results.results, {
 			type = "item",
 			name = "copper-cable",

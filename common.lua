@@ -72,7 +72,7 @@ Public.SPACE_TILES_AROUND_CERYS = {
 	"cerys-empty-space-2",
 }
 
-Public.GAS_NAMES = {
+Public.KNOWN_GAS_NAMES = {
 	"steam",
 	"methane",
 	"petroleum-gas",

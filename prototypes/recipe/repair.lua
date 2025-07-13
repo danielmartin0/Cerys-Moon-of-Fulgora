@@ -60,7 +60,7 @@ data:extend({
 		order = "e",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
 		icon_size = 64,
-		energy_required = 25,
+		energy_required = 50,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {
@@ -178,7 +178,7 @@ data:extend({
 		order = "d",
 		icon = "__PlanetsLib__/graphics/icons/research-progress-product.png",
 		icon_size = 64,
-		energy_required = 2.5,
+		energy_required = 5,
 		enabled = true,
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",

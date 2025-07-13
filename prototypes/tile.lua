@@ -248,7 +248,7 @@ data:extend({
 	create_melting_variant("cerys-ash-cracks", 10),
 
 	create_base_tile("cerys-ash-dark", 6),
-	create_frozen_variant("cerys-ash-dark", 10),
+	create_frozen_variant("cerys-ash-dark", 10), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
 	create_melting_variant("cerys-ash-dark", 10),
 
 	create_base_tile("cerys-ash-light", 7),
@@ -286,6 +286,7 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	sprite_usage_surface = "nil",
 	map_color = { 8, 39, 94 },
 	default_cover_tile = "ice-platform",
+	walking_speed_modifier = 0.8,
 })
 
 data:extend({

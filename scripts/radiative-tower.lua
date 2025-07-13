@@ -387,8 +387,20 @@ function Public.unfreeze_tower(tower)
 	tower.frozen = false
 end
 
-function Public.tick_20_contracted_towers()
+function Public.tick_20_contracted_towers(surface)
 	ensure_storage_tables()
+
+	local player_looking_at_surface = false
+	for _, player in pairs(game.connected_players) do
+		if player.surface == surface then
+			player_looking_at_surface = true
+			break
+		end
+	end
+
+	if not player_looking_at_surface then
+		return
+	end
 
 	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		if contracted_tower.open_tick then
@@ -483,11 +495,10 @@ function Public.tick_20_contracted_towers()
 end
 
 local EXPAND_SPEED = 0.03
+local EXPAND_DISTANCE = common.RADIATIVE_TOWER_SHIFT_PIXELS
 
 function Public.tick_1_move_radiative_towers()
 	ensure_storage_tables()
-
-	local expand_distance = common.RADIATIVE_TOWER_SHIFT_PIXELS
 
 	for unit_number, contracted_tower in pairs(storage.radiative_towers.contracted_towers) do
 		local top_entity = contracted_tower.top_entity
@@ -513,7 +524,7 @@ function Public.tick_1_move_radiative_towers()
 			end
 
 			local ticks_since_open = game.tick - open_tick
-			if ticks_since_open < (expand_distance / 32) / EXPAND_SPEED then
+			if ticks_since_open < (EXPAND_DISTANCE / 32) / EXPAND_SPEED then
 				top_entity.teleport({
 					x = contracted_tower.starting_tower_position.x,
 					y = contracted_tower.starting_tower_position.y - ticks_since_open * EXPAND_SPEED,
@@ -521,7 +532,7 @@ function Public.tick_1_move_radiative_towers()
 
 				if contracted_tower.shadow and contracted_tower.shadow.valid then
 					contracted_tower.shadow.target = {
-						x = e.position.x + 1 - (expand_distance / 32) + ticks_since_open * EXPAND_SPEED,
+						x = e.position.x + 1 - (EXPAND_DISTANCE / 32) + ticks_since_open * EXPAND_SPEED,
 						y = e.position.y,
 					}
 				end

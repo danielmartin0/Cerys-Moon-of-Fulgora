@@ -317,7 +317,7 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 20,
+		stack_size = 10,
 		place_result = "cerys-fulgoran-cryogenic-plant",
 	},
 	{
@@ -331,7 +331,8 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 20,
+		stack_size = 5,
+		place_result = "cerys-fulgoran-crusher",
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -344,7 +345,8 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 10,
+		stack_size = 1,
+		place_result = "cerys-fulgoran-reactor",
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -357,7 +359,7 @@ data:extend({
 		hidden = true,
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
-		stack_size = 20,
+		stack_size = 1,
 		place_result = "cerys-fulgoran-teleporter",
 	},
 	{

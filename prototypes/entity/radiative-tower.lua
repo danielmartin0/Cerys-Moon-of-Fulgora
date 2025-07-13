@@ -93,6 +93,13 @@ local reactor = {
 			width = 64,
 		},
 	},
+	custom_tooltip_fields = { -- No effect in 2.0.55
+		{
+			name = { "cerys.radiative-tower-range-tooltip-name" },
+			value = common.HARD_MODE_ON and { "cerys.hard-mode-radiative-tower-range-tooltip-value" }
+				or { "cerys.radiative-tower-range-tooltip-value" },
+		},
+	},
 }
 
 local frozen_reactor = merge(reactor, {

@@ -87,7 +87,7 @@ data:extend({
 			seed1 = 0, \z
 			octaves = 3, \z
 			persistence = 0.5, \z
-			input_scale = 1 / 10, \z
+			input_scale = 1 / 11.5, \z
 			output_scale = 1 / 40}",
 	},
 

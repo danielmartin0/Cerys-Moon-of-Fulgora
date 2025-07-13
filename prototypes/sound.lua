@@ -95,38 +95,103 @@ data:extend({
 			},
 		},
 	},
-	merge(data.raw["ambient-sound"]["aquilo-4"], {
+	-- merge(data.raw["ambient-sound"]["aquilo-5"], {
+	-- 	name = "cerys-2",
+	-- 	planet = "cerys",
+	-- }),
+	-- merge(data.raw["ambient-sound"]["aquilo-6"], {
+	-- 	name = "cerys-4",
+	-- 	planet = "cerys",
+	-- }),
+	-- merge(data.raw["ambient-sound"]["fulgora-5"], {
+	-- 	name = "cerys-8",
+	-- 	planet = "cerys",
+	-- }),
+	{
+		type = "ambient-sound",
 		name = "cerys-1",
-		planet = "cerys",
 		track_type = "hero-track",
-		weight = "nil",
-	}),
-	merge(data.raw["ambient-sound"]["aquilo-5"], {
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/aurora.ogg",
+			volume = 0.5,
+			priority = 250,
+		},
+	},
+	{
+		type = "ambient-sound",
 		name = "cerys-2",
+		track_type = "main-track",
 		planet = "cerys",
-	}),
-	merge(data.raw["ambient-sound"]["fulgora-4"], {
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/signaltonoise.ogg",
+			volume = 0.4,
+			priority = 200,
+		},
+		weight = 10,
+	},
+	{
+		type = "ambient-sound",
 		name = "cerys-3",
+		track_type = "main-track",
 		planet = "cerys",
-	}),
-	merge(data.raw["ambient-sound"]["aquilo-6"], {
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+		weight = 10,
+	},
+	merge(data.raw["ambient-sound"]["fulgora-6"], {
 		name = "cerys-4",
 		planet = "cerys",
 	}),
-	merge(data.raw["ambient-sound"]["fulgora-6"], {
+	{
+		type = "ambient-sound",
 		name = "cerys-5",
+		track_type = "main-track",
 		planet = "cerys",
-	}),
-	merge(data.raw["ambient-sound"]["space-6"], {
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/affirmations.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+		weight = 10,
+	},
+	merge(data.raw["ambient-sound"]["fulgora-9"], {
 		name = "cerys-6",
 		planet = "cerys",
 	}),
-	merge(data.raw["ambient-sound"]["fulgora-9"], {
+	{
+		type = "ambient-sound",
 		name = "cerys-7",
+		track_type = "main-track",
 		planet = "cerys",
-	}),
-	merge(data.raw["ambient-sound"]["fulgora-5"], {
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/whatwedontsay.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+		weight = 10,
+	},
+	{
+		type = "ambient-sound",
 		name = "cerys-8",
+		track_type = "main-track",
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/filaments.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+		weight = 10,
+	},
+	merge(data.raw["ambient-sound"]["fulgora-7"], {
+		name = "cerys-9",
 		planet = "cerys",
 	}),
+	-- merge(data.raw["ambient-sound"]["space-6"], {
+	-- 	name = "cerys-10",
+	-- 	planet = "cerys",
+	-- }),
 })

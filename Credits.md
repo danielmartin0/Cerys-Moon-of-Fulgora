@@ -2,13 +2,6 @@
 
 This file specifies open-source code and assets used in Cerys, Moon of Fulgora, excepting those adapted from the Factorio itself.
 
-#### Fulgora graphic
-
-- **Creators**: HealdollEmily
-- **Source**: [Sharper Planets](https://mods.factorio.com/mod/sharper_planets)
-- **License**: [MIT](https://opensource.org/license/MIT)
-- **Changes**: No.
-
 #### Cerysian science pack icon
 
 - **Creators**: [Hornwitser](https://mods.factorio.com/user/Hornwitser)
@@ -71,3 +64,24 @@ This file specifies open-source code and assets used in Cerys, Moon of Fulgora, 
 - **Source**: [Arc Furnace](https://shorturl.at/AFcDm)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes, adapted for the teleporter.
+
+#### 'Advanced furnace' sound effect
+
+- **Creators**: Unknown
+- **Source**: [Krastorio 2 Assets](https://mods.factorio.com/mod/Krastorio2Assets)
+- **License**: [MIT](https://opensource.org/license/MIT)
+- **Changes**: No.
+- 
+#### Custom music tracks
+
+- **Creators**: [Scott Buckley](https://www.scottbuckley.com.au)
+- **Source**: [Scott Buckley's website](https://www.scottbuckley.com.au/library/aurora/)
+- **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Changes**: Yes, several tracks have a fade-in.
+
+#### Fulgora graphic
+
+- **Creators**: HealdollEmily
+- **Source**: [Sharper Planets](https://mods.factorio.com/mod/sharper_planets)
+- **License**: [MIT](https://opensource.org/license/MIT)
+- **Changes**: No.

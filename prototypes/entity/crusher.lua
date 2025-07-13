@@ -43,12 +43,6 @@ local crusher = {
 			show_shadow = true,
 		},
 	}),
-	resistances = {
-		{
-			type = "fire",
-			percent = 80,
-		},
-	},
 	collision_box = { { -1.7, -1.2 }, { 1.7, 1.2 } },
 	selection_box = { { -2, -1.5 }, { 2, 1.5 } },
 	damaged_trigger_effect = hit_effects.entity(),
@@ -60,7 +54,7 @@ local crusher = {
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
 	crafting_categories = { "crushing", "cerys-crusher-quality-upgrades" },
 	crafting_speed = 0.4,
-	energy_usage = common.HARD_MODE_ON and "4000kW" or "2000kW",
+	energy_usage = "1200kW",
 	heating_energy = "200kW",
 	energy_source = {
 		type = "electric",
@@ -117,21 +111,15 @@ local crusher = {
 			},
 		},
 	},
+	quality_affects_module_slots = true, -- No effect in 2.0.55
+	module_slots_quality_bonus = {
+		normal = 0,
+		uncommon = 2,
+		rare = 4,
+		epic = 6,
+		legendary = 10,
+	}, -- No effect in 2.0.55
 }
-
-local quality_variants = {}
-for _, quality in pairs(data.raw.quality) do
-	if quality.level and quality.level > 0 then
-		local quality_crusher = merge(crusher, {
-			name = "cerys-fulgoran-crusher-quality-" .. quality.level,
-			localised_name = { "entity-name.cerys-fulgoran-crusher" },
-			module_slots = math.ceil(quality.level),
-			hidden = true,
-		})
-
-		table.insert(quality_variants, quality_crusher)
-	end
-end
 
 local wreck = merge(crusher, {
 	name = "cerys-fulgoran-crusher-wreck",
@@ -206,4 +194,3 @@ local wreck_frozen = merge(wreck, {
 })
 
 data:extend({ crusher, wreck, wreck_frozen })
-data:extend(quality_variants)

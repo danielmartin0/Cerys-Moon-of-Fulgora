@@ -11,7 +11,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		"fulgoran-cryogenics",
 	},
 	module_slots = 9,
-	crafting_speed = 1,
+	crafting_speed = 2,
 	energy_usage = "350kW", -- If this is too high, it stops players solving their problems by expanding.
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
@@ -22,6 +22,33 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	map_color = { 83, 17, 150 },
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
 	icon_size = 64,
+	working_sound = merge(data.raw["assembling-machine"]["cryogenic-plant"].working_sound, {
+		main_sounds = {
+			{
+				sound = {
+					filename = "__Cerys-Moon-of-Fulgora__/sounds/advanced-furnace.ogg",
+					volume = 0.8,
+				},
+				fade_in_ticks = 8,
+				fade_out_ticks = 80,
+			},
+			{
+				sound = {
+					filename = "__space-age__/sound/entity/cryogenic-plant/cryogenic-plant.ogg",
+					volume = 0.8,
+				},
+				fade_in_ticks = 4,
+				fade_out_ticks = 30,
+			},
+		},
+	}),
+	crafting_speed_quality_multiplier = { -- No effect in 2.0.55
+		normal = 1,
+		uncommon = 1.4,
+		rare = 1.8,
+		epic = 2.2,
+		legendary = 3,
+	},
 })
 
 -- TODO: Apart from the main image, some of the shifts are from the base game.
@@ -289,7 +316,7 @@ local wreck = merge(cryo_plant, {
 					scale = 0.273,
 					shift = {
 						0.5,
-						-0.1,
+						0,
 					},
 					width = 993,
 				},
@@ -322,7 +349,7 @@ local wreck_frozen = merge(wreck, {
 					scale = 0.273,
 					shift = {
 						0.5,
-						-0.1,
+						0,
 					},
 					width = 993,
 					tint = common.FACTORIO_UNDO_FROZEN_TINT,
