@@ -337,7 +337,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "e-a",
 		enabled = false,
-		energy_required = 15,
+		energy_required = 10,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
 			{ type = "item", name = "carbon", amount = 10 },
