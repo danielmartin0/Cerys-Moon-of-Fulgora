@@ -3,6 +3,8 @@ Version: 3.6.1
 Date: ????
   Balancing:
     - Reduced the cost of the Cerys engine unit productivity technologies.
+  Compatibility:
+    - Added a migration to handle saves using the June 26th–June 28th versions of Cerys: Yield and Drive modules now swap out for productivity modules rather than get deleted.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.0
 Date: 2025-07-13

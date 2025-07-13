@@ -1,4 +1,8 @@
 {
+    "item": [
+        ["cerys-yield-module", "productivity-module-3"],
+        ["cerys-drive-module", "productivity-module-2"]
+    ],
     "entity": [
         ["cerys-fulgoran-crusher-quality-1", "cerys-fulgoran-crusher"],
         ["cerys-fulgoran-crusher-quality-2", "cerys-fulgoran-crusher"],
