@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.0
-Date: ????
+Date: 2025-07-13
   Sounds:
     - Cerys now has a brand-new neoclassical soundtrack. 3 Fulgora tracks remain.
     - Improved the working sound for the Fulgoran cryogenic plant.
