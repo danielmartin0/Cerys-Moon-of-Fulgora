@@ -2,7 +2,7 @@
 Version: 3.6.3
 Date: 2025-07-14
   Bugfixes:
-    - Hotfix: Fixed that higher-quality charging rods did not have voltage drops as advertised. The the voltage drop per level is also adjusted to to 5%.
+    - Hotfix: Fixed that higher-quality charging rods did not have voltage drops as advertised and adjusted the voltage drop to 5% per level.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.2
 Date: 2025-07-14
