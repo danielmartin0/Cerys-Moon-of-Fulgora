@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.2
-Date: ????
+Date: 2025-07-14
   Bugfixes:
     - Hotfix: Fixed a crash when upgrading the quality of Fulgoran crushers.
     - Hotfix: Fixed that loading pre-3.6 saves in Cerys v3.6 would reset the quality of the player's Fulgoran crushers.
