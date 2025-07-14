@@ -7,7 +7,7 @@ Date: 2025-07-14
   Changes:
     - Added a recipe to upgrade personal mixed-oxide reactors into personal fusion reactors.
     - Crafting mixed-oxide personal reactors now requires Pu239 in addition to Pu238 for flavor reasons.
-    - Higher-quality charging rods are now able to store their energy at lower voltage (10% per level).
+    - Fully charged high-quality charging rods are now able to store energy at lower voltages than their lower-quality counterparts (10% per level).
   Balancing:
     - Reduced the crafting time of lubricant synthesis.
   Info:
