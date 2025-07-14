@@ -34,14 +34,14 @@ data:extend({
 		close_sound = sounds.electric_network_close,
 		factoriopedia_simulation = {
 			init = [[
-    require("__core__/lualib/story")
-    game.simulation.camera_zoom = 1.4
-    game.simulation.camera_position = {0, -2}
-    game.surfaces[1].create_entity{name = "cerys-charging-rod", position = {0, 0}}
-    game.surfaces[1].create_entity({
-      name = "cerys-charging-rod-animation-blue",
-      position = { x = 0, y = 1 },
-    })
+				require("__core__/lualib/story")
+				game.simulation.camera_zoom = 1.4
+				game.simulation.camera_position = {0, -2}
+				game.surfaces[1].create_entity{name = "cerys-charging-rod", position = {0, 0}}
+				game.surfaces[1].create_entity({
+				name = "cerys-charging-rod-animation-blue",
+				position = { x = 0, y = 1 },
+				})
 			]],
 		},
 		energy_source = {
@@ -124,6 +124,20 @@ data:extend({
 			show_shadow = true,
 		}),
 		circuit_wire_max_distance = default_circuit_wire_max_distance,
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.charging-rod-voltage-tooltip-name" },
+				quality_header = "cerys.quality-tooltip-header-decreases-with-higher-qualities",
+				value = { "cerys.tooltip-unknown-value" },
+				quality_values = {
+					normal = { "cerys.kv-tooltip-value", tostring(50) },
+					uncommon = { "cerys.kv-tooltip-value", tostring(45) },
+					rare = { "cerys.kv-tooltip-value", tostring(40) },
+					epic = { "cerys.kv-tooltip-value", tostring(35) },
+					legendary = { "cerys.kv-tooltip-value", tostring(25) },
+				},
+			},
+		},
 	},
 
 	{

@@ -2,12 +2,18 @@
 Version: 3.6.2
 Date: ????
   Bugfixes:
-    - Fixed that 
+    - Hotfix: Fixed a crash when upgrading the quality of Fulgoran crushers.
+    - Hotfix: Fixed that loading pre-3.6 saves in Cerys v3.6 would reset the quality of the player's Fulgoran crushers.
   Changes:
-    - Crafting mixed-oxide personal reactors now requires Pu239 in addition to Pu238.
-    - Personal mixed-oxide reactors can now be upgraded into personal fusion reactors. (FIXME)
+    - Added a recipe to upgrade personal mixed-oxide reactors into personal fusion reactors.
+    - Crafting mixed-oxide personal reactors now requires Pu239 in addition to Pu238 for flavor reasons.
+    - Higher-quality charging rods are now able to store their energy at lower voltage (10% per level).
   Balancing:
     - Reduced the crafting time of lubricant synthesis.
+  Info:
+    - On Factorio v2.0.59+ the tooltips for charging rods now display their voltage per quality level.
+    - On Factorio v2.0.59+ the tooltips for repair recipes specify how many completions will be needed.
+    - Custom tooltips now display properly for custom qualities.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.1
 Date: 2025-07-13

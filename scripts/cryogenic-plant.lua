@@ -7,11 +7,6 @@ Public.CRYO_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
--- Having more than two distinct values is a bad idea:
-Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED
-Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED = common.HARD_MODE_ON and 250 or 150
-Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = common.HARD_MODE_ON and 250 or 150
-
 function Public.tick_15_check_broken_cryo_plants(surface)
 	if not storage.cerys.broken_cryo_plants then
 		return
@@ -23,16 +18,10 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 		if e and e.valid then
 			local products_finished = e.products_finished
 
-			local products_required = Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED
+			local products_required = common.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED
 
 			if storage.cerys.first_unfrozen_cryo_plant and storage.cerys.first_unfrozen_cryo_plant == e.unit_number then
-				products_required = Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED
-			end
-			if
-				storage.cerys.second_unfrozen_cryo_plant
-				and storage.cerys.second_unfrozen_cryo_plant == e.unit_number
-			then
-				products_required = Public.SECOND_CRYO_REPAIR_RECIPES_NEEDED
+				products_required = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED
 			end
 
 			if plant.stage == Public.CRYO_WRECK_STAGE_ENUM.frozen then

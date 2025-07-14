@@ -11,7 +11,6 @@ Public.REACTOR_STAGE_ENUM = {
 	active = 4,
 }
 
-Public.REACTOR_CONCRETE_TO_EXCAVATE = 5000
 Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARD_MODE_ON and 1000 or 400
 
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
@@ -43,7 +42,7 @@ function Public.reactor_excavation_check(surface, reactor)
 	local inv = e.get_output_inventory()
 	local concrete_in_machine = inv and inv.valid and inv.get_item_count() or 0
 
-	local products_remaining = Public.REACTOR_CONCRETE_TO_EXCAVATE
+	local products_remaining = common.REACTOR_CONCRETE_TO_EXCAVATE
 		- e.products_finished * bricks_per_excavation_recipe
 		+ concrete_in_machine
 
@@ -106,7 +105,7 @@ function Public.reactor_excavation_check(surface, reactor)
 			"cerys.repair-remaining-description",
 			"[item=concrete]",
 			products_remaining,
-			Public.REACTOR_CONCRETE_TO_EXCAVATE,
+			common.REACTOR_CONCRETE_TO_EXCAVATE,
 		}
 	end
 end

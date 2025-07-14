@@ -96,8 +96,8 @@ local reactor = {
 	custom_tooltip_fields = {
 		{
 			name = { "cerys.radiative-tower-range-tooltip-name" },
-			value = common.HARD_MODE_ON and { "cerys.hard-mode-radiative-tower-range-tooltip-value" }
-				or { "cerys.radiative-tower-range-tooltip-value" },
+			value = common.HARD_MODE_ON and { "cerys.metres-tooltip-value", tostring(9) }
+				or { "cerys.metres-tooltip-value", tostring(15) },
 		},
 	},
 }

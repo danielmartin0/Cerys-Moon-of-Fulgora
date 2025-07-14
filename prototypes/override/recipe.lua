@@ -8,47 +8,53 @@ if settings.startup["cerys-disable-flare-stack-item-venting"].value then
 	data.raw.recipe["incinerator"].hidden = true
 end
 
---== Mixed oxide reactor equipment recipe duplication ==--
+--== Allow personal mixed-oxide reactors to be used in upgrade recipes ==--
 
 if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 	local new_recipes = {}
 	local recipe_map = {} -- [old_recipe_name] = new_recipe_name
 
-	for recipe_name, recipe in pairs(data.raw.recipe) do
-		local ingredients = recipe.ingredients or (recipe.normal and recipe.normal.ingredients)
-		if ingredients then
-			for i, ing in ipairs(ingredients) do
-				local name = ing.name or ing[1]
-				if name == "fission-reactor-equipment" then
-					local new_recipe = merge(recipe, {
-						name = recipe_name .. "-from-mixed-oxide",
-						localised_name = { "recipe-name." .. recipe_name, { "cerys.from-mixed-oxide" } },
-						localised_description = { "recipe-description." .. recipe_name },
-					})
+	for equipment_name, _ in pairs(data.raw["generator-equipment"]) do
+		local recipe = data.raw.recipe[equipment_name]
+		if recipe then
+			local ingredients = recipe.ingredients or (recipe.normal and recipe.normal.ingredients)
+			if ingredients then
+				for i, ing in ipairs(ingredients) do
+					local name = ing.name or ing[1]
+					if name == "fission-reactor-equipment" then
+						local new_recipe = merge(recipe, {
+							name = equipment_name .. "-from-mixed-oxide",
+							localised_name = { "cerys.from-mixed-oxide", { "equipment-name." .. equipment_name } },
+							localised_description = {
+								"cerys.alternative-recipe-from-mixed-oxide",
+								{ "equipment-description.mixed-oxide-reactor-equipment" },
+							},
+						})
 
-					local function replace_ingredient(ings)
-						for _, ing2 in ipairs(ings) do
-							if (ing2.name or ing2[1]) == "fission-reactor-equipment" then
-								if ing2.name then
-									ing2.name = "mixed-oxide-reactor-equipment"
-								else
-									ing2[1] = "mixed-oxide-reactor-equipment"
+						local function replace_ingredient(ings)
+							for _, ing2 in ipairs(ings) do
+								if (ing2.name or ing2[1]) == "fission-reactor-equipment" then
+									if ing2.name then
+										ing2.name = "mixed-oxide-reactor-equipment"
+									else
+										ing2[1] = "mixed-oxide-reactor-equipment"
+									end
 								end
 							end
 						end
+						if new_recipe.ingredients then
+							replace_ingredient(new_recipe.ingredients)
+						end
+						if new_recipe.normal and new_recipe.normal.ingredients then
+							replace_ingredient(new_recipe.normal.ingredients)
+						end
+						if new_recipe.expensive and new_recipe.expensive.ingredients then
+							replace_ingredient(new_recipe.expensive.ingredients)
+						end
+						new_recipes[#new_recipes + 1] = new_recipe
+						recipe_map[equipment_name] = new_recipe.name
+						break
 					end
-					if new_recipe.ingredients then
-						replace_ingredient(new_recipe.ingredients)
-					end
-					if new_recipe.normal and new_recipe.normal.ingredients then
-						replace_ingredient(new_recipe.normal.ingredients)
-					end
-					if new_recipe.expensive and new_recipe.expensive.ingredients then
-						replace_ingredient(new_recipe.expensive.ingredients)
-					end
-					new_recipes[#new_recipes + 1] = new_recipe
-					recipe_map[recipe_name] = new_recipe.name
-					break
 				end
 			end
 		end

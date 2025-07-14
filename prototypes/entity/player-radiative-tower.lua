@@ -112,13 +112,13 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 			custom_tooltip_fields = {
 				{
 					name = { "cerys.player-radiative-tower-range-tooltip-name" },
-					value = { "cerys.player-radiative-tower-range-tooltip-value" },
+					value = { "cerys.tooltip-unknown-value" },
 					quality_values = {
-						normal = { "cerys.player-radiative-tower-range-tooltip-normal" },
-						uncommon = { "cerys.player-radiative-tower-range-tooltip-uncommon" },
-						rare = { "cerys.player-radiative-tower-range-tooltip-rare" },
-						epic = { "cerys.player-radiative-tower-range-tooltip-epic" },
-						legendary = { "cerys.player-radiative-tower-range-tooltip-legendary" },
+						normal = { "metres-tooltip-value", tostring(13) },
+						uncommon = { "metres-tooltip-value", tostring(14) },
+						rare = { "metres-tooltip-value", tostring(15) },
+						epic = { "metres-tooltip-value", tostring(16) },
+						legendary = { "metres-tooltip-value", tostring(18) },
 					},
 				},
 			},

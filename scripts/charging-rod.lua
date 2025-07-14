@@ -129,10 +129,9 @@ function Public.tick_12_check_charging_rods()
 			end
 		end
 
-		local polarity_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
-		rod.polarity_fraction = polarity_fraction
+		local energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 
-		if polarity_fraction > 0.999 then
+		if energy_fraction > 0.999 then
 			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
 				rod.blue_light_entity = e.surface.create_entity({
 					name = "cerys-charging-rod-animation-blue",
@@ -140,7 +139,7 @@ function Public.tick_12_check_charging_rods()
 				})
 			end
 			Public.destroy_red_light_entity(rod)
-		elseif polarity_fraction < -0.999 then
+		elseif energy_fraction < -0.999 then
 			if not (rod.red_light_entity and rod.red_light_entity.valid) then
 				rod.red_light_entity = e.surface.create_entity({
 					name = "cerys-charging-rod-animation-red",
@@ -152,6 +151,10 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_blue_light_entity(rod)
 			Public.destroy_red_light_entity(rod)
 		end
+
+		local max_polarity_fraction_per_quality = 1 - 0.1 * e.quality.level -- Update tooltip if updating this
+		local polarity_fraction = max_polarity_fraction_per_quality * energy_fraction
+		rod.polarity_fraction = polarity_fraction
 
 		::continue::
 	end

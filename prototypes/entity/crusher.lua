@@ -194,3 +194,20 @@ local wreck_frozen = merge(wreck, {
 })
 
 data:extend({ crusher, wreck, wreck_frozen })
+
+-- TODO: Remove this, migrate the crushers, and make the original crusher entities get created once Factorio stable bumps past 2.0.60
+local quality_variants = {}
+for _, quality in pairs(data.raw.quality) do
+	if quality.level and quality.level > 0 then
+		local quality_crusher = merge(crusher, {
+			name = "cerys-fulgoran-crusher-quality-" .. quality.level,
+			localised_name = { "entity-name.cerys-fulgoran-crusher" },
+			module_slots = math.ceil(quality.level * 2),
+			hidden = true,
+		})
+
+		table.insert(quality_variants, quality_crusher)
+	end
+end
+
+data:extend(quality_variants)

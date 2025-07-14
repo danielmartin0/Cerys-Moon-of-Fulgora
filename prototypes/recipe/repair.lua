@@ -36,6 +36,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-repair-cryogenic-plant",
 		subgroup = "cerys-repair",
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-cryogenic-plant-wreck]" },
 		order = "c",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
 		icon_size = 64,
@@ -50,6 +51,15 @@ data:extend({
 		allow_quality = false,
 		allow_productivity = true,
 		hide_from_signal_gui = true,
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = {
+					"cerys.tooltip-by-default",
+					tostring(common.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED),
+				},
+			},
+		},
 	},
 
 	{
@@ -73,6 +83,12 @@ data:extend({
 		hide_from_signal_gui = true,
 		allow_inserter_overload = false,
 		overload_multiplier = 1, -- This is ineffective due to the default value of the utility constant 'minimum_recipe_overload_multiplier', which this vanilla-compatible mod doesn't want to change. However if another mod lowers this value, this will take effect.
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = tostring(1),
+			},
+		},
 	},
 
 	{
@@ -93,11 +109,18 @@ data:extend({
 		allow_quality = false,
 		hide_from_signal_gui = true,
 		show_amount_in_title = false,
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = tostring(common.REACTOR_CONCRETE_TO_EXCAVATE / 100),
+			},
+		},
 	},
 
 	{
 		type = "recipe",
 		name = "cerys-repair-nuclear-reactor",
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-reactor-wreck]" },
 		subgroup = "cerys-repair",
 		order = "g",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png",
@@ -121,6 +144,7 @@ data:extend({
 		name = "cerys-repair-crusher",
 		subgroup = "cerys-repair",
 		order = "h",
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-crusher-wreck]" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/ancient-repair-part.png", -- Should not be distinguishable from cryogenic repair on the map view
 		icon_size = 64,
 		energy_required = 1 / 3,
@@ -143,6 +167,12 @@ data:extend({
 		allow_quality = false,
 		allow_productivity = true,
 		hide_from_signal_gui = true,
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = tostring(common.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED),
+			},
+		},
 	},
 
 	{
@@ -166,6 +196,12 @@ data:extend({
 		hide_from_signal_gui = true,
 		allow_inserter_overload = false,
 		overload_multiplier = 1, -- This is ineffective due to the default value of the utility constant 'minimum_recipe_overload_multiplier', which this vanilla-compatible mod doesn't want to change. However if another mod lowers this value, this will take effect.
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = tostring(1),
+			},
+		},
 	},
 })
 

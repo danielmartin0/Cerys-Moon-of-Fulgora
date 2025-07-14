@@ -1,3 +1,5 @@
+local common = require("common")
+
 local Public = {}
 
 Public.CRUSHER_WRECK_STAGE_ENUM = {
@@ -5,10 +7,8 @@ Public.CRUSHER_WRECK_STAGE_ENUM = {
 	needs_repair = 1,
 }
 
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 40
-
 function Public.crusher_repair_recipes_needed()
-	return math.ceil(Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
+	return math.ceil(common.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
 end
 
 function Public.tick_15_check_broken_crushers(surface)

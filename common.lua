@@ -37,6 +37,10 @@ Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 30 -- Accounting for quality
 Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 60
+Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 250 or 150 -- Having more than two distinct values is a bad idea
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 40
+Public.REACTOR_CONCRETE_TO_EXCAVATE = 5000
+
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 20
