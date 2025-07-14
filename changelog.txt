@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.6.3
+Date: ????
+  Bugfixes:
+    - Hotfix: Fixed that higher-quality charging rods did not have voltage drops as advertised. The the voltage drop per level is also adjusted to to 5%.
+---------------------------------------------------------------------------------------------------
 Version: 3.6.2
 Date: 2025-07-14
   Bugfixes:
@@ -13,7 +18,6 @@ Date: 2025-07-14
   Info:
     - On Factorio v2.0.59+ the tooltips for charging rods now display their voltage per quality level.
     - On Factorio v2.0.59+ the tooltips for repair recipes specify how many completions will be needed.
-    - Custom tooltips now display properly for custom qualities.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.1
 Date: 2025-07-13

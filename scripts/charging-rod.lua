@@ -83,7 +83,7 @@ Public.rod_set_state = function(entity, negative)
 	end
 end
 
-local max_charging_rod_energy = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
+local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
 
 function Public.tick_12_check_charging_rods()
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
@@ -128,6 +128,8 @@ function Public.tick_12_check_charging_rods()
 				end
 			end
 		end
+
+		local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 
 		local energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 
