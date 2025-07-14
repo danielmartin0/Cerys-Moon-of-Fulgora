@@ -1,8 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.2
 Date: ????
+  Bugfixes:
+    - Fixed that 
+  Changes:
+    - Crafting mixed-oxide personal reactors now requires Pu239 in addition to Pu238.
+    - Personal mixed-oxide reactors can now be upgraded into personal fusion reactors. (FIXME)
   Balancing:
-    - Partially reverted the increased crafting time of lubricant synthesis.
+    - Reduced the crafting time of lubricant synthesis.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.1
 Date: 2025-07-13

@@ -43,7 +43,8 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "processing-unit", amount = 200 },
 			{ type = "item", name = "low-density-structure", amount = 50 },
-			{ type = "item", name = "plutonium-238", amount = 20 },
+			{ type = "item", name = "plutonium-238", amount = 10 },
+			{ type = "item", name = "plutonium-239", amount = 10 },
 		},
 		results = { { type = "item", name = "mixed-oxide-reactor-equipment", amount = 1 } },
 	},
