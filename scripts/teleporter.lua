@@ -19,7 +19,7 @@ function Public.teleport_to_fulgora(player)
 	p = { math.random(-70, 70), math.random(-70, 70) }
 
 	if fulgora_surface then
-		p = fulgora_surface.find_non_colliding_position("character", p, 50, 1) or p
+		p = fulgora_surface.find_non_colliding_position("character", p, 70, 1) or p
 	else
 		fulgora_surface = game.planets.fulgora.create_surface()
 	end
