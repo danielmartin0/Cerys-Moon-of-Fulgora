@@ -74,13 +74,12 @@ local cryo_plant_positions = hex_grid_positions({
 	noise_scale = 100,
 })
 
-local crusher_positions = hex_grid_positions({
-	seed = 1400,
-	grid_scale = 3.7,
-	noise_size = 15,
-	displacement = { x = 20, y = -20 },
-	noise_scale = 240,
-})
+local crusher_positions = {
+	{ x = -67, y = -79.5 },
+	{ x = 39, y = -20.5 },
+	{ x = -24, y = 106.5 },
+	{ x = 87, y = 41.5 },
+}
 
 --== Terrain & entity generation ==--
 
@@ -350,25 +349,23 @@ function Public.create_teleporter()
 end
 
 function Public.create_crushers(surface, area)
-	for _, p in ipairs(crusher_positions) do -- Fortunately these positions also work on ribbonworlds
+	for _, p in ipairs(crusher_positions) do
 		if
 			p.x >= area.left_top.x
 			and p.x < area.right_bottom.x
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
 		then
-			local p2 = { x = p.x, y = p.y }
+			Public.deal_with_existing_entities(surface, p, 4, 3)
 
-			Public.deal_with_existing_entities(surface, p2, 4, 3)
+			local p2 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p, 3, 3)
 
-			local p3 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p2, 3, 3)
-
-			if p3 then
-				Public.ensure_solid_foundation(surface, { x = p3.x, y = p3.y }, 4, 3)
+			if p2 then
+				Public.ensure_solid_foundation(surface, { x = p2.x, y = p2.y }, 4, 3)
 
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-crusher-wreck-frozen",
-					position = p3,
+					position = p2,
 					force = "player",
 				})
 

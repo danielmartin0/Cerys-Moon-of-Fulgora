@@ -280,7 +280,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 							if player and player.valid then
 								player.play_sound({
 									path = "cerys-radiation-impact",
-									volume_modifier = 0.3,
+									volume_modifier = 0.25,
 								})
 							end
 

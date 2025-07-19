@@ -84,15 +84,16 @@ local reactor = {
 		probability_expression = "0",
 	},
 	map_color = { 143, 0, 0 },
-	radius_visualisation_specification = {
-		distance = common.HARD_MODE_ON and 10.5 or 16.5, -- Accounting for x and y being different
-		sprite = {
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
-			tint = { r = 0.7, g = 0, b = 0, a = 0.05 },
-			height = 64,
-			width = 64,
-		},
-	},
+	-- Disabled as it's a spoiler and unnecessary due to info from the layered ice:
+	-- radius_visualisation_specification = {
+	-- 	distance = common.HARD_MODE_ON and 10.5 or 16.5, -- Accounting for x and y being different
+	-- 	sprite = {
+	-- 		filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+	-- 		tint = { r = 0.7, g = 0, b = 0, a = 0.05 },
+	-- 		height = 64,
+	-- 		width = 64,
+	-- 	},
+	-- },
 	custom_tooltip_fields = {
 		{
 			name = { "cerys.radiative-tower-range-tooltip-name" },
