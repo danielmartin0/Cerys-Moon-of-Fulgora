@@ -8,7 +8,7 @@ local PLANET_PARALLAX = 0.35
 function Public.tick_1_update_background_renderings(surface)
 	if game.is_multiplayer() and settings.global["cerys-disable-parallax-in-multiplayer"].value then
 		if not storage.parallax_disabled then
-			Public.reset_background_renderings()
+			Public.reset_background_rendering_positions()
 			storage.parallax_disabled = true
 		end
 
@@ -64,7 +64,7 @@ function Public.tick_1_update_background_renderings(surface)
 	end
 end
 
-function Public.reset_background_renderings()
+function Public.reset_background_rendering_positions()
 	local surface = game.surfaces["cerys"]
 
 	if not (surface and surface.valid) then

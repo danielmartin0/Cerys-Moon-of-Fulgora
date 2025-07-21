@@ -4,6 +4,7 @@ Date: ????-??-??
   Changes:
     - Adjusted the spawn of Fulgoran crushers on new maps.
     - Fulgoran heating towers no longer have a red visualisation range (player-constructible towers still do.)
+    - Removed "🌐" from title. This is only wanted if all popular planet mods use it, and Maraxsis has removed it.
   Sounds:
     - Tweaks to the Cerys soundtrack.
 ---------------------------------------------------------------------------------------------------
