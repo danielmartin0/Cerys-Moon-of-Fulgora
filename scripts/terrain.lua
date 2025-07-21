@@ -76,7 +76,7 @@ local cryo_plant_positions = hex_grid_positions({
 
 local crusher_positions = {
 	{ x = -67, y = -79.5 },
-	{ x = 39, y = -20.5 },
+	{ x = 45, y = -33.5 },
 	{ x = -24, y = 106.5 },
 	{ x = 87, y = 41.5 },
 }
