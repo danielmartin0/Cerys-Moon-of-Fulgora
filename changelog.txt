@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.5
-Date: ????-??-??
+Date: 2025-07-21
   Changes:
     - Adjusted the spawn of Fulgoran crushers on new maps.
     - Fulgoran heating towers no longer have a red visualisation range (player-constructible towers still do.)
