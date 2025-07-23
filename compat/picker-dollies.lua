@@ -48,17 +48,6 @@ function Public.add_picker_dollies_blacklists()
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-crusher", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-crusher-wreck", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-crusher-wreck-frozen", true)
-
-		for _, quality in pairs(prototypes.quality) do
-			if quality.level and quality.level > 0 then
-				remote.call(
-					"PickerDollies",
-					"add_blacklist_name",
-					"cerys-fulgoran-crusher-quality-" .. quality.level,
-					true
-				)
-			end
-		end
 	end
 end
 

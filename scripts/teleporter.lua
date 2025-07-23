@@ -13,6 +13,21 @@ function Public.teleport_to_fulgora(player)
 	end
 
 	local original_surface = player.surface
+
+	local inventories = {
+		character.get_inventory(defines.inventory.character_ammo),
+		character.get_inventory(defines.inventory.character_main),
+		character.get_inventory(defines.inventory.character_trash),
+	}
+
+	for _, inventory in ipairs(inventories) do
+		if inventory and inventory.valid then
+			original_surface.spill_inventory({
+				inventory = inventory,
+				position = character.position,
+			})
+		end
+	end
 	local fulgora_surface = game.planets.fulgora.surface
 
 	local p

@@ -295,7 +295,7 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 				storage.cerys.crusher_upgrade_monitor[unit_number] = nil
 			else
 				if e.crafting_progress > CRAFTING_PROGRESS_THRESHOLD then
-					local new_entity_name = "cerys-fulgoran-crusher-quality-" .. quality_upgrading_to.level
+					local new_entity_name = "cerys-fulgoran-crusher"
 
 					local e2 = surface.create_entity({
 						name = new_entity_name,

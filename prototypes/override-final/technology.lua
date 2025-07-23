@@ -1,6 +1,8 @@
 for _, technology in pairs(data.raw.technology) do
 	local processing_unit_productivity_change = 0
 	local scrap_recycling_productivity_change = 0
+	local cerys_chips_productivity_change = 0
+	local cerys_scrap_productivity_change = 0
 
 	if technology.effects then
 		for _, effect in ipairs(technology.effects) do
@@ -11,9 +13,20 @@ for _, technology in pairs(data.raw.technology) do
 			if effect.type == "change-recipe-productivity" and effect.recipe == "scrap-recycling" then
 				scrap_recycling_productivity_change = scrap_recycling_productivity_change + effect.change
 			end
+
+			if
+				effect.type == "change-recipe-productivity"
+				and effect.recipe == "cerys-processing-units-from-nitric-acid"
+			then
+				cerys_chips_productivity_change = cerys_chips_productivity_change + effect.change
+			end
+
+			if effect.type == "change-recipe-productivity" and effect.recipe == "cerys-scrap-recycling" then
+				cerys_scrap_productivity_change = cerys_scrap_productivity_change + effect.change
+			end
 		end
 
-		if processing_unit_productivity_change ~= 0 then
+		if processing_unit_productivity_change ~= 0 and cerys_chips_productivity_change == 0 then
 			table.insert(technology.effects, {
 				type = "change-recipe-productivity",
 				recipe = "cerys-processing-units-from-nitric-acid",
@@ -21,7 +34,7 @@ for _, technology in pairs(data.raw.technology) do
 			})
 		end
 
-		if scrap_recycling_productivity_change ~= 0 then
+		if scrap_recycling_productivity_change ~= 0 and cerys_scrap_productivity_change == 0 then
 			table.insert(technology.effects, {
 				type = "change-recipe-productivity",
 				recipe = "cerys-nuclear-scrap-recycling",
@@ -60,4 +73,25 @@ if tech and tech.prerequisites then
 		end
 	end
 	tech.prerequisites = valid_prereqs
+end
+
+--== Remove duplicate productivity effects from cerys technologies ==--
+
+for _, technology in pairs(data.raw.technology) do
+	if technology.name and string.sub(technology.name, 1, 6) == "cerys-" and technology.effects then
+		local unique_effects = {}
+		local seen_recipes = {}
+
+		for _, effect in ipairs(technology.effects) do
+			if effect.type == "change-recipe-productivity" and effect.recipe then
+				if not seen_recipes[effect.recipe] then
+					table.insert(unique_effects, effect)
+					seen_recipes[effect.recipe] = true
+				end
+			else
+				table.insert(unique_effects, effect)
+			end
+		end
+		technology.effects = unique_effects
+	end
 end

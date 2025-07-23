@@ -129,13 +129,7 @@ data:extend({
 				name = { "cerys.charging-rod-voltage-tooltip-name" },
 				quality_header = "cerys.quality-tooltip-header-decreases-with-higher-qualities",
 				value = { "cerys.tooltip-unknown-value" },
-				quality_values = {
-					normal = { "cerys.kv-tooltip-value", tostring(100) },
-					uncommon = { "cerys.kv-tooltip-value", tostring(95) },
-					rare = { "cerys.kv-tooltip-value", tostring(90) },
-					epic = { "cerys.kv-tooltip-value", tostring(85) },
-					legendary = { "cerys.kv-tooltip-value", tostring(75) },
-				},
+				quality_values = {}, -- Filled in data-final-fixes
 			},
 		},
 	},

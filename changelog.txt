@@ -2,6 +2,16 @@
 Version: 3.6.6
 Date: ????
   Changes:
+    - Using the Cerysian teleporter will now spill the player's inventory.
+    - Higher-quality Fulgoran crushers are no longer a separate entity.
+  Bugfixes:
+    - Fixed a missing locale key in the range tooltip for player-constructible radiative towers.
+    - Higher-quality charging rods now have voltages that correctly match their tooltip.
+  Compatibility:
+    - Added a mod setting for compatibility with Fulgora upscale mods (the custom Fulgora image will appear behind Cerys.)
+    - Added code to prevent other mods from adding duplicate productivity effects to Cerys technologies.
+    - Modded qualities now display their effects correctly in the tooltips for charging rods and radiative towers.
+    - Modded qualities can no longer reduce the voltage of charging rods to below 50kV.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.5
 Date: 2025-07-21

@@ -1,3 +1,4 @@
+local common = require("common")
 local has_WU_mods = mods["wood-logistics"] and mods["fulgora-coralmium-agriculture"]
 local has_lignumis = mods["lignumis"]
 local has_lunaponics = mods["cerys-lunaponics"]
@@ -13,6 +14,16 @@ if has_lignumis and not has_lunaponics then
 		"\n\nPlaying Cerys alongside Lignumis requires installing the mod Wooden Cerys: Lunaponics (https://mods.factorio.com/mod/cerys-lunaponics).\n\nPlease download and install this mod from the Mod Portal.\n"
 	)
 end
+
+data:extend({
+	{
+		type = "mod-data",
+		name = "Cerys",
+		data = {
+			fulgora_image_size = common.DEFAULT_FULGORA_IMAGE_SIZE,
+		},
+	},
+})
 
 require("compat.forced-mods")
 require("prototypes.categories")

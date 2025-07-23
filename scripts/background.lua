@@ -39,7 +39,11 @@ function Public.tick_1_update_background_renderings(surface)
 						surface = player.surface,
 						render_layer = "zero",
 						players = { player.index },
-						y_scale = 1 / planet_stretch,
+						x_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
+							/ prototypes.mod_data["Cerys"].data.fulgora_image_size,
+						y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
+							/ prototypes.mod_data["Cerys"].data.fulgora_image_size
+							/ planet_stretch,
 					})
 
 					r = storage.background_renderings[player.index]
@@ -71,6 +75,9 @@ function Public.reset_background_rendering_positions()
 		return
 	end
 
+	local stretch = common.get_cerys_surface_stretch_factor(surface)
+	local planet_stretch = stretch
+
 	for _, player in pairs(game.players) do
 		local r = storage.background_renderings[player.index]
 
@@ -79,6 +86,10 @@ function Public.reset_background_rendering_positions()
 				x = PLANET_OFFSET.x,
 				y = PLANET_OFFSET.y,
 			}
+			r.x_scale = common.DEFAULT_FULGORA_IMAGE_SIZE / prototypes.mod_data["Cerys"].data.fulgora_image_size
+			r.y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
+				/ prototypes.mod_data["Cerys"].data.fulgora_image_size
+				/ planet_stretch
 		end
 	end
 end

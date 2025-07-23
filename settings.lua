@@ -29,6 +29,13 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-use-fulgora-starmap-graphic",
+		setting_type = "startup",
+		default_value = false,
+		order = "f",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-sandbox-mode",
 		setting_type = "startup",
 		default_value = false,
