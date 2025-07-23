@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.6
-Date: ????
+Date: 2025-07-23
   Changes:
     - Using the Cerysian teleporter will now spill the player's inventory.
     - Higher-quality Fulgoran crushers are no longer a separate entity.
