@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.7
-Date: ????-??-??
+Date: 2025-07-24
   Bugfixes:
     - Bumped the required version of Factorio to 2.0.60.
   Changes:
