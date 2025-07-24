@@ -1,7 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.7
 Date: ????-??-??
+  Bugfixes:
+    - Bumped the required version of Factorio to 2.0.60.
   Changes:
+    - Using the Fulgoran teleporter no longer spills the player's ammo slots.
+  Compatibility:
+    - Modded quality levels now have a minimum voltage charging rod voltage of 20kV (from 50kV).
+    - Modded quality levels now affect Fulgoran crusher module slots.
+  Graphics:
+    - When Krastorio 2 Spaced Out is installed the Cerys recipe for Nitric acid now has a tweaked icon.
+  Balancing:
+    - Minor tweaks to midgame technology costs.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.6
 Date: 2025-07-23
@@ -15,7 +25,7 @@ Date: 2025-07-23
     - Added a mod setting for compatibility with Fulgora upscale mods (the custom Fulgora image will appear behind Cerys.)
     - Added code to prevent other mods from adding duplicate productivity effects to Cerys technologies.
     - Modded qualities now display their effects correctly in the tooltips for charging rods and radiative towers.
-    - Modded qualities can no longer reduce the voltage of charging rods to below 50kV.
+    - Modded qualities can no longer reduce the voltage of charging rods to below 20kV.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.5
 Date: 2025-07-21

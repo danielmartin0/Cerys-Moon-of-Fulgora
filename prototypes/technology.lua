@@ -259,7 +259,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 50,
+			count = 100,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -592,7 +592,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 50,
+			count = 30,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
@@ -608,7 +608,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count = 100,
+			count = 40,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -625,7 +625,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-2" },
 		unit = {
-			count_formula = "2^(L-3)*200",
+			count_formula = "2^(L-3)*50",
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

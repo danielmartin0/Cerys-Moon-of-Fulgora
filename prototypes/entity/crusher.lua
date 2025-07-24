@@ -118,7 +118,7 @@ local crusher = {
 		rare = 4,
 		epic = 6,
 		legendary = 10,
-	},
+	}, -- updated in data-final-fixes
 }
 
 local wreck = merge(crusher, {

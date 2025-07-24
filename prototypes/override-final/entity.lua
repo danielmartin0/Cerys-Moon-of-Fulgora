@@ -1,6 +1,14 @@
 local common = require("common")
 local lib = require("lib")
 
+--== Crusher module slots for arbitrary quality levels ==--
+
+data.raw["assembling-machine"]["cerys-fulgoran-crusher"].module_slots_quality_bonus = {}
+for _, quality in pairs(data.raw.quality) do
+	data.raw["assembling-machine"]["cerys-fulgoran-crusher"].module_slots_quality_bonus[quality.name] = quality.level
+		* 2
+end
+
 --== Fuel categories ==--
 
 local function update_fuel_categories(entity)

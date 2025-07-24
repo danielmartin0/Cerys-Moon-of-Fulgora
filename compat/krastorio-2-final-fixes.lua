@@ -36,6 +36,22 @@ if common_data.K2_INSTALLED then
 	data.raw.recipe["cerys-nitric-acid"].localised_name = { "cerys.nitric-acid-by-ammonia-oxidation" }
 	data.raw.recipe["cerys-nitric-acid"].localised_description = { "" }
 	data.raw.recipe["cerys-nitric-acid"].energy_required = 0.5
+	data.raw.recipe["cerys-nitric-acid"].icons = {
+		{
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
+			icon_size = 64,
+			scale = 0.65,
+			shift = { 2, 2 },
+			draw_background = true,
+		},
+		{
+			icon = "__space-age__/graphics/icons/fluid/ammonia.png",
+			icon_size = 64,
+			scale = 0.45,
+			shift = { -11, -11 },
+			draw_background = true,
+		},
+	}
 
 	if
 		not find(data.raw.recipe["cerys-hydrogen-bomb"].ingredients, function(ingredient)

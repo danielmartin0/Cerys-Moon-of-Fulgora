@@ -15,7 +15,6 @@ function Public.teleport_to_fulgora(player)
 	local original_surface = player.surface
 
 	local inventories = {
-		character.get_inventory(defines.inventory.character_ammo),
 		character.get_inventory(defines.inventory.character_main),
 		character.get_inventory(defines.inventory.character_trash),
 	}

@@ -154,7 +154,7 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_red_light_entity(rod)
 		end
 
-		local max_polarity_fraction_per_quality = math.max(0.5, 1 - 0.05 * e.quality.level) -- Update tooltip if updating this
+		local max_polarity_fraction_per_quality = math.max(0.2, 1 - 0.05 * e.quality.level) -- Update tooltip if updating this
 		local polarity_fraction = max_polarity_fraction_per_quality * energy_fraction
 		rod.polarity_fraction = polarity_fraction
 
