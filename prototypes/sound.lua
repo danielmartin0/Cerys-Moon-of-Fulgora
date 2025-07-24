@@ -115,7 +115,7 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/aurora.ogg",
-			volume = 0.55,
+			volume = 0.57,
 			priority = 250,
 		},
 	},
@@ -127,7 +127,7 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/signaltonoise.ogg",
-			volume = 0.5,
+			volume = 0.57,
 			priority = 200,
 		},
 	},
@@ -140,7 +140,7 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",
-			volume = 0.55,
+			volume = 0.57,
 			priority = 200,
 		},
 	},
@@ -156,7 +156,7 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/affirmations.ogg",
-			volume = 0.55,
+			volume = 0.57,
 			priority = 200,
 		},
 	},
@@ -171,8 +171,8 @@ data:extend({
 		weight = 10,
 		planet = "cerys",
 		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/whatwedontsay.ogg",
-			volume = 0.55,
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/effervescence.ogg",
+			volume = 0.57,
 			priority = 200,
 		},
 	},
@@ -184,7 +184,7 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/filaments.ogg",
-			volume = 0.55,
+			volume = 0.57,
 			priority = 200,
 		},
 	},
