@@ -1,12 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.9
 Date: ????
-  Changes:
+  Sounds:
+    - Switched the Cerys hero track (played on landing) to a less melancholic track.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.8
 Date: 2025-07-24
   Sounds:
-    - Switched out a song in the Cerys soundtrack.
+    - Replaced one song in the Cerys soundtrack.
 ---------------------------------------------------------------------------------------------------
 Version: 3.6.7
 Date: 2025-07-24
