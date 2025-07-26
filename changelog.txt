@@ -1,4 +1,18 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.7.0
+Date: 2025-07-27
+  Changes:
+    - The ambient rate of cooling of heat pipes on Cerys is now slower for each neighbouring heat pipe it is adjacent to. This change is balanced to leave the cooling rate of heat pipes with 2 neighbours unaffected.
+  Balancing:
+    - Buffed holmium plates obtained from nuclear scrap recycling to 1% (from 0.8%).
+    - Reduced the energy consumption of the Fulgoran cryogenic plant by 10%.
+    - Reduced the science cost of 'Applications of radioactivity' (100 -> 80).
+  Compatibility:
+    - Added an incompatibility mark with Resource Spawner Overhaul.
+    - Compatibility with modded qualities: Capped the heating range of radiative towers to 30 to prevent a crash.
+  Optimizations:
+    - Significantly increased the performance of the cooling algorithm.
+---------------------------------------------------------------------------------------------------
 Version: 3.6.10
 Date: 2025-07-26
   Balancing:

@@ -259,7 +259,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 100,
+			count = 80,
 			ingredients = {
 				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

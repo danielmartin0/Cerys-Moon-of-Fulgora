@@ -53,6 +53,10 @@ script.on_event({
 		)
 	then
 		rods.built_charging_rod(entity, event.tags or {})
+	elseif on_cerys and entity.type == "heat-pipe" then
+		cooling.register_heat_pipe(entity)
+	elseif on_cerys and entity.type == "boiler" then
+		cooling.register_boiler(entity)
 	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
 		if not event.player_index then
 			return
@@ -241,10 +245,6 @@ function Public.cerys_tick(surface, tick)
 	if tick % 240 == 0 then
 		space.tick_240_clean_up_cerys_asteroids(surface)
 		space.tick_240_clean_up_cerys_solar_wind_particles(surface)
-	end
-
-	if tick % 300 == 0 then
-		cooling.tick_300_find_heat_entities(surface)
 	end
 end
 

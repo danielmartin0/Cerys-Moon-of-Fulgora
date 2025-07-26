@@ -1,6 +1,6 @@
 {
     "name": "Cerys-Moon-of-Fulgora",
-    "version": "3.6.10",
+    "version": "3.7.0",
     "factorio_version": "2.0",
     "title": "Cerys",
     "author": "thesixthroc",
@@ -14,6 +14,7 @@
         "PlanetsLib >= 1.6.2",
         "? Krastorio2-spaced-out >= 1.3.5",
         "? visible-planets >= 1.2.11",
+        "! rso-mod",
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",
         "(?) maraxsis"
