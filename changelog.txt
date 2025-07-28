@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.7.1
-Date: ????
+Date: 2025-07-28
   Bugfixes:
     - Fixed a bug introduced in v3.7.0 in which radiative towers were permanently fueled.
   Compatibility:
