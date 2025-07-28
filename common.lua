@@ -18,7 +18,7 @@ Public.TEN_PRESSURE_MIN = {
 }
 Public.AMBIENT_RADIATION_MAX = {
 	property = "cerys-ambient-radiation",
-	max = 200,
+	max = 300,
 }
 Public.AMBIENT_RADIATION_MIN = {
 	property = "cerys-ambient-radiation",

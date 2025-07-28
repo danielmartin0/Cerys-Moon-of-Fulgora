@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.7.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed a bug introduced in v3.7.0 in which radiative towers were permanently fueled.
+  Compatibility:
+    - Adjusted the Cerys ambient radiation maximum condition to 300 (from 200). This has no effect on gameplay.
 ---------------------------------------------------------------------------------------------------
 Version: 3.7.0
 Date: 2025-07-27

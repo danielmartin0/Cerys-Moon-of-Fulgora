@@ -182,7 +182,7 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 
 	local temperature_interval = BASE_TEMPERATURE_INTERVAL / (heating_radius / base_heating_radius)
 
-	return math.max(
+	return math.min(
 		common.MAX_HEATING_RADIUS,
 		math.floor(math.min(heating_radius, temperature_above_zero / temperature_interval))
 	)
