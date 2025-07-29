@@ -1,3 +1,5 @@
+local common_data = require("common-data-only")
+
 if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 	data.raw["recipe"]["pipe-recycling"]["ingredients"] = { { type = "item", name = "pipe", amount = 1 } }
 	data.raw["recipe"]["pipe-recycling"]["results"] = {
