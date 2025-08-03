@@ -133,3 +133,9 @@ if settings.startup["cerys-disable-flare-stack-item-venting"].value then
 		data.raw.furnace["incinerator"].hidden = true
 	end
 end
+
+--== Nuclear explosion effects ==--
+
+if data.raw["explosion"]["nuke-effects-nauvis"] then
+	PlanetsLib.restrict_surface_conditions(data.raw["explosion"]["nuke-effects-nauvis"], common.AMBIENT_RADIATION_MAX)
+end

@@ -1,8 +1,15 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.7.2
+Version: 3.8.0
 Date: ????
+  Locale:
+    - Updated the French, Japanese, Korean, Russian, Ukranian and Chinese translations by filling missing locale entries with machine translations.
   Bugfixes:
     - The setting to override recycling recipes to vanilla now sets their recipe completion times correctly.
+    - Fixed that nuclear bombs could change tiles on Cerys (this became bugged due to a base game update in Factorio v2.0.44.)
+  Compatibility:
+    - Removed incompatibility mark with Resource Spawner Overhaul and instead indicates Cerys should be a disabled planet.
+  Sounds:
+    - Added a track to the Cerys soundtrack.
 ---------------------------------------------------------------------------------------------------
 Version: 3.7.1
 Date: 2025-07-28

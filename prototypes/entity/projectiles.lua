@@ -249,20 +249,15 @@ data:extend({
 					type = "instant",
 					target_effects = {
 						{
-							type = "set-tile",
-							tile_name = "nuclear-ground",
-							radius = 14,
-							apply_projection = true,
-							tile_collision_mask = {
-								layers = {
-									water_tile = true,
-								},
-							},
-						},
-						{
 							type = "destroy-cliffs",
 							radius = 27,
 							explosion_at_trigger = "explosion",
+						},
+						{
+							type = "create-entity",
+							check_buildability = true,
+							-- This entity can have surface conditions
+							entity_name = "nuke-effects-nauvis",
 						},
 						{
 							type = "create-entity",

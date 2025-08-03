@@ -190,8 +190,20 @@ data:extend({
 		name = "cerys-9",
 		planet = "cerys",
 	}),
+	{
+		type = "ambient-sound",
+		name = "cerys-10",
+		track_type = "main-track",
+		weight = 10,
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",
+			volume = 0.53,
+			priority = 200,
+		},
+	},
 	-- merge(data.raw["ambient-sound"]["space-6"], {
-	-- 	name = "cerys-10",
+	-- 	name = "cerys-11",
 	-- 	planet = "cerys",
 	-- }),
 })
