@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.0
-Date: ????
+Date: 2025-08-03
   Locale:
     - Updated the outdated French, Japanese, Korean, Russian, Ukranian and Chinese translations to a full translation set.
   Bugfixes:
