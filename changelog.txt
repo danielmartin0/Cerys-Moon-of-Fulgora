@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.1
-Date: ????
+Date: 2025-08-07
   Bugfixes:
     - Fixed that lithium brine could spawn over frozen water on Cerys and be destroyed when the ice melted.
   Compatibility:
