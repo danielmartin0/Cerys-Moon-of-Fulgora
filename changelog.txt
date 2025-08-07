@@ -18,7 +18,7 @@ Date: 2025-08-03
     - The setting to override recycling recipes to vanilla now sets their recipe completion times correctly.
     - Fixed that nuclear bombs could change tiles on Cerys due to a base game change in Factorio v2.0.44.
   Compatibility:
-    - Removed incompatibility mark with Resource Spawner Overhaul and instead indicates Cerys should be a disabled planet.
+    - Removed incompatibility mark with Resource Spawner Overhaul and instead indicated Cerys should be a disabled planet.
   Sounds:
     - Added a track to the Cerys soundtrack.
 ---------------------------------------------------------------------------------------------------
