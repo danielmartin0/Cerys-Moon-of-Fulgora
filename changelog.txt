@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that lithium brine could spawn over frozen water on Cerys and be destroyed when the ice melted.
+  Compatibility:
+    - K2SO: Moved various recipe updates to data-updates to allow data-final-fixes processing by third party mods. In particular, when Maraxsis is installed, the hydrogen bomb is now once again craftable.
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.0
 Date: 2025-08-03

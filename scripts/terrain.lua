@@ -431,24 +431,50 @@ function Public.create_lithium_brine(surface, area)
 
 	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
 
-	for _ = 1, 10 do
+	local created = 0
+
+	for _ = 1, 1000 do
 		local angle = math.random() * 2 * math.pi
 		local d = ((math.random()) ^ (1 / 2)) * 58
-		local test_pos = {
+		local p = {
 			x = adjusted_lithium_position.x + math.cos(angle) * d / 3 * stretch_factor,
 			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
 		}
 
-		local position = surface.find_non_colliding_position("lithium-brine", test_pos, 5, 1)
+		local p2 = surface.find_non_colliding_position("lithium-brine", p, 5, 1)
 
-		if position then
-			surface.create_entity({
-				name = "lithium-brine",
-				position = position,
-				amount = 100000000000,
-			})
+		if p2 and not Public.check_for_water_underneath(surface, p2, 3, 3) then
+			if p2 then
+				surface.create_entity({
+					name = "lithium-brine",
+					position = p2,
+					amount = 100000000000,
+				})
+				created = created + 1
+			end
+		end
+
+		if created >= 10 then
+			break
 		end
 	end
+end
+
+function Public.check_for_water_underneath(surface, center, width, height)
+	local water_underneath = false
+	for dx = -width / 2 + 0.5, width / 2 - 0.5 do
+		for dy = -height / 2 + 0.5, height / 2 - 0.5 do
+			local x, y = center.x + dx, center.y + dy
+			local tile_underneath = surface.get_tile(x, y)
+			local tile_underneath_is_water = tile_underneath
+				and (tile_underneath.name == "cerys-dry-ice-on-water" or tile_underneath.name == "cerys-ice-on-water")
+			if tile_underneath_is_water then
+				water_underneath = true
+				break
+			end
+		end
+	end
+	return water_underneath
 end
 
 function Public.ensure_solid_foundation(surface, center, width, height)
