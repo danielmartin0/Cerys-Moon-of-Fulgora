@@ -2,6 +2,7 @@
 Version: 3.8.2
 Date: ????
   Changes:
+    - Moved Cerys back to Factorio stable (without losing functionality) so that more players can pick up the K2SO fixes.
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.1
 Date: 2025-08-07
