@@ -364,6 +364,47 @@ data:extend({
 	},
 
 	{
+		type = "noise-expression",
+		name = "cerys_ash_flats", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_methane_iceberg_large", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "xx", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "yy", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_reactor_correction", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "cerys_script_occupied_terrain", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+
+	{
+		type = "noise-expression",
+		name = "surface_distance", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
+		type = "noise-expression",
+		name = "map_distance", -- TODO: Remove when the base game bug of crashing on noise prototype removal is fixed
+		expression = "0",
+	},
+	{
 		type = "noise-function",
 		name = "cerys_rpi", -- adapted from vanilla
 		parameters = { "survival" },
