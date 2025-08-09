@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.3
-Date: 2025-08-08
+Date: 2025-08-09
   Bugfixes:
     - Fixed that offshore pumps destroyed by freezing ice then replaced by a construction bot became stuck once the ice melted.
   Compatibility:
