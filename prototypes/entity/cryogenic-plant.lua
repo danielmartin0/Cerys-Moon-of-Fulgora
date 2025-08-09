@@ -42,6 +42,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 			},
 		},
 	}),
+	-- Also encoded in data-final-fixes:
 	crafting_speed_quality_multiplier = {
 		normal = 1,
 		uncommon = 1.4,

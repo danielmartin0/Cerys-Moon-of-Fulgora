@@ -3,10 +3,20 @@ local lib = require("lib")
 
 --== Crusher module slots for arbitrary quality levels ==--
 
+-- Also encoded in the entity file:
 data.raw["assembling-machine"]["cerys-fulgoran-crusher"].module_slots_quality_bonus = {}
 for _, quality in pairs(data.raw.quality) do
 	data.raw["assembling-machine"]["cerys-fulgoran-crusher"].module_slots_quality_bonus[quality.name] = quality.level
 		* 2
+end
+
+--== Cryogenic plant crafting speed for arbitrary quality levels ==--
+
+-- Also encoded in the entity file:
+data.raw["assembling-machine"]["cerys-fulgoran-cryogenic-plant"].crafting_speed_quality_multiplier = {}
+for _, quality in pairs(data.raw.quality) do
+	data.raw["assembling-machine"]["cerys-fulgoran-cryogenic-plant"].crafting_speed_quality_multiplier[quality.name] = 1
+		+ quality.level * 0.4
 end
 
 --== Fuel categories ==--

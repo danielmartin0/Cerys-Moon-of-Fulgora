@@ -346,7 +346,6 @@ script.on_configuration_changed(function()
 	end
 
 	picker_dollies.add_picker_dollies_blacklists()
-	init.whitelist_construction_robots()
 end)
 
 function Public.check_thankyou_toast(surface)

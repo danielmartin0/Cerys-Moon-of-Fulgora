@@ -69,6 +69,12 @@ function Public.tick_ice(surface)
 		if #tiles_to_set > 0 then
 			surface.set_tiles(tiles_to_set)
 		end
+
+		for _, tile in pairs(tiles_to_set) do
+			if Public.TILE_POST_TRANSITION_EFFECTS[tile.name] then
+				Public.TILE_POST_TRANSITION_EFFECTS[tile.name](surface, tile.position)
+			end
+		end
 	end
 end
 
@@ -151,6 +157,34 @@ local function melt_dry_ice(surface, pos)
 	})
 end
 
+Public.TILE_POST_TRANSITION_EFFECTS = {
+	["cerys-water-puddles"] = function(surface, pos)
+		local pumps = surface.find_entities_filtered({
+			area = {
+				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+			},
+			type = "offshore-pump",
+		})
+
+		for _, entity in pairs(pumps) do
+			local n = entity.name
+			local p = entity.position
+			local f = entity.force
+			local d = entity.direction
+			local q = entity.quality
+			entity.destroy()
+			surface.create_entity({
+				name = n,
+				position = p,
+				force = f,
+				direction = d,
+				quality = q,
+			})
+		end
+	end,
+}
+
 Public.TILE_TRANSITION_EFFECTS = {
 	["cerys-dry-ice-on-water-melting"] = function(surface, pos)
 		melt_dry_ice(surface, pos)
@@ -165,7 +199,7 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- 	melt_dry_ice(surface, pos)
 	-- end,
 	["cerys-water-puddles-freezing"] = function(surface, pos)
-		local colliding_entities = surface.find_entities_filtered({
+		local pumps = surface.find_entities_filtered({
 			area = {
 				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
 				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
@@ -173,7 +207,7 @@ Public.TILE_TRANSITION_EFFECTS = {
 			type = "offshore-pump",
 		})
 
-		for _, entity in pairs(colliding_entities) do
+		for _, entity in pairs(pumps) do
 			entity.die()
 		end
 

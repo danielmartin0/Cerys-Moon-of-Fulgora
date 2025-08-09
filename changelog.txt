@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.8.3
+Date: 2025-08-08
+  Bugfixes:
+    - Fixed that offshore pumps destroyed by freezing ice then replaced by a construction bot became stuck once the ice melted.
+  Compatibility:
+    - Modded quality levels now properly affect the Fulgoran cryogenic plant.
+---------------------------------------------------------------------------------------------------
 Version: 3.8.2
 Date: 2025-08-08
   Changes:
