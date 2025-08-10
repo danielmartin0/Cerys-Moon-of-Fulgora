@@ -5,22 +5,6 @@ local merge = lib.merge
 local find = lib.find
 
 if common_data.K2_INSTALLED then
-	data:extend({
-		merge(data.raw.recipe["utility-science-pack"], {
-			name = "cerys-utility-science-pack",
-			ingredients = {
-				{ type = "item", name = "low-density-structure", amount = 5 },
-				{ type = "item", name = "processing-unit", amount = 5 },
-				{ type = "item", name = "electric-engine-unit", amount = 5 },
-				{ type = "item", name = "kr-blank-tech-card", amount = 10 },
-			},
-			results = { { type = "item", name = "utility-science-pack", amount = 5 } },
-			category = "fulgoran-cryogenics",
-			subgroup = "cerys-processes",
-			order = "k",
-		}),
-	})
-
 	-- Copied from K2SO files:
 	local rifle_range = 30
 	local sniper_range = 70
