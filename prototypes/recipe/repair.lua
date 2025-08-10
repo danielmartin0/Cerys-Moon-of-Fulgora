@@ -7,10 +7,10 @@ data:extend({
 		category = "advanced-crafting",
 		additional_categories = { "fulgoran-cryogenics" },
 		enabled = false,
-		energy_required = 3,
+		energy_required = 6,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
-			{ type = "item", name = "engine-unit", amount = 1 },
+			{ type = "item", name = "iron-gear-wheel", amount = 2 },
 		},
 		results = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
@@ -74,8 +74,7 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "fulgoran-cryogenics",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "advanced-circuit", amount = 5 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,
@@ -187,8 +186,7 @@ data:extend({
 		hide_from_player_crafting = true,
 		category = "cerys-crusher-quality-upgrades",
 		ingredients = {
-			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 5 },
+			{ type = "item", name = "ancient-structure-repair-part", amount = 5 },
 		},
 		results = {},
 		allow_quality = true,
