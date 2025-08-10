@@ -30,7 +30,7 @@ data:extend({
 		order = "a-a",
 		enabled = false,
 		auto_recycle = false,
-		energy_required = 0.38,
+		energy_required = 0.33,
 		ingredients = {
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 1 },
 		},

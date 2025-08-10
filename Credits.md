@@ -15,6 +15,13 @@ This file specifies open-source code and assets used in Cerys, Moon of Fulgora, 
 - **Source**: [Unused Renders](https://github.com/malcolmriley/unused-renders)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Changes**: Yes. Icons brightened to be a bit more vivid.
+- 
+#### Custom music tracks
+
+- **Creators**: [Scott Buckley](https://www.scottbuckley.com.au)
+- **Source**: [Scott Buckley's website](https://www.scottbuckley.com.au/library/aurora/)
+- **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Changes**: Yes, several tracks have a fade-in.
 
 #### Sci-fi Nuclear Reactor
 
@@ -71,13 +78,6 @@ This file specifies open-source code and assets used in Cerys, Moon of Fulgora, 
 - **Source**: [Krastorio 2 Assets](https://mods.factorio.com/mod/Krastorio2Assets)
 - **License**: [MIT](https://opensource.org/license/MIT)
 - **Changes**: No.
-- 
-#### Custom music tracks
-
-- **Creators**: [Scott Buckley](https://www.scottbuckley.com.au)
-- **Source**: [Scott Buckley's website](https://www.scottbuckley.com.au/library/aurora/)
-- **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Changes**: Yes, several tracks have a fade-in.
 
 #### Fulgora graphic
 
