@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.0.0
+Version: 3.99.0
 Date: ????
   Info:
-    - v4.0 is a minor overhaul of Cerys to make the planet breezier and fun to play.
+    - v3.99.0 is a minor overhaul of Cerys to make the planet breezier and fun to play.
   Changes:
     - Utility science pack removed as this frequently led to a copper bottleneck. The automation science pack has also been removed, as making both red and green together was busywork. Instead, Cerys technologies use a mixture of four science packs — reverse-engineered, logistic, space and chemical — that allow players more flexibility in how they complete the planet.
     - The strong reward of a T4 Productivity Module, called the Drive module, has been reinstated. The T4 speed Overclock module is no longer craftable, though existing instances of that item will continue to function.
