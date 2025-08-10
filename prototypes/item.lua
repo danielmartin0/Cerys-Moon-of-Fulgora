@@ -21,6 +21,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 end
 
 data:extend({
+	-- Legacy module from previous versions:
 	{
 		type = "module",
 		name = "cerys-overclock-module",
@@ -38,6 +39,7 @@ data:extend({
 		weight = 20 * 1000,
 		effect = { speed = 1.0, consumption = 1.4, quality = -0.5, productivity = -0.05, pollution = 0.25 },
 		default_import_location = "cerys",
+		hidden = true,
 	},
 	{
 		type = "module",

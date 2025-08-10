@@ -140,8 +140,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "productivity-module-3", amount = 8 },
-			{ type = "item", name = "superconductor", amount = 4 },
-			{ type = "item", name = "plutonium-238", amount = 7 },
+			{ type = "item", name = "processing-unit", amount = 7 },
+			{ type = "item", name = "superconductor", amount = 7 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,

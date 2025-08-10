@@ -123,7 +123,6 @@ data:extend({
 			count = 50,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -133,7 +132,7 @@ data:extend({
 				recipe = "cerys-charging-rod",
 			},
 		},
-		prerequisites = { "cerys-reactor-fuel" },
+		prerequisites = { "cerysian-science-pack" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/charging-rod.png",
 		icon_size = 1000,
 		allows_productivity = false,
@@ -274,7 +273,7 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-reactor-fuel",
+			"cerysian-science-pack",
 		},
 		icon = "__base__/graphics/technology/productivity-module-3.png",
 		icon_size = 256,
@@ -301,7 +300,6 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-productivity-module-three",
-			"cerys-charging-rod",
 		},
 		unit = {
 			count = 50,
