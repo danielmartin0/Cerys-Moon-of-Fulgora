@@ -120,7 +120,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-charging-rod",
 		unit = {
-			count = 50,
+			count = 30,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -158,7 +158,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -188,7 +188,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 40,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -211,10 +211,9 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 200,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
 			time = 60,
@@ -278,7 +277,7 @@ data:extend({
 		icon = "__base__/graphics/technology/productivity-module-3.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 30,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "chemical-science-pack", 1 },
@@ -302,7 +301,7 @@ data:extend({
 			"cerys-productivity-module-three",
 		},
 		unit = {
-			count = 50,
+			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "chemical-science-pack", 1 },
@@ -332,11 +331,10 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "space-science-pack", 1 },
-				{ "chemical-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -386,7 +384,7 @@ if not is_sandbox_mode then
 		merge(cargo_drops_base, {
 			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
 			unit = {
-				count = common.HARD_MODE_ON and 3000 or 1000,
+				count = common.HARD_MODE_ON and 5000 or 1500,
 				ingredients = {
 					{ "cerysian-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -499,30 +497,15 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 	end
 end
 
-local holmium_productivity_effects_1 = {}
-local holmium_productivity_effects_2 = {}
-table.insert(holmium_productivity_effects_1, {
-	type = "unlock-recipe",
-	recipe = "maraxsis-holmium-recrystalization",
-})
+local holmium_productivity_effects = {}
 if data.raw.recipe["holmium-plate"] then
-	table.insert(holmium_productivity_effects_1, {
-		type = "change-recipe-productivity",
-		recipe = "holmium-plate",
-		change = 0.1,
-	})
-	table.insert(holmium_productivity_effects_2, {
+	table.insert(holmium_productivity_effects, {
 		type = "change-recipe-productivity",
 		recipe = "holmium-plate",
 		change = 0.1,
 	})
 end
-table.insert(holmium_productivity_effects_1, {
-	type = "change-recipe-productivity",
-	recipe = "maraxsis-holmium-recrystalization",
-	change = 0.1,
-})
-table.insert(holmium_productivity_effects_2, {
+table.insert(holmium_productivity_effects, {
 	type = "change-recipe-productivity",
 	recipe = "maraxsis-holmium-recrystalization",
 	change = 0.1,
@@ -536,13 +519,33 @@ data:extend({
 			"__space-age__/graphics/technology/holmium-processing.png"
 		),
 		icon_size = 256,
-		effects = holmium_productivity_effects_1,
-		prerequisites = { "cerys-lubricant-synthesis" },
+		effects = holmium_productivity_effects,
+		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 50,
+			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-holmium-recrystalization",
+		icon = "__space-age__/graphics/technology/holmium-processing.png",
+		icon_size = 256,
+		effects = { {
+			type = "unlock-recipe",
+			recipe = "maraxsis-holmium-recrystalization",
+		} },
+		prerequisites = { "cerys-holmium-plate-productivity-1" },
+		unit = {
+			count = 25,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "chemical-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -555,7 +558,7 @@ data:extend({
 			"__space-age__/graphics/technology/holmium-processing.png"
 		),
 		icon_size = 256,
-		effects = holmium_productivity_effects_2,
+		effects = holmium_productivity_effects,
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
 			count_formula = "2^(L-1)*50",
@@ -623,7 +626,7 @@ data:extend({
 		effects = fuel_productivity_effects,
 		prerequisites = { "cerys-advanced-structure-repair" },
 		unit = {
-			count = 50,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -641,7 +644,7 @@ data:extend({
 		effects = fuel_productivity_effects,
 		prerequisites = { "cerys-reactor-fuel-productivity-1" },
 		unit = {
-			count_formula = "2^(L-3)*50",
+			count_formula = "3^(L-1)*100",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

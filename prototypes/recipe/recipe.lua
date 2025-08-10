@@ -50,12 +50,15 @@ else
 				{
 					icon = "__space-age__/graphics/icons/holmium-plate.png",
 					icon_size = 64,
+					scale = 0.65,
+					draw_background = true,
 				},
 				{
 					icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
 					icon_size = 64,
-					size = 0.5,
-					shift = { -8, -8 },
+					scale = 0.45,
+					shift = { -13, -13 },
+					draw_background = true,
 				},
 			},
 		},

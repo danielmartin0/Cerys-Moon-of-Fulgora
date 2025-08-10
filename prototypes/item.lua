@@ -21,7 +21,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 end
 
 data:extend({
-	-- Legacy module from previous versions:
+	-- Legacy module:
 	{
 		type = "module",
 		name = "cerys-overclock-module",
