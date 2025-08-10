@@ -197,7 +197,7 @@ data:extend({
 		weight = 10,
 		planet = "cerys",
 		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/chasingdaylight.ogg",
 			volume = 0.53,
 			priority = 200,
 		},
