@@ -1,3 +1,5 @@
+local util = require("util")
+
 local Public = {}
 
 function Public.merge(old, new)

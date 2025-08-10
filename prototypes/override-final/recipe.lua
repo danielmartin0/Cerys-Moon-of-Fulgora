@@ -14,23 +14,11 @@ if data.raw.recipe["sulfuric-acid"] then
 	end
 	table.insert(data.raw.recipe["sulfuric-acid"].additional_categories, "fulgoran-cryogenics")
 end
-if data.raw.recipe["plastic-bar"] then
-	if not data.raw.recipe["plastic-bar"].additional_categories then
-		data.raw.recipe["plastic-bar"].additional_categories = {}
-	end
-	table.insert(data.raw.recipe["plastic-bar"].additional_categories, "fulgoran-cryogenics")
-end
 if data.raw.recipe.lithium then
 	if not data.raw.recipe.lithium.additional_categories then
 		data.raw.recipe.lithium.additional_categories = {}
 	end
 	table.insert(data.raw.recipe.lithium.additional_categories, "fulgoran-cryogenics")
-end
-if data.raw.recipe["battery"] then
-	if not data.raw.recipe["battery"].additional_categories then
-		data.raw.recipe["battery"].additional_categories = {}
-	end
-	table.insert(data.raw.recipe["battery"].additional_categories, "fulgoran-cryogenics")
 end
 if data.raw.recipe["ammonia-rocket-fuel"] then
 	if not data.raw.recipe["ammonia-rocket-fuel"].additional_categories then

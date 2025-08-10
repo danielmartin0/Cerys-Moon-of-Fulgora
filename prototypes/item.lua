@@ -21,6 +21,7 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 end
 
 data:extend({
+	-- Legacy module:
 	{
 		type = "module",
 		name = "cerys-overclock-module",
@@ -38,16 +39,46 @@ data:extend({
 		weight = 20 * 1000,
 		effect = { speed = 1.0, consumption = 1.4, quality = -0.5, productivity = -0.05, pollution = 0.25 },
 		default_import_location = "cerys",
+		hidden = true,
 	},
-	merge(data.raw.tool["electromagnetic-science-pack"], {
+	{
+		type = "module",
+		name = "cerys-drive-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+		icon_size = 64,
+		subgroup = "module",
+		order = "c[productivity]-d[productivity-module-4]-a[drive-module]",
+		color_hint = { text = "P" },
+		category = "productivity",
+		tier = 4,
+		inventory_move_sound = item_sounds.module_inventory_move,
+		pick_sound = item_sounds.module_inventory_pickup,
+		drop_sound = item_sounds.module_inventory_move,
+		stack_size = 50,
+		weight = 20 * 1000,
+		effect = { productivity = 0.16, speed = -0.3, consumption = 1.2, quality = -1.5, pollution = 0.12 },
+		default_import_location = "cerys",
+	},
+	{
+		type = "tool",
 		name = "cerysian-science-pack",
-		localised_description = "nil",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
 		icon_size = 64,
+		color_hint = { text = "R" },
 		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
-		order = "j-a[cerys]",
+		subgroup = "cerys-processes",
+		order = "b-a",
 		default_import_location = "cerys",
-	}),
+		inventory_move_sound = item_sounds.science_inventory_move,
+		pick_sound = item_sounds.science_inventory_pickup,
+		drop_sound = item_sounds.science_inventory_move,
+		stack_size = 200,
+		durability = 1,
+		durability_description_key = "description.science-pack-remaining-amount-key",
+		factoriopedia_durability_description_key = "description.factoriopedia-science-pack-remaining-amount-key",
+		durability_description_value = "description.science-pack-remaining-amount-value",
+		random_tint_color = item_tints.bluish_science,
+	},
 
 	merge(data.raw.item["fission-reactor-equipment"], {
 		name = "mixed-oxide-reactor-equipment",
@@ -83,7 +114,7 @@ data:extend({
 		pick_sound = item_sounds.repair_pack_inventory_pickup,
 		drop_sound = item_sounds.repair_pack_inventory_move,
 		stack_size = 1,
-		weight = 10 * 1000,
+		weight = 100 * 1000,
 	},
 	{
 		type = "item",
