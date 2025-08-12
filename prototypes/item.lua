@@ -63,6 +63,8 @@ data:extend({
 			primary = { 0.441, 0.714, 1.000, 1.000 }, -- #70b6ffff
 			secondary = { 0.388, 0.976, 1.000, 1.000 }, -- #63f8ffff
 		},
+		-- TODO: Remove:
+		spoil_ticks = 60 * 5, -- 5 seconds
 		art_style = "vanilla", -- In vanilla, not present on prod modules for some reason?
 		requires_beacon_alt_mode = false,
 	},
@@ -74,7 +76,7 @@ data:extend({
 		subgroup = "module",
 		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-1",
 		color_hint = { text = "P" },
-		category = "metastable",
+		category = "productivity",
 		tier = 4,
 		inventory_move_sound = item_sounds.module_inventory_move,
 		pick_sound = item_sounds.module_inventory_pickup,
@@ -87,20 +89,21 @@ data:extend({
 			pollution = 0.07,
 			speed = -0.1,
 		}, -- Prod module 2 effects
-		spoil_ticks = 60 * 45, -- 45 seconds
+		-- TODO: replace:
+		spoil_ticks = 60 * 15, -- 45 seconds
 		spoil_result = "cerys-metastable-module-2",
 		default_import_location = "cerys",
 	},
 	{
 		type = "module",
 		name = "cerys-metastable-module-2",
-		hidden = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+		hidden_in_factoriopedia = true,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
 		icon_size = 64,
 		subgroup = "module",
 		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-2",
 		color_hint = { text = "P" },
-		category = "metastable",
+		category = "productivity",
 		tier = 4,
 		inventory_move_sound = item_sounds.module_inventory_move,
 		pick_sound = item_sounds.module_inventory_pickup,
@@ -116,6 +119,7 @@ data:extend({
 		spoil_ticks = 60 * 5, -- 5 seconds
 		spoil_result = "cerys-metastable-module-1",
 		default_import_location = "cerys",
+		factoriopedia_alternative = "cerys-metastable-module-1",
 	},
 	{
 		type = "tool",

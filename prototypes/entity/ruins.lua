@@ -1,6 +1,6 @@
 local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
-	local fulgoran_ruin_mining_time = 0.27 * collision_area ^ 0.75
+	local fulgoran_ruin_mining_time = 0.25 * collision_area ^ 0.75
 
 	local results = {
 		mining_particle = "stone-particle",
