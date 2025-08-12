@@ -7,10 +7,10 @@ data:extend({
 		category = "advanced-crafting",
 		additional_categories = { "fulgoran-cryogenics" },
 		enabled = false,
-		energy_required = 6,
+		energy_required = 3,
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 2 },
-			{ type = "item", name = "iron-gear-wheel", amount = 2 },
+			{ type = "item", name = "engine-unit", amount = 1 },
 		},
 		results = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
