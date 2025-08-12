@@ -79,4 +79,8 @@ data:extend({
 		group = "tiles",
 		order = "k-[cerys]",
 	},
+	{
+		type = "module-category",
+		name = "metastable",
+	},
 })

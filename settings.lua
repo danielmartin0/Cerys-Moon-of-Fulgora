@@ -36,13 +36,6 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-modify-offworld-prod-3-recycling-recipe",
-		setting_type = "startup",
-		default_value = false,
-		order = "g",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-sandbox-mode",
 		setting_type = "startup",
 		default_value = false,

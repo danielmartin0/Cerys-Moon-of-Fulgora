@@ -264,23 +264,29 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-productivity-module-three",
+		name = "cerys-metastable-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/drive-module.png",
+		icon_size = 1024,
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-productivity-module-3-from-nitric-acid",
+				recipe = "cerys-metastable-module-1",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-radiation-proof-inserter",
 			},
 		},
 		prerequisites = {
-			"cerysian-science-pack",
+			"cerys-advanced-structure-repair",
 		},
-		icon = "__base__/graphics/technology/productivity-module-3.png",
-		icon_size = 256,
 		unit = {
-			count = 30,
+			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 				{ "chemical-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -288,22 +294,23 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-drive-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/drive-module.png",
+		name = "cerys-overclock-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
 		icon_size = 1024,
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-drive-module",
+				recipe = "cerys-overclock-module",
 			},
 		},
 		prerequisites = {
-			"cerys-productivity-module-three",
+			"cerysian-science-pack",
 		},
 		unit = {
 			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 				{ "chemical-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
@@ -340,29 +347,6 @@ data:extend({
 		},
 		allows_productivity = false,
 	},
-	-- {
-	-- 	type = "technology",
-	-- 	name = "cerys-productivity-module-three",
-	-- 	localised_description = { "technology-description.productivity-module" },
-	-- 	icon = "__base__/graphics/technology/productivity-module-3.png",
-	-- 	icon_size = 256,
-	-- 	effects = {
-	-- 		{
-	-- 			type = "unlock-recipe",
-	-- 			recipe = "cerys-productivity-module-3-from-nitric-acid",
-	-- 		},
-	-- 	},
-	-- 	prerequisites = { "cerysian-science-pack", "productivity-module-2" },
-	-- 	unit = {
-	-- 		count = 50,
-	-- 		ingredients = {
-	-- 			{ "automation-science-pack", 1 },
-	-- 			{ "cerysian-science-pack", 1 },
-	-- 		},
-	-- 		time = 60,
-	-- 	},
-	-- 	allows_productivity = false,
-	-- },
 })
 
 local cargo_drops_base =

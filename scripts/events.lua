@@ -77,6 +77,58 @@ script.on_event({
 		lighting.register_solar_panel(entity)
 	elseif entity.name == "cerys-lab" then
 		entity.backer_name = ""
+	elseif entity.name == "cerys-radiation-proof-inserter" then
+		storage.cerys_inserters = storage.cerys_inserters or {}
+		storage.cerys_inserters[entity.unit_number] = {
+			entity = entity,
+			last_held_stack_name = nil,
+		}
+		entity.use_filters = true
+		entity.set_filter(1, "cerys-metastable-module-1")
+	end
+end)
+
+local function flip_inserter_filter(inserter)
+	inserter.use_filters = true
+
+	local current_filter = inserter.get_filter(1)
+	if current_filter and current_filter.name == "cerys-metastable-module-1" then
+		inserter.set_filter(1, "cerys-metastable-module-2")
+	else
+		inserter.set_filter(1, "cerys-metastable-module-1")
+	end
+end
+
+script.on_event(defines.events.on_player_flipped_entity, function(event)
+	if event.entity.name == "cerys-radiation-proof-inserter" then
+		flip_inserter_filter(event.entity)
+	end
+end)
+
+script.on_nth_tick(5, function()
+	for unit_number, inserter_data in pairs(storage.cerys_inserters or {}) do
+		local inserter = inserter_data.entity
+		if inserter and inserter.valid then
+			local held_stack = inserter.held_stack
+			-- local held_stack_position = inserter.held_stack_position
+			local current_stack_name = nil
+
+			if held_stack and held_stack.valid_for_read then
+				current_stack_name = held_stack.name
+			end
+
+			if inserter_data.last_held_stack_name and not current_stack_name then
+				local current_direction = inserter.direction
+				local new_direction = (current_direction + 8) % 16
+				inserter.direction = new_direction
+
+				flip_inserter_filter(inserter)
+			end
+
+			inserter_data.last_held_stack_name = current_stack_name
+		else
+			storage.cerys_inserters[unit_number] = nil
+		end
 	end
 end)
 
@@ -494,6 +546,8 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
 	then
 		rods.on_gui_opened(event)
+	elseif entity.name == "cerys-radiation-proof-inserter" then
+		player.opened = nil
 	end
 end)
 
