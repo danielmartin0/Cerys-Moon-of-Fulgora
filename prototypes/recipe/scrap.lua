@@ -6,8 +6,8 @@ local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
 
 local U235_RATIO = (1 / common.REPROCESSING_U238_TO_U235_RATIO)
-	* math.pow(0.5, CIV_AGE_MY / HALF_LIFE_235_MY)
-	/ math.pow(0.5, CIV_AGE_MY / HALF_LIFE_238_MY)
+	* (CIV_AGE_MY / HALF_LIFE_235_MY) ^ 0.5
+	/ (CIV_AGE_MY / HALF_LIFE_238_MY) ^ 0.5
 
 data:extend({
 	{
@@ -30,7 +30,7 @@ data:extend({
 		order = "a-a",
 		enabled = false,
 		auto_recycle = false,
-		energy_required = 0.33,
+		energy_required = 0.38,
 		ingredients = {
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 1 },
 		},
@@ -42,12 +42,10 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
 	["advanced-circuit"] = 15,
 	["uranium-238"] = 4,
-	["pipe"] = 1.7, -- Initial pipes and extra initial iron. Pointedly small.
-	["transport-belt"] = 1.4, -- Belt cubes and distance transport, initial iron. Pointedly small.
+	["transport-belt"] = 2.5, -- Belt cubes and distance transport, initial iron. Pointedly small.
 	["holmium-plate"] = 1, -- 2.5 would be matching fulgora
-	["heat-pipe"] = 0.9, -- per each: 2.5 steel plate, 5 copper plate
-	["steam-turbine"] = 0.18, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
-	["centrifuge"] = 0.18, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
+	["steam-turbine"] = 0.17, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
+	["centrifuge"] = 0.17, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
 	["uranium-235"] = 4 * U235_RATIO,
 }
 
