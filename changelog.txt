@@ -4,11 +4,10 @@ Date: ????
   Info:
     - v3.99.0 is a minor overhaul of Cerys to make the planet breezier and fun to play.
   Features:
-    - New completion reward: The BLAH module.
+    - New completion reward: The [Radioactive] module.
   Changes:
     - Utility science pack removed as this frequently led to a copper bottleneck. The automation science pack has also been removed, as making both red and green together was busywork. Instead, Cerys technologies use a mixture of four science packs — reverse-engineered, logistic, space and chemical — that allow players more flexibility in how they complete the planet.
-    - Fewer filters are needed in nuclear scrap recycling because pipes and heat pipes have been removed.
-    - Simpler recipe for the ancient structure repair part, no longer involving engines.
+    - Pipes and heat pipes removed from nuclear scrap recycling, so fewer filters are needed.
     - Machine quality upgrades no longer require quality chips.
     - Nitrogen-rich mineral processing is now called 'Mineral leaching' and no longer uses water.
     - Engine productivity research replaced by reactor fuel productivity research.
