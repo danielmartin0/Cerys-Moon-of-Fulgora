@@ -130,3 +130,15 @@ end
 for _, projectile in pairs(data.raw["projectile"]) do
 	add_cerys_layers_to_masks(projectile)
 end
+
+--== Beacons ==--
+
+for _, beacon in pairs(data.raw["beacon"]) do
+	if beacon.allowed_module_categories and not lib.find(beacon.allowed_module_categories, "metastable") then -- Beacons with no allowed module categories CAN use metastable modules
+		table.insert(beacon.allowed_module_categories, "metastable")
+	end
+
+	if beacon.allowed_effects and not lib.find(beacon.allowed_effects, "productivity") then -- Beacons with no allowed effects CAN'T use metastable modules
+		table.insert(beacon.allowed_effects, "productivity")
+	end
+end

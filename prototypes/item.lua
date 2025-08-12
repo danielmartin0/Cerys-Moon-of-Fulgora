@@ -21,7 +21,20 @@ if settings.startup["cerys-player-constructable-radiative-towers"].value then
 end
 
 data:extend({
-	-- Legacy module:
+	{
+		type = "item",
+		name = "cerys-radiation-proof-inserter",
+		icon = "__base__/graphics/icons/long-handed-inserter.png",
+		subgroup = "cerys-processes",
+		color_hint = { text = "L" },
+		order = "r[radioactivity-inserter]",
+		default_import_location = "cerys",
+		inventory_move_sound = item_sounds.inserter_inventory_move,
+		pick_sound = item_sounds.inserter_inventory_pickup,
+		drop_sound = item_sounds.inserter_inventory_move,
+		place_result = "cerys-radiation-proof-inserter",
+		stack_size = 50,
+	},
 	{
 		type = "module",
 		name = "cerys-overclock-module",
@@ -29,7 +42,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "module",
 		order = "a[speed]-d[speed-module-4]-a[overclock-module]",
-		color_hint = { text = "O" },
+		color_hint = { text = "S" },
 		category = "speed",
 		tier = 4,
 		inventory_move_sound = item_sounds.module_inventory_move,
@@ -37,26 +50,71 @@ data:extend({
 		drop_sound = item_sounds.module_inventory_move,
 		stack_size = 50,
 		weight = 20 * 1000,
-		effect = { speed = 1.0, consumption = 1.4, quality = -0.5, productivity = -0.05, pollution = 0.25 },
+		effect = {
+			speed = 1.0,
+			consumption = 1.4,
+			quality = -0.5,
+			productivity = -0.05,
+			pollution = 0.25,
+		},
 		default_import_location = "cerys",
 		hidden = true,
+		beacon_tint = {
+			primary = { 0.441, 0.714, 1.000, 1.000 }, -- #70b6ffff
+			secondary = { 0.388, 0.976, 1.000, 1.000 }, -- #63f8ffff
+		},
+		art_style = "vanilla", -- In vanilla, not present on prod modules for some reason?
+		requires_beacon_alt_mode = false,
 	},
 	{
 		type = "module",
-		name = "cerys-drive-module",
+		name = "cerys-metastable-module-1",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
 		icon_size = 64,
 		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[drive-module]",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-1",
 		color_hint = { text = "P" },
-		category = "productivity",
+		category = "metastable",
 		tier = 4,
 		inventory_move_sound = item_sounds.module_inventory_move,
 		pick_sound = item_sounds.module_inventory_pickup,
 		drop_sound = item_sounds.module_inventory_move,
 		stack_size = 50,
 		weight = 20 * 1000,
-		effect = { productivity = 0.16, speed = -0.3, consumption = 1.2, quality = -1.5, pollution = 0.12 },
+		effect = {
+			productivity = 0.06,
+			consumption = 0.6,
+			pollution = 0.07,
+			speed = -0.1,
+		}, -- Prod module 2 effects
+		spoil_ticks = 60 * 45, -- 45 seconds
+		spoil_result = "cerys-metastable-module-2",
+		default_import_location = "cerys",
+	},
+	{
+		type = "module",
+		name = "cerys-metastable-module-2",
+		hidden = true,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+		icon_size = 64,
+		subgroup = "module",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-2",
+		color_hint = { text = "P" },
+		category = "metastable",
+		tier = 4,
+		inventory_move_sound = item_sounds.module_inventory_move,
+		pick_sound = item_sounds.module_inventory_pickup,
+		drop_sound = item_sounds.module_inventory_move,
+		stack_size = 50,
+		weight = 20 * 1000,
+		effect = {
+			productivity = 0.16,
+			consumption = 1,
+			pollution = 0.14,
+			speed = -0.2,
+		},
+		spoil_ticks = 60 * 5, -- 5 seconds
+		spoil_result = "cerys-metastable-module-1",
 		default_import_location = "cerys",
 	},
 	{

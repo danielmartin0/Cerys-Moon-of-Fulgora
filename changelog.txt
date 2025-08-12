@@ -3,9 +3,10 @@ Version: 3.99.0
 Date: ????
   Info:
     - v3.99.0 is a minor overhaul of Cerys to make the planet breezier and fun to play.
+  Features:
+    - New completion reward: The BLAH module.
   Changes:
     - Utility science pack removed as this frequently led to a copper bottleneck. The automation science pack has also been removed, as making both red and green together was busywork. Instead, Cerys technologies use a mixture of four science packs — reverse-engineered, logistic, space and chemical — that allow players more flexibility in how they complete the planet.
-    - The strong reward of a T4 Productivity Module, called the Drive module, has been reinstated. The T4 speed Overclock module is no longer craftable, though existing instances of that item will continue to function.
     - Fewer filters are needed in nuclear scrap recycling because pipes and heat pipes have been removed.
     - Simpler recipe for the ancient structure repair part, no longer involving engines.
     - Machine quality upgrades no longer require quality chips.
@@ -1449,8 +1450,9 @@ Date: 2025-02-25
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2025-02-23
-  Info:
+  Features:
     - Version 2.0! Headline features: Smaller moon surface, dynamic lighting, reduced gameplay grind, player-constructable radiative heaters.
+  Info:
     - Two breaking changes: 1) Cerysian science packs now require repair parts instead of ammonia. 2) Concrete sitting on water will explode when the save loads, as this is how Cerys water now works.
   Changes:
     - Concrete can now only be placed over Cerys water if the water is frozen.
@@ -2073,9 +2075,9 @@ Date: 2025-01-20
 Version: 1.0.0
 Date: 2025-01-20
   Features:
-    - Planet reward: Hydrogen bomb, a powerful upgrade of the Atomic bomb.
-    - Planet reward: Neutron bomb, an artillery shell that releases a scattering cloud of neutrons.
-    - Planet reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
+    - New completion reward: Hydrogen bomb, a powerful upgrade of the Atomic bomb.
+    - New completion reward: Neutron bomb, an artillery shell that releases a scattering cloud of neutrons.
+    - New completion reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
   Graphics:
     - Brand new graphics for the charging rod.
   Changes:
