@@ -65,6 +65,8 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 		for _, effect in pairs(e.dying_trigger_effect) do
 			if effect.type == "create-entity" then
 				effect.entity_name = effect.entity_name .. name_suffix
+			elseif effect.type == "create-asteroid-chunk" then
+				effect.offsets = { { 0, 0 } } -- sets the number of created chunks to 1 for Factoriopedia purposes
 			end
 		end
 	end

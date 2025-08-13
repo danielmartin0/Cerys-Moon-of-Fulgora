@@ -12,7 +12,6 @@ Date: ????
     - Nitrogen-rich mineral processing is now called 'Mineral leaching' and no longer uses water.
     - Engine productivity research replaced by reactor fuel productivity research.
   Balancing:
-    - Reduced the crafting time of nuclear scrap recycling.
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Energy consumption of the Fulgoran cryogenic plant very slightly reduced.
   Graphics:
