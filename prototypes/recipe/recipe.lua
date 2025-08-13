@@ -70,6 +70,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-radiation-proof-inserter",
 		enabled = false,
+		energy_required = 1,
 		ingredients = {
 			{ type = "item", name = "iron-gear-wheel", amount = 1 },
 			{ type = "item", name = "iron-plate", amount = 1 },

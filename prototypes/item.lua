@@ -23,6 +23,44 @@ end
 data:extend({
 	{
 		type = "item",
+		name = "cerys-solar-wind-particle-ghost",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle-ghost.png",
+		icon_size = 32,
+		-- hidden = true,
+		stack_size = 1,
+		spoil_ticks = 1,
+		spoil_to_trigger_result = {
+			items_per_trigger = 1,
+			trigger = {
+				type = "direct",
+				action_delivery = {
+					type = "instant",
+					source_effects = {
+						{
+							type = "script",
+							effect_id = "cerys-create-solar-wind-particle-ghost",
+						},
+					},
+				},
+			},
+		},
+	},
+	{
+		type = "item",
+		name = "cerys-solar-ghost-maker",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon_size = 128,
+		subgroup = "planetary-environment",
+		order = "a",
+		inventory_move_sound = item_sounds.electric_small_inventory_move,
+		pick_sound = item_sounds.electric_small_inventory_pickup,
+		drop_sound = item_sounds.electric_small_inventory_move,
+		place_result = "cerys-solar-ghost-maker",
+		stack_size = 20,
+		default_import_location = "cerys",
+	},
+	{
+		type = "item",
 		name = "cerys-radiation-proof-inserter",
 		icon = "__base__/graphics/icons/long-handed-inserter.png",
 		subgroup = "cerys-processes",

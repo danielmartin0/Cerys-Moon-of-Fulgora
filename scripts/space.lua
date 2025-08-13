@@ -92,11 +92,6 @@ function Public.spawn_solar_wind_particle(surface)
 	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
 	local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
-	-- local e = surface.create_entity({
-	-- 	name = "cerys-solar-wind-particle",
-	-- 	position = { x = x, y = y },
-	-- })
-
 	local r = rendering.draw_sprite({
 		sprite = "cerys-solar-wind-particle",
 		target = { x = x, y = y },
@@ -105,7 +100,6 @@ function Public.spawn_solar_wind_particle(surface)
 	})
 
 	table.insert(storage.cerys.solar_wind_particles, {
-		-- entity = e,
 		rendering = r,
 		age = 0,
 		velocity = Public.initial_solar_wind_velocity(),
@@ -206,12 +200,9 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 		end
 
 		if kill then
-			if particle.rendering and particle.rendering.valid then
-				particle.rendering.destroy()
+			if particle.entity and particle.entity.valid then
+				particle.entity.destroy()
 			end
-			-- if particle.entity and particle.entity.valid then
-			-- 	particle.entity.destroy()
-			-- end
 
 			table.remove(storage.cerys.solar_wind_particles, i)
 		else
@@ -244,7 +235,7 @@ end
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
-		if not Public.particle_is_in_cooldown(particle) then
+		if not Public.particle_is_in_cooldown(particle) and not particle.is_ghost then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then

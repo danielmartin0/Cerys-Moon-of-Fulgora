@@ -11,7 +11,7 @@ data:extend({
 		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 128,
-		flags = { "placeable-neutral", "player-creation" },
+		flags = { "placeable-neutral", "placeable-player", "player-creation" },
 		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
 		max_health = 200,
 		corpse = "lightning-rod-remnants",
