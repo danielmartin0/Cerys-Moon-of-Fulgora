@@ -83,6 +83,8 @@ Public.KNOWN_GAS_NAMES = {
 	"methane",
 	"petroleum-gas",
 	"fusion-plasma",
+	"oxygen",
+	"hydrogen",
 }
 
 Public.SOFTBANNED_RESOURCES = {

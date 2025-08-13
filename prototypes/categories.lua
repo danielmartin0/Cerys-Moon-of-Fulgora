@@ -38,6 +38,10 @@ data:extend({
 		name = "cerys-no-recipes",
 	},
 	{
+		type = "recipe-category",
+		name = "cerys-make-solar-wind-ghosts",
+	},
+	{
 		type = "item-subgroup",
 		name = "plutonium-processing",
 		group = "intermediate-products",

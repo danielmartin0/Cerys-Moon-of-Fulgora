@@ -83,7 +83,7 @@ local solar_wind_particle = {
 	subgroup = "planetary-environment",
 	flags = { "placeable-off-grid" },
 	name = "cerys-solar-wind-particle",
-	order = "a",
+	order = "b",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
 	icon_size = 32,
 	map_color = { 1, 0, 1 },
@@ -96,8 +96,8 @@ local solar_wind_particle = {
 		layers = {
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle.png",
-				tint = { r = 1, g = 1, b = 1, a = 0.8 },
-				apply_runtime_tint = true,
+				-- tint = data.raw["utility-constants"]["default"].ghost_shader_tint.ghost_tint,
+				tint = { r = 1, g = 1, b = 1, a = 1 },
 				size = 32,
 				scale = 0.5,
 				draw_as_glow = true,
@@ -112,7 +112,7 @@ local neutron_dummy = merge(solar_wind_particle, {
 	name = "cerys-neutron-dummy", -- For Factoriopedia
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
 	icon_size = 48,
-	order = "b",
+	order = "c",
 	pictures = {
 		layers = {
 			{
@@ -130,7 +130,7 @@ local gamma_radiation = merge(solar_wind_particle, {
 	name = "cerys-gamma-radiation",
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
 	icon_size = 64,
-	order = "c",
+	order = "d",
 	pictures = {
 		layers = {
 			{

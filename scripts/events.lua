@@ -262,24 +262,41 @@ end
 script.on_event(defines.events.on_script_trigger_effect, function(event)
 	local effect_id = event.effect_id
 
-	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
-		local entity = event.target_entity
+	local entity = event.target_entity
+	if not (entity and entity.valid) then
+		return
+	end
 
-		if not (entity and entity.valid) then
+	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
+		radiative_towers.register_radiative_tower_contracted(entity)
+	elseif effect_id == "cerys-fulgoran-crusher-created" then
+		crusher.register_crusher(entity)
+	elseif effect_id == "cerys-player-radiative-tower-created" then
+		radiative_towers.register_player_radiative_tower(entity)
+	elseif effect_id == "cerys-create-solar-wind-particle-ghost" then
+		local p = entity.position
+		local surface = entity.surface
+
+		local p2 = { x = p.x, y = p.y - 3 }
+
+		if not (surface and surface.valid and surface.name == "cerys") then
 			return
 		end
 
-		radiative_towers.register_radiative_tower_contracted(entity)
-	elseif effect_id == "cerys-fulgoran-crusher-created" then
-		local entity = event.target_entity
-		if entity and entity.valid then
-			crusher.register_crusher(entity)
-		end
-	elseif effect_id == "cerys-player-radiative-tower-created" then
-		local entity = event.target_entity
-		if entity and entity.valid then
-			radiative_towers.register_player_radiative_tower(entity)
-		end
+		local r = rendering.draw_sprite({
+			sprite = "cerys-solar-wind-particle-ghost",
+			target = p2,
+			surface = surface,
+			render_layer = "air-object",
+		})
+
+		table.insert(storage.cerys.solar_wind_particles, {
+			rendering = r,
+			age = 0,
+			velocity = space.initial_solar_wind_velocity(),
+			position = p2,
+			is_ghost = true,
+		})
 	end
 end)
 
