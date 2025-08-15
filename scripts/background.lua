@@ -69,9 +69,8 @@ function Public.tick_1_update_background_renderings(surface)
 end
 
 function Public.reset_background_rendering_positions()
-	local surface = game.surfaces["cerys"]
-
-	if not (surface and surface.valid) then
+	local surface = common.generated_cerys_surface()
+	if not surface then
 		return
 	end
 

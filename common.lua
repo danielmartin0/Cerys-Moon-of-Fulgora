@@ -119,4 +119,26 @@ function Public.get_cerys_semimajor_axis(cerys_surface)
 	return Public.CERYS_RADIUS * Public.get_cerys_surface_stretch_factor(cerys_surface)
 end
 
+function Public.generated_cerys_surface()
+	local surface = game.surfaces["cerys"]
+	if not (surface and surface.valid) then
+		return false
+	end
+
+	local some_chunk_generated = false
+
+	for chunk in surface.get_chunks() do
+		if surface.is_chunk_generated(chunk) then
+			some_chunk_generated = true
+			break
+		end
+	end
+
+	if not some_chunk_generated then
+		return false
+	end
+
+	return surface
+end
+
 return Public

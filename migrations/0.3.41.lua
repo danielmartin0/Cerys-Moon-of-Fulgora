@@ -1,5 +1,7 @@
-local surface = game.surfaces["cerys"]
-if not surface or not surface.valid then
+local common = require("common")
+
+local surface = common.generated_cerys_surface()
+if not surface then
 	return
 end
 
