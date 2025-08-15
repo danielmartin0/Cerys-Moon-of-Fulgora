@@ -93,72 +93,74 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_red_light_entity(rod)
 			Public.destroy_blue_light_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
-			goto continue
-		end
+		else
+			local negative = storage.cerys.charging_rod_is_negative[unit_number]
 
-		local negative = storage.cerys.charging_rod_is_negative[unit_number]
-
-		for _, player in pairs(game.connected_players) do
-			if player.opened == e then
-				local gui = player.gui.relative[Public.GUI_KEY]
-				if gui then
-					local switch = gui.content["charging-rod-switch"]
-					if not switch.enabled then -- Only sync disabled switches (circuit controlled)
-						local current_state = switch.switch_state == "left"
-						if current_state ~= negative then
-							switch.switch_state = negative and "left" or "right"
+			for _, player in pairs(game.connected_players) do
+				if player.opened == e then
+					local gui = player.gui.relative[Public.GUI_KEY]
+					if gui then
+						local switch = gui.content["charging-rod-switch"]
+						if not switch.enabled then -- Only sync disabled switches (circuit controlled)
+							local current_state = switch.switch_state == "left"
+							if current_state ~= negative then
+								switch.switch_state = negative and "left" or "right"
+							end
 						end
 					end
 				end
 			end
-		end
 
-		if rod.circuit_controlled and rod.control_signal then
-			local red_network = e.get_circuit_network(defines.wire_connector_id.circuit_red)
-			local green_network = e.get_circuit_network(defines.wire_connector_id.circuit_green)
+			if rod.circuit_controlled and rod.control_signal then
+				local red_network = e.get_circuit_network(defines.wire_connector_id.circuit_red)
+				local green_network = e.get_circuit_network(defines.wire_connector_id.circuit_green)
 
-			if red_network or green_network then
-				local signal_value = (red_network and red_network.get_signal(rod.control_signal) or 0)
-					+ (green_network and green_network.get_signal(rod.control_signal) or 0)
+				if red_network or green_network then
+					local signal_value = (red_network and red_network.get_signal(rod.control_signal) or 0)
+						+ (green_network and green_network.get_signal(rod.control_signal) or 0)
 
-				if signal_value > 0 and negative then
-					Public.rod_set_state(e, false)
-				elseif signal_value <= 0 and not negative then
-					Public.rod_set_state(e, true)
+					if signal_value > 0 and negative then
+						Public.rod_set_state(e, false)
+					elseif signal_value <= 0 and not negative then
+						Public.rod_set_state(e, true)
+					end
 				end
 			end
-		end
 
-		local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
+			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 
-		local energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
-
-		if energy_fraction > 0.999 then
-			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
-				rod.blue_light_entity = e.surface.create_entity({
-					name = "cerys-charging-rod-animation-blue",
-					position = { x = e.position.x, y = e.position.y + 1 },
-				})
+			local energy_fraction
+			if Public.DEBUG_CHARGING_RODS_FULL then
+				energy_fraction = negative and 1 or -1
+			else
+				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 			end
-			Public.destroy_red_light_entity(rod)
-		elseif energy_fraction < -0.999 then
-			if not (rod.red_light_entity and rod.red_light_entity.valid) then
-				rod.red_light_entity = e.surface.create_entity({
-					name = "cerys-charging-rod-animation-red",
-					position = { x = e.position.x, y = e.position.y + 1 },
-				})
+
+			if energy_fraction > 0.999 then
+				if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
+					rod.blue_light_entity = e.surface.create_entity({
+						name = "cerys-charging-rod-animation-blue",
+						position = { x = e.position.x, y = e.position.y + 1 },
+					})
+				end
+				Public.destroy_red_light_entity(rod)
+			elseif energy_fraction < -0.999 then
+				if not (rod.red_light_entity and rod.red_light_entity.valid) then
+					rod.red_light_entity = e.surface.create_entity({
+						name = "cerys-charging-rod-animation-red",
+						position = { x = e.position.x, y = e.position.y + 1 },
+					})
+				end
+				Public.destroy_blue_light_entity(rod)
+			else
+				Public.destroy_blue_light_entity(rod)
+				Public.destroy_red_light_entity(rod)
 			end
-			Public.destroy_blue_light_entity(rod)
-		else
-			Public.destroy_blue_light_entity(rod)
-			Public.destroy_red_light_entity(rod)
+
+			local max_polarity_fraction_per_quality = math.max(0.2, 1 - 0.05 * e.quality.level) -- Update tooltip if updating this
+			local polarity_fraction = max_polarity_fraction_per_quality * energy_fraction
+			rod.polarity_fraction = polarity_fraction
 		end
-
-		local max_polarity_fraction_per_quality = math.max(0.2, 1 - 0.05 * e.quality.level) -- Update tooltip if updating this
-		local polarity_fraction = max_polarity_fraction_per_quality * energy_fraction
-		rod.polarity_fraction = polarity_fraction
-
-		::continue::
 	end
 end
 
