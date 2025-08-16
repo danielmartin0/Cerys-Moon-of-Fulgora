@@ -110,6 +110,34 @@ data:extend({
 
 	{
 		type = "recipe",
+		name = "cerys-metastable-module-recharging",
+		always_show_made_in = true,
+		enabled = false,
+		auto_recycle = false,
+		category = "centrifuging",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
+		icon_size = 64,
+		main_product = "cerys-metastable-module-2",
+		ingredients = {
+			{ type = "item", name = "cerys-metastable-module-1", amount = 1 },
+			{ type = "item", name = "plutonium-239", amount = 1 },
+		},
+		energy_required = 2,
+		results = {
+			{ type = "item", name = "cerys-metastable-module-2", amount = 1 },
+		},
+		subgroup = "module",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-c[recharging]",
+		crafting_machine_tint = {
+			primary = { r = 0.384, g = 0.271, b = 1 },
+			secondary = { r = 0.384, g = 0.271, b = 1 },
+		},
+		allow_decomposition = false,
+		allow_productivity = false,
+	},
+
+	{
+		type = "recipe",
 		name = "mixed-oxide-cell-reprocessing",
 		category = "chemistry",
 		always_show_made_in = true,

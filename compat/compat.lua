@@ -19,7 +19,6 @@ data.raw.lab["cerys-lab"].inputs = {
 	"cerysian-science-pack",
 	"logistic-science-pack",
 	"space-science-pack",
-	"chemical-science-pack",
 	"cryogenic-science-pack",
 }
 

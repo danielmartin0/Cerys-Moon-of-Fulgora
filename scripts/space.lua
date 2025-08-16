@@ -13,10 +13,8 @@ local ROD_MAX_RANGE_SQUARED = 30 * 30
 local ROD_DEFLECTION_STRENGTH = 8 / 4.5 * 2
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
-local CANNOT_GAIN_SPEED_IF_BELOW = 0.05
-local MIN_SPEED_TO_DESTROY = 0.05
 local SPEED_THRESHOLD = 0.05
-local PARTICLE_SHRINK_TIME = 15
+local PARTICLE_SHRINK_TIME = 12
 
 local SOLAR_SPAWN_MULTIPLIER = 1
 
@@ -310,7 +308,7 @@ end
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
-		if not Public.particle_is_in_cooldown(particle) and not particle.is_ghost then
+		if not particle.is_ghost and not Public.particle_is_in_cooldown(particle) then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then

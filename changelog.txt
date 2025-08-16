@@ -2,19 +2,23 @@
 Version: 3.99.0
 Date: ????
   Info:
-    - Version 4.0 is a significant rework of Cerys. It adjusts plutonium generation, the science chain, the module rewards, and overall makes Cerys breezier to play.
+    - Version 4.0 is a breaking update, reworking parts of Cerys to make them more enjoyable. It reworks plutonium generation, the science chain, and the module rewards.
   Features:
     - New completion reward: The [Radioactive] module.
   Changes:
-    - Plutonium rework
-    - Cerysian science is renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
-    - Cerys no longer requires automation (red) science, as this felt like busywork.
-    - Cerys no longer require utility (yellow) science, as this presented a large late-game copper demand despite little demand early-game or mid-game.
-    - Cerys now requires space science, which can be crafted using methane ice instead of ice.
-    - The Cerys tech tree is now less linear, giving players choice over which science packs to craft and scale.
+    - Science changes:
+      ► Cerys no longer requires automation (red) science, as this felt like busywork.
+      ► Cerys no longer require utility (yellow) science, as this presented a large late-game copper demand despite little demand early-game or mid-game.
+      ► Cerys now requires space science, which can be crafted using methane ice instead of ice.
+      ► The Cerys tech tree is now less linear, giving players choice over which science packs to craft and scale.
+      ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
+    - Plutonium changes (some spoilers):
+      ► Particles are deflected from longer distances and evaporate when they come to a stop, nerfing the efficiency of 'trap' designs.
+      ► A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
+    - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
     - Machine quality upgrades no longer require quality chips.
-    - Nitrogen-rich mineral processing is now called 'Mineral leaching' and is simplified to no longer require water.
     - Engine productivity technologies replaced by reactor fuel productivity technologies.
+    - The Overclock module has been removed from the Cerys tech tree to keep it simple, but already-crafted Overclock modules are retained.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Energy consumption of the Fulgoran cryogenic plant very slightly reduced.
