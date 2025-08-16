@@ -303,13 +303,12 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-advanced-structure-repair",
+			"cerys-charging-rod",
 		},
 		unit = {
-			count = 150,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
 			time = 60,
@@ -550,7 +549,6 @@ data:extend({
 			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -567,6 +565,63 @@ data:extend({
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
 			count_formula = "2^(L-1)*50",
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
+})
+
+local engine_productivity_effects = {}
+for _, recipe_name in ipairs({
+	"engine-unit",
+	"electric-engine-unit",
+	"motor",
+	"electric-motor",
+	"vgal-advanced-circuit-electric-engine-unit",
+	"vgal-plastic-bar-electric-engine-unit",
+	"vgal-low-density-structure-engine-unit",
+	"vgal-lubricant-engine-unit",
+	"casting-engine-unit",
+}) do
+	if data.raw.recipe[recipe_name] then
+		table.insert(engine_productivity_effects, {
+			type = "change-recipe-productivity",
+			recipe = recipe_name,
+			change = 0.1,
+		})
+	end
+end
+
+data:extend({
+
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-1",
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
+		effects = engine_productivity_effects,
+		prerequisites = { "cerysian-science-pack" },
+		unit = {
+			count = 30,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-engine-unit-productivity-2",
+		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
+		effects = engine_productivity_effects,
+		prerequisites = { "cerys-engine-unit-productivity-1" },
+		unit = {
+			count_formula = "2^(L-3)*50",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
