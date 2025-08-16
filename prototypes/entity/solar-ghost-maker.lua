@@ -14,24 +14,25 @@ data:extend({
 		corpse = "lightning-rod-remnants",
 		dying_explosion = "medium-electric-pole-explosion",
 		-- icon_draw_specification = { shift = { 0, -0.3 } },
-		collision_box = { { -0.65, -0.65 }, { 0.65, 0.65 } },
-		selection_box = { { -0.9, -1 }, { 0.9, 1 } },
+		collision_box = { { -0.35, -0.35 }, { 0.35, 0.35 } },
+		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
 		damaged_trigger_effect = hit_effects.entity({ { -0.2, -2.2 }, { 0.2, 0.2 } }),
 		fast_replaceable_group = "cerys-solar-ghost-maker",
 		graphics_set = {
 			animation = {
 				layers = {
-					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower", {
+					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower-ghost-variant", {
 						priority = "high",
-						scale = 0.27 * 0.85,
-						line_length = 1,
+						scale = 0.27 * 0.5,
+						multiply_shift = 0.5,
 						repeat_count = 1,
+						-- tint = { 0.8, 1, 0.8, 1 },
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/shadow", {
 						priority = "high",
 						draw_as_shadow = true,
-						scale = 0.27 * 0.85,
-						line_length = 1,
+						scale = 0.27 * 0.5,
+						multiply_shift = 0.5,
 						repeat_count = 1,
 					}),
 				},

@@ -79,11 +79,13 @@ data:extend({
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower", {
 						priority = "high",
 						scale = 0.27 * 0.85,
+						multiply_shift = 0.85,
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/shadow", {
 						priority = "high",
 						draw_as_shadow = true,
 						scale = 0.27 * 0.85,
+						multiply_shift = 0.85,
 					}),
 				},
 			},

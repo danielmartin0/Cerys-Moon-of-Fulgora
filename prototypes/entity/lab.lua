@@ -8,7 +8,6 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 		"cerysian-science-pack",
 		"logistic-science-pack",
 		"space-science-pack",
-		"chemical-science-pack",
 		"cryogenic-science-pack",
 	}, -- Also set elsewhere
 	collision_box = { { -2.15, -1.75 }, { 2.15, 1.75 } },

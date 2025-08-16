@@ -16,9 +16,9 @@ data:extend({
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
-			{ type = "item", name = "iron-gear-wheel", amount = 1 },
-			{ type = "item", name = "iron-plate", amount = 1 },
-			{ type = "item", name = "inserter", amount = 1 },
+			{ type = "item", name = "steel-plate", amount = 2 },
+			{ type = "item", name = "copper-cable", amount = 8 },
+			{ type = "item", name = "advanced-circuit", amount = 4 },
 		},
 		results = { { type = "item", name = "cerys-solar-ghost-maker", amount = 1 } },
 	},
