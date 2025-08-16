@@ -118,7 +118,7 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-charging-rod",
+		name = "cerys-electromagnetic-tooling",
 		unit = {
 			count = 30,
 			ingredients = {
@@ -166,6 +166,7 @@ data:extend({
 			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -188,7 +189,7 @@ data:extend({
 				recipe = "cerys-uranium-238-recycling",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "cerys-reactor-fuel" },
+		prerequisites = { "cerys-reactor-fuel" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
@@ -210,13 +211,14 @@ data:extend({
 				recipe = "cerys-lubricant-synthesis",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "cerys-charging-rod" },
+		prerequisites = { "cerys-advanced-structure-repair", "cerys-electromagnetic-tooling" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 200,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
 			time = 60,
@@ -241,8 +243,7 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-lubricant-synthesis",
-			"cerys-mixed-oxide-waste-reprocessing",
+			"cerys-advanced-structure-repair",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
@@ -303,7 +304,7 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-charging-rod",
+			"cerys-electromagnetic-tooling",
 		},
 		unit = {
 			count = 500,
@@ -356,7 +357,7 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-lubricant-synthesis",
-			"cerys-charging-rod",
+			"cerys-electromagnetic-tooling",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
@@ -364,6 +365,7 @@ data:extend({
 			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
 			time = 60,
@@ -389,7 +391,7 @@ if not is_sandbox_mode then
 
 	data:extend({
 		merge(cargo_drops_base, {
-			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
+			prerequisites = { "cerys-mixed-oxide-reactors" },
 			unit = {
 				count = common.HARD_MODE_ON and 5000 or 1500,
 				ingredients = {
@@ -465,40 +467,47 @@ local discovery_tech = {
 
 data:extend({ discovery_tech })
 
-if settings.startup["cerys-player-constructable-radiative-towers"].value then
-	data:extend({
-		{
-			type = "technology",
-			name = "cerys-radiative-heaters",
-			effects = {
-				{
-					type = "unlock-recipe",
-					recipe = "cerys-radiative-tower",
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-radiative-heaters",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-radiative-tower",
+			},
+			{
+				type = "nothing",
+				recipe = "cerys-radiative-tower",
+				effect_description = {
+					"cerys.mining-radiative-towers",
 				},
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+				icon_size = 64,
 			},
-			prerequisites = {
-				is_sandbox_mode and "cerys-applications-of-radioactivity" or "planetslib-cerys-cargo-drops",
-			},
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
-			icon_size = 200,
-			unit = {
-				count = 2000,
-				ingredients = {
-					{ "cerysian-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "space-science-pack", 1 },
-				},
-				time = 60,
-			},
-			allows_productivity = false,
 		},
-	})
+		prerequisites = {
+			is_sandbox_mode and "cerys-applications-of-radioactivity" or "planetslib-cerys-cargo-drops",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
+		icon_size = 200,
+		unit = {
+			count = 2000,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+})
 
-	if data.raw.tool["cryogenic-science-pack"] then
-		table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
-		if data.raw.technology["cryogenic-science-pack"] then
-			table.insert(data.raw.technology["cerys-radiative-heaters"].prerequisites, "cryogenic-science-pack")
-		end
+if data.raw.tool["cryogenic-science-pack"] then
+	table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
+	if data.raw.technology["cryogenic-science-pack"] then
+		table.insert(data.raw.technology["cerys-radiative-heaters"].prerequisites, "cryogenic-science-pack")
 	end
 end
 

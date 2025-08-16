@@ -275,7 +275,11 @@ function Public.create_towers(surface, area)
 				position = p2,
 				force = "player",
 			})
-			script.raise_script_built({ entity = e })
+
+			local inv = e.get_inventory(defines.inventory.chest)
+			if inv and inv.valid then
+				inv.insert({ name = "iron-stick", count = 1 })
+			end
 
 			if e and e.valid then
 				e.minable_flag = false

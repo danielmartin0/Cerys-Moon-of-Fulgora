@@ -22,11 +22,6 @@ Public.register_radiative_tower_contracted = function(entity)
 		return
 	end
 
-	local inv = entity.get_inventory(defines.inventory.chest)
-	if inv and inv.valid then
-		inv.insert({ name = "iron-stick", count = 1 })
-	end
-
 	local starting_tower_position = {
 		x = entity.position.x,
 		y = entity.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
@@ -105,7 +100,9 @@ Public.register_radiative_tower = function(entity)
 	})
 
 	if base and base.valid then
-		base.minable_flag = false
+		if not common.can_mine_fulgoran_towers(entity.force) then
+			base.minable_flag = false
+		end
 		base.destructible = false
 	end
 
@@ -335,6 +332,7 @@ function Public.unfreeze_tower(tower)
 
 	if tower.base_entity and tower.base_entity.valid then
 		tower.base_entity.destroy()
+
 		local base = e.surface.create_entity({
 			name = "cerys-fulgoran-radiative-tower-base",
 			position = e.position,
@@ -360,7 +358,7 @@ function Public.unfreeze_tower(tower)
 			new_tower.temperature = e.temperature
 		end
 
-		new_tower.minable_flag = false
+		new_tower.minable_flag = e.minable_flag
 		new_tower.destructible = false
 		tower.entity = new_tower
 
@@ -460,7 +458,7 @@ function Public.tick_20_contracted_towers(surface)
 				})
 
 				if e2 and e2.valid then
-					e2.minable_flag = false
+					e2.minable_flag = e.minable_flag
 					e2.destructible = false
 				end
 
@@ -574,7 +572,7 @@ function Public.tick_1_move_radiative_towers()
 				})
 
 				if new_tower and new_tower.valid then
-					new_tower.minable_flag = false
+					new_tower.minable_flag = e.minable_flag
 					new_tower.destructible = false
 				end
 

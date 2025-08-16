@@ -7,7 +7,8 @@ data:extend({
 	{
 		type = "assembling-machine",
 		name = "cerys-solar-ghost-maker",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/solar-ghost-maker.png",
+		icon_size = 128,
 		flags = { "placeable-neutral", "placeable-player", "player-creation" },
 		minable = { mining_time = 0.2, result = "cerys-solar-ghost-maker" },
 		max_health = 80,
@@ -18,6 +19,45 @@ data:extend({
 		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
 		damaged_trigger_effect = hit_effects.entity({ { -0.2, -2.2 }, { 0.2, 0.2 } }),
 		fast_replaceable_group = "cerys-solar-ghost-maker",
+		factoriopedia_simulation = {
+			length = 240,
+			init = [[
+				require("__core__/lualib/story")
+				game.simulation.camera_zoom = 1.8
+				game.simulation.camera_position = {0, -2}
+				game.surfaces[1].create_entity{name = "cerys-solar-ghost-maker", position = {-0.5, -0.5}}
+
+				storage.cerys = {}
+				storage.cerys.solar_wind_particles = {}
+			]],
+			update = [[
+            	for _, particle in pairs(storage.cerys.solar_wind_particles) do
+					local r = particle.rendering
+					local v = particle.velocity
+					local p = { x = r.target.position.x + v.x, y = r.target.position.y + v.y }
+
+                	r.target = p
+            	end
+
+				if game.tick % 60 == 0 then
+					local r = rendering.draw_sprite({
+						sprite = "cerys-solar-wind-particle-ghost",
+						target = { x = 0, y = -3.5 },
+						surface = game.surfaces[1],
+						render_layer = "air-object",
+					})
+
+					local x_velocity = 0.3 + math.random() * 0.1 / 3
+					local y_velocity = 0.2 * (math.random() - 0.5) ^ 3
+
+					table.insert(storage.cerys.solar_wind_particles, {
+						rendering = r,
+						velocity = { x = x_velocity, y = y_velocity },
+					})
+				end
+        	]],
+		},
+		drawing_box_vertical_extension = 3,
 		graphics_set = {
 			animation = {
 				layers = {

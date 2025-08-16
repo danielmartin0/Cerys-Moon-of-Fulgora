@@ -1,26 +1,24 @@
 local common = require("common")
 local common_data = require("common-data-only")
 
-if settings.startup["cerys-player-constructable-radiative-towers"].value then
-	data:extend({
-		{
-			type = "recipe",
-			name = "cerys-radiative-tower",
-			category = "crafting",
-			energy_required = 6,
-			ingredients = {
-				{ type = "item", name = "refined-concrete", amount = 20 },
-				{ type = "item", name = "steel-plate", amount = 20 },
-				{ type = "item", name = "processing-unit", amount = 10 },
-			},
-			results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
-			enabled = false,
-			surface_conditions = {
-				common.AMBIENT_RADIATION_MIN,
-			},
+data:extend({
+	{
+		type = "recipe",
+		name = "cerys-radiative-tower",
+		category = "crafting",
+		energy_required = 6,
+		ingredients = {
+			{ type = "item", name = "refined-concrete", amount = 20 },
+			{ type = "item", name = "steel-plate", amount = 20 },
+			{ type = "item", name = "processing-unit", amount = 10 },
 		},
-	})
-end
+		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
+		enabled = false,
+		surface_conditions = {
+			common.AMBIENT_RADIATION_MIN,
+		},
+	},
+})
 
 if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidden optional dependency on Maraxsis
 	if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
@@ -73,7 +71,7 @@ data:extend({
 		energy_required = 1,
 		ingredients = {
 			{ type = "item", name = "iron-gear-wheel", amount = 1 },
-			{ type = "item", name = "iron-plate", amount = 1 },
+			{ type = "item", name = "uranium-238", amount = 1 },
 			{ type = "item", name = "inserter", amount = 1 },
 		},
 		results = { { type = "item", name = "cerys-radiation-proof-inserter", amount = 1 } },
@@ -137,9 +135,9 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 8 },
-			{ type = "item", name = "processing-unit", amount = 7 },
-			{ type = "item", name = "advanced-circuit", amount = 7 },
-			{ type = "item", name = "plutonium-238", amount = 4 },
+			{ type = "item", name = "processing-unit", amount = 4 },
+			{ type = "item", name = "advanced-circuit", amount = 4 },
+			{ type = "item", name = "superconductor", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,

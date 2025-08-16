@@ -1,7 +1,7 @@
 local Public = {}
 
 Public.DEBUG_DISABLE_FREEZING = false
-Public.DEBUG_HEATERS_FUELED = true
+Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 Public.DEBUG_CHARGING_RODS_FULL = true
 
@@ -140,6 +140,22 @@ function Public.generated_cerys_surface()
 	end
 
 	return surface
+end
+
+function Public.can_mine_fulgoran_towers(force)
+	if not force then
+		return false
+	end
+
+	if not force.technologies["cerys-radiative-heaters"] then
+		return false
+	end
+
+	if not force.technologies["cerys-radiative-heaters"].researched then
+		return false
+	end
+
+	return true
 end
 
 return Public

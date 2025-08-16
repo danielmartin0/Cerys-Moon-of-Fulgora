@@ -22,13 +22,6 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-player-constructable-radiative-towers",
-		setting_type = "startup",
-		default_value = true,
-		order = "e",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-use-fulgora-starmap-graphic",
 		setting_type = "startup",
 		default_value = false,
