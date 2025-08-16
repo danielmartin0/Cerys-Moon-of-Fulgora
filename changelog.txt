@@ -2,15 +2,19 @@
 Version: 3.99.0
 Date: ????
   Info:
-    - v3.99.0 is a minor overhaul of Cerys to make the planet breezier and fun to play.
+    - Version 4.0 is a significant rework of Cerys. It adjusts plutonium generation, the science chain, the module rewards, and overall makes Cerys breezier to play.
   Features:
     - New completion reward: The [Radioactive] module.
   Changes:
-    - Utility science pack removed as this frequently led to a copper bottleneck. The automation science pack has also been removed, as making both red and green together was busywork. Instead, Cerys technologies use a mixture of four science packs — reverse-engineered, logistic, space and chemical — that allow players more flexibility in how they complete the planet.
-    - Pipes and heat pipes removed from nuclear scrap recycling, so fewer filters are needed.
+    - Plutonium rework
+    - Cerysian science is renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
+    - Cerys no longer requires automation (red) science, as this felt like busywork.
+    - Cerys no longer require utility (yellow) science, as this presented a large late-game copper demand despite little demand early-game or mid-game.
+    - Cerys now requires space science, which can be crafted using methane ice instead of ice.
+    - The Cerys tech tree is now less linear, giving players choice over which science packs to craft and scale.
     - Machine quality upgrades no longer require quality chips.
-    - Nitrogen-rich mineral processing is now called 'Mineral leaching' and no longer uses water.
-    - Engine productivity research replaced by reactor fuel productivity research.
+    - Nitrogen-rich mineral processing is now called 'Mineral leaching' and is simplified to no longer require water.
+    - Engine productivity technologies replaced by reactor fuel productivity technologies.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Energy consumption of the Fulgoran cryogenic plant very slightly reduced.

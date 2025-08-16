@@ -47,7 +47,7 @@ Public.built_charging_rod = function(entity, tags)
 			storage.cerys.given_charging_rod_performance_warning = true
 
 			game.print({
-				"[CERYS]: 250 charging rods detected. Please note that each charging rod can affect game performance when a player is on Cerys and solar wind is nearby.",
+				"cerys.charging-rod-performance-warning",
 			}, { color = common.WARN_COLOR })
 		end
 	end
@@ -94,7 +94,7 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_blue_light_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 		else
-			local negative = storage.cerys.charging_rod_is_negative[unit_number]
+			local negative = storage.cerys.charging_rod_is_negative[unit_number] == true
 
 			for _, player in pairs(game.connected_players) do
 				if player.opened == e then
@@ -130,7 +130,7 @@ function Public.tick_12_check_charging_rods()
 			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 
 			local energy_fraction
-			if Public.DEBUG_CHARGING_RODS_FULL then
+			if common.DEBUG_CHARGING_RODS_FULL then
 				energy_fraction = negative and 1 or -1
 			else
 				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
