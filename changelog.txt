@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.99.0
+Version: 3.99.4
 Date: ????
   Info:
     - Version 4.0 is a breaking update to make certain parts of Cerys less frustrating. It reworks plutonium generation, the science chain, and the module rewards.
