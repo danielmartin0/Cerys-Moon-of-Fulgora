@@ -201,6 +201,10 @@ function Public.cerys_tick(surface, tick)
 			space.tick_1_move_solar_wind()
 		end
 
+		if tick % (5 * solar_wind_tick_multiplier) == 0 then
+			space.tick_5_solar_wind_destroy_check()
+		end
+
 		if tick % (8 * solar_wind_tick_multiplier) == 0 then
 			space.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
 		end
