@@ -64,7 +64,7 @@ data:extend({
 		height = 32,
 		flags = { "no-crop" },
 		mipmap_count = 1,
-		scale = 0.58,
+		scale = 0.4,
 		draw_as_glow = true,
 		blend_mode = "additive",
 	},

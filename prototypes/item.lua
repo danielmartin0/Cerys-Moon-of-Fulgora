@@ -2,25 +2,36 @@ local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
 
-if settings.startup["cerys-player-constructable-radiative-towers"].value then
-	data:extend({
-		{
-			type = "item",
-			name = "cerys-radiative-tower",
-			hidden_in_factoriopedia = true,
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
-			icon_size = 200,
-			subgroup = "environmental-protection",
-			order = "z-d[radiative-tower]",
-			default_import_location = "cerys",
-			weight = 100 * 1000,
-			stack_size = 20,
-			place_result = "cerys-radiative-tower",
-		},
-	})
-end
+data:extend({
+	{
+		type = "item",
+		name = "cerys-radiative-tower",
+		hidden_in_factoriopedia = true,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+		icon_size = 200,
+		subgroup = "environmental-protection",
+		order = "z-d[cerys]-b[radiative-tower]",
+		default_import_location = "cerys",
+		weight = 100 * 1000,
+		stack_size = 20,
+		place_result = "cerys-radiative-tower",
+	},
+})
 
 data:extend({
+	{
+		type = "item",
+		name = "cerys-fulgoran-radiative-tower",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+		icon_size = 64,
+		subgroup = "cerys-entities",
+		order = "a",
+		hidden = true,
+		default_import_location = "cerys",
+		weight = 1000 * 1000,
+		stack_size = 10,
+		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
+	},
 	{
 		type = "item",
 		name = "cerys-solar-wind-particle-ghost",
@@ -48,10 +59,10 @@ data:extend({
 	{
 		type = "item",
 		name = "cerys-solar-ghost-maker",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/solar-ghost-maker.png",
 		icon_size = 128,
-		subgroup = "planetary-environment",
-		order = "e",
+		subgroup = "environmental-protection",
+		order = "z-d[cerys]-a[solar-ghost-maker]",
 		inventory_move_sound = item_sounds.electric_small_inventory_move,
 		pick_sound = item_sounds.electric_small_inventory_pickup,
 		drop_sound = item_sounds.electric_small_inventory_move,
@@ -220,7 +231,7 @@ data:extend({
 		type = "item",
 		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
-		icon_size = 128,
+		icon_size = 116,
 		subgroup = "energy",
 		order = "e[accumulator]-z[charging-rod]",
 		inventory_move_sound = item_sounds.electric_small_inventory_move,
@@ -423,20 +434,6 @@ data:extend({
 	-- 	weight = 100 * 1000,
 	-- 	default_import_location = "cerys",
 	-- },
-	{
-		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
-		type = "item",
-		name = "cerys-fulgoran-radiative-tower",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
-		icon_size = 64,
-		subgroup = "cerys-entities",
-		order = "a",
-		hidden = true,
-		default_import_location = "cerys",
-		weight = 1000 * 1000,
-		stack_size = 20,
-		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
-	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
 		type = "item",

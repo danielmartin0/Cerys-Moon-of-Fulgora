@@ -10,7 +10,7 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) *
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
 local ROD_MAX_RANGE_SQUARED = 30 * 30
-local ROD_DEFLECTION_STRENGTH = 8 / 4.5 * 2
+local ROD_DEFLECTION_STRENGTH = 3
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
 local SPEED_THRESHOLD = 0.05

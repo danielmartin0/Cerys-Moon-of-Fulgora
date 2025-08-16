@@ -119,6 +119,22 @@ script.on_event(defines.events.on_research_finished, function(event)
 	elseif research.name == "cerys-nuclear-scrap-recycling" then
 		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
+	elseif research.name == "cerys-radiative-heaters" then
+		if storage.radiative_towers then
+			for unit_number, tower in pairs(storage.radiative_towers.towers or {}) do
+				game.print("processing tower " .. unit_number)
+				if tower.entity and tower.entity.valid then
+					tower.entity.minable_flag = true
+				end
+			end
+
+			for unit_number, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
+				game.print("processing contracted tower " .. unit_number)
+				if tower.entity and tower.entity.valid then
+					tower.entity.minable_flag = true
+				end
+			end
+		end
 	end
 end)
 
