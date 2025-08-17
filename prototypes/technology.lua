@@ -581,7 +581,7 @@ data:extend({
 		effects = holmium_productivity_effects,
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "2^(L-2)*50",
+			count_formula = "2^(L-2)*100",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -639,7 +639,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count_formula = "2^(L-2)*50",
+			count_formula = "2^(L-2)*100",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
