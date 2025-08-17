@@ -147,7 +147,6 @@ data:extend({
 	{
 		type = "module",
 		name = "cerys-metastable-module-decayed",
-		hidden_in_factoriopedia = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
 		icon_size = 64,
 		subgroup = "module",
