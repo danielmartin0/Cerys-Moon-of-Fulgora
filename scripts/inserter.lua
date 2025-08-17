@@ -10,17 +10,17 @@ function Public.register_inserter(entity)
 	}
 	entity.use_filters = true
 	-- Default to metastable-module-1; the periodic logic will correct this on the next evaluation
-	entity.set_filter(1, "cerys-metastable-module-1")
+	entity.set_filter(1, "cerys-metastable-module-decayed")
 end
 
 local function flip_inserter_filter(inserter)
 	inserter.use_filters = true
 
 	local current_filter = inserter.get_filter(1)
-	if current_filter and current_filter.name == "cerys-metastable-module-1" then
-		inserter.set_filter(1, "cerys-metastable-module-2")
+	if current_filter and current_filter.name == "cerys-metastable-module-decayed" then
+		inserter.set_filter(1, "cerys-metastable-module-active")
 	else
-		inserter.set_filter(1, "cerys-metastable-module-1")
+		inserter.set_filter(1, "cerys-metastable-module-decayed")
 	end
 end
 
@@ -84,8 +84,8 @@ function Public.process_inserter(inserter)
 		return
 	end
 
-	local module1 = "cerys-metastable-module-1"
-	local module2 = "cerys-metastable-module-2"
+	local module1 = "cerys-metastable-module-decayed"
+	local module2 = "cerys-metastable-module-active"
 
 	local total_items = inv.get_item_count()
 	local metastable_count = inv.get_item_count(module1) + inv.get_item_count(module2)

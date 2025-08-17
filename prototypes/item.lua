@@ -119,34 +119,7 @@ data:extend({
 	},
 	{
 		type = "module",
-		name = "cerys-metastable-module-1",
-		hidden_in_factoriopedia = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
-		icon_size = 64,
-		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-a[1]",
-		color_hint = { text = "P" },
-		category = "productivity",
-		tier = 4,
-		inventory_move_sound = item_sounds.module_inventory_move,
-		pick_sound = item_sounds.module_inventory_pickup,
-		drop_sound = item_sounds.module_inventory_move,
-		stack_size = 50,
-		weight = 20 * 1000,
-		effect = {
-			productivity = 0.08,
-			consumption = 0.7,
-			pollution = 0.08,
-			speed = -0.12,
-		}, -- Tier 2.5
-		spoil_ticks = 60 * 60, -- 60 seconds
-		spoil_result = "cerys-metastable-module-2",
-		default_import_location = "cerys",
-		factoriopedia_alternative = "cerys-metastable-module-2",
-	},
-	{
-		type = "module",
-		name = "cerys-metastable-module-2",
+		name = "cerys-metastable-module-active",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
 		icon_size = 64,
 		subgroup = "module",
@@ -166,9 +139,37 @@ data:extend({
 			speed = -0.2,
 		},
 		-- DEBUG:
-		-- spoil_ticks = 60 * 5, -- 5 seconds
-		-- spoil_result = "cerys-metastable-module-1",
+		spoil_ticks = 60 * 60, -- 60 seconds
+		spoil_result = "cerys-metastable-module-decayed",
 		default_import_location = "cerys",
+	},
+	{
+		type = "module",
+		name = "cerys-metastable-module-decayed",
+		hidden_in_factoriopedia = true,
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+		icon_size = 64,
+		subgroup = "module",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-a[1]",
+		color_hint = { text = "P" },
+		category = "productivity",
+		tier = 4,
+		inventory_move_sound = item_sounds.module_inventory_move,
+		pick_sound = item_sounds.module_inventory_pickup,
+		drop_sound = item_sounds.module_inventory_move,
+		stack_size = 50,
+		weight = 20 * 1000,
+		effect = {
+			productivity = 0.08,
+			consumption = 0.7,
+			pollution = 0.08,
+			speed = -0.12,
+		}, -- Tier 2.5
+		-- DEBUG:
+		-- spoil_ticks = 60 * 60, -- 60 seconds
+		-- spoil_result = "cerys-metastable-module-active",
+		default_import_location = "cerys",
+		factoriopedia_alternative = "cerys-metastable-module-active",
 	},
 	{
 		type = "tool",

@@ -297,7 +297,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-metastable-module-2",
+				recipe = "cerys-metastable-module-active",
 			},
 			{
 				type = "unlock-recipe",
