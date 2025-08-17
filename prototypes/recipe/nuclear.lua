@@ -128,21 +128,22 @@ data:extend({
 				draw_background = true,
 			},
 		},
-		main_product = "cerys-metastable-module-2",
+		main_product = "cerys-metastable-module-active",
 		ingredients = {
-			{ type = "item", name = "cerys-metastable-module-1", amount = 1 },
+			{ type = "item", name = "cerys-metastable-module-decayed", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 1 },
 		},
-		energy_required = 2,
+		energy_required = 1,
 		results = {
-			{ type = "item", name = "cerys-metastable-module-2", amount = 1 },
+			{ type = "item", name = "cerys-metastable-module-active", amount = 1 },
 		},
 		subgroup = "cerys-processes",
 		order = "q[metastable-module-recharging]",
-		crafting_machine_tint = {
-			primary = { r = 0.384, g = 0.271, b = 1 },
-			secondary = { r = 0.384, g = 0.271, b = 1 },
-		},
+		-- TODO: Add tint
+		-- crafting_machine_tint = {
+		-- 	primary = { r = 0.384, g = 0.271, b = 1 },
+		-- 	secondary = { r = 0.384, g = 0.271, b = 1 },
+		-- },
 		allow_decomposition = false,
 		allow_productivity = false,
 	},
