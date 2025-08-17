@@ -85,7 +85,7 @@ data:extend({
 			type = "void",
 		},
 		energy_usage = "10kW",
-		module_slots = 1,
+		module_slots = 0,
 		open_sound = sounds.inserter_open,
 		close_sound = sounds.inserter_close,
 		allowed_effects = { "speed" },
