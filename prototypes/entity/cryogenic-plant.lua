@@ -333,6 +333,7 @@ local wreck = merge(cryo_plant, {
 		fade_in_ticks = 4,
 		fade_out_ticks = 20,
 	},
+	factoriopedia_alternative = "cerys-fulgoran-cryogenic-plant",
 })
 
 local wreck_frozen = merge(wreck, {

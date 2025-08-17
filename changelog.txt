@@ -2,9 +2,9 @@
 Version: 3.99.4
 Date: ????
   Info:
-    - Version 4.0 is a breaking update to make certain parts of Cerys less frustrating. It reworks plutonium generation, the science chain, and the module rewards.
+    - Version 4.0! This release makes certain parts of Cerys less frustrating to play and increases the strength of the module reward. Unfortunately, BREAKING CHANGES were necessary for plutonium generation and the science chain.
   Features:
-    - New completion reward: The [Radioactive] module.
+    - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium–239 in a centrifuge.
   Changes:
     - Science changes:
       ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.
@@ -20,6 +20,7 @@ Date: ????
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
     - The Overclock module has been removed from the Cerys tech tree, but already-crafted Overclock modules are retained.
   Balancing:
+    - Various recipe rebalancing.
     - Repair costs of Fulgoran cryogenic plants reduced.
   Graphics:
     - New icons for repair recipes.

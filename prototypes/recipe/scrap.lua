@@ -27,7 +27,7 @@ data:extend({
 		},
 		category = "recycling-or-hand-crafting",
 		subgroup = "cerys-processes",
-		order = "a-a",
+		order = "a-b[nuclear-scrap-recycling]",
 		enabled = false,
 		auto_recycle = false,
 		energy_required = 0.38,

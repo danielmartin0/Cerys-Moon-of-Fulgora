@@ -125,6 +125,7 @@ local frozen_reactor = merge(reactor, {
 		},
 	},
 	working_sound = "nil",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 })
 
 local CONTRACTED_MAP_COLOR = { 37, 0, 0 }
@@ -149,6 +150,7 @@ local rising_reactor_base = merge(reactor, {
 	working_sound = "nil",
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	radius_visualisation_specification = "nil",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
@@ -292,6 +294,7 @@ local container = {
 	surface_conditions = {
 		common.AMBIENT_RADIATION_MIN,
 	},
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 }
 
 reactor.fast_replaceable_group = "fulgoran-radiative-tower"
