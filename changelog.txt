@@ -4,7 +4,7 @@ Date: ????
   Info:
     - Version 4.0! This release makes certain parts of Cerys less frustrating to play and increases the strength of the module reward. Unfortunately, BREAKING CHANGES were necessary for plutonium generation and the science chain.
   Features:
-    - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium–239 in a centrifuge.
+    - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge.
   Changes:
     - Science changes:
       ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.

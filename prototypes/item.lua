@@ -139,8 +139,7 @@ data:extend({
 			pollution = 0.08,
 			speed = -0.12,
 		}, -- Tier 2.5
-		-- TODO: replace:
-		spoil_ticks = 60 * 15, -- 45 seconds
+		spoil_ticks = 60 * 60, -- 60 seconds
 		spoil_result = "cerys-metastable-module-2",
 		default_import_location = "cerys",
 		factoriopedia_alternative = "cerys-metastable-module-2",
@@ -166,9 +165,9 @@ data:extend({
 			pollution = 0.14,
 			speed = -0.2,
 		},
-		-- TODO: Remove:
-		spoil_ticks = 60 * 5, -- 5 seconds
-		spoil_result = "cerys-metastable-module-1",
+		-- DEBUG:
+		-- spoil_ticks = 60 * 5, -- 5 seconds
+		-- spoil_result = "cerys-metastable-module-1",
 		default_import_location = "cerys",
 	},
 	{
