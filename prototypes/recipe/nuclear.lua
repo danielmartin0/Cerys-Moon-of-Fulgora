@@ -117,7 +117,7 @@ data:extend({
 		category = "centrifuging",
 		icons = {
 			{
-				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
 				icon_size = 64,
 				draw_background = true,
 				scale = 0.45,
@@ -146,6 +146,8 @@ data:extend({
 		-- },
 		allow_decomposition = false,
 		allow_productivity = false,
+		allow_quality = false,
+		result_is_always_fresh = true,
 	},
 
 	{
