@@ -11,6 +11,7 @@ data:extend({
 		max_health = 160,
 		corpse = "long-handed-inserter-remnants",
 		dying_explosion = "long-handed-inserter-explosion",
+		order = "z-w[cerys]", -- Why do inserter entities also need order?
 		resistances = {
 			{
 				type = "fire",
