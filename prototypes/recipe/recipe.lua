@@ -107,9 +107,6 @@ data:extend({
 		},
 		allow_productivity = true,
 		main_product = "space-science-pack",
-		surface_conditions = {
-			common.AMBIENT_RADIATION_MIN,
-		},
 		category = "fulgoran-cryogenics",
 		subgroup = "science-pack",
 		order = "g[space-science-pack]-b[from-methane-ice]",
