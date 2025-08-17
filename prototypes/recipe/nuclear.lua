@@ -10,8 +10,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "copper-plate", amount = 500 },
-			{ type = "item", name = "processing-unit", amount = 500 },
+			{ type = "item", name = "electric-engine-unit", amount = 50 },
+			{ type = "item", name = "advanced-circuit", amount = 500 },
 			{ type = "item", name = "lithium-plate", amount = 500 },
 		},
 		results = { { type = "item", name = "cerys-mixed-oxide-reactor", amount = 1 } },
@@ -115,8 +115,19 @@ data:extend({
 		enabled = false,
 		auto_recycle = false,
 		category = "centrifuging",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
-		icon_size = 64,
+		icons = {
+			{
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
+				icon_size = 64,
+				draw_background = true,
+				scale = 0.45,
+			},
+			{
+				icon = "__PlanetsLib__/graphics/icons/reprocessing-arrow.png",
+				icon_size = 64,
+				draw_background = true,
+			},
+		},
 		main_product = "cerys-metastable-module-2",
 		ingredients = {
 			{ type = "item", name = "cerys-metastable-module-1", amount = 1 },
@@ -126,8 +137,8 @@ data:extend({
 		results = {
 			{ type = "item", name = "cerys-metastable-module-2", amount = 1 },
 		},
-		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-c[recharging]",
+		subgroup = "cerys-processes",
+		order = "q[metastable-module-recharging]",
 		crafting_machine_tint = {
 			primary = { r = 0.384, g = 0.271, b = 1 },
 			secondary = { r = 0.384, g = 0.271, b = 1 },

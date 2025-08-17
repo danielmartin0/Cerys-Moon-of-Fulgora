@@ -120,7 +120,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-electromagnetic-tooling",
 		unit = {
-			count = 30,
+			count = 50,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "space-science-pack", 1 },
@@ -163,7 +163,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 150,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -193,10 +193,9 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 40,
+			count = 250,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -215,7 +214,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 100,
+			count = 50,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -249,7 +248,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 50,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -277,12 +276,14 @@ data:extend({
 		prerequisites = {
 			"cerys-applications-of-radioactivity",
 			"cerys-reactor-fuel",
+			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 100,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -296,7 +297,11 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-metastable-module-1",
+				recipe = "cerys-metastable-module-2",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-metastable-module-recharging",
 			},
 			{
 				type = "unlock-recipe",
@@ -304,12 +309,13 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-electromagnetic-tooling",
+			"cerysian-science-pack",
 		},
 		unit = {
-			count = 500,
+			count = 250,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 				{ "space-science-pack", 1 },
 			},
 			time = 60,
@@ -393,7 +399,7 @@ if not is_sandbox_mode then
 		merge(cargo_drops_base, {
 			prerequisites = { "cerys-mixed-oxide-reactors" },
 			unit = {
-				count = common.HARD_MODE_ON and 5000 or 1500,
+				count = common.HARD_MODE_ON and 5000 or 1000,
 				ingredients = {
 					{ "cerysian-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
@@ -539,6 +545,7 @@ data:extend({
 			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -555,9 +562,10 @@ data:extend({
 		} },
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count = 25,
+			count = 75,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -573,10 +581,11 @@ data:extend({
 		effects = holmium_productivity_effects,
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count_formula = "2^(L-1)*50",
+			count_formula = "2^(L-2)*50",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -615,7 +624,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 30,
+			count = 10,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -630,7 +639,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count_formula = "2^(L-3)*50",
+			count_formula = "2^(L-2)*50",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -677,7 +686,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 50,
+			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},

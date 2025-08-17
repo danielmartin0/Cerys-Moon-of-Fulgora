@@ -120,6 +120,7 @@ data:extend({
 	{
 		type = "module",
 		name = "cerys-metastable-module-1",
+		hidden_in_factoriopedia = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
 		icon_size = 64,
 		subgroup = "module",
@@ -133,20 +134,20 @@ data:extend({
 		stack_size = 50,
 		weight = 20 * 1000,
 		effect = {
-			productivity = 0.06,
-			consumption = 0.6,
-			pollution = 0.07,
-			speed = -0.1,
-		}, -- Prod module 2 effects
+			productivity = 0.08,
+			consumption = 0.7,
+			pollution = 0.08,
+			speed = -0.12,
+		}, -- Tier 2.5
 		-- TODO: replace:
 		spoil_ticks = 60 * 15, -- 45 seconds
 		spoil_result = "cerys-metastable-module-2",
 		default_import_location = "cerys",
+		factoriopedia_alternative = "cerys-metastable-module-2",
 	},
 	{
 		type = "module",
 		name = "cerys-metastable-module-2",
-		hidden_in_factoriopedia = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
 		icon_size = 64,
 		subgroup = "module",
@@ -165,10 +166,10 @@ data:extend({
 			pollution = 0.14,
 			speed = -0.2,
 		},
+		-- TODO: Remove:
 		spoil_ticks = 60 * 5, -- 5 seconds
 		spoil_result = "cerys-metastable-module-1",
 		default_import_location = "cerys",
-		factoriopedia_alternative = "cerys-metastable-module-1",
 	},
 	{
 		type = "tool",
@@ -320,7 +321,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
 		icon_size = 64,
 		subgroup = "cerys-processes",
-		order = "d-a",
+		order = "a-c[methane-ice]",
 		default_import_location = "cerys",
 	}),
 	merge(data.raw.item["iron-ore"], {
@@ -328,7 +329,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals.png",
 		icon_size = 64,
 		subgroup = "cerys-processes",
-		order = "d-b",
+		order = "a-d[nitrogen-rich-minerals]",
 		pictures = {
 			{
 				size = 64,
@@ -401,7 +402,7 @@ data:extend({
 			},
 		},
 		subgroup = "cerys-processes",
-		order = "a-c",
+		order = "a-a[nuclear-scrap]",
 		inventory_move_sound = item_sounds.resource_inventory_move,
 		pick_sound = item_sounds.resource_inventory_pickup,
 		drop_sound = item_sounds.resource_inventory_move,

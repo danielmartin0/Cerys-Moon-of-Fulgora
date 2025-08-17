@@ -102,6 +102,7 @@ local teleporter_frozen = merge(teleporter, {
 			},
 		},
 	},
+	factoriopedia_alternative = "cerys-fulgoran-teleporter",
 })
 
 data:extend({

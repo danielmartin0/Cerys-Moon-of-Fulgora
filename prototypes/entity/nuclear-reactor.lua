@@ -197,6 +197,7 @@ local reactor_wreck_base = {
 	},
 	selection_box = { { -16, -11 }, { 16, 11 } },
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
+	factoriopedia_alternative = "cerys-fulgoran-reactor",
 }
 
 local reactor_wreck = merge(reactor_wreck_base, {
