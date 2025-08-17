@@ -111,8 +111,8 @@ data:extend({
 			common.AMBIENT_RADIATION_MIN,
 		},
 		category = "fulgoran-cryogenics",
-		subgroup = "cerys-processes",
-		order = "b-b",
+		subgroup = "science-pack",
+		order = "g[space-science-pack]-b[from-methane-ice]",
 	},
 	{
 		type = "recipe",
