@@ -45,6 +45,7 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["pipe"] = 1.7, -- Initial pipes and extra initial iron.
 	["transport-belt"] = 1.4, -- Belt cubes and distance transport, initial iron.
 	["holmium-plate"] = 1, -- 2.5 would be matching fulgora
+	["heat-pipe"] = 0.3, -- per each: 2.5 steel plate, 5 copper plate
 	["steam-turbine"] = 0.17, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
 	["centrifuge"] = 0.17, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
 	["uranium-235"] = 4 * U235_RATIO,
