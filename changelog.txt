@@ -1,18 +1,14 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.0.3
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 4.0.0-4.0.2
 Date: 2025-08-18
   Info:
-    - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, and allows the player to blast a hole in the Cerys magnetosphere.
-    - Unfortunately, two significant BREAKING CHANGES were required: Plutonium farms, science chain.
+    - 4.0 release! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, and allows the player to blast a hole in the Cerys magnetosphere.
+    - Unfortunately, significant BREAKING CHANGES were required to plutonium farms and the science chain.
   Features:
     - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radiation-proof inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
   Changes:
     - Tech tree changes:
-      ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.
+      ► The Cerys tech tree is now less linear, giving players much greater choice over which research to pursue next.
       ► Cerys technologies no longer requires automation (red) or utility (yellow) science. Instead they sometimes require space science, which can now be crafted on Cerys using methane ice.
       ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
     - Plutonium generation changes:
@@ -30,7 +26,7 @@ Date: 2025-08-18
   Graphics:
     - New icons for repair recipes.
   Sounds:
-    - Switched a music track.
+    - Switched a track on the custom soundtrack.
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.3-3.8.4
 Date: 2025-08-09
