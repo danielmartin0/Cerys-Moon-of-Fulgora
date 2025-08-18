@@ -3,6 +3,7 @@ local Public = {}
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
+Public.DEBUG_CHARGING_RODS_FULL = false
 
 Public.GRAVITY_MIN = {
 	property = "gravity",
@@ -36,9 +37,9 @@ Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 -- Public.LAMP_COUNT = 17
 Public.LAMP_COUNT = 30 -- Accounting for quality
 Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
-Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 60
-Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 250 or 150 -- Having more than two distinct values is a bad idea
-Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 40
+Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 50
+Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 240 or 120 -- Having more than two distinct values is a bad idea
+Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 30
 Public.REACTOR_CONCRETE_TO_EXCAVATE = 5000
 
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
@@ -55,6 +56,8 @@ Public.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_PLAYER = 13
 Public.MAX_HEATING_RADIUS = 30
 
 Public.DEFAULT_FULGORA_IMAGE_SIZE = 2048
+
+Public.FULGORAN_TOWER_MINING_TECH_NAME = "cerys-radiative-heaters"
 
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",
@@ -83,6 +86,8 @@ Public.KNOWN_GAS_NAMES = {
 	"methane",
 	"petroleum-gas",
 	"fusion-plasma",
+	"oxygen",
+	"hydrogen",
 }
 
 Public.SOFTBANNED_RESOURCES = {
@@ -115,6 +120,60 @@ end
 
 function Public.get_cerys_semimajor_axis(cerys_surface)
 	return Public.CERYS_RADIUS * Public.get_cerys_surface_stretch_factor(cerys_surface)
+end
+
+function Public.generated_cerys_surface()
+	local surface = game.surfaces["cerys"]
+	if not (surface and surface.valid) then
+		return false
+	end
+
+	local some_chunk_generated = false
+
+	for chunk in surface.get_chunks() do
+		if surface.is_chunk_generated(chunk) then
+			some_chunk_generated = true
+			break
+		end
+	end
+
+	if not some_chunk_generated then
+		return false
+	end
+
+	return surface
+end
+
+function Public.can_mine_fulgoran_towers(force)
+	if not force then
+		return false
+	end
+
+	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME] then
+		return false
+	end
+
+	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME].researched then
+		return false
+	end
+
+	return true
+end
+
+function Public.make_radiative_towers_minable()
+	if storage.radiative_towers then
+		for _, tower in pairs(storage.radiative_towers.towers or {}) do
+			if tower.entity and tower.entity.valid and not tower.is_player_tower then
+				tower.entity.minable_flag = true
+			end
+		end
+
+		for _, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
+			if tower.entity and tower.entity.valid then
+				tower.entity.minable_flag = true
+			end
+		end
+	end
 end
 
 return Public

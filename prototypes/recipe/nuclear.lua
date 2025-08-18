@@ -10,8 +10,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "copper-plate", amount = 500 },
-			{ type = "item", name = "processing-unit", amount = 500 },
+			{ type = "item", name = "electric-engine-unit", amount = 50 },
+			{ type = "item", name = "advanced-circuit", amount = 500 },
 			{ type = "item", name = "lithium-plate", amount = 500 },
 		},
 		results = { { type = "item", name = "cerys-mixed-oxide-reactor", amount = 1 } },
@@ -28,8 +28,8 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 5 },
 			{ type = "item", name = "uranium-235", amount = 1 },
-			{ type = "item", name = "uranium-238", amount = 10 },
-			{ type = "item", name = "plutonium-239", amount = 9 },
+			{ type = "item", name = "uranium-238", amount = 9 },
+			{ type = "item", name = "plutonium-239", amount = 10 },
 		},
 		results = { { type = "item", name = "mixed-oxide-fuel-cell", amount = 1 } },
 		allow_productivity = true,
@@ -106,6 +106,48 @@ data:extend({
 		},
 		allow_decomposition = false,
 		allow_productivity = true,
+	},
+
+	{
+		type = "recipe",
+		name = "cerys-metastable-module-recharging",
+		always_show_made_in = true,
+		enabled = false,
+		auto_recycle = false,
+		category = "centrifuging",
+		icons = {
+			{
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module-decayed.png",
+				icon_size = 64,
+				draw_background = true,
+				scale = 0.45,
+			},
+			{
+				icon = "__PlanetsLib__/graphics/icons/reprocessing-arrow.png",
+				icon_size = 64,
+				draw_background = true,
+			},
+		},
+		main_product = "cerys-metastable-module-charged",
+		ingredients = {
+			{ type = "item", name = "cerys-metastable-module-decayed", amount = 1 },
+			{ type = "item", name = "plutonium-239", amount = 1 },
+		},
+		energy_required = 2,
+		results = {
+			{ type = "item", name = "cerys-metastable-module-charged", amount = 1 },
+		},
+		subgroup = "cerys-processes",
+		order = "q[metastable-module-recharging]",
+		-- TODO: Add tint
+		-- crafting_machine_tint = {
+		-- 	primary = { r = 0.384, g = 0.271, b = 1 },
+		-- 	secondary = { r = 0.384, g = 0.271, b = 1 },
+		-- },
+		allow_decomposition = false,
+		allow_productivity = false,
+		allow_quality = false,
+		result_is_always_fresh = true,
 	},
 
 	{

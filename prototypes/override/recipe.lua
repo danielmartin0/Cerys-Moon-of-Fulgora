@@ -1,3 +1,4 @@
+local util = require("util")
 local lib = require("lib")
 local merge = lib.merge
 
@@ -73,4 +74,25 @@ if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 			end
 		end
 	end
+end
+
+--== Adjust decayed metastable module recycling ==--
+
+local decayed_recycling = data.raw.recipe["cerys-metastable-module-decayed-recycling"]
+local charged_recycling = data.raw.recipe["cerys-metastable-module-charged-recycling"]
+
+if decayed_recycling and charged_recycling then
+	local new_decayed_recycling = util.table.deepcopy(charged_recycling)
+	for _, result in pairs(new_decayed_recycling.results) do
+		if result.name == "cerys-metastable-module-charged" then
+			result.name = "cerys-metastable-module-decayed"
+		end
+	end
+	for _, ingredient in pairs(new_decayed_recycling.ingredients) do
+		if ingredient.name == "cerys-metastable-module-charged" then
+			ingredient.name = "cerys-metastable-module-decayed"
+		end
+	end
+	decayed_recycling.ingredients = new_decayed_recycling.ingredients
+	decayed_recycling.results = new_decayed_recycling.results
 end

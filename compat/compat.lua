@@ -16,10 +16,9 @@ end
 
 -- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs intentionally, that is fine.
 data.raw.lab["cerys-lab"].inputs = {
-	"automation-science-pack",
-	"logistic-science-pack",
 	"cerysian-science-pack",
-	"utility-science-pack",
+	"logistic-science-pack",
+	"space-science-pack",
 	"cryogenic-science-pack",
 }
 

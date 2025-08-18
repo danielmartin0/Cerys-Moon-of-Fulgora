@@ -11,7 +11,7 @@ data:extend({
 		name = "cerys-charging-rod",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 128,
-		flags = { "placeable-neutral", "player-creation" },
+		flags = { "placeable-neutral", "placeable-player", "player-creation" },
 		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
 		max_health = 200,
 		corpse = "lightning-rod-remnants",
@@ -47,9 +47,9 @@ data:extend({
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
-			buffer_capacity = "12MJ",
-			input_flow_limit = "4MW",
-			output_flow_limit = "500kW",
+			buffer_capacity = "18MJ",
+			input_flow_limit = "6MW",
+			output_flow_limit = "750kW",
 		},
 		chargable_graphics = merge(data.raw["lightning-attractor"]["lightning-rod"].chargable_graphics, {
 			discharge_animation = {
@@ -79,11 +79,13 @@ data:extend({
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower", {
 						priority = "high",
 						scale = 0.27 * 0.85,
+						multiply_shift = 0.85,
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/shadow", {
 						priority = "high",
 						draw_as_shadow = true,
 						scale = 0.27 * 0.85,
+						multiply_shift = 0.85,
 					}),
 				},
 			},

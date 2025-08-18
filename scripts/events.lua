@@ -16,6 +16,7 @@ local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
+local inserter = require("scripts.inserter")
 
 local Public = {}
 
@@ -77,7 +78,13 @@ script.on_event({
 		lighting.register_solar_panel(entity)
 	elseif entity.name == "cerys-lab" then
 		entity.backer_name = ""
+	elseif entity.name == "cerys-radiation-proof-inserter" then
+		inserter.register_inserter(entity)
 	end
+end)
+
+script.on_event(defines.events.on_player_flipped_entity, function(event)
+	inserter.on_inserter_flipped(event.entity)
 end)
 
 script.on_event(defines.events.on_pre_build, function(event)
@@ -108,6 +115,8 @@ script.on_event(defines.events.on_research_finished, function(event)
 	elseif research.name == "cerys-nuclear-scrap-recycling" then
 		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
+	elseif research.name == common.FULGORAN_TOWER_MINING_TECH_NAME then
+		common.make_radiative_towers_minable()
 	end
 end)
 
@@ -131,6 +140,10 @@ script.on_event(defines.events.on_tick, function(event)
 
 	if tick % radiative_towers.TOWER_TEMPERATURE_TICK_INTERVAL == 0 then
 		radiative_towers.radiative_heaters_temperature_tick()
+	end
+
+	if tick % 25 == 0 then
+		inserter.tick_inserters()
 	end
 
 	local surface
@@ -190,6 +203,10 @@ function Public.cerys_tick(surface, tick)
 			space.tick_1_move_solar_wind()
 		end
 
+		if tick % (5 * solar_wind_tick_multiplier) == 0 then
+			space.tick_5_solar_wind_destroy_check()
+		end
+
 		if tick % (8 * solar_wind_tick_multiplier) == 0 then
 			space.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
 		end
@@ -235,7 +252,7 @@ function Public.cerys_tick(surface, tick)
 	if tick % 60 == 0 then
 		space.try_spawn_asteroid(surface)
 		cooling.tick_60_cool_heat_entities()
-		Public.check_thankyou_toast(surface)
+		Public.check_rocket_timed_effects(surface)
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
@@ -251,24 +268,41 @@ end
 script.on_event(defines.events.on_script_trigger_effect, function(event)
 	local effect_id = event.effect_id
 
-	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
-		local entity = event.target_entity
+	local entity = event.target_entity
+	if not (entity and entity.valid) then
+		return
+	end
 
-		if not (entity and entity.valid) then
+	if effect_id == "cerys-fulgoran-radiative-tower-contracted-container" then
+		radiative_towers.register_radiative_tower_contracted(entity)
+	elseif effect_id == "cerys-fulgoran-crusher-created" then
+		crusher.register_crusher(entity)
+	elseif effect_id == "cerys-player-radiative-tower-created" then
+		radiative_towers.register_player_radiative_tower(entity)
+	elseif effect_id == "cerys-create-solar-wind-particle-ghost" then
+		local p = entity.position
+		local surface = entity.surface
+
+		local p2 = { x = p.x, y = p.y - 3 }
+
+		if not (surface and surface.valid and surface.name == "cerys") then
 			return
 		end
 
-		radiative_towers.register_radiative_tower_contracted(entity)
-	elseif effect_id == "cerys-fulgoran-crusher-created" then
-		local entity = event.target_entity
-		if entity and entity.valid then
-			crusher.register_crusher(entity)
-		end
-	elseif effect_id == "cerys-player-radiative-tower-created" then
-		local entity = event.target_entity
-		if entity and entity.valid then
-			radiative_towers.register_player_radiative_tower(entity)
-		end
+		local r = rendering.draw_sprite({
+			sprite = "cerys-solar-wind-particle-ghost",
+			target = p2,
+			surface = surface,
+			render_layer = "air-object",
+		})
+
+		table.insert(storage.cerys.solar_wind_particles, {
+			rendering = r,
+			age = 0,
+			velocity = space.initial_solar_wind_velocity(),
+			position = p2,
+			is_ghost = true,
+		})
 	end
 end)
 
@@ -348,7 +382,7 @@ script.on_configuration_changed(function()
 	picker_dollies.add_picker_dollies_blacklists()
 end)
 
-function Public.check_thankyou_toast(surface)
+function Public.check_rocket_timed_effects(surface)
 	if storage.thankyou_message_timer and game.tick >= storage.thankyou_message_timer then
 		storage.thankyou_message_timer = nil
 
@@ -363,36 +397,72 @@ function Public.check_thankyou_toast(surface)
 			"[/font]",
 		}, { color = { 164, 135, 255 } })
 	end
+
+	if storage.atmospheric_nuke_timer and game.tick >= storage.atmospheric_nuke_timer then
+		storage.atmospheric_nuke_timer = nil
+
+		surface.create_entity({
+			name = "cerys-atmospheric-nuke-effect",
+			position = { x = 0, y = 0 },
+			force = "neutral",
+		})
+
+		for _, player in pairs(game.connected_players) do
+			if
+				player
+				and player.valid
+				and player.surface
+				and player.surface.valid
+				and player.surface.name == "cerys"
+			then
+				player.play_sound({
+					path = "cerys-atmospheric-nuke",
+					volume_modifier = 1,
+				})
+			end
+		end
+	end
 end
 
 script.on_event(defines.events.on_rocket_launch_ordered, function(event)
-	if storage.thankyou_message_triggered then
+	local rocket = event.rocket
+	if not (rocket and rocket.valid) then
 		return
 	end
 
-	if
-		not (
-			event.rocket
-			and event.rocket.valid
-			and event.rocket.name ~= "planet-hopper"
-			and event.rocket.surface
-			and event.rocket.surface.valid
-			and event.rocket.surface.name == "cerys"
-			and event.rocket.cargo_pod
-			and event.rocket.cargo_pod.valid
-			and event.rocket.cargo_pod.get_passenger()
-		)
-	then
+	local surface = rocket.surface
+	if not (surface and surface.valid and surface.name == "cerys") then
 		return
 	end
 
-	local player = event.rocket.cargo_pod.get_passenger().player
-	if not (player and player.valid) then
+	local cargo_pod = event.rocket.cargo_pod
+	if not (cargo_pod and cargo_pod.valid) then
 		return
 	end
 
-	storage.thankyou_message_triggered = true
-	storage.thankyou_message_timer = game.tick + 5 * 60
+	if not storage.thankyou_message_triggered then
+		local passenger = cargo_pod.get_passenger()
+
+		if rocket.name ~= "planet-hopper" and passenger and passenger.player and passenger.player.valid then
+			storage.thankyou_message_triggered = true
+			storage.thankyou_message_timer = game.tick + 5 * 60
+		end
+	end
+
+	if not storage.atmospheric_nuke_timer then
+		local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
+
+		local has_hydrogen_bomb = false
+		for _, item in pairs(pod_contents) do
+			if item.name == "cerys-hydrogen-bomb" then
+				has_hydrogen_bomb = true
+			end
+		end
+
+		if has_hydrogen_bomb then
+			storage.atmospheric_nuke_timer = game.tick + 22 * 60
+		end
+	end
 end)
 
 local function unresearch_successors(tech)
@@ -494,6 +564,8 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
 	then
 		rods.on_gui_opened(event)
+	elseif entity.name == "cerys-radiation-proof-inserter" then
+		inserter.on_inserter_gui_opened(player)
 	end
 end)
 

@@ -1,6 +1,6 @@
 local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
-	local fulgoran_ruin_mining_time = 0.3 * collision_area ^ 0.75
+	local fulgoran_ruin_mining_time = 0.25 * collision_area ^ 0.75
 
 	local results = {
 		mining_particle = "stone-particle",
@@ -27,12 +27,12 @@ local function ruin_minable_results(collision_area)
 		},
 	}
 
-	if collision_area >= 8 then
+	if collision_area >= 10 then
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
-			amount_min = math.ceil(collision_area / 8),
-			amount_max = math.ceil(collision_area / 8),
+			amount_min = math.ceil(collision_area / 10),
+			amount_max = math.ceil(collision_area / 10),
 		})
 	else
 		table.insert(results.results, {
@@ -58,18 +58,18 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 18 then
+	if collision_area >= 30 then
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
-			amount = math.floor(collision_area / 18),
+			amount = math.floor(collision_area / 30),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			probability = collision_area / 18,
+			probability = collision_area / 30,
 		})
 	end
 

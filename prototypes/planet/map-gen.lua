@@ -241,7 +241,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
-		expression = "21 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
+		expression = "15 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
@@ -256,12 +256,12 @@ data:extend({
 		expression = "((radius / \z
 			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
 			(cerys_y_surface + 18)^2)^(1/2)) - 1)^3 \z
-			+ (0.22 * radius / \z
-			((cerys_x_surface - 8)^2 + \z
-			(cerys_y_surface - 64)^2)^(1/2)) \z
-			+ (0.22 * radius / \z
+			+ ((radius / \z
+			((cerys_x_surface + 1)^2 + \z
+			(cerys_y_surface - 64)^2)^(1/2)) - 1)^3 \z
+			+ ((radius / \z
 			((cerys_x_surface + 8)^2 + \z
-			(cerys_y_surface + 64)^2)^(1/2)) \z
+			(cerys_y_surface + 64)^2)^(1/2)) - 1)^3 \z
 			- 0.2",
 	}, -- Main patch is on the left to encourage the player to start far from the final zone. The others are hint patches.
 

@@ -1,3 +1,5 @@
+local sounds = require("__base__.prototypes.entity.sounds")
+
 local function sound_variations_with_volume_variations(
 	filename_string,
 	variations,
@@ -224,6 +226,38 @@ data:extend({
 				},
 			},
 			usage = "explosion",
+		},
+	},
+	{
+		type = "explosion",
+		name = "cerys-atmospheric-nuke-effect",
+		flags = { "not-on-map" },
+		hidden = true,
+		icons = {
+			{ icon = "__base__/graphics/icons/explosion.png" },
+			{ icon = "__base__/graphics/icons/atomic-bomb.png" },
+		},
+		order = "cerys",
+		subgroup = "explosions",
+		height = 0,
+		animations = util.empty_sprite(),
+		created_effect = {
+			type = "direct",
+			action_delivery = {
+				type = "instant",
+				target_effects = {
+					{
+						type = "camera-effect",
+						duration = 255,
+						ease_in_duration = 5,
+						ease_out_duration = 255,
+						delay = 0,
+						strength = 20,
+						full_strength_max_distance = 2500,
+						max_distance = 2000,
+					},
+				},
+			},
 		},
 	},
 })

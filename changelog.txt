@@ -1,7 +1,30 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.8.5
+Version: 4.0.0
 Date: ????
+  Info:
+    - Version 4.0! These extensive changes reduce grind and frustration on Cerys, plus add a Tier 4 prod module reward with a twist. BREAKING CHANGES: plutonium farms, science chain.
+  Features:
+    - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge.
   Changes:
+    - Plutonium generation changes:
+      ► Charged particles now evaporate when they come to a stop.
+      ► Charged particle deflection now occurs over longer distances.
+      ► A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
+    - Tech tree changes:
+      ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.
+      ► Cerys technologies no longer requires automation (red) or utility (yellow) science. Instead they sometimes require space science, which can now be crafted on Cerys using methane ice.
+      ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
+    - The final Cerys technology now allows the player to mine the Fulgoran radiative towers on Cerys.
+    - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
+    - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
+    - The Overclock module has been removed from the Cerys tech tree because it wouldn't have been added if the Metastable module was in place. Already-crafted Overclock modules are retained.
+  Balancing:
+    - Repair costs of Fulgoran cryogenic plants reduced.
+    - Charging rods store +50% energy, but appear less frequently in ruins.
+  Graphics:
+    - New icons for repair recipes.
+  Sounds:
+    - Switched a music track.
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.3-3.8.4
 Date: 2025-08-09
@@ -1432,8 +1455,9 @@ Date: 2025-02-25
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2025-02-23
-  Info:
+  Features:
     - Version 2.0! Headline features: Smaller moon surface, dynamic lighting, reduced gameplay grind, player-constructable radiative heaters.
+  Info:
     - Two breaking changes: 1) Cerysian science packs now require repair parts instead of ammonia. 2) Concrete sitting on water will explode when the save loads, as this is how Cerys water now works.
   Changes:
     - Concrete can now only be placed over Cerys water if the water is frozen.
@@ -2056,9 +2080,9 @@ Date: 2025-01-20
 Version: 1.0.0
 Date: 2025-01-20
   Features:
-    - Planet reward: Hydrogen bomb, a powerful upgrade of the Atomic bomb.
-    - Planet reward: Neutron bomb, an artillery shell that releases a scattering cloud of neutrons.
-    - Planet reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
+    - New completion reward: Hydrogen bomb, a powerful upgrade of the Atomic bomb.
+    - New completion reward: Neutron bomb, an artillery shell that releases a scattering cloud of neutrons.
+    - New completion reward: Mixed-oxide nuclear reactor, usable outside of Cerys.
   Graphics:
     - Brand new graphics for the charging rod.
   Changes:

@@ -1,58 +1,8 @@
-local common_data = require("common-data-only")
 local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
 
 data:extend({
-	{
-		type = "technology",
-		name = "cerys-speed-module-three",
-		localised_description = { "technology-description.speed-module" },
-		icon = "__base__/graphics/technology/speed-module-3.png",
-		icon_size = 256,
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-speed-module-3-from-nitric-acid",
-			},
-		},
-		prerequisites = { "cerysian-science-pack", "speed-module-2" },
-		unit = {
-			count = 50,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
-		name = "cerys-overclock-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
-		icon_size = 1024,
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-overclock-module",
-			},
-		},
-		prerequisites = {
-			"cerys-speed-module-three",
-			"speed-module-2",
-		},
-		unit = {
-			count = 200,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
 	{
 		type = "technology",
 		name = "cerys-nitrogen-rich-mineral-processing",
@@ -101,15 +51,60 @@ data:extend({
 	},
 	{
 		type = "technology",
+		name = "cerys-fulgoran-cryogenics",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "methane-ice-dissociation",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-space-science-pack-from-methane-ice",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-nitric-acid",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-processing-units-from-nitric-acid",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "superconductor",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "ammonia-rocket-fuel",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "lithium",
+			},
+		},
+		prerequisites = { "cerys-nuclear-scrap-recycling" },
+		unit = {
+			count = 10,
+			ingredients = {
+				{ "fulgoran-cryogenics-progress", 1 },
+			},
+			time = 60,
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
+		icon_size = 256,
+		allows_productivity = false,
+	},
+	{
+		type = "technology",
 		name = "cerysian-science-pack",
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerysian-science-pack",
+				recipe = "cerys-lab",
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-lab",
+				recipe = "cerysian-science-pack",
 			},
 		},
 		prerequisites = { "cerys-fulgoran-cryogenics", "cerys-nitrogen-rich-mineral-processing" },
@@ -123,11 +118,12 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-charging-rod",
+		name = "cerys-electromagnetic-tooling",
 		unit = {
-			count = 75,
+			count = 50,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -135,6 +131,10 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "cerys-charging-rod",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-solar-ghost-maker",
 			},
 		},
 		prerequisites = { "cerysian-science-pack" },
@@ -163,10 +163,10 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 250,
+			count = 100,
 			ingredients = {
-				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -189,14 +189,12 @@ data:extend({
 				recipe = "cerys-uranium-238-recycling",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair" },
+		prerequisites = { "cerys-reactor-fuel" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 125,
 			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
 			},
 			time = 60,
@@ -212,15 +210,15 @@ data:extend({
 				recipe = "cerys-lubricant-synthesis",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair" },
+		prerequisites = { "cerys-advanced-structure-repair", "cerys-electromagnetic-tooling" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 150,
+			count = 50,
 			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -242,6 +240,30 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "plutonium-fuel",
 			},
+		},
+		prerequisites = {
+			"cerys-advanced-structure-repair",
+		},
+		icons = util.technology_icon_constant_equipment(
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
+		),
+		unit = {
+			count = 75,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	{
+		type = "technology",
+		name = "cerys-mixed-oxide-reactors",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-reactor.png"
+		),
+		effects = {
 			{
 				type = "unlock-recipe",
 				recipe = "cerys-mixed-oxide-reactor",
@@ -252,24 +274,79 @@ data:extend({
 			},
 		},
 		prerequisites = {
+			"cerys-reactor-fuel",
 			"cerys-lubricant-synthesis",
-			"cerys-mixed-oxide-waste-reprocessing",
 		},
-		icons = util.technology_icon_constant_equipment(
-			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
-		),
 		unit = {
-			count = 80,
+			count = 750,
 			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
 		allows_productivity = false,
 	},
+	{
+		type = "technology",
+		name = "cerys-metastable-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/metastable-module.png",
+		icon_size = 1024,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-metastable-module-charged",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-metastable-module-recharging",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-radiation-proof-inserter",
+			},
+		},
+		prerequisites = {
+			"cerysian-science-pack",
+		},
+		unit = {
+			count = 200,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	-- {
+	-- 	type = "technology",
+	-- 	name = "cerys-overclock-module",
+	-- 	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
+	-- 	icon_size = 1024,
+	-- 	effects = {
+	-- 		{
+	-- 			type = "unlock-recipe",
+	-- 			recipe = "cerys-overclock-module",
+	-- 		},
+	-- 	},
+	-- 	prerequisites = {
+	-- 		"cerysian-science-pack",
+	-- 	},
+	-- 	unit = {
+	-- 		count = 150,
+	-- 		ingredients = {
+	-- 			{ "cerysian-science-pack", 1 },
+	-- 			{ "logistic-science-pack", 1 },
+	-- 			{ "chemical-science-pack", 1 },
+	-- 			{ "space-science-pack", 1 },
+	-- 		},
+	-- 		time = 60,
+	-- 	},
+	-- 	allows_productivity = false,
+	-- },
 	{
 		type = "technology",
 		name = "cerys-plutonium-weaponry",
@@ -284,24 +361,25 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-applications-of-radioactivity",
-			"atomic-bomb",
+			"cerys-lubricant-synthesis",
+			"cerys-electromagnetic-tooling",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 600,
+			count = 300,
 			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
 		allows_productivity = false,
 	},
 })
+
+local CARGO_DROPS_PREREQS = { "cerys-plutonium-weaponry" }
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
@@ -320,18 +398,17 @@ if not is_sandbox_mode then
 
 	data:extend({
 		merge(cargo_drops_base, {
-			prerequisites = { "cerys-applications-of-radioactivity" }, -- Should be on the bottom row
-			unit = {
-				count = common.HARD_MODE_ON and 3000 or 1000,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerysian-science-pack", 1 },
-					{ "utility-science-pack", 1 },
-				},
-				time = 60,
+			prerequisites = CARGO_DROPS_PREREQS,
+			research_trigger = {
+				type = "send-item-to-orbit",
+				item = "cerys-hydrogen-bomb",
 			},
-			allows_productivity = false,
+			localised_name = {
+				"cerys.cargo-drops-tech-name",
+			},
+			localised_description = {
+				"cerys.cargo-drops-tech-description",
+			},
 		}),
 	})
 end
@@ -397,128 +474,131 @@ local discovery_tech = {
 
 data:extend({ discovery_tech })
 
-local cryogenics_tech = {
-	type = "technology",
-	name = "cerys-fulgoran-cryogenics",
-	effects = {
-		{
-			type = "unlock-recipe",
-			recipe = "methane-ice-dissociation",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "superconductor",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "ammonia-rocket-fuel",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "cerys-nitric-acid",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "cerys-processing-units-from-nitric-acid",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "lithium",
-		},
-		{
-			type = "unlock-recipe",
-			recipe = "mixed-oxide-fuel-cell",
-		},
-	},
-	prerequisites = { "cerys-nuclear-scrap-recycling" },
-	unit = {
-		count = 10,
-		ingredients = {
-			{ "fulgoran-cryogenics-progress", 1 },
-		},
-		time = 60,
-	},
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
-	icon_size = 256,
-	allows_productivity = false,
-}
-
--- if settings.startup["cerys-technology-compatibility-mode"].value then
--- 	cryogenics_tech.unit = nil
--- 	cryogenics_tech.research_trigger = {
--- 		type = "craft-item",
--- 		item = "ancient-structure-repair-part",
--- 		count = common.FIRST_CRYO_REPAIR_RECIPES_NEEDED,
--- 	}
--- end
-
-data:extend({ cryogenics_tech })
-
-if settings.startup["cerys-player-constructable-radiative-towers"].value then
-	data:extend({
-		{
-			type = "technology",
-			name = "cerys-radiative-heaters",
-			effects = {
-				{
-					type = "unlock-recipe",
-					recipe = "cerys-radiative-tower",
+data:extend({
+	{
+		type = "technology",
+		name = common.FULGORAN_TOWER_MINING_TECH_NAME,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-radiative-tower",
+			},
+			{
+				type = "nothing",
+				recipe = "cerys-radiative-tower",
+				effect_description = {
+					"cerys.mining-radiative-towers",
 				},
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-tower.png",
+				icon_size = 64,
 			},
-			prerequisites = {
-				is_sandbox_mode and "cerys-applications-of-radioactivity" or "planetslib-cerys-cargo-drops",
-			},
-			icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
-			icon_size = 200,
-			unit = {
-				count = 2000,
-				ingredients = {
-					{ "automation-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "cerysian-science-pack", 1 },
-					{ "utility-science-pack", 1 },
-				},
-				time = 60,
-			},
-			allows_productivity = false,
 		},
-	})
+		prerequisites = is_sandbox_mode and CARGO_DROPS_PREREQS or {
+			"planetslib-cerys-cargo-drops",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
+		icon_size = 200,
+		unit = {
+			count = 2000,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+})
 
-	if data.raw.tool["cryogenic-science-pack"] then
-		table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
-		if data.raw.technology["cryogenic-science-pack"] then
-			table.insert(data.raw.technology["cerys-radiative-heaters"].prerequisites, "cryogenic-science-pack")
-		end
+if data.raw.tool["cryogenic-science-pack"] then
+	table.insert(
+		data.raw.technology[common.FULGORAN_TOWER_MINING_TECH_NAME].unit.ingredients,
+		{ "cryogenic-science-pack", 1 }
+	)
+	if data.raw.technology["cryogenic-science-pack"] then
+		table.insert(
+			data.raw.technology[common.FULGORAN_TOWER_MINING_TECH_NAME].prerequisites,
+			"cryogenic-science-pack"
+		)
 	end
 end
 
-local holmium_productivity_effects_1 = {}
-local holmium_productivity_effects_2 = {}
-table.insert(holmium_productivity_effects_1, {
-	type = "unlock-recipe",
-	recipe = "maraxsis-holmium-recrystalization",
-})
+local holmium_productivity_effects = {}
 if data.raw.recipe["holmium-plate"] then
-	table.insert(holmium_productivity_effects_1, {
-		type = "change-recipe-productivity",
-		recipe = "holmium-plate",
-		change = 0.1,
-	})
-	table.insert(holmium_productivity_effects_2, {
+	table.insert(holmium_productivity_effects, {
 		type = "change-recipe-productivity",
 		recipe = "holmium-plate",
 		change = 0.1,
 	})
 end
-table.insert(holmium_productivity_effects_1, {
+table.insert(holmium_productivity_effects, {
 	type = "change-recipe-productivity",
 	recipe = "maraxsis-holmium-recrystalization",
 	change = 0.1,
 })
-table.insert(holmium_productivity_effects_2, {
-	type = "change-recipe-productivity",
-	recipe = "maraxsis-holmium-recrystalization",
-	change = 0.1,
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-1",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects,
+		prerequisites = { "cerysian-science-pack" },
+		unit = {
+			count = 25,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-holmium-recrystalization",
+		icon = "__space-age__/graphics/technology/holmium-processing.png",
+		icon_size = 256,
+		effects = { {
+			type = "unlock-recipe",
+			recipe = "maraxsis-holmium-recrystalization",
+		} },
+		prerequisites = { "cerys-holmium-plate-productivity-1" },
+		unit = {
+			count = 75,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		upgrade = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-holmium-plate-productivity-2",
+		icons = util.technology_icon_constant_recipe_productivity(
+			"__space-age__/graphics/technology/holmium-processing.png"
+		),
+		icon_size = 256,
+		effects = holmium_productivity_effects,
+		prerequisites = { "cerys-holmium-plate-productivity-1" },
+		unit = {
+			count_formula = "2^(L-2)*100",
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
+			},
+			time = 60,
+		},
+		max_level = "infinite",
+		upgrade = true,
+	},
 })
 
 local engine_productivity_effects = {}
@@ -543,48 +623,7 @@ for _, recipe_name in ipairs({
 end
 
 data:extend({
-	{
-		type = "technology",
-		name = "cerys-holmium-plate-productivity-1",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = holmium_productivity_effects_1,
-		prerequisites = { "cerys-lubricant-synthesis" },
-		unit = {
-			count = 250,
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		upgrade = true,
-	},
-	{
-		type = "technology",
-		name = "cerys-holmium-plate-productivity-2",
-		icons = util.technology_icon_constant_recipe_productivity(
-			"__space-age__/graphics/technology/holmium-processing.png"
-		),
-		icon_size = 256,
-		effects = holmium_productivity_effects_2,
-		prerequisites = { "cerys-holmium-plate-productivity-1" },
-		unit = {
-			count_formula = "2^(L-1)*200",
-			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
-			},
-			time = 60,
-		},
-		max_level = "infinite",
-		upgrade = true,
-	},
+
 	{
 		type = "technology",
 		name = "cerys-engine-unit-productivity-1",
@@ -592,9 +631,8 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 30,
+			count = 10,
 			ingredients = {
-				{ "automation-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
 			},
 			time = 60,
@@ -608,35 +646,99 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerys-engine-unit-productivity-1" },
 		unit = {
-			count = 40,
+			count_formula = "2^(L-2)*100",
 			ingredients = {
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		upgrade = true,
-	},
-	{
-		type = "technology",
-		name = "cerys-engine-unit-productivity-3",
-		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
-		effects = engine_productivity_effects,
-		prerequisites = { "cerys-engine-unit-productivity-2" },
-		unit = {
-			count_formula = "2^(L-3)*50",
-			ingredients = {
-				{ "automation-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
-				{ "cerysian-science-pack", 1 },
-				{ "utility-science-pack", 1 },
 			},
 			time = 60,
 		},
 		max_level = "infinite",
 		upgrade = true,
 	},
+})
+
+local fuel_productivity_effects = {}
+for _, recipe in pairs(data.raw.recipe) do
+	if recipe.results and #recipe.results == 1 and recipe.results[1].type == "item" then
+		local result_name = recipe.results[1].name
+
+		if result_name and data.raw.item[result_name] and data.raw.item[result_name].fuel_category then
+			local fuel_category = data.raw.item[result_name].fuel_category
+
+			if fuel_category == "nuclear-mixed-oxide" or fuel_category == "nuclear" or fuel_category == "fusion" then
+				table.insert(fuel_productivity_effects, {
+					type = "change-recipe-productivity",
+					recipe = recipe.name,
+					change = 0.1,
+				})
+			end
+		end
+	end
+end
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-reactor-fuel",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-fuel-cell.png",
+		icon_size = 256,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "mixed-oxide-fuel-cell",
+			},
+		},
+		prerequisites = {
+			"cerysian-science-pack",
+		},
+		unit = {
+			count = 25,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+	-- {
+	-- 	type = "technology",
+	-- 	name = "cerys-reactor-fuel-productivity-1",
+	-- 	icons = util.technology_icon_constant_recipe_productivity(
+	-- 		"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-reactor.png"
+	-- 	),
+	-- 	effects = fuel_productivity_effects,
+	-- 	prerequisites = { "cerys-advanced-structure-repair" },
+	-- 	unit = {
+	-- 		count = 100,
+	-- 		ingredients = {
+	-- 			{ "cerysian-science-pack", 1 },
+	-- 			{ "logistic-science-pack", 1 },
+	-- 		},
+	-- 		time = 60,
+	-- 	},
+	-- 	upgrade = true,
+	-- },
+	-- {
+	-- 	type = "technology",
+	-- 	name = "cerys-reactor-fuel-productivity-2",
+	-- 	icons = util.technology_icon_constant_recipe_productivity(
+	-- 		"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-reactor.png"
+	-- 	),
+	-- 	effects = fuel_productivity_effects,
+	-- 	prerequisites = { "cerys-reactor-fuel-productivity-1" },
+	-- 	unit = {
+	-- 		count_formula = "3^(L-1)*100",
+	-- 		ingredients = {
+	-- 			{ "cerysian-science-pack", 1 },
+	-- 			{ "logistic-science-pack", 1 },
+	-- 			{ "chemical-science-pack", 1 },
+	-- 		},
+	-- 		time = 60,
+	-- 	},
+	-- 	max_level = "infinite",
+	-- 	upgrade = true,
+	-- },
 })
 
 if

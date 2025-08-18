@@ -1,26 +1,24 @@
 local common = require("common")
 local common_data = require("common-data-only")
 
-if settings.startup["cerys-player-constructable-radiative-towers"].value then
-	data:extend({
-		{
-			type = "recipe",
-			name = "cerys-radiative-tower",
-			category = "crafting",
-			energy_required = 6,
-			ingredients = {
-				{ type = "item", name = "refined-concrete", amount = 20 },
-				{ type = "item", name = "steel-plate", amount = 20 },
-				{ type = "item", name = "processing-unit", amount = 10 },
-			},
-			results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
-			enabled = false,
-			surface_conditions = {
-				common.AMBIENT_RADIATION_MIN,
-			},
+data:extend({
+	{
+		type = "recipe",
+		name = "cerys-radiative-tower",
+		category = "crafting",
+		energy_required = 6,
+		ingredients = {
+			{ type = "item", name = "refined-concrete", amount = 20 },
+			{ type = "item", name = "steel-plate", amount = 20 },
+			{ type = "item", name = "processing-unit", amount = 10 },
 		},
-	})
-end
+		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
+		enabled = false,
+		surface_conditions = {
+			common.AMBIENT_RADIATION_MIN,
+		},
+	},
+})
 
 if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidden optional dependency on Maraxsis
 	if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
@@ -50,12 +48,15 @@ else
 				{
 					icon = "__space-age__/graphics/icons/holmium-plate.png",
 					icon_size = 64,
+					scale = 0.65,
+					draw_background = true,
 				},
 				{
 					icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
 					icon_size = 64,
-					size = 0.5,
-					shift = { -8, -8 },
+					scale = 0.45,
+					shift = { -13, -13 },
+					draw_background = true,
 				},
 			},
 		},
@@ -65,49 +66,79 @@ end
 data:extend({
 	{
 		type = "recipe",
-		name = "cerys-speed-module-3-from-nitric-acid",
+		name = "cerys-radiation-proof-inserter",
 		enabled = false,
+		energy_required = 1,
 		ingredients = {
-			{ type = "item", name = "speed-module-2", amount = 4 },
-			{ type = "item", name = "advanced-circuit", amount = 4 },
-			{ type = "item", name = "processing-unit", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 15 },
+			{ type = "item", name = "iron-gear-wheel", amount = 1 },
+			{ type = "item", name = "uranium-238", amount = 1 },
+			{ type = "item", name = "inserter", amount = 1 },
 		},
-		energy_required = 60,
-		results = { { type = "item", name = "speed-module-3", amount = 1 } },
-		category = "fulgoran-cryogenics",
-		subgroup = "cerys-processes",
-		order = "d-d",
-		auto_recycle = false,
+		results = { { type = "item", name = "cerys-radiation-proof-inserter", amount = 1 } },
+	},
+	{
+		type = "recipe",
+		name = "cerys-space-science-pack-from-methane-ice",
 		icons = {
 			{
-				icon = "__base__/graphics/icons/speed-module-3.png",
+				icon = "__base__/graphics/icons/space-science-pack.png",
 				icon_size = 64,
 				scale = 0.65,
 				shift = { 2, 2 },
 				draw_background = true,
 			},
 			{
-				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
 				icon_size = 64,
-				scale = 0.45,
-				shift = { -11, -11 },
+				scale = 0.32,
+				shift = { -12, -12 },
 				draw_background = true,
 			},
 		},
+		enabled = false,
+		ingredients = {
+			{ type = "item", name = "methane-ice", amount = 1 },
+			{ type = "item", name = "carbon", amount = 1 },
+			{ type = "item", name = "iron-plate", amount = 2 },
+		},
+		energy_required = 15,
+		results = {
+			{ type = "item", name = "space-science-pack", amount = 5 },
+		},
+		allow_productivity = true,
+		main_product = "space-science-pack",
+		category = "fulgoran-cryogenics",
+		subgroup = "science-pack",
+		order = "g[space-science-pack]-b[from-methane-ice]",
 	},
 	{
 		type = "recipe",
 		name = "cerys-overclock-module",
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "speed-module-3", amount = 8 },
-			{ type = "item", name = "lithium-plate", amount = 7 },
-			{ type = "item", name = "plutonium-238", amount = 7 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
+			{ type = "item", name = "speed-module-2", amount = 8 },
+			{ type = "item", name = "processing-unit", amount = 7 },
+			{ type = "item", name = "advanced-circuit", amount = 7 },
+			{ type = "item", name = "superconductor", amount = 4 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
+		category = "fulgoran-cryogenics",
+	},
+	{
+		type = "recipe",
+		name = "cerys-metastable-module-charged",
+		enabled = false,
+		ingredients = {
+			{ type = "item", name = "productivity-module-2", amount = 8 },
+			{ type = "item", name = "processing-unit", amount = 4 },
+			{ type = "item", name = "advanced-circuit", amount = 4 },
+			{ type = "item", name = "superconductor", amount = 4 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+		},
+		energy_required = 120,
+		results = { { type = "item", name = "cerys-metastable-module-charged", amount = 1 } },
 		category = "fulgoran-cryogenics",
 	},
 	{
@@ -118,7 +149,7 @@ data:extend({
 		enabled = false,
 		energy_required = 15,
 		ingredients = {
-			{ type = "item", name = "superconductor", amount = 2 },
+			{ type = "item", name = "holmium-plate", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 5 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
@@ -136,7 +167,8 @@ data:extend({
 		energy_required = 50,
 		ingredients = {
 			{ type = "item", name = "atomic-bomb", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 100 },
+			{ type = "item", name = "plutonium-239", amount = 75 },
+			{ type = "item", name = "plutonium-238", amount = 25 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
@@ -225,7 +257,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 8 },
 			{ type = "item", name = "steel-plate", amount = 8 },
-			{ type = "item", name = "holmium-plate", amount = 16 }, -- For holmium plate qualitycycling
+			{ type = "item", name = "holmium-plate", amount = 16 },
 		},
 		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},
@@ -281,7 +313,7 @@ data:extend({
 		icon_size = 64,
 		category = "fulgoran-cryogenics",
 		subgroup = "cerys-processes",
-		order = "b-a",
+		order = "c",
 		auto_recycle = false,
 		energy_required = 12,
 		ingredients = {
@@ -311,7 +343,6 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
 			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 35 or 15 }, -- 1 iron => 50 sulfuric acid.
-			{ type = "fluid", name = "water", amount = 35 },
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 1 },
@@ -340,7 +371,6 @@ data:extend({
 		energy_required = 10,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "item", name = "carbon", amount = 10 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 5 },
 		},
 		results = {

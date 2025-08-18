@@ -125,6 +125,7 @@ local frozen_reactor = merge(reactor, {
 		},
 	},
 	working_sound = "nil",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 })
 
 local CONTRACTED_MAP_COLOR = { 37, 0, 0 }
@@ -147,8 +148,9 @@ local rising_reactor_base = merge(reactor, {
 	},
 	map_color = CONTRACTED_MAP_COLOR,
 	working_sound = "nil",
-	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	radius_visualisation_specification = "nil",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
@@ -208,6 +210,7 @@ local rising_reactor_tower_3 = merge(rising_reactor_tower_1, {
 local reactor_base = merge(rising_reactor_tower_1, {
 	name = "cerys-fulgoran-radiative-tower-base",
 	render_layer = "nil",
+	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back", {
@@ -286,8 +289,12 @@ local container = {
 	},
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
-	minable = { mining_time = 1, result = "simple-entity-with-owner" }, -- This should never happen, but including it prompts the 'this cannot be mined' text if the created entity is set with minable_flag = false.
+	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	map_color = CONTRACTED_MAP_COLOR,
+	surface_conditions = {
+		common.AMBIENT_RADIATION_MIN,
+	},
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 }
 
 reactor.fast_replaceable_group = "fulgoran-radiative-tower"

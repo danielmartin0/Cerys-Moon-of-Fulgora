@@ -5,18 +5,25 @@ local Public = {}
 
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
-local SOLAR_WIND_MIN_VELOCITY = 0.15
+local SOLAR_WIND_MIN_VELOCITY = 0.3
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
-local ROD_DEFLECTION_STRENGTH = 8 / 4.5
-local ROD_MAX_RANGE_SQUARED = 25 * 25
+local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
+local ROD_MAX_RANGE_SQUARED = 30 * 30
+local ROD_DEFLECTION_STRENGTH = 3
+local ROD_DEFLECTION_POWER = 1.5
+local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
+local SPEED_THRESHOLD = 0.05
+local PARTICLE_SHRINK_TIME = 12
+
+local SOLAR_SPAWN_MULTIPLIER = 1
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 1 / 50
 local COOLDOWN_DISTANCE = 5
 local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 840
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8400
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 900
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 9000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
@@ -87,30 +94,26 @@ end
 function Public.spawn_solar_wind_particle(surface)
 	local d = common.CERYS_RADIUS / common.get_cerys_surface_stretch_factor(surface)
 
-	local y = math.random(-d - 8, d + 8)
+	for _ = 1, SOLAR_SPAWN_MULTIPLIER do
+		local y = math.random(-d - 8, d + 8)
 
-	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
-	local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
+		local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+		local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
-	-- local e = surface.create_entity({
-	-- 	name = "cerys-solar-wind-particle",
-	-- 	position = { x = x, y = y },
-	-- })
+		local r = rendering.draw_sprite({
+			sprite = "cerys-solar-wind-particle",
+			target = { x = x, y = y },
+			surface = surface,
+			render_layer = "air-object",
+		})
 
-	local r = rendering.draw_sprite({
-		sprite = "cerys-solar-wind-particle",
-		target = { x = x, y = y },
-		surface = surface,
-		render_layer = "air-object",
-	})
-
-	table.insert(storage.cerys.solar_wind_particles, {
-		-- entity = e,
-		rendering = r,
-		age = 0,
-		velocity = Public.initial_solar_wind_velocity(),
-		position = { x = x, y = y },
-	})
+		table.insert(storage.cerys.solar_wind_particles, {
+			rendering = r,
+			age = 0,
+			velocity = Public.initial_solar_wind_velocity(),
+			position = { x = x, y = y },
+		})
+	end
 end
 
 function Public.initial_solar_wind_velocity()
@@ -119,8 +122,6 @@ function Public.initial_solar_wind_velocity()
 
 	return { x = x_velocity, y = y_velocity }
 end
-
-local MIN_ELECTROMAGNETIC_DISTANCE = 2
 
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
@@ -138,11 +139,11 @@ function Public.tick_solar_wind_deflection()
 			-- Bound the minimum distance
 			if d2 == 0 then
 				local random_angle = math.random() * 2 * math.pi
-				dx = MIN_ELECTROMAGNETIC_DISTANCE * math.cos(random_angle)
-				dy = MIN_ELECTROMAGNETIC_DISTANCE * math.sin(random_angle)
+				dx = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.cos(random_angle)
+				dy = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.sin(random_angle)
 				d2 = dx * dx + dy * dy
-			elseif d2 < MIN_ELECTROMAGNETIC_DISTANCE * MIN_ELECTROMAGNETIC_DISTANCE then
-				local scale = MIN_ELECTROMAGNETIC_DISTANCE / math.sqrt(d2)
+			elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE then
+				local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
 				dx = dx * scale
 				dy = dy * scale
 				d2 = dx * dx + dy * dy
@@ -157,14 +158,61 @@ function Public.tick_solar_wind_deflection()
 						* Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 						/ 60
 
-					local dvx = dx / (d2 ^ (7 / 4)) * deflection
-					local dvy = dy / (d2 ^ (7 / 4)) * deflection
+					local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
+
+					local scale = factor / (d2 ^ ((ROD_DEFLECTION_POWER + 1) / 2))
+
+					local dvx = dx * scale * deflection
+					local dvy = dy * scale * deflection
 
 					local v = particle.velocity
+
+					if particle.marked_for_death_tick then
+						dvx = dvx / 3
+						dvy = dvy / 3
+					end
+
+					-- local speed = math.sqrt(v.x * v.x + v.y * v.y)
+
 					v.x = v.x + dvx
 					v.y = v.y + dvy
+
+					-- local new_speed = math.sqrt(v.x * v.x + v.y * v.y)
+
+					-- local speed_ratio = new_speed / speed
+					-- if speed < CANNOT_GAIN_SPEED_IF_BELOW and speed_ratio > 1 then
+					-- 	v.x = v.x / speed_ratio
+					-- 	v.y = v.y / speed_ratio
+					-- end
+
+					-- if speed < SPEED_THRESHOLD and new_speed > SPEED_THRESHOLD then
+					-- 	local scale_by = new_speed / SPEED_THRESHOLD
+
+					-- 	v.x = v.x / scale_by
+					-- 	v.y = v.y / scale_by
+					-- end
+
 					particle.velocity = v
 				end
+			end
+		end
+	end
+end
+
+local function apply_death_scaling(particle, i)
+	if particle.marked_for_death_tick then
+		local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
+
+		if ticks_until_death < 0 then
+			if particle.rendering and particle.rendering.valid then
+				particle.rendering.destroy()
+			end
+			table.remove(storage.cerys.solar_wind_particles, i)
+		else
+			if particle.rendering and particle.rendering.valid then
+				local scale_factor = math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME) ^ (1 / 2)
+				particle.rendering.x_scale = scale_factor
+				particle.rendering.y_scale = scale_factor
 			end
 		end
 	end
@@ -182,10 +230,29 @@ function Public.tick_1_move_solar_wind()
 			particle.position = p
 			r.target = p
 			particle.age = particle.age + 1
+			apply_death_scaling(particle, i)
 			i = i + 1
 		else
 			table.remove(storage.cerys.solar_wind_particles, i)
 		end
+	end
+end
+
+function Public.tick_5_solar_wind_destroy_check()
+	local i = 1
+	while i <= #storage.cerys.solar_wind_particles do
+		local particle = storage.cerys.solar_wind_particles[i]
+		local v = particle.velocity
+
+		local speed = math.sqrt(v.x * v.x + v.y * v.y)
+
+		if speed < SPEED_THRESHOLD then
+			if not particle.marked_for_death_tick then
+				particle.marked_for_death_tick = game.tick
+			end
+		end
+
+		i = i + 1
 	end
 end
 
@@ -209,9 +276,6 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 			if particle.rendering and particle.rendering.valid then
 				particle.rendering.destroy()
 			end
-			-- if particle.entity and particle.entity.valid then
-			-- 	particle.entity.destroy()
-			-- end
 
 			table.remove(storage.cerys.solar_wind_particles, i)
 		else
@@ -244,7 +308,7 @@ end
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
-		if not Public.particle_is_in_cooldown(particle) then
+		if not particle.is_ghost and not Public.particle_is_in_cooldown(particle) then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then
