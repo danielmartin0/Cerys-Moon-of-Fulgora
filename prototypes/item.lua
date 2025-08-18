@@ -138,7 +138,7 @@ data:extend({
 			pollution = 0.14,
 			speed = -0.2,
 		},
-		spoil_ticks = 3 * 60 * 60,
+		spoil_ticks = 5 * 60 * 60,
 		spoil_result = "cerys-metastable-module-decayed",
 		default_import_location = "cerys",
 	},
