@@ -2,19 +2,19 @@
 Version: 4.0.0
 Date: 2025-08-18
   Info:
-    - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." These changes also rework the science tree, add a Tier 4 prod module reward with a twist, and allow the player to blast a hole in the magnetosphere.
-    - BREAKING CHANGES were unfortunately required: Plutonium farms, science chain.
+    - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, and allows the player to blast a hole in the Cerys magnetosphere.
+    - Unfortunately, two significant BREAKING CHANGES were required: Plutonium farms, science chain.
   Features:
-    - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge.
+    - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radioactive inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
   Changes:
-    - Plutonium generation changes:
-      ► Charged particles now evaporate when they come to a stop.
-      ► Charged particle deflection now occurs over longer distances.
-      ► A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
     - Tech tree changes:
       ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.
       ► Cerys technologies no longer requires automation (red) or utility (yellow) science. Instead they sometimes require space science, which can now be crafted on Cerys using methane ice.
       ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
+    - Plutonium generation changes:
+      ► Charged particles now evaporate when they come to a stop.
+      ► Charged particle deflection now occurs over longer distances.
+      ► A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
     - The cargo drops technology is now called 'Blast a hole in the magnetosphere' and requires the player to launch a hydrogen bomb into orbit.
     - The final radiative towers technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
