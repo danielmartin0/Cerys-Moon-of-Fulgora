@@ -193,7 +193,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 250,
+			count = 200,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -274,12 +274,11 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-applications-of-radioactivity",
 			"cerys-reactor-fuel",
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -368,7 +367,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 500,
+			count = 400,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -379,6 +378,8 @@ data:extend({
 		allows_productivity = false,
 	},
 })
+
+local CARGO_DROPS_PREREQS = { "cerys-plutonium-weaponry" }
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)
@@ -397,7 +398,7 @@ if not is_sandbox_mode then
 
 	data:extend({
 		merge(cargo_drops_base, {
-			prerequisites = { "cerys-mixed-oxide-reactors" },
+			prerequisites = CARGO_DROPS_PREREQS,
 			unit = {
 				count = common.HARD_MODE_ON and 5000 or 1000,
 				ingredients = {
@@ -492,8 +493,8 @@ data:extend({
 				icon_size = 64,
 			},
 		},
-		prerequisites = {
-			is_sandbox_mode and "cerys-applications-of-radioactivity" or "planetslib-cerys-cargo-drops",
+		prerequisites = is_sandbox_mode and CARGO_DROPS_PREREQS or {
+			"planetslib-cerys-cargo-drops",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 		icon_size = 200,
