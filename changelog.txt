@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 3.99.4
+Version: 4.0.0
 Date: ????
   Info:
-    - Version 3.99.4! These extensive changes reduce grind and frustration on Cerys, plus restore a Tier 4 productivity module completion reward. BREAKING CHANGES: plutonium farms, science chain.
+    - Version 4.0! These extensive changes reduce grind and frustration on Cerys, plus add a Tier 4 prod module reward with a twist. BREAKING CHANGES: plutonium farms, science chain.
   Features:
     - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge.
   Changes:
@@ -17,7 +17,7 @@ Date: ????
     - The final Cerys technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
-    - The Overclock module has been removed from the Cerys tech tree, but already-crafted Overclock modules are retained.
+    - The Overclock module has been removed from the Cerys tech tree because it wouldn't have been added if the Metastable module was in place. Already-crafted Overclock modules are retained.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Charging rods store +50% energy, but appear less frequently in ruins.
