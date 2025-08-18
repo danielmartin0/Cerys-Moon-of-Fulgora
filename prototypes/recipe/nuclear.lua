@@ -32,7 +32,7 @@ data:extend({
 			{ type = "item", name = "plutonium-239", amount = 10 },
 		},
 		results = { { type = "item", name = "mixed-oxide-fuel-cell", amount = 1 } },
-		allow_productivity = false,
+		allow_productivity = true,
 	},
 
 	{
@@ -96,7 +96,7 @@ data:extend({
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
 			{ type = "item", name = "uranium-238", amount = (50 / 100 * common.REPROCESSING_U238_TO_U235_RATIO) },
 			{ type = "item", name = "plutonium-238", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 6 },
+			{ type = "item", name = "plutonium-239", amount = 5 },
 		},
 		subgroup = "plutonium-processing",
 		order = "c-c",
