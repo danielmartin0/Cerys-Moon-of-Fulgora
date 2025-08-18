@@ -291,12 +291,12 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-metastable-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/drive-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/metastable-module.png",
 		icon_size = 1024,
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-metastable-module-active",
+				recipe = "cerys-metastable-module-charged",
 			},
 			{
 				type = "unlock-recipe",

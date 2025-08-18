@@ -120,11 +120,11 @@ data:extend({
 	},
 	{
 		type = "module",
-		name = "cerys-metastable-module-active",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module-2.png",
+		name = "cerys-metastable-module-charged",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module.png",
 		icon_size = 64,
 		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-b[2]",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-a[charged]",
 		color_hint = { text = "P" },
 		category = "productivity",
 		tier = 4,
@@ -140,17 +140,17 @@ data:extend({
 			speed = -0.2,
 		},
 		-- DEBUG:
-		spoil_ticks = 60 * 60, -- 60 seconds
+		spoil_ticks = 3 * 60 * 60, -- 3 minutes
 		spoil_result = "cerys-metastable-module-decayed",
 		default_import_location = "cerys",
 	},
 	{
 		type = "module",
 		name = "cerys-metastable-module-decayed",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module-decayed.png",
 		icon_size = 64,
 		subgroup = "module",
-		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-a[1]",
+		order = "c[productivity]-d[productivity-module-4]-a[metastable-module]-b[decayed]",
 		color_hint = { text = "P" },
 		category = "productivity",
 		tier = 4,
@@ -167,9 +167,8 @@ data:extend({
 		}, -- Tier 2.5
 		-- DEBUG:
 		-- spoil_ticks = 60 * 60, -- 60 seconds
-		-- spoil_result = "cerys-metastable-module-active",
+		-- spoil_result = "cerys-metastable-module-charged",
 		default_import_location = "cerys",
-		factoriopedia_alternative = "cerys-metastable-module-active",
 	},
 	{
 		type = "tool",

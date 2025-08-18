@@ -18,7 +18,7 @@ local function flip_inserter_filter(inserter)
 
 	local current_filter = inserter.get_filter(1)
 	if current_filter and current_filter.name == "cerys-metastable-module-decayed" then
-		inserter.set_filter(1, "cerys-metastable-module-active")
+		inserter.set_filter(1, "cerys-metastable-module-charged")
 	else
 		inserter.set_filter(1, "cerys-metastable-module-decayed")
 	end
@@ -85,7 +85,7 @@ function Public.process_inserter(inserter)
 	end
 
 	local module1 = "cerys-metastable-module-decayed"
-	local module2 = "cerys-metastable-module-active"
+	local module2 = "cerys-metastable-module-charged"
 
 	local total_items = inv.get_item_count()
 	local metastable_count = inv.get_item_count(module1) + inv.get_item_count(module2)

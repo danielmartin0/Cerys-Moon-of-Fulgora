@@ -28,11 +28,11 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 5 },
 			{ type = "item", name = "uranium-235", amount = 1 },
-			{ type = "item", name = "uranium-238", amount = 10 },
-			{ type = "item", name = "plutonium-239", amount = 9 },
+			{ type = "item", name = "uranium-238", amount = 9 },
+			{ type = "item", name = "plutonium-239", amount = 10 },
 		},
 		results = { { type = "item", name = "mixed-oxide-fuel-cell", amount = 1 } },
-		allow_productivity = true,
+		allow_productivity = false,
 	},
 
 	{
@@ -96,7 +96,7 @@ data:extend({
 			{ type = "item", name = "uranium-235", amount = 1, probability = 50 / 100 },
 			{ type = "item", name = "uranium-238", amount = (50 / 100 * common.REPROCESSING_U238_TO_U235_RATIO) },
 			{ type = "item", name = "plutonium-238", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 5 },
+			{ type = "item", name = "plutonium-239", amount = 6 },
 		},
 		subgroup = "plutonium-processing",
 		order = "c-c",
@@ -117,7 +117,7 @@ data:extend({
 		category = "centrifuging",
 		icons = {
 			{
-				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/drive-module.png",
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module-decayed.png",
 				icon_size = 64,
 				draw_background = true,
 				scale = 0.45,
@@ -128,14 +128,14 @@ data:extend({
 				draw_background = true,
 			},
 		},
-		main_product = "cerys-metastable-module-active",
+		main_product = "cerys-metastable-module-charged",
 		ingredients = {
 			{ type = "item", name = "cerys-metastable-module-decayed", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 1 },
 		},
-		energy_required = 1,
+		energy_required = 2,
 		results = {
-			{ type = "item", name = "cerys-metastable-module-active", amount = 1 },
+			{ type = "item", name = "cerys-metastable-module-charged", amount = 1 },
 		},
 		subgroup = "cerys-processes",
 		order = "q[metastable-module-recharging]",

@@ -18,6 +18,7 @@ Date: ????
     - The final Cerys technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
+    - Mixed-oxide fuel cells can no longer be crafted with productivity modules and their related recipes have been rebalanced.
     - The Overclock module has been removed from the Cerys tech tree, but already-crafted Overclock modules are retained.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
