@@ -1,15 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.0.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.0.0
+Version: 4.0.0-4.0.2
 Date: 2025-08-18
   Info:
     - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, and allows the player to blast a hole in the Cerys magnetosphere.
     - Unfortunately, two significant BREAKING CHANGES were required: Plutonium farms, science chain.
   Features:
-    - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radioactive inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
+    - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radiation-proof inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
   Changes:
     - Tech tree changes:
       ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.

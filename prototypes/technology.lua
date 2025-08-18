@@ -163,10 +163,9 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 100,
+			count = 125,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -193,9 +192,10 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 125,
+			count = 75,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -214,7 +214,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 50,
+			count = 75,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -242,16 +242,17 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-advanced-structure-repair",
+			"cerys-mixed-oxide-waste-reprocessing",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 75,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -278,7 +279,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 750,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -549,7 +550,7 @@ data:extend({
 		effects = holmium_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 25,
+			count = 10,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -569,7 +570,7 @@ data:extend({
 		} },
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count = 75,
+			count = 50,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

@@ -10,7 +10,7 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 500 },
-			{ type = "item", name = "electric-engine-unit", amount = 50 },
+			{ type = "item", name = "electric-engine-unit", amount = 20 },
 			{ type = "item", name = "advanced-circuit", amount = 500 },
 			{ type = "item", name = "lithium-plate", amount = 500 },
 		},
