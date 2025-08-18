@@ -20,4 +20,11 @@ for _, force in pairs(game.forces) do
 			force.technologies["cerys-mixed-oxide-reactors"].researched = true
 		end
 	end
+
+	if
+		force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME]
+		and force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME].researched == true
+	then
+		common.make_radiative_towers_minable()
+	end
 end

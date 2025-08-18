@@ -74,10 +74,11 @@ data:extend({
 	{
 		type = "item",
 		name = "cerys-radiation-proof-inserter",
-		icon = "__base__/graphics/icons/long-handed-inserter.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiation-proof-inserter.png",
+		icon_size = 64,
 		subgroup = "inserter",
 		order = "w[cerys]",
-		color_hint = { text = "L" },
+		color_hint = { text = "R" },
 		default_import_location = "cerys",
 		inventory_move_sound = item_sounds.inserter_inventory_move,
 		pick_sound = item_sounds.inserter_inventory_pickup,
@@ -113,8 +114,6 @@ data:extend({
 			primary = { 0.441, 0.714, 1.000, 1.000 }, -- #70b6ffff
 			secondary = { 0.388, 0.976, 1.000, 1.000 }, -- #63f8ffff
 		},
-		-- TODO: Remove:
-		spoil_ticks = 60 * 5, -- 5 seconds
 		art_style = "vanilla", -- In vanilla, not present on prod modules for some reason?
 		requires_beacon_alt_mode = false,
 	},
@@ -139,8 +138,8 @@ data:extend({
 			pollution = 0.14,
 			speed = -0.2,
 		},
-		-- DEBUG:
-		spoil_ticks = 3 * 60 * 60, -- 3 minutes
+		-- TODO: Change
+		spoil_ticks = 5 * 60, -- 3 minutes
 		spoil_result = "cerys-metastable-module-decayed",
 		default_import_location = "cerys",
 	},
@@ -165,9 +164,6 @@ data:extend({
 			pollution = 0.08,
 			speed = -0.12,
 		}, -- Tier 2.5
-		-- DEBUG:
-		-- spoil_ticks = 60 * 60, -- 60 seconds
-		-- spoil_result = "cerys-metastable-module-charged",
 		default_import_location = "cerys",
 	},
 	{

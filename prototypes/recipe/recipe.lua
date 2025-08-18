@@ -257,7 +257,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "superconductor", amount = 8 },
 			{ type = "item", name = "steel-plate", amount = 8 },
-			{ type = "item", name = "holmium-plate", amount = 16 }, -- For holmium plate qualitycycling
+			{ type = "item", name = "holmium-plate", amount = 16 },
 		},
 		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},

@@ -57,6 +57,8 @@ Public.MAX_HEATING_RADIUS = 30
 
 Public.DEFAULT_FULGORA_IMAGE_SIZE = 2048
 
+Public.FULGORAN_TOWER_MINING_TECH_NAME = "cerys-radiative-heaters"
+
 Public.ROCK_TILES = {
 	"cerys-ash-cracks",
 	"cerys-ash-cracks-frozen",
@@ -147,15 +149,31 @@ function Public.can_mine_fulgoran_towers(force)
 		return false
 	end
 
-	if not force.technologies["cerys-radiative-heaters"] then
+	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME] then
 		return false
 	end
 
-	if not force.technologies["cerys-radiative-heaters"].researched then
+	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME].researched then
 		return false
 	end
 
 	return true
+end
+
+function Public.make_radiative_towers_minable()
+	if storage.radiative_towers then
+		for _, tower in pairs(storage.radiative_towers.towers or {}) do
+			if tower.entity and tower.entity.valid and not tower.is_player_tower then
+				tower.entity.minable_flag = true
+			end
+		end
+
+		for _, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
+			if tower.entity and tower.entity.valid then
+				tower.entity.minable_flag = true
+			end
+		end
+	end
 end
 
 return Public

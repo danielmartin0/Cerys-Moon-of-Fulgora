@@ -47,9 +47,9 @@ data:extend({
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
-			buffer_capacity = "12MJ",
-			input_flow_limit = "4MW",
-			output_flow_limit = "500kW",
+			buffer_capacity = "18MJ",
+			input_flow_limit = "6MW",
+			output_flow_limit = "750kW",
 		},
 		chargable_graphics = merge(data.raw["lightning-attractor"]["lightning-rod"].chargable_graphics, {
 			discharge_animation = {

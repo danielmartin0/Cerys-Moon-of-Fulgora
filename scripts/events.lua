@@ -87,10 +87,6 @@ script.on_event(defines.events.on_player_flipped_entity, function(event)
 	inserter.on_inserter_flipped(event.entity)
 end)
 
-script.on_nth_tick(30, function()
-	inserter.tick_inserters()
-end)
-
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 
@@ -119,20 +115,8 @@ script.on_event(defines.events.on_research_finished, function(event)
 	elseif research.name == "cerys-nuclear-scrap-recycling" then
 		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
-	elseif research.name == "cerys-radiative-heaters" then
-		if storage.radiative_towers then
-			for unit_number, tower in pairs(storage.radiative_towers.towers or {}) do
-				if tower.entity and tower.entity.valid then
-					tower.entity.minable_flag = true
-				end
-			end
-
-			for unit_number, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
-				if tower.entity and tower.entity.valid then
-					tower.entity.minable_flag = true
-				end
-			end
-		end
+	elseif research.name == common.FULGORAN_TOWER_MINING_TECH_NAME then
+		common.make_radiative_towers_minable()
 	end
 end)
 
@@ -156,6 +140,10 @@ script.on_event(defines.events.on_tick, function(event)
 
 	if tick % radiative_towers.TOWER_TEMPERATURE_TICK_INTERVAL == 0 then
 		radiative_towers.radiative_heaters_temperature_tick()
+	end
+
+	if tick % 25 == 0 then
+		inserter.tick_inserters()
 	end
 
 	local surface

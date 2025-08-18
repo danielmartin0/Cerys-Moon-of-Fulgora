@@ -59,6 +59,10 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
+				recipe = "cerys-space-science-pack-from-methane-ice",
+			},
+			{
+				type = "unlock-recipe",
 				recipe = "cerys-nitric-acid",
 			},
 			{
@@ -101,10 +105,6 @@ data:extend({
 			{
 				type = "unlock-recipe",
 				recipe = "cerysian-science-pack",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-space-science-pack-from-methane-ice",
 			},
 		},
 		prerequisites = { "cerys-fulgoran-cryogenics", "cerys-nitrogen-rich-mineral-processing" },
@@ -477,7 +477,7 @@ data:extend({ discovery_tech })
 data:extend({
 	{
 		type = "technology",
-		name = "cerys-radiative-heaters",
+		name = common.FULGORAN_TOWER_MINING_TECH_NAME,
 		effects = {
 			{
 				type = "unlock-recipe",
@@ -512,9 +512,15 @@ data:extend({
 })
 
 if data.raw.tool["cryogenic-science-pack"] then
-	table.insert(data.raw.technology["cerys-radiative-heaters"].unit.ingredients, { "cryogenic-science-pack", 1 })
+	table.insert(
+		data.raw.technology[common.FULGORAN_TOWER_MINING_TECH_NAME].unit.ingredients,
+		{ "cryogenic-science-pack", 1 }
+	)
 	if data.raw.technology["cryogenic-science-pack"] then
-		table.insert(data.raw.technology["cerys-radiative-heaters"].prerequisites, "cryogenic-science-pack")
+		table.insert(
+			data.raw.technology[common.FULGORAN_TOWER_MINING_TECH_NAME].prerequisites,
+			"cryogenic-science-pack"
+		)
 	end
 end
 
