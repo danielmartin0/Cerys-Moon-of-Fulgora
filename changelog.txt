@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.0.0
-Date: ????
+Date: 2025-08-18
   Info:
     - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." These extensive changes rework the science tree, add a Tier 4 prod module reward with a twist, and allow the player to blast a hole in the magnetosphere of Cerys.
     - BREAKING CHANGES: Plutonium farms, science chain.
