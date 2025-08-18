@@ -133,7 +133,7 @@ data:extend({
 			{ type = "item", name = "cerys-metastable-module-decayed", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 1 },
 		},
-		energy_required = 2,
+		energy_required = 1,
 		results = {
 			{ type = "item", name = "cerys-metastable-module-charged", amount = 1 },
 		},
