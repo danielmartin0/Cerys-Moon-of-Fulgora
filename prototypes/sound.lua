@@ -3,6 +3,15 @@ local merge = require("lib").merge
 data:extend({
 	{
 		type = "sound",
+		name = "cerys-atmospheric-nuke",
+		category = "game-effect",
+		priority = 250,
+		filename = "__base__/sound/fight/nuclear-explosion-1.ogg",
+		speed = 0.6,
+		volume = 3,
+	},
+	{
+		type = "sound",
 		name = "cerys-teleporter-1",
 		category = "game-effect",
 		priority = 200,

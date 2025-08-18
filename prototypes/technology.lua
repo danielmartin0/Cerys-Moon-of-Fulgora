@@ -399,16 +399,16 @@ if not is_sandbox_mode then
 	data:extend({
 		merge(cargo_drops_base, {
 			prerequisites = CARGO_DROPS_PREREQS,
-			unit = {
-				count = common.HARD_MODE_ON and 5000 or 1000,
-				ingredients = {
-					{ "cerysian-science-pack", 1 },
-					{ "logistic-science-pack", 1 },
-					{ "space-science-pack", 1 },
-				},
-				time = 60,
+			research_trigger = {
+				type = "send-item-to-orbit",
+				item = "cerys-hydrogen-bomb",
 			},
-			allows_productivity = false,
+			localised_name = {
+				"cerys.cargo-drops-tech-name",
+			},
+			localised_description = {
+				"cerys.cargo-drops-tech-description",
+			},
 		}),
 	})
 end

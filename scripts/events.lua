@@ -122,14 +122,12 @@ script.on_event(defines.events.on_research_finished, function(event)
 	elseif research.name == "cerys-radiative-heaters" then
 		if storage.radiative_towers then
 			for unit_number, tower in pairs(storage.radiative_towers.towers or {}) do
-				game.print("processing tower " .. unit_number)
 				if tower.entity and tower.entity.valid then
 					tower.entity.minable_flag = true
 				end
 			end
 
 			for unit_number, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
-				game.print("processing contracted tower " .. unit_number)
 				if tower.entity and tower.entity.valid then
 					tower.entity.minable_flag = true
 				end
@@ -266,7 +264,7 @@ function Public.cerys_tick(surface, tick)
 	if tick % 60 == 0 then
 		space.try_spawn_asteroid(surface)
 		cooling.tick_60_cool_heat_entities()
-		Public.check_thankyou_toast(surface)
+		Public.check_rocket_timed_effects(surface)
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
@@ -396,7 +394,7 @@ script.on_configuration_changed(function()
 	picker_dollies.add_picker_dollies_blacklists()
 end)
 
-function Public.check_thankyou_toast(surface)
+function Public.check_rocket_timed_effects(surface)
 	if storage.thankyou_message_timer and game.tick >= storage.thankyou_message_timer then
 		storage.thankyou_message_timer = nil
 
@@ -411,36 +409,72 @@ function Public.check_thankyou_toast(surface)
 			"[/font]",
 		}, { color = { 164, 135, 255 } })
 	end
+
+	if storage.atmospheric_nuke_timer and game.tick >= storage.atmospheric_nuke_timer then
+		storage.atmospheric_nuke_timer = nil
+
+		surface.create_entity({
+			name = "cerys-atmospheric-nuke-effect",
+			position = { x = 0, y = 0 },
+			force = "neutral",
+		})
+
+		for _, player in pairs(game.connected_players) do
+			if
+				player
+				and player.valid
+				and player.surface
+				and player.surface.valid
+				and player.surface.name == "cerys"
+			then
+				player.play_sound({
+					path = "cerys-atmospheric-nuke",
+					volume_modifier = 1,
+				})
+			end
+		end
+	end
 end
 
 script.on_event(defines.events.on_rocket_launch_ordered, function(event)
-	if storage.thankyou_message_triggered then
+	local rocket = event.rocket
+	if not (rocket and rocket.valid) then
 		return
 	end
 
-	if
-		not (
-			event.rocket
-			and event.rocket.valid
-			and event.rocket.name ~= "planet-hopper"
-			and event.rocket.surface
-			and event.rocket.surface.valid
-			and event.rocket.surface.name == "cerys"
-			and event.rocket.cargo_pod
-			and event.rocket.cargo_pod.valid
-			and event.rocket.cargo_pod.get_passenger()
-		)
-	then
+	local surface = rocket.surface
+	if not (surface and surface.valid and surface.name == "cerys") then
 		return
 	end
 
-	local player = event.rocket.cargo_pod.get_passenger().player
-	if not (player and player.valid) then
+	local cargo_pod = event.rocket.cargo_pod
+	if not (cargo_pod and cargo_pod.valid) then
 		return
 	end
 
-	storage.thankyou_message_triggered = true
-	storage.thankyou_message_timer = game.tick + 5 * 60
+	if not storage.thankyou_message_triggered then
+		local passenger = cargo_pod.get_passenger()
+
+		if rocket.name ~= "planet-hopper" and passenger and passenger.player and passenger.player.valid then
+			storage.thankyou_message_triggered = true
+			storage.thankyou_message_timer = game.tick + 5 * 60
+		end
+	end
+
+	if not storage.atmospheric_nuke_timer then
+		local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
+
+		local has_hydrogen_bomb = false
+		for _, item in pairs(pod_contents) do
+			if item.name == "cerys-hydrogen-bomb" then
+				has_hydrogen_bomb = true
+			end
+		end
+
+		if has_hydrogen_bomb then
+			storage.atmospheric_nuke_timer = game.tick + 22 * 60
+		end
+	end
 end)
 
 local function unresearch_successors(tech)

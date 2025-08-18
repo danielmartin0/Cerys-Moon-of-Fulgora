@@ -724,7 +724,8 @@ data:extend({
 		pick_sound = item_sounds.atomic_bomb_inventory_pickup,
 		drop_sound = item_sounds.atomic_bomb_inventory_move,
 		stack_size = 10,
-		weight = 1.5 * 1000,
+		weight = 1000 * 1000,
+		send_to_orbit_mode = "manual",
 	},
 	{
 		type = "ammo",
