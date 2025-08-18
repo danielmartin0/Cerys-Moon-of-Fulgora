@@ -2,7 +2,8 @@
 Version: 4.0.0
 Date: ????
   Info:
-    - Version 4.0! These extensive changes reduce grind and frustration on Cerys, plus add a Tier 4 prod module reward with a twist. BREAKING CHANGES: plutonium farms, science chain.
+    - Version 4.0! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." These extensive changes rework the science tree, add a Tier 4 prod module reward with a twist, and allow the player to blast a hole in the magnetosphere of Cerys.
+    - BREAKING CHANGES: Plutonium farms, science chain.
   Features:
     - New completion reward: Metastable module. This is a Tier 4 productivity module that decays over time to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge.
   Changes:
@@ -14,10 +15,11 @@ Date: ????
       ► The Cerys tech tree is now less linear, giving players more choice over which research to pursue first.
       ► Cerys technologies no longer requires automation (red) or utility (yellow) science. Instead they sometimes require space science, which can now be crafted on Cerys using methane ice.
       ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
-    - The final Cerys technology now allows the player to mine the Fulgoran radiative towers on Cerys.
-    - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
+    - The cargo drops technology is now called 'Blast a hole in the magnetosphere' and requires the player to launch a hydrogen bomb into orbit.
+    - The final radiative towers technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
-    - The Overclock module has been removed from the Cerys tech tree because it wouldn't have been added if the Metastable module was in place. Already-crafted Overclock modules are retained.
+    - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
+    - The Overclock module has been removed from the Cerys tech tree as it wouldn't have been added if the Metastable module was in place. Already-crafted Overclock modules are retained.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Charging rods store +50% energy, but appear less frequently in ruins.
