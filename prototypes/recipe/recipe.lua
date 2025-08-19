@@ -206,6 +206,53 @@ data:extend({
 
 	{
 		type = "recipe",
+		name = "cerys-explosives-from-ammonium-nitrate",
+		auto_recycle = false,
+		always_show_made_in = true,
+		subgroup = "cerys-processes",
+		order = "d-d",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "cryogenics" },
+		enabled = false,
+		energy_required = 5,
+		ingredients = {
+			{ type = "item", name = "solid-fuel", amount = 1 },
+			{ type = "fluid", name = "ammonia", amount = 10 },
+			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
+		},
+		results = { { type = "item", name = "explosives", amount = 2 } },
+		allow_productivity = true,
+		icons = {
+			{
+				icon = "__base__/graphics/icons/explosives.png",
+				icon_size = 64,
+				scale = 0.65,
+				shift = { 2, 2 },
+				draw_background = true,
+			},
+			{
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
+				icon_size = 64,
+				scale = 0.35,
+				shift = { -8, -11 },
+				draw_background = true,
+			},
+			{
+				icon = "__space-age__/graphics/icons/fluid/ammonia.png",
+				icon_size = 64,
+				scale = 0.35,
+				shift = { 8, -11 },
+				draw_background = true,
+			},
+		},
+		crafting_machine_tint = {
+			primary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
+			secondary = { r = 38, g = 110, b = 240, a = 1 }, -- ammonia
+		},
+	},
+
+	{
+		type = "recipe",
 		name = "cerys-processing-units-from-nitric-acid",
 		auto_recycle = false,
 		always_show_made_in = true,
@@ -381,8 +428,6 @@ data:extend({
 		crafting_machine_tint = {
 			primary = { r = 0.268, g = 0.723, b = 0.223, a = 1.000 }, -- lubricant
 			secondary = { r = 117, g = 85, b = 13, a = 1 }, -- light oil
-			tertiary = { r = 0.647, g = 0.471, b = 0.396, a = 1.000 }, -- TODO: Change
-			quaternary = { r = 1.000, g = 0.395, b = 0.127, a = 1.000 }, -- TODO: Change
 		},
 	},
 })

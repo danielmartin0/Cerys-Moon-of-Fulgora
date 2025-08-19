@@ -71,6 +71,10 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
+				recipe = "cerys-explosives-from-ammonium-nitrate",
+			},
+			{
+				type = "unlock-recipe",
 				recipe = "superconductor",
 			},
 			{
@@ -456,7 +460,7 @@ local discovery_tech = {
 	prerequisites = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
-		"kovarex-enrichment-process",
+		"atomic-bomb",
 		"productivity-module-2",
 		"energy-shield-equipment", -- if removed, solar energy needs to be added
 	},

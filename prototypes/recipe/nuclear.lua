@@ -139,11 +139,9 @@ data:extend({
 		},
 		subgroup = "cerys-processes",
 		order = "q[metastable-module-recharging]",
-		-- TODO: Add tint
-		-- crafting_machine_tint = {
-		-- 	primary = { r = 0.384, g = 0.271, b = 1 },
-		-- 	secondary = { r = 0.384, g = 0.271, b = 1 },
-		-- },
+		crafting_machine_tint = {
+			primary = { r = 237, g = 85, b = 51, a = 1 },
+		},
 		allow_decomposition = false,
 		allow_productivity = false,
 		allow_quality = false,
