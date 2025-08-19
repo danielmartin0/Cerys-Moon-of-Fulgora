@@ -19,11 +19,11 @@ Date: 2025-08-18
     - The final radiative towers technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.
     - Nitrogen-rich mineral processing has been renamed 'Mineral leaching' and is simplified to no longer require water.
-    - The mixed-oxide fuel cell recipe no longer admits productivity modules. In order not to break existing space platforms, legacy saves that have completed Cerys unlock a secret technology granting the lost productivity bonus (Legendary T3 equivalent).
     - The Overclock module has been removed from the Cerys tech tree as it wouldn't have been added if the Metastable module was in place. Already-crafted Overclock modules are retained.
   Balancing:
     - Repair costs of Fulgoran cryogenic plants reduced.
     - Charging rods store +50% energy, but appear less frequently in ruins.
+    - The mixed-oxide fuel cell recipe no longer admits productivity modules. In order not to break existing space platforms, legacy saves that have completed Cerys unlock a secret technology granting the lost productivity bonus (Legendary T3 equivalent).
   Graphics:
     - New icons for repair recipes.
   Sounds:
