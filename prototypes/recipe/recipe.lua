@@ -70,7 +70,6 @@ data:extend({
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
-			{ type = "item", name = "iron-gear-wheel", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 1 },
 			{ type = "item", name = "inserter", amount = 1 },
 		},
@@ -167,8 +166,8 @@ data:extend({
 		energy_required = 50,
 		ingredients = {
 			{ type = "item", name = "atomic-bomb", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 75 },
-			{ type = "item", name = "plutonium-238", amount = 25 },
+			{ type = "item", name = "plutonium-239", amount = 80 },
+			{ type = "item", name = "plutonium-238", amount = 20 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
@@ -231,17 +230,10 @@ data:extend({
 				draw_background = true,
 			},
 			{
-				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
-				icon_size = 64,
-				scale = 0.35,
-				shift = { -8, -11 },
-				draw_background = true,
-			},
-			{
 				icon = "__space-age__/graphics/icons/fluid/ammonia.png",
 				icon_size = 64,
-				scale = 0.35,
-				shift = { 8, -11 },
+				scale = 0.45,
+				shift = { -11, -11 },
 				draw_background = true,
 			},
 		},

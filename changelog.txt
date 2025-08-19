@@ -1,17 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.1.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.1.0
+Version: 4.1.0-4.1.1
 Date: 2025-08-19
   Changes:
     - Added a new chemically realistic recipe for explosives using ammonium nitrate to Fulgoran cryogenics.
-    - The Atomic bomb technology is now a prerequisite for Cerys discovery.
+    - Adjusted a few technology prerequisite relationships.
   Balancing:
     - Reduced the speed nerf of the Metastable module's decayed state.
-  Graphics:
-    - Centrifuges recharging metastable modules now have a custom visualization color.
 ---------------------------------------------------------------------------------------------------
 Version: 4.0.0-4.0.6
 Date: 2025-08-18

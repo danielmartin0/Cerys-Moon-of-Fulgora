@@ -214,7 +214,7 @@ data:extend({
 				recipe = "cerys-lubricant-synthesis",
 			},
 		},
-		prerequisites = { "cerys-advanced-structure-repair", "cerys-electromagnetic-tooling" },
+		prerequisites = { "cerys-advanced-structure-repair" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
@@ -222,7 +222,6 @@ data:extend({
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
-				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -252,7 +251,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 100,
+			count = 300,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -280,10 +279,10 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-reactor-fuel",
-			"cerys-lubricant-synthesis",
+			"cerys-mixed-oxide-waste-reprocessing",
 		},
 		unit = {
-			count = 500,
+			count = 300,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -366,8 +365,8 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-lubricant-synthesis",
 			"cerys-electromagnetic-tooling",
+			"cerys-mixed-oxide-waste-reprocessing",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
@@ -384,7 +383,7 @@ data:extend({
 	},
 })
 
-local CARGO_DROPS_PREREQS = { "cerys-plutonium-weaponry" }
+local CARGO_DROPS_PREREQS = { "cerys-plutonium-weaponry", "cerys-lubricant-synthesis" }
 
 local cargo_drops_base =
 	PlanetsLib.cargo_drops_technology_base("cerys", "__Cerys-Moon-of-Fulgora__/graphics/technology/cerys.png", 256)

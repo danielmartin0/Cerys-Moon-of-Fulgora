@@ -141,6 +141,7 @@ data:extend({
 		order = "q[metastable-module-recharging]",
 		crafting_machine_tint = {
 			primary = { r = 237, g = 85, b = 51, a = 1 },
+			secondary = { r = 237, g = 85, b = 51, a = 1 },
 		},
 		allow_decomposition = false,
 		allow_productivity = false,
