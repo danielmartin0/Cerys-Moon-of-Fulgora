@@ -11,7 +11,7 @@ data:extend({
 			{ type = "item", name = "refined-concrete", amount = 16 },
 			{ type = "item", name = "steel-plate", amount = 12 },
 			{ type = "item", name = "processing-unit", amount = 8 },
-			{ type = "item", name = "plutonium-238", amount = 12 },
+			{ type = "item", name = "plutonium-238", amount = 16 },
 		},
 		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
 		enabled = false,
