@@ -160,9 +160,9 @@ data:extend({
 		effect = {
 			productivity = 0.08,
 			consumption = 0.7,
-			pollution = 0.08,
-			speed = -0.12,
-		}, -- Tier 2.5
+			pollution = 0.07,
+			speed = -0.10,
+		}, -- half as strong, Tier 2.5 equivalent
 		default_import_location = "cerys",
 	},
 	{
