@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.1.2
-Date: ????
+Date: 2025-08-19
   Changes:
     - The vanilla rocket fuel recipe is no longer banned on Cerys. The recipe using ammonia is still usable on Cerys but is no longer unlocked by Fulgoran cryogenics. Existing saves that use the ammonia rocket fuel recipe may need to research the Aquilo discovery technology if they haven't.
 ---------------------------------------------------------------------------------------------------
