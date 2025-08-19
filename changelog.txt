@@ -8,7 +8,6 @@ Date: 2025-08-19
     - Adjusted a few technology prerequisite relationships.
     - Plutonium weaponry now unlocks the atomic bomb item (compatibility hinders making 'Atomic bomb' a prerequisite for Cerys discovery).
   Balancing:
-    - Slightly reduced the speed nerf of the Metastable module's decayed state.
     - Sulfuric acid required for mineral leaching increased from 15 to 20.
 ---------------------------------------------------------------------------------------------------
 Version: 4.0.0-4.0.6
