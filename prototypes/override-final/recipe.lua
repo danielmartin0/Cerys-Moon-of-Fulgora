@@ -83,10 +83,6 @@ if data.raw.recipe["steam-engine"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["steam-engine"], common.TEN_PRESSURE_MIN)
 end
 
-if data.raw.recipe["rocket-fuel"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["rocket-fuel"], common.AMBIENT_RADIATION_MAX)
-end
-
 local speed_3_recycling_results_without_tungsten_carbide = {}
 for _, result in pairs(data.raw.recipe["speed-module-3-recycling"].results) do
 	if result.name ~= "tungsten-carbide" then

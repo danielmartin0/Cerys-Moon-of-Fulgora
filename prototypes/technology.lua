@@ -79,10 +79,6 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "ammonia-rocket-fuel",
-			},
-			{
-				type = "unlock-recipe",
 				recipe = "lithium",
 			},
 		},
