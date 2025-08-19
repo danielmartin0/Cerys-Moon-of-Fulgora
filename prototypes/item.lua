@@ -15,7 +15,6 @@ data:extend({
 		weight = 100 * 1000,
 		stack_size = 20,
 		place_result = "cerys-radiative-tower",
-		factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
 	},
 })
 
