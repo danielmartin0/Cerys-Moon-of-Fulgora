@@ -117,6 +117,10 @@ script.on_event(defines.events.on_research_finished, function(event)
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
 	elseif research.name == common.FULGORAN_TOWER_MINING_TECH_NAME then
 		common.make_radiative_towers_minable()
+	elseif research.name == "cerys-z-disable-legacy-tech-when-researched" then
+		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].researched = false
+		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].visible_when_disabled = false
+		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].enabled = false
 	end
 end)
 
@@ -336,17 +340,7 @@ script.on_event({
 end)
 
 script.on_configuration_changed(function()
-	for _, force in pairs(game.forces) do
-		if
-			force.recipes["cerys-discover-fulgoran-cryogenics"]
-			and force.technologies["cerys-fulgoran-cryogenics"]
-			and force.technologies["cerys-fulgoran-cryogenics"].researched
-		then
-			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
-		else
-			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
-		end
-	end
+	init.initialize_technologies()
 
 	local surface = game.surfaces["cerys"]
 

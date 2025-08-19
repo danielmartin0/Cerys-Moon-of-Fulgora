@@ -742,6 +742,46 @@ data:extend({
 	-- },
 })
 
+if not settings.startup["cerys-disable-secret-cell-productivity-tech-for-legacy-saves"].value then
+	data:extend({
+		{
+			type = "technology",
+			name = "cerys-legacy-reactor-fuel-productivity",
+			icons = util.technology_icon_constant_recipe_productivity(
+				"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-fuel-cell.png"
+			),
+			effects = {
+				{
+					type = "change-recipe-productivity",
+					recipe = "mixed-oxide-fuel-cell",
+					change = 1,
+				},
+			},
+			prerequisites = { "cerys-reactor-fuel" },
+			unit = {
+				count = 1,
+				ingredients = {},
+				time = 1,
+			},
+		},
+		{
+			type = "technology",
+			name = "cerys-z-disable-legacy-tech-when-researched", -- A trick to prevent enable-all-technology commands from enabling the legacy tech.
+			icons = util.technology_icon_constant_recipe_productivity(
+				"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-fuel-cell.png"
+			),
+			hidden = true,
+			effects = {},
+			prerequisites = { "cerys-legacy-reactor-fuel-productivity" },
+			unit = {
+				count = 1,
+				ingredients = {},
+				time = 1,
+			},
+		},
+	})
+end
+
 if
 	settings.startup["cerys-infinite-braking-technology"].value
 	and data.raw.technology["braking-force-7"]

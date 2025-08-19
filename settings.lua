@@ -32,6 +32,13 @@ data:extend({
 		name = "cerys-sandbox-mode",
 		setting_type = "startup",
 		default_value = false,
+		order = "g",
+	},
+	{
+		type = "bool-setting",
+		name = "cerys-disable-secret-cell-productivity-tech-for-legacy-saves",
+		setting_type = "startup",
+		default_value = false,
 		order = "z",
 	},
 	{

@@ -32,7 +32,7 @@ data:extend({
 			{ type = "item", name = "plutonium-239", amount = 10 },
 		},
 		results = { { type = "item", name = "mixed-oxide-fuel-cell", amount = 1 } },
-		allow_productivity = true,
+		allow_productivity = false,
 	},
 
 	{
