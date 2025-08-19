@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.1.5
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.1.0-4.1.4
+Version: 4.1.0-4.1.5
 Date: 2025-08-19
   Changes:
     - The Fulgoran cryogenics technology now unlocks a chemically realistic ammonium nitrate recipe for explosives.
@@ -13,6 +9,7 @@ Date: 2025-08-19
     - Plutonium weaponry now unlocks the atomic bomb item because compatibility problems hinder making it a prerequisite for Cerys discovery.
   Balancing:
     - Slightly reduced the speed nerf of the Metastable module's decayed state.
+    - Sulfuric acid required for mineral leaching increased from 15 to 20.
 ---------------------------------------------------------------------------------------------------
 Version: 4.0.0-4.0.6
 Date: 2025-08-18
