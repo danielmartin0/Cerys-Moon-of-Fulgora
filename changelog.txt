@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.1.0
-Date: ????
+Date: 2025-08-19
   Changes:
     - Added a new chemically realistic recipe for explosives using ammonium nitrate to Fulgoran cryogenics.
     - The Atomic bomb technology is now a prerequisite for Cerys discovery.
