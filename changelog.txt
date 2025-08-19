@@ -3,7 +3,7 @@ Version: 4.0.0-4.0.4
 Date: 2025-08-18
   Info:
     - 4.0 release! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, adds an entity that tests plutonium farm effectiveness, and has the player blast a hole in the magnetosphere.
-    - Unfortunately, significant BREAKING CHANGES were required to charged particle dynamics and to which science packs you craft.
+    - Unfortunately, BREAKING CHANGES were required to a) charged particle dynamics and b) which science packs you craft.
   Features:
     - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radiation-proof inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
   Changes:
