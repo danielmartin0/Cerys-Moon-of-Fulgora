@@ -4,6 +4,7 @@ Date: 2025-08-19
   Changes:
     - Added a new chemically realistic recipe for explosives using ammonium nitrate to Fulgoran cryogenics.
     - Adjusted a few technology prerequisite relationships.
+    - Crafting radiative towers now requires Plutonium-238.
   Balancing:
     - Reduced the speed nerf of the Metastable module's decayed state.
 ---------------------------------------------------------------------------------------------------

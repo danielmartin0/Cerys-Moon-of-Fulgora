@@ -279,7 +279,7 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-reactor-fuel",
-			"cerys-mixed-oxide-waste-reprocessing",
+			"cerys-lubricant-synthesis",
 		},
 		unit = {
 			count = 300,
