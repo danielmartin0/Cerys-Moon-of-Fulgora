@@ -11,8 +11,6 @@ Public.REACTOR_STAGE_ENUM = {
 	active = 4,
 }
 
-Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = common.HARD_MODE_ON and 1000 or 400
-
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
 function Public.tick_15_nuclear_reactor_repair_check(surface)
@@ -111,7 +109,7 @@ function Public.reactor_excavation_check(surface, reactor)
 end
 
 function Public.reactor_repair_recipes_needed(reactor_quality)
-	return math.ceil(Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
+	return math.ceil(common.BASE_REACTOR_REPAIR_RECIPES_NEEDED)
 end
 
 function Public.reactor_repair_check(surface, reactor)

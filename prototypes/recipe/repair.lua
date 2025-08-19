@@ -197,6 +197,12 @@ data:extend({
 		allow_quality = false,
 		allow_productivity = true,
 		hide_from_signal_gui = true,
+		custom_tooltip_fields = {
+			{
+				name = { "cerys.completions-needed-tooltip-name" },
+				value = tostring(common.BASE_REACTOR_REPAIR_RECIPES_NEEDED),
+			},
+		},
 	},
 
 	{
