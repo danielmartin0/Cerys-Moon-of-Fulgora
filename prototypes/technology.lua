@@ -278,7 +278,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 250,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -353,11 +353,15 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-hydrogen-bomb",
+				recipe = "cerys-neutron-bomb",
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-neutron-bomb",
+				recipe = "atomic-bomb",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-hydrogen-bomb",
 			},
 		},
 		prerequisites = {
@@ -455,7 +459,7 @@ local discovery_tech = {
 	prerequisites = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
-		"atomic-bomb",
+		"kovarex-enrichment-process",
 		"productivity-module-2",
 		"energy-shield-equipment", -- if removed, solar energy needs to be added
 	},
