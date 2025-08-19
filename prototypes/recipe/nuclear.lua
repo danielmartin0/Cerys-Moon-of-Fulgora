@@ -217,8 +217,6 @@ data:extend({
 		energy_required = 10,
 		enabled = false,
 		category = "fulgoran-cryogenics",
-		subgroup = "plutonium-processing",
-		order = "c-a",
 		ingredients = {
 			{ type = "item", name = "plutonium-238", amount = 1 },
 			{ type = "item", name = "nuclear-fuel", amount = 1 },

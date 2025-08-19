@@ -243,7 +243,7 @@ data:extend({
 		icon_size = 64,
 		fuel_category = "chemical",
 		subgroup = "plutonium-processing",
-		order = "c-a",
+		order = "c-e",
 		fuel_value = "5GJ",
 		default_import_location = "cerys",
 		fuel_acceleration_multiplier = 5,
