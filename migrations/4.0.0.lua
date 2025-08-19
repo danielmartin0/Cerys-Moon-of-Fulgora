@@ -13,9 +13,10 @@ for _, force in pairs(game.forces) do
 		if force.technologies["cerys-reactor-fuel"] then
 			force.technologies["cerys-reactor-fuel"].researched = true
 		end
-		if force.technologies["cerys-metastable-module"] then
-			force.technologies["cerys-metastable-module"].researched = true
-		end
+		-- This one is new, not part of an existing tech:
+		-- if force.technologies["cerys-metastable-module"] then
+		-- 	force.technologies["cerys-metastable-module"].researched = true
+		-- end
 		if force.technologies["cerys-mixed-oxide-reactors"] then
 			force.technologies["cerys-mixed-oxide-reactors"].researched = true
 		end

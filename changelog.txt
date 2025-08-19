@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.0.0-4.0.5
+Version: 4.0.0-4.0.6
 Date: 2025-08-18
   Info:
     - 4.0 release! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, adds a charged particle testing entity, and has the player blast a hole in the magnetosphere.
