@@ -456,6 +456,7 @@ local discovery_tech = {
 			use_icon_overlay_constant = false, -- This prevents the 'planet' symbol from appearing over the effect icon.
 		},
 	},
+	-- Adjusted later if any-planet-start is installed:
 	prerequisites = {
 		"planet-discovery-fulgora",
 		"nuclear-power",
