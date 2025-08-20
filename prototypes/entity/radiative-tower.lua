@@ -79,7 +79,7 @@ local reactor = {
 		shadow_offset = util.by_pixel(2.625, 24.25),
 		show_shadow = true,
 	}),
-	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
+	minable = { mining_time = 1.25, result = "cerys-fulgoran-radiative-tower" },
 	autoplace = {
 		probability_expression = "0",
 	},

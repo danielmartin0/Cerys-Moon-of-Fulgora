@@ -97,6 +97,7 @@ Public.register_radiative_tower = function(entity)
 		name = "cerys-fulgoran-radiative-tower-base-frozen",
 		position = entity.position,
 		force = entity.force,
+		create_build_effect_smoke = false,
 	})
 
 	if base and base.valid then
@@ -251,6 +252,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y - (is_player_tower and 0 or 0.5) },
 					force = e.force,
+					create_build_effect_smoke = false,
 				})
 				reactor_north.destructible = false
 				reactor_north.minable_flag = false
@@ -260,6 +262,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y + (is_player_tower and 0 or 0.5) },
 					force = e.force,
+					create_build_effect_smoke = false,
 				})
 				reactor_south.destructible = false
 				reactor_south.minable_flag = false
@@ -295,6 +298,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 				name = "radiative-tower-lamp-" .. heating_radius,
 				position = e.position,
 				force = e.force,
+				create_build_effect_smoke = false,
 			})
 			new_lamp.destructible = false
 			new_lamp.minable_flag = false
@@ -337,6 +341,7 @@ function Public.unfreeze_tower(tower)
 			name = "cerys-fulgoran-radiative-tower-base",
 			position = e.position,
 			force = e.force,
+			create_build_effect_smoke = false,
 		})
 
 		if base and base.valid then
@@ -350,6 +355,7 @@ function Public.unfreeze_tower(tower)
 		name = "cerys-fulgoran-radiative-tower",
 		position = e.position,
 		force = e.force,
+		create_build_effect_smoke = false,
 		-- fast_replace = true,
 	})
 
@@ -455,6 +461,7 @@ function Public.tick_20_contracted_towers(surface)
 					name = "cerys-fulgoran-radiative-tower-rising-reactor-base",
 					position = e.position,
 					force = e.force,
+					create_build_effect_smoke = false,
 				})
 
 				if e2 and e2.valid then
@@ -469,6 +476,7 @@ function Public.tick_20_contracted_towers(surface)
 						y = e.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
 					},
 					force = e.force,
+					create_build_effect_smoke = false,
 				})
 				contracted_tower.top_entity = top_entity
 
@@ -545,6 +553,7 @@ function Public.tick_1_move_radiative_towers()
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
 						position = top_entity.position,
 						force = top_entity.force,
+						create_build_effect_smoke = false,
 					})
 					contracted_tower.top_entity.destroy()
 					contracted_tower.top_entity = new_top_entity
@@ -559,6 +568,7 @@ function Public.tick_1_move_radiative_towers()
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
 						position = top_entity.position,
 						force = top_entity.force,
+						create_build_effect_smoke = false,
 					})
 					contracted_tower.top_entity.destroy()
 					contracted_tower.top_entity = new_top_entity
@@ -569,6 +579,7 @@ function Public.tick_1_move_radiative_towers()
 					position = e.position,
 					force = e.force,
 					raise_built = true,
+					create_build_effect_smoke = true,
 				})
 
 				if new_tower and new_tower.valid then
