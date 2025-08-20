@@ -120,7 +120,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-electromagnetic-tooling",
 		unit = {
-			count = 50,
+			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "space-science-pack", 1 },
@@ -247,7 +247,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 250,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -278,7 +278,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 500,
+			count = 250,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -311,7 +311,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 200,
+			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -371,7 +371,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 250,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -503,7 +503,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 		icon_size = 200,
 		unit = {
-			count = 2000,
+			count = 1500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

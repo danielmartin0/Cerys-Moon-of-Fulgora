@@ -2,13 +2,14 @@
 Version: 4.1.0-4.1.6
 Date: 2025-08-19
   Changes:
-    - The Fulgoran cryogenics technology now unlocks a chemically realistic ammonium nitrate recipe for explosives.
+    - Fixed an issue in which the hydrogen bomb was uncraftable: the Fulgoran cryogenics technology now unlocks a chemically realistic ammonium nitrate recipe for explosives.
     - The vanilla rocket fuel recipe is no longer banned on Cerys. The rocket fuel recipe using ammonia is still usable but is no longer unlocked by Fulgoran cryogenics.
     - Crafting radiative towers now requires Plutonium-238.
-    - Adjusted a few technology prerequisite relationships.
     - Plutonium weaponry now unlocks the atomic bomb item (compatibility hinders making 'Atomic bomb' a prerequisite for Cerys discovery).
+    - Adjusted technology prerequisite relationships.
   Balancing:
     - Sulfuric acid required for mineral leaching increased from 15 to 20.
+    - Space science pack from methane ice now produces 1 pack per craft (from 5). The cost of technologies needing space science has been reduced to compensate.
 ---------------------------------------------------------------------------------------------------
 Version: 4.0.0-4.0.6
 Date: 2025-08-18

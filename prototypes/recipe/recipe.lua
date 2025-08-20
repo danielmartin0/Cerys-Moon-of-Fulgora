@@ -103,7 +103,7 @@ data:extend({
 		},
 		energy_required = 15,
 		results = {
-			{ type = "item", name = "space-science-pack", amount = 5 },
+			{ type = "item", name = "space-science-pack", amount = 1 },
 		},
 		allow_productivity = true,
 		main_product = "space-science-pack",
