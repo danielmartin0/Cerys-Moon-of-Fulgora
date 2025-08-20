@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.2.0
-Date: 2025-08-19
+Date: 2025-08-20
   Bugfixes:
     - Fixed that machine quality upgrade recipes could not be completed due to the unstackability of repair parts, by switching the recipes to require chips.
   Compatibility:
