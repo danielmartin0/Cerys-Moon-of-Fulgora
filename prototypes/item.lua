@@ -171,8 +171,8 @@ data:extend({
 		icon_size = 64,
 		color_hint = { text = "R" },
 		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
-		subgroup = "cerys-processes",
-		order = "b-a",
+		subgroup = "science-pack",
+		order = "a[automation-science-pack]-b[cerysian-science-pack]",
 		default_import_location = "cerys",
 		inventory_move_sound = item_sounds.science_inventory_move,
 		pick_sound = item_sounds.science_inventory_pickup,
