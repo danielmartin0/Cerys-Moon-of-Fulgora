@@ -79,8 +79,15 @@ local function adjust_inserter_to_match_machine(inserter, machine)
 	local total_items = inv.get_item_count()
 
 	local has_empty_slot = total_items < module_inv_size
-	local decayed_count = inv.get_item_count("cerys-metastable-module-decayed")
-	local charged_count = inv.get_item_count("cerys-metastable-module-charged")
+
+	local decayed_count = 0
+	local charged_count = 0
+	for quality, _ in pairs(prototypes.quality) do
+		decayed_count = decayed_count
+			+ inv.get_item_count({ name = "cerys-metastable-module-decayed", quality = quality })
+		charged_count = charged_count
+			+ inv.get_item_count({ name = "cerys-metastable-module-charged", quality = quality })
+	end
 
 	local decayed_held = inserter.held_stack
 			and inserter.held_stack.valid_for_read
@@ -106,7 +113,7 @@ local function adjust_inserter_to_match_machine(inserter, machine)
 		desired_direction = toward_dir
 		desired_inserter_stack_size_override = module_inv_size - total_items
 	elseif charged_count > 0 or decayed_count > 0 or decayed_held > 0 then
-		desired_filter = { name = "cerys-metastable-module-charged" }
+		desired_filter = { name = "cerys-metastable-module-decayed" }
 		desired_direction = (toward_dir + 8) % 16 -- Opposite cardinal direction
 		desired_inserter_stack_size_override = decayed_count + decayed_held
 	end
