@@ -34,7 +34,51 @@ function Public.on_inserter_gui_opened(player)
 end
 
 local function is_valid_module_machine(entity)
-	return (entity.prototype.type == "assembling-machine" and entity.get_recipe())
+	if not entity then
+		return false
+	end
+
+	local prototype = entity.prototype
+	local type = prototype.type
+
+	local is_furnace = type == "furnace"
+	local is_assembling_machine = type == "assembling-machine"
+	local is_rocket_silo = type == "rocket-silo"
+	local is_lab = type == "lab"
+
+	if not (is_furnace or is_assembling_machine or is_rocket_silo or is_lab) then
+		return false
+	end
+
+	-- Quality can add module slots:
+	-- if not (prototype.module_inventory_size and prototype.module_inventory_size > 0) then
+	-- 	return false
+	-- end
+
+	if is_assembling_machine or is_rocket_silo then
+		local recipe = entity.get_recipe()
+
+		if not recipe then
+			return false
+		end
+
+		local allowed_in_effects = recipe.prototype.allowed_effects["productivity"]
+
+		if not allowed_in_effects then
+			return false
+		end
+
+		local allowed_in_categories = not (
+			recipe.prototype.allowed_module_categories
+			and not recipe.prototype.allowed_module_categories["productivity"]
+		)
+
+		if not allowed_in_categories then
+			return false
+		end
+	end
+
+	return true
 end
 
 local function adjust_inserter_to_match_machine(inserter, machine)
@@ -138,7 +182,7 @@ local function adjust_inserter(inserter_data)
 		inserter_data.drop_proxy = proxy_for_drop
 	end
 
-	local valid_drop_machine = proxy_for_drop and proxy_for_drop.proxy_target_entity
+	local valid_drop_machine = proxy_for_drop and proxy_for_drop.valid and proxy_for_drop.proxy_target_entity
 
 	local proxy_for_pickup = inserter.pickup_target
 		and inserter.pickup_target.valid
@@ -174,7 +218,7 @@ local function adjust_inserter(inserter_data)
 		inserter_data.pickup_proxy = proxy_for_pickup
 	end
 
-	local valid_pickup_machine = proxy_for_pickup and proxy_for_pickup.proxy_target_entity
+	local valid_pickup_machine = proxy_for_pickup and proxy_for_pickup.valid and proxy_for_pickup.proxy_target_entity
 
 	local machine
 	if valid_drop_machine then
