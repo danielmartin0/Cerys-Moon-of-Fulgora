@@ -83,10 +83,6 @@ script.on_event({
 	end
 end)
 
-script.on_event(defines.events.on_player_flipped_entity, function(event)
-	inserter.on_inserter_flipped(event.entity)
-end)
-
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 
@@ -559,7 +555,7 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	then
 		rods.on_gui_opened(event)
 	elseif entity.name == "cerys-radiation-proof-inserter" then
-		inserter.on_inserter_gui_opened(player)
+		inserter.on_inserter_gui_opened(player, entity)
 	end
 end)
 

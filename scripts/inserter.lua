@@ -12,24 +12,7 @@ function Public.register_inserter(entity)
 	entity.use_filters = true
 end
 
-local function flip_inserter_filter(inserter)
-	inserter.use_filters = true
-
-	local current_filter = inserter.get_filter(1)
-	if current_filter and current_filter.name == "cerys-metastable-module-decayed" then
-		inserter.set_filter(1, "cerys-metastable-module-charged")
-	else
-		inserter.set_filter(1, "cerys-metastable-module-decayed")
-	end
-end
-
-function Public.on_inserter_flipped(entity)
-	if entity.name == "cerys-radiation-proof-inserter" then
-		flip_inserter_filter(entity)
-	end
-end
-
-function Public.on_inserter_gui_opened(player)
+function Public.on_inserter_gui_opened(player, entity)
 	player.opened = nil
 end
 
@@ -119,11 +102,11 @@ local function adjust_inserter_to_match_machine(inserter, machine)
 	end
 
 	if has_empty_slot and decayed_held <= 0 then
-		desired_filter = "cerys-metastable-module-charged"
+		desired_filter = { name = "cerys-metastable-module-charged" }
 		desired_direction = toward_dir
 		desired_inserter_stack_size_override = module_inv_size - total_items
 	elseif charged_count > 0 or decayed_count > 0 or decayed_held > 0 then
-		desired_filter = "cerys-metastable-module-decayed"
+		desired_filter = { name = "cerys-metastable-module-charged" }
 		desired_direction = (toward_dir + 8) % 16 -- Opposite cardinal direction
 		desired_inserter_stack_size_override = decayed_count + decayed_held
 	end

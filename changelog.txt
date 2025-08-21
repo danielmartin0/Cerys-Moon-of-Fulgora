@@ -7,7 +7,8 @@ Version: 4.2.0-4.2.1
 Date: 2025-08-20
   Bugfixes:
     - Fixed that v4 machine quality upgrades could not be performed (by switching the recipes to require chips).
-    - Fixed corner cases in which Radiation-proof inserters would fail to insert modules correctly.
+    - Fixed cases in which Radiation-proof inserters would fail to insert modules correctly.
+    - Fixed that Radiation-proof inserters only filtered for Normal-quality modules.
   Compatibility:
     - K2SO: 'Prevent recycling recipe overrides' now protects recycling recipes for chips and electronic components.
 ---------------------------------------------------------------------------------------------------
