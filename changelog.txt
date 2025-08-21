@@ -1,5 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.2.0-4.2.3
+Version: 4.2.4
+Date: ????
+  Changes:
+---------------------------------------------------------------------------------------------------
+Version: 4.2.0-4.2.4
 Date: 2025-08-20
   Bugfixes:
     - Fixed that v4 machine quality upgrades could not be performed (by switching the recipes to require chips).
