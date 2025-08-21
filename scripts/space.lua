@@ -308,29 +308,78 @@ end
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
-		if not particle.is_ghost and not Public.particle_is_in_cooldown(particle) then
-			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
-			if #chars > 0 then
-				local e = chars[1]
+		if not particle.is_ghost then
+			if not Public.particle_is_in_cooldown(particle) then
+				local chars =
+					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
+				if #chars > 0 then
+					local e = chars[1]
+					if e and e.valid then
+						local check = (not Public.particle_is_in_cooldown(particle))
+							or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+
+						if check then
+							particle.irradiation_tick = game.tick
+							-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
+
+							local inv = e.get_main_inventory()
+							if inv and inv.valid then
+								local irradiated = Public.irradiate_inventory(
+									surface,
+									inv,
+									e.force,
+									e.position,
+									probability_multiplier,
+									true
+								)
+								if irradiated then
+									surface.create_entity({
+										name = "plutonium-explosion",
+										position = e.position,
+									})
+								end
+							end
+
+							if math.random() < CHANCE_DAMAGE_CHARACTER then
+								local player = e.player
+								if player and player.valid then
+									player.play_sound({
+										path = "cerys-radiation-impact",
+										volume_modifier = 0.25,
+									})
+								end
+
+								particle.irradiation_tick = game.tick
+
+								local damage = common.HARD_MODE_ON and 80 or 5
+
+								e.damage(damage, game.forces.neutral, "impact")
+							end
+						end
+					end
+				end
+			end
+
+			local containers = surface.find_entities_filtered({
+				type = { "container", "logistic-container" },
+				position = particle.position,
+				radius = 0.75,
+			})
+
+			if #containers > 0 then
+				local e = containers[1]
 				if e and e.valid then
 					local check = (not Public.particle_is_in_cooldown(particle))
 						or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
 					if check then
 						particle.irradiation_tick = game.tick
-						-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
+						particle.last_checked_inv = e.unit_number
 
-						local inv = e.get_main_inventory()
+						local inv = e.get_inventory(defines.inventory.chest)
 						if inv and inv.valid then
-							local irradiated = Public.irradiate_inventory(
-								surface,
-								inv,
-								e.force,
-								e.position,
-								probability_multiplier,
-								true
-							)
+							local irradiated =
+								Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
 							if irradiated then
 								surface.create_entity({
 									name = "plutonium-explosion",
@@ -338,123 +387,77 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								})
 							end
 						end
-
-						if math.random() < CHANCE_DAMAGE_CHARACTER then
-							local player = e.player
-							if player and player.valid then
-								player.play_sound({
-									path = "cerys-radiation-impact",
-									volume_modifier = 0.25,
-								})
-							end
-
-							particle.irradiation_tick = game.tick
-
-							local damage = common.HARD_MODE_ON and 80 or 5
-
-							e.damage(damage, game.forces.neutral, "impact")
-						end
 					end
 				end
 			end
-		end
 
-		local containers = surface.find_entities_filtered({
-			type = { "container", "logistic-container" },
-			position = particle.position,
-			radius = 0.75,
-		})
+			-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
+			if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
+				local belts = surface.find_entities_filtered({
+					type = "transport-belt",
+					position = particle.position,
+					radius = 0.5,
+				})
+				if #belts > 0 then
+					local e = belts[1]
+					if e and e.valid then
+						local lines = {
+							e.get_transport_line(1),
+							e.get_transport_line(2),
+						}
 
-		if #containers > 0 then
-			local e = containers[1]
-			if e and e.valid then
-				local check = (not Public.particle_is_in_cooldown(particle))
-					or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+						local has_uranium = false
+						for _, line in pairs(lines) do
+							local contents = line.get_detailed_contents()
 
-				if check then
-					particle.irradiation_tick = game.tick
-					particle.last_checked_inv = e.unit_number
+							for _, item in pairs(contents) do
+								if item.stack.name == "uranium-238" then
+									has_uranium = true
 
-					local inv = e.get_inventory(defines.inventory.chest)
-					if inv and inv.valid then
-						local irradiated =
-							Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
-						if irradiated then
-							surface.create_entity({
-								name = "plutonium-explosion",
-								position = e.position,
-							})
-						end
-					end
-				end
-			end
-		end
+									local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
+										* probability_multiplier
+										* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 
-		-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
-		if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
-			local belts = surface.find_entities_filtered({
-				type = "transport-belt",
-				position = particle.position,
-				radius = 0.5,
-			})
-			if #belts > 0 then
-				local e = belts[1]
-				if e and e.valid then
-					local lines = {
-						e.get_transport_line(1),
-						e.get_transport_line(2),
-					}
+									storage.accrued_probability_units = (storage.accrued_probability_units or 0)
+										+ increase
 
-					local has_uranium = false
-					for _, line in pairs(lines) do
-						local contents = line.get_detailed_contents()
+									local mutate = storage.accrued_probability_units > 1
 
-						for _, item in pairs(contents) do
-							if item.stack.name == "uranium-238" then
-								has_uranium = true
+									if mutate then
+										storage.accrued_probability_units = storage.accrued_probability_units - 1
 
-								local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
-									* probability_multiplier
-									* settings.global["cerys-plutonium-generation-rate-multiplier"].value
+										item.stack.set_stack({
+											name = "plutonium-239",
+											count = item.stack.count,
+											quality = item.stack.quality,
+										})
 
-								storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
+										if e.force and e.force.valid then
+											e.force
+												.get_item_production_statistics(surface)
+												.on_flow("plutonium-239", item.stack.count)
+											e.force
+												.get_item_production_statistics(surface)
+												.on_flow("uranium-238", -item.stack.count)
+										end
 
-								local mutate = storage.accrued_probability_units > 1
-
-								if mutate then
-									storage.accrued_probability_units = storage.accrued_probability_units - 1
-
-									item.stack.set_stack({
-										name = "plutonium-239",
-										count = item.stack.count,
-										quality = item.stack.quality,
-									})
-
-									if e.force and e.force.valid then
-										e.force
-											.get_item_production_statistics(surface)
-											.on_flow("plutonium-239", item.stack.count)
-										e.force
-											.get_item_production_statistics(surface)
-											.on_flow("uranium-238", -item.stack.count)
+										surface.create_entity({
+											name = "plutonium-explosion",
+											position = e.position,
+										})
 									end
 
-									surface.create_entity({
-										name = "plutonium-explosion",
-										position = e.position,
-									})
+									particle.irradiation_tick = game.tick
+									particle.last_checked_inv = nil
+
+									break
 								end
-
-								particle.irradiation_tick = game.tick
-								particle.last_checked_inv = nil
-
-								break
 							end
 						end
-					end
 
-					if has_uranium then
-						Public.irradiation_chance_effect(surface, e.position)
+						if has_uranium then
+							Public.irradiation_chance_effect(surface, e.position)
+						end
 					end
 				end
 			end
