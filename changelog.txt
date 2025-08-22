@@ -2,7 +2,7 @@
 Version: 4.3.0
 Date: 2025-08-22
   Bugfixes:
-    - Renamed Radiation-proof inserter to Metastable inserter.
+    - Renamed Radiation-proof inserter to Metastable module inserter.
     - Fixed that Metastable inserters would not turn back on after being disabled by the 'X' signal.
 ---------------------------------------------------------------------------------------------------
 Version: 4.2.0-4.2.6
