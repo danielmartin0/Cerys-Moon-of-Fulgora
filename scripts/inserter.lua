@@ -147,6 +147,8 @@ local function adjust_inserter(inserter_data)
 	if disable_by_signal and disable_by_signal > 0 then
 		inserter.disabled_by_script = true
 		return
+	else
+		inserter.disabled_by_script = false
 	end
 
 	inserter.use_filters = true
