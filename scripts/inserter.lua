@@ -138,6 +138,22 @@ end
 local function adjust_inserter(inserter_data)
 	local inserter = inserter_data.entity
 
+	local disable_by_signal = inserter.get_signal(
+		{ name = "signal-deny", type = "virtual" },
+		defines.wire_connector_id.circuit_red,
+		defines.wire_connector_id.circuit_green
+	)
+
+	game.print(serpent.line(disable_by_signal))
+
+	if disable_by_signal and disable_by_signal > 0 then
+		inserter.disabled_by_script = true
+		return
+	end
+
+	inserter.use_filters = true
+	inserter.inserter_filter_mode = "whitelist"
+
 	local proxy_for_drop = inserter.drop_target
 		and inserter.drop_target.valid
 		and inserter.drop_target.name == "cerys-proxy-drop"

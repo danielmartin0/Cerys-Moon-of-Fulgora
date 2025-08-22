@@ -167,8 +167,7 @@ data:extend({
 		energy_required = 50,
 		ingredients = {
 			{ type = "item", name = "atomic-bomb", amount = 1 },
-			{ type = "item", name = "plutonium-239", amount = 80 },
-			{ type = "item", name = "plutonium-238", amount = 20 },
+			{ type = "item", name = "plutonium-239", amount = 100 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },

@@ -94,6 +94,8 @@ data:extend({
 				scale = 0.5,
 			},
 		},
+		circuit_connector = circuit_connector_definitions["inserter"],
+		circuit_wire_max_distance = inserter_circuit_wire_max_distance + 3,
 	},
 	{
 		type = "corpse",
