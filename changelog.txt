@@ -1,16 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.2.6
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.2.5
-Date: 2025-08-22
+Version: 4.2.0-4.2.6
+Date: 2025-08-20
   Changes:
     - The Hydrogen bomb recipe no longer includes Plutonium-238.
     - Radiation-proof inserters now disable themselves if receiving the red 'X' circuit signal.
----------------------------------------------------------------------------------------------------
-Version: 4.2.0-4.2.4
-Date: 2025-08-20
   Bugfixes:
     - Fixed that v4 machine quality upgrades could not be performed (by switching the recipes to require chips).
     - Fixed cases in which Radiation-proof inserters would fail to insert modules correctly.

@@ -144,8 +144,6 @@ local function adjust_inserter(inserter_data)
 		defines.wire_connector_id.circuit_green
 	)
 
-	game.print(serpent.line(disable_by_signal))
-
 	if disable_by_signal and disable_by_signal > 0 then
 		inserter.disabled_by_script = true
 		return
