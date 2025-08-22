@@ -31,7 +31,7 @@ data:extend({
 		rotation_speed = 0.025,
 		filter_count = 1,
 		icon_draw_specification = { scale = 0.5 },
-		hand_size = 1.1,
+		hand_size = 1.2,
 		energy_source = {
 			type = "electric",
 			usage_priority = "secondary-input",
