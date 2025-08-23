@@ -23,7 +23,7 @@ data:extend({
 		selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
 		damaged_trigger_effect = hit_effects.entity(),
 		starting_distance = 1.7,
-		pickup_position = { 0, -2.2 },
+		pickup_position = { 0, -2.1 },
 		insert_position = { 0, 2.2 },
 		energy_per_movement = "15kJ",
 		energy_per_rotation = "15kJ",
