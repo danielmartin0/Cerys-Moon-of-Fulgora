@@ -17,7 +17,8 @@
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",
         "(?) maraxsis",
-        "(?) rso-mod"
+        "(?) rso-mod",
+        "(?) planet-muluna"
     ],
     "space_travel_required": true,
     "package": {

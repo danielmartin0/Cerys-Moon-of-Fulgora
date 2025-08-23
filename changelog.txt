@@ -1,12 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.3.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.3.0
+Version: 4.3.0-4.3.1
 Date: 2025-08-22
   Bugfixes:
-    - Fixed that Metastable inserters would not turn back on after being disabled by the 'X' circuit signal.
+    - Fixed that Radiation-proof inserters would not turn back on after being disabled by the 'X' circuit signal.
+    - Fixed that Radiation-proof inserters did not interact properly with labs. (You need to replace existing lab inserters for this to work.)
+  Compatibility:
+    - Compatibility: Muluna is now requested to load before Cerys in order to avoid Muluna banning burner inserters on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.2.0-4.2.6
 Date: 2025-08-20

@@ -182,8 +182,12 @@ local function adjust_inserter(inserter_data)
 			create_build_effect_smoke = false,
 			preserve_ghosts_and_corpses = true,
 		})
-		proxy_for_drop.proxy_target_entity = inserter.drop_target
-		proxy_for_drop.proxy_target_inventory = defines.inventory.crafter_modules
+		local target = inserter.drop_target
+		local target_is_lab = target.prototype.type == "lab"
+
+		proxy_for_drop.proxy_target_entity = target
+		proxy_for_drop.proxy_target_inventory = target_is_lab and defines.inventory.lab_modules
+			or defines.inventory.crafter_modules
 		inserter.drop_target = proxy_for_drop
 		inserter_data.drop_proxy = proxy_for_drop
 	end
@@ -218,8 +222,12 @@ local function adjust_inserter(inserter_data)
 			create_build_effect_smoke = false,
 			preserve_ghosts_and_corpses = true,
 		})
-		proxy_for_pickup.proxy_target_entity = inserter.pickup_target
-		proxy_for_pickup.proxy_target_inventory = defines.inventory.crafter_modules
+		local target = inserter.pickup_target
+		local target_is_lab = target.prototype.type == "lab"
+
+		proxy_for_pickup.proxy_target_entity = target
+		proxy_for_pickup.proxy_target_inventory = target_is_lab and defines.inventory.lab_modules
+			or defines.inventory.crafter_modules
 		inserter.pickup_target = proxy_for_pickup
 		inserter_data.pickup_proxy = proxy_for_pickup
 	end
