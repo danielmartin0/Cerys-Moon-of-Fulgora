@@ -8,10 +8,11 @@ if data.raw["inserter"]["burner-inserter"] then
 		property = "temperature",
 		min = 255,
 	})
-	PlanetsLib.relax_surface_conditions(burner_inserter, {
-		property = "oxygen",
-		min = 0,
-	})
+end
+
+-- Prevent Muluna from banning burner inserters on Cerys, etc. This is not ideal because the Oxygen>1 convention in Muluna is quite nice for banning burner entities on Cerys.
+if data.raw["surface-property"]["oxygen"] then
+	data.raw["planet"]["cerys"].surface_properties["oxygen"] = 1
 end
 
 -- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs intentionally, that is fine.
