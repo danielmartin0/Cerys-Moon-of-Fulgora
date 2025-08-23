@@ -5,7 +5,7 @@ Date: 2025-08-22
     - Fixed that Radiation-proof inserters would not turn back on after being disabled by the 'X' circuit signal.
     - Fixed that Radiation-proof inserters did not interact properly with labs. (You need to replace existing lab inserters for this to work.)
   Compatibility:
-    - Compatibility: Adjusted the Cerys atmospheric oxygen surface condition to 1% to avoid burner inserters being banned.
+    - Muluna: Adjusted the Cerys atmospheric oxygen surface condition to 1% to avoid burner inserters being banned.
 ---------------------------------------------------------------------------------------------------
 Version: 4.2.0-4.2.6
 Date: 2025-08-20
