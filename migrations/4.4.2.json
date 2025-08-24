@@ -4,5 +4,10 @@
         ["cerys-metastable-module-decayed-recycling", "cerys-radioactive-module-decayed-recycling"],
         ["cerys-metastable-module-charged-recycling", "cerys-radioactive-module-charged-recycling"],
         ["cerys-metastable-module-charged", "cerys-radioactive-module-charged"]
+    ],
+    "technology": [["cerys-metastable-module", "cerys-radioactive-module"]],
+    "item": [
+        ["cerys-metastable-module-charged", "cerys-radioactive-module-charged"],
+        ["cerys-metastable-module-decayed", "cerys-radioactive-module-decayed"]
     ]
 }
