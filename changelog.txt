@@ -11,6 +11,7 @@ Date: 2025-08-24
     - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
     - Crafting charging rods now requires copper cable instead of superconductors. (Superconductors are still useful for crafting modules).
+    - Charged particles no longer have a 'cooldown': colliding with inventories no longer prevents colliding with other inventories for a short period of time, as long as the inventory is a different one.
   Balancing:
     - Increased the mutation rate of Plutonium-239 by 12% and the spawn rate of charged particles by 4%. We will tune these numbers in future based on player feedback.
   Bugfixes:
