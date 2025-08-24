@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.4.0
-Date: 2025-08-22
+Date: 2025-08-24
   Changes:
     - Reinstated the Overclock module (alongside the Metastable module) by popular demand.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
