@@ -1,0 +1,8 @@
+{
+    "recipe": [
+        ["cerys-metastable-module-recharging", "cerys-radioactive-module-recharging"],
+        ["cerys-metastable-module-decayed-recycling", "cerys-radioactive-module-decayed-recycling"],
+        ["cerys-metastable-module-charged-recycling", "cerys-radioactive-module-charged-recycling"],
+        ["cerys-metastable-module-charged", "cerys-radioactive-module-charged"]
+    ]
+}
