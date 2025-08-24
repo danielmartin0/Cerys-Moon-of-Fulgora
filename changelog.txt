@@ -7,7 +7,7 @@ Version: 4.4.0-4.4.2
 Date: 2025-08-24
   Changes:
     - Reinstated the Overclock module by popular demand.
-    - Renamed the Metastable module to Radioactive module.
+    - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
     - Crafting charging rods now requires copper cable instead of superconductors. (Superconductors are still useful for crafting modules).
   Balancing:

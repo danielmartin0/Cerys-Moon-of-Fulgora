@@ -291,7 +291,7 @@ data:extend({
 	{
 		type = "technology",
 		name = "cerys-radioactive-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/metastable-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radioactive-module.png",
 		icon_size = 1024,
 		effects = {
 			{

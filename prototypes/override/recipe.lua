@@ -76,7 +76,7 @@ if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 	end
 end
 
---== Adjust decayed metastable module recycling ==--
+--== Adjust decayed radioactive module recycling ==--
 
 local decayed_recycling = data.raw.recipe["cerys-radioactive-module-decayed-recycling"]
 local charged_recycling = data.raw.recipe["cerys-radioactive-module-charged-recycling"]

@@ -117,7 +117,7 @@ data:extend({
 		category = "centrifuging",
 		icons = {
 			{
-				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module-decayed.png",
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-decayed.png",
 				icon_size = 64,
 				draw_background = true,
 				scale = 0.45,
@@ -138,7 +138,7 @@ data:extend({
 			{ type = "item", name = "cerys-radioactive-module-charged", amount = 1 },
 		},
 		subgroup = "cerys-processes",
-		order = "q[metastable-module-recharging]",
+		order = "q[radioactive-module-recharging]",
 		crafting_machine_tint = {
 			primary = { r = 237, g = 85, b = 51, a = 1 },
 			secondary = { r = 237, g = 85, b = 51, a = 1 },
