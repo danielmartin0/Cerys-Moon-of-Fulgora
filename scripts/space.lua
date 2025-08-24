@@ -312,7 +312,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			if #chars > 0 then
 				local e = chars[1]
 				if e and e.valid then
-					local check = (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
 
 					if check then
 						-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
@@ -361,7 +361,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			if #containers > 0 then
 				local e = containers[1]
 				if e and e.valid then
-					local check = (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
 
 					if check then
 						particle.last_checked_inv = e.unit_number
@@ -436,8 +436,6 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 											position = e.position,
 										})
 									end
-
-									particle.last_checked_inv = nil
 
 									break
 								end
