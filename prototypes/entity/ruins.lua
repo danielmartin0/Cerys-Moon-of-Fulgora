@@ -58,18 +58,18 @@ local function ruin_minable_results(collision_area)
 		})
 	end
 
-	if collision_area >= 30 then
+	if collision_area >= 21 then
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
-			amount = math.floor(collision_area / 30),
+			amount = math.floor(collision_area / 21),
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			probability = collision_area / 30,
+			probability = collision_area / 21,
 		})
 	end
 

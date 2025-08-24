@@ -108,7 +108,6 @@ data:extend({
 			pollution = 0.25,
 		},
 		default_import_location = "cerys",
-		hidden = true,
 		beacon_tint = {
 			primary = { 0.441, 0.714, 1.000, 1.000 }, -- #70b6ffff
 			secondary = { 0.388, 0.976, 1.000, 1.000 }, -- #63f8ffff

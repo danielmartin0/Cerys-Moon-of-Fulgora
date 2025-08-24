@@ -222,7 +222,7 @@ data:extend({
 		order = "a-z-b[Cerys]-b",
 		trigger = {
 			type = "research",
-			technology = "cerys-applications-of-radioactivity",
+			technology = "cerys-plutonium-weaponry",
 		},
 		dependencies = { "cerys-briefing" },
 	},

@@ -21,48 +21,46 @@ data:extend({
 	},
 })
 
-if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidden optional dependency on Maraxsis
-	if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
-		data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = {}
-	end
-
-	data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = { "fulgoran-cryogenics" }
-else
-	data:extend({
-		{
-			type = "recipe",
-			name = "maraxsis-holmium-recrystalization", -- We use Maraxsis' prefix so that saves work smoothly whether uninstalling/reinstalling Cerys and Maraxsis. Note that Maraxsis spells it with a single l.
-			subgroup = "cerys-processes",
-			order = "e-b",
-			ingredients = {
-				{ type = "fluid", name = "holmium-solution", amount = 50 },
-				{ type = "item", name = "holmium-ore", amount = 1 },
+data:extend({
+	{
+		type = "recipe",
+		name = "maraxsis-holmium-recrystalization", -- We use Maraxsis' prefix so that saves work smoothly whether uninstalling/reinstalling Cerys and Maraxsis. Note that Maraxsis spells it with a single l.
+		subgroup = "cerys-processes",
+		order = "e-b",
+		ingredients = {
+			{ type = "fluid", name = "holmium-solution", amount = 50 },
+			{ type = "item", name = "holmium-ore", amount = 1 },
+		},
+		results = {
+			{ type = "item", name = "holmium-plate", amount = 5 },
+		},
+		energy_required = data.raw.recipe["holmium-plate"].energy_required * 10,
+		category = "fulgoran-cryogenics",
+		enabled = false,
+		auto_recycle = false,
+		icons = {
+			{
+				icon = "__space-age__/graphics/icons/holmium-plate.png",
+				icon_size = 64,
+				scale = 0.65,
+				draw_background = true,
 			},
-			results = {
-				{ type = "item", name = "holmium-plate", amount = 5 },
-			},
-			energy_required = data.raw.recipe["holmium-plate"].energy_required * 10,
-			category = "fulgoran-cryogenics",
-			enabled = false,
-			auto_recycle = false,
-			icons = {
-				{
-					icon = "__space-age__/graphics/icons/holmium-plate.png",
-					icon_size = 64,
-					scale = 0.65,
-					draw_background = true,
-				},
-				{
-					icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
-					icon_size = 64,
-					scale = 0.45,
-					shift = { -13, -13 },
-					draw_background = true,
-				},
+			{
+				icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
+				icon_size = 64,
+				scale = 0.45,
+				shift = { -13, -13 },
+				draw_background = true,
 			},
 		},
-	})
+	},
+})
+
+-- Ensure you can craft it by Fulgoran cryogenics:
+if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
+	data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = {}
 end
+data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = { "fulgoran-cryogenics" }
 
 data:extend({
 	{
@@ -117,8 +115,8 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "speed-module-2", amount = 8 },
-			{ type = "item", name = "processing-unit", amount = 7 },
-			{ type = "item", name = "advanced-circuit", amount = 7 },
+			{ type = "item", name = "processing-unit", amount = 4 },
+			{ type = "item", name = "advanced-circuit", amount = 4 },
 			{ type = "item", name = "superconductor", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
@@ -294,9 +292,9 @@ data:extend({
 		},
 		energy_required = 10,
 		ingredients = {
-			{ type = "item", name = "superconductor", amount = 8 },
-			{ type = "item", name = "steel-plate", amount = 8 },
-			{ type = "item", name = "holmium-plate", amount = 16 },
+			{ type = "item", name = "steel-plate", amount = 6 },
+			{ type = "item", name = "holmium-plate", amount = 12 },
+			{ type = "item", name = "copper-cable", amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-charging-rod", amount = 1 } },
 	},

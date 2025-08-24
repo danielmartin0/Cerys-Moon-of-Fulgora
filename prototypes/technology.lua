@@ -321,32 +321,30 @@ data:extend({
 		},
 		allows_productivity = false,
 	},
-	-- {
-	-- 	type = "technology",
-	-- 	name = "cerys-overclock-module",
-	-- 	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
-	-- 	icon_size = 1024,
-	-- 	effects = {
-	-- 		{
-	-- 			type = "unlock-recipe",
-	-- 			recipe = "cerys-overclock-module",
-	-- 		},
-	-- 	},
-	-- 	prerequisites = {
-	-- 		"cerysian-science-pack",
-	-- 	},
-	-- 	unit = {
-	-- 		count = 150,
-	-- 		ingredients = {
-	-- 			{ "cerysian-science-pack", 1 },
-	-- 			{ "logistic-science-pack", 1 },
-	-- 			{ "chemical-science-pack", 1 },
-	-- 			{ "space-science-pack", 1 },
-	-- 		},
-	-- 		time = 60,
-	-- 	},
-	-- 	allows_productivity = false,
-	-- },
+	{
+		type = "technology",
+		name = "cerys-overclock-module",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
+		icon_size = 1024,
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-overclock-module",
+			},
+		},
+		prerequisites = {
+			"cerysian-science-pack",
+		},
+		unit = {
+			count = 75,
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
 	{
 		type = "technology",
 		name = "cerys-plutonium-weaponry",

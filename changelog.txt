@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.4.0
+Date: 2025-08-22
+  Changes:
+    - Reinstated the Overclock module (alongside the Metastable module) by popular demand.
+    - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
+    - Crafting charging rods now requires copper cable instead of superconductors. (Superconductors are still useful for crafting modules).
+  Balancing:
+    - Increased the mutation rate of Plutonium-239 by 20% and the spawn rate of charged particles by 20%. We will tune these numbers in future based on player feedback.
+  Bugfixes:
+    - Fixed that the plutonium generation Tips & Tricks entry was unlocked by a side technology. It is now unlocked by researching Plutonium weaponry.
+  Sounds:
+    - Dropped the remaining three non-custom tracks from the Cerys playlist, leaving only custom tracks.
+---------------------------------------------------------------------------------------------------
 Version: 4.3.0-4.3.2
 Date: 2025-08-22
   Bugfixes:

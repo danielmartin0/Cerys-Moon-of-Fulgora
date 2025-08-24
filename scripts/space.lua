@@ -10,7 +10,7 @@ local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) *
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
 local ROD_MAX_RANGE_SQUARED = 30 * 30
-local ROD_DEFLECTION_STRENGTH = 3
+local ROD_DEFLECTION_STRENGTH = 3.2
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
 local SPEED_THRESHOLD = 0.05
@@ -19,11 +19,9 @@ local PARTICLE_SHRINK_TIME = 12
 local SOLAR_SPAWN_MULTIPLIER = 1
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 1 / 50
-local COOLDOWN_DISTANCE = 5
-local COOLDOWN_TICKS = 30
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 840
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8400
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 700
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 7000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
@@ -309,52 +307,46 @@ local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs 
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
 		if not particle.is_ghost then
-			if not Public.particle_is_in_cooldown(particle) then
-				local chars =
-					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
-				if #chars > 0 then
-					local e = chars[1]
-					if e and e.valid then
-						local check = (not Public.particle_is_in_cooldown(particle))
-							or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+			local chars =
+				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
+			if #chars > 0 then
+				local e = chars[1]
+				if e and e.valid then
+					local check = (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
-						if check then
-							particle.irradiation_tick = game.tick
-							-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
+					if check then
+						-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
 
-							local inv = e.get_main_inventory()
-							if inv and inv.valid then
-								local irradiated = Public.irradiate_inventory(
-									surface,
-									inv,
-									e.force,
-									e.position,
-									probability_multiplier,
-									true
-								)
-								if irradiated then
-									surface.create_entity({
-										name = "plutonium-explosion",
-										position = e.position,
-									})
-								end
+						local inv = e.get_main_inventory()
+						if inv and inv.valid then
+							local irradiated = Public.irradiate_inventory(
+								surface,
+								inv,
+								e.force,
+								e.position,
+								probability_multiplier,
+								true
+							)
+							if irradiated then
+								surface.create_entity({
+									name = "plutonium-explosion",
+									position = e.position,
+								})
+							end
+						end
+
+						if math.random() < CHANCE_DAMAGE_CHARACTER then
+							local player = e.player
+							if player and player.valid then
+								player.play_sound({
+									path = "cerys-radiation-impact",
+									volume_modifier = 0.25,
+								})
 							end
 
-							if math.random() < CHANCE_DAMAGE_CHARACTER then
-								local player = e.player
-								if player and player.valid then
-									player.play_sound({
-										path = "cerys-radiation-impact",
-										volume_modifier = 0.25,
-									})
-								end
+							local damage = common.HARD_MODE_ON and 80 or 5
 
-								particle.irradiation_tick = game.tick
-
-								local damage = common.HARD_MODE_ON and 80 or 5
-
-								e.damage(damage, game.forces.neutral, "impact")
-							end
+							e.damage(damage, game.forces.neutral, "impact")
 						end
 					end
 				end
@@ -369,11 +361,9 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			if #containers > 0 then
 				local e = containers[1]
 				if e and e.valid then
-					local check = (not Public.particle_is_in_cooldown(particle))
-						or (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
+					local check = (particle.last_checked_inv and particle.last_checked_inv ~= e.unit_number)
 
 					if check then
-						particle.irradiation_tick = game.tick
 						particle.last_checked_inv = e.unit_number
 
 						local inv = e.get_inventory(defines.inventory.chest)
@@ -447,7 +437,6 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 										})
 									end
 
-									particle.irradiation_tick = game.tick
 									particle.last_checked_inv = nil
 
 									break
@@ -463,29 +452,6 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			end
 		end
 	end
-end
-
-function Public.particle_is_in_cooldown(particle)
-	if not particle.irradiation_tick then
-		return false
-	end
-
-	local v2 = particle.velocity.x ^ 2 + particle.velocity.y ^ 2
-	local speed = math.sqrt(v2)
-
-	local cooldown_time_1 = COOLDOWN_DISTANCE / speed
-	local cooldown_time_2 = COOLDOWN_TICKS
-
-	if
-		game.tick > particle.irradiation_tick + cooldown_time_1
-		or game.tick > particle.irradiation_tick + cooldown_time_2
-	then
-		particle.irradiation_tick = nil
-		particle.last_checked_inv = nil
-		return false
-	end
-
-	return true
 end
 
 function Public.irradiation_chance_effect(surface, position)

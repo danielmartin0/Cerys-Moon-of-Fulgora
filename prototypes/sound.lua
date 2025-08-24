@@ -151,10 +151,10 @@ data:extend({
 			priority = 200,
 		},
 	},
-	merge(data.raw["ambient-sound"]["fulgora-6"], {
-		name = "cerys-4",
-		planet = "cerys",
-	}),
+	-- merge(data.raw["ambient-sound"]["fulgora-6"], {
+	-- 	name = "cerys-4",
+	-- 	planet = "cerys",
+	-- }),
 	{
 		type = "ambient-sound",
 		name = "cerys-5",
@@ -167,10 +167,10 @@ data:extend({
 			priority = 200,
 		},
 	},
-	merge(data.raw["ambient-sound"]["fulgora-9"], {
-		name = "cerys-6",
-		planet = "cerys",
-	}),
+	-- merge(data.raw["ambient-sound"]["fulgora-9"], {
+	-- 	name = "cerys-6",
+	-- 	planet = "cerys",
+	-- }),
 	{
 		type = "ambient-sound",
 		name = "cerys-7",
@@ -195,10 +195,10 @@ data:extend({
 			priority = 200,
 		},
 	},
-	merge(data.raw["ambient-sound"]["fulgora-7"], {
-		name = "cerys-9",
-		planet = "cerys",
-	}),
+	-- merge(data.raw["ambient-sound"]["fulgora-7"], {
+	-- 	name = "cerys-9",
+	-- 	planet = "cerys",
+	-- }),
 	{
 		type = "ambient-sound",
 		name = "cerys-10",
