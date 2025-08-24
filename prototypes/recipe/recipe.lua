@@ -126,7 +126,7 @@ data:extend({
 	},
 	{
 		type = "recipe",
-		name = "cerys-metastable-module-charged",
+		name = "cerys-radioactive-module-charged",
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 8 },
@@ -136,7 +136,7 @@ data:extend({
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
-		results = { { type = "item", name = "cerys-metastable-module-charged", amount = 1 } },
+		results = { { type = "item", name = "cerys-radioactive-module-charged", amount = 1 } },
 		category = "fulgoran-cryogenics",
 	},
 	{

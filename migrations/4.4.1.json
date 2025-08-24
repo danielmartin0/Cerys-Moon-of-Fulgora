@@ -1,0 +1,7 @@
+{
+    "technology": [["cerys-metastable-module", "cerys-radioactive-module"]],
+    "item": [
+        ["cerys-metastable-module-charged", "cerys-radioactive-module-charged"],
+        ["cerys-metastable-module-decayed", "cerys-radioactive-module-decayed"]
+    ]
+}

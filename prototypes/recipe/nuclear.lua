@@ -110,7 +110,7 @@ data:extend({
 
 	{
 		type = "recipe",
-		name = "cerys-metastable-module-recharging",
+		name = "cerys-radioactive-module-recharging",
 		always_show_made_in = true,
 		enabled = false,
 		auto_recycle = false,
@@ -128,14 +128,14 @@ data:extend({
 				draw_background = true,
 			},
 		},
-		main_product = "cerys-metastable-module-charged",
+		main_product = "cerys-radioactive-module-charged",
 		ingredients = {
-			{ type = "item", name = "cerys-metastable-module-decayed", amount = 1 },
+			{ type = "item", name = "cerys-radioactive-module-decayed", amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 1 },
 		},
 		energy_required = 1,
 		results = {
-			{ type = "item", name = "cerys-metastable-module-charged", amount = 1 },
+			{ type = "item", name = "cerys-radioactive-module-charged", amount = 1 },
 		},
 		subgroup = "cerys-processes",
 		order = "q[metastable-module-recharging]",

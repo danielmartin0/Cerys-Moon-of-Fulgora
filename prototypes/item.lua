@@ -117,7 +117,7 @@ data:extend({
 	},
 	{
 		type = "module",
-		name = "cerys-metastable-module-charged",
+		name = "cerys-radioactive-module-charged",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module.png",
 		icon_size = 64,
 		subgroup = "module",
@@ -137,12 +137,12 @@ data:extend({
 			speed = -0.2,
 		},
 		spoil_ticks = 5 * 60 * 60,
-		spoil_result = "cerys-metastable-module-decayed",
+		spoil_result = "cerys-radioactive-module-decayed",
 		default_import_location = "cerys",
 	},
 	{
 		type = "module",
-		name = "cerys-metastable-module-decayed",
+		name = "cerys-radioactive-module-decayed",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/metastable-module-decayed.png",
 		icon_size = 64,
 		subgroup = "module",

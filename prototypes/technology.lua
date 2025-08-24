@@ -290,17 +290,17 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-metastable-module",
+		name = "cerys-radioactive-module",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/metastable-module.png",
 		icon_size = 1024,
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-metastable-module-charged",
+				recipe = "cerys-radioactive-module-charged",
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-metastable-module-recharging",
+				recipe = "cerys-radioactive-module-recharging",
 			},
 			{
 				type = "unlock-recipe",
