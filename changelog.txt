@@ -1,27 +1,21 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.4.5
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.4.4
-Date: 2025-08-24
-  Bugfixes:
-    - Fixed a bug introduced in the latest version that prevented plutonium from being generated.
----------------------------------------------------------------------------------------------------
-Version: 4.4.0-4.4.3
+Version: 4.4.0-4.4.5
 Date: 2025-08-24
   Changes:
     - Reinstated the Overclock module by popular demand.
     - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
     - Crafting charging rods now requires copper cable instead of superconductors. (Superconductors are still useful for crafting modules).
-    - Charged particles no longer have a 'cooldown': colliding with inventories no longer prevents colliding with other inventories for a short period of time, as long as the inventory is a different one.
+    - Charged particles no longer have a 'cooldown': colliding with inventories no longer prevents colliding with other inventories for a short period of time, as long as the inventory is different.
   Balancing:
     - Increased the mutation rate of Plutonium-239 by 12% and the spawn rate of charged particles by 4%. We will tune these numbers in future based on player feedback.
   Bugfixes:
     - Fixed that the plutonium generation Tips & Tricks entry was unlocked by a side technology. It is now unlocked by researching Plutonium weaponry.
+    - Fixed a bug that prevented plutonium from being generated.
   Sounds:
     - Dropped the remaining three non-custom tracks from the Cerys playlist, leaving only custom tracks.
+  Compatibility:
+    - K2SO: Halved the base physical resistance of planetary asteroids.
 ---------------------------------------------------------------------------------------------------
 Version: 4.3.0-4.3.2
 Date: 2025-08-22
@@ -88,7 +82,7 @@ Date: 2025-08-18
   Sounds:
     - Added a track to the custom soundtrack.
   Compatibility:
-    - Krastorio 2 Spaced Out: The Gas power station now has a max ambient radiation condition.
+    - K2SO: The Gas power station now has a max ambient radiation condition.
 ---------------------------------------------------------------------------------------------------
 Version: 3.8.3-3.8.4
 Date: 2025-08-09
@@ -246,15 +240,15 @@ Date: 2025-07-13
     - On Factorio v2.0.59+ the tooltips for radiative towers now display their range and the tooltips for Fulgoran crushers now display their module slots per quality level.
   Compatibility:
     - The engine productivity tech now applies to varies modded engine recipes.
-    - Krastorio 2: Fixed a crash when other mods set a main_product value on uranium ammo recipes.
+    - K2SO: Fixed a crash when other mods set a main_product value on uranium ammo recipes.
   Optimizations:
     - Optimization of contracted radiative towers when no player is looking at Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 3.5.3
 Date: 2025-07-03
   Bugfixes:
-    - Krastorio 2: Fixed that the K2SO lithium recipe was unlocked by Fulgoran cryogenics rather than the vanilla lithium recipe as intended.
-    - Krastorio 2: The plutonium magazine rounds from Cerys are replaced by plutonium rifle magazines and plutonium anti-materiel rifle magazines.
+    - K2SO: Fixed that the K2SO lithium recipe was unlocked by Fulgoran cryogenics rather than the vanilla lithium recipe as intended.
+    - K2SO: The plutonium magazine rounds from Cerys are replaced by plutonium rifle magazines and plutonium anti-materiel rifle magazines.
   Balancing:
     - Reverted buff to Overclock modules. Their productivity effect has been reverted from -4% to -5%.
     - Greatly increased the crafting time for plutonium magazine rounds since 10 magazines are crafted in one recipe.
@@ -347,7 +341,7 @@ Date: 2025-06-27
 Version: 3.3.2
 Date: 2025-06-26
   Compatibility:
-    - Krastorio 2: Adjusted Cerys for the fact that K2SO merged the Space Age and K2 lithium items two days ago.
+    - K2SO: Adjusted Cerys for the fact that K2SO merged the Space Age and K2 lithium items two days ago.
   Balancing:
     - Overclock module buffed from 17% productivity to 18% productivity and speed debuff changed from -25% to -30%.
 ---------------------------------------------------------------------------------------------------
@@ -375,13 +369,13 @@ Date: 2025-06-26
   Info:
     - This update brings deeper compatibility with Krastorio 2 (via the Spaced Out mod). It includes a few breaking changes to existing K2SO bases on Cerys, namely recipe changes to utility tech cards, nitric acid, and certain recycling recipes.
   Compatibility:
-    - Krastorio 2: Merged the Cerys and K2 nitric acid fluids.
-    - Krastorio 2: The Cerys recipe for Nitric acid is now performed in the Fulgoran cryogenic plant using ammonia and oxygen.
-    - Krastorio 2: Utility tech cards now have a surface-specific tweaked recipe for Cerys. This means that reactor repair on Cerys is necessary.
-    - Krastorio 2: The recipes for charging rods and the Fulgoran reactor scaffold now require steel beams instead of steel plates.
-    - Krastorio 2: Rare metals are no longer provided in nuclear scrap recycling.
-    - Krastorio 2: Cerys no longer enforces certain recycling recipes to match vanilla when K2 is installed, namely: electronic circuit, advanced circuit, processing unit, iron gear wheel, steam turbine.
-    - Krastorio 2: The Cerys hydrogen bomb now requires hydrogen.
+    - K2SO: Merged the Cerys and K2 nitric acid fluids.
+    - K2SO: The Cerys recipe for Nitric acid is now performed in the Fulgoran cryogenic plant using ammonia and oxygen.
+    - K2SO: Utility tech cards now have a surface-specific tweaked recipe for Cerys. This means that reactor repair on Cerys is necessary.
+    - K2SO: The recipes for charging rods and the Fulgoran reactor scaffold now require steel beams instead of steel plates.
+    - K2SO: Rare metals are no longer provided in nuclear scrap recycling.
+    - K2SO: Cerys no longer enforces certain recycling recipes to match vanilla when K2 is installed, namely: electronic circuit, advanced circuit, processing unit, iron gear wheel, steam turbine.
+    - K2SO: The Cerys hydrogen bomb now requires hydrogen.
   Changes:
     - 'Fulgoran machine quality upgrades' technology folded into 'Advanced structure repair'.
     - Upgrading the quality of the Fulgoran reactor no longer requires a repair step — just super-force building a quality scaffold on a repaired reactor is enough.
@@ -460,7 +454,7 @@ Date: 2025-06-16
   Bugfixes:
     - Fixed that the teleporter could be used remotely.
   Compatibility:
-    - Krastorio 2: Rare metals now appear in nuclear scrap recycling. (This is not a full compatibility patch.)
+    - K2SO: Rare metals now appear in nuclear scrap recycling. (This is not a full compatibility patch.)
   Graphics:
     - Graphical improvements to the teleporter and reactor scaffold.
   Locale:
