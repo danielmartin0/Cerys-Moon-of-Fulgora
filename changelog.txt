@@ -2,7 +2,7 @@
 Version: 4.4.4
 Date: 2025-08-24
   Bugfixes:
-    - Fixed a bug that prevented plutonium from being generated.
+    - Fixed a bug introduced in the latest version that prevented plutonium from being generated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.4.0-4.4.3
 Date: 2025-08-24
