@@ -17,7 +17,7 @@ if mods["cupric-asteroids"] then
 end
 
 local ASTEROID_HEALTH_MULTIPLIER = common.HARD_MODE_ON and 8 or 2.5
-local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = common_data.K2_INSTALLED and 5 or 10
+local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = common_data.K2_INSTALLED and 7 or 10
 
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local original = data.raw.asteroid[asteroid_name]

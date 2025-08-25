@@ -20,7 +20,7 @@ Date: 2025-08-24
   Sounds:
     - Dropped the remaining three non-custom tracks from the Cerys playlist, leaving only custom tracks.
   Compatibility:
-    - K2SO: Halved the base physical resistance of planetary asteroids.
+    - K2SO: Reduced the base physical resistance of planetary asteroids.
 ---------------------------------------------------------------------------------------------------
 Version: 4.3.0-4.3.2
 Date: 2025-08-22
