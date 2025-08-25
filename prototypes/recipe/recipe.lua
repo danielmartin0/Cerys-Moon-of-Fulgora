@@ -418,8 +418,6 @@ data:extend({
 		name = "cerys-lubricant-synthesis",
 		category = "fulgoran-cryogenics",
 		always_show_made_in = true,
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/lubricant-synthesis.png",
-		icon_size = 64,
 		subgroup = "cerys-processes",
 		order = "e-a",
 		enabled = false,
@@ -436,6 +434,29 @@ data:extend({
 		crafting_machine_tint = {
 			primary = { r = 0.268, g = 0.723, b = 0.223, a = 1.000 }, -- lubricant
 			secondary = { r = 117, g = 85, b = 13, a = 1 }, -- light oil
+		},
+		icons = {
+			{
+				icon = "__space-age__/graphics/icons/lithium.png",
+				icon_size = 64,
+				scale = 0.45,
+				shift = { -13, -7 },
+				draw_background = true,
+			},
+			{
+				icon = "__base__/graphics/icons/fluid/light-oil.png",
+				icon_size = 64,
+				scale = 0.45,
+				shift = { 13, -7 },
+				draw_background = true,
+			},
+			{
+				icon = "__base__/graphics/icons/fluid/lubricant.png",
+				icon_size = 64,
+				scale = 0.7,
+				shift = { 0, 12 },
+				draw_background = true,
+			},
 		},
 	},
 })
