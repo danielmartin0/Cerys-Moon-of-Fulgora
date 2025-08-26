@@ -1,6 +1,6 @@
 ### Credits
 
-This file specifies open-source code and assets used in Cerys, Moon of Fulgora, excepting those adapted from the Factorio itself.
+This file specifies open-source code and assets used in Cerys, Moon of Fulgora, excepting those adapted from Factorio itself.
 
 #### Cerys soundtrack
 
