@@ -7,6 +7,12 @@ for _, quality in pairs(data.raw.quality) do
 			math.min(common.MAX_HEATING_RADIUS, common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_PLAYER + quality.level)
 		),
 	}
+
 	data.raw.accumulator["cerys-charging-rod"].custom_tooltip_fields[1].quality_values[quality.name] =
 		{ "cerys.kv-tooltip-value", tostring(math.max(20, 100 - quality.level * 5)) }
+
+	data.raw.reactor["cerys-fulgoran-reactor"].custom_tooltip_fields[1].quality_values[quality.name] = {
+		"cerys.cooling-tooltip-value",
+		tostring(common.REACTOR_COOLING_PER_SECOND * (1 - 0.1 * quality.level)),
+	}
 end

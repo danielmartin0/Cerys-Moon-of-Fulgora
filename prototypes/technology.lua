@@ -353,10 +353,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-neutron-bomb",
 			},
-			{
-				type = "unlock-recipe",
-				recipe = "atomic-bomb",
-			},
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "atomic-bomb",
+			-- },
 			{
 				type = "unlock-recipe",
 				recipe = "cerys-hydrogen-bomb",
