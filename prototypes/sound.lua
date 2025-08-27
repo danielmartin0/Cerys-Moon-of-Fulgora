@@ -227,16 +227,16 @@ data:extend({
 	-- 	name = "cerys-11",
 	-- 	planet = "cerys",
 	-- }),
-	{
-		type = "ambient-sound",
-		name = "cerys-12",
-		track_type = "main-track",
-		weight = 10,
-		planet = "cerys",
-		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/akindofhope.ogg",
-			volume = 0.53,
-			priority = 200,
-		},
-	},
+	-- {
+	-- 	type = "ambient-sound",
+	-- 	name = "cerys-12",
+	-- 	track_type = "main-track",
+	-- 	weight = 10,
+	-- 	planet = "cerys",
+	-- 	sound = {
+	-- 		filename = "__Cerys-Moon-of-Fulgora__/sounds/akindofhope.ogg",
+	-- 		volume = 0.53,
+	-- 		priority = 200,
+	-- 	},
+	-- },
 })
