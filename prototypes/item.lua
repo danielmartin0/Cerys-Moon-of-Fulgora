@@ -284,7 +284,7 @@ data:extend({
 		pick_sound = item_sounds.nuclear_inventory_pickup,
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 100,
-		weight = 50 * 1000,
+		weight = 10 * 1000,
 	},
 	{
 		type = "item",
@@ -298,7 +298,7 @@ data:extend({
 		pick_sound = item_sounds.nuclear_inventory_pickup,
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 100,
-		weight = 50 * 1000,
+		weight = 10 * 1000,
 	},
 	merge(data.raw.item["lab"], {
 		name = "cerys-lab",

@@ -1,14 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.5.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.5.0-4.5.3
+Version: 4.5.0-4.5.4
 Date: 2025-08-27
   Changes:
     - Hydrogen bombs are no longer crafted from Atomic bombs (Atomic bombs are removed from the Cerys tech tree.)
     - 'Explosives from ammonium nitrate' can now be crafted in chemical plants.
     - The destinations of the Fulgoran teleporter on Fulgora are now more remote.
+  Bugfixes:
+    - Fixed that the rocket weight of Plutonium-238 and Plutonium-239 was 5x higher than intended (it now matches uranium rocks.)
   Balancing:
     - Reduced the rate of cooling of heat pipes and boilers on Cerys (-50%). This makes it easier to build large heat pipe setups.
     - The reactor cooling rate now decreases with quality. These values are now shown in the entity tooltip.
