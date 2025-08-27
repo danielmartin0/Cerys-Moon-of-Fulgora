@@ -278,7 +278,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 250,
+			count = 400,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -369,7 +369,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 100,
+			count = 200,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

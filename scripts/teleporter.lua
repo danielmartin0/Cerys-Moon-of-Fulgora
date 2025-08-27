@@ -29,8 +29,9 @@ function Public.teleport_to_fulgora(player)
 	end
 	local fulgora_surface = game.planets.fulgora.surface
 
-	local p
-	p = { math.random(-70, 70), math.random(-70, 70) }
+	local distance = math.random(300, 600)
+	local angle = math.random() * 2 * math.pi
+	local p = { math.cos(angle) * distance, math.sin(angle) * distance }
 
 	if fulgora_surface then
 		p = fulgora_surface.find_non_colliding_position("character", p, 200, 5) or p
