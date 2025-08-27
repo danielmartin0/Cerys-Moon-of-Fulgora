@@ -13,8 +13,6 @@ Date: 2025-08-27
     - Reduced the rate of cooling of heat pipes and boilers on Cerys (-50%). This makes it easier to build large heat pipe setups.
     - The reactor cooling rate now decreases with quality. These values are now shown in the entity tooltip.
     - Increased the cost of reactor repair (+25%).
-  Sounds:
-    - Added a track to the soundtrack.
 ---------------------------------------------------------------------------------------------------
 Version: 4.4.0-4.4.5
 Date: 2025-08-24
