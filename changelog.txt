@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.5.0
-Date: ????
+Date: 2025-08-27
   Changes:
     - Hydrogen bombs are no longer crafted from Atomic bombs (Atomic bombs are removed from the Cerys tech tree.)
     - 'Explosives from ammonium nitrate' can now be crafted in chemical plants.
