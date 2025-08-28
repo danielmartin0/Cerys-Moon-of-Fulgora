@@ -215,7 +215,7 @@ data:extend({
 		type = "ambient-sound",
 		name = "cerys-11",
 		track_type = "main-track",
-		weight = 10,
+		weight = 9,
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",
@@ -231,7 +231,7 @@ data:extend({
 		type = "ambient-sound",
 		name = "cerys-12",
 		track_type = "main-track",
-		weight = 10,
+		weight = 11,
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/celestial.ogg",
