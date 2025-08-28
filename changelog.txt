@@ -20,6 +20,7 @@ Date: 2025-08-27
     - Reduced solar panels obtained in ruins (-29%).
     - Reduced the concrete obtaned by excavating the Fulgoran reactor (-20%).
     - Adjusted the cost of various technologies.
+    - Adjusted the spawn positions of nitrogen-rich minerals.
   Sounds:
     - Added two music tracks.
 ---------------------------------------------------------------------------------------------------

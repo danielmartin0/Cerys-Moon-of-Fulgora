@@ -241,12 +241,12 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_nitrogen_rich_minerals_forced_spot_radius",
-		expression = "15 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
+		expression = "14 * (slider_rescale(control:cerys_nitrogen_rich_minerals:size, 2)^(1/2))",
 	},
 	{
 		type = "noise-expression",
 		name = "cerys_smoothed_nitrogen_x_coordinate", -- To make it easier to discover the patch, while letting it get quite close to the moon edge.
-		expression = "cerys_x_surface * 0.7 + 70",
+		expression = "cerys_x_surface * 0.7 + 55",
 	},
 
 	{
@@ -255,13 +255,13 @@ data:extend({
 		parameters = { "radius" },
 		expression = "((radius / \z
 			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
-			(cerys_y_surface + 18)^2)^(1/2)) - 1)^3 \z
+			(cerys_y_surface + 40)^2)^(1/2)) - 1)^3 \z
 			+ ((radius / \z
-			((cerys_x_surface + 1)^2 + \z
-			(cerys_y_surface - 64)^2)^(1/2)) - 1)^3 \z
+			((cerys_x_surface + 48)^2 + \z
+			(cerys_y_surface - 88)^2)^(1/2)) - 1)^3 \z
 			+ ((radius / \z
 			((cerys_x_surface + 8)^2 + \z
-			(cerys_y_surface + 64)^2)^(1/2)) - 1)^3 \z
+			(cerys_y_surface + 120)^2)^(1/2)) - 1)^3 \z
 			- 0.2",
 	}, -- Main patch is on the left to encourage the player to start far from the final zone. The others are hint patches.
 
