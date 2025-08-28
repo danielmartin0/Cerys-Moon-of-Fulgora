@@ -53,7 +53,7 @@ end
 
 data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysian-science-pack" }
 data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
-	count = 10,
+	count = 15,
 	ingredients = {
 		{ "cerysian-science-pack", 1 },
 	},
