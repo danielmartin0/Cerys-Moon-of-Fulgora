@@ -3,7 +3,6 @@ Version: 4.6.0
 Date: ????
   Changes:
   Balancing:
-    - Nuclear scrap recycling: holmium plate (1% -> 1.1%)
 ---------------------------------------------------------------------------------------------------
 Version: 4.5.0-4.5.10
 Date: 2025-08-27
