@@ -223,8 +223,32 @@ data:extend({
 			priority = 200,
 		},
 	},
-	-- merge(data.raw["ambient-sound"]["space-6"], {
-	-- 	name = "cerys-11",
-	-- 	planet = "cerys",
-	-- }),
+	merge(data.raw["ambient-sound"]["space-6"], {
+		name = "cerys-11",
+		planet = "cerys",
+	}),
+	{
+		type = "ambient-sound",
+		name = "cerys-12",
+		track_type = "main-track",
+		weight = 10,
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/celestial.ogg",
+			volume = 0.53,
+			priority = 200,
+		},
+	},
+	{
+		type = "ambient-sound",
+		name = "cerys-13",
+		track_type = "main-track",
+		weight = 10,
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/horizons.ogg",
+			volume = 0.53,
+			priority = 200,
+		},
+	},
 })

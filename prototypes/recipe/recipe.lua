@@ -182,7 +182,8 @@ data:extend({
 		enabled = false,
 		energy_required = 50,
 		ingredients = {
-			{ type = "item", name = "atomic-bomb", amount = 1 },
+			{ type = "item", name = "explosives", amount = 10 },
+			{ type = "item", name = "processing-unit", amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 100 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
@@ -227,7 +228,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "d-d",
 		category = "fulgoran-cryogenics",
-		additional_categories = { "cryogenics" },
+		additional_categories = { "cryogenics", "chemistry" },
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
@@ -350,7 +351,7 @@ data:extend({
 		energy_required = 5,
 		ingredients = {
 			{ type = "item", name = "transport-belt", amount = 6 },
-			{ type = "item", name = "advanced-circuit", amount = 30 },
+			{ type = "item", name = "advanced-circuit", amount = 20 },
 			{ type = "item", name = "copper-plate", amount = 30 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },

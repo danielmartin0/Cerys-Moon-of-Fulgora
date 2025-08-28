@@ -74,7 +74,7 @@ local fulgoran_reactor = {
 	lower_layer_picture = nil,
 	heat_lower_layer_picture = nil,
 	heat_buffer = {
-		max_temperature = 2000, -- from 1000
+		max_temperature = 1200, -- from 1000
 		specific_heat = "640MJ", -- from 10MJ
 		max_transfer = "300GW", -- from 10GW
 		minimum_glow_temperature = 0,
@@ -173,6 +173,13 @@ local fulgoran_reactor = {
 	},
 	map_color = { 0, 183, 212 },
 	fast_replaceable_group = "cerys-fulgoran-reactor",
+	custom_tooltip_fields = {
+		{
+			name = { "cerys.cooling-tooltip-name" },
+			value = { "cerys.tooltip-unknown-value" },
+			quality_values = {}, -- Filled in data-final-fixes
+		},
+	},
 }
 
 local reactor_wreck_base = {

@@ -120,7 +120,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-electromagnetic-tooling",
 		unit = {
-			count = 25,
+			count = 20,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "space-science-pack", 1 },
@@ -163,7 +163,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 125,
+			count = 120,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -278,7 +278,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 400,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -311,7 +311,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 150,
+			count = 100,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -336,7 +336,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 75,
+			count = 40,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -353,10 +353,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-neutron-bomb",
 			},
-			{
-				type = "unlock-recipe",
-				recipe = "atomic-bomb",
-			},
+			-- {
+			-- 	type = "unlock-recipe",
+			-- 	recipe = "atomic-bomb",
+			-- },
 			{
 				type = "unlock-recipe",
 				recipe = "cerys-hydrogen-bomb",
@@ -572,7 +572,7 @@ data:extend({
 		} },
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count = 50,
+			count = 40,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -696,7 +696,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 25,
+			count = 30,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},

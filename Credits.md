@@ -2,7 +2,7 @@
 
 This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 
-#### Cerys soundtrack tracks: Affirmations, Aurora, Chasing Daylight, Effervescence, Filaments, Signal to Noise
+#### Cerys music tracks
 
 - **Creators**: [Scott Buckley](https://www.scottbuckley.com.au)
 - **Source**: [Scott Buckley's website](https://www.scottbuckley.com.au/library/aurora/)

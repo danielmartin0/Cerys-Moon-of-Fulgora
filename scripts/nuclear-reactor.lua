@@ -7,7 +7,6 @@ local Public = {}
 Public.REACTOR_TICK_INTERVAL = 3
 
 local TEMPERATURE_ZERO = 15
-local TEMPERATURE_LOSS_RATE = 2.5
 
 local RANGE_SQUARED = 61 ^ 2
 local DAMAGE_TICK_DELAY = 30
@@ -72,8 +71,9 @@ end
 
 function Public.cool_reactor(reactor_entity)
 	if reactor_entity.temperature > TEMPERATURE_ZERO then
-		reactor_entity.temperature = reactor_entity.temperature
-			- TEMPERATURE_LOSS_RATE * (Public.REACTOR_TICK_INTERVAL / 60)
+		local rate = common.REACTOR_COOLING_PER_SECOND * (1 - reactor_entity.quality.level)
+
+		reactor_entity.temperature = reactor_entity.temperature - rate * (Public.REACTOR_TICK_INTERVAL / 60)
 	end
 end
 

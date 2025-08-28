@@ -1,6 +1,6 @@
 local Public = {}
 
-local TEMPERATURE_LOSS_RATE = 0.6
+local TEMPERATURE_LOSS_RATE = 0.3
 
 local function get_position_key(position)
 	return (position.x + 0.5) .. "," .. (position.y + 0.5)
