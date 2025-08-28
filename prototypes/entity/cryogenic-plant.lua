@@ -302,7 +302,7 @@ local wreck = merge(cryo_plant, {
 	energy_source = {
 		type = "void",
 	},
-	module_slots = 1,
+	module_slots = 2,
 	allowed_effects = { "speed", "productivity" },
 	graphics_set = {
 		animation = {

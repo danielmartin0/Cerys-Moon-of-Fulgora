@@ -351,7 +351,7 @@ data:extend({
 		energy_required = 5,
 		ingredients = {
 			{ type = "item", name = "transport-belt", amount = 6 },
-			{ type = "item", name = "advanced-circuit", amount = 30 },
+			{ type = "item", name = "advanced-circuit", amount = 20 },
 			{ type = "item", name = "copper-plate", amount = 30 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
