@@ -126,86 +126,69 @@ end
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
-
 	local particles = storage.cerys.solar_wind_particles
 	for _, rod in pairs(storage.cerys.charging_rods) do
 		local p_rod = rod.rod_position
 
-		for i=1,#particles do
+		for i = 1, #particles do
 			local particle = particles[i]
 			local p_particle = particle.position
 
-			if  p_particle.x - p_rod.x > ROD_MAX_RANGE or p_rod.x - p_particle.x > ROD_MAX_RANGE or
-				p_particle.y - p_rod.y > ROD_MAX_RANGE or p_rod.y - p_particle.y > ROD_MAX_RANGE
+			if
+				not (
+					p_particle.x - p_rod.x > ROD_MAX_RANGE
+					or p_rod.x - p_particle.x > ROD_MAX_RANGE
+					or p_particle.y - p_rod.y > ROD_MAX_RANGE
+					or p_rod.y - p_particle.y > ROD_MAX_RANGE
+				)
 			then
-				goto continue
-			end
+				local dx = p_particle.x - p_rod.x
+				local dy = p_particle.y - p_rod.y
+				local d2 = dx * dx + dy * dy
 
-			local dx = p_particle.x - p_rod.x
-			local dy = p_particle.y - p_rod.y
-			local d2 = dx * dx + dy * dy
+				-- Bound the minimum distance
+				if d2 == 0 then
+					local random_angle = math.random() * 2 * math.pi
+					dx = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.cos(random_angle)
+					dy = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.sin(random_angle)
+					d2 = dx * dx + dy * dy
+				elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE then
+					local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
+					dx = dx * scale
+					dy = dy * scale
+					d2 = dx * dx + dy * dy
+				end
 
-			-- Bound the minimum distance
-			if d2 == 0 then
-				local random_angle = math.random() * 2 * math.pi
-				dx = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.cos(random_angle)
-				dy = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.sin(random_angle)
-				d2 = dx * dx + dy * dy
-			elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE then
-				local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
-				dx = dx * scale
-				dy = dy * scale
-				d2 = dx * dx + dy * dy
-			end
+				if d2 < ROD_MAX_RANGE_SQUARED then
+					local polarity_fraction = rod.polarity_fraction
 
-			if d2 < ROD_MAX_RANGE_SQUARED then
-				local polarity_fraction = rod.polarity_fraction
+					if polarity_fraction and polarity_fraction ~= 0 then
+						local deflection = polarity_fraction
+							* ROD_DEFLECTION_STRENGTH
+							* Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
+							/ 60
 
-				if polarity_fraction and polarity_fraction ~= 0 then
-					local deflection = polarity_fraction
-						* ROD_DEFLECTION_STRENGTH
-						* Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
-						/ 60
+						local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
 
-					local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
+						local scale = factor / (d2 ^ ((ROD_DEFLECTION_POWER + 1) / 2))
 
-					local scale = factor / (d2 ^ ((ROD_DEFLECTION_POWER + 1) / 2))
+						local dvx = dx * scale * deflection
+						local dvy = dy * scale * deflection
 
-					local dvx = dx * scale * deflection
-					local dvy = dy * scale * deflection
+						local v = particle.velocity
 
-					local v = particle.velocity
+						if particle.marked_for_death_tick then
+							dvx = dvx / 3
+							dvy = dvy / 3
+						end
 
-					if particle.marked_for_death_tick then
-						dvx = dvx / 3
-						dvy = dvy / 3
+						v.x = v.x + dvx
+						v.y = v.y + dvy
+
+						particle.velocity = v
 					end
-
-					-- local speed = math.sqrt(v.x * v.x + v.y * v.y)
-
-					v.x = v.x + dvx
-					v.y = v.y + dvy
-
-					-- local new_speed = math.sqrt(v.x * v.x + v.y * v.y)
-
-					-- local speed_ratio = new_speed / speed
-					-- if speed < CANNOT_GAIN_SPEED_IF_BELOW and speed_ratio > 1 then
-					-- 	v.x = v.x / speed_ratio
-					-- 	v.y = v.y / speed_ratio
-					-- end
-
-					-- if speed < SPEED_THRESHOLD and new_speed > SPEED_THRESHOLD then
-					-- 	local scale_by = new_speed / SPEED_THRESHOLD
-
-					-- 	v.x = v.x / scale_by
-					-- 	v.y = v.y / scale_by
-					-- end
-
-					particle.velocity = v
 				end
 			end
-
-			::continue::
 		end
 	end
 end
