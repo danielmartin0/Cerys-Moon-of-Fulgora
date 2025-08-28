@@ -66,18 +66,85 @@ local tower_positions = hex_grid_positions({
 	noise_scale = 500,
 })
 
-local cryo_plant_positions = hex_grid_positions({
-	seed = 4100,
-	grid_scale = 2,
-	displacement = { x = 2, y = -3.5 },
-	noise_size = 17,
-	noise_scale = 100,
-})
+local cryo_plant_base_positions = {
+	{
+		x = -101,
+		y = -22,
+	},
+	{
+		x = -84,
+		y = -52,
+	},
+	{
+		x = -71,
+		y = -93,
+	},
+	{
+		x = -70,
+		y = 62,
+	},
+	{
+		x = -66,
+		y = 28,
+	},
+	{
+		x = -42,
+		y = -11,
+	},
+	{
+		x = -35,
+		y = -63,
+	},
+	{
+		x = -32,
+		y = 52,
+	},
+	{
+		x = -19,
+		y = 110,
+	},
+	{
+		x = -15,
+		y = -100,
+	},
+	{
+		x = -7,
+		y = 14,
+	},
+	{
+		x = 15,
+		y = -33,
+	},
+	{
+		x = 22,
+		y = 77,
+	},
+	{
+		x = 30,
+		y = -60,
+	},
+	{
+		x = 59,
+		y = 2,
+	},
+	{
+		x = 79,
+		y = 51,
+	},
+	{
+		x = 85,
+		y = -46,
+	},
+	{
+		x = 118,
+		y = 1,
+	},
+}
 
 local crusher_positions = {
 	{ x = -67, y = -79.5 },
 	{ x = 45, y = -33.5 },
-	{ x = -24, y = 106.5 },
+	{ x = -7, y = 74.5 },
 	{ x = 87, y = 41.5 },
 }
 
@@ -251,7 +318,14 @@ function Public.create_towers(surface, area)
 			and p.x < area.right_bottom.x
 			and p.y >= area.left_top.y
 			and p.y < area.right_bottom.y
+			and not (p.x == -71 and p.y == 73)
+			and not (p.x == 9 and p.y == 85)
+			and not (p.x == -35 and p.y == 107)
+			and not (p.x == 27 and p.y == -55)
 		then
+			-- if (p.x > 30 and p.x < 55) and (p.y > 40 and p.y < 60) then
+			-- 	log(serpent.block(p))
+			-- end
 			table.insert(positions_in_area, p)
 		end
 	end
@@ -290,7 +364,7 @@ function Public.create_towers(surface, area)
 end
 
 function Public.create_cryo_plants(surface, area)
-	for _, p in ipairs(cryo_plant_positions) do
+	for _, p in ipairs(cryo_plant_base_positions) do
 		if
 			p.x >= area.left_top.x
 			and p.x < area.right_bottom.x

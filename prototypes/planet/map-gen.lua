@@ -88,7 +88,7 @@ data:extend({
 			octaves = 3, \z
 			persistence = 0.5, \z
 			input_scale = 1 / 11.5, \z
-			output_scale = 1 / 40}",
+			output_scale = 1 / 45}",
 	},
 
 	{
@@ -246,7 +246,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_smoothed_nitrogen_x_coordinate", -- To make it easier to discover the patch, while letting it get quite close to the moon edge.
-		expression = "cerys_x_surface * 0.7 + 55",
+		expression = "cerys_x_surface * 0.7 + 72",
 	},
 
 	{
@@ -255,7 +255,7 @@ data:extend({
 		parameters = { "radius" },
 		expression = "((radius / \z
 			(cerys_smoothed_nitrogen_x_coordinate^2 + \z
-			(cerys_y_surface + 40)^2)^(1/2)) - 1)^3 \z
+			(cerys_y_surface + 7)^2)^(1/2)) - 1)^3 \z
 			+ ((radius / \z
 			((cerys_x_surface + 48)^2 + \z
 			(cerys_y_surface - 88)^2)^(1/2)) - 1)^3 \z

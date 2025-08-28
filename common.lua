@@ -28,7 +28,7 @@ Public.AMBIENT_RADIATION_MIN = {
 
 Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
-Public.CERYS_RADIUS = 128
+Public.CERYS_RADIUS = 127
 -- Public.CERYS_RADIUS = 142
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION_SEED = { x = 20, y = 29 }
@@ -46,7 +46,7 @@ Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 1000 or 400
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 20
-Public.TELEPORTER_POSITION = { x = -104.5, y = 18.5 }
+Public.TELEPORTER_POSITION = { x = -70.5, y = -29.5 }
 
 Public.WARN_COLOR = { r = 255, g = 90, b = 54 }
 Public.FRIENDLY_COLOR = { r = 227, g = 250, b = 192 }

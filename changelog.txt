@@ -9,6 +9,7 @@ Date: 2025-08-27
     - Hydrogen bombs are no longer crafted from Atomic bombs. (Atomic bombs are removed from the Cerys tech tree.)
     - 'Explosives from ammonium nitrate' can now also be crafted in chemical plants.
     - The destinations of the Fulgoran teleporter on Fulgora are now more remote.
+    - Adjusted the terrain generation on new maps.
   Bugfixes:
     - Fixed that the rocket weight of Plutonium-238 and Plutonium-239 was 5x higher than intended (it now matches that of uranium rocks.)
   Balancing:
@@ -20,7 +21,6 @@ Date: 2025-08-27
     - Reduced solar panels obtained in ruins (-29%).
     - Reduced the concrete obtaned by excavating the Fulgoran reactor (-20%).
     - Adjusted the cost of various technologies.
-    - Adjusted the spawn positions of nitrogen-rich minerals.
   Sounds:
     - Added two music tracks.
 ---------------------------------------------------------------------------------------------------
