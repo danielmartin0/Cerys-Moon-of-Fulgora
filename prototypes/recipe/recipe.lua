@@ -126,6 +126,7 @@ data:extend({
 		category = "fulgoran-cryogenics",
 		subgroup = "science-pack",
 		order = "g[space-science-pack]-b[from-methane-ice]",
+		always_show_made_in = true,
 	},
 	{
 		type = "recipe",
@@ -268,7 +269,7 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "d-c",
 		category = "fulgoran-cryogenics",
-		additional_categories = { "cryogenics" },
+		additional_categories = { "cryogenics", "electromagnetics" },
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
