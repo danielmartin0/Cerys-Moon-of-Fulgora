@@ -9,7 +9,9 @@ local SOLAR_WIND_MIN_VELOCITY = 0.3
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
-local ROD_MAX_RANGE_SQUARED = 30 * 30
+
+local ROD_MAX_RANGE = 30
+local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
 local ROD_DEFLECTION_STRENGTH = 3.2
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
@@ -124,11 +126,20 @@ end
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
-	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
-		local p_particle = particle.position
 
-		for _, rod in pairs(storage.cerys.charging_rods) do
-			local p_rod = rod.rod_position
+	local particles = storage.cerys.solar_wind_particles
+	for _, rod in pairs(storage.cerys.charging_rods) do
+		local p_rod = rod.rod_position
+
+		for i=1,#particles do
+			local particle = particles[i]
+			local p_particle = particle.position
+
+			if  p_particle.x - p_rod.x > ROD_MAX_RANGE or p_rod.x - p_particle.x > ROD_MAX_RANGE or
+				p_particle.y - p_rod.y > ROD_MAX_RANGE or p_rod.y - p_particle.y > ROD_MAX_RANGE
+			then
+				goto continue
+			end
 
 			local dx = p_particle.x - p_rod.x
 			local dy = p_particle.y - p_rod.y
@@ -193,6 +204,8 @@ function Public.tick_solar_wind_deflection()
 					particle.velocity = v
 				end
 			end
+
+			::continue::
 		end
 	end
 end
