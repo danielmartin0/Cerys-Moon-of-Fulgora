@@ -117,7 +117,7 @@ data:extend({
 			{ type = "item", name = "carbon", amount = 1 },
 			{ type = "item", name = "iron-plate", amount = 2 },
 		},
-		energy_required = 15,
+		energy_required = 10,
 		results = {
 			{ type = "item", name = "space-science-pack", amount = 1 },
 		},
@@ -136,7 +136,6 @@ data:extend({
 			{ type = "item", name = "speed-module-2", amount = 8 },
 			{ type = "item", name = "processing-unit", amount = 4 },
 			{ type = "item", name = "advanced-circuit", amount = 4 },
-			{ type = "item", name = "superconductor", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
@@ -310,7 +309,7 @@ data:extend({
 		surface_conditions = {
 			common.AMBIENT_RADIATION_MIN,
 		},
-		energy_required = 10,
+		energy_required = 5,
 		ingredients = {
 			{ type = "item", name = "steel-plate", amount = 6 },
 			{ type = "item", name = "holmium-plate", amount = 12 },
@@ -351,9 +350,9 @@ data:extend({
 		name = "cerys-lab",
 		energy_required = 5,
 		ingredients = {
-			{ type = "item", name = "transport-belt", amount = 6 },
-			{ type = "item", name = "advanced-circuit", amount = 20 },
-			{ type = "item", name = "copper-plate", amount = 30 },
+			{ type = "item", name = "transport-belt", amount = 5 },
+			{ type = "item", name = "advanced-circuit", amount = 15 },
+			{ type = "item", name = "copper-plate", amount = 40 },
 		},
 		results = { { type = "item", name = "cerys-lab", amount = 1 } },
 		enabled = false,

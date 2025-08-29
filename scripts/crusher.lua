@@ -176,29 +176,30 @@ function Public.tick_15_check_broken_crushers(surface)
 						end
 					end
 
-					local repair_count_multiplier = prototypes.recipe["cerys-repair-crusher"].ingredients[2].amount
+					local circuit_count_per_recipe = prototypes.recipe["cerys-repair-crusher"].ingredients[1].amount
 
-					local circuit_count = products_finished + (e.is_crafting() and 1 or 0) + circuits
-					local repair_count = (products_finished + (e.is_crafting() and 1 or 0)) * repair_count_multiplier
-						+ repair_parts
+					local circuit_count = products_finished * circuit_count_per_recipe
+						+ (e.is_crafting() and 1 or 0) * circuit_count_per_recipe
+						+ circuits
+					local repair_count = (products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 
-					crusher.rendering1.color = repair_count >= products_required * repair_count_multiplier
-							and { 0, 255, 0 }
-						or { 255, 185, 0 }
+					crusher.rendering1.color = repair_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 
 					crusher.rendering1.text = {
 						"cerys.repair-remaining-description",
 						"[item=ancient-structure-repair-part]",
 						repair_count,
-						products_required * repair_count_multiplier,
+						products_required,
 					}
 
-					crusher.rendering2.color = circuit_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
+					crusher.rendering2.color = circuit_count >= products_required * circuit_count_per_recipe
+							and { 0, 255, 0 }
+						or { 255, 185, 0 }
 					crusher.rendering2.text = {
 						"cerys.repair-remaining-description",
 						"[item=processing-unit]",
 						circuit_count,
-						products_required,
+						products_required * circuit_count_per_recipe,
 					}
 				end
 			end

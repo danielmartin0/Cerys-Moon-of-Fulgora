@@ -22,11 +22,11 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-fulgoran-reactor-scaffold",
-		energy_required = 20,
+		energy_required = 10,
 		enabled = false,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 400 },
-			{ type = "item", name = "refined-concrete", amount = 400 },
+			{ type = "item", name = "steel-plate", amount = 250 },
+			{ type = "item", name = "refined-concrete", amount = 250 },
 			{ type = "item", name = "processing-unit", amount = 50 },
 		},
 		results = { { type = "item", name = "cerys-fulgoran-reactor-scaffold", amount = 1 } },
@@ -241,7 +241,7 @@ data:extend({
 			{
 				type = "item",
 				name = "processing-unit",
-				amount = 1,
+				amount = 2,
 			},
 			{
 				type = "item",

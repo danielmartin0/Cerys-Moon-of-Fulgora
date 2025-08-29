@@ -12,7 +12,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	},
 	module_slots = 9,
 	crafting_speed = 2,
-	energy_usage = common.HARD_MODE_ON and "570kW" or "380kW", -- If this is too high, it stops players solving their problems by expanding.
+	energy_usage = common.HARD_MODE_ON and "525kW" or "350kW", -- If this is too high, it stops players solving their problems by expanding.
 	next_upgrade = "nil",
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	minable = { mining_time = 1, result = "cerys-fulgoran-cryogenic-plant" },
