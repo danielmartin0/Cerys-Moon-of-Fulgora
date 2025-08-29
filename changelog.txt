@@ -5,10 +5,9 @@ Date: 2025-08-29
     - Crafting Overclock modules no longer requires superconductors.
   Balancing:
     - Reduced the crafting time of Space science pack from methane ice (-33%), charging rods (-50%), and the reactor scaffold (-50%).
+    - Tweaked the ingredient amounts for scaffolds, Cerysian labs, and crusher repair.
     - Increased the maximum power inflow of charging rods (+50%).
-    - Adjusted the cost of crusher repair to require fewer repair parts but more processing units.
     - Reduced the energy consumption of the Fulgoran cryogenic plant (-8%).
-    - Tweaked the ingredients amounts for scaffolds and labs.
   Sounds:
     - Added another ambient music track (and removed a stray non-custom Space track that was still in the playlist.)
 ---------------------------------------------------------------------------------------------------
