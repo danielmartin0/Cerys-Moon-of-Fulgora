@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.6.0
-Date: ????
+Date: 2025-08-29
   Changes:
     - Crafting Overclock modules no longer requires superconductors.
   Balancing:
