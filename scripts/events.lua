@@ -215,7 +215,7 @@ function Public.cerys_tick(surface, tick)
 			space.tick_solar_wind_deflection()
 		end
 
-		if tick % (6 * solar_wind_tick_multiplier) == 0 then
+		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
 				space.spawn_solar_wind_particle(surface)

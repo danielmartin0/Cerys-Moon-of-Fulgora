@@ -19,10 +19,10 @@ local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the 
 local SPEED_THRESHOLD = 0.05 * (2 / 3)
 local PARTICLE_SHRINK_TIME = 14
 
-local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.0125
+local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 760
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 7600
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 870
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8700
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
