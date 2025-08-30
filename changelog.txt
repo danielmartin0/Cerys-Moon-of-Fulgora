@@ -1,22 +1,30 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.7.0
+Date: ????
+  Changes:
+    - Improvements to map generation.
+    - Charged particles now move slower (but in the same paths).
+    - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
+  Graphics:
+    - Touched-up graphics for methane ice.
+  Sounds:
+    - More soundtrack adjustments.
+---------------------------------------------------------------------------------------------------
 Version: 4.6.0-4.6.4
 Date: 2025-08-29
   Changes:
     - Crafting Overclock modules no longer requires superconductors.
-    - Hydrogen bombs are now whitelisted for Cerys cargo drops (for cases of accidentally launching one to a platform rather than to orbit).
-    - Improvements to map generation.
-    - Charged particles now move slower (but in the same paths).
+    - Added hydrogen bombs to the Cerys cargo drops whitelist (in case players accidentally launch it to a platform rather than to orbit).
   Graphics:
-    - Frozen concrete tiles on Cerys now have custom graphics.
-    - Players in orbit around Cerys now see the flash from nukes launched from the surface.
-    - Touched-up graphics for methane ice.
+    - Frozen concrete tiles now have custom graphics on Cerys.
+    - Players in orbit around Cerys now see the flash from hydrogen nukes launched from the surface.
   Balancing:
     - Reduced the crafting time of Space science pack from methane ice (-50%), charging rods (-50%), and the reactor scaffold (-50%).
     - Tweaked the ingredient amounts for scaffolds, Cerysian labs, and crusher repair.
     - Increased the maximum power inflow of charging rods (+50%).
     - Reduced the energy consumption of the Fulgoran cryogenic plant (-8%).
   Sounds:
-    - More soundtrack adjustments (including removing a stray non-custom Space track that was still in the playlist.)
+    - Removed a stray non-custom track that was still in the playlist.
   Bugfixes:
     - Fixed a bug where the Fulgora background could become enlarged when toggling the 'Use Fulgora starmap graphic' setting on and off.
   Locale:
