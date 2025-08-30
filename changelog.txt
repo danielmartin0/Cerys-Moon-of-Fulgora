@@ -5,7 +5,7 @@ Date: 2025-08-29
     - Crafting Overclock modules no longer requires superconductors.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by neutralization'.
     - Added hydrogen bombs to the Cerys cargo drops whitelist (in case players accidentally launch it to a platform rather than to orbit).
-    - One additional Fulgoran crusher spawns on new maps.
+    - Spawned one additional Fulgoran crusher on new maps.
   Balancing:
     - Reduced the crafting time of Space science pack from methane ice (-33%), charging rods (-50%), and the reactor scaffold (-50%).
     - Tweaked the ingredient amounts for scaffolds, Cerysian labs, and crusher repair.
