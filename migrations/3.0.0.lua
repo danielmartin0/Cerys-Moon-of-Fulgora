@@ -1,11 +1,12 @@
 local common = require("common")
+local lib = require("lib")
 local terrain = require("scripts.terrain")
 
 if not storage.cerys then
 	return
 end
 
-local surface = common.generated_cerys_surface()
+local surface = lib.generated_cerys_surface()
 if not surface then
 	return
 end

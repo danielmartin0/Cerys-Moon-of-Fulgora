@@ -1,7 +1,8 @@
 local common = require("common")
 local cooling = require("scripts.cooling")
+local lib = require("lib")
 
-local surface = common.generated_cerys_surface()
+local surface = lib.generated_cerys_surface()
 if not surface then
 	return
 end
@@ -21,7 +22,7 @@ if not storage.cerys.boilers then
 	storage.cerys.boilers = {}
 end
 
-local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
 
 local heat_entities = surface.find_entities_filtered({
 	type = { "heat-pipe", "boiler" },

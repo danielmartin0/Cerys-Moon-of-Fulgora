@@ -283,7 +283,7 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	},
 	effect = "cerys-water-puddles-2",
 	autoplace = "nil",
-	sprite_usage_surface = "nil",
+	sprite_usage_surface = "any",
 	map_color = { 8, 39, 94 },
 	default_cover_tile = "ice-platform",
 	walking_speed_modifier = 0.8,
@@ -341,7 +341,7 @@ local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	transitions = water_ice_transitions,
 	transitions_between_transitions = water_ice_transitions_between_transitions,
 	collision_mask = cerys_ground_collision_mask,
-	sprite_usage_surface = "nil",
+	sprite_usage_surface = "any",
 	map_color = { 8, 39, 94 },
 	layer = 9,
 	layer_group = "ground-artificial", -- Above crater decals
@@ -391,6 +391,20 @@ dry_ice_transitions[1].to_tiles = {
 	"cerys-water-puddles-freezing",
 	"cerys-ice-on-water",
 	"cerys-ice-on-water-melting",
+	"cerys-concrete",
+	"cerys-refined-concrete",
+	"cerys-hazard-concrete-left",
+	"cerys-hazard-concrete-right",
+	"cerys-refined-hazard-concrete-left",
+	"cerys-refined-hazard-concrete-right",
+	"cerys-frozen-concrete",
+	"cerys-frozen-refined-concrete",
+	"cerys-frozen-hazard-concrete-left",
+	"cerys-frozen-hazard-concrete-right",
+	"cerys-frozen-refined-hazard-concrete-left",
+	"cerys-frozen-refined-hazard-concrete-right",
+	"cerys-concrete-minable",
+	"cerys-frozen-concrete-minable",
 	-- "nuclear-scrap-under-ice",
 	-- "nuclear-scrap-under-ice-melting",
 	-- "ice-supporting-nuclear-scrap",
@@ -411,7 +425,7 @@ local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
 	collision_mask = cerys_ground_collision_mask,
 	autoplace = "nil",
 	variants = dry_ice_rough_variants,
-	sprite_usage_surface = "nil",
+	sprite_usage_surface = "any",
 	layer_group = "ground-artificial", -- Above crater decals
 	map_color = { 128, 184, 194 },
 })
@@ -470,17 +484,111 @@ data:extend({
 	}),
 })
 
---== Other cloned tiles ==--
+--== Concrete ==--
 
-local cerys_concrete = merge(data.raw.tile["concrete"], {
-	subgroup = "cerys-tiles",
-	name = "cerys-concrete",
-	minable = "nil",
-})
-if not cerys_concrete.collision_mask then
-	cerys_concrete.collision_mask = { layers = {} }
+local concrete_edges_overlay_layout = {
+	inner_corner = {
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-inner-corner.png",
+		count = 16,
+		scale = 0.5,
+	},
+	outer_corner = {
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-outer-corner.png",
+		count = 8,
+		scale = 0.5,
+	},
+	side = {
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-side.png",
+		count = 16,
+		scale = 0.5,
+	},
+	u_transition = {
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-u.png",
+		count = 8,
+		scale = 0.5,
+	},
+	o_transition = {
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-o.png",
+		count = 4,
+		scale = 0.5,
+	},
+}
+
+local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
+	local name_without_cerys = frozen and "frozen-" .. name_stem or name_stem
+	local name = "cerys-" .. name_without_cerys
+
+	local tile = merge(data.raw.tile[name_without_cerys], {
+		name = name,
+		localised_name = { "tile-name." .. name_without_cerys },
+		localised_description = { "tile-description." .. name_without_cerys },
+		subgroup = "cerys-tiles",
+		-- minable = "nil",
+	})
+
+	tile.transition_merges_with_tile = transition_merge_tile
+	tile.can_be_part_of_blueprint = true
+
+	if frozen then
+		tile.thawed_variant = "cerys-" .. name_stem
+		tile.layer = tile.layer - 1 -- For some reason the frozen variants have +1 layer in the base game — yet they avoid concrete-on-concrete layering with the thawed tile. I don't how to reproduce that, so here we knocking their layer down by 1.
+	else
+		tile.frozen_variant = "cerys-frozen-" .. name_stem
+	end
+
+	if frozen then
+		tile.variants.material_background = {
+			picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
+			count = 8,
+			scale = 0.5,
+		}
+		tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
+	end
+
+	tile.collision_mask.layers.cerys_tile = true
+
+	if name_stem == "concrete" then
+		tile.minable = nil -- The unminable variants stay on the default namespace because Factorio cannot migrate hidden tiles
+	end
+
+	data:extend({ tile })
 end
-cerys_concrete.collision_mask.layers.cerys_tile = true
+
+for _, name in pairs({
+	"concrete",
+	"hazard-concrete-left",
+	"hazard-concrete-right",
+}) do
+	create_cerys_concrete(name, false, "cerys-concrete")
+	create_cerys_concrete(name, true, "cerys-concrete")
+end
+for _, name in pairs({
+	"refined-concrete",
+	"refined-hazard-concrete-left",
+	"refined-hazard-concrete-right",
+}) do
+	create_cerys_concrete(name, false, "cerys-refined-concrete")
+	create_cerys_concrete(name, true, "cerys-refined-concrete")
+end
+
+data:extend({
+	merge(data.raw.tile["cerys-concrete"], {
+		name = "cerys-concrete-minable",
+		minable = data.raw.tile.concrete.minable,
+		frozen_variant = "cerys-frozen-concrete-minable",
+		can_be_part_of_blueprint = false,
+	}),
+	merge(data.raw.tile["cerys-frozen-concrete"], {
+		name = "cerys-frozen-concrete-minable",
+		minable = data.raw.tile["frozen-concrete"].minable,
+		thawed_variant = "cerys-concrete-minable",
+		can_be_part_of_blueprint = false,
+	}),
+})
+
+-- TODO: make a different one without 'minable'
+
+--== Empty space ==--
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
@@ -507,7 +615,6 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
 data:extend({
-	cerys_concrete,
 	cerys_empty,
 	cerys_empty_2,
 })

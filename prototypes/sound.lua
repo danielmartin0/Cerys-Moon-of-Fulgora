@@ -215,7 +215,7 @@ data:extend({
 		type = "ambient-sound",
 		name = "cerys-11",
 		track_type = "main-track",
-		weight = 10,
+		weight = 7,
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/permafrost.ogg",

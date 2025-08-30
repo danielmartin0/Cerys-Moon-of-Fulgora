@@ -1,7 +1,7 @@
 local lib = require("lib")
 local common = require("common")
 
-local surface = common.generated_cerys_surface()
+local surface = lib.generated_cerys_surface()
 if surface then
 	local ghosts = surface.find_entities_filtered({ type = "tile-ghost" })
 	for _, ghost in pairs(ghosts) do

@@ -1,4 +1,5 @@
 local common = require("common")
+local lib = require("lib")
 
 local Public = {}
 
@@ -25,7 +26,7 @@ function Public.tick_1_update_background_renderings(surface)
 			local r = storage.background_renderings[player.index]
 
 			if on_cerys then
-				local stretch = common.get_cerys_surface_stretch_factor(surface)
+				local stretch = lib.get_cerys_surface_stretch_factor(surface)
 				local planet_stretch = stretch
 				local extra_y_offset = -5 * (stretch - 1)
 
@@ -69,12 +70,12 @@ function Public.tick_1_update_background_renderings(surface)
 end
 
 function Public.reset_background_rendering_positions()
-	local surface = common.generated_cerys_surface()
+	local surface = lib.generated_cerys_surface()
 	if not surface then
 		return
 	end
 
-	local stretch = common.get_cerys_surface_stretch_factor(surface)
+	local stretch = lib.get_cerys_surface_stretch_factor(surface)
 	local planet_stretch = stretch
 
 	for _, player in pairs(game.players) do

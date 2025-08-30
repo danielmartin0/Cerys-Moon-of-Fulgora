@@ -1,5 +1,6 @@
 local simplex_noise = require("scripts.simplex_noise").d2
-local find = require("lib").find
+local lib = require("lib")
+local find = lib.find
 local cryogenic_plant = require("scripts.cryogenic-plant")
 local crusher = require("scripts.crusher")
 local teleporter = require("scripts.teleporter")
@@ -158,8 +159,8 @@ function Public.on_cerys_chunk_generated(event, surface)
 	local hidden_tiles = {}
 
 	local seed = event.surface.map_gen_settings.seed
-	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
-	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
+	local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 
 	--== Empty space ==--
 
@@ -273,7 +274,7 @@ function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives,
 end
 
 function Public.create_towers(surface, area)
-	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
 
 	local positions = {}
 	for _, p in ipairs(tower_positions) do
@@ -507,7 +508,7 @@ function Public.create_lithium_brine(surface, area)
 		return
 	end
 
-	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
 
 	local created = 0
 

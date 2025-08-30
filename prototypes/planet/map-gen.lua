@@ -1,3 +1,4 @@
+local lib = require("lib")
 local common = require("common")
 
 data:extend({
@@ -26,7 +27,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_stretch_factor",
-		expression = common.cerys_surface_stretch_factor_for_math(),
+		expression = lib.cerys_surface_stretch_factor_for_math(),
 	},
 
 	{

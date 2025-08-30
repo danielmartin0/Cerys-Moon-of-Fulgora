@@ -1,4 +1,5 @@
 local common = require("common")
+local lib = require("lib")
 
 local Public = {}
 
@@ -10,7 +11,7 @@ function Public.tick_update_lights()
 		return
 	end
 
-	local surface = common.generated_cerys_surface()
+	local surface = lib.generated_cerys_surface()
 	if not surface then
 		return
 	end
@@ -58,7 +59,7 @@ function Public.tick_update_lights()
 		return
 	end
 
-	local R = common.get_cerys_semimajor_axis(surface)
+	local R = lib.get_cerys_semimajor_axis(surface)
 	local box_over_circle = common.SOLAR_IMAGE_SIZE / common.SOLAR_IMAGE_CIRCLE_SIZE
 
 	--== Graphics ==--

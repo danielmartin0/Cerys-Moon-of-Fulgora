@@ -1,4 +1,5 @@
 local common = require("common")
+local lib = require("lib")
 
 local Public = {}
 
@@ -40,7 +41,7 @@ function Public.tick_ice(surface)
 	end
 
 	local transitioning_tiles
-	local stretch_factor = common.get_cerys_surface_stretch_factor(surface)
+	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
 	if stretch_factor > 1 then
 		transitioning_tiles = surface.find_tiles_filtered({
 			name = TRANSITION_TILE_NAMES,

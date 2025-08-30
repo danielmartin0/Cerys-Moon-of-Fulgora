@@ -1,3 +1,4 @@
+local lib = require("lib")
 local common = require("common")
 
 if not storage.cerys then
@@ -8,7 +9,7 @@ if not storage.cerys.first_visit_tick then
 	storage.cerys.first_visit_tick = game.tick
 end
 
-local surface = common.generated_cerys_surface()
+local surface = lib.generated_cerys_surface()
 if not surface then
 	return
 end

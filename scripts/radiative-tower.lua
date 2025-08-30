@@ -1,3 +1,4 @@
+local lib = require("lib")
 local Public = {}
 
 local common = require("common")
@@ -101,7 +102,7 @@ Public.register_radiative_tower = function(entity)
 	})
 
 	if base and base.valid then
-		if not common.can_mine_fulgoran_towers(entity.force) then
+		if not lib.can_mine_fulgoran_towers(entity.force) then
 			base.minable_flag = false
 		end
 		base.destructible = false

@@ -1,4 +1,5 @@
 local common = require("common")
+local lib = require("lib")
 local repair = require("scripts.reactor-repair")
 local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
@@ -59,7 +60,7 @@ function Public.create_reactor(surface)
 
 	local adjusted_reactor_position = {
 		x = math.ceil(common.REACTOR_POSITION_SEED.x),
-		y = math.ceil(common.REACTOR_POSITION_SEED.y / common.get_cerys_surface_stretch_factor(surface)),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / lib.get_cerys_surface_stretch_factor(surface)),
 	}
 
 	local entities = surface.find_entities_filtered({

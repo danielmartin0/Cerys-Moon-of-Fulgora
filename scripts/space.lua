@@ -1,5 +1,6 @@
 local common = require("common")
-local find = require("lib").find
+local lib = require("lib")
+local find = lib.find
 
 local Public = {}
 
@@ -61,7 +62,7 @@ function Public.try_spawn_asteroid(surface)
 		return
 	end
 
-	local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+	local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 	local x = math.random(-semimajor_axis - 70, semimajor_axis + 70)
 
 	local y_position = -(common.CERYS_RADIUS + ASTEROID_SPAWN_DISTANCE_FROM_EDGE)
@@ -92,12 +93,12 @@ function Public.try_spawn_asteroid(surface)
 end
 
 function Public.spawn_solar_wind_particle(surface)
-	local d = common.CERYS_RADIUS / common.get_cerys_surface_stretch_factor(surface)
+	local d = common.CERYS_RADIUS / lib.get_cerys_surface_stretch_factor(surface)
 
 	for _ = 1, SOLAR_SPAWN_MULTIPLIER do
 		local y = math.random(-d - 8, d + 8)
 
-		local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+		local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 		local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
 		local r = rendering.draw_sprite({
@@ -254,7 +255,7 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
-		local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+		local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 
 		local kill = false
 		if particle.age > MAX_AGE then
@@ -284,7 +285,7 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 		local e = storage.cerys.asteroids[i]
 
 		if e and e.valid then
-			local semimajor_axis = common.get_cerys_semimajor_axis(surface)
+			local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 
 			if e.position.y > (semimajor_axis + ASTEROID_SPAWN_DISTANCE_FROM_EDGE + 5) then
 				e.destroy()

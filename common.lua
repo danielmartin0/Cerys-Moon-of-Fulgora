@@ -101,82 +101,24 @@ Public.SOFTBANNED_RESOURCES = {
 	-- "stone", -- having stone is OK as long as you don't make power
 }
 
-function Public.get_cerys_surface_stretch_factor(cerys_surface)
-	local height_starts_stretching = Public.CERYS_RADIUS * (Public.HARD_MODE_ON and 2.4 or 1.6)
-	local max_stretch_factor = 6
+Public.TILE_REPLACEMENTS = {
+	["concrete"] = "cerys-concrete-minable",
+	["refined-concrete"] = "cerys-refined-concrete",
+	["hazard-concrete-left"] = "cerys-hazard-concrete-left",
+	["hazard-concrete-right"] = "cerys-hazard-concrete-right",
+	["refined-hazard-concrete-left"] = "cerys-refined-hazard-concrete-left",
+	["refined-hazard-concrete-right"] = "cerys-refined-hazard-concrete-right",
+	["frozen-concrete"] = "cerys-frozen-concrete-minable",
+	["frozen-refined-concrete"] = "cerys-frozen-refined-concrete",
+	["frozen-hazard-concrete-left"] = "cerys-frozen-hazard-concrete-left",
+	["frozen-hazard-concrete-right"] = "cerys-frozen-hazard-concrete-right",
+	["frozen-refined-hazard-concrete-left"] = "cerys-frozen-refined-hazard-concrete-left",
+	["frozen-refined-hazard-concrete-right"] = "cerys-frozen-refined-hazard-concrete-right",
+}
 
-	local stretch_factor = math.min(
-		max_stretch_factor,
-		height_starts_stretching / math.min(cerys_surface.map_gen_settings.height / 2, height_starts_stretching)
-	)
-
-	return stretch_factor
-end
-
-function Public.cerys_surface_stretch_factor_for_math()
-	if Public.HARD_MODE_ON then
-		return "min(6, (cerys_radius * 2.4) / min(map_height / 2, cerys_radius * 2.4))"
-	else
-		return "min(6, (cerys_radius * 1.6) / min(map_height / 2, cerys_radius * 1.6))"
-	end
-end
-
-function Public.get_cerys_semimajor_axis(cerys_surface)
-	return Public.CERYS_RADIUS * Public.get_cerys_surface_stretch_factor(cerys_surface)
-end
-
-function Public.generated_cerys_surface()
-	local surface = game.surfaces["cerys"]
-	if not (surface and surface.valid) then
-		return false
-	end
-
-	local some_chunk_generated = false
-
-	for chunk in surface.get_chunks() do
-		if surface.is_chunk_generated(chunk) then
-			some_chunk_generated = true
-			break
-		end
-	end
-
-	if not some_chunk_generated then
-		return false
-	end
-
-	return surface
-end
-
-function Public.can_mine_fulgoran_towers(force)
-	if not force then
-		return false
-	end
-
-	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME] then
-		return false
-	end
-
-	if not force.technologies[Public.FULGORAN_TOWER_MINING_TECH_NAME].researched then
-		return false
-	end
-
-	return true
-end
-
-function Public.make_radiative_towers_minable()
-	if storage.radiative_towers then
-		for _, tower in pairs(storage.radiative_towers.towers or {}) do
-			if tower.entity and tower.entity.valid and not tower.is_player_tower then
-				tower.entity.minable_flag = true
-			end
-		end
-
-		for _, tower in pairs(storage.radiative_towers.contracted_towers or {}) do
-			if tower.entity and tower.entity.valid then
-				tower.entity.minable_flag = true
-			end
-		end
-	end
+Public.TILE_REPLACEMENTS_INVERSE = {}
+for name, replacement in pairs(Public.TILE_REPLACEMENTS) do
+	Public.TILE_REPLACEMENTS_INVERSE[replacement] = name
 end
 
 return Public

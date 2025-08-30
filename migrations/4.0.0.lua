@@ -1,6 +1,7 @@
 local common = require("common")
+local lib = require("lib")
 
-local surface = common.generated_cerys_surface()
+local surface = lib.generated_cerys_surface()
 if not surface then
 	return
 end
@@ -26,6 +27,6 @@ for _, force in pairs(game.forces) do
 		force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME]
 		and force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME].researched == true
 	then
-		common.make_radiative_towers_minable()
+		lib.make_radiative_towers_minable()
 	end
 end

@@ -112,7 +112,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 		-- This usually shouldn't be necessary, but in case the player has reset their technologies, we take the opportunity here to undo the above.
 		research.force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
 	elseif research.name == common.FULGORAN_TOWER_MINING_TECH_NAME then
-		common.make_radiative_towers_minable()
+		lib.make_radiative_towers_minable()
 	elseif research.name == "cerys-z-disable-legacy-tech-when-researched" then
 		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].researched = false
 		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].visible_when_disabled = false
@@ -128,7 +128,7 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 		if storage.cerys and not storage.cerys.first_visit_tick then
 			storage.cerys.first_visit_tick = game.tick
 
-			new_surface.request_to_generate_chunks({ 0, 0 }, common.get_cerys_semimajor_axis(new_surface) * 2 / 32)
+			new_surface.request_to_generate_chunks({ 0, 0 }, lib.get_cerys_semimajor_axis(new_surface) * 2 / 32)
 		end
 	end
 end)
@@ -306,30 +306,48 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 	end
 end)
 
--- It seems to be impossible to prevent this with collision masks:
 script.on_event({
 	defines.events.on_robot_built_tile,
 	defines.events.on_player_built_tile,
 }, function(event)
 	local surface = game.surfaces[event.surface_index]
-	if not (surface and surface.valid and surface.name == "cerys") then
-		return
-	end
+	if surface and surface.valid and surface.name == "cerys" then
+		for _, tile in pairs(event.tiles) do
+			if common.TILE_REPLACEMENTS[event.tile.name] then
+				surface.set_tiles(
+					{ {
+						name = common.TILE_REPLACEMENTS[event.tile.name],
+						position = tile.position,
+					} },
+					true
+				)
+			end
 
-	local tiles = event.tiles
-	for _, tile in pairs(tiles) do
-		local hidden_tile = surface.get_hidden_tile(tile.position)
-		if hidden_tile == "cerys-empty-space-2" then
-			surface.set_tiles({ {
-				name = hidden_tile,
-				position = tile.position,
-			} }, true)
+			local hidden_tile = surface.get_hidden_tile(tile.position)
 
-			if event.player_index then
-				local player = game.get_player(event.player_index)
-				if player and player.valid and event.item then
-					player.insert({ name = event.item.name, count = 1, quality = event.quality.name })
+			if hidden_tile == "cerys-empty-space-2" then -- It seems to be impossible to prevent this with collision masks
+				surface.set_tiles({ {
+					name = hidden_tile,
+					position = tile.position,
+				} }, true)
+
+				if event.player_index then
+					local player = game.get_player(event.player_index)
+					if player and player.valid and event.item then
+						player.insert({ name = event.item.name, count = 1, quality = event.quality.name })
+					end
 				end
+			end
+		end
+	else
+		if common.TILE_REPLACEMENTS_INVERSE[event.tile.name] then
+			for _, tile in pairs(event.tiles) do
+				surface.set_tiles({
+					{
+						name = common.TILE_REPLACEMENTS_INVERSE[event.tile.name],
+						position = tile.position,
+					},
+				}, true)
 			end
 		end
 	end
