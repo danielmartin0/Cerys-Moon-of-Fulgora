@@ -3,10 +3,10 @@ Version: 4.7.0
 Date: 2025-08-30
   Changes:
     - Improvements to map generation.
-    - Charged particles now move slower (but in the same paths).
+    - Charged particles now move slower (but in the same paths and density).
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
   Graphics:
-    - Touched-up graphics for methane ice.
+    - Touched-up graphics for methane ice and charged particle ghosts.
   Sounds:
     - More soundtrack adjustments.
 ---------------------------------------------------------------------------------------------------
