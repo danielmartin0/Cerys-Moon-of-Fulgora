@@ -354,6 +354,15 @@ script.on_event({
 end)
 
 script.on_configuration_changed(function()
+	if storage.background_renderings then
+		for _, player in pairs(game.players) do
+			if storage.background_renderings[player.index] then
+				storage.background_renderings[player.index].destroy()
+			end
+			storage.background_renderings[player.index] = nil
+		end
+	end
+
 	init.initialize_technologies()
 
 	local surface = game.surfaces["cerys"]

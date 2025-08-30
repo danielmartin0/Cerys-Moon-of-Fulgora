@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.6.0-4.6.1
+Version: 4.6.0-4.6.2
 Date: 2025-08-29
   Changes:
     - Crafting Overclock modules no longer requires superconductors.
@@ -13,6 +13,8 @@ Date: 2025-08-29
     - Frozen concrete tiles now have custom graphics on Cerys.
   Sounds:
     - Added another ambient music track (and removed a stray non-custom Space track that was still in the playlist.)
+  Bugfixes:
+    - Fixed a bug where the Fulgora background could become enlarged when toggling the 'Use Fulgora starmap graphic' setting on and off.
   Locale:
     - Added a new German translation. (Thanks Schlumpf!)
 ---------------------------------------------------------------------------------------------------
