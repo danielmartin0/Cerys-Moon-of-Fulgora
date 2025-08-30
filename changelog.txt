@@ -1,13 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.6.3
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 4.6.0-4.6.2
 Date: 2025-08-29
   Changes:
     - Crafting Overclock modules no longer requires superconductors.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by neutralization'.
+    - Added hydrogen bombs to the Cerys cargo drops whitelist (in case players accidentally launch it to a platform rather than to orbit).
+    - One additional Fulgoran crusher spawns on new maps.
   Balancing:
     - Reduced the crafting time of Space science pack from methane ice (-33%), charging rods (-50%), and the reactor scaffold (-50%).
     - Tweaked the ingredient amounts for scaffolds, Cerysian labs, and crusher repair.
@@ -15,6 +13,7 @@ Date: 2025-08-29
     - Reduced the energy consumption of the Fulgoran cryogenic plant (-8%).
   Graphics:
     - Frozen concrete tiles now have custom graphics on Cerys.
+    - Players in orbit around Cerys now see the flash from hydrogen nukes launched from the surface.
   Sounds:
     - Added another ambient music track (and removed a stray non-custom Space track that was still in the playlist.)
   Bugfixes:

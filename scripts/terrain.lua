@@ -145,8 +145,9 @@ local cryo_plant_base_positions = {
 local crusher_positions = {
 	{ x = -67, y = -79.5 },
 	{ x = 45, y = -33.5 },
-	{ x = -7, y = 74.5 },
+	{ x = 4, y = 74.5 },
 	{ x = 87, y = 41.5 },
+	{ x = -65, y = 40.5 },
 }
 
 --== Terrain & entity generation ==--

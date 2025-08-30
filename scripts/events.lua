@@ -425,17 +425,22 @@ function Public.check_rocket_timed_effects(surface)
 		})
 
 		for _, player in pairs(game.connected_players) do
-			if
-				player
-				and player.valid
-				and player.surface
-				and player.surface.valid
-				and player.surface.name == "cerys"
-			then
-				player.play_sound({
-					path = "cerys-atmospheric-nuke",
-					volume_modifier = 1,
-				})
+			if player and player.valid and player.surface and player.surface.valid then
+				local player_surface = player.surface
+				if
+					player_surface.name == "cerys"
+					or (
+						player_surface.platform
+						and player_surface.platform.valid
+						and player_surface.platform.space_location
+						and player_surface.platform.space_location.name == "cerys"
+					)
+				then
+					player.play_sound({
+						path = "cerys-atmospheric-nuke",
+						volume_modifier = 1,
+					})
+				end
 			end
 		end
 	end
