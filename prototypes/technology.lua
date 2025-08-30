@@ -278,7 +278,7 @@ data:extend({
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
-			count = 500,
+			count = 1000,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
