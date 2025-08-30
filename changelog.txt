@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.7.0
-Date: ????
+Date: 2025-08-30
   Changes:
     - Improvements to map generation.
     - Charged particles now move slower (but in the same paths).
