@@ -6,20 +6,18 @@ local Public = {}
 
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
-local SOLAR_WIND_MIN_VELOCITY = 0.3
+local SOLAR_WIND_MIN_VELOCITY = 0.3 * (2 / 3)
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
 
 local ROD_MAX_RANGE = 30
 local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
-local ROD_DEFLECTION_STRENGTH = 3.2
+local ROD_DEFLECTION_STRENGTH = 3.2 * (2 / 3) ^ 2
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
-local SPEED_THRESHOLD = 0.05
-local PARTICLE_SHRINK_TIME = 12
-
-local SOLAR_SPAWN_MULTIPLIER = 1
+local SPEED_THRESHOLD = 0.05 * (2 / 3)
+local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 1 / 50
 
@@ -95,31 +93,29 @@ end
 function Public.spawn_solar_wind_particle(surface)
 	local d = common.CERYS_RADIUS / lib.get_cerys_surface_stretch_factor(surface)
 
-	for _ = 1, SOLAR_SPAWN_MULTIPLIER do
-		local y = math.random(-d - 8, d + 8)
+	local y = math.random(-d - 8, d + 8)
 
-		local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
-		local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
+	local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
+	local x = -(semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE - math.random(0, 10))
 
-		local r = rendering.draw_sprite({
-			sprite = "cerys-solar-wind-particle",
-			target = { x = x, y = y },
-			surface = surface,
-			render_layer = "air-object",
-		})
+	local r = rendering.draw_sprite({
+		sprite = "cerys-solar-wind-particle",
+		target = { x = x, y = y },
+		surface = surface,
+		render_layer = "air-object",
+	})
 
-		table.insert(storage.cerys.solar_wind_particles, {
-			rendering = r,
-			age = 0,
-			velocity = Public.initial_solar_wind_velocity(),
-			position = { x = x, y = y },
-		})
-	end
+	table.insert(storage.cerys.solar_wind_particles, {
+		rendering = r,
+		age = 0,
+		velocity = Public.initial_solar_wind_velocity(),
+		position = { x = x, y = y },
+	})
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3
-	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3
+	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3 * (2 / 3)
+	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * (2 / 3)
 
 	return { x = x_velocity, y = y_velocity }
 end

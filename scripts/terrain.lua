@@ -69,8 +69,8 @@ local tower_positions = hex_grid_positions({
 
 local cryo_plant_base_positions = {
 	{
-		x = -101,
-		y = -22,
+		x = -120,
+		y = 24,
 	},
 	{
 		x = -84,

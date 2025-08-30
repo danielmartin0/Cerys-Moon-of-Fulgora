@@ -548,7 +548,7 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 	tile.collision_mask.layers.cerys_tile = true
 
 	if name_stem == "concrete" then
-		tile.minable = nil -- The unminable variants stay on the default namespace because Factorio cannot migrate hidden tiles
+		tile.minable = nil -- Our unminable variants are stuck on the default namespace because Factorio cannot migrate hidden tiles
 	end
 
 	data:extend({ tile })

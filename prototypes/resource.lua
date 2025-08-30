@@ -49,7 +49,7 @@ data:extend({
 			probability_expression = "cerys_nuclear_scrap",
 			richness_expression = "10 + 100 * cerys_nuclear_scrap ^ 3",
 		},
-		map_color = { 0.18, 0.22, 0.2 },
+		map_color = { 92, 106, 42 },
 		map_grid = true,
 		factoriopedia_simulation = "nil",
 		stage_counts = stage_counts_4,

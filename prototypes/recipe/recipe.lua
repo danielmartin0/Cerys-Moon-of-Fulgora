@@ -117,7 +117,7 @@ data:extend({
 			{ type = "item", name = "carbon", amount = 1 },
 			{ type = "item", name = "iron-plate", amount = 2 },
 		},
-		energy_required = 10,
+		energy_required = 7.5,
 		results = {
 			{ type = "item", name = "space-science-pack", amount = 1 },
 		},
