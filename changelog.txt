@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.6.0-4.6.2
+Version: 4.6.0-4.6.3
 Date: 2025-08-29
   Changes:
     - Crafting Overclock modules no longer requires superconductors.
