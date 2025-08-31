@@ -533,6 +533,7 @@ local function create_cerys_concrete(original_name, frozen, item_name, transitio
 		placeable_by = { item = item_name, count = 1 },
 		factoriopedia_alternative = frozen and "nil" or name_without_cerys,
 		hidden = frozen and "nil" or true,
+		can_be_part_of_blueprint = true,
 	})
 
 	tile.transition_merges_with_tile = transition_merge_tile
@@ -561,13 +562,12 @@ local function create_cerys_concrete(original_name, frozen, item_name, transitio
 		}
 	end
 
-	tile.can_be_part_of_blueprint = true
 	tile.collision_mask.layers.cerys_tile = true
 
 	if original_name == "concrete" then
 		data:extend({
 			merge(tile, {
-				-- Our unminable variants are stuck on the default namespace because Factorio cannot migrate hidden tiles
+				-- Used for machine on water. Unfortunately this tile is stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
 				minable = "nil",
 				can_be_part_of_blueprint = false,
 			}),

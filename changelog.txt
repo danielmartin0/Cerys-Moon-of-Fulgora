@@ -1,10 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.8.0
-Date: 2025-08-31
-  Bugfixes:
-    - Fixed that the new Cerys concrete tiles could not be selected by the deconstruction planner or pipette.
----------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.7
+Version: 4.7.0-4.7.8
 Date: 2025-08-30
   Changes:
     - BREAKING CHANGE (minor): Crafting hydrogen bombs now requires Pu238 and U235.
@@ -18,6 +13,7 @@ Date: 2025-08-30
   Bugfixes:
     - Fixed that the U235 in nuclear scrap recycling was incorrect since 4.0.
     - Fixed that launching hydrogen bombs from Cerys to space platforms would trigger the atmospheric explosion visual effect.
+    - Fixed that the new Cerys concrete tiles could not be selected by the deconstruction planner or pipette.
   Balancing:
     - Adjusted the Pu238 amounts in various recipes.
     - Tweaks to technology costs.
