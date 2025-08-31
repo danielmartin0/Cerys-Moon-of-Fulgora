@@ -2,6 +2,8 @@ local Public = {}
 
 local TEMPERATURE_LOSS_RATE = 0.3
 
+-- TODO: Migrate to heat_neighbours when 2.0.64 becomes stable
+
 local function get_position_key(position)
 	return (position.x + 0.5) .. "," .. (position.y + 0.5)
 end
