@@ -2,12 +2,12 @@
 Version: 4.7.0-4.7.1
 Date: 2025-08-30
   Changes:
-    - Improvements to map generation.
-    - Charged particles now move slower (but in the same paths and flux density).
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
     - Neutron explosions now behave differently in vacuum (the open-air behavior is unchanged).
     - Crafting Neutron bombs no longer require processing units.
+    - Charged particles now move slower (but in the same paths and gameplay is unchanged).
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
+    - Improvements to map generation.
   Balancing:
     - Further reduced the crafting time of Space science from methane ice (-33%).
     - Slight tweaks to technology costs.
