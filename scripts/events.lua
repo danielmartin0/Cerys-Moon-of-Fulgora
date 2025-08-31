@@ -473,17 +473,22 @@ script.on_event(defines.events.on_rocket_launch_ordered, function(event)
 	end
 
 	if not storage.atmospheric_nuke_timer then
-		local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
+		if
+			cargo_pod.cargo_pod_destination
+			and cargo_pod.cargo_pod_destination.type == defines.cargo_destination.orbit
+		then
+			local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
 
-		local has_hydrogen_bomb = false
-		for _, item in pairs(pod_contents) do
-			if item.name == "cerys-hydrogen-bomb" then
-				has_hydrogen_bomb = true
+			local has_hydrogen_bomb = false
+			for _, item in pairs(pod_contents) do
+				if item.name == "cerys-hydrogen-bomb" then
+					has_hydrogen_bomb = true
+				end
 			end
-		end
 
-		if has_hydrogen_bomb then
-			storage.atmospheric_nuke_timer = game.tick + 22 * 60
+			if has_hydrogen_bomb then
+				storage.atmospheric_nuke_timer = game.tick + 22 * 60
+			end
 		end
 	end
 end)

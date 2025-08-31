@@ -1,18 +1,16 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.7.6
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.5
+Version: 4.7.0-4.7.6
 Date: 2025-08-30
   Changes:
+    - BREAKING CHANGE (apologies): Plutonium-238 is once again required in the Hydrogen bomb recipe. (This is a reversion of a change in v4.2).
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
     - Neutrons now behave differently in vacuum (the open-air behavior is unchanged).
     - Charged particles now move slower (but in the same paths and gameplay is unchanged).
     - Crafting Neutron bombs no longer require processing units.
-    - Reverted the v4.2 change that removed Plutonium-238 from the Hydrogen bomb recipe.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
+  Bugfixes:
+    - Fixed that launching hydrogen bombs from Cerys to space platforms would trigger the atmospheric explosion visual effect.
   Balancing:
     - Tweaks to technology costs.
   Graphics:
