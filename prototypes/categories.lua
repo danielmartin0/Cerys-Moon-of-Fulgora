@@ -63,7 +63,7 @@ data:extend({
 		type = "item-subgroup",
 		name = "planetary-environment",
 		group = "space",
-		order = "i-c[cerys]",
+		order = "h-c[cerys]",
 	},
 	{
 		type = "item-subgroup",

@@ -117,7 +117,7 @@ data:extend({
 			{ type = "item", name = "carbon", amount = 1 },
 			{ type = "item", name = "iron-plate", amount = 2 },
 		},
-		energy_required = 7.5,
+		energy_required = 5,
 		results = {
 			{ type = "item", name = "space-science-pack", amount = 1 },
 		},
@@ -197,7 +197,6 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "artillery-shell", amount = 1 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 1 },
-			{ type = "item", name = "processing-unit", amount = 10 },
 			{ type = "item", name = "plutonium-239", amount = 5 },
 		},
 		results = { { type = "item", name = "cerys-neutron-bomb", amount = 1 } },

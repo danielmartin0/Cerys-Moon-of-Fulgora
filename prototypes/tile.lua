@@ -537,12 +537,20 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 	end
 
 	if frozen then
-		tile.variants.material_background = {
-			picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
-			count = 8,
-			scale = 0.5,
+		-- tile.variants.material_background = {
+		-- 	picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
+		-- 	count = 8,
+		-- 	scale = 0.5,
+		-- }
+		-- tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
+		tile.variants = {
+			material_background = {
+				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
+				count = 8,
+				scale = 0.5,
+			},
+			transition = tile_graphics.generic_texture_on_concrete_transition,
 		}
-		tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
 	end
 
 	tile.collision_mask.layers.cerys_tile = true
@@ -554,16 +562,19 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 	data:extend({ tile })
 end
 
+create_cerys_concrete("concrete", false, nil)
+create_cerys_concrete("concrete", true, "cerys-concrete")
 for _, name in pairs({
-	"concrete",
 	"hazard-concrete-left",
 	"hazard-concrete-right",
 }) do
 	create_cerys_concrete(name, false, "cerys-concrete")
 	create_cerys_concrete(name, true, "cerys-concrete")
 end
+
+create_cerys_concrete("refined-concrete", false, nil)
+create_cerys_concrete("refined-concrete", true, "cerys-refined-concrete")
 for _, name in pairs({
-	"refined-concrete",
 	"refined-hazard-concrete-left",
 	"refined-hazard-concrete-right",
 }) do

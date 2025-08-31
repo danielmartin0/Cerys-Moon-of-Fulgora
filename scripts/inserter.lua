@@ -235,9 +235,9 @@ local function adjust_inserter(inserter_data)
 	local valid_pickup_machine = proxy_for_pickup and proxy_for_pickup.valid and proxy_for_pickup.proxy_target_entity
 
 	local machine
-	if valid_drop_machine then
+	if valid_drop_machine and not valid_pickup_machine then
 		machine = valid_drop_machine
-	elseif valid_pickup_machine then
+	elseif valid_pickup_machine and not valid_drop_machine then
 		machine = valid_pickup_machine
 	end
 

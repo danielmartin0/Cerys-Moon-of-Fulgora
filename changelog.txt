@@ -1,18 +1,22 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.8.0
-Date: ????-??-??
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.7.0
+Version: 4.7.0-4.7.1
 Date: 2025-08-30
   Changes:
     - Improvements to map generation.
     - Charged particles now move slower (but in the same paths and flux density).
+    - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
+    - Neutron explosions now behave differently in vacuum (the open-air behavior is unchanged).
+    - Crafting Neutron bombs no longer require processing units.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
+  Balancing:
+    - Further reduced the crafting time of Space science from methane ice (-33%).
+    - Slight tweaks to technology costs.
   Graphics:
-    - Touched-up graphics for methane ice crystals and charged particle ghosts.
+    - Small graphical improvements.
   Sounds:
-    - More soundtrack adjustments.
+    - Small soundtrack adjustments.
+  Compatibility:
+    - Fixed a crash when loaded with all of the following: K2SO, Wooden Cerys Lunaponics, and BZ Tin.
 ---------------------------------------------------------------------------------------------------
 Version: 4.6.0-4.6.4
 Date: 2025-08-29
