@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.8
+Version: 4.7.0-4.7.9
 Date: 2025-08-30
   Changes:
     - BREAKING CHANGE (minor): Crafting hydrogen bombs now requires Pu238 and U235.
