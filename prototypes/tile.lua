@@ -179,7 +179,7 @@ local lightmap_spritesheet = {
 	},
 }
 
-local function create_base_tile(name, layer)
+local function create_base_tile(name, layer, force_hidden)
 	return merge(cerys_rock_base, {
 		name = name,
 		frozen_variant = name .. "-frozen",
@@ -188,6 +188,7 @@ local function create_base_tile(name, layer)
 			lightmap_spritesheet
 		),
 		layer = layer,
+		hidden = force_hidden and true or cerys_rock_base.hidden,
 	})
 end
 
@@ -216,7 +217,7 @@ frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 	},
 }
 
-local function create_frozen_variant(name, layer)
+local function create_frozen_variant(name, layer, force_hidden)
 	local noise_var = string.gsub(name, "%-", "_")
 	return merge(cerys_rock_base, {
 		name = name .. "-frozen",
@@ -225,6 +226,7 @@ local function create_frozen_variant(name, layer)
 		},
 		thawed_variant = name,
 		layer = layer,
+		hidden = force_hidden and true or cerys_rock_base.hidden,
 		variants = tile_variations_template_with_transitions(
 			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png",
 			lightmap_spritesheet
@@ -234,11 +236,12 @@ local function create_frozen_variant(name, layer)
 	})
 end
 
-local function create_melting_variant(name, layer)
+local function create_melting_variant(name, layer, force_hidden)
 	local frozen_variant = create_frozen_variant(name, layer)
 	return merge(frozen_variant, {
 		name = frozen_variant.name .. "-from-dry-ice",
 		thawed_variant = "nil",
+		factoriopedia_alternative = frozen_variant.name,
 	})
 end
 
@@ -251,8 +254,8 @@ data:extend({
 	create_frozen_variant("cerys-ash-dark", 10), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
 	create_melting_variant("cerys-ash-dark", 10),
 
-	create_base_tile("cerys-ash-light", 7),
-	create_frozen_variant("cerys-ash-light", 10),
+	create_base_tile("cerys-ash-light", 7, true),
+	create_frozen_variant("cerys-ash-light", 10, true),
 	create_melting_variant("cerys-ash-light", 10),
 
 	create_base_tile("cerys-pumice-stones", 8),
@@ -300,6 +303,7 @@ data:extend({
 	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles-freezing",
 		thawed_variant = "cerys-water-puddles",
+		factoriopedia_alternative = "cerys-water-puddles",
 	}),
 	merge(data.raw["tile-effect"]["brash-ice-2"], {
 		name = "cerys-water-puddles-2",
@@ -442,6 +446,7 @@ data:extend({
 		frozen_variant = "cerys-dry-ice-on-water",
 		collision_mask = cerys_ground_collision_mask,
 		layer = 81,
+		factoriopedia_alternative = "cerys-dry-ice-on-water",
 	}),
 })
 
@@ -481,6 +486,7 @@ data:extend({
 		name = "cerys-dry-ice-on-land-melting",
 		frozen_variant = "cerys-dry-ice-on-land",
 		layer = 83,
+		factoriopedia_alternative = "cerys-dry-ice-on-land",
 	}),
 })
 
@@ -514,8 +520,8 @@ local concrete_edges_overlay_layout = {
 	},
 }
 
-local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
-	local name_without_cerys = frozen and "frozen-" .. name_stem or name_stem
+local function create_cerys_concrete(original_name, frozen, item_name, transition_merge_tile)
+	local name_without_cerys = frozen and "frozen-" .. original_name or original_name
 	local name = "cerys-" .. name_without_cerys
 
 	local tile = merge(data.raw.tile[name_without_cerys], {
@@ -524,16 +530,18 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 		localised_description = { "tile-description." .. name_without_cerys },
 		subgroup = "cerys-tiles",
 		-- minable = "nil",
+		placeable_by = { item = item_name, count = 1 },
+		factoriopedia_alternative = frozen and "nil" or name_without_cerys,
+		hidden = frozen and "nil" or true,
 	})
 
 	tile.transition_merges_with_tile = transition_merge_tile
-	tile.can_be_part_of_blueprint = true
 
 	if frozen then
-		tile.thawed_variant = "cerys-" .. name_stem
+		tile.thawed_variant = "cerys-" .. original_name
 		tile.layer = tile.layer - 1 -- For some reason the frozen variants have +1 layer in the base game — yet they avoid concrete-on-concrete layering with the thawed tile. I don't how to reproduce that, so here we knocking their layer down by 1.
 	else
-		tile.frozen_variant = "cerys-frozen-" .. name_stem
+		tile.frozen_variant = "cerys-frozen-" .. original_name
 	end
 
 	if frozen then
@@ -545,7 +553,7 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 		-- tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
 		tile.variants = {
 			material_background = {
-				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
+				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. original_name .. ".png",
 				count = 8,
 				scale = 0.5,
 			},
@@ -553,49 +561,48 @@ local function create_cerys_concrete(name_stem, frozen, transition_merge_tile)
 		}
 	end
 
+	tile.can_be_part_of_blueprint = true
 	tile.collision_mask.layers.cerys_tile = true
 
-	if name_stem == "concrete" then
-		tile.minable = nil -- Our unminable variants are stuck on the default namespace because Factorio cannot migrate hidden tiles
+	if original_name == "concrete" then
+		data:extend({
+			merge(tile, {
+				-- Our unminable variants are stuck on the default namespace because Factorio cannot migrate hidden tiles
+				minable = "nil",
+				can_be_part_of_blueprint = false,
+			}),
+			merge(tile, {
+				name = name .. "-minable",
+				frozen_variant = frozen and "nil" or "cerys-frozen-" .. original_name .. "-minable",
+				thawed_variant = frozen and "cerys-" .. original_name .. "-minable" or "nil",
+			}),
+		})
+	else
+		data:extend({ tile })
 	end
-
-	data:extend({ tile })
 end
 
-create_cerys_concrete("concrete", false, nil)
-create_cerys_concrete("concrete", true, "cerys-concrete")
+create_cerys_concrete("concrete", false, "concrete", nil)
+create_cerys_concrete("concrete", true, "concrete", "cerys-concrete")
 for _, name in pairs({
 	"hazard-concrete-left",
 	"hazard-concrete-right",
 }) do
-	create_cerys_concrete(name, false, "cerys-concrete")
-	create_cerys_concrete(name, true, "cerys-concrete")
+	create_cerys_concrete(name, false, "hazard-concrete", "cerys-concrete")
+	create_cerys_concrete(name, true, "hazard-concrete", "cerys-concrete")
 end
 
-create_cerys_concrete("refined-concrete", false, nil)
-create_cerys_concrete("refined-concrete", true, "cerys-refined-concrete")
+create_cerys_concrete("refined-concrete", false, "refined-concrete", nil)
+create_cerys_concrete("refined-concrete", true, "refined-concrete", "cerys-refined-concrete")
 for _, name in pairs({
 	"refined-hazard-concrete-left",
 	"refined-hazard-concrete-right",
 }) do
-	create_cerys_concrete(name, false, "cerys-refined-concrete")
-	create_cerys_concrete(name, true, "cerys-refined-concrete")
+	create_cerys_concrete(name, false, "refined-hazard-concrete", "cerys-refined-concrete")
+	create_cerys_concrete(name, true, "refined-hazard-concrete", "cerys-refined-concrete")
 end
 
-data:extend({
-	merge(data.raw.tile["cerys-concrete"], {
-		name = "cerys-concrete-minable",
-		minable = data.raw.tile.concrete.minable,
-		frozen_variant = "cerys-frozen-concrete-minable",
-		can_be_part_of_blueprint = false,
-	}),
-	merge(data.raw.tile["cerys-frozen-concrete"], {
-		name = "cerys-frozen-concrete-minable",
-		minable = data.raw.tile["frozen-concrete"].minable,
-		thawed_variant = "cerys-concrete-minable",
-		can_be_part_of_blueprint = false,
-	}),
-})
+serpent.block(data.raw.tile["cerys-concrete"])
 
 -- TODO: make a different one without 'minable'
 
@@ -605,6 +612,7 @@ local cerys_empty = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
 	name = "cerys-empty-space", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
+	factoriopedia_alternative = "cerys-empty-space-2",
 })
 if not cerys_empty.collision_mask then
 	cerys_empty.collision_mask = { layers = {} }
