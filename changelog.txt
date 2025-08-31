@@ -9,7 +9,7 @@ Date: 2025-08-30
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
   Balancing:
-    - Slight tweaks to technology costs.
+    - Tweaks to technology costs.
   Graphics:
     - Small graphical improvements.
   Sounds:
