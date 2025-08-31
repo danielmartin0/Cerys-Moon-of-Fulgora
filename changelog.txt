@@ -2,7 +2,7 @@
 Version: 4.7.0-4.7.6
 Date: 2025-08-30
   Changes:
-    - BREAKING CHANGE (apologies): Plutonium-238 is once again required in the Hydrogen bomb recipe. (This is a reversion of a change in v4.2).
+    - BREAKING CHANGE (minor): Plutonium-238 is once again required in the Hydrogen bomb recipe. (This is a reversion of a change in v4.2).
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
     - Neutrons now behave differently in vacuum (the open-air behavior is unchanged).
     - Charged particles now move slower (but in the same paths and gameplay is unchanged).
@@ -65,7 +65,7 @@ Date: 2025-08-27
 Version: 4.4.0-4.4.5
 Date: 2025-08-24
   Changes:
-    - BREAKING CHANGE: Crafting charging rods now requires copper cable instead of superconductors.
+    - BREAKING CHANGE (minor): Crafting charging rods now requires copper cable instead of superconductors.
     - Reinstated the Overclock module by popular demand.
     - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
