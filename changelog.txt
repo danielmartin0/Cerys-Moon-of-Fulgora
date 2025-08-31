@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.7.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.3
+Version: 4.7.0-4.7.4
 Date: 2025-08-30
   Changes:
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
