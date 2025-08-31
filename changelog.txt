@@ -9,7 +9,7 @@ Date: 2025-08-30
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid targets.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
-    - Adjusted the implied age of the Fulgoran civilization.
+    - Dry ice can no longer become hidden under tiles placed by the player.
   Bugfixes:
     - Fixed that the U235 in nuclear scrap recycling was incorrect since 4.0.
     - Fixed that launching hydrogen bombs from Cerys to space platforms would trigger the atmospheric explosion visual effect.

@@ -391,6 +391,7 @@ local dry_ice_rough_variants = tile_variations_template(
 
 local dry_ice_transitions = util.table.deepcopy(water_ice_transitions)
 dry_ice_transitions[1].to_tiles = {
+	"stone-path",
 	"cerys-water-puddles",
 	"cerys-water-puddles-freezing",
 	"cerys-ice-on-water",
@@ -409,6 +410,8 @@ dry_ice_transitions[1].to_tiles = {
 	"cerys-frozen-refined-hazard-concrete-right",
 	"cerys-concrete-minable",
 	"cerys-frozen-concrete-minable",
+	"foundation",
+	"ice-platform",
 	-- "nuclear-scrap-under-ice",
 	-- "nuclear-scrap-under-ice-melting",
 	-- "ice-supporting-nuclear-scrap",
@@ -432,6 +435,7 @@ local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
 	sprite_usage_surface = "any",
 	layer_group = "ground-artificial", -- Above crater decals
 	map_color = { 128, 184, 194 },
+	allows_being_covered = false,
 })
 
 data:extend({
@@ -546,19 +550,11 @@ local function create_cerys_concrete(original_name, frozen, item_name, transitio
 	end
 
 	if frozen then
-		-- tile.variants.material_background = {
-		-- 	picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
-		-- 	count = 8,
-		-- 	scale = 0.5,
-		-- }
-		-- tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
-		tile.variants = {
-			material_background = {
-				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. original_name .. ".png",
-				count = 8,
-				scale = 0.5,
-			},
-			transition = tile_graphics.generic_texture_on_concrete_transition,
+		tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
+		tile.variants.material_background = {
+			picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. original_name .. ".png",
+			count = 8,
+			scale = 0.5,
 		}
 	end
 
