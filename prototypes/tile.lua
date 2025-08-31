@@ -496,36 +496,36 @@ data:extend({
 
 --== Concrete ==--
 
-local concrete_edges_overlay_layout = {
-	inner_corner = {
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-inner-corner.png",
-		count = 16,
-		scale = 0.5,
-	},
-	outer_corner = {
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-outer-corner.png",
-		count = 8,
-		scale = 0.5,
-	},
-	side = {
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-side.png",
-		count = 16,
-		scale = 0.5,
-	},
-	u_transition = {
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-u.png",
-		count = 8,
-		scale = 0.5,
-	},
-	o_transition = {
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-o.png",
-		count = 4,
-		scale = 0.5,
-	},
-}
+-- local concrete_edges_overlay_layout = {
+-- 	inner_corner = {
+-- 		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-inner-corner.png",
+-- 		count = 16,
+-- 		scale = 0.5,
+-- 	},
+-- 	outer_corner = {
+-- 		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-outer-corner.png",
+-- 		count = 8,
+-- 		scale = 0.5,
+-- 	},
+-- 	side = {
+-- 		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-side.png",
+-- 		count = 16,
+-- 		scale = 0.5,
+-- 	},
+-- 	u_transition = {
+-- 		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-u.png",
+-- 		count = 8,
+-- 		scale = 0.5,
+-- 	},
+-- 	o_transition = {
+-- 		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/concrete-o.png",
+-- 		count = 4,
+-- 		scale = 0.5,
+-- 	},
+-- }
 
-local function create_cerys_concrete(original_name, frozen, item_name, transition_merge_tile)
-	local name_without_cerys = frozen and "frozen-" .. original_name or original_name
+local function create_cerys_concrete(name_stem, frozen, item_name, transition_merge_tile)
+	local name_without_cerys = frozen and "frozen-" .. name_stem or name_stem
 	local name = "cerys-" .. name_without_cerys
 
 	local tile = merge(data.raw.tile[name_without_cerys], {
@@ -543,34 +543,70 @@ local function create_cerys_concrete(original_name, frozen, item_name, transitio
 	tile.transition_merges_with_tile = transition_merge_tile
 
 	if frozen then
-		tile.thawed_variant = "cerys-" .. original_name
-		tile.layer = tile.layer - 1 -- For some reason the frozen variants have +1 layer in the base game — yet they avoid concrete-on-concrete layering with the thawed tile. I don't how to reproduce that, so here we knocking their layer down by 1.
+		tile.thawed_variant = "cerys-" .. name_stem
 	else
-		tile.frozen_variant = "cerys-frozen-" .. original_name
+		tile.frozen_variant = "cerys-frozen-" .. name_stem
 	end
 
 	if frozen then
-		tile.variants.transition.overlay_layout = concrete_edges_overlay_layout
-		tile.variants.material_background = {
-			picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. original_name .. ".png",
-			count = 8,
-			scale = 0.5,
+		tile.variants = {
+			-- overlay_layout = concrete_edges_overlay_layout, -- Using our edge graphics caused the frozen concrete's tile transitions to fail to merge with regular concrete. Presumably, that's because Factorio checks that you're using the same images. (In vanilla, they have the same overlay so it doesn't matter.)
+			material_background = {
+				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
+				count = 8,
+				scale = 0.5,
+			},
+			transition = { -- Similar to vanilla frozen concrete
+				mask_layout = {
+					inner_corner = {
+						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-inner-corner-mask.png",
+						count = 1,
+						scale = 0.5,
+					},
+					outer_corner = {
+						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-outer-corner-mask.png",
+						count = 1,
+						scale = 0.5,
+					},
+					side = {
+						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-side-mask.png",
+						count = 1,
+						scale = 0.5,
+					},
+					u_transition = {
+						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-u-mask.png",
+						count = 1,
+						scale = 0.5,
+					},
+					o_transition = {
+						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-o-mask.png",
+						count = 1,
+						scale = 0.5,
+					},
+				},
+				-- apply_effect_color_to_overlay = true, -- Wish this worked!
+			},
 		}
 	end
 
 	tile.collision_mask.layers.cerys_tile = true
 
-	if original_name == "concrete" then
+	if name_stem == "concrete" then
 		data:extend({
 			merge(tile, {
-				-- Used for machine on water. Unfortunately this tile is stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
+				name = name .. "-minable",
+				frozen_variant = frozen and "nil" or "cerys-frozen-" .. name_stem .. "-minable",
+				thawed_variant = frozen and "cerys-" .. name_stem .. "-minable" or "nil",
+			}),
+		})
+
+		-- The following tile is used for machine on water. Unfortunately, it's stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
+		tile.transition_merges_with_tile = frozen and "cerys-concrete" or nil
+		data:extend({
+			merge(tile, {
+
 				minable = "nil",
 				can_be_part_of_blueprint = false,
-			}),
-			merge(tile, {
-				name = name .. "-minable",
-				frozen_variant = frozen and "nil" or "cerys-frozen-" .. original_name .. "-minable",
-				thawed_variant = frozen and "cerys-" .. original_name .. "-minable" or "nil",
 			}),
 		})
 	else
@@ -579,17 +615,19 @@ local function create_cerys_concrete(original_name, frozen, item_name, transitio
 end
 
 create_cerys_concrete("concrete", false, "concrete", nil)
-create_cerys_concrete("concrete", true, "concrete", "cerys-concrete")
+create_cerys_concrete("concrete", true, "concrete", "cerys-concrete-minable")
+
 for _, name in pairs({
 	"hazard-concrete-left",
 	"hazard-concrete-right",
 }) do
-	create_cerys_concrete(name, false, "hazard-concrete", "cerys-concrete")
-	create_cerys_concrete(name, true, "hazard-concrete", "cerys-concrete")
+	create_cerys_concrete(name, false, "hazard-concrete", "cerys-concrete-minable")
+	create_cerys_concrete(name, true, "hazard-concrete", "cerys-concrete-minable")
 end
 
 create_cerys_concrete("refined-concrete", false, "refined-concrete", nil)
 create_cerys_concrete("refined-concrete", true, "refined-concrete", "cerys-refined-concrete")
+
 for _, name in pairs({
 	"refined-hazard-concrete-left",
 	"refined-hazard-concrete-right",
@@ -598,7 +636,7 @@ for _, name in pairs({
 	create_cerys_concrete(name, true, "refined-hazard-concrete", "cerys-refined-concrete")
 end
 
-serpent.block(data.raw.tile["cerys-concrete"])
+serpent.block(data.raw.tile["cerys-frozen-refined-concrete"])
 
 -- TODO: make a different one without 'minable'
 
