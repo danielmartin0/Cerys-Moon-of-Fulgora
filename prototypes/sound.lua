@@ -189,18 +189,6 @@ data:extend({
 	},
 	{
 		type = "ambient-sound",
-		name = "cerys-8",
-		track_type = "main-track",
-		weight = 10,
-		planet = "cerys",
-		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/horizons.ogg",
-			volume = 0.5,
-			priority = 200,
-		},
-	},
-	{
-		type = "ambient-sound",
 		name = "cerys-9",
 		track_type = "main-track",
 		weight = 10,
