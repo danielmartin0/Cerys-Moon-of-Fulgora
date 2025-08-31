@@ -65,10 +65,10 @@ Date: 2025-08-27
 Version: 4.4.0-4.4.5
 Date: 2025-08-24
   Changes:
+    - BREAKING CHANGE: Crafting charging rods now requires copper cable instead of superconductors.
     - Reinstated the Overclock module by popular demand.
     - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
-    - Crafting charging rods now requires copper cable instead of superconductors.
     - Charged particles no longer have a 'cooldown': colliding with inventories no longer prevents colliding with other inventories for a short period of time, as long as the inventory is different.
     - The construction bot exemption from the cargo drop ban is now mentioned in the ingame planet description.
   Balancing:
