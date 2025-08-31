@@ -1,13 +1,12 @@
 local common = require("common")
 
-local CIV_AGE_MY = 1800
+local CIV_AGE_MY = 2400
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
 
 local U235_RATIO = (1 / common.REPROCESSING_U238_TO_U235_RATIO)
-	* (CIV_AGE_MY / HALF_LIFE_235_MY) ^ 0.5
-	/ (CIV_AGE_MY / HALF_LIFE_238_MY) ^ 0.5
+	* 2 ^ (CIV_AGE_MY / HALF_LIFE_238_MY - CIV_AGE_MY / HALF_LIFE_235_MY)
 
 data:extend({
 	{
@@ -38,17 +37,19 @@ data:extend({
 	},
 })
 
+local U238_AMOUNT = 4
+
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
 	["advanced-circuit"] = 15,
-	["uranium-238"] = 4,
+	["uranium-238"] = U238_AMOUNT,
 	["pipe"] = 2, -- Initial pipes and extra initial iron.
 	["transport-belt"] = 1.4, -- Belt cubes and distance transport, initial iron.
 	["holmium-plate"] = 1, -- 2.5 would be matching fulgora
 	["heat-pipe"] = 0.8, -- per each: 2.5 steel plate, 5 copper plate
 	["steam-turbine"] = 0.17, -- per each: 12.5 iron gear, 12.5 copper plate, 5 pipe
 	["centrifuge"] = 0.17, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
-	["uranium-235"] = 4 * U235_RATIO,
+	["uranium-235"] = U238_AMOUNT * U235_RATIO,
 }
 
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
@@ -62,4 +63,4 @@ for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 end
 
 log("[CERYS]: U235/U238 ratio is " .. U235_RATIO)
-log("[CERYS]: U235 amount is " .. 4 * U235_RATIO)
+log("[CERYS]: U235 amount is " .. U238_AMOUNT * U235_RATIO)

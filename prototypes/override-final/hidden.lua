@@ -24,10 +24,13 @@ if data.raw.recipe["construction-robot-recycling"] then
 			enabled = false,
 		}),
 	})
-
 	PlanetsLib.restrict_surface_conditions(
 		data.raw.recipe["construction-robot-recycling"],
 		common.AMBIENT_RADIATION_MAX
+	)
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["cerys-construction-robot-recycling"],
+		common.AMBIENT_RADIATION_MIN
 	)
 end
 
@@ -38,10 +41,13 @@ if data.raw.recipe["exoskeleton-equipment-recycling"] then
 			enabled = false,
 		}),
 	})
-
 	PlanetsLib.restrict_surface_conditions(
 		data.raw.recipe["exoskeleton-equipment-recycling"],
 		common.AMBIENT_RADIATION_MAX
+	)
+	PlanetsLib.restrict_surface_conditions(
+		data.raw.recipe["cerys-exoskeleton-equipment-recycling"],
+		common.AMBIENT_RADIATION_MIN
 	)
 end
 
@@ -53,4 +59,5 @@ if data.raw.recipe["uranium-238-recycling"] then
 		}),
 	})
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.AMBIENT_RADIATION_MAX)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["cerys-uranium-238-recycling"], common.AMBIENT_RADIATION_MIN)
 end

@@ -1,28 +1,27 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.7.7
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.6
+Version: 4.7.0-4.7.7
 Date: 2025-08-30
   Changes:
-    - BREAKING CHANGE (minor): Plutonium-238 is once again required in the Hydrogen bomb recipe. (This is a reversion of a change in v4.2).
-    - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
-    - Neutrons now behave differently in vacuum (the open-air behavior is unchanged).
-    - Charged particles now move slower (but in the same paths and gameplay is unchanged).
+    - BREAKING CHANGE (minor): Crafting hydrogen bombs now requires Pu238 and U235. This gives U235 a more significant role and improves realism of the isotopes.
     - Crafting Neutron bombs no longer require processing units.
+    - Neutrons now behave differently in vacuum (their open-air behavior is unchanged).
+    - Charged particles now move slower (but in the same paths and gameplay is unchanged).
+    - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid machines.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
+    - Adjusted the implied age of the Fulgoran civilization.
   Bugfixes:
+    - Fixed that the U235 in nuclear scrap recycling was incorrect since 4.0.
     - Fixed that launching hydrogen bombs from Cerys to space platforms would trigger the atmospheric explosion visual effect.
   Balancing:
+    - Adjusted the Pu238 amounts in various recipes.
     - Tweaks to technology costs.
   Graphics:
     - Small graphical improvements.
   Sounds:
     - Small soundtrack adjustments.
   Compatibility:
-    - Fixed a crash when loaded with all of the following: K2SO, Wooden Cerys Lunaponics, and BZ Tin.
+    - Fixed a crash when the following three mods were present at once: K2SO, BZ Tin, Wooden Cerys Lunaponics.
 ---------------------------------------------------------------------------------------------------
 Version: 4.6.0-4.6.4
 Date: 2025-08-29
