@@ -184,7 +184,8 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "explosives", amount = 10 },
 			{ type = "item", name = "processing-unit", amount = 10 },
-			{ type = "item", name = "plutonium-239", amount = 100 },
+			{ type = "item", name = "plutonium-238", amount = 20 },
+			{ type = "item", name = "plutonium-239", amount = 80 },
 			{ type = "item", name = common_data.LITHIUM_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "cerys-hydrogen-bomb", amount = 1 } },
