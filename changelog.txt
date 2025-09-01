@@ -4,7 +4,7 @@ Date: 2025-09-01
   Info:
     - VERSION 4 SUMMARY for returning players: Red+Yellow science are replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; More freedom in tech tree progression; Unlocking cargo drops requires launching a hydrogen bomb into orbit; Gameplay is overall much less grindy.
   Changes:
-    - BREAKING CHANGE: Slight tweak to charged particles after discussions in Discord. They are now deflected at 1/r^2 (from 1/r^1.5 in v4.0, previously 1/r^2.5 in v3). Compared to v3, this reduces the complexity of long-range interactions, makes close-range collisions less abrupt, and matching physics is a nice bonus. Also, the voltage of charging rods now increases with quality.
+    - BREAKING CHANGE: Slight tweak to charged particles after discussions in Discord. They are now deflected at 1/r^2 (from 1/r^1.5 in v4.0, previously 1/r^2.5 in v3). Compared to v3, this reduces the complexity of long-range interactions, makes close-range collisions less abrupt, and matching real physics is a nice bonus. Also, the voltage of charging rods now increases with quality.
     - Ghost charged particles now treat everything as fully charged.
     - Ghost charged particle makers create ghosts in a [-0.5, 0.5]x[-0.5, 0.5] area rather than just at the tip.
     - Water no longer spawns in the lithium brine area.
