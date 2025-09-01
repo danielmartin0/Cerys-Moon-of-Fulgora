@@ -2,7 +2,7 @@
 Version: 4.7.12
 Date: 2025-09-01
   Info:
-    - VERSION 4 SUMMARY for returning players: Gameplay is much breezier; Red/Yellow science replaced by simpler white science; New 'Radioactive module' reward; Charged particles are much harder to trap; Unlocking cargo drops requires launching a hydrogen bomb into orbit.
+    - VERSION 4 SUMMARY for returning players: Gameplay is much breezier; Red/Yellow science replaced by simpler white science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; Unlocking cargo drops requires launching a hydrogen bomb into orbit.
 ---------------------------------------------------------------------------------------------------
 Version: 4.7.0-4.7.11
 Date: 2025-08-30
