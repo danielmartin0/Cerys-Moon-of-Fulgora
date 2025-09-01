@@ -4,19 +4,20 @@ local find = lib.find
 
 local Public = {}
 
+local spd = common.PARTICLE_SIMULATION_SPEED
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
-local SOLAR_WIND_MIN_VELOCITY = 0.3 * (2 / 3)
+local SOLAR_WIND_MIN_VELOCITY = 0.3 * spd
 local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 
-local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
+local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 1.5
 
 local ROD_MAX_RANGE = 30
 local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
-local ROD_DEFLECTION_STRENGTH = 3.2 * (2 / 3) ^ 2
+local ROD_DEFLECTION_STRENGTH = 3.2 * spd ^ 2
 local ROD_DEFLECTION_POWER = 1.5
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
-local SPEED_THRESHOLD = 0.05 * (2 / 3)
+local SPEED_THRESHOLD = 0.05 * spd
 local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
@@ -114,8 +115,8 @@ function Public.spawn_solar_wind_particle(surface)
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3 * (2 / 3)
-	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * (2 / 3)
+	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3 * spd
+	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * spd
 
 	return { x = x_velocity, y = y_velocity }
 end
@@ -159,7 +160,8 @@ function Public.tick_solar_wind_deflection()
 				if d2 < ROD_MAX_RANGE_SQUARED then
 					local polarity_fraction
 					if particle.is_ghost then
-						polarity_fraction = storage.cerys.charging_rod_is_negative[rod_unit_number] and 1 or -1
+						polarity_fraction = (storage.cerys.charging_rod_is_negative[rod_unit_number] and 1 or -1)
+							* (rod.max_polarity_fraction or 1)
 					else
 						polarity_fraction = rod.polarity_fraction
 					end

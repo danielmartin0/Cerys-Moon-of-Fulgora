@@ -9,7 +9,7 @@ for _, quality in pairs(data.raw.quality) do
 	}
 
 	data.raw.accumulator["cerys-charging-rod"].custom_tooltip_fields[1].quality_values[quality.name] =
-		{ "cerys.kv-tooltip-value", tostring(math.max(20, 100 - quality.level * 5)) }
+		{ "cerys.kv-tooltip-value", tostring(100 + 10 * quality.level) }
 
 	data.raw.reactor["cerys-fulgoran-reactor"].custom_tooltip_fields[1].quality_values[quality.name] = {
 		"cerys.cooling-tooltip-value",

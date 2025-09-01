@@ -283,7 +283,10 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		local p = entity.position
 		local surface = entity.surface
 
-		local p2 = { x = p.x, y = p.y - 3 }
+		local p2 = {
+			x = p.x + (math.random() - 0.5),
+			y = p.y - 3 + (math.random() - 0.5),
+		}
 
 		if not (surface and surface.valid and surface.name == "cerys") then
 			return

@@ -25,7 +25,7 @@ data:extend({
 				require("__core__/lualib/story")
 				game.simulation.camera_zoom = 1.6
 				game.simulation.camera_position = {0, -2}
-				game.surfaces[1].create_entity{name = "cerys-solar-ghost-maker", position = {-0.5, -0.5}}
+				game.surfaces[1].create_entity{name = "cerys-solar-ghost-maker", position = {-0.5 + (math.random() - 0.5), -0.5 + (math.random() - 0.5)}}
 
 				storage.cerys = {}
 				storage.cerys.solar_wind_particles = {}
@@ -47,8 +47,9 @@ data:extend({
 						render_layer = "air-object",
 					})
 
-					local x_velocity = 0.3 + math.random() * 0.1 / 3 * (2 / 3)
-					local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * (2 / 3)
+					local spd = ]] .. common.PARTICLE_SIMULATION_SPEED .. [[
+					local x_velocity = 0.3 * spd + math.random() * 0.1 / 3 * spd
+					local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * spd
 
 					table.insert(storage.cerys.solar_wind_particles, {
 						rendering = r,

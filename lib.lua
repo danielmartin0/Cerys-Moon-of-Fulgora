@@ -1,6 +1,5 @@
 local util = require("util")
 local common = require("common")
-
 local Public = {}
 
 function Public.get_cerys_surface_stretch_factor(cerys_surface)

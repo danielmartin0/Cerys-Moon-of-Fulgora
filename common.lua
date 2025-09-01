@@ -30,6 +30,9 @@ Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
 Public.CERYS_RADIUS = 127
 -- Public.CERYS_RADIUS = 142
+
+Public.PARTICLE_SIMULATION_SPEED = 2 / 3
+
 Public.RADIATIVE_TOWER_SHIFT_PIXELS = 109
 Public.REACTOR_POSITION_SEED = { x = 20, y = 29 }
 Public.LITHIUM_ACTUAL_POSITION = { x = 93, y = 0 }
