@@ -14,8 +14,8 @@ local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 1.5
 
 local ROD_MAX_RANGE = 30
 local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
-local ROD_DEFLECTION_STRENGTH = 3.2 * spd ^ 2
-local ROD_DEFLECTION_POWER = 1.5
+local ROD_DEFLECTION_STRENGTH = 5 * spd ^ 2
+local ROD_DEFLECTION_POWER = 2
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
 local SPEED_THRESHOLD = 0.05 * spd
 local PARTICLE_SHRINK_TIME = 14

@@ -67,7 +67,7 @@ data:extend({
 		pick_sound = item_sounds.electric_small_inventory_pickup,
 		drop_sound = item_sounds.electric_small_inventory_move,
 		place_result = "cerys-solar-ghost-maker",
-		stack_size = 20,
+		stack_size = 50,
 		default_import_location = "cerys",
 	},
 	{

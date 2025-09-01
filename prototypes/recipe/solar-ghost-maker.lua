@@ -17,9 +17,9 @@ data:extend({
 		enabled = false,
 		energy_required = 1,
 		ingredients = {
-			{ type = "item", name = "steel-plate", amount = 2 },
-			{ type = "item", name = "copper-cable", amount = 8 },
-			{ type = "item", name = "advanced-circuit", amount = 4 },
+			{ type = "item", name = "steel-plate", amount = 1 },
+			{ type = "item", name = "copper-cable", amount = 4 },
+			{ type = "item", name = "advanced-circuit", amount = 2 },
 		},
 		results = { { type = "item", name = "cerys-solar-ghost-maker", amount = 1 } },
 	},

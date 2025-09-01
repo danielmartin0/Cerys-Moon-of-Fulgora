@@ -297,7 +297,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			target = p2,
 			surface = surface,
 			render_layer = "air-object",
-			tint = { r = 0.95, g = 0.95, b = 0.95 }, -- Opacity 95% (since it's a glow)
+			tint = { r = 0.9, g = 0.9, b = 0.9 }, -- Opacity 90% (since it's a glow)
 		})
 
 		table.insert(storage.cerys.solar_wind_particles, {

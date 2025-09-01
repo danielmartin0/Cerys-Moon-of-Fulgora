@@ -12,7 +12,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/charging-rod.png",
 		icon_size = 128,
 		flags = { "placeable-neutral", "placeable-player", "player-creation" },
-		minable = { mining_time = 0.1, result = "cerys-charging-rod" },
+		minable = { mining_time = 0.05, result = "cerys-charging-rod" },
 		max_health = 200,
 		corpse = "lightning-rod-remnants",
 		dying_explosion = "medium-electric-pole-explosion",
@@ -134,6 +134,15 @@ data:extend({
 				quality_values = {}, -- Filled in data-final-fixes
 			},
 		},
+		-- radius_visualisation_specification = {
+		-- 	distance = 13,
+		-- 	sprite = {
+		-- 		filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect-circle.png",
+		-- 		tint = { r = 0, g = 1, b = 0, a = 0.5 },
+		-- 		height = 256,
+		-- 		width = 256,
+		-- 	},
+		-- },
 	},
 
 	{
