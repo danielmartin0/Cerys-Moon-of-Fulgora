@@ -124,7 +124,7 @@ Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
 	local particles = storage.cerys.solar_wind_particles
-	for _, rod in pairs(storage.cerys.charging_rods) do
+	for rod_unit_number, rod in pairs(storage.cerys.charging_rods) do
 		local p_rod = rod.rod_position
 
 		for i = 1, #particles do
@@ -157,7 +157,12 @@ function Public.tick_solar_wind_deflection()
 				end
 
 				if d2 < ROD_MAX_RANGE_SQUARED then
-					local polarity_fraction = rod.polarity_fraction
+					local polarity_fraction
+					if particle.is_ghost then
+						polarity_fraction = storage.cerys.charging_rod_is_negative[rod_unit_number] and 1 or -1
+					else
+						polarity_fraction = rod.polarity_fraction
+					end
 
 					if polarity_fraction and polarity_fraction ~= 0 then
 						local deflection = polarity_fraction
@@ -298,7 +303,11 @@ end
 
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
-	for _, particle in ipairs(storage.cerys.solar_wind_particles) do
+	local particles = storage.cerys.solar_wind_particles
+
+	for i = 1, #particles do
+		local particle = particles[i]
+
 		if not particle.is_ghost then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })

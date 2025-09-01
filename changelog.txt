@@ -1,20 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.7.14
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.7.13
 Date: 2025-09-01
   Info:
     - VERSION 4 SUMMARY for returning players: Gameplay is much breezier; Red+Yellow science replaced by simpler white science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; More freedom in tech tree progression; Unlocking cargo drops requires launching a hydrogen bomb into orbit.
 ---------------------------------------------------------------------------------------------------
-Version: 4.7.0-4.7.12
+Version: 4.7.0-4.7.14
 Date: 2025-08-30
   Changes:
     - BREAKING CHANGE (minor): Crafting hydrogen bombs now requires Pu238 and U235.
-    - Charged particles now move slower (but in the same paths and gameplay is unchanged).
     - Neutrons now behave differently in vacuum (their open-air behavior is unchanged).
     - Crafting Neutron bombs no longer require processing units.
+    - Charged particles now move slower (but in the same paths and gameplay is unchanged).
+    - Ghost charged particles now treat other entities as fully charged.
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid targets.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
