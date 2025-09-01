@@ -2,6 +2,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-make-solar-wind-ghosts",
+		icon = "__core__/graphics/empty.png",
 		hidden = true,
 		enabled = false,
 		energy_required = 1,

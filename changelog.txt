@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.7.12
-Date: ????
-  Changes:
+Date: 2025-08-30
+  Info:
+    - VERSION 4 SUMMARY for returning players: Gameplay is much breezier; Red/Yellow science replaced by simpler white science; New 'Radioactive module' reward; Charged particles are much harder to trap; Unlocking cargo drops requires launching a hydrogen bomb into orbit.
 ---------------------------------------------------------------------------------------------------
 Version: 4.7.0-4.7.11
 Date: 2025-08-30
@@ -13,7 +14,7 @@ Date: 2025-08-30
     - Radiation-proof inserters no longer switch states continuously if both the target and destination are valid targets.
     - Renamed 'Explosives from ammonium nitrate' to 'Explosives by nitrate oxidation'.
     - Improvements to map generation.
-    - Dry ice can no longer become hidden under tiles placed by the player.
+    - Dry ice can no longer be paved over without melting it.
   Bugfixes:
     - Fixed that the U235 in nuclear scrap recycling was incorrect since 4.0.
     - Fixed that launching hydrogen bombs from Cerys to space platforms would trigger the atmospheric explosion visual effect.
@@ -22,9 +23,9 @@ Date: 2025-08-30
     - Adjusted the Pu238 amounts in various recipes.
     - Tweaks to technology costs.
   Graphics:
-    - Small graphical improvements.
+    - Graphical improvements to tile transitions, methane ice, and particle ghosts.
   Sounds:
-    - Small soundtrack adjustments.
+    - Soundtrack adjustments.
   Compatibility:
     - Fixed a crash when the following three mods were present at once: K2SO, BZ Tin, Wooden Cerys Lunaponics.
 ---------------------------------------------------------------------------------------------------
