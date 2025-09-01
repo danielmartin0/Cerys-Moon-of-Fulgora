@@ -4,7 +4,7 @@ Date: 2025-09-01
   Info:
     - VERSION 4 SUMMARY for returning players: Gameplay is much less grindy; Red+Yellow science are replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; More freedom in tech tree progression; Unlocking cargo drops requires launching a hydrogen bomb into orbit.
   Changes:
-    - BREAKING CHANGE: Charged particles are now deflected at 1/r^2 (from 1/r^1.5). This reduces the complexity of long-range effects, makes close-range collisions less abrupt, and better matches players' intuition and physics for electric charges.
+    - BREAKING CHANGE: Unfortunately, charged particles have changed again after discussions in Discord. They are now deflected at 1/r^2 (from 1/r^1.5). This reduces the complexity of long-range effects, makes close-range collisions less abrupt, and better matches player intuition and physics for electric charges.
     - Ghost charged particles now treat everything as fully charged.
     - Ghost charged particle makers create ghosts in a [-0.5, 0.5]x[-0.5, 0.5] area rather than just at the tip.
     - Water no longer spawns in the lithium brine area.
