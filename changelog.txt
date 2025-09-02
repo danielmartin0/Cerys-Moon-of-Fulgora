@@ -6,9 +6,12 @@ Date: 2025-09-01
   Changes:
     - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
     - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
+    - Halved the threshold speed at which solar wind evaporates.
     - Slightly reduced character running speed over dry ice.
+    - Ghost charged particles now react to ghost charging rods.
   Bugfixes:
-    - Fixed that blueprints containing multiple charging rods did not paste their polarity and control signals correctly. (Major thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
+    - Fixed that ghost charging rods could not have their polarity set.
+    - Fixed that blueprints containing multiple charging rods did not paste their polarity and control signals correctly. (Big thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
     - Fixed that ice platform and foundation tiles on Cerys collided with asteroids.
   Graphics:
     - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.

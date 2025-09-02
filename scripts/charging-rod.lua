@@ -4,8 +4,9 @@ local Public = {}
 -- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
 
 local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
-Public.GUI_KEY = "cerys-gui-charging-rod"
-Public.GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
+Public.OLD_GUI_KEY = "cerys-gui-charging-rod"
+Public.OLD_GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
+Public.GUI_KEY = "cerys-gui-charging-rod-2"
 
 Public.built_charging_rod = function(entity, tags)
 	if not storage.cerys then
@@ -73,28 +74,89 @@ function Public.register_charging_rod(entity)
 	}
 end
 
-Public.rod_set_state = function(entity, negative)
-	if entity.name == "cerys-charging-rod" then
-		-- if storage.cerys.charging_rod_is_negative[entity.unit_number] ~= negative then
-		-- 	entity.energy = 0
-		-- end
+local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
 
-		storage.cerys.charging_rod_is_negative[entity.unit_number] = negative
-	elseif entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod" then
+Public.update_rod_lights = function(entity, rod)
+	if not (entity and entity.valid) then
+		return
+	end
+
+	local negative = storage.cerys.charging_rod_is_negative[entity.unit_number] == true
+
+	if negative then
+		if not (rod.blue_glow_entity and rod.blue_glow_entity.valid) then
+			rod.blue_glow_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-glow-blue",
+				position = { x = entity.position.x, y = entity.position.y + 1 },
+			})
+		end
+		Public.destroy_red_glow_entity(rod)
+	else
+		if not (rod.red_glow_entity and rod.red_glow_entity.valid) then
+			rod.red_glow_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-glow-red",
+				position = { x = entity.position.x, y = entity.position.y + 1 },
+			})
+		end
+		Public.destroy_blue_glow_entity(rod)
+	end
+
+	-- Update light entities based on energy fraction
+	local max_charging_rod_energy = MAX_ROD_ENERGY * (entity.quality.level + 1)
+
+	local energy_fraction
+	if common.DEBUG_CHARGING_RODS_FULL then
+		energy_fraction = negative and 1 or -1
+	else
+		energy_fraction = math.min(1, entity.energy / max_charging_rod_energy) * (negative and 1 or -1)
+	end
+
+	if energy_fraction > 0.999 then
+		if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
+			rod.blue_light_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-animation-blue",
+				position = { x = entity.position.x, y = entity.position.y + 1 },
+			})
+		end
+		Public.destroy_red_light_entity(rod)
+	elseif energy_fraction < -0.999 then
+		if not (rod.red_light_entity and rod.red_light_entity.valid) then
+			rod.red_light_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-animation-red",
+				position = { x = entity.position.x, y = entity.position.y + 1 },
+			})
+		end
+		Public.destroy_blue_light_entity(rod)
+	else
+		Public.destroy_blue_light_entity(rod)
+		Public.destroy_red_light_entity(rod)
+	end
+
+	-- Update polarity fraction
+	if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
+		rod.max_polarity_fraction = 1 + 0.1 * entity.quality.level -- Update elsewhere if updating this
+	end
+	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction
+end
+
+Public.rod_set_state = function(entity, negative)
+	storage.cerys.charging_rod_is_negative[entity.unit_number] = negative
+
+	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
 		tags.is_negative = negative
 		entity.tags = tags
 	end
-end
 
-local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
+	Public.update_rod_lights(entity, storage.cerys.charging_rods[entity.unit_number])
+end
 
 function Public.tick_60_check_cyclic_charging_rods()
 	local negative = game.tick % 120 == 0
 
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
 		if rod.cyclic then
-			storage.cerys.charging_rod_is_negative[unit_number] = negative
+			Public.rod_set_state(rod.entity, negative)
 		end
 	end
 end
@@ -143,23 +205,7 @@ function Public.tick_12_check_charging_rods()
 				end
 			end
 
-			if negative then
-				if not (rod.blue_glow_entity and rod.blue_glow_entity.valid) then
-					rod.blue_glow_entity = e.surface.create_entity({
-						name = "cerys-charging-rod-glow-blue",
-						position = { x = e.position.x, y = e.position.y + 1 },
-					})
-				end
-				Public.destroy_red_glow_entity(rod)
-			else
-				if not (rod.red_glow_entity and rod.red_glow_entity.valid) then
-					rod.red_glow_entity = e.surface.create_entity({
-						name = "cerys-charging-rod-glow-red",
-						position = { x = e.position.x, y = e.position.y + 1 },
-					})
-				end
-				Public.destroy_blue_glow_entity(rod)
-			end
+			-- Public.update_rod_lights(e, rod)
 
 			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 
@@ -170,27 +216,7 @@ function Public.tick_12_check_charging_rods()
 				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
 			end
 
-			if energy_fraction > 0.999 then
-				if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
-					rod.blue_light_entity = e.surface.create_entity({
-						name = "cerys-charging-rod-animation-blue",
-						position = { x = e.position.x, y = e.position.y + 1 },
-					})
-				end
-				Public.destroy_red_light_entity(rod)
-			elseif energy_fraction < -0.999 then
-				if not (rod.red_light_entity and rod.red_light_entity.valid) then
-					rod.red_light_entity = e.surface.create_entity({
-						name = "cerys-charging-rod-animation-red",
-						position = { x = e.position.x, y = e.position.y + 1 },
-					})
-				end
-				Public.destroy_blue_light_entity(rod)
-			else
-				Public.destroy_blue_light_entity(rod)
-				Public.destroy_red_light_entity(rod)
-			end
-
+			-- Update polarity fraction
 			if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
 				rod.max_polarity_fraction = 1 + 0.1 * e.quality.level -- Update elsewhere if updating this
 			end
@@ -243,10 +269,17 @@ function Public.on_gui_opened(event)
 	end
 
 	local entity = event.entity
-
-	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
-
 	local relative = player.gui.relative
+
+	if relative[Public.OLD_GUI_KEY] then
+		relative[Public.OLD_GUI_KEY].destroy()
+	end
+	if relative[Public.OLD_GUI_KEY_GHOST] then
+		relative[Public.OLD_GUI_KEY_GHOST].destroy()
+	end
+
+	local gui_key = Public.GUI_KEY
+
 	if relative[gui_key] then
 		if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
 			relative[gui_key].destroy()
@@ -263,9 +296,9 @@ function Public.on_gui_opened(event)
 			direction = "vertical",
 			tags = { mod_version = script.active_mods["Cerys-Moon-of-Fulgora"] },
 			anchor = {
-				name = entity.name,
 				gui = defines.relative_gui_type.accumulator_gui,
 				position = defines.relative_gui_position.right,
+				ghost_mode = "both",
 			},
 		})
 
@@ -515,9 +548,8 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			return
 		end
 
-		if entity.name == "cerys-charging-rod" then
-			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
-		else
+		storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
+		if entity.name == "entity-ghost" then
 			local tags = entity.tags or {}
 			tags.circuit_controlled = event.element.state
 			entity.tags = tags
@@ -551,9 +583,9 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			return
 		end
 
-		if entity.name == "cerys-charging-rod" then
+		storage.cerys.charging_rods[entity.unit_number].cyclic = event.element.state
+		if entity.name == "entity-ghost" then
 			storage.cerys.charging_rods[entity.unit_number].cyclic = event.element.state
-		else
 			local tags = entity.tags or {}
 			tags.cyclic = event.element.state
 			entity.tags = tags
@@ -580,9 +612,8 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 		return
 	end
 
-	if entity.name == "cerys-charging-rod" then
-		storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
-	else
+	storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
+	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
 		tags.control_signal = event.element.elem_value
 		entity.tags = tags
