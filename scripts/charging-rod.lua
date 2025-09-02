@@ -476,52 +476,6 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 	Public.rod_set_state(destination, storage.cerys.charging_rod_is_negative[source.unit_number])
 end)
 
-script.on_event(defines.events.on_player_setup_blueprint, function(event)
-	local player = game.players[event.player_index]
-
-	if not (player and player.valid) then
-		return
-	end
-
-	local blueprint = player.blueprint_to_setup
-
-	if blueprint and blueprint.valid_for_read then
-		local mapping = event.mapping.get()
-		for blueprint_entity_number, entity in pairs(mapping) do
-			if entity.name == "cerys-charging-rod" and storage.cerys then
-				local tags = blueprint.get_blueprint_entity_tags(blueprint_entity_number) or {}
-				tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
-				tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
-					and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
-				tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
-					and storage.cerys.charging_rods[entity.unit_number].control_signal
-				blueprint.set_blueprint_entity_tags(blueprint_entity_number, tags)
-			end
-		end
-	else
-		local cursor_stack = player.cursor_stack
-
-		if cursor_stack and cursor_stack.valid_for_read and cursor_stack.is_blueprint then
-			local source_entity = event.mapping.get()[1]
-			if
-				source_entity
-				and source_entity.valid
-				and source_entity.name == "cerys-charging-rod"
-				and storage.cerys
-				and #cursor_stack.get_blueprint_entities() > 0
-			then
-				local tags = cursor_stack.get_blueprint_entity_tags(1) or {}
-				tags.is_negative = storage.cerys.charging_rod_is_negative[source_entity.unit_number]
-				tags.circuit_controlled = storage.cerys.charging_rods[source_entity.unit_number]
-					and storage.cerys.charging_rods[source_entity.unit_number].circuit_controlled
-				tags.control_signal = storage.cerys.charging_rods[source_entity.unit_number]
-					and storage.cerys.charging_rods[source_entity.unit_number].control_signal
-				cursor_stack.set_blueprint_entity_tags(1, tags)
-			end
-		end
-	end
-end)
-
 script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 	if event.element.name ~= "circuit-control-checkbox" then
 		return

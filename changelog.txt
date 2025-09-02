@@ -8,13 +8,13 @@ Date: 2025-09-01
     - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
   Graphics:
     - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
+  Bugfixes:
+    - Fixed that blueprints containing multiple charging rods did not paste their polarity and control signals correctly. (Major thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
+    - Fixed that ice platform and foundation tiles on Cerys collided with asteroids.
   Balancing:
     - Raised the cost of some late-game technologies.
-  Bugfixes:
-    - Fixed that asteroids collided with ice platform and foundation tiles on Cerys.
   Optimizations:
-    - Optimizations to charged particles.
-    - Lowered the max age of charged particles.
+    - Charged particle optimizations.
   Compatibility:
     - Space Age Hard Mode: Kovarex is now unlocked by Moon Discovery Cerys and is no longer a prerequisite (because the Kovarex tech is locked behind Gleba+Fulgora).
 ---------------------------------------------------------------------------------------------------

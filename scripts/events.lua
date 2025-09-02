@@ -12,15 +12,18 @@ local init = require("scripts.init")
 local cooling = require("scripts.cooling")
 local crusher = require("scripts.crusher")
 local teleporter = require("scripts.teleporter")
-local pre_blueprint_pasted = require("scripts.pre_blueprint_pasted")
 local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
 local inserter = require("scripts.inserter")
+local bplib = require("__bplib__.blueprint")
+local BlueprintBuild = bplib.BlueprintBuild
+local BlueprintSetup = bplib.BlueprintSetup
 
 local Public = {}
 
 -- Highest-level file besides control.lua.
+-- WARNING!!! Some events are handled in charging-rod.lua.
 
 script.on_event({
 	defines.events.on_built_entity,
@@ -83,6 +86,53 @@ script.on_event({
 	end
 end)
 
+script.on_event(defines.events.on_player_setup_blueprint, function(event)
+	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
+	local bp_setup = BlueprintSetup:new(event)
+
+	bp_setup.debug = true
+
+	if not bp_setup then
+		return
+	end
+
+	local map = bp_setup:map_blueprint_indices_to_world_entities()
+	if not map then
+		return
+	end
+
+	for bp_index, entity in pairs(map) do
+		if entity.name == "cerys-charging-rod" then
+			local tags = {}
+			tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
+			tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
+				and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
+			tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
+				and storage.cerys.charging_rods[entity.unit_number].control_signal
+
+			bp_setup:apply_tags(bp_index, tags)
+		end
+	end
+end)
+
+local function blueprint_entity_filter(bp_entity)
+	return bp_entity.name == "cerys-charging-rod"
+end
+
+local function apply_blueprint_tags(tags, entity)
+	rods.rod_set_state(entity, tags.is_negative)
+
+	local rod_data = storage.cerys.charging_rods[entity.unit_number]
+	if rod_data then
+		if tags.circuit_controlled then
+			rod_data.circuit_controlled = tags.circuit_controlled
+		end
+		if tags.control_signal then
+			rod_data.control_signal = tags.control_signal
+		end
+	end
+end
+
 script.on_event(defines.events.on_pre_build, function(event)
 	local player = game.get_player(event.player_index)
 
@@ -92,14 +142,31 @@ script.on_event(defines.events.on_pre_build, function(event)
 
 	local cursor_stack = player.cursor_stack
 
-	pre_blueprint_pasted.on_pre_build(event)
-
 	if cursor_stack and cursor_stack.valid_for_read then
 		local item_name = cursor_stack.name
 
 		if item_name == "cerys-fulgoran-reactor-scaffold" then
 			reactor_repair.scaffold_on_pre_build(event)
 		end
+	end
+
+	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
+
+	local bp_build = BlueprintBuild:new(event)
+	-- Will be `nil` if the event was not a blueprint build.
+	if not bp_build then
+		return
+	end
+
+	local overlap_map = bp_build:map_blueprint_indices_to_overlapping_entities(blueprint_entity_filter)
+	if not overlap_map or (not next(overlap_map)) then
+		return
+	end
+
+	local bp_entities = bp_build:get_entities() --[[@as BlueprintEntity[] ]]
+	for bp_index, entity in pairs(overlap_map) do
+		local tags = bp_entities[bp_index].tags or {}
+		apply_blueprint_tags(tags, entity)
 	end
 end)
 
