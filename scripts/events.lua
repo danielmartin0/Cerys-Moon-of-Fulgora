@@ -111,6 +111,8 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 				and storage.cerys.charging_rods[entity.unit_number].control_signal
 			tags.cyclic = storage.cerys.charging_rods[entity.unit_number]
 				and storage.cerys.charging_rods[entity.unit_number].cyclic
+			tags.antiphase = storage.cerys.charging_rods[entity.unit_number]
+				and storage.cerys.charging_rods[entity.unit_number].antiphase
 
 			bp_setup:apply_tags(bp_index, tags)
 		end
@@ -134,6 +136,9 @@ local function apply_blueprint_tags(tags, entity)
 		end
 		if tags.cyclic then
 			rod_data.cyclic = tags.cyclic
+		end
+		if tags.antiphase then
+			rod_data.antiphase = tags.antiphase
 		end
 	end
 end

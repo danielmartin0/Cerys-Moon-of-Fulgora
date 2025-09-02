@@ -2,19 +2,19 @@
 Version: 4.9.0
 Date: 2025-09-01
   Info:
-    - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are harder to trap; More freedom in tech tree progression; Many changes that remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
+    - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are harder to trap; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
   Changes:
     - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
     - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
-    - Halved the threshold speed at which solar wind evaporates.
+    - Halved the speed threshold at which solar wind evaporates, making them evaporate less often.
+    - Ghost charged particles now react to ghost charging rods, making it easier to test setups in remote view.
+    - Charged rods have a new setting, 'Autocycle', which causes them to flip polarity every second.
+    - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
     - Slightly reduced character running speed over dry ice.
-    - Ghost charged particles now react to ghost charging rods.
   Bugfixes:
     - Fixed that ghost charging rods could not have their polarity set.
-    - Fixed that blueprints containing multiple charging rods did not paste their polarity and control signals correctly. (Big thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
+    - Fixed that blueprints containing multiple charging rods did not paste their settings correctly. (Big thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
     - Fixed that ice platform and foundation tiles on Cerys collided with asteroids.
-  Graphics:
-    - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
   Balancing:
     - Raised the cost of some late-game technologies.
   Optimizations:
