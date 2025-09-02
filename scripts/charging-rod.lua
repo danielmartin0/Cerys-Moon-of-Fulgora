@@ -31,6 +31,9 @@ Public.built_charging_rod = function(entity, tags)
 		if tags.control_signal ~= nil then
 			storage.cerys.charging_rods[entity.unit_number].control_signal = tags.control_signal
 		end
+		if tags.cyclic ~= nil then
+			storage.cerys.charging_rods[entity.unit_number].cyclic = tags.cyclic
+		end
 	else
 		Public.rod_set_state(entity, true)
 	end
@@ -66,6 +69,7 @@ function Public.register_charging_rod(entity)
 		rod_position = { x = entity.position.x, y = entity.position.y + CHARGING_ROD_DISPLACEMENT },
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
+		cyclic = false,
 	}
 end
 
@@ -84,6 +88,16 @@ Public.rod_set_state = function(entity, negative)
 end
 
 local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
+
+function Public.tick_60_check_cyclic_charging_rods()
+	local negative = game.tick % 120 == 0
+
+	for unit_number, rod in pairs(storage.cerys.charging_rods) do
+		if rod.cyclic then
+			storage.cerys.charging_rod_is_negative[unit_number] = negative
+		end
+	end
+end
 
 function Public.tick_12_check_charging_rods()
 	for unit_number, rod in pairs(storage.cerys.charging_rods) do
@@ -295,6 +309,14 @@ function Public.on_gui_opened(event)
 		})
 
 		content_frame.add({
+			type = "checkbox",
+			name = "cyclic-checkbox",
+			caption = { "cerys.charging-rod-cyclic-label" },
+			state = rod_circuit_data.cyclic and true or false,
+			tooltip = { "cerys.charging-rod-cyclic-tooltip" },
+		})
+
+		content_frame.add({
 			type = "line",
 			direction = "horizontal",
 		})
@@ -346,9 +368,11 @@ function Public.on_gui_opened(event)
 
 	local content = relative[gui_key]["content"]
 	local checkbox = content["circuit-control-checkbox"]
+	local cyclic_checkbox = content["cyclic-checkbox"]
 	local signal_flow = content["signal_flow"]
 
 	checkbox.state = rod_circuit_data.circuit_controlled and true or false
+	cyclic_checkbox.state = rod_circuit_data.cyclic and true or false
 	content["charging-rod-switch"].enabled = not rod_circuit_data.circuit_controlled and true or false
 	signal_flow["control-signal-button"].enabled = rod_circuit_data.circuit_controlled and true or false
 	signal_flow["control-signal-button"].elem_value = rod_circuit_data.control_signal
@@ -440,10 +464,12 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	if destination.name == "cerys-charging-rod" then
 		storage.cerys.charging_rods[destination.unit_number].circuit_controlled = source_circuit_data.circuit_controlled
 		storage.cerys.charging_rods[destination.unit_number].control_signal = source_circuit_data.control_signal
+		storage.cerys.charging_rods[destination.unit_number].cyclic = source_circuit_data.cyclic
 	else
 		local tags = destination.tags or {}
 		tags.circuit_controlled = source_circuit_data.circuit_controlled
 		tags.control_signal = source_circuit_data.control_signal
+		tags.cyclic = source_circuit_data.cyclic
 		destination.tags = tags
 	end
 end)
@@ -470,6 +496,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 		if dest_rod then
 			dest_rod.circuit_controlled = source_rod.circuit_controlled
 			dest_rod.control_signal = source_rod.control_signal
+			dest_rod.cyclic = source_rod.cyclic
 		end
 	end
 
@@ -477,34 +504,61 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 end)
 
 script.on_event(defines.events.on_gui_checked_state_changed, function(event)
-	if event.element.name ~= "circuit-control-checkbox" then
-		return
+	if event.element.name == "circuit-control-checkbox" then
+		local player = game.players[event.player_index]
+		if not (player and player.valid) then
+			return
+		end
+
+		local entity = player.opened
+		if not (entity and entity.valid) then
+			return
+		end
+
+		if entity.name == "cerys-charging-rod" then
+			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
+		else
+			local tags = entity.tags or {}
+			tags.circuit_controlled = event.element.state
+			entity.tags = tags
+		end
+
+		local content_frame = event.element.parent
+		if content_frame and content_frame["charging-rod-switch"] then
+			content_frame["charging-rod-switch"].enabled = not event.element.state
+		end
+		if content_frame and content_frame["signal_flow"] and content_frame["signal_flow"]["control-signal-button"] then
+			content_frame["signal_flow"]["control-signal-button"].enabled = event.element.state
+		end
+
+		if
+			content_frame
+			and content_frame["signal_flow"]
+			and content_frame["signal_flow"].children
+			and content_frame["signal_flow"].children[1]
+		then
+			local label = content_frame["signal_flow"].children[1]
+			label.style.font_color = event.element.state and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+		end
+	elseif event.element.name == "cyclic-checkbox" then
+		local player = game.players[event.player_index]
+		if not (player and player.valid) then
+			return
+		end
+
+		local entity = player.opened
+		if not (entity and entity.valid) then
+			return
+		end
+
+		if entity.name == "cerys-charging-rod" then
+			storage.cerys.charging_rods[entity.unit_number].cyclic = event.element.state
+		else
+			local tags = entity.tags or {}
+			tags.cyclic = event.element.state
+			entity.tags = tags
+		end
 	end
-
-	local player = game.players[event.player_index]
-	if not (player and player.valid) then
-		return
-	end
-
-	local entity = player.opened
-	if not (entity and entity.valid) then
-		return
-	end
-
-	if entity.name == "cerys-charging-rod" then
-		storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
-	else
-		local tags = entity.tags or {}
-		tags.circuit_controlled = event.element.state
-		entity.tags = tags
-	end
-
-	local content_frame = event.element.parent
-	content_frame["charging-rod-switch"].enabled = not event.element.state
-	content_frame["signal_flow"]["control-signal-button"].enabled = event.element.state
-
-	local label = content_frame["signal_flow"].children[1]
-	label.style.font_color = event.element.state and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 end)
 
 script.on_event(defines.events.on_gui_elem_changed, function(event)

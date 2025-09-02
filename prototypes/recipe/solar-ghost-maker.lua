@@ -4,8 +4,8 @@ data:extend({
 		name = "cerys-make-solar-wind-ghosts",
 		icon = "__core__/graphics/empty.png",
 		hidden = true,
-		enabled = false,
-		energy_required = 1.5,
+		enabled = true,
+		energy_required = 71 / 60, -- Prime to avoid resonance
 		ingredients = {},
 		results = { { type = "item", name = "cerys-solar-wind-particle-ghost", amount = 1 } },
 		category = "cerys-make-solar-wind-ghosts",
