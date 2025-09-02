@@ -1,4 +1,5 @@
 local common = require("common")
+local lib = require("lib")
 local Public = {}
 
 -- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
@@ -134,7 +135,7 @@ Public.update_rod_lights = function(entity, rod)
 
 	-- Update polarity fraction
 	if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
-		rod.max_polarity_fraction = 1 + 0.1 * entity.quality.level -- Update elsewhere if updating this
+		rod.max_polarity_fraction = lib.calculate_max_polarity_fraction(entity.quality.level)
 	end
 	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction
 end
@@ -218,7 +219,7 @@ function Public.tick_12_check_charging_rods()
 
 			-- Update polarity fraction
 			if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
-				rod.max_polarity_fraction = 1 + 0.1 * e.quality.level -- Update elsewhere if updating this
+				rod.max_polarity_fraction = lib.calculate_max_polarity_fraction(e.quality.level)
 			end
 			rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction
 		end

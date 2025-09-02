@@ -115,4 +115,8 @@ Public.find = function(tbl, f, ...)
 	return nil
 end
 
+function Public.calculate_max_polarity_fraction(quality_level)
+	return 1 + 0.1 * quality_level
+end
+
 return Public
