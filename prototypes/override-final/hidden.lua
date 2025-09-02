@@ -61,3 +61,14 @@ if data.raw.recipe["uranium-238-recycling"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-238-recycling"], common.AMBIENT_RADIATION_MAX)
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["cerys-uranium-238-recycling"], common.AMBIENT_RADIATION_MIN)
 end
+
+if data.raw.recipe["uranium-235-recycling"] then
+	data:extend({
+		merge(data.raw.recipe["uranium-235-recycling"], {
+			name = "cerys-uranium-235-recycling", -- unlocked by a late-game tech
+			enabled = false,
+		}),
+	})
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["uranium-235-recycling"], common.AMBIENT_RADIATION_MAX)
+	PlanetsLib.restrict_surface_conditions(data.raw.recipe["cerys-uranium-235-recycling"], common.AMBIENT_RADIATION_MIN)
+end

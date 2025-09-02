@@ -187,6 +187,10 @@ data:extend({
 				type = "unlock-recipe",
 				recipe = "cerys-uranium-238-recycling",
 			},
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-uranium-235-recycling",
+			},
 		},
 		prerequisites = { "cerys-reactor-fuel" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
@@ -274,7 +278,6 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-reactor-fuel",
 			"cerys-lubricant-synthesis",
 		},
 		unit = {
@@ -308,7 +311,8 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerysian-science-pack",
+			"cerys-applications-of-radioactivity",
+			"cerys-overclock-module",
 		},
 		unit = {
 			count = 150,
@@ -369,7 +373,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 300,
+			count = 500,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

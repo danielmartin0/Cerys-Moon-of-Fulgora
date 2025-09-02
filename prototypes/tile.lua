@@ -410,8 +410,8 @@ dry_ice_transitions[1].to_tiles = {
 	"cerys-frozen-refined-hazard-concrete-right",
 	"cerys-concrete-minable",
 	"cerys-frozen-concrete-minable",
-	"foundation",
-	"ice-platform",
+	"cerys-foundation",
+	"cerys-ice-platform",
 	-- "nuclear-scrap-under-ice",
 	-- "nuclear-scrap-under-ice-melting",
 	-- "ice-supporting-nuclear-scrap",
@@ -636,9 +636,14 @@ for _, name in pairs({
 	create_cerys_concrete(name, true, "refined-hazard-concrete", "cerys-refined-concrete")
 end
 
-serpent.block(data.raw.tile["cerys-frozen-refined-concrete"])
+--== Other cloned tiles ==--
 
--- TODO: make a different one without 'minable'
+data:extend({
+	merge(data.raw.tile.foundation, {
+		name = "cerys-foundation",
+		subgroup = "cerys-tiles",
+	}),
+})
 
 --== Empty space ==--
 

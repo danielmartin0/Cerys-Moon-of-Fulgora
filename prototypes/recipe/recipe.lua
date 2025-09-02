@@ -149,7 +149,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 8 },
 			{ type = "item", name = "processing-unit", amount = 4 },
-			{ type = "item", name = "advanced-circuit", amount = 4 },
+			{ type = "item", name = "plutonium-238", amount = 1 },
 			{ type = "item", name = "superconductor", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
 		},
