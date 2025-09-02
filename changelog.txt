@@ -2,15 +2,16 @@
 Version: 4.9.0
 Date: 2025-09-01
   Info:
-    - VERSION 4 SUMMARY for returning players: Red+Yellow science are replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; More freedom in tech tree progression; Unlocking cargo drops requires launching a hydrogen bomb into orbit; Gameplay is overall much less grindy.
+    - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are harder to trap; More freedom in tech tree progression; Many changes that remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
   Changes:
     - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
     - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
-  Graphics:
-    - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
+    - Slightly reduced character running speed over dry ice.
   Bugfixes:
     - Fixed that blueprints containing multiple charging rods did not paste their polarity and control signals correctly. (Major thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
     - Fixed that ice platform and foundation tiles on Cerys collided with asteroids.
+  Graphics:
+    - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
   Balancing:
     - Raised the cost of some late-game technologies.
   Optimizations:

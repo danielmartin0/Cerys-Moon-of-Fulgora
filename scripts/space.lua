@@ -17,13 +17,13 @@ local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
 local ROD_DEFLECTION_STRENGTH = 5 * spd ^ 2
 local ROD_DEFLECTION_POWER = 2
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
-local SPEED_THRESHOLD = 0.05 * spd
+local SPEED_THRESHOLD = 0.02 * spd
 local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 870
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8700
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 800
+local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,

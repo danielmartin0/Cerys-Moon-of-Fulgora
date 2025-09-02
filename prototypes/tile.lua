@@ -478,6 +478,7 @@ local dry_ice_rough_land_variants = tile_variations_template(
 local cerys_dry_ice_rough_land_base = merge(cerys_dry_ice_rough_base, {
 	variants = dry_ice_rough_land_variants,
 	map_color = { 92, 138, 116 },
+	walking_speed_modifier = 0.9,
 })
 
 data:extend({
