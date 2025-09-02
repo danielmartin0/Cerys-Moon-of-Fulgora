@@ -26,6 +26,10 @@ function Public.get_cerys_semimajor_axis(cerys_surface)
 	return common.CERYS_RADIUS * Public.get_cerys_surface_stretch_factor(cerys_surface)
 end
 
+function Public.get_cerys_semiminor_axis(cerys_surface)
+	return common.CERYS_RADIUS / Public.get_cerys_surface_stretch_factor(cerys_surface)
+end
+
 function Public.generated_cerys_surface()
 	local surface = game.surfaces["cerys"]
 	if not (surface and surface.valid) then

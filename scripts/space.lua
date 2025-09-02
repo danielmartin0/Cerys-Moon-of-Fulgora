@@ -8,11 +8,11 @@ local spd = common.PARTICLE_SIMULATION_SPEED
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
 local SOLAR_WIND_MIN_VELOCITY = 0.3 * spd
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
+local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 4
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 1.5
 
-local ROD_MAX_RANGE = 30
+local ROD_MAX_RANGE = 24
 local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
 local ROD_DEFLECTION_STRENGTH = 5 * spd ^ 2
 local ROD_DEFLECTION_POWER = 2
@@ -125,7 +125,13 @@ Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
 	local particles = storage.cerys.solar_wind_particles
-	for rod_unit_number, rod in pairs(storage.cerys.charging_rods) do
+	local rods = storage.cerys.charging_rods
+	local rod_is_negative = storage.cerys.charging_rod_is_negative
+	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
+
+	local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
+
+	for rod_unit_number, rod in pairs(rods) do
 		local p_rod = rod.rod_position
 
 		for i = 1, #particles do
@@ -160,19 +166,14 @@ function Public.tick_solar_wind_deflection()
 				if d2 < ROD_MAX_RANGE_SQUARED then
 					local polarity_fraction
 					if particle.is_ghost then
-						polarity_fraction = (storage.cerys.charging_rod_is_negative[rod_unit_number] and 1 or -1)
+						polarity_fraction = (rod_is_negative[rod_unit_number] and 1 or -1)
 							* (rod.max_polarity_fraction or 1)
 					else
 						polarity_fraction = rod.polarity_fraction
 					end
 
 					if polarity_fraction and polarity_fraction ~= 0 then
-						local deflection = polarity_fraction
-							* ROD_DEFLECTION_STRENGTH
-							* Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
-							/ 60
-
-						local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
+						local deflection = polarity_fraction * ROD_DEFLECTION_STRENGTH * deflection_tick_interval / 60
 
 						local scale = factor / (d2 ^ ((ROD_DEFLECTION_POWER + 1) / 2))
 
@@ -197,25 +198,6 @@ function Public.tick_solar_wind_deflection()
 	end
 end
 
-local function apply_death_scaling(particle, i)
-	if particle.marked_for_death_tick then
-		local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
-
-		if ticks_until_death < 0 then
-			if particle.rendering and particle.rendering.valid then
-				particle.rendering.destroy()
-			end
-			table.remove(storage.cerys.solar_wind_particles, i)
-		else
-			if particle.rendering and particle.rendering.valid then
-				local scale_factor = math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME) ^ (1 / 2)
-				particle.rendering.x_scale = scale_factor
-				particle.rendering.y_scale = scale_factor
-			end
-		end
-	end
-end
-
 function Public.tick_1_move_solar_wind()
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
@@ -228,7 +210,24 @@ function Public.tick_1_move_solar_wind()
 			particle.position = p
 			r.target = p
 			particle.age = particle.age + 1
-			apply_death_scaling(particle, i)
+
+			if particle.marked_for_death_tick then
+				local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
+
+				if ticks_until_death < 0 then
+					if particle.rendering and particle.rendering.valid then
+						particle.rendering.destroy()
+					end
+					table.remove(storage.cerys.solar_wind_particles, i)
+				else
+					if particle.rendering and particle.rendering.valid then
+						local scale_factor = math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME) ^ (1 / 2)
+						particle.rendering.x_scale = scale_factor
+						particle.rendering.y_scale = scale_factor
+					end
+				end
+			end
+
 			i = i + 1
 		else
 			table.remove(storage.cerys.solar_wind_particles, i)
@@ -255,19 +254,38 @@ function Public.tick_5_solar_wind_destroy_check()
 end
 
 function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
+	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
+	local radius = common.CERYS_RADIUS
+	local semimajor_axis = radius * stretch_factor
+	local semiminor_axis = radius / stretch_factor
+
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
-		local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
-		elseif
-			math.abs(particle.position.x) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
-			or math.abs(particle.position.y) > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
-		then
-			kill = true
+		else
+			if particle.is_ghost then
+				if
+					particle.position.x > (semimajor_axis + 20)
+					or particle.position.x < (-semimajor_axis - 20)
+					or particle.position.y > (semiminor_axis + 20)
+					or particle.position.y < (-semiminor_axis - 20)
+				then
+					kill = true
+				end
+			else
+				if
+					particle.position.x > (semimajor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
+					or particle.position.x < (-semimajor_axis - WIND_SPAWN_DISTANCE_FROM_EDGE - 5)
+					or particle.position.y > (semiminor_axis + WIND_SPAWN_DISTANCE_FROM_EDGE + 5)
+					or particle.position.y < (-semiminor_axis - WIND_SPAWN_DISTANCE_FROM_EDGE - 5)
+				then
+					kill = true
+				end
+			end
 		end
 
 		if kill then

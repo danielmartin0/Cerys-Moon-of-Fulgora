@@ -92,6 +92,8 @@ function Public.tick_12_check_charging_rods()
 		if not (e and e.valid) then
 			Public.destroy_red_light_entity(rod)
 			Public.destroy_blue_light_entity(rod)
+			Public.destroy_red_glow_entity(rod)
+			Public.destroy_blue_glow_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 		else
 			local negative = storage.cerys.charging_rod_is_negative[unit_number] == true
@@ -125,6 +127,24 @@ function Public.tick_12_check_charging_rods()
 						Public.rod_set_state(e, true)
 					end
 				end
+			end
+
+			if negative then
+				if not (rod.blue_glow_entity and rod.blue_glow_entity.valid) then
+					rod.blue_glow_entity = e.surface.create_entity({
+						name = "cerys-charging-rod-glow-blue",
+						position = { x = e.position.x, y = e.position.y + 1 },
+					})
+				end
+				Public.destroy_red_glow_entity(rod)
+			else
+				if not (rod.red_glow_entity and rod.red_glow_entity.valid) then
+					rod.red_glow_entity = e.surface.create_entity({
+						name = "cerys-charging-rod-glow-red",
+						position = { x = e.position.x, y = e.position.y + 1 },
+					})
+				end
+				Public.destroy_blue_glow_entity(rod)
 			end
 
 			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
@@ -174,12 +194,30 @@ function Public.destroy_red_light_entity(rod)
 	end
 end
 
+function Public.destroy_red_glow_entity(rod)
+	if rod.red_glow_entity then
+		if rod.red_glow_entity.valid then
+			rod.red_glow_entity.destroy()
+		end
+		rod.red_glow_entity = nil
+	end
+end
+
 function Public.destroy_blue_light_entity(rod)
 	if rod.blue_light_entity then
 		if rod.blue_light_entity.valid then
 			rod.blue_light_entity.destroy()
 		end
 		rod.blue_light_entity = nil
+	end
+end
+
+function Public.destroy_blue_glow_entity(rod)
+	if rod.blue_glow_entity then
+		if rod.blue_glow_entity.valid then
+			rod.blue_glow_entity.destroy()
+		end
+		rod.blue_glow_entity = nil
 	end
 end
 

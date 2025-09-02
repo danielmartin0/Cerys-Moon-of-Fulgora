@@ -638,10 +638,37 @@ end
 
 --== Other cloned tiles ==--
 
+local foundation_layers = data.raw.tile.foundation.collision_mask.layers
+local ice_platform_layers = data.raw.tile["ice-platform"].collision_mask.layers
+
 data:extend({
 	merge(data.raw.tile.foundation, {
 		name = "cerys-foundation",
 		subgroup = "cerys-tiles",
+		localised_name = { "tile-name.foundation" },
+		localised_description = { "tile-description.foundation" },
+		placeable_by = { item = "foundation", count = 1 },
+		factoriopedia_alternative = "foundation",
+		hidden = true,
+		can_be_part_of_blueprint = true,
+		collision_mask = merge(data.raw.tile.foundation.collision_mask, {
+			layers = foundation_layers,
+		}),
+		is_foundation = false,
+	}),
+	merge(data.raw.tile["ice-platform"], {
+		name = "cerys-ice-platform",
+		subgroup = "cerys-tiles",
+		localised_name = { "tile-name.ice-platform" },
+		localised_description = { "tile-description.ice-platform" },
+		placeable_by = { item = "ice-platform", count = 1 },
+		factoriopedia_alternative = "ice-platform",
+		hidden = true,
+		can_be_part_of_blueprint = true,
+		collision_mask = merge(data.raw.tile["ice-platform"].collision_mask, {
+			layers = ice_platform_layers,
+		}),
+		is_foundation = false,
 	}),
 })
 

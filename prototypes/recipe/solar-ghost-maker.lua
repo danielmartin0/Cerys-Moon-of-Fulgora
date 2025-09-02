@@ -5,7 +5,7 @@ data:extend({
 		icon = "__core__/graphics/empty.png",
 		hidden = true,
 		enabled = false,
-		energy_required = 1,
+		energy_required = 1.5,
 		ingredients = {},
 		results = { { type = "item", name = "cerys-solar-wind-particle-ghost", amount = 1 } },
 		category = "cerys-make-solar-wind-ghosts",

@@ -160,8 +160,8 @@ data:extend({
 			input_scale = 1, \z
 			output_scale = 13} - 4.5 * (cerys_surface_distance_over_map_distance ^ 2) \z
 			- 10 * cerys_all_forced_resources\z
-			+ min(0, 10000 * cerys_surface_inner)\z
-			+ min(0, 10000 * (33 - cerys_x_surface)))", -- This expression drops below zero
+			+ 10000 * min(0, cerys_surface_inner)\z
+			+ 10000 * min(0, 33 - cerys_x_surface + 0.02 * cerys_y_surface ^ 2))", -- This expression drops below zero. The final term helps exclude the lithium area because water is annoying there.
 	},
 
 	{

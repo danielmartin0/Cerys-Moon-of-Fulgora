@@ -251,7 +251,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 100,
+			count = 150,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -279,6 +279,7 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-lubricant-synthesis",
+			"cerys-reactor-fuel",
 		},
 		unit = {
 			count = 2000,
@@ -311,11 +312,10 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerys-applications-of-radioactivity",
-			"cerys-overclock-module",
+			"cerysian-science-pack",
 		},
 		unit = {
-			count = 150,
+			count = 250,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -506,7 +506,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 		icon_size = 200,
 		unit = {
-			count = 1500,
+			count = 2000,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },

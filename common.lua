@@ -117,6 +117,8 @@ Public.TILE_REPLACEMENTS = {
 	["frozen-hazard-concrete-right"] = "cerys-frozen-hazard-concrete-right",
 	["frozen-refined-hazard-concrete-left"] = "cerys-frozen-refined-hazard-concrete-left",
 	["frozen-refined-hazard-concrete-right"] = "cerys-frozen-refined-hazard-concrete-right",
+	["foundation"] = "cerys-foundation",
+	["ice-platform"] = "cerys-ice-platform",
 }
 
 Public.TILE_REPLACEMENTS_INVERSE = {}

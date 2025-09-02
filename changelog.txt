@@ -4,10 +4,19 @@ Date: 2025-09-01
   Info:
     - VERSION 4 SUMMARY for returning players: Red+Yellow science are replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are much harder to trap; More freedom in tech tree progression; Unlocking cargo drops requires launching a hydrogen bomb into orbit; Gameplay is overall much less grindy.
   Changes:
-    - BREAKING CHANGE (minor) Radioactive modules now require plutonium-238 to craft instead of red chips.
-    - BREAKING CHANGE (minor): Like U238, U235 can no longer be recycled prior to unlocking waste reprocessing.
+    - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
+    - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
+  Graphics:
+    - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
   Balancing:
-    - Increased the tech cost of Plutonium Weaponry (300 -> 500).
+    - Raised the cost of some late-game technologies.
+  Bugfixes:
+    - Fixed that asteroids collided with ice platform and foundation tiles on Cerys.
+  Optimizations:
+    - Optimizations to charged particles.
+    - Lowered the max age of charged particles.
+  Compatibility:
+    - Space Age Hard Mode: Kovarex is now unlocked by Moon Discovery Cerys and is no longer a prerequisite (because the Kovarex tech is locked behind Gleba+Fulgora).
 ---------------------------------------------------------------------------------------------------
 Version: 4.8.0-4.8.2
 Date: 2025-09-01
