@@ -1,21 +1,18 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.9.3
 Date: 2025-09-03
   Info:
     - Version 4 summary for returning players:
-      ► Red+Yellow science replaced by simpler White science
-      ► New 'Radioactive module' reward
-      ► More freedom in tech tree progression
-      ► Many changes to remove gameplay grind
+      ► Red+Yellow science replaced by simpler White science recipe.
+      ► New 'Radioactive module' reward.
+      ► More freedom in tech tree progression.
+      ► Many nonbreaking tweaks to remove gameplay grind.
+      ► Minor breaking changes to recipes for: charging rod, hydrogen bomb.
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
-  Bugfixes:
-    - Fixed that fast-moving charged particles did not behave deterministically.
+  Optimizations:
+    - Improved the performance of charged particles.
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.0-4.9.2
+Version: 4.9.0-4.9.3
 Date: 2025-09-03
   Changes:
     - Breaking change: Charged particle deflection reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs' and they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize without making the farm the size of the moon. We have however kept a modest version of evaporation at low speeds in order to buff non-trapping designs in relative terms. This is intended as long-term stable and is non-breaking with v3 bases.
@@ -165,7 +162,7 @@ Version: 4.0.0-4.0.6
 Date: 2025-08-18
   Info:
     - 4.0 release! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, adds a charged particle testing entity, and has the player blast a hole in the magnetosphere.
-    - Unfortunately, BREAKING CHANGES were required to a) charged particle dynamics and b) which science packs you craft.
+    - Unfortunately, breaking changes were required to a) [Outdated] charged particle dynamics and b) which science packs you craft.
   Features:
     - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radiation-proof inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
   Changes:
