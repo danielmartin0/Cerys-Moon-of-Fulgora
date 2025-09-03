@@ -17,7 +17,6 @@ if mods["cupric-asteroids"] then
 end
 
 local ASTEROID_HEALTH_MULTIPLIER = common.HARD_MODE_ON and 8 or 2.5
-local ASTEROID_PHYSICAL_RESISTANCE_INCREASE = common_data.K2_INSTALLED and 8 or 10
 
 local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local original = data.raw.asteroid[asteroid_name]
@@ -25,6 +24,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	local e = merge(original, {
 		name = asteroid_name .. name_suffix,
 		localised_name = { "entity-name.planetary-asteroid", { "entity-name." .. asteroid_name } },
+		localised_description = { "cerys.planetary-asteroid-description" },
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
 		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
@@ -52,7 +52,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	end
 
 	if existing_physical_res then
-		existing_physical_res.decrease = existing_physical_res.decrease + ASTEROID_PHYSICAL_RESISTANCE_INCREASE
+		existing_physical_res.decrease = existing_physical_res.decrease + 10
 	end
 
 	for _, variation in pairs(e.graphics_set.variations) do
