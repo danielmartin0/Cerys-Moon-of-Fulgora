@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.0-4.9.2
-Date: 2025-09-03
+Version: 4.9.2
+Date: 2025-09-04
   Info:
     - Version 4 summary for returning players:
       ► Red+Yellow science replaced by simpler White science
@@ -8,9 +8,14 @@ Date: 2025-09-03
       ► More freedom in tech tree progression
       ► Many changes to remove gameplay grind
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
+  Info:
+    - Fixed that fast-moving charged particles did not behave deterministically.
+---------------------------------------------------------------------------------------------------
+Version: 4.9.0-4.9.1
+Date: 2025-09-03
   Changes:
-    - BREAKING CHANGE: Charged particle deflection reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs' and they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize without making the farm the size of the moon. We have however kept a modest version of evaporation at low speeds in order to buff non-trapping designs in relative terms. This is intended as long-term stable and is non-breaking with v3 bases.
-    - BREAKING CHANGE (minor): Crafting radioactive modules now requires a radioactive isotope (U235) instead of chips.
+    - Breaking change: Charged particle deflection reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs' and they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize without making the farm the size of the moon. We have however kept a modest version of evaporation at low speeds in order to buff non-trapping designs in relative terms. This is intended as long-term stable and is non-breaking with v3 bases.
+    - Breaking change (minor): Crafting radioactive modules now requires a radioactive isotope (U235) instead of chips.
     - Ghost charged particles now react to ghost charging rods.
     - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
     - U235 can no longer be recycled prior to unlocking waste reprocessing (as with U238).
@@ -28,7 +33,7 @@ Date: 2025-09-03
 Version: 4.8.0-4.8.2
 Date: 2025-09-01
   Changes:
-    - BREAKING CHANGE (minor): Slight tweak to charged particles after discussions in Discord. They are now deflected at 1/r^2 (from 1/r^1.5 in v4.0, previously 1/r^2.5 in v3). Compared to v4, this slightly reduces the complexity of long-range interactions and makes close-range collisions less abrupt. Also, the voltage of charging rods now increases with quality.
+    - Slight tweak to charged particles after discussions in Discord. They are now deflected at 1/r^2 (from 1/r^1.5 in v4.0, previously 1/r^2.5 in v3). Compared to v4, this slightly reduces the complexity of long-range interactions and makes close-range collisions less abrupt. Also, the voltage of charging rods now increases with quality.
     - Ghost charged particles now treat everything as fully charged.
     - Ghost charged particle makers create ghosts in a [-0.5, 0.5]x[-0.5, 0.5] area rather than just at the tip.
     - Water no longer spawns in the lithium brine area.
@@ -36,7 +41,7 @@ Date: 2025-09-01
 Version: 4.7.0-4.7.13
 Date: 2025-08-30
   Changes:
-    - BREAKING CHANGE (minor): Crafting hydrogen bombs now requires Pu238 and U235.
+    - Breaking change (minor): Crafting hydrogen bombs now requires Pu238 and U235.
     - Neutrons now behave differently in vacuum (their open-air behavior is unchanged).
     - Crafting Neutron bombs no longer require processing units.
     - Charged particles now move slower (but in the same paths and gameplay is unchanged).
@@ -103,7 +108,7 @@ Date: 2025-08-27
 Version: 4.4.0-4.4.5
 Date: 2025-08-24
   Changes:
-    - BREAKING CHANGE (minor): Crafting charging rods now requires copper cable instead of superconductors.
+    - Breaking change (minor): Crafting charging rods now requires copper cable instead of superconductors.
     - Reinstated the Overclock module by popular demand.
     - Renamed the Metastable module to the Radioactive module.
     - Reverted the v4.0.0 change that gave charging rods higher energy storage capacity. This is to reduce the awkwardness of setting up charging rods for testing.
