@@ -8,17 +8,15 @@ local spd = common.PARTICLE_SIMULATION_SPEED
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
 
-local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 1.5
+local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 2
 
-local ROD_MAX_RANGE = 24
+local ROD_MAX_RANGE = 25
 local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
-local ROD_DEFLECTION_STRENGTH = 5 * spd ^ 2
-local ROD_DEFLECTION_POWER = 2
-local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
+local ROD_DEFLECTION_STRENGTH = 8 / 4.5 * spd ^ 2
 
-local MIN_INITIAL_VELOCITY = 0.3 * spd
-local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 4
-local MIN_SPEED_THRESHOLD = 0.02 * spd
+local MIN_INITIAL_VELOCITY = 0.15 * spd
+local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
+local MIN_SPEED_THRESHOLD = 0.025
 local PARTICLE_SHRINK_TIME = 14
 local MAX_SPEED = 0.4
 local MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED
@@ -132,8 +130,6 @@ function Public.tick_solar_wind_deflection()
 	local rod_is_negative = storage.cerys.charging_rod_is_negative
 	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
-	local factor = NORMALIZATION_DISTANCE ^ (ROD_DEFLECTION_POWER - 2.5)
-
 	for rod_unit_number, rod in pairs(rods) do
 		local p_rod = rod.rod_position
 
@@ -178,10 +174,8 @@ function Public.tick_solar_wind_deflection()
 					if polarity_fraction and polarity_fraction ~= 0 then
 						local deflection = polarity_fraction * ROD_DEFLECTION_STRENGTH * deflection_tick_interval / 60
 
-						local scale = factor / (d2 ^ ((ROD_DEFLECTION_POWER + 1) / 2))
-
-						local dvx = dx * scale * deflection
-						local dvy = dy * scale * deflection
+						local dvx = dx / (d2 ^ (7 / 4)) * deflection
+						local dvy = dy / (d2 ^ (7 / 4)) * deflection
 
 						local v = particle.velocity
 

@@ -2,8 +2,9 @@
 Version: 4.9.0
 Date: 2025-09-01
   Info:
-    - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; Charged particles deflect differently and are harder to trap; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
+    - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
   Changes:
+    - BREAKING CHANGE: Charged particle deflection has reverted to Cerys v3. We realized a fundamental problem with longer-range deflection: since it makes the particles behave less like 'pinball', they thermalize faster, and due to time-reversal symmetry thermalized particles are impossible to accumulate in any zone. v4 was fine for players looking make a basic workable farm, but prevented optimizing the farm beyond a basic level.
     - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
     - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
     - Halved the speed threshold at which solar wind evaporates, making them evaporate less often.

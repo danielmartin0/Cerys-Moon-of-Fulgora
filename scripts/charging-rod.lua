@@ -83,7 +83,7 @@ end
 
 local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
 
-Public.update_rod_lights = function(entity, rod)
+function Public.update_rod_lights(entity, rod)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -216,7 +216,7 @@ function Public.tick_12_check_charging_rods()
 				end
 			end
 
-			-- Public.update_rod_lights(e, rod)
+			Public.update_rod_lights(e, rod)
 
 			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 

@@ -124,8 +124,6 @@ local function blueprint_entity_filter(bp_entity)
 end
 
 local function apply_blueprint_tags(tags, entity)
-	game.print(serpent.line(tags))
-
 	rods.rod_set_state(entity, tags.is_negative)
 
 	local rod_data = storage.cerys.charging_rods[entity.unit_number]
