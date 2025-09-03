@@ -1,15 +1,11 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.1
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.9.0
+Version: 4.9.0-4.9.1
 Date: 2025-09-03
   Info:
     - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb into orbit.
   Changes:
-    - BREAKING CHANGE: Charged particle deflection has reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs', thus they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize beyond a basic level (without making the farm the size of the moon). In v4.9 the dynamics are back to the previous long-term stable version in v3, except that evaporation at low speeds threshold is retained in order to buff non-trapping designs in relative terms. This is intended as a long-term stable version of charged particle gameplay.
     - BREAKING CHANGE (minor): Crafting radioactive modules now requires a radioactive isotope (U235) instead of chips.
+    - BREAKING CHANGE: Charged particle deflection reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs' and they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize without making the farm the size of the moon. We have however kept a modest version of evaporation at low speeds in order to buff non-trapping designs in relative terms. This is intended as long-term stable and is compatible with v3 bases.
     - Ghost charged particles now react to ghost charging rods.
     - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
     - U235 can no longer be recycled prior to unlocking waste reprocessing (as with U238).
