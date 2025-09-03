@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.0
-Date: 2025-09-01
+Date: 2025-09-03
   Info:
     - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb into orbit.
   Changes:
