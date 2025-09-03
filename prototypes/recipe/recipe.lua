@@ -148,7 +148,6 @@ data:extend({
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "productivity-module-2", amount = 8 },
-			{ type = "item", name = "processing-unit", amount = 4 },
 			{ type = "item", name = "uranium-235", amount = 4 },
 			{ type = "item", name = "superconductor", amount = 4 },
 			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },

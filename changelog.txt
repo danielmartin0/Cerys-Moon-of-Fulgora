@@ -4,14 +4,11 @@ Date: 2025-09-01
   Info:
     - VERSION 4 SUMMARY for returning players: Red+Yellow science replaced by simpler White science; New 'Radioactive module' reward; More freedom in tech tree progression; Many changes to remove gameplay grind; Cargo drop tech renamed 'Blast a hole in the magnetosphere'.
   Changes:
-    - BREAKING CHANGE: Charged particle deflection has reverted to Cerys v3. We realized a fundamental problem with longer-range deflection: since it makes the particles behave less like 'pinball', they thermalize faster, and due to time-reversal symmetry thermalized particles are impossible to accumulate in any zone. v4 was fine for players looking make a basic workable farm, but prevented optimizing the farm beyond a basic level.
-    - BREAKING CHANGE (minor): Radioactive modules now require U235 to craft.
-    - BREAKING CHANGE (minor): U235 can no longer be recycled prior to unlocking waste reprocessing (like U238).
-    - Halved the speed threshold at which solar wind evaporates, making them evaporate less often.
-    - Ghost charged particles now react to ghost charging rods, making it easier to test setups in remote view.
-    - Charged rods have a new setting, 'Autocycle', which causes them to flip polarity every second.
+    - BREAKING CHANGE: Charged particle deflection has reverted to Cerys v3. We realized a fundamental problem with longer-range deflection: since it makes the particles behave less like 'pinball', they thermalize faster, and due to time-reversal symmetry thermalized particles are impossible to accumulate in any zone. v4 was fine for players looking make a basic workable farm, but prevented optimizing the farm beyond a basic level. The minimum speed threshold has been retained buff parabolic non-trapping designs in relative terms.
+    - BREAKING CHANGE (minor): Crafting radioactive modules now requires U235 instead of chips.
+    - Ghost charged particles now react to ghost charging rods.
     - The base of charging rods now always glows with the polarity color, making it easier to infer their polarity when uncharged or partially charged.
-    - Slightly reduced character running speed over dry ice.
+    - U235 can no longer be recycled prior to unlocking waste reprocessing (like with U238).
   Bugfixes:
     - Fixed that ghost charging rods could not have their polarity set.
     - Fixed that blueprints containing multiple charging rods did not paste their settings correctly. (Big thanks to thelordthygod for solving this meaty technical problem in their Blueprint Library mod.)
