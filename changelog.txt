@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.3
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.9.2
 Date: 2025-09-03
   Info:
     - Version 4 summary for returning players:
@@ -12,10 +8,10 @@ Date: 2025-09-03
       ► More freedom in tech tree progression
       ► Many changes to remove gameplay grind
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
-  Info:
+  Bugfixes:
     - Fixed that fast-moving charged particles did not behave deterministically.
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.0-4.9.1
+Version: 4.9.0-4.9.2
 Date: 2025-09-03
   Changes:
     - Breaking change: Charged particle deflection reverted to Cerys v3 (2 weeks ago). We realized a fundamental problem with long-range deflection: it makes the particles behave less like 'pinballs' and they thermalize faster. Due to time-reversal symmetry, thermalized particles are impossible to accumulate in any zone. v4 worked for basic farms, but was impossible to optimize without making the farm the size of the moon. We have however kept a modest version of evaporation at low speeds in order to buff non-trapping designs in relative terms. This is intended as long-term stable and is non-breaking with v3 bases.
