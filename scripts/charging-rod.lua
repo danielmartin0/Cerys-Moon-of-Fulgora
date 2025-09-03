@@ -38,8 +38,8 @@ Public.built_charging_rod = function(entity, tags)
 		if tags.cyclic ~= nil then
 			storage.cerys.charging_rods[entity.unit_number].cyclic = tags.cyclic
 		end
-		if tags.antiphase ~= nil then
-			storage.cerys.charging_rods[entity.unit_number].antiphase = tags.antiphase
+		if tags.phase ~= nil then
+			storage.cerys.charging_rods[entity.unit_number].phase = tags.phase
 		end
 	else
 		Public.rod_set_state(entity, true)
@@ -77,7 +77,7 @@ function Public.register_charging_rod(entity)
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
 		cyclic = false,
-		antiphase = false,
+		phase = 0,
 	}
 end
 
@@ -158,15 +158,15 @@ Public.rod_set_state = function(entity, negative)
 	Public.update_rod_lights(entity, storage.cerys.charging_rods[entity.unit_number])
 end
 
-function Public.tick_60_check_cyclic_charging_rods()
-	local bool = game.tick % 120 == 0
-
-	for unit_number, rod in pairs(storage.cerys.charging_rods) do
-		if rod.cyclic then
-			if rod.antiphase then
-				Public.rod_set_state(rod.entity, not bool)
-			else
-				Public.rod_set_state(rod.entity, bool)
+function Public.tick_30_check_cyclic_charging_rods()
+	for _, rod in pairs(storage.cerys.charging_rods) do
+		if rod.entity and rod.entity.valid then
+			if rod.cyclic then
+				local phase_offset = rod.phase or 0
+				local phase_ticks = (phase_offset / 90) * 30
+				local adjusted_tick = (game.tick - phase_ticks) % 120
+				local phase_bool = adjusted_tick < 60
+				Public.rod_set_state(rod.entity, phase_bool)
 			end
 		end
 	end
@@ -292,9 +292,7 @@ function Public.on_gui_opened(event)
 	local gui_key = Public.GUI_KEY
 
 	if relative[gui_key] then
-		if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
-			relative[gui_key].destroy()
-		end
+		relative[gui_key].destroy()
 	end
 
 	local rod_circuit_data = entity.name == "cerys-charging-rod" and storage.cerys.charging_rods[entity.unit_number]
@@ -359,19 +357,23 @@ function Public.on_gui_opened(event)
 
 		content_frame.add({
 			type = "checkbox",
-			name = "cyclic-checkbox",
+			name = "cerys-cyclic-checkbox",
 			caption = { "cerys.charging-rod-cyclic-label" },
 			state = rod_circuit_data.cyclic and true or false,
 			tooltip = { "cerys.charging-rod-cyclic-tooltip" },
 		})
 
 		content_frame.add({
-			type = "checkbox",
-			name = "antiphase-checkbox",
-			caption = { "cerys.charging-rod-antiphase-label" },
-			state = rod_circuit_data.antiphase and true or false,
+			type = "slider",
+			name = "cerys-phase-slider",
+			caption = { "cerys.charging-rod-phase-label" },
+			minimum_value = 0,
+			maximum_value = 3,
+			slider_value = (rod_circuit_data.phase or 0) / 90,
+			value_step = 1,
+			discrete_slider = true,
 			enabled = rod_circuit_data.cyclic and true or false,
-			tooltip = { "cerys.charging-rod-antiphase-tooltip" },
+			tooltip = { "cerys.charging-rod-phase-tooltip" },
 		})
 
 		content_frame.add({
@@ -426,14 +428,14 @@ function Public.on_gui_opened(event)
 
 	local content = relative[gui_key]["content"]
 	local checkbox = content["circuit-control-checkbox"]
-	local cyclic_checkbox = content["cyclic-checkbox"]
-	local antiphase_checkbox = content["antiphase-checkbox"]
+	local cyclic_checkbox = content["cerys-cyclic-checkbox"]
+	local phase_slider = content["cerys-phase-slider"]
 	local signal_flow = content["signal_flow"]
 
 	checkbox.state = rod_circuit_data.circuit_controlled and true or false
 	cyclic_checkbox.state = rod_circuit_data.cyclic and true or false
-	antiphase_checkbox.state = rod_circuit_data.antiphase and true or false
-	antiphase_checkbox.enabled = rod_circuit_data.cyclic and true or false
+	phase_slider.slider_value = (rod_circuit_data.phase or 0) / 90
+	phase_slider.enabled = rod_circuit_data.cyclic and true or false
 	content["charging-rod-switch"].enabled = not rod_circuit_data.circuit_controlled and true or false
 	signal_flow["control-signal-button"].enabled = rod_circuit_data.circuit_controlled and true or false
 	signal_flow["control-signal-button"].elem_value = rod_circuit_data.control_signal
@@ -525,14 +527,14 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	storage.cerys.charging_rods[destination.unit_number].circuit_controlled = source_circuit_data.circuit_controlled
 	storage.cerys.charging_rods[destination.unit_number].control_signal = source_circuit_data.control_signal
 	storage.cerys.charging_rods[destination.unit_number].cyclic = source_circuit_data.cyclic
-	storage.cerys.charging_rods[destination.unit_number].antiphase = source_circuit_data.antiphase
+	storage.cerys.charging_rods[destination.unit_number].phase = source_circuit_data.phase
 
 	if destination.name == "entity-ghost" then
 		local tags = destination.tags or {}
 		tags.circuit_controlled = source_circuit_data.circuit_controlled
 		tags.control_signal = source_circuit_data.control_signal
 		tags.cyclic = source_circuit_data.cyclic
-		tags.antiphase = source_circuit_data.antiphase
+		tags.phase = source_circuit_data.phase
 		destination.tags = tags
 	end
 end)
@@ -560,7 +562,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 			dest_rod.circuit_controlled = source_rod.circuit_controlled
 			dest_rod.control_signal = source_rod.control_signal
 			dest_rod.cyclic = source_rod.cyclic
-			dest_rod.antiphase = source_rod.antiphase
+			dest_rod.phase = source_rod.phase
 		end
 	end
 
@@ -603,7 +605,7 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			local label = content_frame["signal_flow"].children[1]
 			label.style.font_color = event.element.state and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 		end
-	elseif event.element.name == "cyclic-checkbox" then
+	elseif event.element.name == "cerys-cyclic-checkbox" then
 		local player = game.players[event.player_index]
 		if not (player and player.valid) then
 			return
@@ -622,12 +624,16 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			entity.tags = tags
 		end
 
-		-- Update antiphase checkbox enabled state
+		-- Update phase slider enabled state
 		local content_frame = event.element.parent
-		if content_frame and content_frame["antiphase-checkbox"] then
-			content_frame["antiphase-checkbox"].enabled = event.element.state
+		if content_frame and content_frame["cerys-phase-slider"] then
+			content_frame["cerys-phase-slider"].enabled = event.element.state
 		end
-	elseif event.element.name == "antiphase-checkbox" then
+	end
+end)
+
+script.on_event(defines.events.on_gui_value_changed, function(event)
+	if event.element.name == "cerys-phase-slider" then
 		local player = game.players[event.player_index]
 		if not (player and player.valid) then
 			return
@@ -638,10 +644,11 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			return
 		end
 
-		storage.cerys.charging_rods[entity.unit_number].antiphase = event.element.state
+		local phase_value = event.element.slider_value * 90 -- Convert slider value (0-3) to degrees (0-270)
+		storage.cerys.charging_rods[entity.unit_number].phase = phase_value
 		if entity.name == "entity-ghost" then
 			local tags = entity.tags or {}
-			tags.antiphase = event.element.state
+			tags.phase = phase_value
 			entity.tags = tags
 		end
 	end

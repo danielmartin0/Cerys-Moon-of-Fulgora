@@ -111,8 +111,8 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 				and storage.cerys.charging_rods[entity.unit_number].control_signal
 			tags.cyclic = storage.cerys.charging_rods[entity.unit_number]
 				and storage.cerys.charging_rods[entity.unit_number].cyclic
-			tags.antiphase = storage.cerys.charging_rods[entity.unit_number]
-				and storage.cerys.charging_rods[entity.unit_number].antiphase
+			tags.phase = storage.cerys.charging_rods[entity.unit_number]
+				and storage.cerys.charging_rods[entity.unit_number].phase
 
 			bp_setup:apply_tags(bp_index, tags)
 		end
@@ -124,9 +124,13 @@ local function blueprint_entity_filter(bp_entity)
 end
 
 local function apply_blueprint_tags(tags, entity)
+	game.print(serpent.line(tags))
+
 	rods.rod_set_state(entity, tags.is_negative)
 
 	local rod_data = storage.cerys.charging_rods[entity.unit_number]
+	storage.cerys.charging_rods[entity.unit_number] = rod_data or {}
+
 	if rod_data then
 		if tags.circuit_controlled then
 			rod_data.circuit_controlled = tags.circuit_controlled
@@ -137,8 +141,8 @@ local function apply_blueprint_tags(tags, entity)
 		if tags.cyclic then
 			rod_data.cyclic = tags.cyclic
 		end
-		if tags.antiphase then
-			rod_data.antiphase = tags.antiphase
+		if tags.phase then
+			rod_data.phase = tags.phase
 		end
 	end
 end
@@ -303,8 +307,8 @@ function Public.cerys_tick(surface, tick)
 			rods.tick_12_check_charging_rods()
 		end
 
-		if tick % (60 * solar_wind_tick_multiplier) == 0 then
-			rods.tick_60_check_cyclic_charging_rods()
+		if tick % (30 * solar_wind_tick_multiplier) == 0 then
+			rods.tick_30_check_cyclic_charging_rods()
 		end
 	end
 

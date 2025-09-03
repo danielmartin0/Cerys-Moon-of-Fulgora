@@ -7,8 +7,6 @@ local Public = {}
 local spd = common.PARTICLE_SIMULATION_SPEED
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
-local SOLAR_WIND_MIN_VELOCITY = 0.3 * spd
-local MAX_AGE = SOLAR_WIND_MIN_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 4
 
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE = 1.5
 
@@ -17,8 +15,13 @@ local ROD_MAX_RANGE_SQUARED = ROD_MAX_RANGE * ROD_MAX_RANGE
 local ROD_DEFLECTION_STRENGTH = 5 * spd ^ 2
 local ROD_DEFLECTION_POWER = 2
 local NORMALIZATION_DISTANCE = 5 -- Given the deflection strength, changing the power leaves the force at this distance unaffected
-local SPEED_THRESHOLD = 0.02 * spd
+
+local MIN_INITIAL_VELOCITY = 0.3 * spd
+local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 4
+local MIN_SPEED_THRESHOLD = 0.02 * spd
 local PARTICLE_SHRINK_TIME = 14
+local MAX_SPEED = 0.4
+local MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
@@ -115,7 +118,7 @@ function Public.spawn_solar_wind_particle(surface)
 end
 
 function Public.initial_solar_wind_velocity()
-	local x_velocity = SOLAR_WIND_MIN_VELOCITY + math.random() * 0.1 / 3 * spd
+	local x_velocity = MIN_INITIAL_VELOCITY + math.random() * 0.1 / 3 * spd
 	local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * spd
 
 	return { x = x_velocity, y = y_velocity }
@@ -191,6 +194,14 @@ function Public.tick_solar_wind_deflection()
 						v.y = v.y + dvy
 
 						particle.velocity = v
+
+						local speed_2 = v.x * v.x + v.y * v.y
+						if speed_2 > MAX_SPEED_SQUARED then
+							local reduction_scale = math.sqrt(MAX_SPEED_SQUARED / speed_2)
+							v.x = v.x * reduction_scale
+							v.y = v.y * reduction_scale
+							particle.velocity = v
+						end
 					end
 				end
 			end
@@ -243,7 +254,7 @@ function Public.tick_5_solar_wind_destroy_check()
 
 		local speed = math.sqrt(v.x * v.x + v.y * v.y)
 
-		if speed < SPEED_THRESHOLD then
+		if speed < MIN_SPEED_THRESHOLD then
 			if not particle.marked_for_death_tick then
 				particle.marked_for_death_tick = game.tick
 			end
