@@ -18,8 +18,6 @@ local MIN_INITIAL_VELOCITY = 0.15 * spd
 local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 local MIN_SPEED_THRESHOLD = 0.025
 local PARTICLE_SHRINK_TIME = 14
-local MAX_SPEED = 0.33
-local MAX_SPEED_SQUARED = MAX_SPEED * MAX_SPEED
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
@@ -188,27 +186,8 @@ function Public.tick_solar_wind_deflection()
 						v.y = v.y + dvy
 
 						particle.velocity = v
-
-						particle.should_bound_speed = true
 					end
 				end
-			end
-		end
-	end
-
-	for i = 1, #particles do
-		local particle = particles[i]
-		if particle.should_bound_speed then
-			particle.should_bound_speed = false
-
-			local v = particle.velocity
-			local speed_2 = v.x * v.x + v.y * v.y
-
-			if speed_2 > MAX_SPEED_SQUARED then
-				local reduction_scale = math.sqrt(MAX_SPEED_SQUARED / speed_2)
-				v.x = v.x * reduction_scale
-				v.y = v.y * reduction_scale
-				particle.velocity = v
 			end
 		end
 	end
