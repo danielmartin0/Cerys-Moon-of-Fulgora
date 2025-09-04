@@ -1,18 +1,22 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.5
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.9.4
 Date: 2025-09-03
   Info:
     - Version 4 summary for returning players:
       ► Red+Yellow science replaced by simpler White science recipe.
       ► New 'Radioactive module' reward.
-      ► More freedom in tech tree progression.
-      ► Many nonbreaking tweaks to remove gameplay grind.
+      ► Many gameplay tweaks to reduce grind that are "really a vast vast improvement" according to a long-time Cerys playtester.
+      ► Greater freedom in tech tree progression.
+      ► The best change since the mod released: A new 'Ghost charged particle maker' entity for testing purposes. Note that charged particles now evaporate if they are sufficiently slow.
       ► Minor breaking changes to recipes for: charging rod, hydrogen bomb.
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
+  Bugfixes:
+    - Fixed that character running speed on watery dry ice was 10% too high.
+  Optimizations:
+    - Performance improvements to heat pipe cooling on Factorio 2.0.64+.
+---------------------------------------------------------------------------------------------------
+Version: 4.9.4
+Date: 2025-09-03
   Optimizations:
     - Improved the performance of charged particles.
 ---------------------------------------------------------------------------------------------------
