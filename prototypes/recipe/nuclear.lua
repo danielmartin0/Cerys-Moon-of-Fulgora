@@ -106,6 +106,7 @@ data:extend({
 		},
 		allow_decomposition = false,
 		allow_productivity = true,
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -147,6 +148,7 @@ data:extend({
 		allow_productivity = false,
 		allow_quality = false,
 		result_is_always_fresh = true,
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -197,6 +199,7 @@ data:extend({
 			tertiary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
 			quaternary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
 		},
+		hide_from_signal_gui = false,
 	},
 
 	{

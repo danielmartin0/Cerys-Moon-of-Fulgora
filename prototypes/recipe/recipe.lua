@@ -43,6 +43,8 @@ if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidd
 			draw_background = true,
 		},
 	}
+
+	data.raw.recipe["maraxsis-holmium-recrystalization"].hide_from_signal_gui = false
 else
 	data:extend({
 		{
@@ -76,6 +78,7 @@ else
 					draw_background = true,
 				},
 			},
+			hide_from_signal_gui = false,
 		},
 	})
 end
@@ -257,6 +260,7 @@ data:extend({
 			primary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
 			secondary = { r = 38, g = 110, b = 240, a = 1 }, -- ammonia
 		},
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -297,6 +301,7 @@ data:extend({
 			primary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
 			secondary = { r = 0.384, g = 0.271, b = 0.792 }, -- nitric acid
 		},
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -384,6 +389,7 @@ data:extend({
 			primary = { r = 194, g = 194, b = 194, a = 1 }, -- methane?
 			secondary = { r = 117, g = 85, b = 13, a = 1 }, -- light oil
 		},
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -411,6 +417,7 @@ data:extend({
 			primary = { r = 234, g = 221, b = 9, a = 1 }, -- sulfuric acid
 			secondary = { r = 234, g = 221, b = 9, a = 1 }, -- sulfuric acid
 		},
+		hide_from_signal_gui = false,
 	},
 
 	{
@@ -458,5 +465,6 @@ data:extend({
 				draw_background = true,
 			},
 		},
+		hide_from_signal_gui = false,
 	},
 })

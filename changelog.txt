@@ -1,8 +1,4 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.6
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
 Version: 4.9.5
 Date: 2025-09-04
   Info:
@@ -16,6 +12,7 @@ Date: 2025-09-04
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
   Bugfixes:
     - Fixed that character running speed on watery dry ice was 10% too high.
+    - Fixed that certain recipes were not available in the signal GUI.
   Optimizations:
     - Performance improvements to heat pipe cooling on Factorio 2.0.64+.
 ---------------------------------------------------------------------------------------------------

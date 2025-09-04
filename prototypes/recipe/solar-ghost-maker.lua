@@ -10,6 +10,7 @@ data:extend({
 		results = { { type = "item", name = "cerys-solar-wind-particle-ghost", amount = 1 } },
 		category = "cerys-make-solar-wind-ghosts",
 		result_is_always_fresh = true,
+		hide_from_signal_gui = true,
 	},
 	{
 		type = "recipe",
@@ -22,5 +23,6 @@ data:extend({
 			{ type = "item", name = "advanced-circuit", amount = 2 },
 		},
 		results = { { type = "item", name = "cerys-solar-ghost-maker", amount = 1 } },
+		hide_from_signal_gui = true,
 	},
 })
