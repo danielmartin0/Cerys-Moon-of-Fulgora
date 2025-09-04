@@ -349,6 +349,7 @@ local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	map_color = { 8, 39, 94 },
 	layer = 9,
 	layer_group = "ground-artificial", -- Above crater decals
+	subgroup = "cerys-tiles",
 })
 
 data:extend({
