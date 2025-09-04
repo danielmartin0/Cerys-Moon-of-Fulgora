@@ -436,6 +436,7 @@ local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
 	layer_group = "ground-artificial", -- Above crater decals
 	map_color = { 128, 184, 194 },
 	allows_being_covered = false,
+	walking_speed_modifier = 0.9,
 })
 
 data:extend({
@@ -478,7 +479,6 @@ local dry_ice_rough_land_variants = tile_variations_template(
 local cerys_dry_ice_rough_land_base = merge(cerys_dry_ice_rough_base, {
 	variants = dry_ice_rough_land_variants,
 	map_color = { 92, 138, 116 },
-	walking_speed_modifier = 0.9,
 })
 
 data:extend({
