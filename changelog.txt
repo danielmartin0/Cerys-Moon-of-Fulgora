@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.7
-Date: ????
+Date: 2025-09-05
   Info:
     - Version 4 summary for returning players:
       ► Red+Yellow science replaced by simpler White science recipe.
