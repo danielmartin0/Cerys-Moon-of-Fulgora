@@ -238,6 +238,8 @@ script.on_event(defines.events.on_tick, function(event)
 	end
 end)
 
+local deepfreeze_factor = common.PARTICLE_NOBODY_LOOKING_SLOWDOWN_FACTOR
+
 function Public.cerys_tick(surface, tick)
 	local player_looking_at_surface = false
 	local player_on_surface = false
@@ -252,7 +254,7 @@ function Public.cerys_tick(surface, tick)
 		end
 	end
 
-	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or 12
+	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or deepfreeze_factor
 
 	background.tick_1_update_background_renderings(surface)
 
@@ -273,7 +275,7 @@ function Public.cerys_tick(surface, tick)
 		end
 
 		if tick % (5 * solar_wind_tick_multiplier) == 0 then
-			space.tick_5_solar_wind_destroy_check()
+			space.tick_5_solar_wind_destroy_check(surface)
 		end
 
 		if tick % (8 * solar_wind_tick_multiplier) == 0 then
@@ -352,14 +354,14 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		local p = entity.position
 		local surface = entity.surface
 
+		if not (surface and surface.valid and surface.name == "cerys") then
+			return
+		end
+
 		local p2 = {
 			x = p.x + (math.random() - 0.5),
 			y = p.y - 3 + (math.random() - 0.5),
 		}
-
-		if not (surface and surface.valid and surface.name == "cerys") then
-			return
-		end
 
 		local r = rendering.draw_sprite({
 			sprite = "cerys-solar-wind-particle-ghost",

@@ -291,6 +291,7 @@ data:extend({
 			time = 60,
 		},
 		allows_productivity = false,
+		order = "z",
 	},
 	{
 		type = "technology",
@@ -564,6 +565,7 @@ data:extend({
 			time = 60,
 		},
 		upgrade = true,
+		order = "z-a",
 	},
 	{
 		type = "technology",
@@ -645,6 +647,7 @@ data:extend({
 			time = 60,
 		},
 		upgrade = true,
+		order = "z-b",
 	},
 	{
 		type = "technology",

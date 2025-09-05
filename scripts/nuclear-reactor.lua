@@ -1,12 +1,11 @@
 local repair = require("scripts.reactor-repair")
+local cooling = require("scripts.cooling")
 local find = require("lib").find
 local common = require("common")
 
 local Public = {}
 
 Public.REACTOR_TICK_INTERVAL = 3
-
-local TEMPERATURE_ZERO = 15
 
 local RANGE_SQUARED = 61 ^ 2
 local DAMAGE_TICK_DELAY = 30
@@ -61,19 +60,11 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 			reactor.stage = repair.REACTOR_STAGE_ENUM.needs_excavation
 		end
 	elseif reactor.stage == repair.REACTOR_STAGE_ENUM.active then
-		Public.cool_reactor(e)
+		cooling.cool_reactor(e, Public.REACTOR_TICK_INTERVAL)
 
 		if player_looking_at_surface and e.burner.currently_burning then
 			Public.create_radiation(surface, e)
 		end
-	end
-end
-
-function Public.cool_reactor(reactor_entity)
-	if reactor_entity.temperature > TEMPERATURE_ZERO then
-		local rate = common.REACTOR_COOLING_PER_SECOND * (1 - reactor_entity.quality.level)
-
-		reactor_entity.temperature = reactor_entity.temperature - rate * (Public.REACTOR_TICK_INTERVAL / 60)
 	end
 end
 

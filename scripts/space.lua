@@ -17,6 +17,7 @@ local ROD_DEFLECTION_STRENGTH = 8 / 4.5 * spd ^ 2
 local MIN_INITIAL_VELOCITY = 0.15 * spd
 local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 local MIN_SPEED_THRESHOLD = 0.025
+local MIN_SPEED_THRESHOLD_SQUARED = MIN_SPEED_THRESHOLD * MIN_SPEED_THRESHOLD
 local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
@@ -230,17 +231,36 @@ function Public.tick_1_move_solar_wind()
 	end
 end
 
-function Public.tick_5_solar_wind_destroy_check()
+local deepfreeze_factor = common.PARTICLE_NOBODY_LOOKING_SLOWDOWN_FACTOR
+function Public.tick_5_solar_wind_destroy_check(surface)
 	local i = 1
 	while i <= #storage.cerys.solar_wind_particles do
 		local particle = storage.cerys.solar_wind_particles[i]
 		local v = particle.velocity
 
-		local speed = math.sqrt(v.x * v.x + v.y * v.y)
+		local speed_squared = v.x * v.x + v.y * v.y
 
-		if speed < MIN_SPEED_THRESHOLD then
+		if speed_squared < MIN_SPEED_THRESHOLD_SQUARED then
 			if not particle.marked_for_death_tick then
 				particle.marked_for_death_tick = game.tick
+			end
+		elseif particle.is_ghost and not particle.survived_first_check then
+			local player_looking_at_surface = false
+
+			for _, player in pairs(game.connected_players) do
+				if player.surface == surface then
+					player_looking_at_surface = true
+				end
+			end
+
+			if player_looking_at_surface then
+				particle.survived_first_check = true
+			else
+				if math.random() < 1 / deepfreeze_factor then
+					particle.survived_first_check = true
+				else
+					particle.marked_for_death_tick = 0
+				end
 			end
 		end
 
@@ -361,8 +381,12 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								})
 							end
 
-							local damage = 5
-							-- local damage = common.HARD_MODE_ON and 80 or 5
+							local damage = (
+								settings.startup["cerys-high-damage-mode"]
+								and settings.startup["cerys-high-damage-mode"].value
+							)
+									and 80
+								or 5
 
 							e.damage(damage, game.forces.neutral, "impact")
 						end
