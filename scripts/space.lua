@@ -361,7 +361,8 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								})
 							end
 
-							local damage = common.HARD_MODE_ON and 80 or 5
+							local damage = 5
+							-- local damage = common.HARD_MODE_ON and 80 or 5
 
 							e.damage(damage, game.forces.neutral, "impact")
 						end

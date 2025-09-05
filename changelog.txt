@@ -1,10 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.9.7
 Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.9.6
-Date: 2025-09-04
   Info:
     - Version 4 summary for returning players:
       ► Red+Yellow science replaced by simpler White science recipe.
@@ -14,6 +10,15 @@ Date: 2025-09-04
       ► The best change since the mod released: A new 'Ghost charged particle maker' entity for testing purposes. Note that charged particles now evaporate if they are sufficiently slow.
       ► Minor breaking changes to recipes for: charging rod, hydrogen bomb.
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
+  Balancing:
+    - Small technology cost tweaks.
+  Bugfixes:
+    - Fixed that some Cerys tiles appeared in the wrong place in Factoriopedia.
+  Changes:
+    - [Hard Cerys only] Removed the highly damaging solar wind.
+---------------------------------------------------------------------------------------------------
+Version: 4.9.6
+Date: 2025-09-04
   Bugfixes:
     - Fixed that certain recipes were not available in the signal GUI.
 ---------------------------------------------------------------------------------------------------
