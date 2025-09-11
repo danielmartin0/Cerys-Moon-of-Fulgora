@@ -154,6 +154,11 @@ script.on_event(defines.events.on_pre_build, function(event)
 
 	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
 
+	-- HOTFIX: "BlueprintRecord cannot be read while it is a preview."
+	if player.cursor_record and player.cursor_record.valid and player.cursor_record.is_preview then
+		return
+	end
+
 	local bp_build = BlueprintBuild:new(event)
 	-- Will be `nil` if the event was not a blueprint build.
 	if not bp_build then
