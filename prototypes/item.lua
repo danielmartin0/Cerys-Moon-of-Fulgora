@@ -724,6 +724,10 @@ data:extend({
 		name = "cerys-neutron-bomb",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron-bomb.png",
 		icon_size = 64,
+		localised_description = {
+			"cerys.neutron-bomb-description",
+			{ "surface-property-unit.pressure", "5" },
+		},
 		ammo_category = "artillery-shell",
 		ammo_type = {
 			-- range_modifier = 0.25 -- Has no effect

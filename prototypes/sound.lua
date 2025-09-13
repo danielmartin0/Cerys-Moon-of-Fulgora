@@ -199,18 +199,18 @@ data:extend({
 	-- 		priority = 200,
 	-- 	},
 	-- },
-	{
-		type = "ambient-sound",
-		name = "cerys-9",
-		track_type = "main-track",
-		weight = 10,
-		planet = "cerys",
-		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/hymntothedawn.ogg",
-			volume = 0.5,
-			priority = 200,
-		},
-	},
+	-- {
+	-- 	type = "ambient-sound",
+	-- 	name = "cerys-9",
+	-- 	track_type = "main-track",
+	-- 	weight = 10,
+	-- 	planet = "cerys",
+	-- 	sound = {
+	-- 		filename = "__Cerys-Moon-of-Fulgora__/sounds/hymntothedawn.ogg",
+	-- 		volume = 0.5,
+	-- 		priority = 200,
+	-- 	},
+	-- },
 	{
 		type = "ambient-sound",
 		name = "cerys-10",
@@ -219,6 +219,18 @@ data:extend({
 		planet = "cerys",
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/fallingtogether.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+	},
+	{
+		type = "ambient-sound",
+		name = "cerys-11",
+		track_type = "main-track",
+		weight = 10,
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/phaseshift.ogg",
 			volume = 0.5,
 			priority = 200,
 		},

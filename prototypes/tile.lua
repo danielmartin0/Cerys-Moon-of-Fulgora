@@ -233,6 +233,7 @@ local function create_frozen_variant(name, layer, force_hidden)
 		),
 		layer_group = "ground-artificial", -- Above crater decals
 		transitions = frozen_rock_transitions,
+		map_color = { 44, 48, 64 },
 	})
 end
 
@@ -277,10 +278,10 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	subgroup = "cerys-tiles",
 	collision_mask = {
 		layers = {
-			water_tile = true,
 			floor = true,
 			resource = true,
 			cerys_tile = true,
+			cerys_water_tile = true,
 			doodad = true,
 		},
 	},

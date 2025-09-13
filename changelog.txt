@@ -1,19 +1,34 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.7
+Version: 4.10.1
 Date: ????
   Changes:
 ---------------------------------------------------------------------------------------------------
-Version: 4.9.6
-Date: 2025-09-04
+Version: 4.10.0
+Date: 2025-09-10
   Info:
     - Version 4 summary for returning players:
-      ► Red+Yellow science replaced by simpler White science recipe.
+      ► Red+Yellow science replaced by White science, simplifying research.
       ► New 'Radioactive module' reward.
-      ► Many gameplay tweaks to reduce grind that are "really a vast vast improvement" according to a long-time Cerys playtester.
       ► Greater freedom in tech tree progression.
-      ► The best change since the mod released: A new 'Ghost charged particle maker' entity for testing purposes. Note that charged particles now evaporate if they are sufficiently slow.
+      ► Many gameplay tweaks to reduce grind.
+      ► A new 'Ghost charged particle maker' entity for testing purposes.
+      ► Charged particles now evaporate if they are sufficiently slow.
       ► Minor breaking changes to recipes for: charging rod, hydrogen bomb.
       ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
+  Changes:
+    - Concrete can now be placed on shallow water on Cerys.
+    - Fulgoran crusher wrecks no longer have a module slot (matching the repaired entity).
+    - The Neutron bomb item description now states the pressure threshold under which its behavior changes.
+  Bugfixes:
+    - Fixed that the Fulgoran reactor did not cool properly if it had quality uncommon or higher.
+    - Fixed extra ghost particles being created during performance-optimization mode.
+  Sounds:
+    - Replaced a song on the soundtrack.
+  Locale:
+    - Russian translation update.
+---------------------------------------------------------------------------------------------------
+Version: 4.9.6
+Date: 2025-09-04
   Bugfixes:
     - Fixed that certain recipes were not available in the signal GUI.
 ---------------------------------------------------------------------------------------------------
@@ -178,19 +193,16 @@ Date: 2025-08-19
 Version: 4.0.0-4.0.6
 Date: 2025-08-18
   Info:
-    - 4.0 release! According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, adds a charged particle testing entity, and has the player blast a hole in the magnetosphere.
-    - Unfortunately, breaking changes were required to a) [Outdated] charged particle dynamics and b) which science packs you craft.
+    - 4.0 release. According to a long-time Cerys playtester, "In terms of grind, it is really a vast vast improvement." 4.0 also reworks the science tree, adds a Tier 4 prod module reward with a twist, adds a charged particle testing entity, and has the player blast a hole in the magnetosphere.
   Features:
     - New completion reward: Metastable module. This is a radioactive Tier 4 productivity module that decays to a Tier 2.5 equivalent, but can be recharged with Plutonium-239 in a centrifuge. The new Radiation-proof inserter is designed to insert it directly into machine module slots, and automatically flips itself when required.
+    - A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
   Changes:
-    - Tech tree changes:
-      ► The Cerys tech tree is now less linear, giving players greater choice over which research to pursue next.
-      ► Cerys technologies no longer require automation (red) or utility (yellow) science. Some instead require space science, which can now be crafted on Cerys using methane ice.
-      ► Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
-    - Plutonium generation changes:
-      ► Charged particles now evaporate when they come to a stop.
-      ► Charged particle deflection now occurs over longer distances.
-      ► A new entity assists with plutonium farm planning by allowing players to simulate their effectiveness.
+    - The Cerys tech tree is now less linear, giving players greater choice over which research to pursue next.
+    - Cerys technologies no longer require automation (red) or utility (yellow) science. Some instead require space science, which can now be crafted on Cerys using methane ice.
+    - Cerysian science has been renamed 'Reverse-engineered science' and is simplified to require holmium plates instead of superconductors.
+    - Charged particles now evaporate when they come to a stop.
+    - Charged particle deflection now occurs over longer distances.
     - The cargo drops technology is now called 'Blast a hole in the magnetosphere' and requires the player to launch a hydrogen bomb into orbit.
     - The final radiative towers technology now allows the player to mine the Fulgoran radiative towers on Cerys.
     - Machine quality upgrades no longer require quality chips, instead simply requiring 5 repair parts.

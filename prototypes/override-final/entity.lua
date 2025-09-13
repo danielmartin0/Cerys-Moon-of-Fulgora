@@ -130,3 +130,37 @@ end
 for _, projectile in pairs(data.raw["projectile"]) do
 	add_cerys_layers_to_masks(projectile)
 end
+
+--== Water puddles collisions ==--
+
+for _, entity in pairs(data.raw["offshore-pump"]) do
+	if entity.tile_buildability_rules then
+		for _, rule in pairs(entity.tile_buildability_rules) do
+			if
+				rule.required_tiles
+				and rule.required_tiles.layers
+				and rule.required_tiles.layers.water_tile
+				and not rule.required_tiles.layers.cerys_water_tile
+			then
+				rule.required_tiles.layers.cerys_water_tile = true
+			end
+			if
+				rule.colliding_tiles
+				and rule.colliding_tiles.layers
+				and rule.colliding_tiles.layers.water_tile
+				and not rule.colliding_tiles.layers.cerys_water_tile
+			then
+				rule.colliding_tiles.layers.cerys_water_tile = true
+			end
+		end
+	end
+end
+
+for key, mask in pairs(data.raw["utility-constants"].default.default_collision_masks) do
+	if mask.layers and mask.layers.water_tile then
+		local new_mask = util.table.deepcopy(mask)
+		new_mask.layers.cerys_water_tile = true
+		new_mask.layers.cerys_water_tile = true
+		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
+	end
+end

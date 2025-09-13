@@ -1,6 +1,15 @@
+local common = require("common")
+
 local Public = {}
 
 local TEMPERATURE_LOSS_RATE = 0.3
+local TEMPERATURE_ZERO = 15
+
+local function cool_entity(entity, cooling_rate)
+	if entity.temperature > TEMPERATURE_ZERO then
+		entity.temperature = math.max(TEMPERATURE_ZERO, entity.temperature - cooling_rate)
+	end
+end
 
 function Public.register_heat_pipe(entity)
 	if not storage.cerys then
@@ -59,10 +68,9 @@ function Public.tick_60_cool_heat_entities()
 		local invalid_entities = {}
 		for unit_number, entity in pairs(storage.cerys.heat_pipes) do
 			if entity.valid and entity.temperature then
-				if entity.temperature > 15 then
-					local effective_cooling = TEMPERATURE_LOSS_RATE * get_heat_pipe_cooling_multiplier(entity)
-					entity.temperature = math.max(15, entity.temperature - effective_cooling)
-				end
+				local effective_cooling = TEMPERATURE_LOSS_RATE * get_heat_pipe_cooling_multiplier(entity)
+
+				cool_entity(entity, effective_cooling)
 			else
 				table.insert(invalid_entities, unit_number)
 			end
@@ -77,9 +85,7 @@ function Public.tick_60_cool_heat_entities()
 		local invalid_entities = {}
 		for unit_number, entity in pairs(storage.cerys.boilers) do
 			if entity.valid and entity.temperature then
-				if entity.temperature > 15 then
-					entity.temperature = math.max(15, entity.temperature - TEMPERATURE_LOSS_RATE)
-				end
+				cool_entity(entity, TEMPERATURE_LOSS_RATE)
 			else
 				table.insert(invalid_entities, unit_number)
 			end
@@ -89,6 +95,13 @@ function Public.tick_60_cool_heat_entities()
 			storage.cerys.boilers[unit_number] = nil
 		end
 	end
+end
+
+function Public.cool_reactor(reactor_entity, tick_interval)
+	local rate = common.REACTOR_COOLING_PER_SECOND * (1 - 0.1 * reactor_entity.quality.level)
+	local cooling_amount = rate * (tick_interval / 60)
+
+	cool_entity(reactor_entity, cooling_amount)
 end
 
 return Public

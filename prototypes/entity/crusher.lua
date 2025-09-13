@@ -133,7 +133,7 @@ local wreck = merge(crusher, {
 	energy_source = {
 		type = "void",
 	},
-	module_slots = 1,
+	module_slots = 0,
 	allowed_effects = { "speed", "productivity" },
 	graphics_set = {
 		frozen_patch = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-broken-frozen", {
