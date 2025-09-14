@@ -352,7 +352,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
 
 					if check then
-						-- particle.last_checked_inv = e.unit_number -- Allow players to chase wind and be hit again
+						particle.last_checked_inv = e.unit_number
 
 						local inv = e.get_main_inventory()
 						if inv and inv.valid then
