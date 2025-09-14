@@ -557,7 +557,7 @@ data:extend({
 		effects = holmium_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 10,
+			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -640,7 +640,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 10,
+			count = 25,
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
