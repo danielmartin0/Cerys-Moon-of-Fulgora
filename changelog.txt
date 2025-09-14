@@ -3,6 +3,8 @@ Version: 4.10.2
 Date: 2025-09-11
   Changes:
     - The rule against double-checking inventories now also applies to players.
+  Locale:
+    - Korean translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.1
 Date: 2025-09-11
