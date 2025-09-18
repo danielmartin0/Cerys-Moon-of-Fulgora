@@ -250,6 +250,26 @@ function Public.destroy_blue_glow_entity(rod)
 	end
 end
 
+function Public.destroy_guis(event)
+	local player = game.players[event.player_index]
+
+	if not (player and player.valid) then
+		return
+	end
+
+	local relative = player.gui.relative
+
+	if relative[Public.OLD_GUI_KEY] then
+		relative[Public.OLD_GUI_KEY].destroy()
+	end
+	if relative[Public.OLD_GUI_KEY_GHOST] then
+		relative[Public.OLD_GUI_KEY_GHOST].destroy()
+	end
+	if relative[Public.GUI_KEY] then
+		relative[Public.GUI_KEY].destroy()
+	end
+end
+
 function Public.on_gui_opened(event)
 	local player = game.players[event.player_index]
 

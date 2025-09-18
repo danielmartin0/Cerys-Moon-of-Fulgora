@@ -661,13 +661,17 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		player.opened = nil
 	elseif entity.name == "cerys-fulgoran-teleporter" then
 		teleporter.toggle_gui(player, entity)
-	elseif
-		entity.name == "cerys-charging-rod"
-		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-	then
-		rods.on_gui_opened(event)
 	elseif entity.name == "cerys-radiation-proof-inserter" then
 		inserter.on_inserter_gui_opened(player, entity)
+	elseif entity.type == "accumulator" then
+		if
+			entity.name == "cerys-charging-rod"
+			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
+		then
+			rods.on_gui_opened(event)
+		else
+			rods.destroy_guis(event)
+		end
 	end
 end)
 

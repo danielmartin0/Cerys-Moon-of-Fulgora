@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.10.4
+Date: 2025-09-18
+  Bugfixes:
+    - Fixed that the charging rod GUI was visible on other accumulator-type entities after visiting Cerys.
+---------------------------------------------------------------------------------------------------
 Version: 4.10.3
 Date: 2025-09-18
   Bugfixes:
