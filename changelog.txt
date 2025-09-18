@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.3
 Date: ????
-  Compatibility:
-    - Hard Cerys: Fixed that the teleporter spawned out of heating tower range.
+  Bugfixes:
+    - Fixed that the teleporter could sometimes spawn out of heating tower range.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.2
 Date: 2025-09-14
