@@ -404,10 +404,7 @@ function Public.create_teleporter()
 		return
 	end
 
-	local p = {
-		x = common.TELEPORTER_POSITION.x,
-		y = common.TELEPORTER_POSITION.y,
-	}
+	local p = common.TELEPORTER_POSITION
 
 	local p2 = surface.find_non_colliding_position("cerys-fulgoran-teleporter-frozen", p, 100, 1) or p
 
