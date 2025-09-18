@@ -2,7 +2,7 @@
 Version: 4.10.3
 Date: 2025-09-18
   Bugfixes:
-    - Fixed that the teleporter could sometimes spawn out of heating tower range.
+    - Fixed that the teleporter could occasionally spawn out of heating tower range.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.2
 Date: 2025-09-14
