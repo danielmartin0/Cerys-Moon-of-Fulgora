@@ -1,6 +1,6 @@
 {
     "name": "Cerys-Moon-of-Fulgora",
-    "version": "4.10.4",
+    "version": "4.11.0",
     "factorio_version": "2.0",
     "title": "Cerys",
     "author": "thesixthroc",
@@ -18,7 +18,10 @@
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",
         "(?) maraxsis",
-        "(?) rso-mod"
+        "(?) rso-mod",
+        "! boblogistics",
+        "! bobpower",
+        "! bobassembly"
     ],
     "space_travel_required": true,
     "package": {

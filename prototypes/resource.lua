@@ -111,7 +111,7 @@ data:extend({
 		},
 		map_color = { 159, 194, 165 },
 		map_grid = true,
-		stage_counts = stage_counts_3,
+		stage_counts = stage_counts_4,
 		factoriopedia_simulation = "nil",
 	}),
 })

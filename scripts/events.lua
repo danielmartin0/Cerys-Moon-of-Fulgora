@@ -475,8 +475,8 @@ script.on_configuration_changed(function()
 end)
 
 function Public.check_rocket_timed_effects(surface)
-	if storage.thankyou_message_timer and game.tick >= storage.thankyou_message_timer then
-		storage.thankyou_message_timer = nil
+	if storage.atmospheric_nuke_toast_timer and game.tick >= storage.atmospheric_nuke_toast_timer then
+		storage.atmospheric_nuke_toast_timer = nil
 
 		if settings.global["cerys-disable-kofi-toast"].value then
 			return
@@ -484,7 +484,7 @@ function Public.check_rocket_timed_effects(surface)
 
 		surface.print({
 			"",
-			"[font=default-game] >>",
+			"[font=default-game] >> ",
 			{ "cerys.kofi-toast" },
 			"[/font]",
 		}, { color = { 164, 135, 255 } })
@@ -537,16 +537,7 @@ script.on_event(defines.events.on_rocket_launch_ordered, function(event)
 		return
 	end
 
-	if not storage.thankyou_message_triggered then
-		local passenger = cargo_pod.get_passenger()
-
-		if rocket.name ~= "planet-hopper" and passenger and passenger.player and passenger.player.valid then
-			storage.thankyou_message_triggered = true
-			storage.thankyou_message_timer = game.tick + 5 * 60
-		end
-	end
-
-	if not storage.atmospheric_nuke_timer then
+	if not storage.atmospheric_nuke_toast_timer then
 		if
 			cargo_pod.cargo_pod_destination
 			and cargo_pod.cargo_pod_destination.type == defines.cargo_destination.orbit
@@ -562,6 +553,7 @@ script.on_event(defines.events.on_rocket_launch_ordered, function(event)
 
 			if has_hydrogen_bomb then
 				storage.atmospheric_nuke_timer = game.tick + 22 * 60
+				storage.atmospheric_nuke_toast_timer = game.tick + 27 * 60
 			end
 		end
 	end

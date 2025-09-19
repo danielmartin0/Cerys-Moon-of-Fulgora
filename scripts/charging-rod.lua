@@ -250,24 +250,18 @@ function Public.destroy_blue_glow_entity(rod)
 	end
 end
 
-function Public.destroy_guis(event)
-	local player = game.players[event.player_index]
+function Public.destroy_guis(event) -- The GUI is attached to all accumulator entities on some saves
+	-- local player = game.players[event.player_index]
 
-	if not (player and player.valid) then
-		return
-	end
+	-- if not (player and player.valid) then
+	-- 	return
+	-- end
 
-	local relative = player.gui.relative
+	-- local relative = player.gui.relative
 
-	if relative[Public.OLD_GUI_KEY] then
-		relative[Public.OLD_GUI_KEY].destroy()
-	end
-	if relative[Public.OLD_GUI_KEY_GHOST] then
-		relative[Public.OLD_GUI_KEY_GHOST].destroy()
-	end
-	if relative[Public.GUI_KEY] then
-		relative[Public.GUI_KEY].destroy()
-	end
+	-- if relative[Public.GUI_KEY] then
+	-- 	relative[Public.GUI_KEY].destroy()
+	-- end
 end
 
 function Public.on_gui_opened(event)
@@ -295,6 +289,10 @@ function Public.on_gui_opened(event)
 		end
 	end
 
+	if player.surface and player.surface.valid and player.surface.name ~= "cerys" then
+		return
+	end
+
 	local rod_circuit_data = entity.name == "cerys-charging-rod" and storage.cerys.charging_rods[entity.unit_number]
 		or (entity.tags or {})
 
@@ -308,6 +306,7 @@ function Public.on_gui_opened(event)
 				gui = defines.relative_gui_type.accumulator_gui,
 				position = defines.relative_gui_position.right,
 				ghost_mode = "both",
+				name = "cerys-charging-rod",
 			},
 		})
 
