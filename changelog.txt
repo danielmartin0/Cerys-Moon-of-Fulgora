@@ -1,12 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.0
 Date: 2025-09-18
-  Bugfixes:
-    - Fixed that the charging rod GUI briefly opened on other accumulator entities in multiplayer.
   Changes:
     - The Kofi toast now prints when the player launches the nuke into orbit.
+  Bugfixes:
+    - Fixed that the charging rod's GUI would briefly show on other accumulators in multiplayer games.
+  Graphics:
+    - Adjusted the appearance of minable resources when using high values on the map sliders.
   Compatibility:
-    - Added incompatibility mark with Bob's Mods that softlock the player on Cerys.
+    - Added incompatibility mark with Bob's Mods that cause a softlock for the player on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.4
 Date: 2025-09-18

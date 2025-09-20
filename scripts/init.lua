@@ -12,15 +12,15 @@ end)
 
 function Public.initialize_technologies()
 	for _, force in pairs(game.forces) do
-		if
-			force.recipes["cerys-discover-fulgoran-cryogenics"]
-			and force.technologies["cerys-fulgoran-cryogenics"]
-			and force.technologies["cerys-fulgoran-cryogenics"].researched
-		then
-			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
-		else
-			force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
-		end
+		-- if
+		-- 	force.recipes["cerys-discover-fulgoran-cryogenics"]
+		-- 	and force.technologies["cerys-fulgoran-cryogenics"]
+		-- 	and force.technologies["cerys-fulgoran-cryogenics"].researched
+		-- then
+		-- 	force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = false
+		-- else
+		-- 	force.recipes["cerys-discover-fulgoran-cryogenics"].enabled = true
+		-- end
 
 		if force.technologies["cerys-legacy-reactor-fuel-productivity"] then
 			force.technologies["cerys-legacy-reactor-fuel-productivity"].enabled = false

@@ -14,6 +14,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1 * 1000 * 1000000,
 		durability = 1,
+		spoil_ticks = 1,
 	},
 })
 

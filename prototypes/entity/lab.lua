@@ -186,12 +186,12 @@ data:extend({
 
 	cerys_lab,
 
-	merge(cerys_lab, {
-		-- This entity is never placed. It is only in the game to prevent the game from throwing a fit about there being no science lab that can research fulgoran-cryogenics-progress.
-		name = "cerys-lab-dummy",
-		hidden = true,
-		inputs = {
-			"fulgoran-cryogenics-progress",
-		},
-	}),
+	-- merge(cerys_lab, {
+	-- 	-- This entity is never placed. It is only in the game to prevent the game from throwing a fit about there being no science lab that can research fulgoran-cryogenics-progress.
+	-- 	name = "cerys-lab-dummy",
+	-- 	hidden = true,
+	-- 	inputs = {
+	-- 		"fulgoran-cryogenics-progress",
+	-- 	},
+	-- }),
 })
