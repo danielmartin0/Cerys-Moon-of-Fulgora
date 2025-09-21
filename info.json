@@ -20,7 +20,8 @@
         "(?) maraxsis",
         "(?) rso-mod",
         "! bobpower",
-        "! bobassembly"
+        "! bobassembly",
+        "! oarc-mod"
     ],
     "space_travel_required": true,
     "package": {

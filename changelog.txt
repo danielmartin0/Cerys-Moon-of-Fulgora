@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.1
 Date: ????
-  Changes:
+  Graphics:
+    - Updated icon for the Ghost charged particle maker.
+  Compatibility:
+    - Marked Oarc Multiplayer Spawn as incompatible since the Fulgoran buildings on Cerys are associated to the 'player' force.
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.0
 Date: 2025-09-21

@@ -60,7 +60,7 @@ data:extend({
 		type = "item",
 		name = "cerys-solar-ghost-maker",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/solar-ghost-maker.png",
-		icon_size = 341,
+		icon_size = 190,
 		subgroup = "environmental-protection",
 		order = "z-d[cerys]-a[solar-ghost-maker]",
 		inventory_move_sound = item_sounds.electric_small_inventory_move,
