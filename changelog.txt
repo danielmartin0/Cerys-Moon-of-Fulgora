@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.0
-Date: 2025-09-18
+Date: 2025-09-21
   Info:
     - This release will add support for Factorio 2.0.67 (experimental). Players upgrading their client will need to update Cerys to this version.
   Graphics:
