@@ -11,7 +11,7 @@ Date: 2025-09-21
     - The Fulgoran cryogenics technology no longer needs to be selected to be researched.
     - The Kofi toast now prints when the nuke is launched into orbit.
   Bugfixes:
-    - Fixed that the charging rod's GUI would briefly show on other accumulators in multiplayer games.
+    - Fixed that the charging rod's GUI could briefly show on other accumulators in multiplayer games.
   Compatibility:
     - Added incompatibility mark with Bob's Mods that cause the player to get softlocked on Cerys.
 ---------------------------------------------------------------------------------------------------
