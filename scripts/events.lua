@@ -359,9 +359,9 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		end
 
 		local p2 = {
-			x = p.x + (math.random() - 0.5),
-			y = p.y - 3 + (math.random() - 0.5),
-		}
+			x = p.x + 0.6,
+			y = p.y - 1.44 + (math.random() - 0.5),
+		} -- Update Factoriopedia simulation if updating this
 
 		local r = rendering.draw_sprite({
 			sprite = "cerys-solar-wind-particle-ghost",

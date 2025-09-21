@@ -327,7 +327,7 @@ data:extend({
 			{ type = "item", name = "heat-pipe", amount = 1 },
 		} or { { type = "item", name = "cerys-nuclear-scrap", amount = 12 } },
 		results = {
-			{ type = "item", name = "fulgoran-cryogenics-progress", amount = 1 },
+			{ type = "item", name = "cerys-discover-fulgoran-cryogenics", amount = 1 },
 		},
 		allow_quality = false,
 		allow_productivity = false,

@@ -15,16 +15,16 @@ data:extend({
 		corpse = "lightning-rod-remnants",
 		dying_explosion = "medium-electric-pole-explosion",
 		-- icon_draw_specification = { shift = { 0, -0.3 } },
-		collision_box = { { -0.35, -0.35 }, { 0.35, 0.35 } },
-		selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
+		collision_box = { { -0.15, -0.15 }, { 0.15, 0.15 } },
+		selection_box = { { -0.5, -0.6 }, { 0.5, 0.5 } },
 		damaged_trigger_effect = hit_effects.entity({ { -0.2, -2.2 }, { 0.2, 0.2 } }),
 		fast_replaceable_group = "cerys-solar-ghost-maker",
 		factoriopedia_simulation = {
 			length = 240,
 			init = [[
 				require("__core__/lualib/story")
-				game.simulation.camera_zoom = 1.6
-				game.simulation.camera_position = {0, -2}
+				game.simulation.camera_zoom = 2.7
+				game.simulation.camera_position = {0, -1}
 				game.surfaces[1].create_entity{name = "cerys-solar-ghost-maker", position = {-0.5 + (math.random() - 0.5), -0.5 + (math.random() - 0.5)}}
 
 				storage.cerys = {}
@@ -42,13 +42,13 @@ data:extend({
 				if game.tick % 60 == 0 then
 					local r = rendering.draw_sprite({
 						sprite = "cerys-solar-wind-particle-ghost",
-						target = { x = 0, y = -3.5 },
+						target = { x = 0.1, y = -1.94 },
 						surface = game.surfaces[1],
 						render_layer = "air-object",
 					})
 
 					local spd = ]] .. common.PARTICLE_SIMULATION_SPEED .. [[
-					local x_velocity = 0.3 * spd + math.random() * 0.1 / 3 * spd
+					local x_velocity = 0.15 * spd + math.random() * 0.1 / 3 * spd
 					local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * spd
 
 					table.insert(storage.cerys.solar_wind_particles, {
@@ -58,22 +58,19 @@ data:extend({
 				end
         	]],
 		},
-		drawing_box_vertical_extension = 3,
+		drawing_box_vertical_extension = 1.5,
 		graphics_set = {
 			animation = {
 				layers = {
-					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower-ghost-variant", {
+					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/solar-ghost-maker/111", {
 						priority = "high",
-						scale = 0.27 * 0.5,
-						multiply_shift = 0.5,
+						scale = 0.19,
 						repeat_count = 1,
-						-- tint = { 0.8, 1, 0.8, 1 },
 					}),
-					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/shadow", {
+					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/solar-ghost-maker/111shadow", {
 						priority = "high",
 						draw_as_shadow = true,
-						scale = 0.27 * 0.5,
-						multiply_shift = 0.5,
+						scale = 0.19,
 						repeat_count = 1,
 					}),
 				},

@@ -85,8 +85,8 @@ data:extend({
 		prerequisites = { "cerys-nuclear-scrap-recycling" },
 		research_trigger = {
 			type = "craft-item",
-			item = "fulgoran-cryogenics-progress",
-			count = 1,
+			item = "cerys-discover-fulgoran-cryogenics",
+			count = 10,
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 		icon_size = 256,

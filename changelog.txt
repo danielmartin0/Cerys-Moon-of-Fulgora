@@ -1,14 +1,19 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.0
 Date: 2025-09-18
+  Info:
+    - This release will add support for Factorio 2.0.67 (experimental). Players upgrading their client will need to update Cerys to this version.
+  Graphics:
+    - New graphics for the Ghost charged particle maker.
+    - Higher-resolution graphics for the flowing lights on charging rods.
+    - Adjusted the appearance of minable resources when using high values on the map sliders.
   Changes:
-    - The Kofi toast now prints when the player launches the nuke into orbit.
+    - The Fulgoran cryogenics technology no longer needs to be selected to be researched.
+    - The Kofi toast now prints when the nuke is launched into orbit.
   Bugfixes:
     - Fixed that the charging rod's GUI would briefly show on other accumulators in multiplayer games.
-  Graphics:
-    - Adjusted the appearance of minable resources when using high values on the map sliders.
   Compatibility:
-    - Added incompatibility mark with Bob's Mods that cause a softlock for the player on Cerys.
+    - Added incompatibility mark with Bob's Mods that cause the player to get softlocked on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.4
 Date: 2025-09-18
