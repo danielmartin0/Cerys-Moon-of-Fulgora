@@ -406,6 +406,8 @@ function Public.upgrading_existing_reactor(surface, reactor_entity, player, new_
 	if reactor_entity and reactor_entity.valid then
 		reactor_entity.destroy()
 	end
+
+	player.cursor_stack.set_stack(nil)
 end
 
 return Public

@@ -98,7 +98,7 @@ data:extend({
 			},
 		},
 		radius_visualisation_specification = {
-			distance = 13,
+			distance = 13.5, -- Extra 0.5 because the hidden reactor sits at the middle of a tile
 			sprite = {
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
 				tint = { r = 1, g = 0, b = 0, a = 0.5 },

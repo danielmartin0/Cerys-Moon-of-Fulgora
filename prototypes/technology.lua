@@ -2,6 +2,12 @@ local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
 
+local function correct(count)
+	local multiplier = settings.startup["cerys-undo-marathon-multiplier"].value
+
+	return math.ceil(count / multiplier)
+end
+
 data:extend({
 	{
 		type = "technology",
@@ -86,11 +92,10 @@ data:extend({
 		research_trigger = {
 			type = "craft-item",
 			item = "cerys-discover-fulgoran-cryogenics",
-			count = 10,
+			count = correct(10),
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 		icon_size = 256,
-		allows_productivity = false,
 	},
 	{
 		type = "technology",
@@ -118,7 +123,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-electromagnetic-tooling",
 		unit = {
-			count = 20,
+			count = correct(20),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "space-science-pack", 1 },
@@ -161,7 +166,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
 		icon_size = 256,
 		unit = {
-			count = 120,
+			count = correct(120),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -194,7 +199,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-waste-processing.png",
 		icon_size = 256,
 		unit = {
-			count = 75,
+			count = correct(75),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -216,7 +221,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/lubricant-synthesis.png",
 		icon_size = 256,
 		unit = {
-			count = 100,
+			count = correct(100),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -249,7 +254,7 @@ data:extend({
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
 		),
 		unit = {
-			count = 100,
+			count = correct(100),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -280,7 +285,7 @@ data:extend({
 			"cerys-reactor-fuel",
 		},
 		unit = {
-			count = 2000,
+			count = correct(2000),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -314,7 +319,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 200,
+			count = correct(200),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -339,7 +344,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 50,
+			count = correct(50),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -372,7 +377,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-weaponry.png",
 		icon_size = 256,
 		unit = {
-			count = 500,
+			count = correct(500),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -463,10 +468,11 @@ local discovery_tech = {
 		"nuclear-power",
 		"kovarex-enrichment-process",
 		"productivity-module-2",
+		"speed-module-2",
 		"energy-shield-equipment", -- if removed, solar energy needs to be added
 	},
 	unit = {
-		count = 250,
+		count = correct(250),
 		ingredients = {
 			{ "automation-science-pack", 1 },
 			{ "logistic-science-pack", 1 },
@@ -505,7 +511,7 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
 		icon_size = 200,
 		unit = {
-			count = 2000,
+			count = correct(2000),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -555,7 +561,7 @@ data:extend({
 		effects = holmium_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 25,
+			count = correct(25),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -576,7 +582,7 @@ data:extend({
 		} },
 		prerequisites = { "cerys-holmium-plate-productivity-1" },
 		unit = {
-			count = 40,
+			count = correct(40),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
@@ -638,7 +644,7 @@ data:extend({
 		effects = engine_productivity_effects,
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = 25,
+			count = correct(25),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},
@@ -701,7 +707,7 @@ data:extend({
 			"cerysian-science-pack",
 		},
 		unit = {
-			count = 30,
+			count = correct(30),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 			},

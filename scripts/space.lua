@@ -384,7 +384,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 							local damage = (
 								settings.startup["cerys-high-damage-mode"]
 								and settings.startup["cerys-high-damage-mode"].value
-							)
+							) -- Setting stored in Cerys Start mod
 									and 80
 								or 5
 

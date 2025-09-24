@@ -14,6 +14,6 @@ for _, quality in pairs(data.raw.quality) do
 
 	data.raw.reactor["cerys-fulgoran-reactor"].custom_tooltip_fields[1].quality_values[quality.name] = {
 		"cerys.cooling-tooltip-value",
-		tostring(common.REACTOR_COOLING_PER_SECOND * (1 - 0.1 * quality.level)),
+		tostring(common.REACTOR_COOLING_PER_SECOND * math.max(0.2, 1 - 0.1 * quality.level)),
 	}
 end

@@ -1,30 +1,29 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.11.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.11.1
-Date: 2025-09-21
-  Graphics:
-    - Updated icon for the Ghost charged particle maker.
-  Compatibility:
-    - Marked Oarc Multiplayer Spawn as incompatible since the Fulgoran buildings on Cerys are associated to the 'player' force.
----------------------------------------------------------------------------------------------------
-Version: 4.11.0
-Date: 2025-09-21
+Version: 4.11.0-4.11.2
+Date: 2025-09-24
   Info:
-    - This release will add support for Factorio 2.0.67 (experimental). Players upgrading their client will need to update Cerys to this version.
+    - These releases add support for Factorio 2.0.67, handling a breaking change in the Factorio engine. Players upgrading their client to 2.0.67 or greater will need to update Cerys to v4.11.
+  Features:
+    - Added new mod setting 'Undo tech price multiplier for Cerys techs', which can be used to restore Cerys technologies to their original costs while playing 'marathon' games with a tech multiplier.
+  Changes:
+    - Adjusted the space map position of Cerys around Fulgora to collide less frequently with other routes.
+    - Added Speed module 2 as a Cerys moon discovery prerequisite.
+    - Fulgoran cryogenics is now a trigger technology, so can be researched without being specifically selected.
+    - The Kofi toast now prints when the nuke is launched into orbit.
+    - Increased the number of charging rods built before triggering a performance warning from 250 to 400.
   Graphics:
     - New graphics for the Ghost charged particle maker.
-    - Higher-resolution graphics for the flowing lights on charging rods.
+    - Improved graphics for the flowing lights on charging rods.
     - Adjusted the appearance of minable resources when using high values on the map sliders.
-  Changes:
-    - The Fulgoran cryogenics technology no longer needs to be selected to be researched.
-    - The Kofi toast now prints when the nuke is launched into orbit.
   Bugfixes:
     - Fixed that the charging rod's GUI could briefly show on other accumulators in multiplayer games.
+    - Fixed that the radius visualization shown on player-crafted radiative towers did not extend fully to the edge of tiles 13m away.
+    - Fixed that upgrading the quality of the Fulgoran reactor did not consume the player's scaffold from their cursor.
   Compatibility:
-    - Added incompatibility mark with Bob's Mods that cause the player to get softlocked on Cerys.
+    - Marked certain Bob's Mods as incompatible for now since they cause the player to get softlocked on Cerys.
+    - Marked Oarc Multiplayer Spawn as incompatible for now since the Fulgoran buildings on Cerys are associated to the 'player' force.
+    - Marked Janus as incompatible for now as this mod currently interferes with water tiles on Cerys by destroying their unique collision mask.
+    - Marked Automated Crushers as incompatible for now as this mod prevents Fulgoran crushers on Cerys from working.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.4
 Date: 2025-09-18

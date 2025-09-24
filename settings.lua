@@ -14,6 +14,15 @@ data:extend({
 		order = "b",
 	},
 	{
+		type = "double-setting",
+		name = "cerys-undo-marathon-multiplier",
+		setting_type = "startup",
+		default_value = 1.0,
+		minimum_value = 0.1,
+		maximum_value = 100000.0,
+		order = "c",
+	},
+	{
 		type = "bool-setting",
 		name = "cerys-infinite-braking-technology",
 		setting_type = "startup",

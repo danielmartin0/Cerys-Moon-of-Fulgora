@@ -47,7 +47,7 @@ Public.built_charging_rod = function(entity, tags)
 			end
 		end
 
-		if registered_charging_rod_count >= 250 then
+		if registered_charging_rod_count >= 400 then
 			storage.cerys.given_charging_rod_performance_warning = true
 
 			game.print({

@@ -98,7 +98,7 @@ function Public.tick_60_cool_heat_entities()
 end
 
 function Public.cool_reactor(reactor_entity, tick_interval)
-	local rate = common.REACTOR_COOLING_PER_SECOND * (1 - 0.1 * reactor_entity.quality.level)
+	local rate = common.REACTOR_COOLING_PER_SECOND * math.max(0.2, 1 - 0.1 * reactor_entity.quality.level)
 	local cooling_amount = rate * (tick_interval / 60)
 
 	cool_entity(reactor_entity, cooling_amount)
