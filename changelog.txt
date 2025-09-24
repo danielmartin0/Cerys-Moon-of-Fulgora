@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.11.3
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.11.0-4.11.2
+Version: 4.11.0-4.11.3
 Date: 2025-09-24
   Info:
     - These releases add support for Factorio 2.0.67, handling a breaking change in the Factorio engine. Players upgrading their client to 2.0.67 or greater will need to update Cerys to v4.11.
@@ -53,16 +49,6 @@ Date: 2025-09-11
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.0
 Date: 2025-09-10
-  Info:
-    - Version 4 summary for returning players:
-      ► Red+Yellow science replaced by White science, simplifying research.
-      ► New 'Radioactive module' reward.
-      ► Greater freedom in tech tree progression.
-      ► Many gameplay tweaks to reduce grind.
-      ► A new 'Ghost charged particle maker' entity for testing purposes.
-      ► Charged particles now evaporate if they are sufficiently slow.
-      ► Minor breaking changes to recipes for: charging rod, hydrogen bomb.
-      ► Cargo drop tech is now 'Blast a hole in the magnetosphere' and requires launching a hydrogen bomb to orbit.
   Changes:
     - Concrete can now be placed on shallow water on Cerys.
     - Fulgoran crusher wrecks no longer have a module slot (matching the repaired entity).
