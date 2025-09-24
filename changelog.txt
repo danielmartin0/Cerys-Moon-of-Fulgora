@@ -24,6 +24,8 @@ Date: 2025-09-24
     - Marked Oarc Multiplayer Spawn as incompatible for now since the Fulgoran buildings on Cerys are associated to the 'player' force.
     - Marked Janus as incompatible for now as this mod currently interferes with water tiles on Cerys by destroying their unique collision mask.
     - Marked Automated Crushers as incompatible for now as this mod prevents Fulgoran crushers on Cerys from working.
+  Locale:
+    - German translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.10.4
 Date: 2025-09-18
