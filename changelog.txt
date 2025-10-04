@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.0
-Date: 2025-10-03
+Date: 2025-10-04
   Balancing:
     - Buffed the productivity bonus of Radioactive modules by two percentage points (and the decayed form by one percentage point).
     - Rebalancing tweaks to Mineral leaching: this recipe now requires more sulfuric acid (nerf) but produces extra iron ore (buff). The latter change helps indicate that this recipe is a good source of iron.
