@@ -25,7 +25,7 @@ function Public.tick_1_update_background_renderings(surface)
 			local on_cerys = player.surface.name == "cerys"
 			local r = storage.background_renderings[player.index]
 
-			if on_cerys then
+			if on_cerys and helpers.is_valid_sprite_path("fulgora-background") then
 				local stretch = lib.get_cerys_surface_stretch_factor(surface)
 				local planet_stretch = stretch
 				local extra_y_offset = -5 * (stretch - 1)

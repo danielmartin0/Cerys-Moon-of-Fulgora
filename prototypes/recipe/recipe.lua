@@ -98,9 +98,15 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-space-science-pack-from-methane-ice",
+		localised_name = {
+			"",
+			{ common_data.K2_INSTALLED and "item-name.kr-space-research-data" or "item-name.space-science-pack" },
+			{ "cerys.from-methane-ice" },
+		},
 		icons = {
 			{
-				icon = "__base__/graphics/icons/space-science-pack.png",
+				icon = common_data.K2_INSTALLED and "__Krastorio2Assets__/icons/cards/space-research-data.png"
+					or "__base__/graphics/icons/space-science-pack.png",
 				icon_size = 64,
 				scale = 0.65,
 				shift = { 2, 2 },
@@ -122,10 +128,14 @@ data:extend({
 		},
 		energy_required = 7.5,
 		results = {
-			{ type = "item", name = "space-science-pack", amount = 1 },
+			{
+				type = "item",
+				name = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
+				amount = 1,
+			},
 		},
 		allow_productivity = true,
-		main_product = "space-science-pack",
+		main_product = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
 		category = "fulgoran-cryogenics",
 		subgroup = "science-pack",
 		order = "g[space-science-pack]-b[from-methane-ice]",
@@ -375,13 +385,13 @@ data:extend({
 		subgroup = "cerys-processes",
 		order = "c",
 		auto_recycle = false,
-		energy_required = 12,
+		energy_required = 16,
 		ingredients = {
-			{ type = "item", name = "methane-ice", amount = 50 },
+			{ type = "item", name = "methane-ice", amount = 100 },
 		},
 		results = {
-			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "fluid", name = "methane", amount = 100 },
+			{ type = "fluid", name = "light-oil", amount = 100 },
+			{ type = "fluid", name = "methane", amount = 200 },
 		},
 		allow_productivity = true,
 		enabled = false,
@@ -399,15 +409,15 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-nitrogen-rich-mineral-processing.png",
 		icon_size = 64,
 		category = "fulgoran-cryogenics",
-		energy_required = 1,
+		energy_required = 2,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 40 or 20 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 100 or 50 }, -- 1 iron => 50 sulfuric acid.
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
-			{ type = "item", name = "iron-ore", amount = 1 },
-			{ type = "fluid", name = "ammonia", amount = 20 },
+			{ type = "item", name = "iron-ore", amount = 2 },
+			{ type = "fluid", name = "ammonia", amount = 50 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",
@@ -468,3 +478,48 @@ data:extend({
 		hide_from_signal_gui = false,
 	},
 })
+
+if common_data.K2_INSTALLED then
+	data:extend({
+		{
+			type = "recipe",
+			name = "kr-cerysian-research-data",
+			always_show_made_in = true,
+			category = "fulgoran-cryogenics",
+			enabled = false,
+			energy_required = 20,
+			ingredients = data.raw.recipe["cerysian-science-pack"].ingredients,
+			results = { { type = "item", name = "kr-cerysian-research-data", amount = 1 } },
+			surface_conditions = {
+				common.AMBIENT_RADIATION_MIN,
+			},
+			allow_productivity = true,
+		},
+	})
+
+	-- Overwrite the science pack recipe:
+	data.raw.recipe["cerysian-science-pack"] = nil
+	data:extend({
+		{
+			type = "recipe",
+			name = "cerysian-science-pack",
+			localised_name = {
+				"cerys.kr-cerysian-tech-card",
+			},
+			always_show_made_in = true,
+			enabled = false,
+			energy_required = 20,
+			ingredients = {
+				{ type = "item", name = "kr-cerysian-research-data", amount = 5 },
+				{ type = "item", name = "kr-blank-tech-card", amount = 5 },
+			},
+			results = {
+				{ type = "item", name = "cerysian-science-pack", amount = 5 },
+			},
+			surface_conditions = {
+				common.AMBIENT_RADIATION_MIN,
+			},
+			allow_productivity = true,
+		},
+	})
+end

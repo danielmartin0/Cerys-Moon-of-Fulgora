@@ -16,19 +16,22 @@ if mods["any-planet-start"] then
 	end
 
 	for i = #discovery_tech.prerequisites, 1, -1 do
-		if discovery_tech.prerequisites[i] == "nuclear-power" then
-			table.remove(discovery_tech.prerequisites, i)
-		elseif discovery_tech.prerequisites[i] == "kovarex-enrichment-process" then
+		local prereq = discovery_tech.prerequisites[i]
+		if prereq == "nuclear-power" or prereq == "kovarex-enrichment-process" then
 			table.remove(discovery_tech.prerequisites, i)
 		end
 	end
 
-	table.insert(discovery_tech.effects, {
-		type = "unlock-recipe",
-		recipe = "heat-exchanger",
-	})
-	table.insert(discovery_tech.effects, {
-		type = "unlock-recipe",
-		recipe = "kovarex-enrichment-process",
-	})
+	if data.raw.recipe["heat-exchanger"] then
+		table.insert(discovery_tech.effects, {
+			type = "unlock-recipe",
+			recipe = "heat-exchanger",
+		})
+	end
+	if data.raw.recipe["kovarex-enrichment-process"] then
+		table.insert(discovery_tech.effects, {
+			type = "unlock-recipe",
+			recipe = "kovarex-enrichment-process",
+		})
+	end
 end

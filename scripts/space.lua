@@ -498,10 +498,10 @@ function Public.irradiation_chance_effect(surface, position)
 	surface.play_sound({
 		path = "cerys-radiation-exposure",
 		position = position,
-		volume_modifier = 0.13,
+		volume_modifier = 0.12,
 	})
 
-	for _ = 1, 9 do
+	for _ = 1, 8 do
 		surface.create_particle({
 			name = "solar-wind-exposure-particle",
 			position = {
@@ -581,6 +581,10 @@ end
 
 local function asteroids_to_drops()
 	local scale = math.floor(math.max(math.min(game.difficulty_settings.technology_price_multiplier, 20), 1))
+
+	-- if script.active_mods["Krastorio2-spaced-out"] or script.active_mods["Krastorio2"] then
+	-- 	scale = scale * 2
+	-- end
 
 	return {
 		["small-metallic-asteroid-planetary"] = { ["metallic-asteroid-chunk"] = scale },

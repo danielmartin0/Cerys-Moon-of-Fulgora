@@ -1,3 +1,4 @@
+local common_data = require("common-data-only")
 local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
@@ -88,8 +89,26 @@ data:extend({
 	{
 		type = "module",
 		name = "cerys-overclock-module",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module-full.png",
 		icon_size = 64,
+		pictures = {
+			sheet = {
+				layers = {
+					{
+						size = 64,
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module-full.png",
+						scale = 0.5,
+					},
+					{
+						draw_as_glow = true,
+						blend_mode = "additive",
+						size = 64,
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module-lightning.png",
+						scale = 0.5,
+					},
+				},
+			},
+		},
 		subgroup = "module",
 		order = "a[speed]-d[speed-module-4]-a[overclock-module]",
 		color_hint = { text = "S" },
@@ -118,8 +137,26 @@ data:extend({
 	{
 		type = "module",
 		name = "cerys-radioactive-module-charged",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-full.png",
 		icon_size = 64,
+		pictures = {
+			sheet = {
+				layers = {
+					{
+						size = 64,
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-full.png",
+						scale = 0.5,
+					},
+					{
+						draw_as_glow = true,
+						blend_mode = "additive",
+						size = 64,
+						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-glow.png",
+						scale = 0.5,
+					},
+				},
+			},
+		},
 		subgroup = "module",
 		order = "c[productivity]-d[productivity-module-4]-a[radioactive-module]-a[charged]",
 		color_hint = { text = "P" },
@@ -131,7 +168,7 @@ data:extend({
 		stack_size = 50,
 		weight = 20 * 1000,
 		effect = {
-			productivity = 0.16,
+			productivity = 0.18,
 			consumption = 1,
 			pollution = 0.14,
 			speed = -0.2,
@@ -166,12 +203,15 @@ data:extend({
 	{
 		type = "tool",
 		name = "cerysian-science-pack",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
+		localised_name = common_data.K2_INSTALLED and { "cerys.kr-cerysian-tech-card" } or nil,
+		icon = common_data.K2_INSTALLED and "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-tech-card.png"
+			or "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
 		icon_size = 64,
 		color_hint = { text = "R" },
 		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
 		subgroup = "science-pack",
-		order = "a[automation-science-pack]-b[cerysian-science-pack]",
+		order = common_data.K2_INSTALLED and "b02[automation-tech-card]-b"
+			or "a[automation-science-pack]-b[cerysian-science-pack]",
 		default_import_location = "cerys",
 		inventory_move_sound = item_sounds.science_inventory_move,
 		pick_sound = item_sounds.science_inventory_pickup,
@@ -757,3 +797,18 @@ data:extend({
 		weight = 100 * 1000,
 	},
 })
+
+if common_data.K2_INSTALLED then
+	data:extend({
+		{
+			type = "item",
+			name = "kr-cerysian-research-data",
+			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-research-data.png",
+			subgroup = "science-pack",
+			order = "a0c[cerysian-research-data]",
+			stack_size = 200,
+			weight = 1 * kg,
+			default_import_location = "cerys",
+		},
+	})
+end

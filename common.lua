@@ -50,7 +50,7 @@ Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 1000 or 400
 Public.SOLAR_IMAGE_CIRCLE_SIZE = 2400 -- Not an exact science
 Public.SOLAR_IMAGE_SIZE = 4096
 Public.REPROCESSING_U238_TO_U235_RATIO = 10
-Public.TELEPORTER_POSITION = { x = -64.5, y = -48.5 }
+Public.TELEPORTER_POSITION = { x = -64.5, y = -40.5 } -- Tuned so that multiple towers heat it, even on Hard Cerys
 
 Public.WARN_COLOR = { r = 255, g = 90, b = 54 }
 Public.FRIENDLY_COLOR = { r = 227, g = 250, b = 192 }

@@ -1,6 +1,6 @@
 {
     "name": "Cerys-Moon-of-Fulgora",
-    "version": "4.11.4",
+    "version": "4.12.0",
     "factorio_version": "2.0",
     "title": "Cerys",
     "author": "thesixthroc",
@@ -13,14 +13,12 @@
         "Flare Stack >= 4.0.2",
         "PlanetsLib >= 1.11.0",
         "bplib >= 1.1.2",
-        "? Krastorio2-spaced-out >= 1.3.5",
+        "? Krastorio2-spaced-out >= 1.4.19",
         "? visible-planets >= 1.2.11",
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",
         "(?) maraxsis",
         "(?) rso-mod",
-        "! bobplates",
-        "! boblogistics",
         "! oarc-mod",
         "! janus",
         "! AutomatedCrushers"

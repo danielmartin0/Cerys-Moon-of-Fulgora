@@ -1,6 +1,9 @@
+local common_data = require("common-data-only")
+
 local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
 	local fulgoran_ruin_mining_time = 0.25 * collision_area ^ 0.75
+	local K2_Installed = common_data.K2_INSTALLED
 
 	local results = {
 		mining_particle = "stone-particle",
@@ -9,8 +12,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "iron-gear-wheel",
-				amount_min = math.ceil(collision_area * 1.9),
-				amount_max = math.ceil(collision_area * 2.1),
+				amount_min = math.ceil(collision_area * 1.9 * (K2_Installed and 1.5 or 1)),
+				amount_max = math.ceil(collision_area * 2.1 * (K2_Installed and 1.5 or 1)),
 			},
 			{
 				type = "item",

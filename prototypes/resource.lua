@@ -59,7 +59,7 @@ data:extend({
 		name = "cerys-nitrogen-rich-minerals",
 		order = "w-b[nuclear-scrap]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
-			mining_time = 2.5,
+			mining_time = 4,
 			result = "cerys-nitrogen-rich-minerals",
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals.png",

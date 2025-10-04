@@ -1,6 +1,7 @@
+local common_data = require("common-data-only")
 local common = require("common")
 
-local CIV_AGE_MY = 2000
+local CIV_AGE_MY = 1750
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
@@ -51,6 +52,26 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["centrifuge"] = 0.17, -- per each: 25 iron gear, 12.5 steel plate, 25 concrete, 25 red circuit
 	["uranium-235"] = U238_AMOUNT * U235_RATIO,
 }
+
+if common_data.K2_INSTALLED then
+	RECYCLING_PROBABILITIES_PERCENT["low-density-structure"] = 0.8
+end
+
+-- Sort the table descending by value
+do
+	local t = {}
+	for k, v in pairs(RECYCLING_PROBABILITIES_PERCENT) do
+		table.insert(t, { k, v })
+	end
+	table.sort(t, function(a, b)
+		return a[2] > b[2]
+	end)
+	local sorted = {}
+	for _, pair in ipairs(t) do
+		sorted[pair[1]] = pair[2]
+	end
+	RECYCLING_PROBABILITIES_PERCENT = sorted
+end
 
 for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 	table.insert(data.raw.recipe["cerys-nuclear-scrap-recycling"].results, {

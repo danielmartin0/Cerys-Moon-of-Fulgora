@@ -1,7 +1,26 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.11.4
-Date: ????
+Version: 4.12.0
+Date: 2025-10-03
+  Balancing:
+    - Buffed the productivity bonus of Radioactive modules by two percentage points (and the decayed form by one percentage point).
+    - Rebalancing tweaks to Mineral leaching: this recipe now requires more sulfuric acid (nerf) but produces extra iron ore (buff). The latter change helps indicate that this recipe is a good source of iron.
+    - Further increased the mining time of nitrogen-rich minerals.
+    - Slightly increased U235 from nuclear scrap recycling.
+    - Throughput of methane ice dissociation recipe increased.
+    - Fulgoran cryoplant crafting speed quality scaling nerfed from 40% to 30% per level.
   Changes:
+    - The mod setting 'Prevent recycling recipe overrides' no longer affects beacons.
+  Graphics:
+    - New graphics for the Overclock module and Radioactive module.
+  Compatibility:
+    - Removed incompatibility marks for Bob's Logistics and Bob's Plates (compatibility patches are being inserted in those mods).
+    - Krastorio 2 Spaced Out: (Breaking change) 'Space science pack from methane ice' and 'Reverse-engineered science pack' are now both replaced by the standard K2 form of research.
+    - Krastorio 2 Spaced Out: (Breaking change) Nuclear scrap recycling now produces LDS. This supplements the copper needed for automation cores and reduces the demand for plastic which is very difficult to obtain.
+    - Krastorio 2 Spaced Out: New icons and names for the science recipes on Cerys.
+    - Krastorio 2 Spaced Out: The 'Prevent recycling recipe overrides' setting no longer reverts the heat pipe recycling recipe to vanilla when K2SO is installed.
+    - Krastorio 2 Spaced Out: Cerysian ruins now drop extra iron gear wheels (+50%).
+    - If Fulgora has been deleted, Cerys no longer tries to orbit another planet with lightning (this led to undesired behavior with the Shattered Planet mod).
+    - Corrected the planet displayed behind Cerys in cases where another mod makes Cerys orbit a celestial body other than Fulgora.
 ---------------------------------------------------------------------------------------------------
 Version: 4.11.0-4.11.3
 Date: 2025-09-24

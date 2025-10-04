@@ -7,22 +7,6 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 	}
 	data.raw["recipe"]["pipe-recycling"]["energy_required"] = 1 / 32
 
-	data.raw["recipe"]["heat-pipe-recycling"]["ingredients"] = { { type = "item", name = "heat-pipe", amount = 1 } }
-	data.raw["recipe"]["heat-pipe-recycling"]["results"] = {
-		{ type = "item", name = "steel-plate", amount = 2, extra_count_fraction = 0.5 },
-		{ type = "item", name = "copper-plate", amount = 5 },
-	}
-	data.raw["recipe"]["heat-pipe-recycling"]["energy_required"] = 1 / 16
-
-	data.raw["recipe"]["beacon-recycling"]["ingredients"] = { { type = "item", name = "beacon", amount = 1 } }
-	data.raw["recipe"]["beacon-recycling"]["results"] = {
-		{ type = "item", name = "electronic-circuit", amount = 5 },
-		{ type = "item", name = "advanced-circuit", amount = 5 },
-		{ type = "item", name = "steel-plate", amount = 2, extra_count_fraction = 0.5 },
-		{ type = "item", name = "copper-cable", amount = 2, extra_count_fraction = 0.5 },
-	}
-	data.raw["recipe"]["beacon-recycling"]["energy_required"] = 0.9375
-
 	data.raw["recipe"]["centrifuge-recycling"]["ingredients"] = { { type = "item", name = "centrifuge", amount = 1 } }
 	data.raw["recipe"]["centrifuge-recycling"]["results"] = {
 		{ type = "item", name = "concrete", amount = 25 },
@@ -100,6 +84,13 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		}
 		data.raw["recipe"]["kr-electronic-components-recycling"]["energy_required"] = 0.25
 	else
+		data.raw["recipe"]["heat-pipe-recycling"]["ingredients"] = { { type = "item", name = "heat-pipe", amount = 1 } }
+		data.raw["recipe"]["heat-pipe-recycling"]["results"] = {
+			{ type = "item", name = "steel-plate", amount = 2, extra_count_fraction = 0.5 },
+			{ type = "item", name = "copper-plate", amount = 5 },
+		}
+		data.raw["recipe"]["heat-pipe-recycling"]["energy_required"] = 1 / 16
+
 		data.raw["recipe"]["electronic-circuit-recycling"]["ingredients"] =
 			{ { type = "item", name = "electronic-circuit", amount = 1 } }
 		data.raw["recipe"]["electronic-circuit-recycling"]["results"] = {
