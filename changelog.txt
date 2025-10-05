@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.2
-Date: ????
+Date: 2025-10-05
   Compatibility:
     - Removed ALL incompatibility marks for this version, such that players upgrading into Factorio stable are guaranteed to have a version of Cerys that accounts for the breaking change in 2.0.67 while supporting their existing save.
 ---------------------------------------------------------------------------------------------------
