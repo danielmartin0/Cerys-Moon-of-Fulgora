@@ -3,6 +3,8 @@ Version: 4.12.1
 Date: 2025-10-05
   Bugfixes:
     - Fixed that with Krastorio 2 Spaced Out installed, Reverse-engineered research data was not unlockable.
+  Compatibility:
+    - Re-inserted incompatibility with Bob's Metals, Chemicals and Intermediates because the interaction between the recycling chains, resource provisions and Cerys gameplay has not been studied in a compatibility patch.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.0
 Date: 2025-10-04
