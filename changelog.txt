@@ -1,10 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.2
 Date: ????
-  Changes:
+  Compatibility:
+    - Removed ALL incompatibility marks for this version, such that players upgrading into Factorio stable are guaranteed to have a version of Cerys that accounts for the breaking change in 2.0.67 while supporting their existing save.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.1
 Date: 2025-10-05
+  Changes:
+    - Added new prerequisites to the optional 'Applications of radioactivity' technology: Uranium ammo, Portable fission reactor.
   Bugfixes:
     - Fixed that with Krastorio 2 Spaced Out installed, Reverse-engineered research data was not unlockable.
   Compatibility:

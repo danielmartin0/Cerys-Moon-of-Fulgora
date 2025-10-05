@@ -18,11 +18,7 @@
         "(?) PlutoniumEnergy",
         "(?) limit-special-building-surfaces",
         "(?) maraxsis",
-        "(?) rso-mod",
-        "! bobplates",
-        "! oarc-mod",
-        "! janus",
-        "! AutomatedCrushers"
+        "(?) rso-mod"
     ],
     "space_travel_required": true,
     "freezing_required": true,

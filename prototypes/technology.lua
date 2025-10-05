@@ -211,40 +211,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-applications-of-radioactivity",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "mixed-oxide-reactor-equipment",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "plutonium-rounds-magazine",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "plutonium-fuel",
-			},
-		},
-		prerequisites = {
-			"cerys-mixed-oxide-waste-reprocessing",
-		},
-		icons = util.technology_icon_constant_equipment(
-			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
-		),
-		unit = {
-			count = correct(100),
-			ingredients = {
-				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
-				{ "space-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-mixed-oxide-reactors",
 		icons = util.technology_icon_constant_recipe_productivity(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/mixed-oxide-reactor.png"
@@ -367,6 +333,49 @@ data:extend({
 		allows_productivity = false,
 	},
 })
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerys-applications-of-radioactivity",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "mixed-oxide-reactor-equipment",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "plutonium-rounds-magazine",
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "plutonium-fuel",
+			},
+		},
+		prerequisites = {
+			"cerys-mixed-oxide-waste-reprocessing",
+		},
+		icons = util.technology_icon_constant_equipment(
+			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
+		),
+		unit = {
+			count = correct(100),
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
+			},
+			time = 60,
+		},
+		allows_productivity = false,
+	},
+})
+if data.raw.technology["uranium-ammo"] then
+	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].prerequisites, "uranium-ammo")
+end
+if data.raw.technology["fission-reactor-equipment"] then
+	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].prerequisites, "fission-reactor-equipment")
+end
 
 data:extend({
 	{
