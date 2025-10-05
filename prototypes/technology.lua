@@ -1,3 +1,4 @@
+local common_data = require("common-data-only")
 local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
@@ -96,28 +97,6 @@ data:extend({
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 		icon_size = 256,
-	},
-	{
-		type = "technology",
-		name = "cerysian-science-pack",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-lab",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerysian-science-pack",
-			},
-		},
-		prerequisites = { "cerys-fulgoran-cryogenics", "cerys-nitrogen-rich-mineral-processing" },
-		research_trigger = {
-			type = "craft-fluid",
-			fluid = "methane",
-		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerysian-science-pack.png",
-		icon_size = 256,
-		essential = true,
 	},
 	{
 		type = "technology",
@@ -387,6 +366,37 @@ data:extend({
 		},
 		allows_productivity = false,
 	},
+})
+
+data:extend({
+	{
+		type = "technology",
+		name = "cerysian-science-pack",
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-lab",
+			},
+		},
+		prerequisites = { "cerys-fulgoran-cryogenics", "cerys-nitrogen-rich-mineral-processing" },
+		research_trigger = {
+			type = "craft-fluid",
+			fluid = "methane",
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerysian-science-pack.png",
+		icon_size = 256,
+		essential = true,
+	},
+})
+if common_data.K2_INSTALLED then
+	table.insert(data.raw.technology["cerysian-science-pack"].effects, {
+		type = "unlock-recipe",
+		recipe = "kr-cerysian-research-data",
+	})
+end
+table.insert(data.raw.technology["cerysian-science-pack"].effects, {
+	type = "unlock-recipe",
+	recipe = "cerysian-science-pack",
 })
 
 local CARGO_DROPS_PREREQS = { "cerys-plutonium-weaponry", "cerys-lubricant-synthesis" }

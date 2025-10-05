@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.12.1
+Date: 2025-10-05
+  Bugfixes:
+    - Fixed that with Krastorio 2 Spaced Out installed, Reverse-engineered research data was not unlockable.
+---------------------------------------------------------------------------------------------------
 Version: 4.12.0
 Date: 2025-10-04
   Balancing:
