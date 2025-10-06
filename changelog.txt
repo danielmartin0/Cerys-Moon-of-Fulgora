@@ -6,8 +6,8 @@ Date: ????
   Optimizations:
     - Improved performance of cryogenic plants and crushers.
   Compatibility:
+    - Cerys machines placed on other surfaces by mods or the map editor can now properly have their quality upgraded.
     - Machine wrecks placed on Cerys by other mods now function properly.
-    - Repaired Cerys machines placed by mods or the map editor now function properly.
     - The prerequisites of Applications of radioactivity introduced in 4.12.1 no longer apply if Any Planet Start is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.3
