@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.4
-Date: ????
+Date: 2025-10-06
   Graphics:
     - Improved icons for Overclock module and Ghost charged particle maker.
   Optimizations:
