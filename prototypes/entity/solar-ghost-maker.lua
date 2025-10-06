@@ -8,7 +8,7 @@ data:extend({
 		type = "assembling-machine",
 		name = "cerys-solar-ghost-maker",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/solar-ghost-maker.png",
-		icon_size = 190,
+		icon_size = 100,
 		flags = { "placeable-neutral", "placeable-player", "player-creation" },
 		minable = { mining_time = 0.05, result = "cerys-solar-ghost-maker" },
 		max_health = 80,

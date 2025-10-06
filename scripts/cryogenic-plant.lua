@@ -47,6 +47,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 				if e2 and e2.valid then
 					e2.minable_flag = false
 					e2.destructible = false
+					Public.register_cryogenic_plant(e2)
 				end
 
 				if e and e.valid then
@@ -118,7 +119,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 	end
 end
 
-Public.register_ancient_cryogenic_plant = function(entity, frozen)
+Public.register_broken_cryogenic_plant = function(entity, frozen)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -128,6 +129,15 @@ Public.register_ancient_cryogenic_plant = function(entity, frozen)
 		stage = frozen and Public.CRYO_WRECK_STAGE_ENUM.frozen or Public.CRYO_WRECK_STAGE_ENUM.needs_repair,
 		creation_tick = game.tick,
 	}
+end
+
+Public.register_cryogenic_plant = function(entity)
+	if not (entity and entity.valid) then
+		return
+	end
+
+	storage.cerys_fulgoran_cryoplants = storage.cerys_fulgoran_cryoplants or {}
+	storage.cerys_fulgoran_cryoplants[entity.unit_number] = entity
 end
 
 function Public.unfreeze_cryo_plant(surface, plant)
@@ -196,13 +206,16 @@ local CRAFTING_PROGRESS_THRESHOLD = 0.97 -- Since there's no API for completing 
 
 function Public.tick_20_check_cryo_quality_upgrades(surface)
 	storage.cerys.cryo_upgrade_monitor = storage.cerys.cryo_upgrade_monitor or {}
+	storage.cerys_fulgoran_cryoplants = storage.cerys_fulgoran_cryoplants or {}
 
-	local plants = surface.find_entities_filtered({
-		name = "cerys-fulgoran-cryogenic-plant",
-	})
+	for unit_number, crusher in pairs(storage.cerys_fulgoran_cryoplants) do
+		if not (crusher and crusher.valid) then
+			storage.cerys_fulgoran_cryoplants[unit_number] = nil
+		end
+	end
 
-	for _, plant in pairs(plants) do
-		storage.cerys.cryo_upgrade_monitor[plant.unit_number] = nil -- We'll re-add it shortly if we need to
+	for unit_number, plant in pairs(storage.cerys_fulgoran_cryoplants) do
+		storage.cerys.cryo_upgrade_monitor[unit_number] = nil -- We'll re-add it shortly if we need to
 
 		if plant and plant.valid then
 			local recipe, recipe_quality = plant.get_recipe()

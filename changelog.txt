@@ -1,7 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.4
 Date: ????
-  Changes:
+  Graphics:
+    - Small graphical improvements to icons for Overclock module and Ghost charged particle maker.
+  Optimizations:
+    - Small performance improvements to cryogenic plants and crushers.
+  Compatibility:
+    - Machine wrecks placed on Cerys by other mods now function properly.
+    - Repaired Cerys machines placed by mods or the map editor now function properly.
+    - Adjusted the prerequisites of Applications of radioactivity (introduced in 4.12.1) to no longer apply if Any Planet Start is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.3
 Date: 2025-10-05

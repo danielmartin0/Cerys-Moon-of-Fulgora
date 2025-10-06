@@ -73,8 +73,6 @@ script.on_event({
 		end
 
 		reactor_repair.scaffold_on_build(entity, player)
-	elseif entity.name == "cerys-fulgoran-crusher" or entity.name:match("^cerys%-fulgoran%-crusher%-quality%-") then
-		crusher.register_crusher(entity)
 	elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
 		teleporter.register_frozen_teleporter(entity)
 	elseif on_cerys and entity.type == "solar-panel" then
@@ -348,8 +346,22 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		radiative_towers.register_radiative_tower_contracted(entity)
 	elseif effect_id == "cerys-fulgoran-crusher-created" then
 		crusher.register_crusher(entity)
+	elseif effect_id == "cerys-fulgoran-cryogenic-plant-created" then
+		cryogenic_plant.register_cryogenic_plant(entity)
 	elseif effect_id == "cerys-player-radiative-tower-created" then
 		radiative_towers.register_player_radiative_tower(entity)
+	elseif effect_id == "cerys-fulgoran-cryogenic-plant-wreck-created" then
+		if entity.name == "cerys-fulgoran-cryogenic-plant-wreck-frozen" then
+			cryogenic_plant.register_broken_cryogenic_plant(entity, true)
+		else
+			cryogenic_plant.register_broken_cryogenic_plant(entity)
+		end
+	elseif effect_id == "cerys-fulgoran-crusher-wreck-created" then
+		if entity.name == "cerys-fulgoran-crusher-wreck-frozen" then
+			crusher.register_broken_crusher(entity, true)
+		else
+			crusher.register_broken_crusher(entity)
+		end
 	elseif effect_id == "cerys-create-solar-wind-particle-ghost" then
 		local p = entity.position
 		local surface = entity.surface

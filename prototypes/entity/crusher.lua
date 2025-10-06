@@ -169,6 +169,16 @@ local wreck = merge(crusher, {
 		fade_out_ticks = 20,
 	},
 	factoriopedia_alternative = "cerys-fulgoran-crusher",
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-crusher-wreck-created",
+			},
+		},
+	},
 })
 
 local wreck_frozen = merge(wreck, {

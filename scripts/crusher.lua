@@ -209,7 +209,7 @@ function Public.tick_15_check_broken_crushers(surface)
 	end
 end
 
-Public.register_ancient_crusher = function(entity, frozen)
+Public.register_broken_crusher = function(entity, frozen)
 	if not (entity and entity.valid) then
 		return
 	end

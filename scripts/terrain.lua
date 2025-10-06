@@ -391,7 +391,6 @@ function Public.create_cryo_plants(surface, area)
 				if e and e.valid then
 					e.minable_flag = false
 					e.destructible = false
-					cryogenic_plant.register_ancient_cryogenic_plant(e, true)
 				end
 			end
 		end
@@ -449,7 +448,6 @@ function Public.create_crushers(surface, area)
 				if e and e.valid then
 					e.minable_flag = false
 					e.destructible = false
-					crusher.register_ancient_crusher(e, true)
 				end
 			end
 		end

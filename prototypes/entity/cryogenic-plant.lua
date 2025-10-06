@@ -50,6 +50,16 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 		epic = 1.9,
 		legendary = 2.5,
 	},
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-cryogenic-plant-created",
+			},
+		},
+	},
 })
 
 -- TODO: Apart from the main image, some of the shifts are from the base game.
@@ -334,6 +344,16 @@ local wreck = merge(cryo_plant, {
 		fade_out_ticks = 20,
 	},
 	factoriopedia_alternative = "cerys-fulgoran-cryogenic-plant",
+	created_effect = {
+		type = "direct",
+		action_delivery = {
+			type = "instant",
+			source_effects = {
+				type = "script",
+				effect_id = "cerys-fulgoran-cryogenic-plant-wreck-created",
+			},
+		},
+	},
 })
 
 local wreck_frozen = merge(wreck, {

@@ -370,11 +370,16 @@ data:extend({
 		allows_productivity = false,
 	},
 })
-if data.raw.technology["uranium-ammo"] then
-	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].prerequisites, "uranium-ammo")
-end
-if data.raw.technology["fission-reactor-equipment"] then
-	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].prerequisites, "fission-reactor-equipment")
+if not mods["any-planet-start"] then
+	if data.raw.technology["uranium-ammo"] then
+		table.insert(data.raw.technology["cerys-applications-of-radioactivity"].prerequisites, "uranium-ammo")
+	end
+	if data.raw.technology["fission-reactor-equipment"] then
+		table.insert(
+			data.raw.technology["cerys-applications-of-radioactivity"].prerequisites,
+			"fission-reactor-equipment"
+		)
+	end
 end
 
 data:extend({
