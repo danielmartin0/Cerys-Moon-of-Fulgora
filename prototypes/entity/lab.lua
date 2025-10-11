@@ -4,6 +4,7 @@ local merge = lib.merge
 
 local cerys_lab = merge(data.raw.lab["lab"], {
 	name = "cerys-lab",
+	max_health = 250,
 	inputs = {
 		"cerysian-science-pack",
 		"logistic-science-pack",
