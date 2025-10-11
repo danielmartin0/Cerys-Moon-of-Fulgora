@@ -1,7 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.5
 Date: ????
-  Changes:
+  Compatibility:
+    - Krastorio 2 Spaced Out: Flare stacks from the Flare Stack mod are no longer obtainable when K2SO is installed.
+    - Organized Solar System: Adjusted the angle of Cerys around Fulgora to collide less frequently with other routes.
+  Graphics:
+    - Very minor graphical tweaks.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.4
 Date: 2025-10-06
@@ -63,7 +67,7 @@ Date: 2025-09-24
   Features:
     - Added new mod setting 'Undo tech price multiplier for Cerys techs', which can be used to restore Cerys technologies to their original costs while playing 'marathon' games with a tech multiplier.
   Changes:
-    - Adjusted the space map position of Cerys around Fulgora to collide less frequently with other routes.
+    - Adjusted the angle of Cerys around Fulgora to collide less frequently with other routes.
     - Added Speed module 2 as a Cerys moon discovery prerequisite.
     - Fulgoran cryogenics is now a trigger technology, so can be researched without being specifically selected.
     - The Kofi toast now prints when the nuke is launched into orbit.
