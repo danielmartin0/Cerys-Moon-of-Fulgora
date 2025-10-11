@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.5
-Date: ????
+Date: 2025-10-11
   Compatibility:
     - Krastorio 2 Spaced Out: Flare stacks from the Flare Stack mod are no longer obtainable when K2SO is installed.
     - Organized Solar System: Adjusted the angle of Cerys around Fulgora to collide less frequently with other routes.
