@@ -24,3 +24,12 @@ end
 if data.raw.technology["flare-stack-fluid-venting-tech"] then
 	data.raw.technology["flare-stack-fluid-venting-tech"].enabled = false
 end
+if data.raw.item["flare-stack"] then
+	data.raw.item["flare-stack"].hidden = true
+end
+if data.raw.furnace["flare-stack"] then
+	data.raw.furnace["flare-stack"].hidden = true
+end
+if data.raw.recipe["flare-stack"] then
+	data.raw.recipe["flare-stack"].hidden = true
+end
