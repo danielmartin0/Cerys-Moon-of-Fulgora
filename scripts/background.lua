@@ -30,13 +30,20 @@ function Public.tick_1_update_background_renderings(surface)
 				local planet_stretch = stretch
 				local extra_y_offset = -5 * (stretch - 1)
 
+				local center_of_screen = {
+					x = player.position.x,
+					y = player.position.y + player.flight_height,
+				}
+
+				local target_position = {
+					x = center_of_screen.x * PLANET_PARALLAX + PLANET_OFFSET.x,
+					y = center_of_screen.y * PLANET_PARALLAX + PLANET_OFFSET.y + extra_y_offset,
+				}
+
 				if not r then
 					storage.background_renderings[player.index] = rendering.draw_sprite({
 						sprite = "fulgora-background",
-						target = {
-							x = player.position.x + PLANET_OFFSET.x,
-							y = player.position.y + PLANET_OFFSET.y + extra_y_offset,
-						},
+						target = target_position,
 						surface = player.surface,
 						render_layer = "zero",
 						players = { player.index },
@@ -51,10 +58,7 @@ function Public.tick_1_update_background_renderings(surface)
 				end
 
 				if r.valid then
-					r.target = {
-						x = player.position.x * PLANET_PARALLAX + PLANET_OFFSET.x,
-						y = player.position.y * PLANET_PARALLAX + PLANET_OFFSET.y + extra_y_offset,
-					}
+					r.target = target_position
 				else
 					r.destroy()
 					storage.background_renderings[player.index] = nil

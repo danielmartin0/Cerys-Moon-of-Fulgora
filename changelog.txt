@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.7
 Date: ????
-  Changes:
+  Bugfixes:
+    - The background visual of Fulgora no longer oscillates if the player is flying with mech armor.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.6
 Date: 2025-10-11
