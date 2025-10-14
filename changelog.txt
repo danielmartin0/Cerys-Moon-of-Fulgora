@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.9
-Date: ????
+Date: 2025-10-14
   Graphics:
     - Fixed that the module technology icons became blurry on certain graphics settings.
   Optimizations:
