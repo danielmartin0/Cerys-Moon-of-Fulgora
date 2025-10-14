@@ -318,8 +318,8 @@ function Public.cerys_tick(surface, tick)
 		crusher.tick_20_check_crusher_quality_upgrades(surface)
 	end
 
-	if (tick + 15) % 60 == 0 then
-		cooling.tick_60_cool_heat_pipes()
+	if (tick + 3) % 30 == 0 then
+		cooling.tick_30_cool_heat_pipes()
 	end
 
 	if (tick + 30) % 60 == 0 then

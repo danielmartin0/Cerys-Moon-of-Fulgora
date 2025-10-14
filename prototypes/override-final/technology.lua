@@ -47,8 +47,8 @@ end
 --== Flare stack ==--
 
 if settings.startup["cerys-disable-flare-stack-item-venting"].value then
-	data.raw.technology["flare-stack-item-venting-electric-tech"].enabled = false
-	data.raw.technology["flare-stack-item-venting-tech"].enabled = false
+	data.raw.technology["flare-stack-item-venting-electric-tech"].hidden = true
+	data.raw.technology["flare-stack-item-venting-tech"].hidden = true
 end
 
 data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysian-science-pack" }

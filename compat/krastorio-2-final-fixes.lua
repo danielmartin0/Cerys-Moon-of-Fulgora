@@ -22,7 +22,7 @@ if data.raw.generator["kr-gas-power-station"] then
 end
 
 if data.raw.technology["flare-stack-fluid-venting-tech"] then
-	data.raw.technology["flare-stack-fluid-venting-tech"].enabled = false
+	data.raw.technology["flare-stack-fluid-venting-tech"].hidden = true
 end
 if data.raw.item["flare-stack"] then
 	data.raw.item["flare-stack"].hidden = true

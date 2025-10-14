@@ -126,35 +126,6 @@ data:extend({
 	},
 	{
 		type = "technology",
-		name = "cerys-advanced-structure-repair",
-		effects = {
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-fulgoran-reactor-scaffold",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
-			},
-			{
-				type = "unlock-recipe",
-				recipe = "cerys-upgrade-fulgoran-crusher-quality",
-			},
-		},
-		prerequisites = { "cerysian-science-pack" },
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
-		icon_size = 256,
-		unit = {
-			count = correct(120),
-			ingredients = {
-				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		allows_productivity = false,
-	},
-	{
-		type = "technology",
 		name = "cerys-mixed-oxide-waste-reprocessing",
 		effects = {
 			{
@@ -333,6 +304,40 @@ data:extend({
 		allows_productivity = false,
 	},
 })
+
+local advanced_structure_repair_tech = {
+	type = "technology",
+	name = "cerys-advanced-structure-repair",
+	effects = {
+		{
+			type = "unlock-recipe",
+			recipe = "cerys-fulgoran-reactor-scaffold",
+		},
+	},
+	prerequisites = { "cerysian-science-pack" },
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/advanced-structure-repair.png",
+	icon_size = 256,
+	unit = {
+		count = correct(120),
+		ingredients = {
+			{ "cerysian-science-pack", 1 },
+		},
+		time = 60,
+	},
+	allows_productivity = false,
+}
+if not mods["no-quality"] then
+	table.insert(advanced_structure_repair_tech.effects, {
+		type = "unlock-recipe",
+		recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",
+	})
+	table.insert(advanced_structure_repair_tech.effects, {
+		type = "unlock-recipe",
+		recipe = "cerys-upgrade-fulgoran-crusher-quality",
+	})
+end
+
+data:extend({ advanced_structure_repair_tech })
 
 data:extend({
 	{

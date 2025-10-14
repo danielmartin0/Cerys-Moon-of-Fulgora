@@ -53,7 +53,8 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		data.raw["recipe"]["electronic-circuit-recycling"]["ingredients"] =
 			{ { type = "item", name = "electronic-circuit", amount = 1 } }
 		data.raw["recipe"]["electronic-circuit-recycling"]["results"] = {
-			{ type = "item", name = "iron-plate", amount = 0, extra_count_fraction = 0.5 },
+			{ type = "item", name = "iron-plate", amount = 0, extra_count_fraction = 0.25 },
+			{ type = "item", name = "wood", amount = 0, extra_count_fraction = 0.25 },
 			{ type = "item", name = "copper-cable", amount = 1 },
 		}
 		data.raw["recipe"]["electronic-circuit-recycling"]["energy_required"] = 0.012

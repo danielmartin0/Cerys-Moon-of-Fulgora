@@ -9,7 +9,7 @@ data:extend({
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-huge"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-huge"].minable.mining_time * 0.1,
 			results = {
-				{ type = "item", name = "methane-ice", amount_min = 16, amount_max = 22 },
+				{ type = "item", name = "methane-ice", amount_min = 18, amount_max = 25 },
 			},
 		}),
 		autoplace = {
@@ -64,7 +64,7 @@ data:extend({
 		minable = merge(data.raw["simple-entity"]["lithium-iceberg-big"].minable, {
 			mining_time = data.raw["simple-entity"]["lithium-iceberg-big"].minable.mining_time * 0.1,
 			results = {
-				{ type = "item", name = "methane-ice", amount_min = 8, amount_max = 10 },
+				{ type = "item", name = "methane-ice", amount_min = 8, amount_max = 12 },
 			},
 		}),
 		autoplace = {

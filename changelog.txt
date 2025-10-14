@@ -1,14 +1,21 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.12.10
-Date: ????
-  Changes:
+Version: 4.13.0
+Date: 2025-10-15
+  Compatibility:
+    - Fixed that the compatibility with 'No Quality' was broken. 'No Quality' has been added as an optional dependency.
+    - Krastorio 2 Spaced Out: Fixed a bug where the 'Prevent certain recycling recipe overrides' setting forced electronic circuit recycling to match the second K2SO recipe (2 iron, 4 wire) rather than the first K2SO recipe used by the base mod (1 iron, 1 wood, 4 wire).
+    - When Cerys disables Flare Stack technologies it now sets hidden=true instead of enabled=false for better mod compatibility.
+  Balancing:
+    - Slightly increased ice produced by mining methane icebergs (+10%).
+  Graphics:
+    - Minor graphical tweaks.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.9
 Date: 2025-10-14
-  Graphics:
-    - Fixed that the module technology icons became blurry on certain graphics settings.
   Optimizations:
     - Improved the performance of heat pipe cooling on Cerys: If there are more than 100 heat pipes on the surface, their processing will be spread out over different ticks (with a larger cooling effect to exactly compensate for the less frequent processing).
+  Graphics:
+    - Fixed that the module technology icons became blurry on certain graphics settings.
   Changes:
     - Spawned slightly more water on new Cerys maps.
 ---------------------------------------------------------------------------------------------------

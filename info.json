@@ -15,6 +15,7 @@
     "bplib >= 1.1.2",
     "? Krastorio2-spaced-out >= 1.4.19",
     "? visible-planets >= 1.2.11",
+    "? no-quality",
     "(?) PlutoniumEnergy",
     "(?) limit-special-building-surfaces",
     "(?) maraxsis",

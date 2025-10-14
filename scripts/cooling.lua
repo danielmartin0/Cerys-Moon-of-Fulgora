@@ -18,7 +18,7 @@ local function get_batch_parameters()
 
 	local pipe_count = #storage.cerys.heat_pipes
 
-	local num_batches = math.ceil(math.max(1, math.log(pipe_count / 50, 2)))
+	local num_batches = math.ceil(math.max(1, 2 * math.log(pipe_count / 50, 2)))
 
 	return num_batches, pipe_count
 end
@@ -85,7 +85,7 @@ local function get_heat_pipe_cooling_multiplier(entity)
 	return multiplier
 end
 
-function Public.tick_60_cool_heat_pipes()
+function Public.tick_30_cool_heat_pipes()
 	if not storage.cerys then
 		return
 	end

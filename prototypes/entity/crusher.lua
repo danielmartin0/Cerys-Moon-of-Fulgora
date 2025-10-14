@@ -112,14 +112,8 @@ local crusher = {
 		},
 	},
 	quality_affects_module_slots = true,
-	-- Also encoded in data-final-fixes:
-	module_slots_quality_bonus = {
-		normal = 0,
-		uncommon = 2,
-		rare = 4,
-		epic = 6,
-		legendary = 10,
-	},
+	-- Filled in data-final-fixes:
+	module_slots_quality_bonus = {},
 }
 
 local wreck = merge(crusher, {
