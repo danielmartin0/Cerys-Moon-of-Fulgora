@@ -195,7 +195,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local heating_radius = Public.heating_radius_from_temperature_above_zero(
 		temperature_above_zero,
 		is_player_tower,
-		e.quality and e.quality.level or 0
+		is_player_tower and e.quality.level or 0
 	)
 
 	if common.DEBUG_HEATERS_FUELED then
@@ -209,12 +209,13 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 
 	local need_to_regenerate_reactors = false
 	for r = 1, valid_tower.last_radius do
+		local reactors = valid_tower.reactors[r]
 		if
-			not valid_tower.reactors[r]
-			or not valid_tower.reactors[r].north
-			or not valid_tower.reactors[r].north.valid
-			or not valid_tower.reactors[r].south
-			or not valid_tower.reactors[r].south.valid
+			not reactors
+			or not reactors.north
+			or not reactors.north.valid
+			or not reactors.south
+			or not reactors.south.valid
 		then
 			need_to_regenerate_reactors = true
 			break

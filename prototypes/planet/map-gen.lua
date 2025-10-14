@@ -158,7 +158,7 @@ data:extend({
 			octaves = 4, \z
 			persistence = 0.35, \z
 			input_scale = 1, \z
-			output_scale = 13} - 4.5 * (cerys_surface_distance_over_map_distance ^ 2) \z
+			output_scale = 13} - 4 * (cerys_surface_distance_over_map_distance ^ 2) \z
 			- 10 * cerys_all_forced_resources\z
 			+ 10000 * min(0, cerys_surface_inner)\z
 			+ 10000 * min(0, 33 - cerys_x_surface + 0.02 * cerys_y_surface ^ 2))", -- This expression drops below zero. The final term helps exclude the lithium area because water is annoying there.

@@ -21,7 +21,7 @@ PlanetsLib:extend({
 				name = "fulgora",
 			},
 			distance = 1.39,
-			orientation = mods["Tiered-Solar-System"] and 0.6 or 0.44, -- Generally pointing away from the sun
+			orientation = mods["Tiered-Solar-System"] and 0.6 or 0.45, -- Generally pointing away from the sun
 			sprite = {
 				type = "sprite",
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit.png",

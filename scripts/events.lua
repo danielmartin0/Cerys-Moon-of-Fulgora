@@ -318,10 +318,17 @@ function Public.cerys_tick(surface, tick)
 		crusher.tick_20_check_crusher_quality_upgrades(surface)
 	end
 
-	if tick % 60 == 0 then
+	if (tick + 15) % 60 == 0 then
+		cooling.tick_60_cool_heat_pipes()
+	end
+
+	if (tick + 30) % 60 == 0 then
 		space.try_spawn_asteroid(surface)
-		cooling.tick_60_cool_heat_entities()
 		Public.check_rocket_timed_effects(surface)
+	end
+
+	if (tick + 45) % 60 == 0 then
+		cooling.tick_60_cool_boilers()
 	end
 
 	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then

@@ -245,7 +245,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-radioactive-module",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radioactive-module.png",
-		icon_size = 1024,
+		icon_size = 256,
 		effects = {
 			{
 				type = "unlock-recipe",
@@ -278,7 +278,7 @@ data:extend({
 		type = "technology",
 		name = "cerys-overclock-module",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/overclock-module.png",
-		icon_size = 1024,
+		icon_size = 256,
 		effects = {
 			{
 				type = "unlock-recipe",

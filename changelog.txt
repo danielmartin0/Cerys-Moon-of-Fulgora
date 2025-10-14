@@ -1,12 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.9
 Date: ????
+  Graphics:
+    - Fixed that the module technology icons became blurry on certain graphics settings.
+  Optimizations:
+    - Improved the performance of heat pipe cooling on Cerys: If there are more than 100 heat pipes on the surface, their processing will be spread out over different ticks (with a larger cooling effect to exactly compensate for the less frequent processing).
   Changes:
+    - Spawned slightly more water on new Cerys maps.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.8
 Date: 2025-10-13
   Bugfixes:
-    - Fixed that Cerys could cover up the 'F' in Fulgora on the starmap.
+    - Fixed that the new position of Cerys could sometimes cover Fulgora's planet label.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.7
 Date: 2025-10-13
