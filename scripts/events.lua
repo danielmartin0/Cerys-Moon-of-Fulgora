@@ -56,7 +56,10 @@ script.on_event({
 			or entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod"
 		)
 	then
-		rods.built_charging_rod(entity, event.tags or {})
+		rods.built_charging_rod(entity, event.tags or {
+			circuit_controlled = false,
+			control_signal = { type = "virtual", name = "signal-P" },
+		})
 	elseif on_cerys and entity.type == "heat-pipe" then
 		cooling.register_heat_pipe(entity)
 	elseif on_cerys and entity.type == "boiler" then
@@ -674,15 +677,13 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		teleporter.toggle_gui(player, entity)
 	elseif entity.name == "cerys-radiation-proof-inserter" then
 		inserter.on_inserter_gui_opened(player, entity)
-	elseif entity.type == "accumulator" then
-		if
-			entity.name == "cerys-charging-rod"
-			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-		then
-			rods.on_gui_opened(event)
-		else
-			rods.destroy_guis(event)
-		end
+	elseif
+		entity.name == "cerys-charging-rod"
+		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
+	then
+		rods.on_gui_opened(event)
+	elseif entity.type == "accumulator" then -- Legacy code
+		rods.destroy_guis(event)
 	end
 end)
 

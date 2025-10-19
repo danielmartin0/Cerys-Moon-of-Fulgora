@@ -6,7 +6,6 @@ local Public = {}
 
 -- TODO: Remove the charging rod tick-checking code, and instead handle deletion of the lights by register_on_object_destroyed
 
-local CHARGING_ROD_DISPLACEMENT = 0 -- Anything other than 0 tends to lead to player confusion.
 Public.OLD_GUI_KEY = "cerys-gui-charging-rod"
 Public.OLD_GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
 Public.GUI_KEY = "cerys-gui-charging-rod-2"
@@ -26,7 +25,7 @@ Public.built_charging_rod = function(entity, tags)
 		if tags.is_negative ~= nil then
 			Public.rod_set_state(entity, tags.is_negative)
 		else
-			Public.rod_set_state(entity, true)
+			Public.rod_set_state(entity, false)
 		end
 
 		if tags.circuit_controlled ~= nil then
@@ -38,6 +37,8 @@ Public.built_charging_rod = function(entity, tags)
 	else
 		Public.rod_set_state(entity, true)
 	end
+
+	entity.tags = tags
 
 	if not storage.cerys.given_charging_rod_performance_warning then
 		local registered_charging_rod_count = 0
@@ -65,9 +66,10 @@ function Public.register_charging_rod(entity)
 		return
 	end
 
+	-- We register storage for both real rods and ghosts. Ghosts need both this _and_ tags, so they can be blueprinted but also tracked by ghost particles.
 	storage.cerys.charging_rods[entity.unit_number] = {
 		entity = entity,
-		rod_position = { x = entity.position.x, y = entity.position.y + CHARGING_ROD_DISPLACEMENT },
+		rod_position = { x = entity.position.x, y = entity.position.y },
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
 	}
