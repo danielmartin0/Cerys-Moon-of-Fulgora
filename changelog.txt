@@ -1,21 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.13.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.13.1
-Date: 2025-10-19
-  Bugfixes:
-    - Fixed a crash when closing the gui of the Fulgoran teleporter.
-  Changes:
-    - Addeed a default signal for the energy readout of charging rods connected to circuits.
----------------------------------------------------------------------------------------------------
-Version: 4.13.0
+Version: 4.13.0-4.13.2
 Date: 2025-10-19
   Graphics:
     - Cerys is now darker at night.
     - Improved graphics for the Fulgoran radiative tower.
     - Improved lighting effects for the Fulgoran radiative tower and charging rod.
+  Changes:
+    - Added a default signal for the energy readout of charging rods connected to circuits.
   Bugfixes:
     - Fixed a rare bug with old charging rods displaying their polarity incorrectly the first time they are opened.
 ---------------------------------------------------------------------------------------------------
