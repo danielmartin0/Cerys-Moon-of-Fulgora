@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.1
 Date: ????
+  Bugfixes:
+    - Fixed a crash when closing the gui of the Fulgoran teleporter.
   Changes:
+    - Addeed a default signal for the energy readout of charging rods connected to circuits.
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.0
 Date: 2025-10-19

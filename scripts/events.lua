@@ -705,7 +705,7 @@ script.on_event(defines.events.on_gui_closed, function(event)
 	end
 
 	if event.gui_type == defines.gui_type.custom and event.element and event.element.name == "cerys_teleporter_gui" then
-		Public.toggle_gui(player)
+		teleporter.toggle_gui(player)
 	elseif event.gui_type == defines.gui_type.entity then
 		local entity = event.entity
 		if not (entity and entity.valid) then

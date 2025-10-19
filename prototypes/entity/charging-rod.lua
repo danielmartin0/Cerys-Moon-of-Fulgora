@@ -135,6 +135,7 @@ data:extend({
 				quality_values = {}, -- Filled in data-final-fixes
 			},
 		},
+		default_output_signal = { type = "virtual", name = "signal-A" },
 		-- radius_visualisation_specification = {
 		-- 	distance = 13,
 		-- 	sprite = {
