@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.12.11
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.12.10
+Version: 4.12.11-4.12.10
 Date: 2025-10-19
   Bugfixes:
     - Fixed several bugs in which ghost charging rods did not have their settings (both polarity and circuit controls) be correctly updated or correctly shown in the GUI.

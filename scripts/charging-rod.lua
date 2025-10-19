@@ -17,7 +17,7 @@ function Public.tags_is_positive(tags)
 end
 
 function Public.tags_set_is_positive(tags, is_positive)
-	tags.is_positive = is_positive
+	tags.is_positive = is_positive or false
 	tags.is_negative = nil -- Clear the legacy field
 	return tags
 end
@@ -155,7 +155,7 @@ function Public.update_rod_lights(entity, rod)
 end
 
 Public.rod_set_state = function(entity, positive)
-	storage.cerys.charging_rod_is_positive[entity.unit_number] = positive
+	storage.cerys.charging_rod_is_positive[entity.unit_number] = positive or false
 
 	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
