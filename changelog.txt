@@ -2,8 +2,8 @@
 Version: 4.13.0
 Date: ????
   Graphics:
-    - Improved graphics for the Fulgoran radiative tower.
     - Cerys is now darker at night.
+    - Improved graphics for the Fulgoran radiative tower.
     - Improved lighting effects for the Fulgoran radiative tower and charging rod.
   Bugfixes:
     - Fixed a rare bug with old charging rods displaying their polarity incorrectly the first time they are opened.
