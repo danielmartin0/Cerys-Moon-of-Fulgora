@@ -250,10 +250,10 @@ data:extend({
 	},
 	merge(common_data.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-blue",
-		light = { intensity = 0.4, size = 9, color = { r = 0.75, g = 0.75, b = 1 } },
+		light = { intensity = 0.2, size = 10, color = { r = 0.8, g = 0.8, b = 1 } },
 	}),
 	merge(common_data.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-red",
-		light = { intensity = 0.4, size = 9, color = { r = 1, g = 0.75, b = 0.75 } },
+		light = { intensity = 0.2, size = 10, color = { r = 1, g = 0.8, b = 0.8 } },
 	}),
 })

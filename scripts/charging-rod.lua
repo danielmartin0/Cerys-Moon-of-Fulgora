@@ -116,63 +116,61 @@ function Public.update_rod_lights(entity, rod)
 		Public.destroy_blue_glow_entity(rod)
 	end
 
-	-- Update light entities based on energy fraction
 	local max_charging_rod_energy = MAX_ROD_ENERGY * (entity.quality.level + 1)
 
-	local energy_fraction
-	if common.DEBUG_CHARGING_RODS_FULL then
-		energy_fraction = positive and 1 or -1
-	else
-		energy_fraction = math.min(1, entity.energy / max_charging_rod_energy) * (positive and 1 or -1)
-	end
+	local energy_fraction = math.min(1, entity.energy / max_charging_rod_energy)
 
 	if energy_fraction > 0.999 then
-		if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
-			rod.blue_light_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-animation-blue",
-				position = { x = entity.position.x, y = entity.position.y + 1 },
-			})
+		-- watch out, these sprites are named in reverse
+		if positive then
+			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
+				rod.blue_light_entity = entity.surface.create_entity({
+					name = "cerys-charging-rod-animation-blue",
+					position = { x = entity.position.x, y = entity.position.y + 1 },
+				})
+			end
+			Public.destroy_red_light_entity(rod)
+		else
+			if not (rod.red_light_entity and rod.red_light_entity.valid) then
+				rod.red_light_entity = entity.surface.create_entity({
+					name = "cerys-charging-rod-animation-red",
+					position = { x = entity.position.x, y = entity.position.y + 1 },
+				})
+			end
+			Public.destroy_blue_light_entity(rod)
 		end
-		Public.destroy_red_light_entity(rod)
-	elseif energy_fraction < -0.999 then
-		if not (rod.red_light_entity and rod.red_light_entity.valid) then
-			rod.red_light_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-animation-red",
-				position = { x = entity.position.x, y = entity.position.y + 1 },
-			})
-		end
-		Public.destroy_blue_light_entity(rod)
 	else
 		Public.destroy_blue_light_entity(rod)
 		Public.destroy_red_light_entity(rod)
 	end
 
 	if energy_fraction > 0.001 then
-		if not (rod.blue_lamp_entity and rod.blue_lamp_entity.valid) then
-			rod.blue_lamp_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-lamp-blue",
-				position = { x = entity.position.x, y = entity.position.y },
-			})
+		if positive then
+			if not (rod.red_lamp_entity and rod.red_lamp_entity.valid) then
+				rod.red_lamp_entity = entity.surface.create_entity({
+					name = "cerys-charging-rod-lamp-red",
+					position = { x = entity.position.x, y = entity.position.y },
+				})
+			end
+			Public.destroy_blue_lamp_entity(rod)
+		else
+			if not (rod.blue_lamp_entity and rod.blue_lamp_entity.valid) then
+				rod.blue_lamp_entity = entity.surface.create_entity({
+					name = "cerys-charging-rod-lamp-blue",
+					position = { x = entity.position.x, y = entity.position.y },
+				})
+			end
+			Public.destroy_red_lamp_entity(rod)
 		end
-		Public.destroy_red_lamp_entity(rod)
-	elseif energy_fraction < -0.001 then
-		if not (rod.red_lamp_entity and rod.red_lamp_entity.valid) then
-			rod.red_lamp_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-lamp-red",
-				position = { x = entity.position.x, y = entity.position.y },
-			})
-		end
-		Public.destroy_blue_lamp_entity(rod)
 	else
 		Public.destroy_blue_lamp_entity(rod)
 		Public.destroy_red_lamp_entity(rod)
 	end
 
-	-- Update polarity fraction
 	if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
 		rod.max_polarity_fraction = lib.calculate_max_polarity_fraction(entity.quality.level)
 	end
-	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction
+	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction * (positive and 1 or -1)
 end
 
 Public.rod_set_state = function(entity, positive)
@@ -196,7 +194,8 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_blue_light_entity(rod)
 			Public.destroy_red_glow_entity(rod)
 			Public.destroy_blue_glow_entity(rod)
-			Public.destroy_lamp_entity(rod)
+			Public.destroy_red_lamp_entity(rod)
+			Public.destroy_blue_lamp_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 		else
 			local positive = storage.cerys.charging_rod_is_positive[unit_number] == true
@@ -236,12 +235,7 @@ function Public.tick_12_check_charging_rods()
 
 			local max_charging_rod_energy = MAX_ROD_ENERGY * (e.quality.level + 1)
 
-			local energy_fraction
-			if common.DEBUG_CHARGING_RODS_FULL then
-				energy_fraction = positive and 1 or -1
-			else
-				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (positive and 1 or -1)
-			end
+			local energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (positive and 1 or -1)
 
 			-- Update polarity fraction
 			if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
@@ -263,7 +257,7 @@ end
 
 function Public.destroy_blue_lamp_entity(rod)
 	if rod.blue_lamp_entity then
-		if rod.lamp_entity.valid then
+		if rod.blue_lamp_entity.valid then
 			rod.blue_lamp_entity.destroy()
 		end
 		rod.blue_lamp_entity = nil
