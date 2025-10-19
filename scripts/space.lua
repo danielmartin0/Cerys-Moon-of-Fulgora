@@ -126,7 +126,7 @@ Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 function Public.tick_solar_wind_deflection()
 	local particles = storage.cerys.solar_wind_particles
 	local rods = storage.cerys.charging_rods
-	local rod_is_negative = storage.cerys.charging_rod_is_negative
+	local rod_is_positive = storage.cerys.charging_rod_is_positive
 	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
 	for rod_unit_number, rod in pairs(rods) do
@@ -164,7 +164,7 @@ function Public.tick_solar_wind_deflection()
 				if d2 < ROD_MAX_RANGE_SQUARED then
 					local polarity_fraction
 					if particle.is_ghost then
-						polarity_fraction = (rod_is_negative[rod_unit_number] and 1 or -1)
+						polarity_fraction = (rod_is_positive[rod_unit_number] and 1 or -1)
 							* (rod.max_polarity_fraction or 1)
 					else
 						polarity_fraction = rod.polarity_fraction

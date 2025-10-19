@@ -2,13 +2,24 @@ local common = require("common")
 local lib = require("lib")
 local Public = {}
 
--- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
-
 -- TODO: Remove the charging rod tick-checking code, and instead handle deletion of the lights by register_on_object_destroyed
 
 Public.OLD_GUI_KEY = "cerys-gui-charging-rod"
 Public.OLD_GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
 Public.GUI_KEY = "cerys-gui-charging-rod-2"
+
+function Public.tags_is_positive(tags)
+	if not tags then
+		return nil
+	end
+	return tags.is_positive or tags.is_negative -- is_negative is a deprecated name for is_positive
+end
+
+function Public.tags_set_is_positive(tags, is_positive)
+	tags.is_positive = is_positive
+	tags.is_negative = nil -- Clear the legacy field
+	return tags
+end
 
 Public.built_charging_rod = function(entity, tags)
 	if not storage.cerys then
@@ -22,10 +33,12 @@ Public.built_charging_rod = function(entity, tags)
 	Public.register_charging_rod(entity)
 
 	if tags then
-		if tags.is_negative ~= nil then
-			Public.rod_set_state(entity, tags.is_negative)
+		local tags_is_positive = Public.tags_is_positive(tags)
+
+		if tags_is_positive ~= nil then
+			Public.rod_set_state(entity, tags_is_positive)
 		else
-			Public.rod_set_state(entity, false)
+			Public.rod_set_state(entity, true)
 		end
 
 		if tags.circuit_controlled ~= nil then
@@ -82,9 +95,9 @@ function Public.update_rod_lights(entity, rod)
 		return
 	end
 
-	local negative = storage.cerys.charging_rod_is_negative[entity.unit_number] == true
+	local positive = storage.cerys.charging_rod_is_positive[entity.unit_number] == true
 
-	if negative then
+	if positive then
 		if not (rod.blue_glow_entity and rod.blue_glow_entity.valid) then
 			rod.blue_glow_entity = entity.surface.create_entity({
 				name = "cerys-charging-rod-glow-blue",
@@ -107,9 +120,9 @@ function Public.update_rod_lights(entity, rod)
 
 	local energy_fraction
 	if common.DEBUG_CHARGING_RODS_FULL then
-		energy_fraction = negative and 1 or -1
+		energy_fraction = positive and 1 or -1
 	else
-		energy_fraction = math.min(1, entity.energy / max_charging_rod_energy) * (negative and 1 or -1)
+		energy_fraction = math.min(1, entity.energy / max_charging_rod_energy) * (positive and 1 or -1)
 	end
 
 	if energy_fraction > 0.999 then
@@ -140,12 +153,12 @@ function Public.update_rod_lights(entity, rod)
 	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction
 end
 
-Public.rod_set_state = function(entity, negative)
-	storage.cerys.charging_rod_is_negative[entity.unit_number] = negative
+Public.rod_set_state = function(entity, positive)
+	storage.cerys.charging_rod_is_positive[entity.unit_number] = positive
 
 	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
-		tags.is_negative = negative
+		Public.tags_set_is_positive(tags, positive)
 		entity.tags = tags
 	end
 
@@ -163,7 +176,7 @@ function Public.tick_12_check_charging_rods()
 			Public.destroy_blue_glow_entity(rod)
 			storage.cerys.charging_rods[unit_number] = nil
 		else
-			local negative = storage.cerys.charging_rod_is_negative[unit_number] == true
+			local positive = storage.cerys.charging_rod_is_positive[unit_number] == true
 
 			for _, player in pairs(game.connected_players) do
 				if player.opened == e then
@@ -172,8 +185,8 @@ function Public.tick_12_check_charging_rods()
 						local switch = gui.content["charging-rod-switch"]
 						if not switch.enabled then -- Only sync disabled switches (circuit controlled)
 							local current_state = switch.switch_state == "left"
-							if current_state ~= negative then
-								switch.switch_state = negative and "left" or "right"
+							if current_state ~= positive then
+								switch.switch_state = positive and "left" or "right"
 							end
 						end
 					end
@@ -188,9 +201,9 @@ function Public.tick_12_check_charging_rods()
 					local signal_value = (red_network and red_network.get_signal(rod.control_signal) or 0)
 						+ (green_network and green_network.get_signal(rod.control_signal) or 0)
 
-					if signal_value > 0 and negative then
+					if signal_value > 0 and positive then
 						Public.rod_set_state(e, false)
-					elseif signal_value <= 0 and not negative then
+					elseif signal_value <= 0 and not positive then
 						Public.rod_set_state(e, true)
 					end
 				end
@@ -202,9 +215,9 @@ function Public.tick_12_check_charging_rods()
 
 			local energy_fraction
 			if common.DEBUG_CHARGING_RODS_FULL then
-				energy_fraction = negative and 1 or -1
+				energy_fraction = positive and 1 or -1
 			else
-				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (negative and 1 or -1)
+				energy_fraction = math.min(1, e.energy / max_charging_rod_energy) * (positive and 1 or -1)
 			end
 
 			-- Update polarity fraction
@@ -294,6 +307,10 @@ function Public.on_gui_opened(event)
 	if player.surface and player.surface.valid and player.surface.name ~= "cerys" then
 		return
 	end
+
+	local test_tags = entity.tags or {}
+	local test_circuit = storage.cerys.charging_rods[entity.unit_number]
+	local test_positive = storage.cerys.charging_rod_is_positive[entity.unit_number]
 
 	local rod_circuit_data = entity.name == "cerys-charging-rod" and storage.cerys.charging_rods[entity.unit_number]
 		or (entity.tags or {})
@@ -391,15 +408,15 @@ function Public.on_gui_opened(event)
 	end
 
 	local switch = relative[gui_key]["content"]["charging-rod-switch"]
-	local is_negative = false
+	local is_positive = false
 
 	if entity.name == "cerys-charging-rod" then
-		is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number] or false
+		is_positive = storage.cerys.charging_rod_is_positive[entity.unit_number] or false
 	elseif entity.name == "entity-ghost" then
-		is_negative = (entity.tags and entity.tags.is_negative) or false
+		is_positive = Public.tags_is_positive(entity.tags) or false
 	end
 
-	switch.switch_state = is_negative and "left" or "right"
+	switch.switch_state = is_positive and "left" or "right"
 
 	local content = relative[gui_key]["content"]
 	local checkbox = content["circuit-control-checkbox"]
@@ -429,8 +446,8 @@ script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 		return
 	end
 
-	local is_negative = event.element.switch_state == "left"
-	Public.rod_set_state(entity, is_negative)
+	local is_positive = event.element.switch_state == "left"
+	Public.rod_set_state(entity, is_positive)
 
 	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
 
@@ -482,14 +499,14 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 		return
 	end
 
-	local negative
+	local positive
 	if source.name == "cerys-charging-rod" then
-		negative = storage.cerys.charging_rod_is_negative[source.unit_number]
+		positive = storage.cerys.charging_rod_is_positive[source.unit_number]
 	else
-		negative = source.tags and source.tags.is_negative
+		positive = Public.tags_is_positive(source.tags)
 	end
 
-	Public.rod_set_state(destination, negative)
+	Public.rod_set_state(destination, positive)
 
 	local source_circuit_data = source.name == "cerys-charging-rod" and storage.cerys.charging_rods[source.unit_number]
 		or (source.tags or {})
@@ -530,7 +547,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 		end
 	end
 
-	Public.rod_set_state(destination, storage.cerys.charging_rod_is_negative[source.unit_number])
+	Public.rod_set_state(destination, storage.cerys.charging_rod_is_positive[source.unit_number])
 end)
 
 script.on_event(defines.events.on_gui_checked_state_changed, function(event)
@@ -626,9 +643,9 @@ script.on_event("cerys-toggle-entity", function(event)
 
 	local current_state
 	if is_ghost then
-		current_state = (e.tags and e.tags.is_negative) or false
+		current_state = Public.tags_is_positive(e.tags) or false
 	else
-		current_state = storage.cerys.charging_rod_is_negative[e.unit_number]
+		current_state = storage.cerys.charging_rod_is_positive[e.unit_number]
 	end
 
 	local new_state = not current_state

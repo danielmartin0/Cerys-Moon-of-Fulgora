@@ -56,10 +56,14 @@ script.on_event({
 			or entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod"
 		)
 	then
-		rods.built_charging_rod(entity, event.tags or {
-			circuit_controlled = false,
-			control_signal = { type = "virtual", name = "signal-P" },
-		})
+		local tags = entity.tags
+			or event.tags
+			or {
+				circuit_controlled = false,
+				control_signal = { type = "virtual", name = "signal-P" },
+				is_positive = true,
+			}
+		rods.built_charging_rod(entity, tags)
 	elseif on_cerys and entity.type == "heat-pipe" then
 		cooling.register_heat_pipe(entity)
 	elseif on_cerys and entity.type == "boiler" then
@@ -91,8 +95,6 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
 	local bp_setup = BlueprintSetup:new(event)
 
-	bp_setup.debug = true
-
 	if not bp_setup then
 		return
 	end
@@ -105,7 +107,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	for bp_index, entity in pairs(map) do
 		if entity.name == "cerys-charging-rod" then
 			local tags = {}
-			tags.is_negative = storage.cerys.charging_rod_is_negative[entity.unit_number]
+			Public.tags_set_is_positive(tags, storage.cerys.charging_rod_is_positive[entity.unit_number])
 			tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
 				and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
 			tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
@@ -120,19 +122,17 @@ local function blueprint_entity_filter(bp_entity)
 	return bp_entity.name == "cerys-charging-rod"
 end
 
-local function apply_blueprint_tags(tags, entity)
-	rods.rod_set_state(entity, tags.is_negative)
+local function update_overlapping_entity(tags, entity)
+	rods.rod_set_state(entity, tags.is_positive)
 
-	local rod_data = storage.cerys.charging_rods[entity.unit_number]
-	storage.cerys.charging_rods[entity.unit_number] = rod_data or {}
+	local rod_data = storage.cerys.charging_rods[entity.unit_number] or {}
+	storage.cerys.charging_rods[entity.unit_number] = rod_data
 
-	if rod_data then
-		if tags.circuit_controlled then
-			rod_data.circuit_controlled = tags.circuit_controlled
-		end
-		if tags.control_signal then
-			rod_data.control_signal = tags.control_signal
-		end
+	if tags.circuit_controlled then
+		rod_data.circuit_controlled = tags.circuit_controlled
+	end
+	if tags.control_signal then
+		rod_data.control_signal = tags.control_signal
 	end
 end
 
@@ -153,7 +153,8 @@ script.on_event(defines.events.on_pre_build, function(event)
 		end
 	end
 
-	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
+	-- When we overlap existing entities in the word, we should update their tags.
+	-- We follow the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
 
 	local bp_build = BlueprintBuild:new(event)
 	-- Will be `nil` if the event was not a blueprint build.
@@ -166,10 +167,14 @@ script.on_event(defines.events.on_pre_build, function(event)
 		return
 	end
 
+	-- NOTE(thesixthroc: As of 1.1.4 this is bugged, it does not detect in-world ghosts whose position and ghost name matches the [name and position] of one of the blueprint entities.
 	local bp_entities = bp_build:get_entities() --[[@as BlueprintEntity[] ]]
+
+	log("overlap_map: " .. serpent.line(overlap_map))
+
 	for bp_index, entity in pairs(overlap_map) do
 		local tags = bp_entities[bp_index].tags or {}
-		apply_blueprint_tags(tags, entity)
+		update_overlapping_entity(tags, entity)
 	end
 end)
 
