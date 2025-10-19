@@ -1,8 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.0
 Date: 2025-10-15
-  Graphics:
-    - Improved graphics for Fulgoran radiative towers.
   Bugfixes:
     - Fixed several bugs in which ghost charging rods did not have their settings (polarity and circuit controls) be correctly updated or correctly shown in the GUI.
   Compatibility:

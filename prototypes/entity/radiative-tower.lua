@@ -37,12 +37,11 @@ local reactor = {
 		max_temperature = 150,
 		specific_heat = common.HARD_MODE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
-		minimum_glow_temperature = 16,
+		minimum_glow_temperature = 0,
 		heat_picture = apply_heat_pipe_glow(
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
 				scale = 0.22,
 				blend_mode = "additive",
-				draw_as_glow = true,
 			})
 		),
 	},
@@ -109,7 +108,7 @@ local frozen_reactor = merge(reactor, {
 	hidden = true,
 	picture = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice", {
 				scale = 0.22,
 			}),
 			util.sprite_load(
@@ -214,7 +213,7 @@ local reactor_base = merge(rising_reactor_tower_1, {
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	picture = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-unused", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back", {
 				scale = 0.22,
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
@@ -229,7 +228,7 @@ local reactor_base_frozen = merge(reactor_base, {
 	name = "cerys-fulgoran-radiative-tower-base-frozen",
 	picture = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice", {
 				scale = 0.22,
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
