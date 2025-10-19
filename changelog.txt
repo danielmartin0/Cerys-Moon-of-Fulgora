@@ -1,16 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.0
 Date: 2025-10-15
-  Compatibility:
-    - Fixed that the compatibility with 'No Quality' was broken. 'No Quality' has been added as an optional dependency.
-    - Krastorio 2 Spaced Out: Fixed a bug where the 'Prevent certain recycling recipe overrides' setting forced electronic circuit recycling to match the second K2SO recipe (2 iron, 4 wire) rather than the first K2SO recipe used by the base mod (1 iron, 1 wood, 4 wire).
-    - When Cerys disables Flare Stack technologies it now sets hidden=true instead of enabled=false for better mod compatibility.
-  Balancing:
-    - Slightly increased ice produced by mining methane icebergs (+10%).
   Graphics:
     - Improved graphics for Fulgoran radiative towers.
   Bugfixes:
-    - Fixed various bugs in which ghost charging rods did not have their settings (polarity and circuit controls) be correctly updated or correctly shown in the GUI.
+    - Fixed several bugs in which ghost charging rods did not have their settings (polarity and circuit controls) be correctly updated or correctly shown in the GUI.
+  Compatibility:
+    - Fixed compatibility with the 'No Quality' mod; this mod is now listed as an optional dependency.
+    - Krastorio 2 Spaced Out: Fixed a bug where the 'Prevent certain recycling recipe overrides' setting forced electronic circuit recycling to match the second K2SO recipe (2 iron, 4 wire) rather than the first K2SO recipe used by the base mod (1 iron, 1 wood, 4 wire).
+    - Where Cerys disables Flare Stack technologies it now sets hidden=true instead of enabled=false for better mod compatibility.
+  Balancing:
+    - Slightly increased methane ice obtained from icebergs (+10%).
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.9
 Date: 2025-10-14
