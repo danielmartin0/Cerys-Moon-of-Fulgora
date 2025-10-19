@@ -214,7 +214,7 @@ local reactor_base = merge(rising_reactor_tower_1, {
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	picture = {
 		layers = {
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-unused", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
 				scale = 0.22,
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
