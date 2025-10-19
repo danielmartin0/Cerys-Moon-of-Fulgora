@@ -29,7 +29,7 @@ Public.register_radiative_tower_contracted = function(entity)
 	}
 
 	local shadow = rendering.draw_sprite({
-		sprite = "radiative-tower-tower-shadow-1",
+		sprite = "cerys-radiative-tower-shadow-1",
 		target = {
 			x = entity.position.x + 1 - common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
 			y = entity.position.y,
@@ -109,7 +109,7 @@ Public.register_radiative_tower = function(entity)
 	end
 
 	local shadow = rendering.draw_sprite({
-		sprite = "radiative-tower-tower-shadow-1",
+		sprite = "cerys-radiative-tower-shadow-1",
 		target = {
 			x = entity.position.x + 1,
 			y = entity.position.y,
@@ -453,7 +453,7 @@ function Public.tick_20_contracted_towers(surface)
 				contracted_tower.open_tick = game.tick
 
 				contracted_tower.rendering = rendering.draw_sprite({
-					sprite = "radiative-tower-base-ice",
+					sprite = "cerys-radiative-tower-front-ice",
 					target = e.position,
 					surface = e.surface,
 					render_layer = "above-inserters",
@@ -561,7 +561,7 @@ function Public.tick_1_move_radiative_towers()
 					contracted_tower.top_entity = new_top_entity
 
 					if contracted_tower.shadow and contracted_tower.shadow.valid then
-						contracted_tower.shadow.sprite = "radiative-tower-tower-shadow-2"
+						contracted_tower.shadow.sprite = "cerys-radiative-tower-shadow-2"
 					end
 				elseif contracted_tower.stage == 1 and ticks_since_open > 2 / EXPAND_SPEED then
 					contracted_tower.stage = 2

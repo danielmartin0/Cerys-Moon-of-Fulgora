@@ -34,7 +34,7 @@ data:extend({
 			end
 
 			rendering.draw_sprite({
-				sprite = "fulgora-background",
+				sprite = "cerys-fulgora-background",
 				target = {
 					x = -25,
 					y = -33,

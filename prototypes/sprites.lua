@@ -71,7 +71,7 @@ data:extend({
 
 	{
 		type = "sprite",
-		name = "fulgora-background",
+		name = "cerys-fulgora-background",
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/sharper-planets/fulgora.png",
 		priority = "extra-high-no-scale",
 		width = common.DEFAULT_FULGORA_IMAGE_SIZE,
@@ -82,8 +82,8 @@ data:extend({
 	},
 	{
 		type = "sprite",
-		name = "radiative-tower-base-ice",
-		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice.png",
+		name = "cerys-radiative-tower-front-ice",
+		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice.png",
 		priority = "extra-high",
 		width = 988,
 		height = 962,
@@ -93,7 +93,7 @@ data:extend({
 	},
 	{
 		type = "sprite",
-		name = "radiative-tower-tower-shadow-1",
+		name = "cerys-radiative-tower-shadow-1",
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-shadow-1.png",
 		width = 988,
 		height = 962,
@@ -104,7 +104,7 @@ data:extend({
 	},
 	{
 		type = "sprite",
-		name = "radiative-tower-tower-shadow-2",
+		name = "cerys-radiative-tower-shadow-2",
 		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-shadow-2.png",
 		width = 988,
 		height = 962,

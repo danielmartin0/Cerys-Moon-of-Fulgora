@@ -276,7 +276,7 @@ local container = {
 					shift = util.by_pixel(0, common.RADIATIVE_TOWER_SHIFT_PIXELS),
 				}
 			),
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice", {
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
 				scale = 0.22,
 			}),
 			-- util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
