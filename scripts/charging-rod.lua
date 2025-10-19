@@ -4,9 +4,10 @@ local Public = {}
 
 -- TODO: Remove the charging rod tick-checking code, and instead handle deletion of the lights by register_on_object_destroyed
 
+Public.GUI_KEY = "cerys-gui-charging-rod-2"
+-- These GUIs are attached to all accumulator entities on some old saves:
 Public.OLD_GUI_KEY = "cerys-gui-charging-rod"
 Public.OLD_GUI_KEY_GHOST = "cerys-gui-charging-rod-ghost"
-Public.GUI_KEY = "cerys-gui-charging-rod-2"
 
 function Public.tags_is_positive(tags)
 	if not tags then
@@ -265,18 +266,24 @@ function Public.destroy_blue_glow_entity(rod)
 	end
 end
 
-function Public.destroy_guis(event) -- The GUI is attached to all accumulator entities on some saves
-	-- local player = game.players[event.player_index]
+function Public.destroy_guis(player_index)
+	local player = game.players[player_index]
 
-	-- if not (player and player.valid) then
-	-- 	return
-	-- end
+	if not (player and player.valid) then
+		return
+	end
 
-	-- local relative = player.gui.relative
+	local relative = player.gui.relative
 
-	-- if relative[Public.GUI_KEY] then
-	-- 	relative[Public.GUI_KEY].destroy()
-	-- end
+	if relative[Public.GUI_KEY] then
+		relative[Public.GUI_KEY].destroy()
+	end
+	if relative[Public.OLD_GUI_KEY] then
+		relative[Public.OLD_GUI_KEY].destroy()
+	end
+	if relative[Public.OLD_GUI_KEY_GHOST] then
+		relative[Public.OLD_GUI_KEY_GHOST].destroy()
+	end
 end
 
 function Public.on_gui_opened(event)
@@ -298,22 +305,33 @@ function Public.on_gui_opened(event)
 
 	local gui_key = Public.GUI_KEY
 
-	if relative[gui_key] then
-		if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
-			relative[gui_key].destroy()
-		end
-	end
+	-- We always destroy the GUI when leaving it now, so this is no longer needed:
+	-- if relative[gui_key] then
+	-- 	if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
+	-- 		relative[gui_key].destroy()
+	-- 	end
+	-- end
 
 	if player.surface and player.surface.valid and player.surface.name ~= "cerys" then
 		return
 	end
 
-	local test_tags = entity.tags or {}
-	local test_circuit = storage.cerys.charging_rods[entity.unit_number]
-	local test_positive = storage.cerys.charging_rod_is_positive[entity.unit_number]
+	local tags = entity.tags or {}
 
-	local rod_circuit_data = entity.name == "cerys-charging-rod" and storage.cerys.charging_rods[entity.unit_number]
-		or (entity.tags or {})
+	local rod_circuit_data = storage.cerys.charging_rods[entity.unit_number]
+
+	local tags_is_positive = Public.tags_is_positive(tags)
+	local storage_is_positive = storage.cerys.charging_rod_is_positive[entity.unit_number]
+
+	if tags_is_positive ~= nil and (storage_is_positive or tags_is_positive ~= storage_is_positive) then
+		-- Something has gone wrong, let's treat storage as authoritative since it affects the solar wind:
+		Public.rod_set_state(entity, storage_is_positive)
+		log("[CERYS]: Fixed bugged polarity for " .. entity.name .. " to " .. tostring(storage_is_positive))
+
+		-- Should we do this for circuit data as well?
+	end
+
+	local is_positive = storage_is_positive ~= nil and storage_is_positive or tags_is_positive
 
 	if not relative[gui_key] then
 		local main_frame = relative.add({
@@ -364,7 +382,7 @@ function Public.on_gui_opened(event)
 			right_label_caption = { "cerys.charging-rod-positive-polarity-label" },
 			name = "charging-rod-switch",
 			allow_none_state = false,
-			switch_state = "right",
+			switch_state = is_positive and "left" or "right",
 			enabled = not (rod_circuit_data and rod_circuit_data.circuit_controlled),
 		})
 
@@ -406,27 +424,6 @@ function Public.on_gui_opened(event)
 			enabled = rod_circuit_data.circuit_controlled and true or false,
 		})
 	end
-
-	local switch = relative[gui_key]["content"]["charging-rod-switch"]
-	local is_positive = false
-
-	if entity.name == "cerys-charging-rod" then
-		is_positive = storage.cerys.charging_rod_is_positive[entity.unit_number] or false
-	elseif entity.name == "entity-ghost" then
-		is_positive = Public.tags_is_positive(entity.tags) or false
-	end
-
-	switch.switch_state = is_positive and "left" or "right"
-
-	local content = relative[gui_key]["content"]
-	local checkbox = content["circuit-control-checkbox"]
-	local signal_flow = content["signal_flow"]
-
-	checkbox.state = rod_circuit_data.circuit_controlled and true or false
-	content["charging-rod-switch"].enabled = not rod_circuit_data.circuit_controlled and true or false
-	signal_flow["control-signal-button"].enabled = rod_circuit_data.circuit_controlled and true or false
-	signal_flow["control-signal-button"].elem_value = rod_circuit_data.control_signal
-	signal_flow.children[1].style.font_color = rod_circuit_data.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 end
 
 script.on_event(defines.events.on_gui_switch_state_changed, function(event)
@@ -566,6 +563,8 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 		if entity.name == "entity-ghost" then
 			local tags = entity.tags or {}
 			tags.circuit_controlled = event.element.state
+			storage.cerys.charging_rods[entity.unit_number] = storage.cerys.charging_rods[entity.unit_number] or {}
+			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
 			entity.tags = tags
 		end
 
@@ -612,6 +611,8 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
 		tags.control_signal = event.element.elem_value
+		storage.cerys.charging_rods[entity.unit_number] = storage.cerys.charging_rods[entity.unit_number] or {}
+		storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
 		entity.tags = tags
 	end
 end)

@@ -107,7 +107,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	for bp_index, entity in pairs(map) do
 		if entity.name == "cerys-charging-rod" then
 			local tags = {}
-			Public.tags_set_is_positive(tags, storage.cerys.charging_rod_is_positive[entity.unit_number])
+			rods.tags_set_is_positive(tags, storage.cerys.charging_rod_is_positive[entity.unit_number])
 			tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
 				and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
 			tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
@@ -118,20 +118,18 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	end
 end)
 
-local function blueprint_entity_filter(bp_entity)
-	return bp_entity.name == "cerys-charging-rod"
-end
-
 local function update_overlapping_entity(tags, entity)
-	rods.rod_set_state(entity, tags.is_positive)
+	local is_positive = rods.tags_is_positive(tags) or false
+
+	rods.rod_set_state(entity, is_positive)
 
 	local rod_data = storage.cerys.charging_rods[entity.unit_number] or {}
 	storage.cerys.charging_rods[entity.unit_number] = rod_data
 
-	if tags.circuit_controlled then
+	if tags.circuit_controlled ~= nil then
 		rod_data.circuit_controlled = tags.circuit_controlled
 	end
-	if tags.control_signal then
+	if tags.control_signal ~= nil then
 		rod_data.control_signal = tags.control_signal
 	end
 end
@@ -162,15 +160,16 @@ script.on_event(defines.events.on_pre_build, function(event)
 		return
 	end
 
-	local overlap_map = bp_build:map_blueprint_indices_to_overlapping_entities(blueprint_entity_filter)
+	local overlap_map = bp_build:map_blueprint_indices_to_overlapping_entities(function(bp_entity)
+		return bp_entity.name == "cerys-charging-rod"
+	end)
+
 	if not overlap_map or (not next(overlap_map)) then
 		return
 	end
 
 	-- NOTE(thesixthroc: As of 1.1.4 this is bugged, it does not detect in-world ghosts whose position and ghost name matches the [name and position] of one of the blueprint entities.
 	local bp_entities = bp_build:get_entities() --[[@as BlueprintEntity[] ]]
-
-	log("overlap_map: " .. serpent.line(overlap_map))
 
 	for bp_index, entity in pairs(overlap_map) do
 		local tags = bp_entities[bp_index].tags or {}
@@ -688,7 +687,31 @@ script.on_event(defines.events.on_gui_opened, function(event)
 	then
 		rods.on_gui_opened(event)
 	elseif entity.type == "accumulator" then -- Legacy code
-		rods.destroy_guis(event)
+		rods.destroy_guis(event.player_index)
+	end
+end)
+
+script.on_event(defines.events.on_gui_closed, function(event)
+	local player = game.players[event.player_index]
+
+	if not (player and player.valid) then
+		return
+	end
+
+	if event.gui_type == defines.gui_type.custom and event.element and event.element.name == "cerys_teleporter_gui" then
+		Public.toggle_gui(player)
+	elseif event.gui_type == defines.gui_type.entity then
+		local entity = event.entity
+		if not (entity and entity.valid) then
+			return
+		end
+
+		if
+			entity.name == "cerys-charging-rod"
+			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
+		then
+			rods.destroy_guis(event.player_index)
+		end
 	end
 end)
 

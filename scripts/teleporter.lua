@@ -251,18 +251,6 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_gui_closed, function(event)
-	local player = game.players[event.player_index]
-
-	if not (player and player.valid) then
-		return
-	end
-
-	if event.gui_type == defines.gui_type.custom and event.element and event.element.name == "cerys_teleporter_gui" then
-		Public.toggle_gui(player)
-	end
-end)
-
 Public.tick_15_check_teleporter = function()
 	if storage.cerys and storage.cerys.teleporter then
 		local e = storage.cerys.teleporter.entity
