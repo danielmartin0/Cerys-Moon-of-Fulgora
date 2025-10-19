@@ -198,7 +198,7 @@ function Public.tick_update_lights()
 		storage.cerys.light.rendering_3 = rendering.draw_light({
 			sprite = "cerys-solar-light",
 			scale = 2 * R,
-			intensity = 0.47,
+			intensity = common.HARD_MODE_ON and 0 or 0.3,
 			color = { 1, 1, 1 },
 			target = { x = 0, y = 0 },
 			surface = surface,

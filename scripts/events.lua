@@ -498,6 +498,12 @@ script.on_configuration_changed(function()
 	end
 
 	picker_dollies.add_picker_dollies_blacklists()
+
+	-- Hard mode can toggle pitch black:
+	if storage.cerys and storage.cerys.light.rendering_3 and storage.cerys.light.rendering_3.valid then
+		storage.cerys.light.rendering_3.destroy()
+		storage.cerys.light.rendering_3 = nil
+	end
 end)
 
 function Public.check_rocket_timed_effects(surface)
