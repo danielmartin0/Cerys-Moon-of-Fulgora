@@ -160,7 +160,6 @@ for key, mask in pairs(data.raw["utility-constants"].default.default_collision_m
 	if mask.layers and mask.layers.water_tile then
 		local new_mask = util.table.deepcopy(mask)
 		new_mask.layers.cerys_water_tile = true
-		new_mask.layers.cerys_water_tile = true
 		data.raw["utility-constants"].default.default_collision_masks[key] = new_mask
 	end
 end
