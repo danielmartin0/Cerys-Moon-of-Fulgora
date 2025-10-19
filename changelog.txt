@@ -14,7 +14,7 @@ Date: 2025-10-19
   Bugfixes:
     - Fixed a rare bug with old charging rods displaying their polarity incorrectly the first time they are opened.
 ---------------------------------------------------------------------------------------------------
-Version: 4.12.11-4.12.10
+Version: 4.12.10-4.12.11
 Date: 2025-10-19
   Bugfixes:
     - Fixed several bugs in which ghost charging rods did not have their settings (both polarity and circuit controls) be correctly updated or correctly shown in the GUI.
