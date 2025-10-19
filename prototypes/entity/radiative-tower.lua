@@ -1,5 +1,6 @@
 local merge = require("lib").merge
 local common = require("common")
+local common_data = require("common-data-only")
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 
 local reactor = {
@@ -388,80 +389,9 @@ for i = 1, common.LAMP_COUNT do
 	})
 
 	data:extend({
-		merge(data.raw["lamp"]["small-lamp"], {
+		merge(common_data.hidden_lamp_base, {
 			name = "radiative-tower-lamp-" .. i,
-			minable = nil,
-			hidden_in_factoriopedia = true,
-			next_upgrade = nil,
-			flags = { "not-blueprintable", "not-deconstructable", "placeable-off-grid", "not-on-map" },
-			selectable_in_game = false,
-			collision_box = { { 0, 0 }, { 0, 0 } },
-			selection_box = { { 0, 0 }, { 0, 0 } },
-			collision_mask = { layers = {} },
-			always_on = true,
-			energy_source = {
-				type = "void",
-			},
-			energy_usage_per_tick = "1kW",
-			picture_off = {
-				filename = "__core__/graphics/empty.png",
-				priority = "high",
-				width = 1,
-				height = 1,
-				frame_count = 1,
-				axially_symmetrical = false,
-				direction_count = 1,
-			},
-			picture_on = {
-				filename = "__core__/graphics/empty.png",
-				priority = "high",
-				width = 1,
-				height = 1,
-				frame_count = 1,
-				axially_symmetrical = false,
-				direction_count = 1,
-			},
 			light = { intensity = 0.3, size = 4.5 * i, color = { r = 1, g = 0.7, b = 0.7 } },
-			light_when_colored = "nil",
 		}),
-		{
-			type = "lamp",
-			name = "radiative-tower-lamp-" .. i,
-			icon = "__core__/graphics/empty.png",
-			flags = { "not-blueprintable", "not-deconstructable", "placeable-off-grid", "not-on-map" },
-			hidden_in_factoriopedia = true,
-			selectable_in_game = false,
-			max_health = 1,
-			collision_box = { { 0, 0 }, { 0, 0 } },
-			selection_box = { { 0, 0 }, { 0, 0 } },
-			collision_mask = { layers = {} },
-			energy_source = {
-				type = "void",
-			},
-			always_on = true,
-			energy_usage_per_tick = "1kW",
-			picture_off = {
-				filename = "__core__/graphics/empty.png",
-				priority = "high",
-				width = 1,
-				height = 1,
-				frame_count = 1,
-				axially_symmetrical = false,
-				direction_count = 1,
-			},
-			picture_on = {
-				filename = "__core__/graphics/empty.png",
-				priority = "high",
-				width = 1,
-				height = 1,
-				frame_count = 1,
-				axially_symmetrical = false,
-				direction_count = 1,
-			},
-			light = { intensity = 0.3, size = 4.5 * i, color = { r = 1, g = 0.7, b = 0.7 } },
-			glow_size = 6,
-			glow_color_intensity = 1,
-			glow_render_mode = "multiplicative",
-		},
 	})
 end

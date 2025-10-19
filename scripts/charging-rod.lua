@@ -147,15 +147,25 @@ function Public.update_rod_lights(entity, rod)
 		Public.destroy_red_light_entity(rod)
 	end
 
-	if energy_fraction < 0.001 and energy_fraction > -0.001 then
-		Public.destroy_lamp_entity(rod)
-	else
-		if not (rod.lamp_entity and rod.lamp_entity.valid) then
-			rod.lamp_entity = entity.surface.create_entity({
-				name = "charging-rod-lamp",
+	if energy_fraction > 0.001 then
+		if not (rod.blue_lamp_entity and rod.blue_lamp_entity.valid) then
+			rod.blue_lamp_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-lamp-blue",
 				position = { x = entity.position.x, y = entity.position.y },
 			})
 		end
+		Public.destroy_red_lamp_entity(rod)
+	elseif energy_fraction < -0.001 then
+		if not (rod.red_lamp_entity and rod.red_lamp_entity.valid) then
+			rod.red_lamp_entity = entity.surface.create_entity({
+				name = "cerys-charging-rod-lamp-red",
+				position = { x = entity.position.x, y = entity.position.y },
+			})
+		end
+		Public.destroy_blue_lamp_entity(rod)
+	else
+		Public.destroy_blue_lamp_entity(rod)
+		Public.destroy_red_lamp_entity(rod)
 	end
 
 	-- Update polarity fraction
@@ -242,12 +252,21 @@ function Public.tick_12_check_charging_rods()
 	end
 end
 
-function Public.destroy_lamp_entity(rod)
-	if rod.lamp_entity then
-		if rod.lamp_entity.valid then
-			rod.lamp_entity.destroy()
+function Public.destroy_red_lamp_entity(rod)
+	if rod.red_lamp_entity then
+		if rod.red_lamp_entity.valid then
+			rod.red_lamp_entity.destroy()
 		end
-		rod.lamp_entity = nil
+		rod.red_lamp_entity = nil
+	end
+end
+
+function Public.destroy_blue_lamp_entity(rod)
+	if rod.blue_lamp_entity then
+		if rod.lamp_entity.valid then
+			rod.blue_lamp_entity.destroy()
+		end
+		rod.blue_lamp_entity = nil
 	end
 end
 
@@ -326,12 +345,11 @@ function Public.on_gui_opened(event)
 
 	local gui_key = Public.GUI_KEY
 
-	-- We always destroy the GUI when leaving it now, so this is no longer needed:
-	-- if relative[gui_key] then
-	-- 	if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
-	-- 		relative[gui_key].destroy()
-	-- 	end
-	-- end
+	if relative[gui_key] then
+		if (relative[gui_key].tags or {}).mod_version ~= script.active_mods["Cerys-Moon-of-Fulgora"] then
+			relative[gui_key].destroy()
+		end
+	end
 
 	if player.surface and player.surface.valid and player.surface.name ~= "cerys" then
 		return
@@ -344,15 +362,14 @@ function Public.on_gui_opened(event)
 	local tags_is_positive = Public.tags_is_positive(tags)
 	local storage_is_positive = storage.cerys.charging_rod_is_positive[entity.unit_number]
 
-	if tags_is_positive ~= nil and (storage_is_positive or tags_is_positive ~= storage_is_positive) then
+	if tags_is_positive ~= storage_is_positive then
 		-- Something has gone wrong, let's treat storage as authoritative since it affects the solar wind:
 		Public.rod_set_state(entity, storage_is_positive)
-		log("[CERYS]: Fixed bugged polarity for " .. entity.name .. " to " .. tostring(storage_is_positive))
 
 		-- Should we do this for circuit data as well?
 	end
 
-	local is_positive = storage_is_positive ~= nil and storage_is_positive or tags_is_positive
+	local is_positive = storage_is_positive
 
 	if not relative[gui_key] then
 		local main_frame = relative.add({
