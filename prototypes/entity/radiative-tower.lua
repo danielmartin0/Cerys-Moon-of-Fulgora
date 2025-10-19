@@ -38,13 +38,40 @@ local reactor = {
 		specific_heat = common.HARD_MODE_ON and "100kJ" or "70kJ",
 		max_transfer = "1kW",
 		minimum_glow_temperature = 16,
-		heat_picture = apply_heat_pipe_glow(
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
-				scale = 0.22,
-				blend_mode = "additive",
-				draw_as_glow = true,
-			})
-		),
+		-- heat_picture = apply_heat_pipe_glow(
+		-- 	util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
+		-- 		scale = 0.22,
+		-- 		blend_mode = "additive",
+		-- 		draw_as_glow = true,
+		-- 	})
+		-- ),
+		heat_picture = {
+			layers = {
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
+					scale = 0.22,
+					blend_mode = "additive",
+					draw_as_glow = true,
+				}),
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
+					scale = 0.22,
+					blend_mode = "additive",
+					draw_as_light = true,
+					tint = { 1, 1, 1, 1 },
+				}),
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/flare", {
+					scale = 0.22,
+					blend_mode = "additive",
+					draw_as_glow = true,
+					tint = { 0.5, 0.5, 0.5, 1 },
+				}),
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/flare", {
+					scale = 0.22,
+					blend_mode = "additive",
+					draw_as_light = true,
+					tint = { 0.5, 0.5, 0.5, 1 },
+				}),
+			},
+		},
 	},
 	neighbour_bonus = 0,
 	picture = {
@@ -279,9 +306,6 @@ local container = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
 				scale = 0.22,
 			}),
-			-- util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
-			-- 	scale = 0.22,
-			-- }),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
 				scale = 0.22,
 				draw_as_shadow = true,
