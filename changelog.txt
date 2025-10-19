@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.0
-Date: ????
+Date: 2025-10-19
   Graphics:
     - Cerys is now darker at night.
     - Improved graphics for the Fulgoran radiative tower.
