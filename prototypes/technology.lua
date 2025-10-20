@@ -526,7 +526,6 @@ data:extend({
 			},
 			{
 				type = "nothing",
-				recipe = "cerys-radiative-tower",
 				effect_description = {
 					"cerys.mining-radiative-towers",
 				},
@@ -598,7 +597,7 @@ data:extend({
 			time = 60,
 		},
 		upgrade = true,
-		order = "z-a",
+		order = "z-b",
 	},
 	{
 		type = "technology",
@@ -643,61 +642,39 @@ data:extend({
 	},
 })
 
-local engine_productivity_effects = {}
-for _, recipe_name in ipairs({
-	"engine-unit",
-	"electric-engine-unit",
-	"motor",
-	"electric-motor",
-	"vgal-advanced-circuit-electric-engine-unit",
-	"vgal-plastic-bar-electric-engine-unit",
-	"vgal-low-density-structure-engine-unit",
-	"vgal-lubricant-engine-unit",
-	"casting-engine-unit",
-}) do
-	if data.raw.recipe[recipe_name] then
-		table.insert(engine_productivity_effects, {
-			type = "change-recipe-productivity",
-			recipe = recipe_name,
-			change = 0.1,
-		})
-	end
-end
-
 data:extend({
-
 	{
 		type = "technology",
-		name = "cerys-engine-unit-productivity-1",
-		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
-		effects = engine_productivity_effects,
+		name = "cerys-plutonium-productivity",
+		icons = {
+			{
+				icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/plutonium-239.png",
+				icon_size = 192,
+			},
+			{
+				icon = "__core__/graphics/icons/technology/constants/constant-recipe-productivity.png",
+				icon_size = 128,
+				scale = 0.5,
+				shift = { 50, 50 },
+				floating = true,
+			},
+		},
+		effects = { {
+			type = "change-recipe-productivity",
+			recipe = "plutonium-239",
+			change = 0.1,
+		} },
 		prerequisites = { "cerysian-science-pack" },
 		unit = {
-			count = correct(25),
+			count_formula = "2^(L-1)*100",
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-			},
-			time = 60,
-		},
-		upgrade = true,
-		order = "z-b",
-	},
-	{
-		type = "technology",
-		name = "cerys-engine-unit-productivity-2",
-		icons = util.technology_icon_constant_recipe_productivity("__base__/graphics/technology/engine.png"),
-		effects = engine_productivity_effects,
-		prerequisites = { "cerys-engine-unit-productivity-1" },
-		unit = {
-			count_formula = "2^(L-2)*100",
-			ingredients = {
-				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
 			},
 			time = 60,
 		},
 		max_level = "infinite",
 		upgrade = true,
+		order = "z-a",
 	},
 })
 

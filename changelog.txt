@@ -1,14 +1,20 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.13.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.13.3
+Version: 4.14.0
 Date: 2025-10-20
   Graphics:
-    - Tweaks to light levels.
+    - Further reduced brightness at nighttime.
+  Changes:
+    - Replaced the engine productivity technology with an infinite 'Plutonium productivity' technology.
+    - Removed the Kofi toast, players are trusted to find kofi.com/thesixthroc on their own accord.
+  Balancing:
+    - Increased the crafting time of Mineral leaching (+25%), increased the sulfuric acid required (+20%) and decreased the ammonia produced (-20%).
+    - Buffed the belts factor for [REDACTED] from 10X to 30X.
+  Bugfixes:
+    - Fixed a crash when loading saves 6+ months old into Cerys 4.13+.
+  Compatibility:
+    - Plutonium Energy: Fixed that PlanetsLib notified of an unresearchable technology.
 ---------------------------------------------------------------------------------------------------
-Version: 4.13.0-4.13.2
+Version: 4.13.0-4.13.3
 Date: 2025-10-19
   Graphics:
     - Cerys is now darker at night.

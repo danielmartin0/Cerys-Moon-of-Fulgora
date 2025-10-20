@@ -4,6 +4,22 @@ local find = lib.find
 
 local Public = {}
 
+function Public.update_plutonium_productivity_modifier()
+	local max_level = 0
+
+	for _, force in pairs(game.forces) do
+		local tech = force.technologies["cerys-plutonium-productivity"]
+		local level = tech.level
+		max_level = math.max(max_level, level - 1) -- If we're at level 8, we've done level 7
+	end
+
+	local modifier = 1.0 + (max_level * 0.1)
+
+	storage.plutonium_productivity_modifier = modifier
+
+	return modifier
+end
+
 local spd = common.PARTICLE_SIMULATION_SPEED
 local ASTEROID_SPAWN_DISTANCE_FROM_EDGE = 60
 local WIND_SPAWN_DISTANCE_FROM_EDGE = 70
@@ -22,7 +38,7 @@ local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 800
+local CHANCE_MUTATE_BELT_URANIUM = 1 / 267
 local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 8000
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
@@ -446,9 +462,11 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 								if item.stack.name == "uranium-238" then
 									has_uranium = true
 
+									local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
 									local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
 										* probability_multiplier
 										* settings.global["cerys-plutonium-generation-rate-multiplier"].value
+										* productivity_modifier
 
 									storage.accrued_probability_units = (storage.accrued_probability_units or 0)
 										+ increase
@@ -539,11 +557,14 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 				random_increase = 0.5
 			end
 
+			local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
+
 			local increase = count
 				* CHANCE_MUTATE_INVENTORY_URANIUM
 				* random_increase
 				* probability_multiplier
 				* settings.global["cerys-plutonium-generation-rate-multiplier"].value
+				* productivity_modifier
 
 			storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
 

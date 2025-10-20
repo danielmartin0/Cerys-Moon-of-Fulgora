@@ -29,6 +29,9 @@ if mods["PlutoniumEnergy"] then
 	if data.raw.technology["breeder-fuel-cell-from-MOX-fuel-cell"] then
 		data.raw.technology["breeder-fuel-cell-from-MOX-fuel-cell"].hidden = true
 	end
+	if data.raw.technology["plutonium-atomic-bomb"] then
+		data.raw.technology["plutonium-atomic-bomb"].hidden = true
+	end
 	if data.raw.recipe["plutonium-cannon-shell"] then
 		table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
 			type = "unlock-recipe",

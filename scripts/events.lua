@@ -192,6 +192,11 @@ script.on_event(defines.events.on_research_finished, function(event)
 		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].visible_when_disabled = false
 		research.force.technologies["cerys-legacy-reactor-fuel-productivity"].enabled = false
 	end
+
+	-- Update plutonium productivity modifier when any research completes (in case it's the plutonium productivity tech)
+	if research.name == "cerys-plutonium-productivity" then
+		space.update_plutonium_productivity_modifier()
+	end
 end)
 
 script.on_event(defines.events.on_player_changed_surface, function(event)
@@ -500,10 +505,18 @@ script.on_configuration_changed(function()
 	picker_dollies.add_picker_dollies_blacklists()
 
 	-- Hard mode can toggle pitch black:
-	if storage.cerys and storage.cerys.light.rendering_3 and storage.cerys.light.rendering_3.valid then
+	if
+		storage.cerys
+		and storage.cerys.light
+		and storage.cerys.light.rendering_3
+		and storage.cerys.light.rendering_3.valid
+	then
 		storage.cerys.light.rendering_3.destroy()
 		storage.cerys.light.rendering_3 = nil
 	end
+
+	-- Just in case:
+	space.update_plutonium_productivity_modifier()
 end)
 
 function Public.check_rocket_timed_effects(surface)
@@ -514,12 +527,12 @@ function Public.check_rocket_timed_effects(surface)
 			return
 		end
 
-		surface.print({
-			"",
-			"[font=default-game] >> ",
-			{ "cerys.kofi-toast" },
-			"[/font]",
-		}, { color = { 164, 135, 255 } })
+		-- surface.print({
+		-- 	"",
+		-- 	"[font=default-game] >> ",
+		-- 	{ "cerys.kofi-toast" },
+		-- 	"[/font]",
+		-- }, { color = { 164, 135, 255 } })
 	end
 
 	if storage.atmospheric_nuke_timer and game.tick >= storage.atmospheric_nuke_timer then

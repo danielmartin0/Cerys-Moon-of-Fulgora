@@ -409,15 +409,15 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-nitrogen-rich-mineral-processing.png",
 		icon_size = 64,
 		category = "fulgoran-cryogenics",
-		energy_required = 2,
+		energy_required = 2.5,
 		enabled = false,
 		ingredients = {
 			{ type = "item", name = "cerys-nitrogen-rich-minerals", amount = 1 },
-			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 100 or 50 }, -- 1 iron => 50 sulfuric acid.
+			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 120 or 60 }, -- 1 iron => 50 sulfuric acid.
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
 			{ type = "item", name = "iron-ore", amount = 2 },
-			{ type = "fluid", name = "ammonia", amount = 50 },
+			{ type = "fluid", name = "ammonia", amount = 40 },
 		},
 		allow_productivity = true,
 		subgroup = "cerys-processes",
