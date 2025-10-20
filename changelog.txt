@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.3
 Date: ????
-  Changes:
+  Graphics:
+    - Tweaks to light levels.
 ---------------------------------------------------------------------------------------------------
 Version: 4.13.0-4.13.2
 Date: 2025-10-19
@@ -13,6 +14,7 @@ Date: 2025-10-19
     - Added a default signal for the energy readout of charging rods connected to circuits.
   Bugfixes:
     - Fixed a rare bug with old charging rods displaying their polarity incorrectly the first time they are opened.
+    - Fixed a crash when closing the Fulgoran teleporter GUI.
 ---------------------------------------------------------------------------------------------------
 Version: 4.12.10-4.12.11
 Date: 2025-10-19
