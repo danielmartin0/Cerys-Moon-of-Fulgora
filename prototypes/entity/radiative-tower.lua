@@ -391,7 +391,7 @@ for i = 1, common.LAMP_COUNT do
 	data:extend({
 		merge(common_data.hidden_lamp_base, {
 			name = "radiative-tower-lamp-" .. i,
-			light = { intensity = 0.52, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } },
+			light = { intensity = 0.55, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } },
 		}),
 	})
 end
