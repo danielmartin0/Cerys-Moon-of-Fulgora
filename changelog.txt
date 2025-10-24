@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.0
-Date: ????
+Date: 2025-10-24
   Bugfixes:
     - Fixed a bug introduced on 4.12.9 (14th Oct) in which heat pipes on Cerys cooled twice as fast as intended.
     - Fixed that the Fulgora background would wobble slightly when driving a spidertron.
