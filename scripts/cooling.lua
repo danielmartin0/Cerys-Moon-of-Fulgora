@@ -122,12 +122,13 @@ function Public.tick_30_cool_heat_pipes()
 		local invalid_entities_found = false
 		local cooling_multiplier = num_batches -- Scale cooling by number of batches
 
+		local cooling_rate = TEMPERATURE_LOSS_RATE * cooling_multiplier / 2
+
 		for i = start_index, end_index do
 			local entity = storage.cerys.heat_pipes[i]
 			if entity and entity.valid and entity.temperature then
-				local effective_cooling = TEMPERATURE_LOSS_RATE
-					* get_heat_pipe_cooling_multiplier(entity)
-					* cooling_multiplier
+				local effective_cooling = cooling_rate * get_heat_pipe_cooling_multiplier(entity)
+
 				cool_entity(entity, effective_cooling)
 			elseif entity then
 				invalid_entities_found = true
