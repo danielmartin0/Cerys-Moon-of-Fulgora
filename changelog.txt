@@ -2,11 +2,11 @@
 Version: 4.15.0
 Date: ????
   Bugfixes:
-    - Fixed a bug introduced on 4.12.9 (14th October) in which heat pipes on Cerys cooled twice as fast as intended.
+    - Fixed a bug introduced on 4.12.9 (14th Oct) in which heat pipes on Cerys cooled twice as fast as intended.
     - Fixed that the Fulgora background would wobble slightly when driving a spidertron.
     - Fixed that modded warehouses were treated as if they were the size of chests for [REDACTED].
   Changes:
-    - Mentioned in the 'Nuclear scrap recycling' technology description that nuclear scrap can be recycled by hand.
+    - Mentioned in the technology description of Nuclear scrap recycling that nuclear scrap can be recycled by hand.
   Locale:
     - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
