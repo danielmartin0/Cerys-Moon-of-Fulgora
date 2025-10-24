@@ -1,17 +1,22 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.14.1
+Version: 4.15.0
 Date: ????
   Bugfixes:
-    - Fixed that warehouses were treated as the size of chests for purposes of [REDACTED].
+    - Fixed a bug introduced on 4.12.9 (14th October) in which heat pipes on Cerys cooled twice as fast as intended.
     - Fixed that the Fulgora background would wobble slightly when driving a spidertron.
+    - Fixed that modded warehouses were treated as if they were the size of chests for [REDACTED].
+  Changes:
+    - Mentioned in the 'Nuclear scrap recycling' technology description that nuclear scrap can be recycled by hand.
+  Locale:
+    - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.14.0
 Date: 2025-10-20
-  Graphics:
-    - Further reduced brightness at nighttime.
   Changes:
     - Replaced the engine productivity technology with an infinite 'Plutonium productivity' technology.
     - Removed the Kofi toast, players are trusted to find kofi.com/thesixthroc on their own accord.
+  Graphics:
+    - Further reduced brightness at nighttime.
   Balancing:
     - Increased the crafting time of Mineral leaching (+25%), increased the sulfuric acid required (+20%) and decreased the ammonia produced (-20%).
     - Buffed the belts factor for [REDACTED] from 10X to 30X.
