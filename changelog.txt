@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.14.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that warehouses were treated as the size of chests for purposes of [REDACTED].
+    - Fixed that the Fulgora background would wobble slightly when driving a spidertron.
 ---------------------------------------------------------------------------------------------------
 Version: 4.14.0
 Date: 2025-10-20

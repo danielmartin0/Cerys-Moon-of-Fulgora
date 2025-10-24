@@ -113,4 +113,12 @@ data:extend({
 		scale = 0.22,
 		draw_as_shadow = true,
 	},
+	-- {
+	-- 	type = "sprite",
+	-- 	name = "cerys-radiative-tower-light",
+	-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
+	-- 	width = 64,
+	-- 	height = 64,
+	-- 	-- scale = 10,
+	-- },
 })
