@@ -30,10 +30,7 @@ function Public.tick_1_update_background_renderings(surface)
 				local planet_stretch = stretch
 				local extra_y_offset = -5 * (stretch - 1)
 
-				local center_of_screen = {
-					x = player.position.x,
-					y = player.position.y + player.flight_height,
-				}
+				local center_of_screen = player.render_position
 
 				local target_position = {
 					x = center_of_screen.x * PLANET_PARALLAX + PLANET_OFFSET.x,

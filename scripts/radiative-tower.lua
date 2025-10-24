@@ -187,6 +187,17 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	)
 end
 
+-- function Public.light_parameters(entity, radius)
+-- 	return {
+-- 		sprite = "cerys-radiative-tower-light",
+-- 		intensity = 0.55,
+-- 		scale = radius,
+-- 		color = { r = 1, g = 0.81, b = 0.79 },
+-- 		target = entity,
+-- 		surface = entity.surface,
+-- 	}
+-- end
+
 function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local e = valid_tower.entity
 

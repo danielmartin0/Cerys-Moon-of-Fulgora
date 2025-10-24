@@ -413,26 +413,43 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			local containers = surface.find_entities_filtered({
 				type = { "container", "logistic-container" },
 				position = particle.position,
-				radius = 0.75,
+				radius = 3,
+				-- has_item_inside = "uranium-238", -- this would only catch normal quality
 			})
 
 			if #containers > 0 then
 				local e = containers[1]
 				if e and e.valid then
 					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
+						and e.name ~= "cerys-fulgoran-radiative-tower-contracted-container"
+						and e.has_items_inside()
 
 					if check then
-						particle.last_checked_inv = e.unit_number
+						local p = e.position
+						local prototype_collision_box = e.prototype.collision_box
 
-						local inv = e.get_inventory(defines.inventory.chest)
-						if inv and inv.valid then
-							local irradiated =
-								Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
-							if irradiated then
-								surface.create_entity({
-									name = "plutonium-explosion",
-									position = e.position,
-								})
+						local is_inside = particle.position.x > p.x + prototype_collision_box.left_top.x - 0.1
+							and particle.position.x < p.x + prototype_collision_box.right_bottom.x + 0.1
+							and particle.position.y > p.y + prototype_collision_box.left_top.y - 0.1
+							and particle.position.y < p.y + prototype_collision_box.right_bottom.y + 0.1
+						if is_inside then
+							particle.last_checked_inv = e.unit_number
+
+							local inv = e.get_inventory(defines.inventory.chest)
+							if inv and inv.valid then
+								local irradiated = Public.irradiate_inventory(
+									surface,
+									inv,
+									e.force,
+									e.position,
+									probability_multiplier
+								)
+								if irradiated then
+									surface.create_entity({
+										name = "plutonium-explosion",
+										position = e.position,
+									})
+								end
 							end
 						end
 					end
