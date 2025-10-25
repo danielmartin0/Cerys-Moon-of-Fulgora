@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
-Date: ????
+Date: 2025-10-25
   Graphics:
     - Tweaked the light produced by the Fulgoran radiative tower.
   Balancing:
