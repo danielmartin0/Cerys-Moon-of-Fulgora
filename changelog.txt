@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
 Date: ????
-  Changes:
+  Graphics:
+    - Tweaked the light produced by the Fulgoran radiative tower.
+  Balancing:
+    - Reduced Advanced circuits produced by nuclear scrap recycling (15% -> 12%).
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.0
 Date: 2025-10-24

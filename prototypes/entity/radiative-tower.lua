@@ -391,7 +391,7 @@ for i = 1, common.LAMP_COUNT do
 	data:extend({
 		merge(common_data.hidden_lamp_base, {
 			name = "radiative-tower-lamp-" .. i,
-			light = { intensity = 0.55, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } },
+			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } }, -- Going over 0.5 intensity produces more issues where the intersection of heating towers is more blue than most other places.
 		}),
 	})
 end
