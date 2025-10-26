@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.2
 Date: ????
-  Changes:
+  Locale:
+    - Added Brazilian Portuguese translation (cloned from https://mods.factorio.com/mod/YKR_PTBR by duhyukora).
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
 Date: 2025-10-25
