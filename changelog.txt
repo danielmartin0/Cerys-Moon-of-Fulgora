@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.16.0
-Date: ????
+Date: 2025-10-29
   Bugfixes:
     - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change (a better fix for modded warehouses will be pushed at a future date).
 ---------------------------------------------------------------------------------------------------
