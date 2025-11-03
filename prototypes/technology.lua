@@ -806,7 +806,7 @@ if data.raw.technology["braking-force-7"] and data.raw.technology["braking-force
 	data:extend({
 		{
 			type = "technology",
-			name = "braking-force-8",
+			name = mods["rubia"] and "cerys-braking-force" or "braking-force-8",
 			icons = util.technology_icon_constant_braking_force("__base__/graphics/technology/braking-force.png"),
 			effects = {
 				{
