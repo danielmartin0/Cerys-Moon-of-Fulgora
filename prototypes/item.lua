@@ -7,7 +7,6 @@ data:extend({
 	{
 		type = "item",
 		name = "cerys-radiative-tower",
-		hidden_in_factoriopedia = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
 		icon_size = 200,
 		subgroup = "environmental-protection",

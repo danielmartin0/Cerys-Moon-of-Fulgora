@@ -31,7 +31,7 @@ local reactor = {
 			color = { 0, 0, 0 },
 			minimum_intensity = 0,
 			maximum_intensity = 0,
-		}, -- Needed to disable the flicker effect
+		}, -- Disable the flicker effect
 	},
 	consumption = common.HARD_MODE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
