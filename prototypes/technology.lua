@@ -537,7 +537,7 @@ data:extend({
 			"planetslib-cerys-cargo-drops",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
-		icon_size = 256,
+		icon_size = 400,
 		unit = {
 			count = correct(2000),
 			ingredients = {
