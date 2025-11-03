@@ -53,22 +53,10 @@ local reactor = {
 					blend_mode = "additive",
 					draw_as_glow = true,
 				}),
-				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
-					scale = 0.22,
-					blend_mode = "additive",
-					draw_as_light = true,
-					tint = { 1, 1, 1, 1 },
-				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/flare", {
 					scale = 0.22,
 					blend_mode = "additive",
 					draw_as_glow = true,
-					tint = { 0.4, 0.4, 0.4, 1 },
-				}),
-				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/flare", {
-					scale = 0.22,
-					blend_mode = "additive",
-					draw_as_light = true,
 					tint = { 0.4, 0.4, 0.4, 1 },
 				}),
 			},

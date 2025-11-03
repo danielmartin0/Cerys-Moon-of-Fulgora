@@ -1,17 +1,20 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.16.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.16.1
+Version: 4.17.0
 Date: 2025-10-29
-  Bugfixes:
-    - Fixed a bug in which stone-brick tiles could never be placed next to water.
+  Graphics:
+    - New graphics for the player-craftable radiative tower.
+    - Slightly reduced darkness at night-time.
+  Changes:
+    - Added an infinite braking force technology to complement plutonium fuel, previously this was an optional setting.
+  Balancing:
+    - Increased the lifetime of radioactive module (+60%).
 ---------------------------------------------------------------------------------------------------
-Version: 4.16.0
+Version: 4.16.0-4.16.1
 Date: 2025-10-29
   Bugfixes:
     - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change (a better fix for modded warehouses will be pushed at a future date).
+  Bugfixes:
+    - Fixed a longstanding bug caused by an undocumented property of Factorio collision mods in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
 Date: 2025-10-25

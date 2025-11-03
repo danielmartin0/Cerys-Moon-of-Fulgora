@@ -22,13 +22,13 @@ data:extend({
 		maximum_value = 100000.0,
 		order = "c",
 	},
-	{
-		type = "bool-setting",
-		name = "cerys-infinite-braking-technology",
-		setting_type = "startup",
-		default_value = false,
-		order = "d",
-	},
+	-- {
+	-- 	type = "bool-setting",
+	-- 	name = "cerys-infinite-braking-technology",
+	-- 	setting_type = "startup",
+	-- 	default_value = true,
+	-- 	order = "d",
+	-- },
 	{
 		type = "bool-setting",
 		name = "cerys-use-fulgora-starmap-graphic",

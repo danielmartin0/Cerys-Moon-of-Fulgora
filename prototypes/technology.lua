@@ -801,11 +801,8 @@ if not settings.startup["cerys-disable-secret-cell-productivity-tech-for-legacy-
 	})
 end
 
-if
-	settings.startup["cerys-infinite-braking-technology"].value
-	and data.raw.technology["braking-force-7"]
-	and data.raw.technology["braking-force-7"].max_level ~= "infinite"
-then
+-- if settings.startup["cerys-infinite-braking-technology"].value
+if data.raw.technology["braking-force-7"] and data.raw.technology["braking-force-7"].max_level ~= "infinite" then
 	data:extend({
 		{
 			type = "technology",
@@ -817,15 +814,13 @@ then
 					modifier = 0.15,
 				},
 			},
-			prerequisites = { "braking-force-7" },
+			prerequisites = { "braking-force-7", "cerys-applications-of-radioactivity" },
 			unit = {
-				count_formula = "2^(L-7)*" .. data.raw.technology["braking-force-7"].unit.count,
+				count_formula = "1000 * 2^(L-8)",
 				ingredients = {
-					{ "automation-science-pack", 1 },
 					{ "logistic-science-pack", 1 },
-					{ "chemical-science-pack", 1 },
-					{ "production-science-pack", 1 },
-					{ "utility-science-pack", 1 },
+					{ "space-science-pack", 1 },
+					{ "cerysian-science-pack", 1 },
 				},
 				time = 60,
 			},

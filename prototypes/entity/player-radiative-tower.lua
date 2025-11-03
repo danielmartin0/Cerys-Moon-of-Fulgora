@@ -20,13 +20,18 @@ data:extend({
 			effectivity = 0.9,
 			fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
 			burnt_inventory_size = 0,
+			light_flicker = {
+				color = { 0, 0, 0 },
+				minimum_intensity = 0,
+				maximum_intensity = 0,
+			}, -- Needed to disable the flicker effect
 		},
 		consumption = "1300kW",
 		heat_buffer = {
 			max_temperature = 150,
 			specific_heat = "70kJ",
 			max_transfer = "1kW",
-			minimum_glow_temperature = 0,
+			minimum_glow_temperature = 16,
 			heat_picture = {
 				layers = {
 					util.sprite_load(
@@ -34,16 +39,17 @@ data:extend({
 						{
 							scale = 0.42,
 							blend_mode = "additive",
-							tint = { 1, 1, 1 },
-							draw_as_light = true,
+							tint = { 0.55, 0.55, 0.55, 1 },
+							draw_as_glow = true,
 						}
 					),
 					util.sprite_load(
-						"__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower-glow",
+						"__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower-flare",
 						{
 							scale = 0.42,
 							blend_mode = "additive",
-							tint = { 0.5, 0.4, 0.3, 0.2 },
+							tint = { 0.15, 0.15, 0.15, 1 },
+							draw_as_glow = true,
 						}
 					),
 				},

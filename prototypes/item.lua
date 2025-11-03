@@ -173,7 +173,7 @@ data:extend({
 			pollution = 0.14,
 			speed = -0.2,
 		},
-		spoil_ticks = 5 * 60 * 60,
+		spoil_ticks = 8 * 60 * 60,
 		spoil_result = "cerys-radioactive-module-decayed",
 		default_import_location = "cerys",
 	},
