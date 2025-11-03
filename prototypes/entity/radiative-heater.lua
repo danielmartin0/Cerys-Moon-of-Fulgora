@@ -4,7 +4,7 @@ local hit_effects = require("__base__.prototypes.entity.hit-effects")
 data:extend({
 	{
 		type = "reactor",
-		name = "cerys-radiative-tower",
+		name = "cerys-radiative-heater",
 		flags = { "placeable-neutral", "player-creation" },
 		hidden = true,
 		max_health = 500,
@@ -34,43 +34,34 @@ data:extend({
 			minimum_glow_temperature = 16,
 			heat_picture = {
 				layers = {
-					util.sprite_load(
-						"__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower-glow",
-						{
-							scale = 0.42,
-							blend_mode = "additive",
-							tint = { 0.55, 0.55, 0.55, 1 },
-							draw_as_glow = true,
-						}
-					),
-					util.sprite_load(
-						"__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower-flare",
-						{
-							scale = 0.42,
-							blend_mode = "additive",
-							tint = { 0.15, 0.15, 0.15, 1 },
-							draw_as_glow = true,
-						}
-					),
+					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/glow", {
+						scale = 0.42,
+						blend_mode = "additive",
+						tint = { 0.55, 0.55, 0.55, 1 },
+						draw_as_glow = true,
+					}),
+					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/flare", {
+						scale = 0.42,
+						blend_mode = "additive",
+						tint = { 0.13, 0.13, 0.13, 1 },
+						draw_as_glow = true,
+					}),
 				},
 			},
 		},
 		neighbour_bonus = 0,
 		picture = {
 			layers = {
-				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower", {
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/tower", {
 					scale = 0.42,
 				}),
-				util.sprite_load(
-					"__Cerys-Moon-of-Fulgora__/graphics/entity/player-radiative-tower/player-tower-shadow",
-					{
-						scale = 0.42,
-						draw_as_shadow = true,
-					}
-				),
+				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/shadow", {
+					scale = 0.42,
+					draw_as_shadow = true,
+				}),
 			},
 		},
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-heater.png",
 		icon_size = 64,
 		open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 		close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
@@ -88,7 +79,7 @@ data:extend({
 			shadow_offset = util.by_pixel(-37.5, 7.5),
 			show_shadow = true,
 		}),
-		minable = { mining_time = 0.2, result = "cerys-radiative-tower" },
+		minable = { mining_time = 0.2, result = "cerys-radiative-heater" },
 		autoplace = {
 			probability_expression = "0",
 		},
@@ -125,16 +116,16 @@ data:extend({
 -- data:extend({
 -- 	{
 -- 		type = "beacon",
--- 		name = "cerys-radiative-tower-dummy", -- Secretly a beacon for the visualisation
--- 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
+-- 		name = "cerys-radiative-heater-dummy", -- Secretly a beacon for the visualisation
+-- 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-heater.png",
 -- 		icon_size = 64,
 -- 		hidden = true,
 -- 		minable = nil,
 -- 		next_upgrade = nil,
 -- 		flags = { "placeable-neutral", "player-creation" },
--- 		collision_box = data.raw["reactor"]["cerys-radiative-tower"].collision_box,
--- 		selection_box = data.raw["reactor"]["cerys-radiative-tower"].selection_box,
--- 		collision_mask = data.raw["reactor"]["cerys-radiative-tower"].collision_mask,
+-- 		collision_box = data.raw["reactor"]["cerys-radiative-heater"].collision_box,
+-- 		selection_box = data.raw["reactor"]["cerys-radiative-heater"].selection_box,
+-- 		collision_mask = data.raw["reactor"]["cerys-radiative-heater"].collision_mask,
 -- 		allowed_effects = {},
 -- 		radius_visualisation_picture = {
 -- 			filename = "__base__/graphics/entity/beacon/beacon-radius-visualization.png",
@@ -144,7 +135,7 @@ data:extend({
 -- 			tint = { 1, 0, 0 },
 -- 		},
 -- 		supply_area_distance = 9,
--- 		energy_usage = data.raw["reactor"]["cerys-radiative-tower"].consumption,
+-- 		energy_usage = data.raw["reactor"]["cerys-radiative-heater"].consumption,
 -- 		energy_source = {
 -- 			type = "void",
 -- 		},
@@ -161,7 +152,7 @@ data:extend({
 -- 				},
 -- 			},
 -- 		},
--- 		base_picture = data.raw["reactor"]["cerys-radiative-tower"].picture,
--- 		drawing_box_vertical_extension = data.raw["reactor"]["cerys-radiative-tower"].drawing_box_vertical_extension,
+-- 		base_picture = data.raw["reactor"]["cerys-radiative-heater"].picture,
+-- 		drawing_box_vertical_extension = data.raw["reactor"]["cerys-radiative-heater"].drawing_box_vertical_extension,
 -- 	},
 -- })

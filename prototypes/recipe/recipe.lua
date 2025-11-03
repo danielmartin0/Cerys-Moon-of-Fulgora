@@ -4,7 +4,7 @@ local common_data = require("common-data-only")
 data:extend({
 	{
 		type = "recipe",
-		name = "cerys-radiative-tower",
+		name = "cerys-radiative-heater",
 		category = "crafting",
 		energy_required = 6,
 		ingredients = {
@@ -13,7 +13,7 @@ data:extend({
 			{ type = "item", name = "processing-unit", amount = 8 },
 			{ type = "item", name = "plutonium-238", amount = 8 },
 		},
-		results = { { type = "item", name = "cerys-radiative-tower", amount = 1 } },
+		results = { { type = "item", name = "cerys-radiative-heater", amount = 1 } },
 		enabled = false,
 		surface_conditions = {
 			common.AMBIENT_RADIATION_MIN,

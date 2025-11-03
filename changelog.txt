@@ -2,12 +2,12 @@
 Version: 4.17.0
 Date: 2025-10-29
   Graphics:
-    - New graphics for the player-craftable radiative tower.
-    - Slightly reduced darkness at night-time.
+    - New graphics for the Radiative heater.
   Changes:
+    - Renamed the player-crafted radiative tower to 'Radiative heater'.
     - Added an infinite braking force technology to complement plutonium fuel, previously this was an optional setting.
   Balancing:
-    - Increased the lifetime of radioactive module (+60%).
+    - Increased the lifetime of the radioactive module (+60%).
 ---------------------------------------------------------------------------------------------------
 Version: 4.16.0-4.16.1
 Date: 2025-10-29

@@ -31,7 +31,7 @@ function Public.add_picker_dollies_blacklists()
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-base-frozen", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-contracted-container", true)
 
-		remote.call("PickerDollies", "add_blacklist_name", "cerys-radiative-tower", true) -- Heating logic is attached to position
+		remote.call("PickerDollies", "add_blacklist_name", "cerys-radiative-heater", true) -- Heating logic is attached to position
 
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-cryogenic-plant", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-cryogenic-plant-wreck", true)

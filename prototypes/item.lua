@@ -6,15 +6,15 @@ local item_sounds = require("__base__.prototypes.item_sounds")
 data:extend({
 	{
 		type = "item",
-		name = "cerys-radiative-tower",
-		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/player-radiative-tower.png",
-		icon_size = 200,
+		name = "cerys-radiative-heater",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-heater.png",
+		icon_size = 64,
 		subgroup = "environmental-protection",
 		order = "z-d[cerys]-b[radiative-tower]",
 		default_import_location = "cerys",
 		weight = 100 * 1000,
 		stack_size = 20,
-		place_result = "cerys-radiative-tower",
+		place_result = "cerys-radiative-heater",
 	},
 })
 

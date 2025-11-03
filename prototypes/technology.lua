@@ -522,7 +522,7 @@ data:extend({
 		effects = {
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-radiative-tower",
+				recipe = "cerys-radiative-heater",
 			},
 			{
 				type = "nothing",
@@ -537,7 +537,7 @@ data:extend({
 			"planetslib-cerys-cargo-drops",
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/radiative-heaters.png",
-		icon_size = 200,
+		icon_size = 400,
 		unit = {
 			count = correct(2000),
 			ingredients = {
