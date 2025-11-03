@@ -58,7 +58,7 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	for _, variation in pairs(e.graphics_set.variations) do
 		if variation.shadow_shift then
 			variation.shadow_shift[1] = variation.shadow_shift[1] * shadow_shift_factor
-			variation.shadow_shift[2] = 0
+			variation.shadow_shift[2] = variation.shadow_shift[2] * shadow_shift_factor
 		end
 	end
 

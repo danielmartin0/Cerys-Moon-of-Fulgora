@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.17.2
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.17.0-4.17.1
+Version: 4.17.0-4.17.2
 Date: 2025-11-03
   Graphics:
     - New graphics for the Radiative heater.
@@ -12,6 +8,8 @@ Date: 2025-11-03
     - Added an infinite braking force technology to complement plutonium fuel, previously this was an optional setting.
   Balancing:
     - Increased the lifetime of the radioactive module (+60%).
+  Bugfixes:
+    - Fixed the shadow of Cerys asteroids being 90 degrees rather than 135 degrees.
 ---------------------------------------------------------------------------------------------------
 Version: 4.16.0-4.16.1
 Date: 2025-10-29
