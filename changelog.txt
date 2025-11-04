@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.3
-Date: ????
+Date: 2025-11-04
   Balancing:
     - Halved the Pu238 needed to craft Radiative heaters.
     - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
