@@ -1,15 +1,17 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.3
 Date: ????
-  Changes:
+  Balancing:
+    - Halved the Pu238 needed to craft Radiative heaters.
+    - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.0-4.17.2
 Date: 2025-11-03
-  Graphics:
-    - New graphics for the Radiative heater.
   Changes:
     - Renamed the player-crafted radiative tower to 'Radiative heater'.
     - Added an infinite braking force technology to complement plutonium fuel, previously this was an optional setting.
+  Graphics:
+    - New graphics for the Radiative heater.
   Balancing:
     - Increased the lifetime of the radioactive module (+60%).
   Bugfixes:
@@ -20,7 +22,7 @@ Date: 2025-10-29
   Bugfixes:
     - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change (a better fix for modded warehouses will be pushed at a future date).
   Bugfixes:
-    - Fixed a longstanding bug caused by an undocumented property of Factorio collision mods in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
+    - Fixed a longstanding bug in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
 Date: 2025-10-25

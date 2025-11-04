@@ -5,13 +5,14 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-radiative-heater",
-		category = "crafting",
+		category = "fulgoran-cryogenics",
+		additional_categories = { "crafting" },
 		energy_required = 6,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 12 },
 			{ type = "item", name = "steel-plate", amount = 12 },
 			{ type = "item", name = "processing-unit", amount = 8 },
-			{ type = "item", name = "plutonium-238", amount = 8 },
+			{ type = "item", name = "plutonium-238", amount = 4 },
 		},
 		results = { { type = "item", name = "cerys-radiative-heater", amount = 1 } },
 		enabled = false,
