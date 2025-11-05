@@ -136,7 +136,7 @@ data:extend({
 		},
 		energy_required = 1,
 		results = {
-			{ type = "item", name = "cerys-radioactive-module-charged", amount = 1 },
+			{ type = "item", name = "cerys-radioactive-module-charged", amount = 1, ignored_by_productivity = 1 },
 		},
 		subgroup = "cerys-processes",
 		order = "q[radioactive-module-recharging]",
