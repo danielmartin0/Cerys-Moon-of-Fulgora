@@ -1,7 +1,7 @@
 local common_data = require("common-data-only")
 local common = require("common")
 
-local CIV_AGE_MY = 1750
+local CIV_AGE_MY = 2200
 
 local HALF_LIFE_235_MY = 703
 local HALF_LIFE_238_MY = 4500
@@ -38,11 +38,11 @@ data:extend({
 	},
 })
 
-local U238_AMOUNT = 4
+local U238_AMOUNT = 5
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
-	["advanced-circuit"] = 12,
+	["advanced-circuit"] = 10,
 	["uranium-238"] = U238_AMOUNT,
 	["pipe"] = 2, -- Initial pipes and extra initial iron.
 	["transport-belt"] = 1.4, -- Belt cubes and distance transport, initial iron.
