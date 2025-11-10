@@ -551,7 +551,10 @@ data:extend({
 	},
 })
 
-if data.raw.tool["cryogenic-science-pack"] then
+if
+	data.raw.tool["cryogenic-science-pack"]
+	and not settings.startup["cerys-radiative-heaters-require-cryogenic-science"].value
+then
 	table.insert(
 		data.raw.technology[common.FULGORAN_TOWER_MINING_TECH_NAME].unit.ingredients,
 		{ "cryogenic-science-pack", 1 }

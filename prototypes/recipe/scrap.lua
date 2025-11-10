@@ -42,7 +42,7 @@ local U238_AMOUNT = 5
 
 local RECYCLING_PROBABILITIES_PERCENT = {
 	["solid-fuel"] = 25,
-	["advanced-circuit"] = 10,
+	["advanced-circuit"] = 11,
 	["uranium-238"] = U238_AMOUNT,
 	["pipe"] = 2, -- Initial pipes and extra initial iron.
 	["transport-belt"] = 1.4, -- Belt cubes and distance transport, initial iron.
