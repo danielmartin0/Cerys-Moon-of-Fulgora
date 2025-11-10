@@ -1,11 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.3
 Date: 2025-11-04
-  Balancing:
-    - Nuclear scrap recycling: Advanced circuits (12% -> 10%), Uranium-238 (4% -> 5%), Uranium-235 (0.09% -> 0.08%).
-    - Halved the Plutonium-238 needed to craft Radiative heaters.
   Changes:
     - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
+    - Added a mod setting that removes the cryogenic science requirement for crafting radiative heaters.
+  Balancing:
+    - Nuclear scrap recycling: Advanced circuits (12% -> 11%), Uranium-238 (4% -> 5%), Uranium-235 (0.09% -> 0.08%).
+    - Halved the Plutonium-238 needed to craft the Radiative heater.
   Bugfixes:
     - Fixed that modded centrifuges with base productivity were able to duplicate radioactive modules.
 ---------------------------------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Date: 2025-11-03
 Version: 4.16.0-4.16.1
 Date: 2025-10-29
   Bugfixes:
-    - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change (a better fix for modded warehouses will be pushed at a future date).
+    - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change.
   Bugfixes:
     - Fixed a longstanding bug in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
 ---------------------------------------------------------------------------------------------------
