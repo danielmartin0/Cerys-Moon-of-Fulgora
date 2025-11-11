@@ -9,6 +9,8 @@ Date: 2025-11-04
     - Halved the Plutonium-238 needed to craft the Radiative heater.
   Bugfixes:
     - Fixed that modded centrifuges with base productivity were able to duplicate radioactive modules.
+  Graphics:
+    - Small tweaks to the shadows of Cerys asteroids.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.0-4.17.2
 Date: 2025-11-03
