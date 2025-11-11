@@ -3,17 +3,17 @@ local common = require("common")
 local common_data = require("common-data-only")
 
 local ASTEROIDS_TO_CLONE = {
-	"small-metallic-asteroid",
-	"small-carbonic-asteroid",
-	"small-oxide-asteroid",
-	"medium-metallic-asteroid",
-	"medium-carbonic-asteroid",
-	"medium-oxide-asteroid",
+	["small-metallic-asteroid"] = 8,
+	["small-carbonic-asteroid"] = 7,
+	["small-oxide-asteroid"] = 6,
+	["medium-metallic-asteroid"] = 7,
+	["medium-carbonic-asteroid"] = 8,
+	["medium-oxide-asteroid"] = 9,
 }
 
 if mods["cupric-asteroids"] then
-	table.insert(ASTEROIDS_TO_CLONE, "small-cupric-asteroid")
-	table.insert(ASTEROIDS_TO_CLONE, "medium-cupric-asteroid")
+	ASTEROIDS_TO_CLONE["small-cupric-asteroid"] = 7
+	ASTEROIDS_TO_CLONE["medium-cupric-asteroid"] = 7
 end
 
 local ASTEROID_HEALTH_MULTIPLIER = common.HARD_MODE_ON and 8 or 2.5
@@ -75,9 +75,9 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 	data:extend({ e })
 end
 
-for _, asteroid_name in pairs(ASTEROIDS_TO_CLONE) do
+for asteroid_name, shadow_shift_value in pairs(ASTEROIDS_TO_CLONE) do
 	if data.raw.asteroid[asteroid_name] then
-		create_asteroid(asteroid_name, 7, "-planetary")
+		create_asteroid(asteroid_name, shadow_shift_value, "-planetary")
 	end
 end
 
