@@ -3,7 +3,7 @@ Version: 4.17.3
 Date: 2025-11-04
   Changes:
     - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
-    - Added a mod setting that removes the cryogenic science requirement for crafting radiative heaters.
+    - Added an optional setting to removes the cryogenic science requirement for crafting radiative heaters.
   Balancing:
     - Nuclear scrap recycling: Advanced circuits (12% -> 11%), Uranium-238 (4% -> 5%), Uranium-235 (0.09% -> 0.08%).
     - Halved the Plutonium-238 needed to craft the Radiative heater.
