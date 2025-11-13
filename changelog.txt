@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.3
-Date: 2025-11-04
+Date: 2025-11-13
   Changes:
     - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
     - Added an optional setting to remove the cryogenic science requirement for radiative heaters.
