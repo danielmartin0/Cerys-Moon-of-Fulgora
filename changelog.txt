@@ -1,9 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.17.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.17.3
+Version: 4.17.3-4.17.4
 Date: 2025-11-13
   Changes:
     - Radiative heaters can now be crafted in Fulgoran cryogenic plants.
@@ -15,6 +11,8 @@ Date: 2025-11-13
     - Fixed that modded centrifuges with base productivity were able to duplicate radioactive modules.
   Graphics:
     - Small tweaks to the shadows of Cerys asteroids.
+  Locale:
+    - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.0-4.17.2
 Date: 2025-11-03
