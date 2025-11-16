@@ -23,7 +23,8 @@
     "! bobplates",
     "! oarc-mod",
     "! janus",
-    "! AutomatedCrushers"
+    "! AutomatedCrushers",
+    "! rso-mod"
   ],
   "space_travel_required": true,
   "freezing_required": true,

@@ -2,6 +2,7 @@
 Version: 4.17.6
 Date: ????
   Changes:
+    - Marked Resource Spawner Overhaul mod as incompatible for now.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.3-4.17.5
 Date: 2025-11-13
