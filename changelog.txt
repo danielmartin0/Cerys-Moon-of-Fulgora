@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.7
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed a tooltip incorrectly stating that the '0' signal on charging rods would set the polarity to negative (rather than positive).
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.6
 Date: 2025-11-16
