@@ -408,6 +408,8 @@ function Public.on_gui_opened(event)
 			direction = "vertical",
 		})
 
+		local circuit_controlled = rod_circuit_data and rod_circuit_data.circuit_controlled
+
 		content_frame.add({
 			type = "switch",
 			left_label_caption = { "cerys.charging-rod-negative-polarity-label" },
@@ -415,7 +417,7 @@ function Public.on_gui_opened(event)
 			name = "charging-rod-switch",
 			allow_none_state = false,
 			switch_state = is_positive and "left" or "right",
-			enabled = not (rod_circuit_data and rod_circuit_data.circuit_controlled),
+			enabled = not circuit_controlled,
 		})
 
 		content_frame.add({
@@ -427,7 +429,7 @@ function Public.on_gui_opened(event)
 			type = "checkbox",
 			name = "circuit-control-checkbox",
 			caption = { "cerys.charging-rod-polarity-circuit-control-label" },
-			state = rod_circuit_data.circuit_controlled and true or false,
+			state = circuit_controlled and true or false,
 			tooltip = { "cerys.charging-rod-polarity-circuit-control-tooltip" },
 		})
 
@@ -446,14 +448,14 @@ function Public.on_gui_opened(event)
 		})
 		signal_label.style.minimal_width = 110 -- Why is this needed?
 		signal_label.style.horizontally_stretchable = true
-		signal_label.style.font_color = rod_circuit_data.circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
+		signal_label.style.font_color = circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 
 		flow.add({
 			type = "choose-elem-button",
 			name = "control-signal-button",
 			elem_type = "signal",
 			signal = rod_circuit_data.control_signal,
-			enabled = rod_circuit_data.circuit_controlled and true or false,
+			enabled = circuit_controlled and true or false,
 		})
 	end
 end

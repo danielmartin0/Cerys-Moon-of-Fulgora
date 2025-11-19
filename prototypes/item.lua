@@ -37,7 +37,7 @@ data:extend({
 		name = "cerys-solar-wind-particle-ghost",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle-ghost.png",
 		icon_size = 32,
-		-- hidden = true,
+		hidden = true,
 		stack_size = 1,
 		spoil_ticks = 1,
 		spoil_to_trigger_result = {

@@ -110,40 +110,62 @@ local solar_wind_particle = {
 	},
 }
 
-local neutron_dummy = merge(solar_wind_particle, {
-	map_color = { 0.8, 0.8, 0.8 },
-	name = "cerys-neutron-dummy", -- For Factoriopedia
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
-	icon_size = 48,
-	order = "c",
-	pictures = {
-		layers = {
-			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
-				size = 32,
-				scale = 0.45,
-				draw_as_glow = true,
+data:extend({
+	solar_wind_particle,
+
+	merge(solar_wind_particle, {
+		map_color = { 0, 1, 0 },
+		name = "cerys-solar-wind-particle-ghost",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle-ghost.png",
+		order = "e",
+		pictures = {
+			layers = {
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/solar-wind-particle-ghost.png",
+					-- tint = data.raw["utility-constants"]["default"].ghost_shader_tint.ghost_tint,
+					tint = { r = 1, g = 1, b = 1, a = 1 },
+					size = 32,
+					scale = 0.5,
+					draw_as_glow = true,
+					blend_mode = "additive",
+				},
 			},
 		},
-	},
-})
+	}),
 
-local gamma_radiation = merge(solar_wind_particle, {
-	map_color = { 0, 1, 0 },
-	name = "cerys-gamma-radiation",
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
-	icon_size = 64,
-	order = "d",
-	pictures = {
-		layers = {
-			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
-				size = 32,
-				scale = 0.45,
-				draw_as_glow = true,
+	merge(solar_wind_particle, {
+		map_color = { 0, 1, 0 },
+		name = "cerys-gamma-radiation",
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/gamma-radiation.png",
+		icon_size = 64,
+		order = "d",
+		pictures = {
+			layers = {
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
+					size = 32,
+					scale = 0.45,
+					draw_as_glow = true,
+				},
 			},
 		},
-	},
-})
+	}),
 
-data:extend({ solar_wind_particle, gamma_radiation, neutron_dummy })
+	merge(solar_wind_particle, {
+		map_color = { 0.8, 0.8, 0.8 },
+		name = "cerys-neutron-dummy", -- For Factoriopedia
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/neutron.png",
+		icon_size = 48,
+		order = "c",
+		pictures = {
+			layers = {
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
+					size = 32,
+					scale = 0.45,
+					draw_as_glow = true,
+				},
+			},
+		},
+	}),
+})

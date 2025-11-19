@@ -66,10 +66,6 @@ data:extend({
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "cerys-space-science-pack-from-methane-ice",
-			},
-			{
-				type = "unlock-recipe",
 				recipe = "cerys-nitric-acid",
 			},
 			{
@@ -119,7 +115,7 @@ data:extend({
 				recipe = "cerys-solar-ghost-maker",
 			},
 		},
-		prerequisites = { "cerysian-science-pack" },
+		prerequisites = { "cerys-space-science-pack-from-methane-ice" },
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/charging-rod.png",
 		icon_size = 1000,
 		allows_productivity = false,
@@ -232,7 +228,8 @@ data:extend({
 			},
 		},
 		prerequisites = {
-			"cerysian-science-pack",
+			"cerys-space-science-pack-from-methane-ice",
+			"cerys-overclock-module",
 		},
 		unit = {
 			count = correct(200),
@@ -359,6 +356,7 @@ data:extend({
 		},
 		prerequisites = {
 			"cerys-mixed-oxide-waste-reprocessing",
+			"cerys-space-science-pack-from-methane-ice",
 		},
 		icons = util.technology_icon_constant_equipment(
 			"__Cerys-Moon-of-Fulgora__/graphics/technology/fission-reactor-equipment.png"
@@ -405,6 +403,29 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cerysian-science-pack.png",
 		icon_size = 256,
 		essential = true,
+	},
+	{
+		type = "technology",
+		name = "cerys-space-science-pack-from-methane-ice",
+		localised_name = { "cerys.from-methane-ice", { "item-name.space-science-pack" } },
+		localised_description = { "cerys.space-science-pack-from-methane-ice-technology-description" },
+		effects = {
+			{
+				type = "unlock-recipe",
+				recipe = "cerys-space-science-pack-from-methane-ice",
+			},
+		},
+		prerequisites = { "cerysian-science-pack" },
+		unit = {
+			count = correct(15),
+			ingredients = {
+				{ "cerysian-science-pack", 1 },
+			},
+			time = 60,
+		},
+		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/space-science-pack-from-methane-ice.png",
+		icon_size = 256,
+		allows_productivity = false,
 	},
 })
 if common_data.K2_INSTALLED then

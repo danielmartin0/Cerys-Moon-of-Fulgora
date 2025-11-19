@@ -29,6 +29,15 @@ if mods["maraxsis"] then
 		)
 	end
 
+	if data.raw.technology["holmium-processing"] and data.raw.technology["holmium-processing"].effects then
+		for i = #data.raw.technology["holmium-processing"].effects, 1, -1 do
+			local effect = data.raw.technology["holmium-processing"].effects[i]
+			if effect.type == "unlock-recipe" and effect.recipe == "maraxsis-holmium-recrystalization" then
+				table.remove(data.raw.technology["holmium-processing"].effects, i)
+			end
+		end
+	end
+
 	-- if
 	-- 	settings.startup["cerys-gate-drive-module-behind-maraxsis"].value and data.raw.tool["hydraulic-science-pack"]
 	-- then

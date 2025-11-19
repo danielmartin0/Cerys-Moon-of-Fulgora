@@ -1,8 +1,14 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.17.7
+Version: 4.18.0
 Date: ????
+  Changes:
+    - New technology 'Space science pack from methane ice', helping communicate the special recipe for this pack. It is auto-unlocked for existing saves that have one of its successors researched.
   Bugfixes:
+    - Fixed a crash when clicking the ghost of a destroyed charging rod.
     - Fixed a tooltip incorrectly stating that the '0' signal on charging rods would set the polarity to negative (rather than positive).
+    - Corrected the name and Factoriopedia positioning of the Ghost charged particle.
+  Compatibility:
+    - Maraxsis: Removed the holmium recrystallization recipe unlock from the vanilla Holmium processing tech when Maraxsis is installed. Since Hydroplants are sometimes better for this recipe, gating this recipe on Cerys is a nice inter-mod interaction.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.6
 Date: 2025-11-16
@@ -39,8 +45,7 @@ Date: 2025-11-03
 Version: 4.16.0-4.16.1
 Date: 2025-10-29
   Bugfixes:
-    - Fixed a bug in plutonium generation introduced in 4.15.0 (24th Oct). In fixing the behavior of modded warehouses, the code broke for regular chests due to an error in our testing procedure. 4.16.0 reverts this change.
-  Bugfixes:
+    - Fixed that this week's v4.15.0 update broke plutonium generation.
     - Fixed a longstanding bug in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
@@ -53,7 +58,7 @@ Date: 2025-10-25
 Version: 4.15.0
 Date: 2025-10-24
   Bugfixes:
-    - Fixed a bug introduced in 4.12.9 (14th Oct) in which heat pipes on Cerys cooled twice as fast as intended.
+    - Fixed a bug in which heat pipes on Cerys cooled twice as fast as intended.
     - Fixed that the Fulgora background would wobble slightly when driving a spidertron.
     - Fixed that modded warehouses were treated as if they were the size of chests for [REDACTED].
   Changes:
@@ -65,7 +70,7 @@ Version: 4.14.0
 Date: 2025-10-20
   Changes:
     - Replaced the engine productivity technology with an infinite 'Plutonium productivity' technology.
-    - Removed the Kofi toast, players are trusted to find kofi.com/thesixthroc on their own accord.
+    - Removed the Kofi toast, players are trusted to find ko-fi.com/thesixthroc on their own accord.
   Graphics:
     - Further reduced brightness at nighttime.
   Balancing:
