@@ -28,6 +28,7 @@ PlanetsLib:extend({
 				size = 379,
 				scale = 0.25,
 			},
+			is_satellite = true,
 		},
 		subgroup = "satellites",
 		label_orientation = 0.51,
