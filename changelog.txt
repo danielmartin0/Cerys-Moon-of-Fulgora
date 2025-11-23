@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.1
 Date: ????
-  Changes:
+  Bugfixes:
+    - Like the Radiative heater, the Fulgoran radiative tower's range tooltip now correctly counts starting from the center of the entity.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.0
 Date: 2025-11-23

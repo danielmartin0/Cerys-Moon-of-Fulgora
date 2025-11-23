@@ -114,8 +114,10 @@ local reactor = {
 	custom_tooltip_fields = {
 		{
 			name = { "cerys.radiative-tower-range-tooltip-name" },
-			value = common.HARD_MODE_ON and { "cerys.metres-tooltip-value", tostring(9) }
-				or { "cerys.metres-tooltip-value", tostring(15) },
+			value = common.HARD_MODE_ON and {
+				"cerys.metres-tooltip-value",
+				tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE),
+			} or { "cerys.metres-tooltip-value", tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS) },
 		},
 	},
 }
