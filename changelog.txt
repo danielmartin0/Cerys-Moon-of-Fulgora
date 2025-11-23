@@ -9,6 +9,8 @@ Date: ????
     - Corrected the name and Factoriopedia positioning of the Ghost charged particle.
   Compatibility:
     - Maraxsis: Removed the holmium recrystallization recipe unlock from the vanilla Holmium processing tech when Maraxsis is installed. Since Hydroplants are sometimes better for this recipe, gating this recipe on Cerys is a nice inter-mod interaction.
+  Balancing:
+    - Plutonium fuel now has a stack size of 5 (from 1), and a fifth of the rocket weight.
 ---------------------------------------------------------------------------------------------------
 Version: 4.17.6
 Date: 2025-11-16

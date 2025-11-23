@@ -289,8 +289,8 @@ data:extend({
 		inventory_move_sound = item_sounds.fuel_cell_inventory_move,
 		pick_sound = item_sounds.fuel_cell_inventory_pickup,
 		drop_sound = item_sounds.fuel_cell_inventory_move,
-		stack_size = 1,
-		weight = 100 * 1000,
+		stack_size = 5,
+		weight = 20 * 1000,
 	},
 	{
 		type = "item",
