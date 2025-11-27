@@ -100,9 +100,8 @@ data:extend({
 		type = "recipe",
 		name = "cerys-space-science-pack-from-methane-ice",
 		localised_name = {
-			"",
-			{ common_data.K2_INSTALLED and "item-name.kr-space-research-data" or "item-name.space-science-pack" },
-			{ "cerys.from-methane-ice" },
+			"cerys.from-methane-ice",
+			common_data.K2_INSTALLED and { "item-name.kr-space-research-data" } or { "item-name.space-science-pack" },
 		},
 		icons = {
 			{
