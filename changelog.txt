@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.3
-Date: ????
+Date: 2025-12-02
   Changes:
     - Clarified the description of the 'Blast a hole in the magnetosphere technology' to specify that the nuke must be launched on a rocket from Cerys.
   Bugfixes:
