@@ -66,7 +66,7 @@ Date: 2025-11-03
 Version: 4.16.0-4.16.1
 Date: 2025-10-29
   Bugfixes:
-    - Fixed that this week's v4.15.0 update broke plutonium generation.
+    - Fixed that this week's v4.15.0 update broke plutonium generation due to an error in our testing process. This is a one-off.
     - Fixed a longstanding bug in which the Cerys mod prevented stone brick tiles being placed next to water on other planets.
 ---------------------------------------------------------------------------------------------------
 Version: 4.15.1
