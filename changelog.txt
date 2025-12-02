@@ -5,6 +5,8 @@ Date: ????
     - Clarified the description of the Blast a hole in the magnetosphere technology to specify that the bomb must be on a rocket launched from Cerys.
   Bugfixes:
     - Fixed an error in the display name of the recipe Space science pack from methane ice.
+  Locale:
+    - Added a Brazilian Portuguese translation from the YKR_PTBR mod, credit to duhyukora.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.2
 Date: 2025-11-25
