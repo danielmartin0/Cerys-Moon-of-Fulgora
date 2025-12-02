@@ -2,9 +2,11 @@
 Version: 4.18.3
 Date: ????
   Changes:
-    - Clarified the description of the Blast a hole in the magnetosphere technology to specify that the bomb must be on a rocket launched from Cerys.
+    - Clarified the description of the 'Blast a hole in the magnetosphere technology' to specify that the nuke must be launched on a rocket from Cerys.
   Bugfixes:
     - Fixed an error in the display name of the recipe Space science pack from methane ice.
+  Balancing:
+    - Nuclear scrap recycling: Advanced circuits (11% -> 10%), Transport belt (1.4% -> 1.5%).
   Locale:
     - Added a Brazilian Portuguese translation from the YKR_PTBR mod, credit to duhyukora.
 ---------------------------------------------------------------------------------------------------
