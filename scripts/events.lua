@@ -1,7 +1,7 @@
 local lib = require("lib")
 local radiative_towers = require("scripts.radiative-tower")
 local rods = require("scripts.charging-rod")
-local space = require("scripts.space")
+local atmosphere = require("scripts.atmosphere")
 local reactor_repair = require("scripts.reactor-repair")
 local nuclear_reactor = require("scripts.nuclear-reactor")
 local ice = require("scripts.ice")
@@ -195,7 +195,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 
 	-- Update plutonium productivity modifier when any research completes (in case it's the plutonium productivity tech)
 	if research.name == "cerys-plutonium-productivity" then
-		space.update_plutonium_productivity_modifier()
+		atmosphere.update_plutonium_productivity_modifier()
 	end
 end)
 
@@ -281,25 +281,25 @@ function Public.cerys_tick(surface, tick)
 		player_looking_at_surface or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
 	then
 		if tick % (1 * solar_wind_tick_multiplier) == 0 then
-			space.tick_1_move_solar_wind()
+			atmosphere.tick_1_move_solar_wind()
 		end
 
 		if tick % (5 * solar_wind_tick_multiplier) == 0 then
-			space.tick_5_solar_wind_destroy_check(surface)
+			atmosphere.tick_5_solar_wind_destroy_check(surface)
 		end
 
 		if tick % (8 * solar_wind_tick_multiplier) == 0 then
-			space.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
+			atmosphere.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
 		end
 
-		if tick % (space.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
-			space.tick_solar_wind_deflection()
+		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_solar_wind_deflection()
 		end
 
 		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
-				space.spawn_solar_wind_particle(surface)
+				atmosphere.spawn_solar_wind_particle(surface)
 			end
 		end
 
@@ -335,7 +335,7 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if (tick + 30) % 60 == 0 then
-		space.try_spawn_asteroid(surface)
+		atmosphere.try_spawn_asteroid(surface)
 		Public.check_rocket_timed_effects(surface)
 	end
 
@@ -348,8 +348,8 @@ function Public.cerys_tick(surface, tick)
 	end
 
 	if tick % 240 == 0 then
-		space.tick_240_clean_up_cerys_asteroids(surface)
-		space.tick_240_clean_up_cerys_solar_wind_particles(surface)
+		atmosphere.tick_240_clean_up_cerys_asteroids(surface)
+		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	end
 end
 
@@ -405,7 +405,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		table.insert(storage.cerys.solar_wind_particles, {
 			rendering = r,
 			age = 0,
-			velocity = space.initial_solar_wind_velocity(),
+			velocity = atmosphere.initial_solar_wind_velocity(),
 			position = p2,
 			is_ghost = true,
 		})
@@ -516,7 +516,7 @@ script.on_configuration_changed(function()
 	end
 
 	-- Just in case:
-	space.update_plutonium_productivity_modifier()
+	atmosphere.update_plutonium_productivity_modifier()
 end)
 
 function Public.check_rocket_timed_effects(surface)
