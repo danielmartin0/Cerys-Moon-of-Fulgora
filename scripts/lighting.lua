@@ -88,12 +88,12 @@ function Public.tick_update_lights()
 	local circle_scaling_effect = 1 / (1 - math.abs(regularized_bounded_x))
 	-- local circle_scaling_effect = 1 -- for testing
 
-	-- Helps avoid a) the circle being a snug fit, b) graphical overflow of the negative circle's image boundary
-	local elbow_room_factor = 1 + 0.4 * math.sin(phase) ^ 4
+	-- Avoids a) the circle being a snug fit (ensuring it at least as far as Fulgora), b) graphical overflow of the negative circle's image boundary
+	local extra_scale_when_covering = 1 + 1 * math.sin(phase) ^ 20
 	-- local elbow_room_factor = 1 -- for testing
 
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
-	local light_radius = (R * circle_scaling_effect) * elbow_room_factor
+	local light_radius = (R * circle_scaling_effect) * extra_scale_when_covering
 
 	local is_white_circle = (phase % (2 * math.pi)) < math.pi
 	local use_rectangle = math.abs(bounded_x) > 0.83
