@@ -179,7 +179,7 @@ local lightmap_spritesheet = {
 	},
 }
 
-local function create_base_tile(name, layer, force_hidden)
+local function create_base_tile(name, layer, map_color, force_hidden)
 	return merge(cerys_rock_base, {
 		name = name,
 		frozen_variant = name .. "-frozen",
@@ -189,6 +189,7 @@ local function create_base_tile(name, layer, force_hidden)
 		),
 		layer = layer,
 		hidden = force_hidden and true or cerys_rock_base.hidden,
+		map_color = map_color,
 	})
 end
 
@@ -217,7 +218,7 @@ frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 	},
 }
 
-local function create_frozen_variant(name, layer, force_hidden)
+local function create_frozen_variant(name, layer, map_color, force_hidden)
 	local noise_var = string.gsub(name, "%-", "_")
 	return merge(cerys_rock_base, {
 		name = name .. "-frozen",
@@ -233,12 +234,12 @@ local function create_frozen_variant(name, layer, force_hidden)
 		),
 		layer_group = "ground-artificial", -- Above crater decals
 		transitions = frozen_rock_transitions,
-		map_color = { 44, 48, 64 },
+		map_color = map_color,
 	})
 end
 
-local function create_melting_variant(name, layer, force_hidden)
-	local frozen_variant = create_frozen_variant(name, layer)
+local function create_melting_variant(name, layer, map_color, force_hidden)
+	local frozen_variant = create_frozen_variant(name, layer, map_color, force_hidden)
 	return merge(frozen_variant, {
 		name = frozen_variant.name .. "-from-dry-ice",
 		thawed_variant = "nil",
@@ -247,21 +248,22 @@ local function create_melting_variant(name, layer, force_hidden)
 end
 
 data:extend({
-	create_base_tile("cerys-ash-cracks", 5),
-	create_frozen_variant("cerys-ash-cracks", 10),
-	create_melting_variant("cerys-ash-cracks", 10),
 
-	create_base_tile("cerys-ash-dark", 6),
-	create_frozen_variant("cerys-ash-dark", 10), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
-	create_melting_variant("cerys-ash-dark", 10),
+	create_base_tile("cerys-ash-cracks", 5, { 52, 52, 52 }),
+	create_frozen_variant("cerys-ash-cracks", 10, { 44, 48, 64 }),
+	create_melting_variant("cerys-ash-cracks", 10, { 44, 48, 64 }),
 
-	create_base_tile("cerys-ash-light", 7, true),
-	create_frozen_variant("cerys-ash-light", 10, true),
-	create_melting_variant("cerys-ash-light", 10),
+	create_base_tile("cerys-ash-dark", 6, { 57, 57, 57 }),
+	create_frozen_variant("cerys-ash-dark", 10, { 44, 48, 64 }), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
+	create_melting_variant("cerys-ash-dark", 10, { 44, 48, 64 }),
 
-	create_base_tile("cerys-pumice-stones", 8),
-	create_frozen_variant("cerys-pumice-stones", 10),
-	create_melting_variant("cerys-pumice-stones", 10),
+	create_base_tile("cerys-ash-light", 7, { 57, 58, 57 }, true),
+	create_frozen_variant("cerys-ash-light", 10, { 44, 48, 64 }, true),
+	create_melting_variant("cerys-ash-light", 10, { 44, 48, 64 }, true),
+
+	create_base_tile("cerys-pumice-stones", 8, { 59, 60, 59 }),
+	create_frozen_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
+	create_melting_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
 })
 
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.overlay_layer_group = "top"
