@@ -4,6 +4,8 @@ Date: ????
   Graphics:
     - Improved the accuracy of the shadow's penumbra when close to the edge of the moon.
     - Tweaked the map colors of Cerys rock (when the map is regenerated).
+  Changes:
+    - The Cerys briefing now mentions the difficulty of sustaining a long-term base on the moon.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.3
 Date: 2025-12-02
