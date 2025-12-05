@@ -249,11 +249,11 @@ end
 
 data:extend({
 
-	create_base_tile("cerys-ash-cracks", 5, { 52, 52, 52 }),
+	create_base_tile("cerys-ash-cracks", 5, { 52, 53, 52 }),
 	create_frozen_variant("cerys-ash-cracks", 10, { 44, 48, 64 }),
 	create_melting_variant("cerys-ash-cracks", 10, { 44, 48, 64 }),
 
-	create_base_tile("cerys-ash-dark", 6, { 57, 57, 57 }),
+	create_base_tile("cerys-ash-dark", 6, { 47, 47, 47 }),
 	create_frozen_variant("cerys-ash-dark", 10, { 44, 48, 64 }), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
 	create_melting_variant("cerys-ash-dark", 10, { 44, 48, 64 }),
 
@@ -261,7 +261,7 @@ data:extend({
 	create_frozen_variant("cerys-ash-light", 10, { 44, 48, 64 }, true),
 	create_melting_variant("cerys-ash-light", 10, { 44, 48, 64 }, true),
 
-	create_base_tile("cerys-pumice-stones", 8, { 59, 60, 59 }),
+	create_base_tile("cerys-pumice-stones", 8, { 59, 61, 59 }),
 	create_frozen_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
 	create_melting_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
 })
