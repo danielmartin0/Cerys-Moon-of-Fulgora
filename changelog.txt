@@ -6,6 +6,7 @@ Date: ????
     - Tweaked the map colors of Cerys rock (when the map is regenerated).
   Changes:
     - The Cerys briefing now mentions the trickiness of sustaining a long-term base on the moon.
+    - Renamed the mod setting 'Crafting radiative heaters requires Aquilo science' to 'Radiative heaters technology requires cryogenic science packs' for clarity.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.3
 Date: 2025-12-02
