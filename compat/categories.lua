@@ -12,12 +12,14 @@ for entity_type in pairs(defines.prototypes.entity) do
 	end
 end
 
-for _, equipment in pairs(data.raw["generator-equipment"] or {}) do
-	local burner = equipment.burner
-	if burner and burner.type == "burner" then
-		burner.fuel_categories = burner.fuel_categories or { "chemical" }
-		if lib.find(burner.fuel_categories, "chemical") then
-			table.insert(burner.fuel_categories, "chemical-or-radiative")
+for _, type in pairs({ "generator-equipment", "roboport-equipment" }) do
+	for _, equipment in pairs(data.raw[type] or {}) do
+		local burner = equipment.burner
+		if burner and burner.type == "burner" then
+			burner.fuel_categories = burner.fuel_categories or { "chemical" }
+			if lib.find(burner.fuel_categories, "chemical") then
+				table.insert(burner.fuel_categories, "chemical-or-radiative")
+			end
 		end
 	end
 end
