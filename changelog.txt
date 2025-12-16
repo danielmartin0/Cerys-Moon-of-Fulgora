@@ -1,22 +1,23 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.5
 Date: ????
-  Changes:
+  Compatibility:
+    - Now that Lignumis is no longer a light overhaul, using Wooden Cerys: Lunaponics is no longer mandatory when playing with Lignumis.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.4
 Date: 2025-12-13
   Changes:
-    - The Cerys briefing now mentions the trickiness of sustaining a long-term base on the moon due to the logistics of heating.
-    - Reworded the Blast a hole in the magnetosphere technology description to clarify the rocket should come from a rocket silo not a rocket launcher.
-    - Renamed the mod setting 'Crafting radiative heaters requires Aquilo science' to 'Radiative heaters technology requires cryogenic science packs'.
-    - For now, Ice platform and Foundation tiles can no longer be placed on Cerys. (Cerys tile transitions and collisions are very complex. If Foundation tiles are to be supported in future, they will likely sit above dry ice, creating a fourth layer.)
+    - For now, Ice platform and Foundation tiles can no longer be placed on Cerys. If Foundation tiles are supported in future they will likely sit above dry ice creating a fourth tile transitions layer.
+    - Updated the Cerys briefing to mention the trickiness of sustaining a long-term base on the moon.
+    - Clarified description of the Blast a hole in the magnetosphere technology.
+    - Renamed the mod setting 'Crafting radiative heaters requires Aquilo science' for clarity.
   Graphics:
     - Improved the shadow penumbra when light is entering or leaving the Cerys surface.
     - Tweaked the map colors of Cerys rock tiles (applied when the minimap is regenerated).
   Bugfixes:
     - Fixed that modded burner roboport equipment, if that's something that will ever exist, would not accept solid fuel as a fuel source.
   Compatibility:
-    - K2SO: Updated the recycling overrides to account for electonic circuit recycling no longer producing wood in K2SO.
+    - K2SO: Updated the recycling overrides to account for electronic circuit recycling no longer producing wood in K2SO.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.3
 Date: 2025-12-02
