@@ -14,14 +14,14 @@ data:extend({
 		type = "sound",
 		name = "cerys-teleporter-1",
 		category = "game-effect",
-		priority = 200,
+		priority = 250,
 		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_1.ogg",
 	},
 	{
 		type = "sound",
 		name = "cerys-teleporter-2",
 		category = "game-effect",
-		priority = 200,
+		priority = 250,
 		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_2.ogg",
 	},
 	{
@@ -29,7 +29,7 @@ data:extend({
 		name = "cerys-radiation-exposure",
 		audible_distance_modifier = 0.7, --multiplies the default 40 tiles of audible distance by this number
 		category = "game-effect",
-		priority = 180,
+		priority = 250,
 		variations = {
 			{
 				filename = "__base__/sound/bullets/bullet-impact-stone-5.ogg",

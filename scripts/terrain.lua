@@ -85,8 +85,8 @@ local cryo_plant_base_positions = {
 		y = 62,
 	},
 	{
-		x = -66,
-		y = 28,
+		x = -70,
+		y = 30,
 	},
 	{
 		x = -42,
