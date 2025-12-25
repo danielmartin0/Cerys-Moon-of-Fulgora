@@ -1,23 +1,6 @@
 local common = require("common")
 local merge = require("lib").merge
 
-data:extend({
-	{
-		type = "tool",
-		name = "cerys-discover-fulgoran-cryogenics",
-		hidden = true,
-		icon = "__PlanetsLib__/graphics/icons/research-progress-product.png",
-		icon_size = 64,
-		subgroup = "science-pack",
-		order = "j-a[cerys]-b[cerys-discover-fulgoran-cryogenics]",
-		stack_size = 200,
-		default_import_location = "cerys",
-		weight = 1 * 1000 * 1000000,
-		durability = 1,
-		spoil_ticks = 1,
-	},
-})
-
 if data.raw.recipe["construction-robot-recycling"] then
 	data:extend({
 		merge(data.raw.recipe["construction-robot-recycling"], {

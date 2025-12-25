@@ -6,6 +6,20 @@ local item_sounds = require("__base__.prototypes.item_sounds")
 data:extend({
 	{
 		type = "item",
+		name = "cerys-discover-fulgoran-cryogenics",
+		subgroup = "cerys-repair",
+		order = "d",
+		hidden = true,
+		icon = "__PlanetsLib__/graphics/icons/research-progress-product.png",
+		icon_size = 64,
+		stack_size = 200,
+		default_import_location = "cerys",
+		weight = 1 * 1000 * 1000000,
+		spoil_ticks = 1,
+		auto_recycle = false,
+	},
+	{
+		type = "item",
 		name = "cerys-radiative-heater",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-heater.png",
 		icon_size = 64,

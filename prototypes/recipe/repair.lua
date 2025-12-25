@@ -332,6 +332,7 @@ data:extend({
 		allow_quality = false,
 		allow_productivity = false,
 		hide_from_signal_gui = true,
+		auto_recycle = false,
 	},
 })
 -- end
