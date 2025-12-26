@@ -3,6 +3,7 @@ Version: 4.18.5-4.18.6
 Date: ????
   Changes:
     - Now that Lignumis is no longer a light overhaul, Wooden Cerys: Lunaponics is no longer mandatory when playing Cerys alongside Lignumis.
+    - Small tweaks to cryogenic plant spawns.
   Sounds:
     - Increased the priority of the radiative exposure sound effect so that it's less frequently drowned out.
   Graphics:
