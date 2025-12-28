@@ -291,7 +291,8 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	autoplace = "nil",
 	sprite_usage_surface = "any",
 	map_color = { 8, 39, 94 },
-	default_cover_tile = "ice-platform",
+	default_cover_tile = "concrete",
+	-- default_cover_tile = "ice-platform",
 	walking_speed_modifier = 0.8,
 })
 
