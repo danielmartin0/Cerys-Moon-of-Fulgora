@@ -4,7 +4,7 @@ Date: ????
   Changes:
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.5-4.18.6
-Date: ????
+Date: 2025-12-28
   Changes:
     - Now that the Lignumis default settings no longer has belts and inserters require wood, Wooden Cerys: Lunaponics is no longer mandatory when playing Cerys alongside Lignumis.
     - Small tweaks to cryogenic plant spawns.
