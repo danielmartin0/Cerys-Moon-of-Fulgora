@@ -1,7 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.7
 Date: ????
+  Bugfixes:
+    - Fixed that buildings could not be ghost-built on Cerys water tiles. Ghost buildings now correctly appear with concrete underneath.
   Changes:
+    - Added notes about radiation shielding to the entity description of the repaired Fulgoran reactor.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.5-4.18.6
 Date: 2025-12-28
