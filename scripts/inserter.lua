@@ -1,5 +1,4 @@
-local lib = require("lib")
-local find = lib.find
+-- TODO: Fix the fact that mining drills aren't supported because the inserter doesn't connect automatically to them in the engine.
 
 local Public = {}
 
@@ -16,6 +15,15 @@ function Public.on_inserter_gui_opened(player, entity)
 	player.opened = nil
 end
 
+local module_inventory_defines_by_type = {
+	["lab"] = defines.inventory.lab_modules,
+	["mining-drill"] = defines.inventory.mining_drill_modules,
+}
+
+local function get_module_inventory_defines(entity)
+	return module_inventory_defines_by_type[entity.prototype.type] or defines.inventory.crafter_modules
+end
+
 local function is_valid_module_machine(entity)
 	if not entity then
 		return false
@@ -28,8 +36,9 @@ local function is_valid_module_machine(entity)
 	local is_assembling_machine = type == "assembling-machine"
 	local is_rocket_silo = type == "rocket-silo"
 	local is_lab = type == "lab"
+	local is_mining_drill = type == "mining-drill"
 
-	if not (is_furnace or is_assembling_machine or is_rocket_silo or is_lab) then
+	if not (is_furnace or is_assembling_machine or is_rocket_silo or is_lab or is_mining_drill) then
 		return false
 	end
 
@@ -183,11 +192,8 @@ local function adjust_inserter(inserter_data)
 			preserve_ghosts_and_corpses = true,
 		})
 		local target = inserter.drop_target
-		local target_is_lab = target.prototype.type == "lab"
-
 		proxy_for_drop.proxy_target_entity = target
-		proxy_for_drop.proxy_target_inventory = target_is_lab and defines.inventory.lab_modules
-			or defines.inventory.crafter_modules
+		proxy_for_drop.proxy_target_inventory = get_module_inventory_defines(target)
 		inserter.drop_target = proxy_for_drop
 		inserter_data.drop_proxy = proxy_for_drop
 	end
@@ -223,11 +229,8 @@ local function adjust_inserter(inserter_data)
 			preserve_ghosts_and_corpses = true,
 		})
 		local target = inserter.pickup_target
-		local target_is_lab = target.prototype.type == "lab"
-
 		proxy_for_pickup.proxy_target_entity = target
-		proxy_for_pickup.proxy_target_inventory = target_is_lab and defines.inventory.lab_modules
-			or defines.inventory.crafter_modules
+		proxy_for_pickup.proxy_target_inventory = get_module_inventory_defines(target)
 		inserter.pickup_target = proxy_for_pickup
 		inserter_data.pickup_proxy = proxy_for_pickup
 	end
