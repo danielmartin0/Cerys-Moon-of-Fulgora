@@ -36,7 +36,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-repair-cryogenic-plant",
 		subgroup = "cerys-repair",
-		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-cryogenic-plant-wreck]" },
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-cryogenic-plant]" },
 		order = "c",
 		icons = {
 			{
@@ -160,7 +160,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-repair-nuclear-reactor",
-		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-reactor-wreck]" },
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-reactor]" },
 		subgroup = "cerys-repair",
 		order = "g",
 		icons = {
@@ -210,7 +210,7 @@ data:extend({
 		name = "cerys-repair-crusher",
 		subgroup = "cerys-repair",
 		order = "h",
-		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-crusher-wreck]" },
+		localised_description = { "cerys.restores-to-working-order", "[entity=cerys-fulgoran-crusher]" },
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/crusher.png",
