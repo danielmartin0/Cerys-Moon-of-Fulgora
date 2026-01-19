@@ -113,22 +113,31 @@ local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 
 --== Rock & Rock Ice ==--
 
-local adjusted_original_rock_transitions = {
-	{
+local rock_transitions = {
+	{ -- copied from fulgora rock
 		to_tiles = water_tile_type_names,
 		transition_group = water_transition_group_id,
-		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
-		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+
+		background_layer_group = "water",
+		background_layer_offset = -5,
+		masked_background_layer_offset = 1,
+		offset_background_layer_by_tile_layer = false,
+
+		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-fulgora-rock-slab-transition.png",
+		layout = tile_spritesheet_layout.transition_16_16_16_4_8_short,
+		background_enabled = false,
 		effect_map_layout = {
-			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
-			inner_corner_count = 8,
-			outer_corner_count = 8,
-			side_count = 8,
-			u_transition_count = 2,
+			spritesheet = "__space-age__/graphics/terrain/effect-maps/water-fulgora-sand-mask.png",
+			--tile_height = 2,
+			inner_corner_tile_height = 2,
+			outer_corner_tile_height = 2,
+			side_tile_height = 2,
+			u_transition_tile_height = 2,
 			o_transition_count = 1,
 		},
+		background_mask_layout = tile_spritesheet_layout.simple_white_mask,
 	},
-	{
+	{ -- copied from vulcanus rock
 		to_tiles = lava_tile_type_names,
 		transition_group = lava_transition_group_id,
 		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
@@ -143,7 +152,7 @@ local adjusted_original_rock_transitions = {
 			o_transition_count = 1,
 		},
 	},
-	{
+	{ -- copied from vulcanus rock
 		to_tiles = common.SPACE_TILES_AROUND_CERYS,
 		transition_group = out_of_map_transition_group_id,
 		background_layer_offset = 1,
@@ -153,6 +162,23 @@ local adjusted_original_rock_transitions = {
 		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
 		overlay_enabled = false,
 	},
+	{ -- custom
+		to_tiles = {
+			"cerys-ice-on-water",
+			"cerys-ice-on-water-melting",
+		},
+		transition_group = water_transition_group_id,
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
+		effect_map_layout = {
+			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
+			inner_corner_count = 8,
+			outer_corner_count = 8,
+			side_count = 8,
+			u_transition_count = 2,
+			o_transition_count = 1,
+		},
+	},
 }
 
 -- stylua: ignore
@@ -160,7 +186,7 @@ local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
 	sprite_usage_surface = "any",
 	collision_mask = cerys_ground_collision_mask,
 	subgroup = "cerys-tiles",
-	transitions = adjusted_original_rock_transitions,
+	transitions = rock_transitions,
 })
 
 -- stylua: ignore
@@ -193,17 +219,13 @@ local function create_base_tile(name, layer, map_color, force_hidden)
 	})
 end
 
-local frozen_rock_transitions = util.table.deepcopy(adjusted_original_rock_transitions)
+local frozen_rock_transitions = util.table.deepcopy(rock_transitions)
 frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 	to_tiles = {
 		"cerys-ash-cracks",
 		"cerys-ash-dark",
 		"cerys-ash-light",
 		"cerys-pumice-stones",
-		"cerys-water-puddles",
-		"cerys-water-puddles-freezing",
-		"cerys-ice-on-water",
-		"cerys-ice-on-water-melting",
 	},
 	transition_group = water_transition_group_id,
 	spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2-transparent.png",
@@ -234,6 +256,9 @@ local function create_frozen_variant(name, layer, map_color, force_hidden)
 		),
 		layer_group = "ground-artificial", -- Above crater decals
 		transitions = frozen_rock_transitions,
+		-- TODO: Fix 3way transitions between rock, rock ice, and water ice?
+
+		transition_merges_with_tile = name,
 		map_color = map_color,
 	})
 end
@@ -293,6 +318,7 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	map_color = { 8, 39, 94 },
 	default_cover_tile = "concrete",
 	-- default_cover_tile = "ice-platform",
+	-- transitions = "nil",
 	walking_speed_modifier = 0.8,
 })
 
@@ -324,6 +350,8 @@ data:extend({
 					height = 512 * 2,
 				},
 			},
+			animation_scale = { 0.20, 0.34 },
+			animation_speed = 0.8,
 		}),
 	}),
 })
@@ -335,9 +363,13 @@ water_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terra
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-water-puddles-freezing")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-cracks")
+table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-cracks-frozen")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-dark")
+table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-dark-frozen")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-light")
+table.insert(water_ice_transitions[1].to_tiles, "cerys-ash-light-frozen")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones")
+table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones-frozen")
 
 local water_ice_transitions_between_transitions = adjusted_original_ice_transitions_between_transitions
 water_ice_transitions_between_transitions[1].spritesheet =
@@ -351,8 +383,8 @@ local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	collision_mask = cerys_ground_collision_mask,
 	sprite_usage_surface = "any",
 	map_color = { 8, 39, 94 },
-	layer = 9,
-	layer_group = "ground-artificial", -- Above crater decals
+	layer = 2,
+	layer_group = "ground-natural",
 	subgroup = "cerys-tiles",
 })
 
@@ -606,7 +638,7 @@ local function create_cerys_concrete(name_stem, frozen, item_name, transition_me
 			}),
 		})
 
-		-- The following tile is used for machine on water. Unfortunately, it's stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
+		-- The following tile is used for machines on water. Unfortunately, it's stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
 		tile.transition_merges_with_tile = frozen and "cerys-concrete" or nil
 		data:extend({
 			merge(tile, {
