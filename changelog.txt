@@ -3,6 +3,7 @@ Version: 4.18.8
 Date: ????
   Changes:
     - Small improvements to Factoriopedia descriptions.
+    - Added an optional setting to prevent planetary asteroids dropping chunks on belts. The settings to prevent chunks from being marked for deconstruction/looting have been removed.
   Balancing:
     - Nerfed the productivity bonus of charged radioactive modules from 18% to 17%.
   Sounds:

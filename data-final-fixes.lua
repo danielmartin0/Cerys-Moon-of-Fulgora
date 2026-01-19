@@ -17,3 +17,14 @@ require("compat.plutonium-energy")
 require("compat.krastorio-2-final-fixes")
 require("compat.wooden-cerys-lunaponics")
 require("compat.hard-mode")
+
+-- for _, character in pairs(data.raw.character) do
+-- 	if
+-- 		character.footstep_particle_triggers
+-- 		and character.footstep_particle_triggers[1]
+-- 		and character.footstep_particle_triggers[1].tiles
+-- 	then
+-- 		table.insert(character.footstep_particle_triggers[1].tiles, "cerys-water-puddles")
+-- 		table.insert(character.footstep_particle_triggers[1].tiles, "cerys-water-puddles-freezing")
+-- 	end
+-- end

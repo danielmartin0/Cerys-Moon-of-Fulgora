@@ -643,66 +643,45 @@ script.on_event(defines.events.on_entity_died, function(event)
 		return
 	end
 
-	for _ = 1, drop_count do
-		local belts = surface.find_entities_filtered({ type = "transport-belt", position = entity.position })
+	local allow_belts = settings.global["cerys-asteroid-chunks-drop-on-belts"].value
 
-		local placed = false
-		if #belts > 0 and belts[1].valid then
-			local belt = belts[1]
-			local line_index, line_pos = belt.get_item_insert_specification(entity.position)
+	local spilled = surface.spill_item_stack({
+		position = entity.position,
+		stack = { name = drop_name, count = drop_count },
+		enable_looted = true,
+		force = force,
+		allow_belts = allow_belts,
+		max_radius = 1,
+		use_start_position_on_failure = false,
+	})
 
-			if line_index and line_pos then
-				local line = belt.get_transport_line(line_index)
+	if #spilled == 0 then
+		return
+	end
 
-				if line and line.valid then
-					placed = line.insert_at(line_pos, { name = drop_name, count = 1 })
-				end
-			end
+	storage.cerys.ground_chunks = storage.cerys.ground_chunks or {}
+
+	local i = 1
+	while i <= #storage.cerys.ground_chunks do
+		local chunk = storage.cerys.ground_chunks[i]
+		if not (chunk and chunk.valid) then
+			table.remove(storage.cerys.ground_chunks, i)
+		else
+			i = i + 1
 		end
+	end
 
-		if not placed then
-			local position = surface.find_non_colliding_position("item-on-ground", entity.position, 2, 0.2)
+	for _, item_entity in pairs(spilled) do
+		if item_entity and item_entity.valid then
+			item_entity.order_deconstruction(force)
+			storage.cerys.ground_chunks[#storage.cerys.ground_chunks + 1] = item_entity
+		end
+	end
 
-			if not position then
-				return
-			end
-
-			local e = surface.create_entity({
-				name = "item-on-ground",
-				position = position,
-				force = force,
-				stack = { name = drop_name, count = drop_count },
-			})
-			if e and e.valid then
-				if settings.global["cerys-mark-chunks-to-be-looted"].value then
-					e.to_be_looted = true
-				end
-
-				if settings.global["cerys-mark-chunks-for-deconstruction"].value then
-					e.order_deconstruction(force)
-				end
-
-				storage.cerys.ground_chunks = storage.cerys.ground_chunks or {}
-
-				local i = 1
-				while i <= #storage.cerys.ground_chunks do
-					local chunk = storage.cerys.ground_chunks[i]
-					if not (chunk and chunk.valid) then
-						table.remove(storage.cerys.ground_chunks, i)
-					else
-						i = i + 1
-					end
-				end
-
-				storage.cerys.ground_chunks[#storage.cerys.ground_chunks + 1] = e
-
-				while #storage.cerys.ground_chunks > MAX_CHUNKS_ON_GROUND do
-					local oldest = table.remove(storage.cerys.ground_chunks, 1)
-					if oldest and oldest.valid then
-						oldest.destroy()
-					end
-				end
-			end
+	while #storage.cerys.ground_chunks > MAX_CHUNKS_ON_GROUND do
+		local oldest = table.remove(storage.cerys.ground_chunks, 1)
+		if oldest and oldest.valid then
+			oldest.destroy()
 		end
 	end
 end)

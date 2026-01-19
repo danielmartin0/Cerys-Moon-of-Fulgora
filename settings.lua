@@ -59,17 +59,10 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
-		name = "cerys-mark-chunks-for-deconstruction",
+		name = "cerys-asteroid-chunks-drop-on-belts",
 		setting_type = "runtime-global",
 		default_value = true,
 		order = "b",
-	},
-	{
-		type = "bool-setting",
-		name = "cerys-mark-chunks-to-be-looted",
-		setting_type = "runtime-global",
-		default_value = true,
-		order = "c",
 	},
 	{
 		type = "bool-setting",
