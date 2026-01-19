@@ -223,14 +223,26 @@ data:extend({
 			priority = 200,
 		},
 	},
+	-- {
+	-- 	type = "ambient-sound",
+	-- 	name = "cerys-11",
+	-- 	track_type = "main-track",
+	-- 	weight = 10,
+	-- 	planet = "cerys",
+	-- 	sound = {
+	-- 		filename = "__Cerys-Moon-of-Fulgora__/sounds/phaseshift.ogg",
+	-- 		volume = 0.5,
+	-- 		priority = 200,
+	-- 	},
+	-- },
 	{
 		type = "ambient-sound",
-		name = "cerys-11",
+		name = "cerys-12",
 		track_type = "main-track",
 		weight = 10,
 		planet = "cerys",
 		sound = {
-			filename = "__Cerys-Moon-of-Fulgora__/sounds/phaseshift.ogg",
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/thistooshallpass.ogg",
 			volume = 0.5,
 			priority = 200,
 		},

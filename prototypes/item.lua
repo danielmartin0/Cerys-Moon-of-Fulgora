@@ -181,7 +181,7 @@ data:extend({
 		stack_size = 50,
 		weight = 20 * 1000,
 		effect = {
-			productivity = 0.18,
+			productivity = 0.17,
 			consumption = 1,
 			pollution = 0.14,
 			speed = -0.2,

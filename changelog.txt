@@ -3,6 +3,12 @@ Version: 4.18.8
 Date: ????
   Changes:
     - Small improvements to Factoriopedia descriptions.
+  Balancing:
+    - Nerfed the productivity bonus of charged radioactive modules from 18% to 17%.
+  Sounds:
+    - Swapped out 'Phase Shift' for 'This Too Shall Pass' on the soundtrack.
+  Info:
+    - Removed the optional dependency mark on Visible Planets in Space.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.7
 Date: 2025-12-28
