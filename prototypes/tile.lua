@@ -123,8 +123,8 @@ local rock_transitions = {
 		masked_background_layer_offset = 1,
 		offset_background_layer_by_tile_layer = false,
 
-		spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-fulgora-rock-slab-transition.png",
-		layout = tile_spritesheet_layout.transition_16_16_16_4_8_short,
+		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
+		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
 		background_enabled = false,
 		effect_map_layout = {
 			spritesheet = "__space-age__/graphics/terrain/effect-maps/water-fulgora-sand-mask.png",
@@ -350,8 +350,13 @@ data:extend({
 					height = 512 * 2,
 				},
 			},
-			animation_scale = { 0.20, 0.34 },
-			animation_speed = 0.8,
+			-- animation_scale = { 0.30, 0.51 },
+			animation_speed = 4,
+			dark_threshold = { 0, 0 },
+			-- specular_lightness = { 30, 48, 22 },
+			-- foam_color = { 140, 140, 60 },
+
+			near_zoom = 2,
 		}),
 	}),
 })

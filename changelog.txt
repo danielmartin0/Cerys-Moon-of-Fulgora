@@ -1,18 +1,18 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.18.8
+Version: 4.19.0
 Date: ????
   Balancing:
     - Nerfed the productivity bonus of charged radioactive modules from 18% to 17%.
   Graphics:
-    - Improved graphics and tile transitions for Cerys water.
+    - Adjusted graphics and tile transitions for Cerys water. The water now appears much more shallow.
   Changes:
     - Added an optional setting to prevent planetary asteroids dropping chunks on belts. The settings to prevent chunks from being marked for deconstruction/looting have been removed.
     - Small improvements to Factoriopedia descriptions.
+  Sounds:
+    - Swapped out a track on the soundtrack.
   Compatibility:
     - The mod setting to preserve recycling recipes no longer affects advanced circuits and processing units if either BZ-Tin or Crushing Industry are installed (to allow for sources of solder and optical fiber respectively).
     - The optional dependency on Visible Planets in Space is now hidden.
-  Sounds:
-    - Swapped out a track on the soundtrack.
 ---------------------------------------------------------------------------------------------------
 Version: 4.18.7
 Date: 2025-12-28
