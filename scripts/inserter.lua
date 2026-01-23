@@ -74,16 +74,13 @@ local function is_valid_module_machine(entity)
 end
 
 local function adjust_inserter_to_match_machine(inserter, machine)
-	local module_inv_size = machine.prototype and machine.prototype.module_inventory_size or 0
-
-	if not (module_inv_size and module_inv_size > 0) then
-		return
-	end
-
 	local inv = machine.get_module_inventory()
+
 	if not inv then
 		return
 	end
+
+	local module_inv_size = #inv
 
 	local total_items = inv.get_item_count()
 
