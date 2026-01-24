@@ -138,7 +138,7 @@ data:extend({
 		main_product = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
 		category = "fulgoran-cryogenics",
 		subgroup = "science-pack",
-		order = "g[space-science-pack]-b[from-methane-ice]",
+		order = common_data.K2_INSTALLED and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
 		always_show_made_in = true,
 	},
 	{
@@ -506,6 +506,7 @@ if common_data.K2_INSTALLED then
 			localised_name = {
 				"cerys.kr-cerysian-tech-card",
 			},
+			category = "kr-tech-cards",
 			always_show_made_in = true,
 			enabled = false,
 			energy_required = 20,
