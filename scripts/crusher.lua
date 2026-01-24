@@ -236,13 +236,13 @@ function Public.tick_20_check_crusher_quality_upgrades(surface)
 	end
 
 	for unit_number, crusher in pairs(storage.cerys_fulgoran_crushers) do
-		storage.cerys.crusher_upgrade_monitor[unit_number] = nil
+		storage.cerys.crusher_upgrade_monitor[unit_number] = nil -- We'll re-add it shortly if we need to
 
-		if crusher.quality and crusher.quality.next then
+		if crusher and crusher.valid then
 			local recipe, recipe_quality = crusher.get_recipe()
 
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-crusher-quality" then
-				if crusher.quality.next.name == recipe_quality.name then
+				if crusher.quality and crusher.quality.next and crusher.quality.next.name == recipe_quality.name then
 					storage.cerys.crusher_upgrade_monitor[unit_number] = {
 						entity = crusher,
 						quality_upgrading_to = recipe_quality,
@@ -267,7 +267,12 @@ function Public.tick_20_check_crusher_quality_upgrades(surface)
 							})
 						end
 					end
-					crusher.set_recipe(recipe, crusher.quality.next)
+
+					if crusher.quality and crusher.quality.next then
+						crusher.set_recipe(recipe, crusher.quality.next)
+					else
+						crusher.set_recipe(nil)
+					end
 				end
 			end
 		end
