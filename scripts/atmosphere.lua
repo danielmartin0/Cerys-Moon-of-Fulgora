@@ -648,7 +648,7 @@ script.on_event(defines.events.on_entity_died, function(event)
 	local spilled = surface.spill_item_stack({
 		position = entity.position,
 		stack = { name = drop_name, count = drop_count },
-		enable_looted = true,
+		enable_looted = false,
 		force = force,
 		allow_belts = allow_belts,
 		max_radius = 1,

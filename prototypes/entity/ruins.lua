@@ -12,8 +12,8 @@ local function ruin_minable_results(collision_area)
 			{
 				type = "item",
 				name = "iron-gear-wheel",
-				amount_min = math.ceil(collision_area * 1.9 * (K2_Installed and 1.5 or 1)),
-				amount_max = math.ceil(collision_area * 2.1 * (K2_Installed and 1.5 or 1)),
+				amount_min = math.ceil(collision_area * 2 * (K2_Installed and 1.5 or 1)),
+				amount_max = math.ceil(collision_area * 2.2 * (K2_Installed and 1.5 or 1)),
 			},
 			{
 				type = "item",
