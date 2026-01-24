@@ -350,11 +350,13 @@ data:extend({
 					height = 512 * 2,
 				},
 			},
-			-- animation_scale = { 0.30, 0.51 },
 			animation_speed = 4,
 			dark_threshold = { 0, 0 },
+
 			-- specular_lightness = { 30, 48, 22 },
-			-- foam_color = { 140, 140, 60 },
+			foam_color = { 0, 0, 0 },
+			foam_color_multiplier = 0,
+			-- reflection_threshold = { 0, 0 },
 
 			near_zoom = 2,
 		}),

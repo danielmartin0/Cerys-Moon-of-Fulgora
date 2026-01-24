@@ -6,6 +6,8 @@ Date: ????
     - Removed the incompatibility mark with 'Oarc Multiplayer Spawn' now that the third-party compatibility mod 'Cerys Custom Force Patch' is available.
   Bugfixes:
     - Fixed that Radiation-proof inserters did not correctly interact with higher-quality Fulgoran crushers and other machines whose module inventory size had grown due to quality.
+  Graphics:
+    - Visual foam no longer appears on Cerys water.
 ---------------------------------------------------------------------------------------------------
 Version: 4.19.0
 Date: 2026-01-20
