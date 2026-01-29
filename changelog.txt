@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.20.1
-Date: ????-??-??
+Date: 2026-01-29
   Bugfixes:
     - Fixed that normal inserters could fail to drop items in machines if a Radiation-proof inserter was pointing at the same tile. (You may need to rebuild such inserters for them to work.)
 ---------------------------------------------------------------------------------------------------
