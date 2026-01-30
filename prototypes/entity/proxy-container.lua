@@ -10,6 +10,7 @@ data:extend({
 			"not-selectable-in-game",
 			"not-upgradable",
 			"not-in-kill-statistics",
+			"no-automated-item-removal",
 			"no-automated-item-insertion",
 		},
 		max_health = 1e9,
