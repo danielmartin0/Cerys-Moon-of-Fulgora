@@ -510,7 +510,7 @@ function Public.create_lithium_brine(surface, area)
 
 	for _ = 1, 1000 do
 		local angle = math.random() * 2 * math.pi
-		local d = (math.random()) * 22
+		local d = (math.random() ^ 0.5) * 22
 		local p = {
 			x = adjusted_lithium_position.x + math.cos(angle) * d * stretch_factor,
 			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
