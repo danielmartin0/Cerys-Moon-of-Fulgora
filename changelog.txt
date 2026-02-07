@@ -2,6 +2,7 @@
 Version: 4.21.1
 Date: ????
   Changes:
+    - Lithium brine on Cerys now spawns in a smaller area with fewer other entities nearby.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.0
 Date: 2026-02-07

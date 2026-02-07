@@ -510,9 +510,9 @@ function Public.create_lithium_brine(surface, area)
 
 	for _ = 1, 1000 do
 		local angle = math.random() * 2 * math.pi
-		local d = ((math.random()) ^ (1 / 2)) * 58
+		local d = (math.random()) * 22
 		local p = {
-			x = adjusted_lithium_position.x + math.cos(angle) * d / 3 * stretch_factor,
+			x = adjusted_lithium_position.x + math.cos(angle) * d * stretch_factor,
 			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
 		}
 
@@ -529,10 +529,48 @@ function Public.create_lithium_brine(surface, area)
 			end
 		end
 
-		if created >= 10 then
+		if created >= 12 then
 			break
 		end
 	end
+
+	-- Destroy icebergs and ruins in the lithium brine area
+	local brine_area = {
+		left_top = {
+			x = adjusted_lithium_position.x - 22 * stretch_factor,
+			y = adjusted_lithium_position.y - 22 / stretch_factor,
+		},
+		right_bottom = {
+			x = adjusted_lithium_position.x + 22 * stretch_factor,
+			y = adjusted_lithium_position.y + 22 / stretch_factor,
+		},
+	}
+
+	local entities_to_destroy = surface.find_entities_filtered({
+		area = brine_area,
+		name = {
+			"cerys-methane-iceberg-huge",
+			"cerys-methane-iceberg-big",
+			"cerys-ruin-small",
+			"cerys-ruin-medium",
+			"cerys-ruin-big",
+			"cerys-ruin-huge",
+			"cerys-ruin-colossal",
+		},
+	})
+	for _, entity in ipairs(entities_to_destroy) do
+		entity.destroy()
+	end
+
+	surface.destroy_decoratives({
+		area = brine_area,
+		name = {
+			"cerys-methane-iceberg-medium",
+			"cerys-methane-iceberg-small",
+			"cerys-methane-iceberg-tiny",
+			"cerys-ruin-tiny",
+		},
+	})
 end
 
 function Public.check_for_water_underneath(surface, center, width, height)
