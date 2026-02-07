@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.0
-Date: ????
+Date: 2026-02-07
   Bugfixes:
     - Fixed that Radiation-proof inserters did not properly remove decayed Radioactive modules since v4.20.2. (This accounts for an undocumented asymmetry between the entity flags "no-automated-item-insertion" and "no-automated-item-removal".)
   Compatibility:
