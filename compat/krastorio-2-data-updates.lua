@@ -1,3 +1,4 @@
+local util = require("util")
 local common = require("common")
 local common_data = require("common-data-only")
 local lib = require("lib")
@@ -38,31 +39,13 @@ then
 					scale = 0.5,
 				},
 			},
-			ammo_type = {
-				target_type = k_target_type,
-				action = {
-					{
-						type = "direct",
-						action_delivery = {
-							{
-								type = "projectile",
-								projectile = "kr-uranium-rifle-magazine-projectile",
-								starting_speed = 1.75,
-								direction_deviation = 0.15,
-								range_deviation = 0.15,
-								max_range = rifle_range,
-								source_effects = {
-									{
-										type = "create-explosion",
-										entity_name = "explosion-gunshot",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
 		}),
+	})
+	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-uranium-rifle-magazine"].ammo_type)
+	ammo_type.action[1].action_delivery[1].projectile = "kr-plutonium-rifle-magazine-projectile"
+	data.raw.ammo["kr-plutonium-rifle-magazine"].ammo_type = ammo_type
+
+	data:extend({
 		merge(data.raw.recipe["kr-uranium-rifle-magazine"], {
 			name = "kr-plutonium-rifle-magazine",
 			ingredients = {
@@ -73,30 +56,16 @@ then
 			energy_required = data.raw.recipe["kr-uranium-rifle-magazine"].energy_required * 10,
 			main_product = "kr-plutonium-rifle-magazine",
 		}),
+	})
+
+	data:extend({
 		merge(data.raw.projectile["kr-uranium-rifle-magazine-projectile"], {
 			name = "kr-plutonium-rifle-magazine-projectile",
-			action = {
-				type = "direct",
-				action_delivery = {
-					type = "instant",
-					target_effects = {
-						{
-							type = "create-entity",
-							entity_name = "kr-explosion-hit-u",
-						},
-						{
-							type = "damage",
-							damage = { amount = 14, type = "physical" },
-						},
-						{
-							type = "damage",
-							damage = { amount = 12, type = "kr-radioactive" },
-						},
-					},
-				},
-			},
 		}),
 	})
+	local action = util.table.deepcopy(data.raw.projectile["kr-plutonium-rifle-magazine-projectile"].action)
+	action.action_delivery.target_effects[3].damage.amount = action.action_delivery.target_effects[3].damage.amount * 2
+	data.raw.projectile["kr-plutonium-rifle-magazine-projectile"].action = action
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",
@@ -123,32 +92,13 @@ then
 					scale = 0.5,
 				},
 			},
-			ammo_type = {
-				target_type = k_target_type,
-				action = {
-					{
-						type = "direct",
-						action_delivery = {
-							{
-								type = "projectile",
-								projectile = "kr-uranium-anti-materiel-rifle-magazine-projectile",
-								starting_speed = 3,
-								direction_deviation = 0.02,
-								range_deviation = 0.02,
-								max_range = sniper_range,
-								source_effects = {
-									{
-										type = "create-explosion",
-										entity_name = "explosion-gunshot",
-									},
-								},
-							},
-						},
-						force = "not-same",
-					},
-				},
-			},
 		}),
+	})
+	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-plutonium-anti-materiel-rifle-magazine"].ammo_type)
+	ammo_type.action[1].action_delivery[1].projectile = "kr-plutonium-anti-materiel-rifle-magazine-projectile"
+	data.raw.ammo["kr-plutonium-anti-materiel-rifle-magazine"].ammo_type = ammo_type
+
+	data:extend({
 		merge(data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"], {
 			name = "kr-plutonium-anti-materiel-rifle-magazine",
 			ingredients = {
@@ -159,43 +109,18 @@ then
 			energy_required = data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"].energy_required * 10,
 			main_product = "kr-plutonium-anti-materiel-rifle-magazine",
 		}),
+	})
+
+	data:extend({
 		merge(data.raw.projectile["kr-uranium-anti-materiel-rifle-magazine-projectile"], {
 			name = "kr-plutonium-anti-materiel-rifle-magazine-projectile",
-			action = {
-				type = "direct",
-				action_delivery = {
-					type = "instant",
-					target_effects = {
-						{
-							type = "create-entity",
-							entity_name = "kr-explosion-hit-u",
-						},
-						{
-							type = "nested-result",
-							action = {
-								type = "area",
-								radius = k_d_radius + 0.25,
-								action_delivery = {
-									type = "instant",
-									target_effects = {
-										{
-											type = "damage",
-											damage = { amount = 125, type = "physical" },
-										},
-										{
-											type = "damage",
-											damage = { amount = 150, type = "kr-radioactive" },
-										},
-									},
-								},
-								force = "not-same",
-							},
-						},
-					},
-				},
-			},
 		}),
 	})
+	local action =
+		util.table.deepcopy(data.raw.projectile["kr-plutonium-anti-materiel-rifle-magazine-projectile"].action)
+	action.action_delivery.target_effects[2].action.action_delivery.target_effects[2].damage.amount = action.action_delivery.target_effects[2].action.action_delivery.target_effects[2].damage.amount
+		* 2
+	data.raw.projectile["kr-plutonium-anti-materiel-rifle-magazine-projectile"].action = action
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",

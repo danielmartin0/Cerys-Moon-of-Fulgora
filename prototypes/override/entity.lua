@@ -13,7 +13,7 @@ for name, entity in pairs(data.raw["lab"]) do
 	end
 end
 for name, entity in pairs(data.raw["accumulator"]) do
-	if name ~= "cerys-charging-rod" then
+	if name ~= "cerys-charging-rod" and name ~= "kr-planetary-teleporter" then
 		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end

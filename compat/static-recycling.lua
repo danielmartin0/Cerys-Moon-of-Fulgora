@@ -1,6 +1,7 @@
 local common_data = require("common-data-only")
 
 local leave_higher_chip_recycling_unchanged = mods["crushing-industry"] or mods["bztin"]
+local leave_stone_brick_recycling_unchanged = mods["crushing-industry"]
 
 if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 	data.raw["recipe"]["pipe-recycling"]["ingredients"] = { { type = "item", name = "pipe", amount = 1 } }
@@ -37,10 +38,12 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		{ "steel-plate", 1 },
 		{ "copper-plate", 0.2 },
 		{ "iron-plate", 0.2 },
-		{ "stone-brick", 0.2 },
 		{ "plastic-bar", 0.0625 },
 		{ "holmium-plate", 0.0625 },
 	}
+	if not leave_stone_brick_recycling_unchanged then
+		table.insert(RECYCLE_TO_ITSELF, { "stone-brick", 0.2 })
+	end
 
 	for i = 1, #RECYCLE_TO_ITSELF do
 		data.raw["recipe"][RECYCLE_TO_ITSELF[i][1] .. "-recycling"]["ingredients"] =

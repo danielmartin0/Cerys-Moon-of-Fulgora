@@ -1,7 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.20.3
+Version: 4.21.0
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that Radiation-proof inserters did not properly remove decayed Radioactive modules since v4.20.2. (This accounts for an undocumented asymmetry between the entity flags "no-automated-item-insertion" and "no-automated-item-removal".)
+  Compatibility:
+    - Crushing Industry: With this mod the 'Prevent certain recycling recipe overrides' setting now avoids overwriting the recycling recipe for stone bricks.
+    - K2: Fixed that the Planetary teleporter entity was unnecessarily banned on Cerys.
+    - K2: Fixed that plutonium rifle magazines were not properly buffed over the uranium versions.
 ---------------------------------------------------------------------------------------------------
 Version: 4.20.1-4.20.2
 Date: 2026-01-30
