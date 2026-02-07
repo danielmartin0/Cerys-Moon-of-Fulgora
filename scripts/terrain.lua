@@ -529,7 +529,7 @@ function Public.create_lithium_brine(surface, area)
 			end
 		end
 
-		if created >= 12 then
+		if created >= 10 then
 			break
 		end
 	end
