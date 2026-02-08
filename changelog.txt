@@ -2,6 +2,7 @@
 Version: 4.21.3
 Date: ????
   Changes:
+    - The Cerys recycling bans on construction robots and exoskeletons is no longer removed once the magnetosphere technology is unlocked.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.1-4.21.2
 Date: 2026-02-07

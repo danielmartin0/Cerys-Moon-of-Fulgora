@@ -447,15 +447,6 @@ local cargo_drops_base =
 local is_sandbox_mode = settings.startup["cerys-sandbox-mode"].value
 
 if not is_sandbox_mode then
-	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-		type = "unlock-recipe",
-		recipe = "cerys-construction-robot-recycling",
-	}
-	cargo_drops_base.effects[#cargo_drops_base.effects + 1] = {
-		type = "unlock-recipe",
-		recipe = "cerys-exoskeleton-equipment-recycling",
-	}
-
 	data:extend({
 		merge(cargo_drops_base, {
 			prerequisites = CARGO_DROPS_PREREQS,
