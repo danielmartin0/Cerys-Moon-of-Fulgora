@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.3
-Date: ????
+Date: 2026-02-12
   Info:
     - Adjusted the entity description of the Ghost charged particle maker to make it clear the entity is for testing purposes.
     - Adjusted the entity description of Charging rods to hint they may have another use.
