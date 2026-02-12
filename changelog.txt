@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.3
 Date: 2026-02-12
+  Changes:
+    - The ban on recycling construction robots or exoskeletons on Cerys is no longer lifted once the magnetosphere technology is unlocked. This is for clarity in player communications.
   Info:
     - Adjusted the entity description of the Ghost charged particle maker to make it clear the entity is for testing purposes.
     - Adjusted the entity description of Charging rods to hint they may have another use.
     - Adjusted the entity description of the repaired Fulgoran reactor to indicate that radiation shielding is not supposed to be obvious but is in fact a puzzle.
-  Changes:
-    - The Cerys recycling bans on construction robots and exoskeletons is no longer lifted once the magnetosphere technology is unlocked, this is for clarity in player communications.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.1-4.21.2
 Date: 2026-02-07
