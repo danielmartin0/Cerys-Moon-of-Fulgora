@@ -1,6 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.3
 Date: ????
+  Info:
+    - Adjusted the entity description of the Ghost charged particle maker to make it clear the entity is for testing purposes.
+    - Adjusted the entity description of Charging rods to hint they may have another use.
+    - Adjusted the entity description of the repaired Fulgoran reactor to indicate that radiation shielding is not supposed to be obvious but is in fact a puzzle.
   Changes:
     - The Cerys recycling bans on construction robots and exoskeletons is no longer removed once the magnetosphere technology is unlocked.
 ---------------------------------------------------------------------------------------------------
