@@ -1,13 +1,6 @@
 data:extend({
 	{
 		type = "bool-setting",
-		name = "cerys-disable-flare-stack-item-venting",
-		setting_type = "startup",
-		default_value = true,
-		order = "a",
-	},
-	{
-		type = "bool-setting",
 		name = "cerys-enforce-vanilla-recycling-recipes",
 		setting_type = "startup",
 		default_value = true,

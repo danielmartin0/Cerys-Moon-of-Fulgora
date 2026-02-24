@@ -2,6 +2,7 @@
 Version: 4.21.4
 Date: ????
   Changes:
+    - Removed the 'Disable item venting in Flare Stack mod' setting. This is now handled by Flare Stack's own 'Disable incinerators' setting.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.3
 Date: 2026-02-12

@@ -44,13 +44,6 @@ for _, technology in pairs(data.raw.technology) do
 	end
 end
 
---== Flare stack ==--
-
-if settings.startup["cerys-disable-flare-stack-item-venting"].value then
-	data.raw.technology["flare-stack-item-venting-electric-tech"].hidden = true
-	data.raw.technology["flare-stack-item-venting-tech"].hidden = true
-end
-
 data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysian-science-pack" }
 data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	count = 15,

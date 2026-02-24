@@ -63,17 +63,6 @@ then
 	})
 end
 
---== Flare stack ==--
-
-if settings.startup["cerys-disable-flare-stack-item-venting"].value then
-	if data.raw.furnace["electric-incinerator"] then
-		data.raw.furnace["electric-incinerator"].hidden = true
-	end
-	if data.raw.furnace["incinerator"] then
-		data.raw.furnace["incinerator"].hidden = true
-	end
-end
-
 --== Nuclear explosion effects ==--
 
 if data.raw["explosion"]["nuke-effects-nauvis"] then
