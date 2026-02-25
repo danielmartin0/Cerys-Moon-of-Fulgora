@@ -2,13 +2,14 @@ local lib = require("lib")
 local find = lib.find
 local common = require("common")
 
---== Automated recipe bans ==--
+--== Recipe autobans (surface conditions) ==--
 
 for _, recipe in pairs(data.raw.recipe) do
-	if recipe.results then
+	if recipe.results and recipe.name ~= "electric-engine-unit" then
 		local should_ban = false
+		local reasons = {}
 
-		local produces_softbanned = false
+		local produces_softbanned = {}
 		local requires_softbanned = false
 
 		local produces_electric_engine_unit = false
@@ -23,7 +24,7 @@ for _, recipe in pairs(data.raw.recipe) do
 		for _, product in pairs(recipe.results) do
 			if product.name then
 				if find(common.SOFTBANNED_RESOURCES, product.name) then
-					produces_softbanned = true
+					produces_softbanned[product.name] = true
 				end
 				if product.name == "electric-engine-unit" then
 					produces_electric_engine_unit = true
@@ -54,20 +55,25 @@ for _, recipe in pairs(data.raw.recipe) do
 			or produces_science_pack
 
 		if not excluded then
-			if produces_softbanned then
+			if next(produces_softbanned) then
 				should_ban = true
+				local names = {}
+				for name, _ in pairs(produces_softbanned) do
+					table.insert(names, name)
+				end
+				table.sort(names)
+				table.insert(reasons, "produces " .. table.concat(names, ", "))
 			elseif produces_lubricant then
 				should_ban = true
-			elseif
-				produces_electric_engine_unit
-				and (recipe.name ~= "electric-engine-unit" and data.raw.recipe["electric-engine-unit"])
-			then
+				table.insert(reasons, "produces lubricant")
+			elseif produces_electric_engine_unit then
 				should_ban = true
+				table.insert(reasons, "produces electric-engine-unit")
 			end
 		end
 
 		if should_ban then
-			log("[CERYS] Restricting " .. recipe.name)
+			log("[CERYS] Restricting " .. recipe.name .. ": " .. table.concat(reasons, "; "))
 			PlanetsLib.restrict_surface_conditions(recipe, common.AMBIENT_RADIATION_MAX)
 		end
 	end

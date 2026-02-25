@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.4
 Date: ????
-  Changes:
-    - Removed the 'Disable item venting in Flare Stack mod' setting. This is now handled by Flare Stack's own 'Disable incinerators' setting.
+  Compatibility:
+    - Fixed that other mods could cause the electric engine unit recipe to get hit by the Cerys surface condition autobans.
+    - Removed the 'Disable item venting in Flare Stack mod' setting. This is now handled by the Flare Stack mod's new default behavior of disabling incinerators when Space Age is enabled.
+  Graphics:
+    - Slightly increased nighttime brightness.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.3
 Date: 2026-02-12
