@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.4
-Date: ????
+Date: 2026-02-25
   Changes:
     - Added an optional setting to lock Aquilo's fusion behind the Radiative heaters technology in order to make Cerys a mandatory part of the game progression.
   Compatibility:
