@@ -24,6 +24,13 @@ data:extend({
 	},
 	{
 		type = "bool-setting",
+		name = "cerys-fusion-reactor-requires-radiative-tower",
+		setting_type = "startup",
+		default_value = false,
+		order = "e",
+	},
+	{
+		type = "bool-setting",
 		name = "cerys-use-fulgora-starmap-graphic",
 		setting_type = "startup",
 		default_value = false,

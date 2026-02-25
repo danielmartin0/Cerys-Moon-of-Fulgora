@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.4
 Date: ????
+  Changes:
+    - Added an optional setting to lock Aquilo's fusion behind the Radiative heaters technology in order to make Cerys a mandatory part of the game progression.
   Compatibility:
     - Fixed that other mods could cause the electric engine unit recipe to get hit by the Cerys surface condition autobans.
     - Removed the 'Disable item venting in Flare Stack mod' setting. This is now handled by the Flare Stack mod's new default behavior of disabling incinerators when Space Age is enabled.

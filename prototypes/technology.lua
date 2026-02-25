@@ -579,6 +579,16 @@ then
 	end
 end
 
+if
+	data.raw.technology["fusion-reactor"]
+	and settings.startup["cerys-fusion-reactor-requires-radiative-tower"].value
+then
+	table.insert(
+		data.raw.technology["fusion-reactor"].prerequisites,
+		"cerys-radiative-heaters"
+	)
+end
+
 local holmium_productivity_effects = {}
 if data.raw.recipe["holmium-plate"] then
 	table.insert(holmium_productivity_effects, {
