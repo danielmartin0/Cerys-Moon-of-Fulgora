@@ -10,7 +10,7 @@
   "dependencies": [
     "base >= 2.0.73",
     "space-age >= 2.0.73",
-    "Flare Stack >= 4.0.2",
+    "Flare Stack >= 4.1.0",
     "PlanetsLib >= 1.11.0",
     "bplib >= 1.1.6",
     "? Krastorio2-spaced-out >= 1.4.19",
