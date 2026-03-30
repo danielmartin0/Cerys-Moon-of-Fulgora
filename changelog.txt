@@ -2,7 +2,10 @@
 Version: 4.21.5
 Date: ????
   Bugfixes:
+    - Fixed that the Lubricant synthesis technology incorrectly referenced carbon as an ingredient.
     - Fixed a locale string error on ghost charged particles when viewed in the production statistics pane.
+  Changes:
+    - Bumped the minimum version of the Flare Stack dependency.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.4
 Date: 2026-02-25
