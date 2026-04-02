@@ -2,9 +2,9 @@
 Version: 4.21.5
 Date: ????
   Bugfixes:
-    - Fixed that the Lubricant synthesis technology incorrectly referenced carbon as an ingredient.
-    - Fixed a locale string error on ghost charged particles when viewed in the production statistics pane.
+    - Fixed a locale string error on ghost charged particles viewed in the production statistics pane.
     - Fixed a rare crash when opening the charging rod GUI.
+    - Fixed that the Lubricant synthesis technology incorrectly referenced carbon as an ingredient.
   Changes:
     - Bumped the minimum version of the Flare Stack dependency.
 ---------------------------------------------------------------------------------------------------
