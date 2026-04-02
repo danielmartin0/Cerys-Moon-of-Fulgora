@@ -450,11 +450,13 @@ function Public.on_gui_opened(event)
 		signal_label.style.horizontally_stretchable = true
 		signal_label.style.font_color = circuit_controlled and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 
+		local signal = (rod_circuit_data and rod_circuit_data.control_signal) or { type = "virtual", name = "signal-P" }
+
 		flow.add({
 			type = "choose-elem-button",
 			name = "control-signal-button",
 			elem_type = "signal",
-			signal = rod_circuit_data.control_signal,
+			signal = signal,
 			enabled = circuit_controlled and true or false,
 		})
 	end

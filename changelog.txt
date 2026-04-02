@@ -4,6 +4,7 @@ Date: ????
   Bugfixes:
     - Fixed that the Lubricant synthesis technology incorrectly referenced carbon as an ingredient.
     - Fixed a locale string error on ghost charged particles when viewed in the production statistics pane.
+    - Fixed a rare crash when opening the charging rod GUI.
   Changes:
     - Bumped the minimum version of the Flare Stack dependency.
 ---------------------------------------------------------------------------------------------------
