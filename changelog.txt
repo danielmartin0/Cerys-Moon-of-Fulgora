@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.5
-Date: ????
+Date: 2026-04-02
   Bugfixes:
     - Fixed a locale string error on ghost charged particles viewed in the production statistics pane.
     - Fixed a rare crash when opening the charging rod GUI.
