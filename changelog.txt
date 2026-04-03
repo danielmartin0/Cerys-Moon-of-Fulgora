@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.6
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that Cerys prevented boilers and steam engines being crafted by assembling machines on space platforms.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.5
 Date: 2026-04-02
@@ -9,7 +10,6 @@ Date: 2026-04-02
     - Fixed a locale string error on ghost charged particles viewed in the production statistics pane.
     - Fixed a rare crash when opening the charging rod GUI.
     - Fixed that the Lubricant synthesis technology incorrectly referenced carbon as an ingredient.
-  Changes:
     - Bumped the minimum version of the Flare Stack dependency.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.4

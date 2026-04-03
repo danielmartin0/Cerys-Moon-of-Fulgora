@@ -75,14 +75,6 @@ if data.raw.recipe["fusion-generator"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["fusion-generator"], common.AMBIENT_RADIATION_MAX)
 end
 
-if data.raw.recipe["boiler"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["boiler"], common.TEN_PRESSURE_MIN)
-end
-
-if data.raw.recipe["steam-engine"] then
-	PlanetsLib.restrict_surface_conditions(data.raw.recipe["steam-engine"], common.TEN_PRESSURE_MIN)
-end
-
 local speed_3_recycling_results_without_tungsten_carbide = {}
 for _, result in pairs(data.raw.recipe["speed-module-3-recycling"].results) do
 	if result.name ~= "tungsten-carbide" then

@@ -30,7 +30,7 @@ end
 
 for _, entity in pairs(data.raw["boiler"]) do
 	if entity.energy_source.type ~= "heat" then
-		PlanetsLib.restrict_surface_conditions(entity, common.TEN_PRESSURE_MIN)
+		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end
 
@@ -45,7 +45,7 @@ end
 
 for _, entity in pairs(data.raw["furnace"]) do
 	if entity.energy_source and entity.energy_source.type == "burner" then
-		PlanetsLib.restrict_surface_conditions(entity, common.TEN_PRESSURE_MIN)
+		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 	end
 end
 
