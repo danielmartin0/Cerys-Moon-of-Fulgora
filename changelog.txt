@@ -1,8 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.7
 Date: ????
+  Sounds:
+    - Added an ambient track to the soundtrack.
   Balancing:
     - Mineral leaching is now slightly less iron-positive (sulfuric acid 60->75, ammonia 40->50).
+  Changes:
+    - The Lubricant synthesis technology now requires space science instead of logistic science.
+    - The Applications of radioactivity technology no longer requires space science.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.6
 Date: 2026-04-03

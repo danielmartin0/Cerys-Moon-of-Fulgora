@@ -170,7 +170,7 @@ data:extend({
 			count = correct(100),
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
-				{ "logistic-science-pack", 1 },
+				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
@@ -366,7 +366,6 @@ data:extend({
 			ingredients = {
 				{ "cerysian-science-pack", 1 },
 				{ "logistic-science-pack", 1 },
-				{ "space-science-pack", 1 },
 			},
 			time = 60,
 		},
