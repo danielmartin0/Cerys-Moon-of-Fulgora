@@ -247,4 +247,16 @@ data:extend({
 			priority = 200,
 		},
 	},
+	{
+		type = "ambient-sound",
+		name = "cerys-13",
+		track_type = "main-track",
+		weight = 10,
+		planet = "cerys",
+		sound = {
+			filename = "__Cerys-Moon-of-Fulgora__/sounds/shemovedmountains.ogg",
+			volume = 0.5,
+			priority = 200,
+		},
+	},
 })
