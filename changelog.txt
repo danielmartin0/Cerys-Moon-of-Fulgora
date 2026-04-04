@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.7
-Date: ????
+Date: 2026-04-04
   Balancing:
     - Mineral leaching is now slightly less iron-positive (sulfuric acid 60->75, ammonia 40->50).
   Sounds:
