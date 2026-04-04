@@ -89,7 +89,7 @@ data:extend({
 		research_trigger = {
 			type = "craft-item",
 			item = "cerys-discover-fulgoran-cryogenics",
-			count = correct(10),
+			count = correct(5),
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/cryogenic-plant.png",
 		icon_size = 256,
@@ -580,13 +580,9 @@ then
 end
 
 if
-	data.raw.technology["fusion-reactor"]
-	and settings.startup["cerys-fusion-reactor-requires-radiative-tower"].value
+	data.raw.technology["fusion-reactor"] and settings.startup["cerys-fusion-reactor-requires-radiative-tower"].value
 then
-	table.insert(
-		data.raw.technology["fusion-reactor"].prerequisites,
-		"cerys-radiative-heaters"
-	)
+	table.insert(data.raw.technology["fusion-reactor"].prerequisites, "cerys-radiative-heaters")
 end
 
 local holmium_productivity_effects = {}
