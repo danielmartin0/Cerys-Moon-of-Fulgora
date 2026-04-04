@@ -618,7 +618,7 @@ data:extend({
 			time = 60,
 		},
 		upgrade = true,
-		order = "z-b",
+		order = "z-a",
 	},
 	{
 		type = "technology",
@@ -695,7 +695,7 @@ data:extend({
 		},
 		max_level = "infinite",
 		upgrade = true,
-		order = "z-a",
+		order = "z-b",
 	},
 })
 
