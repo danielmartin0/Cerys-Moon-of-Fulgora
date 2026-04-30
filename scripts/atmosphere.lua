@@ -426,7 +426,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 			local containers = surface.find_entities_filtered({
 				type = { "container", "logistic-container" },
 				position = particle.position,
-				-- has_item_inside = "", -- this would only catch normal quality
+				-- has_item_inside = "uranium-238", -- this would only catch normal quality
 				radius = 0.75,
 			})
 
