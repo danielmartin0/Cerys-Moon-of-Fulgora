@@ -104,15 +104,8 @@ data:extend({
 		order = "z",
 	},
 	{
-		type = "bool-setting",
-		name = "cerys-enforce-plutonium-limits",
-		setting_type = "startup",
-		default_value = true,
-		order = "z",
-	},
-	{
 		type = "int-setting",
-		name = "cerys-plutonium-limit",
+		name = "cerys-plutonium-recipe-limit",
 		setting_type = "startup",
 		default_value = 5,
 		order = "z",

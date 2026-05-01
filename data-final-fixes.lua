@@ -28,3 +28,22 @@ require("compat.hard-mode")
 -- 		table.insert(character.footstep_particle_triggers[1].tiles, "cerys-water-puddles-freezing")
 -- 	end
 -- end
+
+
+local recipe_count = 0
+
+for name, value in ipairs(data.raw.mod_data) do
+    if value.data_type == "cerys-solar-wind-recipe" then
+        local chance = value.chance
+
+        -- The chest is about 30 times better than the belt.
+        value.chance_belt = chance / 334 --0,002994011976
+        --chest chance at base has to be 0.0001
+		value.chance_chest = chance / 10000 --0.0001
+        recipe_count = recipe_count + 1
+    end
+end
+
+if settings.startup["cerys-plutonium-recipe-limit"].value > recipe_count then
+    error({ "cerys-error.plutonium-limit-reached" }, recipe_count)
+end

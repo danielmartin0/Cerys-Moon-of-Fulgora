@@ -14,8 +14,7 @@ data:extend({
 		data = {
 			ingredient = "uranium-238",
 			result = "plutonium-239",
-			chance_belt = 1 / 334,
-			chance_chest = 1 / 10000
+			chance = 1
 		}
 	}
 })
