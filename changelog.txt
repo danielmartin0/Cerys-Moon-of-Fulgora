@@ -1,10 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.8
 Date: ????
-  Locale:
-    - Added a Polish translation, credit to Hacai.
   Bugfixes:
     - Fixed a crash when using the Fulgoran teleporter while the player has composite crafts in the crafting queue.
+  Locale:
+    - Added a Polish translation, credit to Hacai.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.7
 Date: 2026-04-04
