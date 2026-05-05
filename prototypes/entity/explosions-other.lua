@@ -42,7 +42,6 @@ data:extend({
 				frame_count = 16,
 				animation_speed = 0.5,
 				scale = 0.5,
-				shift = util.by_pixel(-15, 10),
 				usage = "explosion",
 			},
 		},
