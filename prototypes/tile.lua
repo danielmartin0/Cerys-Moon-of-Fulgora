@@ -279,8 +279,8 @@ data:extend({
 	create_melting_variant("cerys-ash-cracks", 10, { 44, 48, 64 }),
 
 	create_base_tile("cerys-ash-dark", 6, { 47, 47, 47 }),
-	create_frozen_variant("cerys-ash-dark", 10, { 44, 48, 64 }), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
-	create_melting_variant("cerys-ash-dark", 10, { 44, 48, 64 }),
+	create_frozen_variant("cerys-ash-dark", 10, { 44, 48, 64 }),
+	create_melting_variant("cerys-ash-dark", 10, { 44, 48, 64 }), -- sadly, we don't have graphics for tile transitions between frozen variants due to miscoloration in the rough ice transitions in the base game, so this has to be the same layer as above
 
 	create_base_tile("cerys-ash-light", 7, { 57, 58, 57 }, true),
 	create_frozen_variant("cerys-ash-light", 10, { 44, 48, 64 }, true),
@@ -733,7 +733,7 @@ table.insert(out_of_map_tile_type_names, "cerys-empty-space")
 
 local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
-	name = "cerys-empty-space-2", -- Legacy tile. We're not migrating it so not to break old saves
+	name = "cerys-empty-space-2",
 	destroys_dropped_items = true,
 	default_cover_tile = "nil",
 	collision_mask = {
