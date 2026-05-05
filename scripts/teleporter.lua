@@ -12,13 +12,12 @@ function Public.teleport_to_fulgora(player)
 		return
 	end
 
-	local crafting_queue = player.crafting_queue
-	if crafting_queue then
-		for i = #crafting_queue, 1, -1 do
-			local craft = crafting_queue[i]
-
-			player.cancel_crafting({ index = i, count = craft.count })
+	while player.crafting_queue_size > 0 do
+		local craft = player.crafting_queue[1]
+		if not craft then
+			break
 		end
+		player.cancel_crafting({ index = 1, count = craft.count })
 	end
 
 	local original_surface = player.surface
