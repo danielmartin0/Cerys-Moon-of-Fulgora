@@ -38,9 +38,6 @@ local PARTICLE_SHRINK_TIME = 14
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
-local CHANCE_MUTATE_BELT_URANIUM = 1 / 334
-local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 10000
-
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
 	["medium-metallic-asteroid-planetary"] = 1.3,
@@ -352,6 +349,20 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 	end
 end
 
+-- store every "recipe" that we can craft with the solar wind
+local recipes = {}
+
+for _, value in pairs(prototypes["mod-data"]) do
+	if value.data_type == "cerys-solar-wind-recipe" then
+		recipes[value.data.ingredient] = {
+			result = value.result,
+			chance_belt = value.chance_belt,
+			chance_chest = value.chance_chest
+		}
+	end
+end
+
+
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 	local particles = storage.cerys.solar_wind_particles
@@ -400,10 +411,10 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 							end
 
 							local damage = (
-								settings.startup["cerys-high-damage-mode"]
-								and settings.startup["cerys-high-damage-mode"].value
-							) -- Setting stored in Cerys Start mod
-									and 80
+									settings.startup["cerys-high-damage-mode"]
+									and settings.startup["cerys-high-damage-mode"].value
+								) -- Setting stored in Cerys Start mod
+								and 80
 								or 5
 
 							e.damage(damage, game.forces.neutral, "impact")
@@ -462,11 +473,13 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 							local contents = line.get_detailed_contents()
 
 							for _, item in pairs(contents) do
-								if item.stack.name == "uranium-238" then
+								local data = recipes["uranium-238"]
+								if data then
+									local result = data.result
 									has_uranium = true
 
 									local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
-									local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
+									local increase = (data.chance_belt / CHANCE_CHECK_BELT)
 										* probability_multiplier
 										* settings.global["cerys-plutonium-generation-rate-multiplier"].value
 										* productivity_modifier
@@ -480,7 +493,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 										storage.accrued_probability_units = storage.accrued_probability_units - 1
 
 										item.stack.set_stack({
-											name = "plutonium-239",
+											name = result,
 											count = item.stack.count,
 											quality = item.stack.quality,
 										})
@@ -488,10 +501,10 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 										if e.force and e.force.valid then
 											e.force
 												.get_item_production_statistics(surface)
-												.on_flow("plutonium-239", item.stack.count)
+												.on_flow(result, item.stack.count)
 											e.force
 												.get_item_production_statistics(surface)
-												.on_flow("uranium-238", -item.stack.count)
+												.on_flow(data.ingredient, -item.stack.count)
 										end
 
 										surface.create_entity({
@@ -545,49 +558,56 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 	local mutated = false
 	for _, quality in pairs(prototypes.quality) do
 		local name = quality.name
-		local count = inv.get_item_count({ name = "uranium-238", quality = name })
-		if count and count > 0 then
-			uranium_count = uranium_count + count
+		for ingredient, data in pairs(recipes) do
+			local result = data.result
+			local count = inv.get_item_count({ name = ingredient, quality = name })
+			if count and count > 0 then
+				uranium_count = uranium_count + count
 
-			-- Throw in some rng to cause double and triple transitions:
-			local random_increase = 1
-			local rng = math.random()
-			if rng < 0.01 then
-				random_increase = 6
-			elseif rng < 0.06 then
-				random_increase = 3
-			elseif rng > 0.85 then
-				random_increase = 0.5
-			end
-
-			local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
-
-			local increase = count
-				* CHANCE_MUTATE_INVENTORY_URANIUM
-				* random_increase
-				* probability_multiplier
-				* settings.global["cerys-plutonium-generation-rate-multiplier"].value
-				* productivity_modifier
-
-			storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
-
-			local number_mutated = storage.accrued_probability_units - (storage.accrued_probability_units % 1)
-
-			if number_mutated > 0 then
-				storage.accrued_probability_units = storage.accrued_probability_units - number_mutated
-
-				local removed = inv.remove({ name = "uranium-238", count = 100, quality = name })
-				inv.insert({ name = "plutonium-239", count = number_mutated, quality = name })
-				if removed > number_mutated then
-					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
+				-- Throw in some rng to cause double and triple transitions:
+				local random_increase = 1
+				local rng = math.random()
+				if rng < 0.01 then
+					random_increase = 6
+				elseif rng < 0.06 then
+					random_increase = 3
+				elseif rng > 0.85 then
+					random_increase = 0.5
 				end
 
-				if force and force.valid then
-					force.get_item_production_statistics(surface).on_flow("plutonium-239", number_mutated)
-					force.get_item_production_statistics(surface).on_flow("uranium-238", -number_mutated)
-				end
+				local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
 
-				mutated = true
+				local increase = count
+					* data.chance_chest
+					* random_increase
+					* probability_multiplier
+					* settings.global["cerys-plutonium-generation-rate-multiplier"].value
+					* productivity_modifier
+
+				storage.accrued_probability_units = (storage.accrued_probability_units or 0) + increase
+
+				local number_mutated = storage.accrued_probability_units - (storage.accrued_probability_units % 1)
+
+				if number_mutated > 0 then
+					storage.accrued_probability_units = storage.accrued_probability_units - number_mutated
+
+					local removed = inv.remove({ name = ingredient, count = 100, quality = name })
+					inv.insert({ name = result, count = number_mutated, quality = name })
+					if removed > number_mutated then
+						inv.insert({ name = ingredient, count = removed - number_mutated, quality = name })
+					end
+
+					if force and force.valid then
+						force.get_item_production_statistics(surface).on_flow(result, number_mutated)
+						force.get_item_production_statistics(surface).on_flow(ingredient, -number_mutated)
+					end
+
+					mutated = true
+
+					-- only the first successful item will be processed to reduce the number of iterations.
+					-- should not have an effect on chests that only have the same item in them.
+					break
+				end
 			end
 		end
 	end

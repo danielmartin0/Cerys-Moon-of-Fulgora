@@ -103,6 +103,13 @@ data:extend({
 		default_value = false,
 		order = "z",
 	},
+	{
+		type = "int-setting",
+		name = "cerys-plutonium-recipe-limit",
+		setting_type = "startup",
+		default_value = 5,
+		order = "z",
+	},
 })
 
 data:extend({
