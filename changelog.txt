@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.9
 Date: ????
-  Changes:
+  Compatibility:
+    - Marked XY's K2SO Enhancements as incompatible for now as this mod unfortunately causes the 'Processing units from nitric acid' recipe to be uncraftable when loaded with its optional dependency 'Null's K2SO Tweaks'.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.8
 Date: 2026-05-05
