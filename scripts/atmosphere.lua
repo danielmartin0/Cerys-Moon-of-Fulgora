@@ -122,11 +122,12 @@ function Public.spawn_solar_wind_particle(surface)
 		render_layer = "air-object",
 	})
 
-	table.insert(storage.cerys.solar_wind_particles, {
+	table.insert(storage.solar_wind_particles, {
 		rendering = r,
 		age = 0,
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
+		surface_index = surface.index,
 	})
 end
 
@@ -140,20 +141,22 @@ end
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
-	local particles = storage.cerys.solar_wind_particles
-	local rods = storage.cerys.charging_rods
-	local rod_is_positive = storage.cerys.charging_rod_is_positive
+	local particles = storage.solar_wind_particles
+	local rods = storage.charging_rods
+	local rod_is_positive = storage.charging_rod_is_positive
 	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
 	for rod_unit_number, rod in pairs(rods) do
 		local p_rod = rod.rod_position
+		local rod_surface_index = rod.surface_index
 
 		for i = 1, #particles do
 			local particle = particles[i]
 			local p_particle = particle.position
 
 			if
-				not (
+				particle.surface_index == rod_surface_index
+				and not (
 					p_particle.x - p_rod.x > ROD_MAX_RANGE
 					or p_rod.x - p_particle.x > ROD_MAX_RANGE
 					or p_particle.y - p_rod.y > ROD_MAX_RANGE
@@ -210,10 +213,19 @@ function Public.tick_solar_wind_deflection()
 	end
 end
 
+local function remove_particle_at(i)
+	local particle = storage.solar_wind_particles[i]
+	if particle and particle.off_cerys then
+		storage.off_cerys_state_count = (storage.off_cerys_state_count or 1) - 1
+	end
+	table.remove(storage.solar_wind_particles, i)
+end
+Public.remove_particle_at = remove_particle_at
+
 function Public.tick_1_move_solar_wind()
 	local i = 1
-	while i <= #storage.cerys.solar_wind_particles do
-		local particle = storage.cerys.solar_wind_particles[i]
+	while i <= #storage.solar_wind_particles do
+		local particle = storage.solar_wind_particles[i]
 		local r = particle.rendering
 		local v = particle.velocity
 
@@ -230,7 +242,7 @@ function Public.tick_1_move_solar_wind()
 					if particle.rendering and particle.rendering.valid then
 						particle.rendering.destroy()
 					end
-					table.remove(storage.cerys.solar_wind_particles, i)
+					remove_particle_at(i)
 				else
 					if particle.rendering and particle.rendering.valid then
 						local scale_factor = math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME) ^ (1 / 2)
@@ -242,16 +254,34 @@ function Public.tick_1_move_solar_wind()
 
 			i = i + 1
 		else
-			table.remove(storage.cerys.solar_wind_particles, i)
+			remove_particle_at(i)
 		end
 	end
 end
 
 local deepfreeze_factor = common.PARTICLE_NOBODY_LOOKING_SLOWDOWN_FACTOR
-function Public.tick_5_solar_wind_destroy_check(surface)
+function Public.tick_5_solar_wind_destroy_check()
+	local looking_cache = {}
+	local function any_player_looking_at(surface_index)
+		local cached = looking_cache[surface_index]
+		if cached ~= nil then
+			return cached
+		end
+		local looking = false
+		for _, player in pairs(game.connected_players) do
+			local s = player.surface
+			if s and s.valid and s.index == surface_index then
+				looking = true
+				break
+			end
+		end
+		looking_cache[surface_index] = looking
+		return looking
+	end
+
 	local i = 1
-	while i <= #storage.cerys.solar_wind_particles do
-		local particle = storage.cerys.solar_wind_particles[i]
+	while i <= #storage.solar_wind_particles do
+		local particle = storage.solar_wind_particles[i]
 		local v = particle.velocity
 
 		local speed_squared = v.x * v.x + v.y * v.y
@@ -261,15 +291,8 @@ function Public.tick_5_solar_wind_destroy_check(surface)
 				particle.marked_for_death_tick = game.tick
 			end
 		elseif particle.is_ghost and not particle.survived_first_check then
-			local player_looking_at_surface = false
-
-			for _, player in pairs(game.connected_players) do
-				if player.surface == surface then
-					player_looking_at_surface = true
-				end
-			end
-
-			if player_looking_at_surface then
+			local looking = particle.surface_index == nil or any_player_looking_at(particle.surface_index)
+			if looking then
 				particle.survived_first_check = true
 			else
 				if math.random() < 1 / deepfreeze_factor then
@@ -285,18 +308,24 @@ function Public.tick_5_solar_wind_destroy_check(surface)
 end
 
 function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
-	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
-	local radius = common.CERYS_RADIUS
-	local semimajor_axis = radius * stretch_factor
-	local semiminor_axis = radius / stretch_factor
+	local have_cerys = surface and surface.valid
+	local semimajor_axis, semiminor_axis, cerys_surface_index
+	if have_cerys then
+		local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
+		local radius = common.CERYS_RADIUS
+		semimajor_axis = radius * stretch_factor
+		semiminor_axis = radius / stretch_factor
+		cerys_surface_index = surface.index
+	end
 
 	local i = 1
-	while i <= #storage.cerys.solar_wind_particles do
-		local particle = storage.cerys.solar_wind_particles[i]
+	while i <= #storage.solar_wind_particles do
+		local particle = storage.solar_wind_particles[i]
 
 		local kill = false
 		if particle.age > MAX_AGE then
 			kill = true
+		elseif not have_cerys or particle.surface_index ~= cerys_surface_index then
 		else
 			if particle.is_ghost then
 				if
@@ -324,7 +353,7 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 				particle.rendering.destroy()
 			end
 
-			table.remove(storage.cerys.solar_wind_particles, i)
+			remove_particle_at(i)
 		else
 			i = i + 1
 		end
@@ -353,13 +382,29 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 end
 
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
-function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
-	local particles = storage.cerys.solar_wind_particles
+function Public.tick_8_solar_wind_collisions(probability_multiplier)
+	local particles = storage.solar_wind_particles
+	local surface_cache = {}
+	local cerys_surface = game.get_surface("cerys")
+	if cerys_surface and not cerys_surface.valid then
+		cerys_surface = nil
+	end
 
 	for i = 1, #particles do
 		local particle = particles[i]
-
 		if not particle.is_ghost then
+			local s_idx = particle.surface_index
+			local surface
+			if s_idx == nil then
+				surface = cerys_surface
+			else
+				surface = surface_cache[s_idx]
+				if surface == nil then
+					surface = game.surfaces[s_idx] or false
+					surface_cache[s_idx] = surface
+				end
+			end
+			if surface then
 			local chars =
 				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 			if #chars > 0 then
@@ -510,6 +555,7 @@ function Public.tick_8_solar_wind_collisions(surface, probability_multiplier)
 						end
 					end
 				end
+			end
 			end
 		end
 	end

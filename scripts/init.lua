@@ -8,6 +8,7 @@ local Public = {}
 script.on_init(function()
 	picker_dollies.add_picker_dollies_blacklists()
 	Public.initialize_technologies()
+	Public.ensure_top_level_storage()
 end)
 
 function Public.initialize_technologies()
@@ -136,27 +137,46 @@ function Public.delete_cerys_storage_if_necessary()
 	end
 end
 
+function Public.ensure_top_level_storage()
+	if not storage.charging_rods then
+		storage.charging_rods = (storage.cerys and storage.cerys.charging_rods) or {}
+		if storage.cerys then storage.cerys.charging_rods = nil end
+	end
+	if not storage.charging_rod_is_positive then
+		storage.charging_rod_is_positive = (storage.cerys and storage.cerys.charging_rod_is_positive) or {}
+		if storage.cerys then storage.cerys.charging_rod_is_positive = nil end
+	end
+	if not storage.rod_registrations then
+		storage.rod_registrations = (storage.cerys and storage.cerys.rod_registrations) or {}
+		if storage.cerys then storage.cerys.rod_registrations = nil end
+	end
+	if not storage.solar_wind_particles then
+		storage.solar_wind_particles = (storage.cerys and storage.cerys.solar_wind_particles) or {}
+		if storage.cerys then storage.cerys.solar_wind_particles = nil end
+	end
+	if not storage.off_cerys_state_count then
+		storage.off_cerys_state_count = (storage.cerys and storage.cerys.off_cerys_state_count) or 0
+		if storage.cerys then storage.cerys.off_cerys_state_count = nil end
+	end
+	if storage.given_charging_rod_performance_warning == nil then
+		storage.given_charging_rod_performance_warning = (storage.cerys and storage.cerys.given_charging_rod_performance_warning) or false
+		if storage.cerys then storage.cerys.given_charging_rod_performance_warning = nil end
+	end
+	if not storage.background_renderings then
+		storage.background_renderings = {}
+	end
+	if not storage.accrued_probability_units then
+		storage.accrued_probability_units = 0
+	end
+end
+
 function Public.ensure_cerys_storage_and_tables()
+	Public.ensure_top_level_storage()
+
 	if not storage.cerys then
 		storage.cerys = {
 			initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"],
 		}
-	end
-
-	if not storage.cerys.charging_rods then
-		storage.cerys.charging_rods = {}
-	end
-
-	if not storage.cerys.charging_rod_is_positive then
-		storage.cerys.charging_rod_is_positive = {}
-	end
-
-	if not storage.cerys.rod_registrations then
-		storage.cerys.rod_registrations = {}
-	end
-
-	if not storage.cerys.solar_wind_particles then
-		storage.cerys.solar_wind_particles = {}
 	end
 
 	if not storage.cerys.radiation_particles then
@@ -168,14 +188,6 @@ function Public.ensure_cerys_storage_and_tables()
 	end
 	if not storage.cerys.broken_cryo_plants then
 		storage.cerys.broken_cryo_plants = {}
-	end
-
-	if not storage.background_renderings then
-		storage.background_renderings = {}
-	end
-
-	if not storage.accrued_probability_units then
-		storage.accrued_probability_units = 0
 	end
 
 	if not storage.cerys.broken_crushers then

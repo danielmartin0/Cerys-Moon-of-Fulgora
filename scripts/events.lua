@@ -47,11 +47,8 @@ script.on_event({
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
 	elseif
-		on_cerys
-		and (
-			entity.name == "cerys-charging-rod"
-			or entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod"
-		)
+		entity.name == "cerys-charging-rod"
+		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
 	then
 		local tags = entity.tags
 			or event.tags
@@ -92,11 +89,11 @@ script.on_event("bplib-extract", function(event)
 	for bp_index, entity in pairs(event.entities) do
 		if entity.name == "cerys-charging-rod" then
 			local tags = {}
-			rods.tags_set_is_positive(tags, storage.cerys.charging_rod_is_positive[entity.unit_number])
-			tags.circuit_controlled = storage.cerys.charging_rods[entity.unit_number]
-				and storage.cerys.charging_rods[entity.unit_number].circuit_controlled
-			tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
-				and storage.cerys.charging_rods[entity.unit_number].control_signal
+			rods.tags_set_is_positive(tags, storage.charging_rod_is_positive[entity.unit_number])
+			tags.circuit_controlled = storage.charging_rods[entity.unit_number]
+				and storage.charging_rods[entity.unit_number].circuit_controlled
+			tags.control_signal = storage.charging_rods[entity.unit_number]
+				and storage.charging_rods[entity.unit_number].control_signal
 
 			event.blueprint.set_blueprint_entity_tags(bp_index, tags)
 		end
@@ -108,8 +105,8 @@ local function update_overlapping_entity(tags, entity)
 
 	rods.rod_set_state(entity, is_positive)
 
-	local rod_data = storage.cerys.charging_rods[entity.unit_number] or {}
-	storage.cerys.charging_rods[entity.unit_number] = rod_data
+	local rod_data = storage.charging_rods[entity.unit_number] or {}
+	storage.charging_rods[entity.unit_number] = rod_data
 
 	if tags.circuit_controlled ~= nil then
 		rod_data.circuit_controlled = tags.circuit_controlled
@@ -139,7 +136,10 @@ end)
 
 script.on_event("bplib-overlaps", function(event)
 	for bp_index, entity in pairs(event.overlaps) do
-		if entity.name == "cerys-charging-rod" or (entity.type == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
+		if
+			entity.name == "cerys-charging-rod"
+			or (entity.type == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
+		then
 			local tags = event.blueprint.get_blueprint_entity_tags(bp_index) or {}
 			update_overlapping_entity(tags, entity)
 		end
@@ -206,6 +206,8 @@ script.on_event(defines.events.on_tick, function(event)
 		end
 	end
 
+	Public.simulation_tick(tick, surface)
+
 	if tick % (60 * 15) == 0 then
 		surface = surface or game.surfaces["cerys"]
 		local valid = surface and surface.valid
@@ -218,6 +220,49 @@ script.on_event(defines.events.on_tick, function(event)
 end)
 
 local deepfreeze_factor = common.PARTICLE_NOBODY_LOOKING_SLOWDOWN_FACTOR
+
+function Public.simulation_tick(tick, cerys_surface)
+	local player_looking_at_cerys = false
+	if cerys_surface then
+		for _, player in pairs(game.connected_players) do
+			if player.surface == cerys_surface then
+				player_looking_at_cerys = true
+				break
+			end
+		end
+	end
+
+	local has_off_cerys_state = (storage.off_cerys_state_count or 0) > 0
+	local active = player_looking_at_cerys or has_off_cerys_state
+
+	local solar_wind_tick_multiplier = active and 1 or deepfreeze_factor
+
+	if active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
+		if tick % (1 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_1_move_solar_wind()
+		end
+
+		if tick % (5 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_5_solar_wind_destroy_check()
+		end
+
+		if tick % (8 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_8_solar_wind_collisions(solar_wind_tick_multiplier)
+		end
+
+		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_solar_wind_deflection()
+		end
+
+		if tick % (12 * solar_wind_tick_multiplier) == 0 then
+			rods.tick_12_check_charging_rods()
+		end
+	end
+
+	if tick % 240 == 0 then
+		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(cerys_surface)
+	end
+end
 
 function Public.cerys_tick(surface, tick)
 	local player_looking_at_surface = false
@@ -233,8 +278,6 @@ function Public.cerys_tick(surface, tick)
 		end
 	end
 
-	local solar_wind_tick_multiplier = player_looking_at_surface and 1 or deepfreeze_factor
-
 	background.tick_1_update_background_renderings(surface)
 
 	nuclear_reactor.tick_1_move_radiation(game.tick)
@@ -246,34 +289,15 @@ function Public.cerys_tick(surface, tick)
 		lighting.tick_update_lights()
 	end
 
-	if
-		player_looking_at_surface or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value
-	then
-		if tick % (1 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_1_move_solar_wind()
-		end
-
-		if tick % (5 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_5_solar_wind_destroy_check(surface)
-		end
-
-		if tick % (8 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_8_solar_wind_collisions(surface, solar_wind_tick_multiplier)
-		end
-
-		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_solar_wind_deflection()
-		end
-
+	local has_off_cerys_state = (storage.off_cerys_state_count or 0) > 0
+	local sim_active = player_looking_at_surface or has_off_cerys_state
+	local solar_wind_tick_multiplier = sim_active and 1 or deepfreeze_factor
+	if sim_active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
 		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
 				atmosphere.spawn_solar_wind_particle(surface)
 			end
-		end
-
-		if tick % (12 * solar_wind_tick_multiplier) == 0 then
-			rods.tick_12_check_charging_rods()
 		end
 	end
 
@@ -318,7 +342,6 @@ function Public.cerys_tick(surface, tick)
 
 	if tick % 240 == 0 then
 		atmosphere.tick_240_clean_up_cerys_asteroids(surface)
-		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(surface)
 	end
 end
 
@@ -354,7 +377,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 		local p = entity.position
 		local surface = entity.surface
 
-		if not (surface and surface.valid and surface.name == "cerys") then
+		if not (surface and surface.valid) then
 			return
 		end
 
@@ -371,13 +394,21 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			tint = { r = 0.9, g = 0.9, b = 0.9 }, -- Opacity 90% (since it's a glow)
 		})
 
-		table.insert(storage.cerys.solar_wind_particles, {
+		local off_cerys = surface.name ~= "cerys"
+
+		table.insert(storage.solar_wind_particles, {
 			rendering = r,
 			age = 0,
 			velocity = atmosphere.initial_solar_wind_velocity(),
 			position = p2,
 			is_ghost = true,
+			surface_index = surface.index,
+			off_cerys = off_cerys or nil,
 		})
+
+		if off_cerys then
+			storage.off_cerys_state_count = (storage.off_cerys_state_count or 0) + 1
+		end
 	end
 end)
 
@@ -429,6 +460,8 @@ script.on_event({
 end)
 
 script.on_configuration_changed(function()
+	init.ensure_top_level_storage()
+
 	if storage.background_renderings then
 		for _, player in pairs(game.players) do
 			if storage.background_renderings[player.index] then

@@ -44,10 +44,6 @@ function Public.tags_set_is_positive(tags, is_positive)
 end
 
 Public.built_charging_rod = function(entity, tags)
-	if not storage.cerys then
-		return
-	end
-
 	if not (entity and entity.valid) then
 		return
 	end
@@ -64,10 +60,10 @@ Public.built_charging_rod = function(entity, tags)
 		end
 
 		if tags.circuit_controlled ~= nil then
-			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = tags.circuit_controlled
+			storage.charging_rods[entity.unit_number].circuit_controlled = tags.circuit_controlled
 		end
 		if tags.control_signal ~= nil then
-			storage.cerys.charging_rods[entity.unit_number].control_signal = tags.control_signal
+			storage.charging_rods[entity.unit_number].control_signal = tags.control_signal
 		end
 	else
 		Public.rod_set_state(entity, true)
@@ -75,16 +71,16 @@ Public.built_charging_rod = function(entity, tags)
 
 	entity.tags = tags
 
-	if not storage.cerys.given_charging_rod_performance_warning then
+	if not storage.given_charging_rod_performance_warning then
 		local registered_charging_rod_count = 0
-		for _, rod in pairs(storage.cerys.charging_rods) do
+		for _, rod in pairs(storage.charging_rods) do
 			if rod.entity and rod.entity.valid then
 				registered_charging_rod_count = registered_charging_rod_count + 1
 			end
 		end
 
 		if registered_charging_rod_count >= 400 then
-			storage.cerys.given_charging_rod_performance_warning = true
+			storage.given_charging_rod_performance_warning = true
 
 			game.print({
 				"cerys.charging-rod-performance-warning",
@@ -101,17 +97,25 @@ function Public.register_charging_rod(entity)
 		return
 	end
 
+	local off_cerys = surface.name ~= "cerys"
+
 	-- We register storage for both real rods and ghosts. Ghosts need both this _and_ tags, so they can be blueprinted but also tracked by ghost particles.
-	storage.cerys.charging_rods[entity.unit_number] = {
+	storage.charging_rods[entity.unit_number] = {
 		entity = entity,
+		surface_index = surface.index,
+		off_cerys = off_cerys or nil,
 		rod_position = { x = entity.position.x, y = entity.position.y },
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
 		children = {},
 	}
 
+	if off_cerys then
+		storage.off_cerys_state_count = (storage.off_cerys_state_count or 0) + 1
+	end
+
 	local reg = script.register_on_object_destroyed(entity)
-	storage.cerys.rod_registrations[reg] = entity.unit_number
+	storage.rod_registrations[reg] = entity.unit_number
 end
 
 local function ensure_child(rod, key, name)
@@ -172,7 +176,9 @@ function Public.update_rod_lights(entity, rod)
 		return
 	end
 
-	local positive = storage.cerys.charging_rod_is_positive[entity.unit_number] == true
+	local is_positive_map = storage.charging_rod_is_positive
+		or (storage.cerys and storage.cerys.charging_rod_is_positive)
+	local positive = is_positive_map and is_positive_map[entity.unit_number] == true
 	local names = POLARITY_TO_CHILDREN[positive]
 
 	-- ensure_child swaps cleanly when the polarity name no longer matches the existing child.
@@ -200,7 +206,7 @@ function Public.update_rod_lights(entity, rod)
 end
 
 Public.rod_set_state = function(entity, positive)
-	storage.cerys.charging_rod_is_positive[entity.unit_number] = positive or false
+	storage.charging_rod_is_positive[entity.unit_number] = positive or false
 
 	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
@@ -208,19 +214,22 @@ Public.rod_set_state = function(entity, positive)
 		entity.tags = tags
 	end
 
-	Public.update_rod_lights(entity, storage.cerys.charging_rods[entity.unit_number])
+	Public.update_rod_lights(entity, storage.charging_rods[entity.unit_number])
 end
 
 function Public.tick_12_check_charging_rods()
-	for unit_number, rod in pairs(storage.cerys.charging_rods) do
+	for unit_number, rod in pairs(storage.charging_rods) do
 		local e = rod.entity
 
 		if not (e and e.valid) then
 			destroy_all_children(rod)
-			storage.cerys.charging_rods[unit_number] = nil
-			storage.cerys.charging_rod_is_positive[unit_number] = nil
+			if rod.off_cerys then
+				storage.off_cerys_state_count = (storage.off_cerys_state_count or 1) - 1
+			end
+			storage.charging_rods[unit_number] = nil
+			storage.charging_rod_is_positive[unit_number] = nil
 		else
-			local positive = storage.cerys.charging_rod_is_positive[unit_number] == true
+			local positive = storage.charging_rod_is_positive[unit_number] == true
 
 			for _, player in pairs(game.connected_players) do
 				if player.opened == e then
@@ -269,21 +278,24 @@ function Public.tick_12_check_charging_rods()
 end
 
 script.on_event(defines.events.on_object_destroyed, function(event)
-	if not (storage.cerys and storage.cerys.rod_registrations) then
+	if not storage.rod_registrations then
 		return
 	end
-	local unit_number = storage.cerys.rod_registrations[event.registration_number]
+	local unit_number = storage.rod_registrations[event.registration_number]
 	if not unit_number then
 		return
 	end
-	storage.cerys.rod_registrations[event.registration_number] = nil
+	storage.rod_registrations[event.registration_number] = nil
 
-	local rod = storage.cerys.charging_rods[unit_number]
+	local rod = storage.charging_rods[unit_number]
 	if rod then
 		destroy_all_children(rod)
+		if rod.off_cerys then
+			storage.off_cerys_state_count = (storage.off_cerys_state_count or 1) - 1
+		end
 	end
-	storage.cerys.charging_rods[unit_number] = nil
-	storage.cerys.charging_rod_is_positive[unit_number] = nil
+	storage.charging_rods[unit_number] = nil
+	storage.charging_rod_is_positive[unit_number] = nil
 end)
 
 function Public.destroy_guis(player_index)
@@ -331,16 +343,12 @@ function Public.on_gui_opened(event)
 		end
 	end
 
-	if player.surface and player.surface.valid and player.surface.name ~= "cerys" then
-		return
-	end
-
 	local tags = entity.tags or {}
 
-	local rod_circuit_data = storage.cerys.charging_rods[entity.unit_number]
+	local rod_circuit_data = storage.charging_rods[entity.unit_number]
 
 	local tags_is_positive = Public.tags_is_positive(tags)
-	local storage_is_positive = storage.cerys.charging_rod_is_positive[entity.unit_number]
+	local storage_is_positive = storage.charging_rod_is_positive[entity.unit_number]
 
 	if tags_is_positive ~= storage_is_positive then
 		-- Something has gone wrong, let's treat storage as authoritative since it affects the solar wind:
@@ -514,24 +522,20 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 		return
 	end
 
-	if not storage.cerys then
-		return
-	end
-
 	local positive
 	if source.name == "cerys-charging-rod" then
-		positive = storage.cerys.charging_rod_is_positive[source.unit_number]
+		positive = storage.charging_rod_is_positive[source.unit_number]
 	else
 		positive = Public.tags_is_positive(source.tags)
 	end
 
 	Public.rod_set_state(destination, positive)
 
-	local source_circuit_data = source.name == "cerys-charging-rod" and storage.cerys.charging_rods[source.unit_number]
+	local source_circuit_data = source.name == "cerys-charging-rod" and storage.charging_rods[source.unit_number]
 		or (source.tags or {})
 
-	storage.cerys.charging_rods[destination.unit_number].circuit_controlled = source_circuit_data.circuit_controlled
-	storage.cerys.charging_rods[destination.unit_number].control_signal = source_circuit_data.control_signal
+	storage.charging_rods[destination.unit_number].circuit_controlled = source_circuit_data.circuit_controlled
+	storage.charging_rods[destination.unit_number].control_signal = source_circuit_data.control_signal
 
 	if destination.name == "entity-ghost" then
 		local tags = destination.tags or {}
@@ -553,20 +557,16 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 		return
 	end
 
-	if not storage.cerys then
-		return
-	end
-
-	local source_rod = storage.cerys.charging_rods[source.unit_number]
+	local source_rod = storage.charging_rods[source.unit_number]
 	if source_rod and destination.name == "cerys-charging-rod" then
-		local dest_rod = storage.cerys.charging_rods[destination.unit_number]
+		local dest_rod = storage.charging_rods[destination.unit_number]
 		if dest_rod then
 			dest_rod.circuit_controlled = source_rod.circuit_controlled
 			dest_rod.control_signal = source_rod.control_signal
 		end
 	end
 
-	Public.rod_set_state(destination, storage.cerys.charging_rod_is_positive[source.unit_number])
+	Public.rod_set_state(destination, storage.charging_rod_is_positive[source.unit_number])
 end)
 
 script.on_event(defines.events.on_gui_checked_state_changed, function(event)
@@ -581,12 +581,12 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			return
 		end
 
-		storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
+		storage.charging_rods[entity.unit_number].circuit_controlled = event.element.state
 		if entity.name == "entity-ghost" then
 			local tags = entity.tags or {}
 			tags.circuit_controlled = event.element.state
-			storage.cerys.charging_rods[entity.unit_number] = storage.cerys.charging_rods[entity.unit_number] or {}
-			storage.cerys.charging_rods[entity.unit_number].circuit_controlled = event.element.state
+			storage.charging_rods[entity.unit_number] = storage.charging_rods[entity.unit_number] or {}
+			storage.charging_rods[entity.unit_number].circuit_controlled = event.element.state
 			entity.tags = tags
 		end
 
@@ -625,25 +625,17 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 		return
 	end
 
-	if not storage.cerys then
-		return
-	end
-
-	storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
+	storage.charging_rods[entity.unit_number].control_signal = event.element.elem_value
 	if entity.name == "entity-ghost" then
 		local tags = entity.tags or {}
 		tags.control_signal = event.element.elem_value
-		storage.cerys.charging_rods[entity.unit_number] = storage.cerys.charging_rods[entity.unit_number] or {}
-		storage.cerys.charging_rods[entity.unit_number].control_signal = event.element.elem_value
+		storage.charging_rods[entity.unit_number] = storage.charging_rods[entity.unit_number] or {}
+		storage.charging_rods[entity.unit_number].control_signal = event.element.elem_value
 		entity.tags = tags
 	end
 end)
 
 script.on_event("cerys-toggle-entity", function(event)
-	if not storage.cerys then
-		return
-	end
-
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -668,7 +660,7 @@ script.on_event("cerys-toggle-entity", function(event)
 	if is_ghost then
 		current_state = Public.tags_is_positive(e.tags) or false
 	else
-		current_state = storage.cerys.charging_rod_is_positive[e.unit_number]
+		current_state = storage.charging_rod_is_positive[e.unit_number]
 	end
 
 	local new_state = not current_state
