@@ -306,7 +306,6 @@ function Public.unfreeze_teleporter(surface, e)
 	})
 
 	if e2 and e2.valid then
-		e2.minable_flag = false
 		e2.destructible = false
 		e2.custom_status = {
 			diode = defines.entity_status_diode.green,
