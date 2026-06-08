@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.22.0
-Date: ????
+Date: 2026-06-08
   Changes:
     - The Fulgoran teleporter can now be moved (after defrosting it).
     - Charging rods and Ghost charged particle makers are now functional in blueprint labs.
