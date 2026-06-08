@@ -79,6 +79,7 @@ local teleporter = {
 local teleporter_frozen = merge(teleporter, {
 	name = "cerys-fulgoran-teleporter-frozen",
 	hidden_in_factoriopedia = true,
+	minable = nil,
 	crafting_categories = {
 		"cerys-no-recipes",
 	},

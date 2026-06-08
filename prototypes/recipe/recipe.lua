@@ -416,7 +416,7 @@ data:extend({
 			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 120 or 75 }, -- 1 iron => 50 sulfuric acid.
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
-			{ type = "item", name = "iron-ore", amount = 2 },
+			{ type = "item", name = "iron-ore", amount = common_data.K2_INSTALLED and 4 or 2 },
 			{ type = "fluid", name = "ammonia", amount = 50 },
 		},
 		allow_productivity = true,
