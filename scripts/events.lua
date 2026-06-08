@@ -16,9 +16,6 @@ local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
 local inserter = require("scripts.inserter")
-local bplib = require("__bplib__.blueprint")
-local BlueprintBuild = bplib.BlueprintBuild
-local BlueprintSetup = bplib.BlueprintSetup
 
 local Public = {}
 
@@ -91,20 +88,8 @@ script.on_event({
 	end
 end)
 
-script.on_event(defines.events.on_player_setup_blueprint, function(event)
-	-- Following the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
-	local bp_setup = BlueprintSetup:new(event)
-
-	if not bp_setup then
-		return
-	end
-
-	local map = bp_setup:map_blueprint_indices_to_world_entities()
-	if not map then
-		return
-	end
-
-	for bp_index, entity in pairs(map) do
+script.on_event("bplib-extract", function(event)
+	for bp_index, entity in pairs(event.entities) do
 		if entity.name == "cerys-charging-rod" then
 			local tags = {}
 			rods.tags_set_is_positive(tags, storage.cerys.charging_rod_is_positive[entity.unit_number])
@@ -113,7 +98,7 @@ script.on_event(defines.events.on_player_setup_blueprint, function(event)
 			tags.control_signal = storage.cerys.charging_rods[entity.unit_number]
 				and storage.cerys.charging_rods[entity.unit_number].control_signal
 
-			bp_setup:apply_tags(bp_index, tags)
+			event.blueprint.set_blueprint_entity_tags(bp_index, tags)
 		end
 	end
 end)
@@ -150,30 +135,14 @@ script.on_event(defines.events.on_pre_build, function(event)
 			reactor_repair.scaffold_on_pre_build(event)
 		end
 	end
+end)
 
-	-- When we overlap existing entities in the word, we should update their tags.
-	-- We follow the documented example at https://github.com/project-cybersyn/bplib/blob/main/doc/example.lua
-
-	local bp_build = BlueprintBuild:new(event)
-	-- Will be `nil` if the event was not a blueprint build.
-	if not bp_build then
-		return
-	end
-
-	local overlap_map = bp_build:map_blueprint_indices_to_overlapping_entities(function(bp_entity)
-		return bp_entity.name == "cerys-charging-rod"
-	end)
-
-	if not overlap_map or (not next(overlap_map)) then
-		return
-	end
-
-	-- NOTE(thesixthroc: As of 1.1.4 this is bugged, it does not detect in-world ghosts whose position and ghost name matches the [name and position] of one of the blueprint entities.
-	local bp_entities = bp_build:get_entities() --[[@as BlueprintEntity[] ]]
-
-	for bp_index, entity in pairs(overlap_map) do
-		local tags = bp_entities[bp_index].tags or {}
-		update_overlapping_entity(tags, entity)
+script.on_event("bplib-overlaps", function(event)
+	for bp_index, entity in pairs(event.overlaps) do
+		if entity.name == "cerys-charging-rod" or (entity.type == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
+			local tags = event.blueprint.get_blueprint_entity_tags(bp_index) or {}
+			update_overlapping_entity(tags, entity)
+		end
 	end
 end)
 

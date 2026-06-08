@@ -10,6 +10,10 @@ data:extend({
 	},
 })
 
+local bplib_data = data.raw["mod-data"]["bplib"].data
+bplib_data.extract_entity_names["cerys-charging-rod"] = true
+bplib_data.overlap_entity_names["cerys-charging-rod"] = true
+
 require("compat.forced-mods")
 require("prototypes.categories")
 require("prototypes.custom-input")

@@ -12,7 +12,7 @@
     "space-age >= 2.0.73",
     "Flare Stack >= 4.1.0",
     "PlanetsLib >= 1.11.0",
-    "bplib >= 1.1.6",
+    "bplib >= 2.0.0",
     "? Krastorio2-spaced-out >= 1.4.19",
     "? no-quality",
     "(?) visible-planets >= 1.2.11",
