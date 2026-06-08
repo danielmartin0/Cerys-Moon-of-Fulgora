@@ -13,7 +13,11 @@ function Public.tags_is_positive(tags)
 	if not tags then
 		return nil
 	end
-	return tags.is_positive or tags.is_negative -- is_negative is a deprecated name for is_positive
+	-- is_negative is a deprecated name for is_positive
+	if tags.is_positive ~= nil then
+		return tags.is_positive
+	end
+	return tags.is_negative
 end
 
 function Public.tags_set_is_positive(tags, is_positive)
