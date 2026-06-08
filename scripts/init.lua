@@ -151,6 +151,10 @@ function Public.ensure_cerys_storage_and_tables()
 		storage.cerys.charging_rod_is_positive = {}
 	end
 
+	if not storage.cerys.rod_registrations then
+		storage.cerys.rod_registrations = {}
+	end
+
 	if not storage.cerys.solar_wind_particles then
 		storage.cerys.solar_wind_particles = {}
 	end

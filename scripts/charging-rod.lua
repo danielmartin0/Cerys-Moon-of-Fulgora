@@ -2,7 +2,24 @@ local common = require("common")
 local lib = require("lib")
 local Public = {}
 
--- TODO: Remove the charging rod tick-checking code, and instead handle deletion of the lights by register_on_object_destroyed
+local POLARITY_TO_CHILDREN = {
+	[true] = { -- positive
+		glow = "cerys-charging-rod-glow-r",
+		animation = "cerys-charging-rod-animation-r",
+		lamp = "cerys-charging-rod-lamp-red",
+	},
+	[false] = { -- negative
+		glow = "cerys-charging-rod-glow-b",
+		animation = "cerys-charging-rod-animation-b",
+		lamp = "cerys-charging-rod-lamp-blue",
+	},
+}
+
+local CHILDREN_Y_OFFSET = {
+	glow = 1,
+	animation = 1,
+	lamp = 0,
+}
 
 Public.GUI_KEY = "cerys-gui-charging-rod-2"
 -- These GUIs are attached to all accumulator entities on some old saves:
@@ -90,85 +107,90 @@ function Public.register_charging_rod(entity)
 		rod_position = { x = entity.position.x, y = entity.position.y },
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
+		children = {},
 	}
+
+	local reg = script.register_on_object_destroyed(entity)
+	storage.cerys.rod_registrations[reg] = entity.unit_number
 end
+
+local function ensure_child(rod, key, name)
+	if not rod.children then
+		rod.children = {}
+	end
+	local existing = rod.children[key]
+	if existing and existing.valid and existing.name == name then
+		return
+	end
+	if existing and existing.valid then
+		existing.destroy()
+	end
+	rod.children[key] = nil
+
+	local e = rod.entity
+	if not (e and e.valid) then
+		return
+	end
+	rod.children[key] = e.surface.create_entity({
+		name = name,
+		position = { x = e.position.x, y = e.position.y + CHILDREN_Y_OFFSET[key] },
+		create_build_effect_smoke = false,
+	})
+end
+
+local function destroy_child(rod, key)
+	if not rod.children then
+		return
+	end
+	local c = rod.children[key]
+	if c then
+		if c.valid then
+			c.destroy()
+		end
+		rod.children[key] = nil
+	end
+end
+
+local function destroy_all_children(rod)
+	if not rod or not rod.children then
+		return
+	end
+	for key, c in pairs(rod.children) do
+		if c and c.valid then
+			c.destroy()
+		end
+		rod.children[key] = nil
+	end
+end
+
+Public.destroy_all_children = destroy_all_children
 
 local MAX_ROD_ENERGY = prototypes.entity["cerys-charging-rod"].electric_energy_source_prototype.buffer_capacity
 
 function Public.update_rod_lights(entity, rod)
-	if not (entity and entity.valid) then
+	if not (entity and entity.valid and rod) then
 		return
 	end
 
 	local positive = storage.cerys.charging_rod_is_positive[entity.unit_number] == true
+	local names = POLARITY_TO_CHILDREN[positive]
 
-	if positive then
-		if not (rod.blue_glow_entity and rod.blue_glow_entity.valid) then
-			rod.blue_glow_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-glow-blue",
-				position = { x = entity.position.x, y = entity.position.y + 1 },
-			})
-		end
-		Public.destroy_red_glow_entity(rod)
-	else
-		if not (rod.red_glow_entity and rod.red_glow_entity.valid) then
-			rod.red_glow_entity = entity.surface.create_entity({
-				name = "cerys-charging-rod-glow-red",
-				position = { x = entity.position.x, y = entity.position.y + 1 },
-			})
-		end
-		Public.destroy_blue_glow_entity(rod)
-	end
+	-- ensure_child swaps cleanly when the polarity name no longer matches the existing child.
+	ensure_child(rod, "glow", names.glow)
 
 	local max_charging_rod_energy = MAX_ROD_ENERGY * (entity.quality.level + 1)
-
 	local energy_fraction = math.min(1, entity.energy / max_charging_rod_energy)
 
 	if energy_fraction > 0.999 then
-		-- watch out, these sprites are named in reverse
-		if positive then
-			if not (rod.blue_light_entity and rod.blue_light_entity.valid) then
-				rod.blue_light_entity = entity.surface.create_entity({
-					name = "cerys-charging-rod-animation-blue",
-					position = { x = entity.position.x, y = entity.position.y + 1 },
-				})
-			end
-			Public.destroy_red_light_entity(rod)
-		else
-			if not (rod.red_light_entity and rod.red_light_entity.valid) then
-				rod.red_light_entity = entity.surface.create_entity({
-					name = "cerys-charging-rod-animation-red",
-					position = { x = entity.position.x, y = entity.position.y + 1 },
-				})
-			end
-			Public.destroy_blue_light_entity(rod)
-		end
+		ensure_child(rod, "animation", names.animation)
 	else
-		Public.destroy_blue_light_entity(rod)
-		Public.destroy_red_light_entity(rod)
+		destroy_child(rod, "animation")
 	end
 
 	if energy_fraction > 0.001 then
-		if positive then
-			if not (rod.red_lamp_entity and rod.red_lamp_entity.valid) then
-				rod.red_lamp_entity = entity.surface.create_entity({
-					name = "cerys-charging-rod-lamp-red",
-					position = { x = entity.position.x, y = entity.position.y },
-				})
-			end
-			Public.destroy_blue_lamp_entity(rod)
-		else
-			if not (rod.blue_lamp_entity and rod.blue_lamp_entity.valid) then
-				rod.blue_lamp_entity = entity.surface.create_entity({
-					name = "cerys-charging-rod-lamp-blue",
-					position = { x = entity.position.x, y = entity.position.y },
-				})
-			end
-			Public.destroy_red_lamp_entity(rod)
-		end
+		ensure_child(rod, "lamp", names.lamp)
 	else
-		Public.destroy_blue_lamp_entity(rod)
-		Public.destroy_red_lamp_entity(rod)
+		destroy_child(rod, "lamp")
 	end
 
 	if not rod.max_polarity_fraction then -- TODO: Move this to moment of creation
@@ -194,13 +216,9 @@ function Public.tick_12_check_charging_rods()
 		local e = rod.entity
 
 		if not (e and e.valid) then
-			Public.destroy_red_light_entity(rod)
-			Public.destroy_blue_light_entity(rod)
-			Public.destroy_red_glow_entity(rod)
-			Public.destroy_blue_glow_entity(rod)
-			Public.destroy_red_lamp_entity(rod)
-			Public.destroy_blue_lamp_entity(rod)
+			destroy_all_children(rod)
 			storage.cerys.charging_rods[unit_number] = nil
+			storage.cerys.charging_rod_is_positive[unit_number] = nil
 		else
 			local positive = storage.cerys.charging_rod_is_positive[unit_number] == true
 
@@ -250,59 +268,23 @@ function Public.tick_12_check_charging_rods()
 	end
 end
 
-function Public.destroy_red_lamp_entity(rod)
-	if rod.red_lamp_entity then
-		if rod.red_lamp_entity.valid then
-			rod.red_lamp_entity.destroy()
-		end
-		rod.red_lamp_entity = nil
+script.on_event(defines.events.on_object_destroyed, function(event)
+	if not (storage.cerys and storage.cerys.rod_registrations) then
+		return
 	end
-end
+	local unit_number = storage.cerys.rod_registrations[event.registration_number]
+	if not unit_number then
+		return
+	end
+	storage.cerys.rod_registrations[event.registration_number] = nil
 
-function Public.destroy_blue_lamp_entity(rod)
-	if rod.blue_lamp_entity then
-		if rod.blue_lamp_entity.valid then
-			rod.blue_lamp_entity.destroy()
-		end
-		rod.blue_lamp_entity = nil
+	local rod = storage.cerys.charging_rods[unit_number]
+	if rod then
+		destroy_all_children(rod)
 	end
-end
-
-function Public.destroy_red_light_entity(rod)
-	if rod.red_light_entity then
-		if rod.red_light_entity.valid then
-			rod.red_light_entity.destroy()
-		end
-		rod.red_light_entity = nil
-	end
-end
-
-function Public.destroy_red_glow_entity(rod)
-	if rod.red_glow_entity then
-		if rod.red_glow_entity.valid then
-			rod.red_glow_entity.destroy()
-		end
-		rod.red_glow_entity = nil
-	end
-end
-
-function Public.destroy_blue_light_entity(rod)
-	if rod.blue_light_entity then
-		if rod.blue_light_entity.valid then
-			rod.blue_light_entity.destroy()
-		end
-		rod.blue_light_entity = nil
-	end
-end
-
-function Public.destroy_blue_glow_entity(rod)
-	if rod.blue_glow_entity then
-		if rod.blue_glow_entity.valid then
-			rod.blue_glow_entity.destroy()
-		end
-		rod.blue_glow_entity = nil
-	end
-end
+	storage.cerys.charging_rods[unit_number] = nil
+	storage.cerys.charging_rod_is_positive[unit_number] = nil
+end)
 
 function Public.destroy_guis(player_index)
 	local player = game.players[player_index]

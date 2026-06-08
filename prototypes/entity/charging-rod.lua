@@ -40,7 +40,7 @@ data:extend({
 				game.simulation.camera_position = {0, -2}
 				game.surfaces[1].create_entity{name = "cerys-charging-rod", position = {0, 0}}
 				game.surfaces[1].create_entity({
-				name = "cerys-charging-rod-animation-blue",
+				name = "cerys-charging-rod-animation-r",
 				position = { x = 0, y = 1 },
 				})
 			]],
@@ -149,7 +149,7 @@ data:extend({
 
 	{
 		type = "simple-entity",
-		name = "cerys-charging-rod-animation-blue",
+		name = "cerys-charging-rod-animation-r",
 		hidden = true,
 		collision_mask = { layers = {} },
 		collision_box = { { 0, 0 }, { 0, 0 } },
@@ -178,7 +178,7 @@ data:extend({
 	},
 	{
 		type = "simple-entity",
-		name = "cerys-charging-rod-animation-red",
+		name = "cerys-charging-rod-animation-b",
 		hidden = true,
 		collision_mask = { layers = {} },
 		collision_box = { { 0, 0 }, { 0, 0 } },
@@ -207,7 +207,7 @@ data:extend({
 	},
 	{
 		type = "simple-entity",
-		name = "cerys-charging-rod-glow-blue",
+		name = "cerys-charging-rod-glow-r",
 		hidden = true,
 		collision_mask = { layers = {} },
 		collision_box = { { 0, 0 }, { 0, 0 } },
@@ -229,7 +229,7 @@ data:extend({
 	},
 	{
 		type = "simple-entity",
-		name = "cerys-charging-rod-glow-red",
+		name = "cerys-charging-rod-glow-b",
 		hidden = true,
 		collision_mask = { layers = {} },
 		collision_box = { { 0, 0 }, { 0, 0 } },
