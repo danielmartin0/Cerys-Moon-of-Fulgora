@@ -3,8 +3,12 @@ Version: 4.22.0
 Date: ????
   Changes:
     - The Fulgoran teleporter can now be moved (after defrosting it).
+  Bugfixes:
+    - Fixed that blueprinted charging rod could end up with incorrect polarity when placed.
   Balancing:
     - K2: Mineral leaching now produces double the iron ore if Krastorio 2 is enabled.
+  Optimizations:
+    - Improved performance of entity building.
 ---------------------------------------------------------------------------------------------------
 Version: 4.21.10
 Date: 2026-06-04
