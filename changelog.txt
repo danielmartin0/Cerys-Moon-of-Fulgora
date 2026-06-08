@@ -5,6 +5,7 @@ Date: ????
     - The Fulgoran teleporter can now be moved (after defrosting it).
   Bugfixes:
     - Fixed that blueprinted charging rod could end up with incorrect polarity when placed.
+    - Fixed that charging rod lights could linger after the entity was destroyed.
   Balancing:
     - K2: Mineral leaching now produces double the iron ore if Krastorio 2 is enabled.
   Optimizations:
