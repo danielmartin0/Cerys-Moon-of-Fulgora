@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.22.2
-Date: ????
+Date: 2026-06-09
   Compatibility:
     - Marked xyrc's K2SO Enhancements as incompatible for now, due to a longstanding bug in which it breaks the Cerys processing unit recipe if installed alongside Null's K2SO Tweaks.
 ---------------------------------------------------------------------------------------------------
