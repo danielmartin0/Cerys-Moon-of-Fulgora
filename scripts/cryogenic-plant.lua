@@ -97,7 +97,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 				local repair_parts = 0
 
 				if e and e.valid then
-					local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+					local input_inv = e.get_inventory(defines.inventory.crafter_input)
 					if input_inv and input_inv.valid then
 						repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
 					end
@@ -147,7 +147,7 @@ function Public.unfreeze_cryo_plant(surface, plant)
 		return
 	end
 
-	local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+	local input_inv = e.get_inventory(defines.inventory.crafter_input)
 	local contents = nil
 	if input_inv and input_inv.valid then
 		contents = input_inv.get_contents()
@@ -174,7 +174,7 @@ function Public.unfreeze_cryo_plant(surface, plant)
 		e2.destructible = false
 
 		if e and e.valid and input_inv and input_inv.valid then
-			local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
+			local input_inv2 = e2.get_inventory(defines.inventory.crafter_input)
 			if input_inv2 and input_inv2.valid then
 				for _, c in pairs(contents or {}) do
 					local new_count = c.count + 1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
@@ -182,8 +182,8 @@ function Public.unfreeze_cryo_plant(surface, plant)
 				end
 			end
 
-			local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
-			local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
+			local module_inv = e.get_inventory(defines.inventory.crafter_modules)
+			local module_inv2 = e2.get_inventory(defines.inventory.crafter_modules)
 			if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
 				local contents2 = module_inv.get_contents()
 				for _, c in pairs(contents2) do
@@ -227,7 +227,7 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 						quality_upgrading_to = recipe_quality.name,
 					}
 				else
-					local inv = plant.get_inventory(defines.inventory.assembling_machine_input)
+					local inv = plant.get_inventory(defines.inventory.crafter_input)
 
 					if inv and inv.valid then
 						local contents = inv.get_contents()
@@ -298,7 +298,7 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 						e2.set_recipe(nil)
 
 						if e and e.valid then
-							local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
+							local old_input = e.get_inventory(defines.inventory.crafter_input)
 
 							local input = old_input.get_contents()
 							for _, m in pairs(input) do

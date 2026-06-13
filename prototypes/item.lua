@@ -135,7 +135,7 @@ data:extend({
 		effect = {
 			speed = 1.0,
 			consumption = 1.4,
-			quality = -0.5,
+			quality = -0.05,
 			productivity = -0.05,
 			pollution = 0.25,
 		},
@@ -214,7 +214,7 @@ data:extend({
 		default_import_location = "cerys",
 	},
 	{
-		type = "tool",
+		type = "item",
 		name = "cerysian-science-pack",
 		localised_name = common_data.K2_INSTALLED and { "cerys.kr-cerysian-tech-card" } or nil,
 		icon = common_data.K2_INSTALLED and "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-tech-card.png"
@@ -230,10 +230,6 @@ data:extend({
 		pick_sound = item_sounds.science_inventory_pickup,
 		drop_sound = item_sounds.science_inventory_move,
 		stack_size = 200,
-		durability = 1,
-		durability_description_key = "description.science-pack-remaining-amount-key",
-		factoriopedia_durability_description_key = "description.factoriopedia-science-pack-remaining-amount-key",
-		durability_description_value = "description.science-pack-remaining-amount-value",
 		random_tint_color = item_tints.bluish_science,
 	},
 

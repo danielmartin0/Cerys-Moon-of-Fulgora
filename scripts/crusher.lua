@@ -22,7 +22,7 @@ function Public.tick_15_check_broken_crushers(surface)
 		if e and e.valid then
 			if crusher.stage == Public.CRUSHER_WRECK_STAGE_ENUM.frozen then
 				if not e.frozen and game.tick > crusher.creation_tick + 300 then
-					local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+					local input_inv = e.get_inventory(defines.inventory.crafter_input)
 					local contents = nil
 					if input_inv and input_inv.valid then
 						contents = input_inv.get_contents()
@@ -49,7 +49,7 @@ function Public.tick_15_check_broken_crushers(surface)
 						e2.destructible = false
 
 						if e and e.valid and input_inv and input_inv.valid then
-							local input_inv2 = e2.get_inventory(defines.inventory.assembling_machine_input)
+							local input_inv2 = e2.get_inventory(defines.inventory.crafter_input)
 							if input_inv2 and input_inv2.valid then
 								for _, c in pairs(contents or {}) do
 									local new_count = c.count
@@ -57,8 +57,8 @@ function Public.tick_15_check_broken_crushers(surface)
 								end
 							end
 
-							local module_inv = e.get_inventory(defines.inventory.assembling_machine_modules)
-							local module_inv2 = e2.get_inventory(defines.inventory.assembling_machine_modules)
+							local module_inv = e.get_inventory(defines.inventory.crafter_modules)
+							local module_inv2 = e2.get_inventory(defines.inventory.crafter_modules)
 							if module_inv and module_inv.valid and module_inv2 and module_inv2.valid then
 								local contents2 = module_inv.get_contents()
 								for _, c in pairs(contents2) do
@@ -108,7 +108,7 @@ function Public.tick_15_check_broken_crushers(surface)
 					end
 
 					if e and e.valid then
-						local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+						local input_inv = e.get_inventory(defines.inventory.crafter_input)
 						if input_inv and input_inv.valid then
 							local contents = input_inv.get_contents()
 							for _, item in pairs(contents) do
@@ -165,7 +165,7 @@ function Public.tick_15_check_broken_crushers(surface)
 					local circuits = 0
 
 					if e and e.valid then
-						local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+						local input_inv = e.get_inventory(defines.inventory.crafter_input)
 						if input_inv and input_inv.valid then
 							repair_parts = input_inv.get_item_count("ancient-structure-repair-part")
 
@@ -248,7 +248,7 @@ function Public.tick_20_check_crusher_quality_upgrades(surface)
 						quality_upgrading_to = recipe_quality,
 					}
 				else
-					local input_inv = crusher.get_inventory(defines.inventory.assembling_machine_input)
+					local input_inv = crusher.get_inventory(defines.inventory.crafter_input)
 					if input_inv and input_inv.valid then
 						local contents = input_inv.get_contents()
 						for _, ingredient in pairs(contents) do
@@ -318,7 +318,7 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 
 						e2.set_recipe(nil)
 
-						local old_input = e.get_inventory(defines.inventory.assembling_machine_input)
+						local old_input = e.get_inventory(defines.inventory.crafter_input)
 						if old_input and old_input.valid then
 							local contents = old_input.get_contents()
 							for _, m in pairs(contents) do

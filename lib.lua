@@ -115,6 +115,13 @@ function Public.find(tbl, f, ...)
 	return nil
 end
 
+function Public.add_recipe_category(recipe, category_name)
+	recipe.categories = recipe.categories or { "crafting" } -- engine default when unset
+	if not Public.find(recipe.categories, category_name) then
+		table.insert(recipe.categories, category_name)
+	end
+end
+
 function Public.join(...)
 	local result = {}
 	for i = 1, select("#", ...) do

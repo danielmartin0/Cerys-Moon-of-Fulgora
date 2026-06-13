@@ -5,7 +5,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-mixed-oxide-reactor",
-		category = "crafting",
+		categories = { "crafting" },
 		energy_required = 10,
 		enabled = false,
 		ingredients = {
@@ -21,7 +21,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "mixed-oxide-fuel-cell",
-		category = "crafting",
+		categories = { "crafting" },
 		always_show_made_in = true,
 		energy_required = 10,
 		enabled = false,
@@ -55,7 +55,7 @@ data:extend({
 		always_show_made_in = true,
 		enabled = false,
 		auto_recycle = false,
-		category = "centrifuging",
+		categories = { "centrifuging" },
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-waste-solution-nitric.png",
@@ -115,7 +115,7 @@ data:extend({
 		always_show_made_in = true,
 		enabled = false,
 		auto_recycle = false,
-		category = "centrifuging",
+		categories = { "centrifuging" },
 		icons = {
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-decayed.png",
@@ -136,7 +136,13 @@ data:extend({
 		},
 		energy_required = 1,
 		results = {
-			{ type = "item", name = "cerys-radioactive-module-charged", amount = 1, ignored_by_productivity = 1 },
+			{
+				type = "item",
+				name = "cerys-radioactive-module-charged",
+				amount = 1,
+				ignored_by_productivity = 1,
+				always_fresh = true,
+			},
 		},
 		subgroup = "cerys-processes",
 		order = "q[radioactive-module-recharging]",
@@ -147,14 +153,13 @@ data:extend({
 		allow_decomposition = false,
 		allow_productivity = false,
 		allow_quality = false,
-		result_is_always_fresh = true,
 		hide_from_signal_gui = false,
 	},
 
 	{
 		type = "recipe",
 		name = "mixed-oxide-cell-reprocessing",
-		category = "chemistry",
+		categories = { "chemistry" },
 		always_show_made_in = true,
 		enabled = false,
 		icons = {
@@ -219,7 +224,7 @@ data:extend({
 		always_show_made_in = true,
 		energy_required = 10,
 		enabled = false,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		ingredients = {
 			{ type = "item", name = "plutonium-238", amount = 1 },
 			{ type = "item", name = "nuclear-fuel", amount = 1 },

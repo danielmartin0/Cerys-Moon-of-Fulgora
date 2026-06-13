@@ -42,7 +42,7 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "solar-panel",
 			amount = 1,
-			probability = collision_area / 12,
+			independent_probability = collision_area / 12,
 		})
 	end
 
@@ -57,7 +57,7 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "processing-unit",
 			amount = 1,
-			probability = collision_area / 6.5,
+			independent_probability = collision_area / 6.5,
 		})
 	end
 
@@ -72,7 +72,7 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			probability = collision_area / 21,
+			independent_probability = collision_area / 21,
 		})
 	end
 
@@ -87,7 +87,7 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "efficiency-module",
 			amount = 1,
-			probability = collision_area / 10,
+			independent_probability = collision_area / 10,
 		})
 	end
 
@@ -103,7 +103,7 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "copper-cable",
 			amount = 1,
-			probability = collision_area / 9,
+			independent_probability = collision_area / 9,
 		})
 	end
 

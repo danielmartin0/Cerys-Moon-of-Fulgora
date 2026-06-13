@@ -148,7 +148,7 @@ data.raw.recipe["cerys-nitric-acid"].results = {
 	{ type = "fluid", name = "kr-nitric-acid", amount = 50 },
 	{ type = "fluid", name = "kr-nitrogen", amount = 50 },
 }
-data.raw.recipe["cerys-nitric-acid"].category = "fulgoran-cryogenics"
+data.raw.recipe["cerys-nitric-acid"].categories = { "fulgoran-cryogenics" }
 data.raw.recipe["cerys-nitric-acid"].localised_name = { "cerys.nitric-acid-by-ammonia-oxidation" }
 data.raw.recipe["cerys-nitric-acid"].localised_description = { "" }
 data.raw.recipe["cerys-nitric-acid"].energy_required = 0.5
@@ -178,7 +178,7 @@ then
 		data.raw.recipe["cerys-hydrogen-bomb"].ingredients,
 		{ type = "fluid", name = "kr-hydrogen", amount = 25 }
 	)
-	data.raw.recipe["cerys-hydrogen-bomb"].category = "chemistry"
+	data.raw.recipe["cerys-hydrogen-bomb"].categories = { "chemistry" }
 end
 
 if data.raw.ammo["plutonium-rounds-magazine"] and data.raw.recipe["plutonium-rounds-magazine"] then

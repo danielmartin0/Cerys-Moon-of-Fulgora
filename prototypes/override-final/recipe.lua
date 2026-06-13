@@ -1,36 +1,12 @@
 local common = require("common")
 local common_data = require("common-data-only")
-local merge = require("lib").merge
+local lib = require("lib")
+local merge = lib.merge
 
-if data.raw.recipe["superconductor"] then
-	if not data.raw.recipe["superconductor"].additional_categories then
-		data.raw.recipe["superconductor"].additional_categories = {}
+for _, recipe_name in pairs({ "superconductor", "sulfuric-acid", "lithium", "ammonia-rocket-fuel", "fusion-power-cell" }) do
+	if data.raw.recipe[recipe_name] then
+		lib.add_recipe_category(data.raw.recipe[recipe_name], "fulgoran-cryogenics")
 	end
-	table.insert(data.raw.recipe["superconductor"].additional_categories, "fulgoran-cryogenics")
-end
-if data.raw.recipe["sulfuric-acid"] then
-	if not data.raw.recipe["sulfuric-acid"].additional_categories then
-		data.raw.recipe["sulfuric-acid"].additional_categories = {}
-	end
-	table.insert(data.raw.recipe["sulfuric-acid"].additional_categories, "fulgoran-cryogenics")
-end
-if data.raw.recipe.lithium then
-	if not data.raw.recipe.lithium.additional_categories then
-		data.raw.recipe.lithium.additional_categories = {}
-	end
-	table.insert(data.raw.recipe.lithium.additional_categories, "fulgoran-cryogenics")
-end
-if data.raw.recipe["ammonia-rocket-fuel"] then
-	if not data.raw.recipe["ammonia-rocket-fuel"].additional_categories then
-		data.raw.recipe["ammonia-rocket-fuel"].additional_categories = {}
-	end
-	table.insert(data.raw.recipe["ammonia-rocket-fuel"].additional_categories, "fulgoran-cryogenics")
-end
-if data.raw.recipe["fusion-power-cell"] then
-	if not data.raw.recipe["fusion-power-cell"].additional_categories then
-		data.raw.recipe["fusion-power-cell"].additional_categories = {}
-	end
-	table.insert(data.raw.recipe["fusion-power-cell"].additional_categories, "fulgoran-cryogenics")
 end
 
 if data.raw.recipe["plutonium-239-recycling"] then

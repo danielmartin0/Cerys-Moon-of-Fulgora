@@ -1,6 +1,9 @@
 local lib = require("lib")
 local find = lib.find
 local common = require("common")
+local data_utils = require("data-utils")
+
+local lab_inputs = data_utils.current_lab_inputs()
 
 --== Recipe autobans (surface conditions) ==--
 
@@ -35,7 +38,7 @@ for _, recipe in pairs(data.raw.recipe) do
 				if product.name == "barrel" then
 					produces_barrel = true
 				end
-				if data.raw.tool[product.name] then
+				if lab_inputs[product.name] then
 					produces_science_pack = true
 				end
 			end

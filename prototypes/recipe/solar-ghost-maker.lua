@@ -7,9 +7,8 @@ data:extend({
 		enabled = true,
 		energy_required = 89 / 60, -- Prime to avoid resonance
 		ingredients = {},
-		results = { { type = "item", name = "cerys-solar-wind-particle-ghost", amount = 1 } },
-		category = "cerys-make-solar-wind-ghosts",
-		result_is_always_fresh = true,
+		results = { { type = "item", name = "cerys-solar-wind-particle-ghost", amount = 1, always_fresh = true } },
+		categories = { "cerys-make-solar-wind-ghosts" },
 		hide_from_signal_gui = true,
 	},
 	{

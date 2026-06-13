@@ -1,12 +1,12 @@
 local common = require("common")
 local common_data = require("common-data-only")
+local lib = require("lib")
 
 data:extend({
 	{
 		type = "recipe",
 		name = "cerys-radiative-heater",
-		category = "fulgoran-cryogenics",
-		additional_categories = { "crafting" },
+		categories = { "fulgoran-cryogenics", "crafting" },
 		energy_required = 6,
 		ingredients = {
 			{ type = "item", name = "refined-concrete", amount = 12 },
@@ -23,11 +23,7 @@ data:extend({
 })
 
 if data.raw.recipe["maraxsis-holmium-recrystalization"] then -- Relies on a hidden optional dependency on Maraxsis
-	if not data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories then
-		data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = {}
-	end
-
-	data.raw.recipe["maraxsis-holmium-recrystalization"].additional_categories = { "fulgoran-cryogenics" }
+	lib.add_recipe_category(data.raw.recipe["maraxsis-holmium-recrystalization"], "fulgoran-cryogenics")
 
 	data.raw.recipe["maraxsis-holmium-recrystalization"].icons = {
 		{
@@ -61,7 +57,7 @@ else
 				{ type = "item", name = "holmium-plate", amount = 5 },
 			},
 			energy_required = data.raw.recipe["holmium-plate"].energy_required * 10,
-			category = "fulgoran-cryogenics",
+			categories = { "fulgoran-cryogenics" },
 			enabled = false,
 			auto_recycle = false,
 			icons = {
@@ -136,7 +132,7 @@ data:extend({
 		},
 		allow_productivity = true,
 		main_product = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		subgroup = "science-pack",
 		order = common_data.K2_INSTALLED and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
 		always_show_made_in = true,
@@ -153,7 +149,7 @@ data:extend({
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 	},
 	{
 		type = "recipe",
@@ -167,13 +163,13 @@ data:extend({
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-radioactive-module-charged", amount = 1 } },
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 	},
 	{
 		type = "recipe",
 		name = "cerysian-science-pack",
 		always_show_made_in = true,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		enabled = false,
 		energy_required = 15,
 		ingredients = {
@@ -218,7 +214,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "plutonium-239",
-		category = "cerys-no-machine",
+		categories = { "cerys-no-machine" },
 		enabled = false,
 		energy_required = 0.1,
 		ingredients = {
@@ -228,7 +224,6 @@ data:extend({
 		always_show_made_in = true,
 		hide_from_player_crafting = true,
 		allow_decomposition = false,
-		always_show_products = true,
 		auto_recycle = false,
 	},
 
@@ -239,8 +234,7 @@ data:extend({
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "d-d",
-		category = "fulgoran-cryogenics",
-		additional_categories = { "cryogenics", "chemistry" },
+		categories = { "fulgoran-cryogenics", "cryogenics", "chemistry" },
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
@@ -280,8 +274,7 @@ data:extend({
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "d-c",
-		category = "fulgoran-cryogenics",
-		additional_categories = { "cryogenics", "electromagnetics" },
+		categories = { "fulgoran-cryogenics", "cryogenics", "electromagnetics" },
 		enabled = false,
 		energy_required = 5,
 		ingredients = {
@@ -318,8 +311,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-charging-rod",
 		enabled = false,
-		category = "fulgoran-cryogenics",
-		additional_categories = { "crafting" },
+		categories = { "fulgoran-cryogenics", "crafting" },
 		surface_conditions = {
 			common.AMBIENT_RADIATION_MIN,
 		},
@@ -336,7 +328,7 @@ data:extend({
 		type = "recipe",
 		name = "cerys-nitric-acid",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
-		category = "chemistry",
+		categories = { "chemistry" },
 		subgroup = "cerys-processes",
 		order = "d-b",
 		auto_recycle = false,
@@ -351,7 +343,6 @@ data:extend({
 		allow_productivity = true,
 		enabled = false,
 		always_show_made_in = true,
-		always_show_products = true,
 		allow_decomposition = false,
 		crafting_machine_tint = {
 			primary = { r = 38, g = 110, b = 180, a = 1 }, -- water
@@ -381,7 +372,7 @@ data:extend({
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice-dissociation.png",
 		icon_size = 64,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		subgroup = "cerys-processes",
 		order = "c",
 		auto_recycle = false,
@@ -408,7 +399,7 @@ data:extend({
 		always_show_made_in = true,
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-nitrogen-rich-mineral-processing.png",
 		icon_size = 64,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		energy_required = 2.5,
 		enabled = false,
 		ingredients = {
@@ -433,7 +424,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "cerys-lubricant-synthesis",
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		always_show_made_in = true,
 		subgroup = "cerys-processes",
 		order = "e-a",
@@ -485,7 +476,7 @@ if common_data.K2_INSTALLED then
 			type = "recipe",
 			name = "kr-cerysian-research-data",
 			always_show_made_in = true,
-			category = "fulgoran-cryogenics",
+			categories = { "fulgoran-cryogenics" },
 			enabled = false,
 			energy_required = 20,
 			ingredients = data.raw.recipe["cerysian-science-pack"].ingredients,
@@ -506,7 +497,7 @@ if common_data.K2_INSTALLED then
 			localised_name = {
 				"cerys.kr-cerysian-tech-card",
 			},
-			category = "kr-tech-cards",
+			categories = { "kr-tech-cards" },
 			always_show_made_in = true,
 			enabled = false,
 			energy_required = 20,

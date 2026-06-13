@@ -156,7 +156,7 @@ function Public.reactor_repair_check(surface, reactor)
 			e2.minable_flag = false
 			e2.destructible = false
 
-			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+			local input_inv = e.get_inventory(defines.inventory.crafter_input)
 			if input_inv and input_inv.valid then
 				local contents = input_inv.get_contents()
 				for _, item in pairs(contents) do
@@ -223,7 +223,7 @@ function Public.reactor_repair_check(surface, reactor)
 		local inventory_repair_parts = 0
 
 		if e and e.valid then
-			local input_inv = e.get_inventory(defines.inventory.assembling_machine_input)
+			local input_inv = e.get_inventory(defines.inventory.crafter_input)
 
 			if input_inv and input_inv.valid then
 				inventory_chips = input_inv.get_item_count("processing-unit")

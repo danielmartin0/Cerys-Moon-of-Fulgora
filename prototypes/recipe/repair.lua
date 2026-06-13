@@ -4,8 +4,7 @@ data:extend({
 	{
 		type = "recipe",
 		name = "ancient-structure-repair-part",
-		category = "advanced-crafting",
-		additional_categories = { "fulgoran-cryogenics" },
+		categories = { "advanced-crafting", "fulgoran-cryogenics" },
 		enabled = false,
 		energy_required = 3,
 		ingredients = {
@@ -56,7 +55,7 @@ data:extend({
 		energy_required = 1 / 3,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "cerys-cryogenic-plant-repair",
+		categories = { "cerys-cryogenic-plant-repair" },
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
@@ -98,7 +97,7 @@ data:extend({
 		},
 		energy_required = 40,
 		hide_from_player_crafting = true,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		ingredients = {
 			{ type = "item", name = "processing-unit", amount = 5 },
 		},
@@ -141,14 +140,13 @@ data:extend({
 		energy_required = 0.9,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "cerys-nuclear-reactor-repair",
+		categories = { "cerys-nuclear-reactor-repair" },
 		ingredients = {},
 		results = {
 			{ type = "item", name = "concrete", amount = 100 },
 		},
 		allow_quality = false,
 		hide_from_signal_gui = true,
-		show_amount_in_title = false,
 		custom_tooltip_fields = {
 			{
 				name = { "cerys.completions-needed-tooltip-name" },
@@ -188,7 +186,7 @@ data:extend({
 		energy_required = 1 / 5,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "cerys-nuclear-reactor-repair",
+		categories = { "cerys-nuclear-reactor-repair" },
 		ingredients = {
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 			{ type = "item", name = "processing-unit", amount = 1 },
@@ -236,7 +234,7 @@ data:extend({
 		energy_required = 1 / 3,
 		enabled = false,
 		hide_from_player_crafting = true,
-		category = "cerys-crusher-repair",
+		categories = { "cerys-crusher-repair" },
 		ingredients = {
 			{
 				type = "item",
@@ -284,7 +282,7 @@ data:extend({
 		},
 		energy_required = 30,
 		hide_from_player_crafting = true,
-		category = "cerys-crusher-quality-upgrades",
+		categories = { "cerys-crusher-quality-upgrades" },
 		ingredients = {
 			{ type = "item", name = "advanced-circuit", amount = 5 },
 		},
@@ -315,7 +313,7 @@ data:extend({
 		energy_required = 5,
 		enabled = true,
 		hide_from_player_crafting = true,
-		category = "fulgoran-cryogenics",
+		categories = { "fulgoran-cryogenics" },
 		ingredients = common.HARD_MODE_ON and {
 			{ type = "item", name = "cerys-nuclear-scrap", amount = 40 },
 			{ type = "item", name = "solid-fuel", amount = 40 },

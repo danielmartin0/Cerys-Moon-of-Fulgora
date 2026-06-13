@@ -15,17 +15,17 @@ data:extend({
 		name = "cerys-nuclear-scrap-recycling",
 		icons = {
 			{
-				icon = "__quality__/graphics/icons/recycling.png",
+				icon = "__recycler__/graphics/icons/recycling.png",
 			},
 			{
 				icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap.png",
 				scale = 0.4,
 			},
 			{
-				icon = "__quality__/graphics/icons/recycling-top.png",
+				icon = "__recycler__/graphics/icons/recycling-top.png",
 			},
 		},
-		category = "recycling-or-hand-crafting",
+		categories = { "recycling", "hand-crafting" },
 		subgroup = "cerys-processes",
 		order = "a-b[nuclear-scrap-recycling]",
 		enabled = false,
@@ -78,7 +78,7 @@ for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 		type = "item",
 		name = name,
 		amount = 1,
-		probability = percent / 100,
+		independent_probability = percent / 100,
 		show_details_in_recipe_tooltip = false,
 	})
 end
