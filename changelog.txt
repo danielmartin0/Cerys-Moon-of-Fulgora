@@ -1,10 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.22.4
-Date: ????
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 4.22.3
+Version: 4.22.4-4.22.3
 Date: 2026-06-14
+  Sounds:
+    - Replaced an ambient soundtrack song.
   Bugfixes:
     - Fixed that charging rod lights could linger after the entity was destroyed.
   Locale:

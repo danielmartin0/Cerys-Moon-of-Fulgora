@@ -2,12 +2,12 @@
 
 This file specifies open-source code and assets used in Cerys, Moon of Fulgora.
 
-#### Cerys music tracks
+#### Sountrack songs
 
 - **Creators**: [Scott Buckley](https://www.scottbuckley.com.au)
 - **Source**: [Scott Buckley's website](https://www.scottbuckley.com.au/library/aurora/)
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **Changes**: Yes, several tracks have a fade-in.
+- **Changes**: Yes, tracks have a fade-in and fade-out.
 
 #### Cerysian science pack icon
 
