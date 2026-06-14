@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.22.3
 Date: ????
-  Changes:
+  Bugfixes:
+    - Fixed that charging rod lights could linger after the entity was destroyed.
 ---------------------------------------------------------------------------------------------------
 Version: 4.22.2
 Date: 2026-06-09
@@ -16,7 +17,6 @@ Date: 2026-06-08
     - K2: Mineral leaching now produces double the iron ore if Krastorio 2 is enabled.
   Bugfixes:
     - Fixed that blueprinted charging rods could end up with incorrect polarity when placed.
-    - Fixed that charging rod lights could linger after the entity was destroyed.
     - Charged particles now function properly on non-Cerys surfaces if somehow created there (e.g. by Ghost charged particle makers in a blueprint lab.)
   Optimizations:
     - Performance improvements.

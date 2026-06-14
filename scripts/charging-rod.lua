@@ -97,6 +97,10 @@ function Public.register_charging_rod(entity)
 		return
 	end
 
+	if storage.charging_rods[entity.unit_number] then
+		return
+	end
+
 	local off_cerys = surface.name ~= "cerys"
 
 	-- We register storage for both real rods and ghosts. Ghosts need both this _and_ tags, so they can be blueprinted but also tracked by ghost particles.
