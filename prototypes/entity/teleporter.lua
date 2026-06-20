@@ -23,7 +23,7 @@ local teleporter = {
 	drawing_box_vertical_extension = 0.5,
 	module_slots = 0,
 	icons_positioning = {
-		{ inventory_index = defines.inventory.furnace_modules, shift = { 0, 0.95 }, max_icons_per_row = 4 },
+		{ inventory_index = defines.inventory.crafter_modules, shift = { 0, 0.95 }, max_icons_per_row = 4 },
 	},
 	icon_draw_specification = { scale = 2, shift = { 0, -0.3 } },
 	allowed_effects = {},

@@ -48,7 +48,7 @@ local crusher = {
 	damaged_trigger_effect = hit_effects.entity(),
 	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {
-		{ inventory_index = defines.inventory.furnace_modules, shift = { 0, 0.3 } },
+		{ inventory_index = defines.inventory.crafter_modules, shift = { 0, 0.3 } },
 	},
 	icon_draw_specification = { shift = { 0, -0.45 } },
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
