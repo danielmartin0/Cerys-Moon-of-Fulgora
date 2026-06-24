@@ -26,10 +26,10 @@ local adjusted_original_ice_transitions = {
 	{
 		to_tiles = lava_tile_type_names,
 		transition_group = lava_transition_group_id,
-		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
+		spritesheet = "__space-age__/graphics/terrain/lava-transitions/lava-stone.png",
 		-- this added the lightmap spritesheet
 		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
-		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-lightmap.png" },
+		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/lava-transitions/lava-stone-lightmap.png" },
 		-- this added the lightmap spritesheet
 		effect_map_layout = {
 			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-mask.png",
@@ -140,8 +140,8 @@ local rock_transitions = {
 	{ -- copied from vulcanus rock
 		to_tiles = lava_tile_type_names,
 		transition_group = lava_transition_group_id,
-		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone.png",
-		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-lightmap.png" },
+		spritesheet = "__space-age__/graphics/terrain/lava-transitions/lava-stone.png",
+		lightmap_layout = { spritesheet = "__space-age__/graphics/terrain/lava-transitions/lava-stone-lightmap.png" },
 		layout = tile_spritesheet_layout.transition_16_16_16_4_4,
 		effect_map_layout = {
 			spritesheet = "__space-age__/graphics/terrain/effect-maps/lava-dirt-mask.png",

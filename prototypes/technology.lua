@@ -22,7 +22,7 @@ data:extend({
 		prerequisites = { "moon-discovery-cerys" },
 		research_trigger = {
 			type = "mine-entity",
-			entity = "cerys-nitrogen-rich-minerals",
+			entities = { "cerys-nitrogen-rich-minerals" },
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nitrogen-rich-mineral-processing.png",
 		icon_size = 256,
@@ -51,7 +51,7 @@ data:extend({
 		prerequisites = { "moon-discovery-cerys" },
 		research_trigger = {
 			type = "mine-entity",
-			entity = "cerys-nuclear-scrap",
+			entities = { "cerys-nuclear-scrap" },
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/technology/nuclear-scrap.png",
 		icon_size = 256,
