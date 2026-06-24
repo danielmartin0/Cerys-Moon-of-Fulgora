@@ -84,6 +84,17 @@ function Public.make_radiative_towers_minable()
 	end
 end
 
+function Public.add_recipe_category(recipe, category_name)
+	recipe.categories = recipe.categories or { "crafting" } -- engine default
+	if not Public.find(recipe.categories, category_name) then
+		table.insert(recipe.categories, category_name)
+	end
+end
+
+function Public.calculate_max_polarity_fraction(quality_level)
+	return 1 + 0.1 * quality_level
+end
+
 function Public.merge(old, new)
 	old = util.table.deepcopy(old)
 
@@ -115,13 +126,6 @@ function Public.find(tbl, f, ...)
 	return nil
 end
 
-function Public.add_recipe_category(recipe, category_name)
-	recipe.categories = recipe.categories or { "crafting" } -- engine default when unset
-	if not Public.find(recipe.categories, category_name) then
-		table.insert(recipe.categories, category_name)
-	end
-end
-
 function Public.join(...)
 	local result = {}
 	for i = 1, select("#", ...) do
@@ -139,10 +143,6 @@ function Public.clamp(x, min, max)
 	x = x == 0 and 0 or x
 	min, max = min or 0, max or 1
 	return x < min and min or (x > max and max or x)
-end
-
-function Public.calculate_max_polarity_fraction(quality_level)
-	return 1 + 0.1 * quality_level
 end
 
 return Public
