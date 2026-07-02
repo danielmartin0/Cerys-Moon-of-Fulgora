@@ -1,4 +1,4 @@
-if not storage.cerys then
+if not (storage.cerys and storage.cerys.charging_rods) then
 	return
 end
 

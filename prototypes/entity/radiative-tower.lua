@@ -316,6 +316,10 @@ local container = {
 reactor.fast_replaceable_group = "fulgoran-radiative-tower"
 frozen_reactor.fast_replaceable_group = "fulgoran-radiative-tower"
 
+reactor.tall = true
+frozen_reactor.tall = true
+rising_reactor_tower_3.tall = true
+
 data:extend({
 	reactor,
 	frozen_reactor,

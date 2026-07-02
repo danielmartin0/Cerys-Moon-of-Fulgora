@@ -7,6 +7,7 @@ data:extend({
 		name = "cerys-radiative-heater",
 		flags = { "placeable-neutral", "player-creation" },
 		hidden = true,
+		tall = true,
 		max_health = 500,
 		dying_explosion = "heating-tower-explosion",
 		collision_box = { { -2.25, -2.1 }, { 2.25, 2.1 } },

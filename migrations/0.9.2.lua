@@ -1,4 +1,4 @@
-if not storage.cerys then
+if not (storage.cerys and storage.cerys.solar_wind_particles) then
 	return
 end
 
