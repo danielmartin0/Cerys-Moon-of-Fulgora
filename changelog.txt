@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.1
-Date: ????
+Date: 2026-07-02
   Changes:
     - Radiative towers are now tall for the purposes of the 'Hide tall entities' toggle.
   Bugfixes:
