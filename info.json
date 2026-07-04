@@ -18,6 +18,7 @@
     "(?) PlutoniumEnergy",
     "(?) limit-special-building-surfaces",
     "(?) maraxsis",
+    "(?) visible-planets >= 1.8.2",
     "! bobplates",
     "! janus",
     "! AutomatedCrushers",
