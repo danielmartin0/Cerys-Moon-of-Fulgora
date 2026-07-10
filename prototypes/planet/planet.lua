@@ -68,6 +68,40 @@ PlanetsLib:extend({
 			shadow_opacity = 0.6, -- Slightly darker due to no atmosphere, though too dark doesn't play well with dynamic lighting
 		},
 		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
+		
+
+
+		platform_surface_render_parameters = {
+			platform_backdrop =
+			{
+				atmosphere_color = {100,100,100,0,},
+				atmosphere_ray_light_color_1 = {0,0,0,0,},
+				atmosphere_ray_light_color_2 = {0,0,0,0,},
+				atmosphere_thickness = 0,
+				light_color = {0.9804, 1.0, 1.0, 0.8},
+				light_direction = {0.50,1.0,10.0,},
+				light_intensity_contrast = 0.09,
+				light_radius = 50,
+				planet_axis = {-22,30,},
+				planet_surface =
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/planet/cerys.png",
+					width = 4096,
+					height = 2048
+				},
+				planet_normal =
+				{
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/planet/cerys-normal.png",
+					width = 2048,
+					height = 1024
+				},
+				radius = 350,
+				position = {-200.0, -150.0}, 
+				rotation_seconds = -180,
+				surface_normal_intensity = 1.2,
+				surface_vertical_offset = 0.0,
+			}
+		},
 	},
 })
 
