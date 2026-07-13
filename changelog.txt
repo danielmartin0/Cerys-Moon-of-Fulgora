@@ -1,19 +1,20 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.24.3
+Date: 2026-07-13
+  Info:
+    - Latest release for Factorio 2.1.
+---------------------------------------------------------------------------------------------------
 Version: 4.24.2
-Date: ????
-  Changes:
+Date: 2026-07-13
+  Info:
+    - The special release ports the bugfix in 4.24.1 to Factorio 2.0.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.1
 Date: 2026-07-13
   Bugfixes:
     - Fixed that ghost charged particles responded to [REDACTED] as if they were at full capacity. (They still treat ghost [REDACTED] as if they were at capacity and real.)
----------------------------------------------------------------------------------------------------
-Version: 4.24.0
-Date: 2026-07-13
-  Graphics:
-    - 3D planet graphic.
-  Bugfixes:
-    - Fixed a graphical glitch with rising radiative towers.
+  Info:
+    - The special release 4.24.2 is for the Factorio 2.0 version of the game, consisting of this bugfix.
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.3
 Date: 2026-07-04
