@@ -151,7 +151,7 @@ local CONTRACTED_MAP_COLOR = { 37, 0, 0 }
 
 local rising_reactor_base = merge(reactor, {
 	name = "cerys-fulgoran-radiative-tower-rising-reactor-base",
-	render_layer = "wires",
+	render_layer = "higher-object-above",
 	hidden = true,
 	consumption = "0.0000001W",
 	picture = {
@@ -175,7 +175,7 @@ local rising_reactor_base = merge(reactor, {
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
 	name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
 	type = "simple-entity-with-owner",
-	render_layer = "above-inserters",
+	render_layer = "higher-object-under",
 	picture = {
 		layers = {
 			util.sprite_load(
