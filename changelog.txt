@@ -13,8 +13,6 @@ Version: 4.24.1
 Date: 2026-07-13
   Bugfixes:
     - Fixed that ghost charged particles responded to [REDACTED] as if they were at full capacity. (They still treat ghost [REDACTED] as if they were at capacity and real.)
-  Info:
-    - The special release 4.24.2 is for the Factorio 2.0 version of the game, consisting of this bugfix.
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.3
 Date: 2026-07-04
