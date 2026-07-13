@@ -3,6 +3,8 @@ Version: 4.24.0
 Date: ????
   Graphics:
     - 3D planet graphic.
+  Bugfixes:
+    - Fixed a graphical glitch with rising radiative towers.
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.3
 Date: 2026-07-04
