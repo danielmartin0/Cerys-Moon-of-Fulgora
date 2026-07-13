@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 4.24.1
+Date: 2026-07-13
+  Bugfixes:
+    - Fixed that ghost charged particles responded to [REDACTED] as if they were fully charged, rather than their actual charge level. (They still treat ghost [REDACTED] as if they were fully charged and real.)
+---------------------------------------------------------------------------------------------------
 Version: 4.24.0
 Date: 2026-07-13
   Graphics:

@@ -149,6 +149,8 @@ function Public.tick_solar_wind_deflection()
 	for rod_unit_number, rod in pairs(rods) do
 		local p_rod = rod.rod_position
 		local rod_surface_index = rod.surface_index
+		local rod_entity = rod.entity
+		local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
 
 		for i = 1, #particles do
 			local particle = particles[i]
@@ -182,9 +184,11 @@ function Public.tick_solar_wind_deflection()
 
 				if d2 < ROD_MAX_RANGE_SQUARED then
 					local polarity_fraction
-					if particle.is_ghost then
-						polarity_fraction = (rod_is_positive[rod_unit_number] and 1 or -1)
-							* (rod.max_polarity_fraction or 1)
+					if rod_is_ghost then
+						if particle.is_ghost then
+							polarity_fraction = (rod_is_positive[rod_unit_number] and 1 or -1)
+								* (rod.max_polarity_fraction or 1)
+						end
 					else
 						polarity_fraction = rod.polarity_fraction
 					end
@@ -405,157 +409,157 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 				end
 			end
 			if surface then
-			local chars =
-				surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
-			if #chars > 0 then
-				local e = chars[1]
-				if e and e.valid then
-					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
-						and e.name ~= "cerys-fulgoran-radiative-tower-contracted-container"
-						and e.has_items_inside()
-
-					if check then
-						particle.last_checked_inv = e.unit_number
-
-						local inv = e.get_main_inventory()
-						if inv and inv.valid then
-							local irradiated = Public.irradiate_inventory(
-								surface,
-								inv,
-								e.force,
-								e.position,
-								probability_multiplier,
-								true
-							)
-							if irradiated then
-								surface.create_entity({
-									name = "plutonium-explosion",
-									position = e.position,
-								})
-							end
-						end
-
-						if math.random() < CHANCE_DAMAGE_CHARACTER then
-							local player = e.player
-							if player and player.valid then
-								player.play_sound({
-									path = "cerys-radiation-impact",
-									volume_modifier = 0.25,
-								})
-							end
-
-							local damage = (
-								settings.startup["cerys-high-damage-mode"]
-								and settings.startup["cerys-high-damage-mode"].value
-							) -- Setting stored in Cerys Start mod
-									and 80
-								or 5
-
-							e.damage(damage, game.forces.neutral, "impact")
-						end
-					end
-				end
-			end
-
-			local containers = surface.find_entities_filtered({
-				type = { "container", "logistic-container" },
-				position = particle.position,
-				-- has_item_inside = "uranium-238", -- this would only catch normal quality
-				radius = 0.75,
-			})
-
-			if #containers > 0 then
-				local e = containers[1]
-				if e and e.valid then
-					local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
-
-					if check then
-						particle.last_checked_inv = e.unit_number
-
-						local inv = e.get_inventory(defines.inventory.chest)
-						if inv and inv.valid then
-							local irradiated =
-								Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
-							if irradiated then
-								surface.create_entity({
-									name = "plutonium-explosion",
-									position = e.position,
-								})
-							end
-						end
-					end
-				end
-			end
-
-			-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
-			if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
-				local belts = surface.find_entities_filtered({
-					type = "transport-belt",
-					position = particle.position,
-					radius = 0.5,
-				})
-				if #belts > 0 then
-					local e = belts[1]
+				local chars =
+					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
+				if #chars > 0 then
+					local e = chars[1]
 					if e and e.valid then
-						local lines = {
-							e.get_transport_line(1),
-							e.get_transport_line(2),
-						}
+						local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
+							and e.name ~= "cerys-fulgoran-radiative-tower-contracted-container"
+							and e.has_items_inside()
 
-						local has_uranium = false
-						for _, line in pairs(lines) do
-							local contents = line.get_detailed_contents()
+						if check then
+							particle.last_checked_inv = e.unit_number
 
-							for _, item in pairs(contents) do
-								if item.stack.name == "uranium-238" then
-									has_uranium = true
+							local inv = e.get_main_inventory()
+							if inv and inv.valid then
+								local irradiated = Public.irradiate_inventory(
+									surface,
+									inv,
+									e.force,
+									e.position,
+									probability_multiplier,
+									true
+								)
+								if irradiated then
+									surface.create_entity({
+										name = "plutonium-explosion",
+										position = e.position,
+									})
+								end
+							end
 
-									local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
-									local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
-										* probability_multiplier
-										* settings.global["cerys-plutonium-generation-rate-multiplier"].value
-										* productivity_modifier
+							if math.random() < CHANCE_DAMAGE_CHARACTER then
+								local player = e.player
+								if player and player.valid then
+									player.play_sound({
+										path = "cerys-radiation-impact",
+										volume_modifier = 0.25,
+									})
+								end
 
-									storage.accrued_probability_units = (storage.accrued_probability_units or 0)
-										+ increase
+								local damage = (
+										settings.startup["cerys-high-damage-mode"]
+										and settings.startup["cerys-high-damage-mode"].value
+									) -- Setting stored in Cerys Start mod
+									and 80
+									or 5
 
-									local mutate = storage.accrued_probability_units > 1
+								e.damage(damage, game.forces.neutral, "impact")
+							end
+						end
+					end
+				end
 
-									if mutate then
-										storage.accrued_probability_units = storage.accrued_probability_units - 1
+				local containers = surface.find_entities_filtered({
+					type = { "container", "logistic-container" },
+					position = particle.position,
+					-- has_item_inside = "uranium-238", -- this would only catch normal quality
+					radius = 0.75,
+				})
 
-										item.stack.set_stack({
-											name = "plutonium-239",
-											count = item.stack.count,
-											quality = item.stack.quality,
-										})
+				if #containers > 0 then
+					local e = containers[1]
+					if e and e.valid then
+						local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
 
-										if e.force and e.force.valid then
-											e.force
-												.get_item_production_statistics(surface)
-												.on_flow("plutonium-239", item.stack.count)
-											e.force
-												.get_item_production_statistics(surface)
-												.on_flow("uranium-238", -item.stack.count)
-										end
+						if check then
+							particle.last_checked_inv = e.unit_number
 
-										surface.create_entity({
-											name = "plutonium-explosion",
-											position = e.position,
-										})
-									end
-
-									break
+							local inv = e.get_inventory(defines.inventory.chest)
+							if inv and inv.valid then
+								local irradiated =
+									Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
+								if irradiated then
+									surface.create_entity({
+										name = "plutonium-explosion",
+										position = e.position,
+									})
 								end
 							end
 						end
+					end
+				end
 
-						if has_uranium then
-							Public.irradiation_chance_effect(surface, e.position)
+				-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
+				if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
+					local belts = surface.find_entities_filtered({
+						type = "transport-belt",
+						position = particle.position,
+						radius = 0.5,
+					})
+					if #belts > 0 then
+						local e = belts[1]
+						if e and e.valid then
+							local lines = {
+								e.get_transport_line(1),
+								e.get_transport_line(2),
+							}
+
+							local has_uranium = false
+							for _, line in pairs(lines) do
+								local contents = line.get_detailed_contents()
+
+								for _, item in pairs(contents) do
+									if item.stack.name == "uranium-238" then
+										has_uranium = true
+
+										local productivity_modifier = storage.plutonium_productivity_modifier or 1.0
+										local increase = (CHANCE_MUTATE_BELT_URANIUM / CHANCE_CHECK_BELT)
+											* probability_multiplier
+											* settings.global["cerys-plutonium-generation-rate-multiplier"].value
+											* productivity_modifier
+
+										storage.accrued_probability_units = (storage.accrued_probability_units or 0)
+											+ increase
+
+										local mutate = storage.accrued_probability_units > 1
+
+										if mutate then
+											storage.accrued_probability_units = storage.accrued_probability_units - 1
+
+											item.stack.set_stack({
+												name = "plutonium-239",
+												count = item.stack.count,
+												quality = item.stack.quality,
+											})
+
+											if e.force and e.force.valid then
+												e.force
+													.get_item_production_statistics(surface)
+													.on_flow("plutonium-239", item.stack.count)
+												e.force
+													.get_item_production_statistics(surface)
+													.on_flow("uranium-238", -item.stack.count)
+											end
+
+											surface.create_entity({
+												name = "plutonium-explosion",
+												position = e.position,
+											})
+										end
+
+										break
+									end
+								end
+							end
+
+							if has_uranium then
+								Public.irradiation_chance_effect(surface, e.position)
+							end
 						end
 					end
 				end
-			end
 			end
 		end
 	end
