@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.4
 Date: ????
-  Changes:
+  Bugfixes:
+    - The new Factorio 2.1 API for surface robot energy usage is now used, correcting the Cerys value back to 3x.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.3
 Date: 2026-07-13

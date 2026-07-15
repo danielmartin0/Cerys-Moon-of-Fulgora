@@ -56,6 +56,7 @@ PlanetsLib:extend({
 			["day-night-cycle"] = common.DAY_LENGTH_MINUTES * 60 * 60,
 			["magnetic-field"] = 120, -- Fulgora is 99
 			["solar-power"] = 120, -- No atmosphere
+			["robot-energy-usage"] = 3,
 			pressure = 5,
 			gravity = 0.15, -- 0.1 is minimum for chests
 			temperature = 251,
