@@ -121,6 +121,28 @@ local size_to_probability_expression = {
 	colossal = "0.002 * (cerys_ruin_density - 0.5)",
 }
 
+local size_to_spritesheets = {
+	small = {
+		{ path = "cerys-ruin-small",      frame_count = 27 },
+		{ path = "cerys-ruin-small-tall", frame_count = 7 },
+	},
+	medium = {
+		{ path = "cerys-ruin-medium",      frame_count = 10 },
+		{ path = "cerys-ruin-medium-tall", frame_count = 4 },
+	},
+	big = {
+		{ path = "cerys-ruin-big", frame_count = 6 },
+	},
+	huge = {
+		{ path = "cerys-ruin-huge", frame_count = 8, dice_y = 2 },
+	},
+	colossal = {
+		{ path = "cerys-ruin-colossal", frame_count = 3, dice_y = 2 },
+	},
+}
+
+local RUIN_GRAPHICS_PATH = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-ruin/"
+
 for _, size in ipairs(sizes) do
 	local base_entity = util.table.deepcopy(data.raw["simple-entity"]["fulgoran-ruin-" .. size])
 
@@ -135,23 +157,11 @@ for _, size in ipairs(sizes) do
 		* (base_entity.collision_box[2][2] - base_entity.collision_box[1][2])
 	base_entity.minable = ruin_minable_results(collision_area)
 
-	local filtered_pictures = {}
-	for i, picture in pairs(base_entity.pictures) do
-		local include = true
-		if picture.filename:match("%-tall%.png$") and not (size == "small" or size == "medium") then
-			include = false
-		end
-		if size == "big" and i == 7 then
-			include = false
-		end
-
-		if include then
-			picture.filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-ruin/cerys-ruin"
-				.. picture.filename:sub(62, -1)
-			table.insert(filtered_pictures, picture)
-		end
+	local spritesheets = util.table.deepcopy(size_to_spritesheets[size])
+	for _, spritesheet in pairs(spritesheets) do
+		spritesheet.path = RUIN_GRAPHICS_PATH .. spritesheet.path
 	end
-	base_entity.pictures = filtered_pictures
+	base_entity.pictures = util.spritesheets_to_pictures(spritesheets)
 
 	base_entity.autoplace.probability_expression = size_to_probability_expression[size]
 
