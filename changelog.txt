@@ -3,6 +3,9 @@ Version: 4.24.5
 Date: ????
   Bugfixes:
     - Factorio 2.1 port: Improved the horizontal positioning of Cerysian ruin graphics and fixed that one ruin rendered as invisible.
+    - Fixed that hydrogen bombs did not create lava pools on Vulcanus (nor the Aquilo/Space effects).
+  Compatibility:
+    - K2: Cerys no longer redefines nitric acid if Krastorio 2 is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.4
 Date: 2026-07-15
