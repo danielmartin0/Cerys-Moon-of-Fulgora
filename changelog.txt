@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.24.5
+Version: 4.25.0
 Date: ????
   Bugfixes:
     - Factorio 2.1 port: Improved the horizontal positioning of Cerysian ruin graphics and fixed that one ruin rendered as invisible.
