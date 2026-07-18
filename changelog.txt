@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.5
-Date: ????
+Date: 2026-07-18
   Bugfixes:
     - Factorio 2.1: Fixed the bounding box of Cerysian ruin graphics and fixed one ruin that rendered as invisible.
     - Factorio 2.1: Fixed that items could not be recycled if the player travels to Cerys before Fulgora.
