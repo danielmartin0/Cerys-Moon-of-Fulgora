@@ -2,20 +2,21 @@
 Version: 4.25.0
 Date: ????
   Bugfixes:
-    - Factorio 2.1 port: Improved the horizontal positioning of Cerysian ruin graphics and fixed that one ruin rendered as invisible.
     - Fixed that hydrogen bombs did not create lava pools on Vulcanus (nor the Aquilo/Space effects).
+    - Factorio 2.1: Fixed the bounding box of Cerysian ruins graphics and fixed one ruin that rendered as invisible.
+    - Factorio 2.1: Fixed that items could not be recycled if the player travels to Cerys before Fulgora.
   Compatibility:
-    - K2: Cerys no longer redefines nitric acid if Krastorio 2 is installed.
+    - Krastorio 2: Cerys no longer alters the properties of nitric acid.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.4
 Date: 2026-07-15
   Bugfixes:
-    - Factorio 2.1 port: Used the new API for surface robot energy usage is now used, correcting the Cerys value back to 3x.
+    - Factorio 2.1: Used the new API for surface robot energy usage is now used, correcting the Cerys value back to 3x.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.3
 Date: 2026-07-13
   Info:
-    - Factorio 2.1 port: Latest release.
+    - Factorio 2.1: Latest release.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.2
 Date: 2026-07-13
@@ -30,20 +31,20 @@ Date: 2026-07-13
 Version: 4.23.3
 Date: 2026-07-04
   Compatibility:
-    - Factorio 2.1 port: Fixed a crash on load with Visible Planets in Space.
+    - Factorio 2.1: Fixed a crash on load with Visible Planets in Space.
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.1-4.23.2
 Date: 2026-07-02
   Changes:
-    - Factorio 2.1 port: Radiative towers are now tall for the purposes of the 'Hide tall entities' toggle.
+    - Factorio 2.1: Radiative towers are now tall for the purposes of the 'Hide tall entities' toggle.
   Bugfixes:
-    - Factorio 2.1 port: Used a new API to ensure the visualization range of radiative heaters is correct for higher quality levels.
+    - Factorio 2.1: Used a new API to ensure the visualization range of radiative heaters is correct for higher quality levels.
     - Fixed some crashes when loading old saves.
 ---------------------------------------------------------------------------------------------------
 Version: 4.23.0
 Date: 2026-06-24
   Changes:
-    - Updated for Factorio 2.1.
+    - Initial update for Factorio 2.1.
 ---------------------------------------------------------------------------------------------------
 Version: 4.22.4-4.22.3
 Date: 2026-06-14
