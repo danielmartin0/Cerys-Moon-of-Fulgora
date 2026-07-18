@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.25.0
+Version: 4.24.5
 Date: ????
   Bugfixes:
-    - Fixed that hydrogen bombs did not create lava pools on Vulcanus (nor the Aquilo/Space effects).
-    - Factorio 2.1: Fixed the bounding box of Cerysian ruins graphics and fixed one ruin that rendered as invisible.
+    - Factorio 2.1: Fixed the bounding box of Cerysian ruin graphics and fixed one ruin that rendered as invisible.
     - Factorio 2.1: Fixed that items could not be recycled if the player travels to Cerys before Fulgora.
+    - Fixed that hydrogen bombs did not create lava pools on Vulcanus (nor the Aquilo/Space effects).
   Compatibility:
-    - Krastorio 2: Cerys no longer alters the properties of nitric acid.
+    - Krastorio 2: Cerys no longer overwrites the properties of nitric acid when K2 is installed.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.4
 Date: 2026-07-15
