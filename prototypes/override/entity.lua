@@ -28,6 +28,10 @@ for _, entity in pairs(data.raw["burner-generator"]) do
 	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 end
 
+for _, entity in pairs(data.raw["asteroid-collector"]) do
+	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
+end
+
 for _, entity in pairs(data.raw["boiler"]) do
 	if entity.energy_source.type ~= "heat" then
 		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
