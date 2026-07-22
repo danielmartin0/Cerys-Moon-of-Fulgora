@@ -107,7 +107,7 @@ function Public.try_spawn_asteroid(surface)
 	end
 end
 
-function Public.spawn_solar_wind_particle(surface)
+function Public.spawn_solar_wind_particle(surface,tick)
 	local d = common.CERYS_RADIUS / lib.get_cerys_surface_stretch_factor(surface)
 
 	local y = math.random(-d - 8, d + 8)
@@ -124,7 +124,8 @@ function Public.spawn_solar_wind_particle(surface)
 
 	table.insert(storage.solar_wind_particles, {
 		rendering = r,
-		age = 0,
+		--age = 0,
+		birth_tick=tick,
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
 		surface_index = surface.index,
@@ -250,7 +251,7 @@ function Public.tick_1_move_solar_wind()
 				r.target = {type = "position", position = p} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
 			--end
 			
-			particle.age = particle.age + 1
+			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
 
 			if particle.marked_for_death_tick then
 				local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
@@ -324,7 +325,7 @@ function Public.tick_5_solar_wind_destroy_check()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
+function Public.tick_240_clean_up_cerys_solar_wind_particles(surface,tick)
 	local have_cerys = surface and surface.valid
 	local semimajor_axis, semiminor_axis, cerys_surface_index
 	if have_cerys then
@@ -340,7 +341,7 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface)
 		local particle = storage.solar_wind_particles[i]
 
 		local kill = false
-		if particle.age > MAX_AGE then
+		if (particle.birth_tick and (tick > particle.birth_tick + MAX_AGE)) or (particle.age and particle.age > MAX_AGE) then
 			kill = true
 		elseif not have_cerys or particle.surface_index ~= cerys_surface_index then
 		else
