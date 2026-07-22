@@ -6,6 +6,8 @@ local Public = {}
 local PLANET_OFFSET = { x = 50, y = -30 }
 local PLANET_PARALLAX = 0.35
 
+assert(helpers.is_valid_sprite_path("cerys-fulgora-background"),"Sprite path 'cerys-fulgora-background' is invalid.")
+
 function Public.tick_1_update_background_renderings(surface)
 	if game.is_multiplayer() and settings.global["cerys-disable-parallax-in-multiplayer"].value then
 		if not storage.parallax_disabled then
@@ -25,7 +27,7 @@ function Public.tick_1_update_background_renderings(surface)
 			local on_cerys = player.surface.name == "cerys"
 			local r = storage.background_renderings[player.index]
 
-			if on_cerys and helpers.is_valid_sprite_path("cerys-fulgora-background") then
+			if on_cerys then
 				local stretch = lib.get_cerys_surface_stretch_factor(surface)
 				local planet_stretch = stretch
 				local extra_y_offset = -5 * (stretch - 1)
