@@ -241,14 +241,15 @@ function Public.tick_1_move_solar_wind()
 	local i = 1
 	while i <= #storage.solar_wind_particles do
 		local particle = storage.solar_wind_particles[i]
-		local r = particle.rendering
-		local v = particle.velocity
+		--local r = particle.rendering
+		--local v = particle.velocity
 
-		if r and r.valid then
-			local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
-			particle.position = p
+		if particle.rendering and particle.rendering.valid then
+			--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
+			particle.position.x = particle.position.x + particle.velocity.x
+			particle.position.y = particle.position.y + particle.velocity.y
 			--if storage.player_looking_at_cerys then
-				r.target = {type = "position", position = p} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+				particle.rendering.target = {type = "position", position = particle.position} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
 			--end
 			
 			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
