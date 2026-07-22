@@ -134,6 +134,10 @@ script.on_event(defines.events.on_pre_build, function(event)
 	end
 end)
 
+script.on_event(defines.events.on_surface_deleted , function()
+	storage.surface_some_chunk_generated = nil
+end)
+
 script.on_event("bplib-overlaps", function(event)
 	for bp_index, entity in pairs(event.overlaps) do
 		if
@@ -260,7 +264,7 @@ function Public.simulation_tick(tick, cerys_surface)
 	end
 
 	if tick % 240 == 0 then
-		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(cerys_surface)
+		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(cerys_surface,tick)
 	end
 end
 
@@ -296,7 +300,7 @@ function Public.cerys_tick(surface, tick)
 		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
 			if math.random() < spawn_chance then
-				atmosphere.spawn_solar_wind_particle(surface)
+				atmosphere.spawn_solar_wind_particle(surface,tick)
 			end
 		end
 	end
@@ -336,7 +340,7 @@ function Public.cerys_tick(surface, tick)
 		cooling.tick_60_cool_boilers()
 	end
 
-	if (player_looking_at_surface or player_on_surface) and tick % ice.ICE_CHECK_INTERVAL == 0 then
+	if (player_looking_at_surface or player_on_surface) and (tick + 1) % ice.ICE_CHECK_INTERVAL == 0 then
 		ice.tick_ice(surface)
 	end
 
