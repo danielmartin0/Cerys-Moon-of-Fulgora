@@ -1,8 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.6
 Date: ????
+  Optimizations:
+    - Many performance optimizations thanks to MeteorSwarm.
   Compatibility:
-    - Asteroid collectors now also possess the Ambient Radiation surface condition so that mods like Muluna do not cause them to be placeable on Cerys.
+    - Asteroid collectors now possess an Ambient radiation surface condition (when placed).
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.5
 Date: 2026-07-18
