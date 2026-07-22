@@ -422,7 +422,10 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 					surface_cache[s_idx] = surface
 				end
 			end
+			if math.sqrt(particle.position.x^2+particle.position.y^2) > common.CERYS_RADIUS then goto continue end --Skip collision checks if particle is out of bounds of Cerys
+			
 			if surface then
+			local count =  surface.count_entities_filtered
 				local chars =
 					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 				if #chars > 0 then
@@ -474,15 +477,16 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 						end
 					end
 				end
-
-				local containers = surface.find_entities_filtered({
+				local container_filter = {
 					type = { "container", "logistic-container" },
 					position = particle.position,
 					-- has_item_inside = "uranium-238", -- this would only catch normal quality
 					radius = 0.75,
-				})
+				}
+				
 
-				if #containers > 0 then
+				if surface.count_entities_filtered(container_filter) > 0 then
+					local containers = surface.find_entities_filtered(container_filter)
 					local e = containers[1]
 					if e and e.valid then
 						local check = not (particle.last_checked_inv and particle.last_checked_inv == e.unit_number)
@@ -507,12 +511,13 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 
 				-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
 				if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
-					local belts = surface.find_entities_filtered({
-						type = "transport-belt",
-						position = particle.position,
-						radius = 0.5,
-					})
-					if #belts > 0 then
+					local belt_filter = {
+							type = "transport-belt",
+							position = particle.position,
+							radius = 0.5,
+						}
+					if surface.count_entities_filtered(belt_filter) > 0 then
+						local belts = surface.find_entities_filtered(belt_filter)
 						local e = belts[1]
 						if e and e.valid then
 							local lines = {
@@ -575,6 +580,7 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 					end
 				end
 			end
+			::continue::
 		end
 	end
 end
