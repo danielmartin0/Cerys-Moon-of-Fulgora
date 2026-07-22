@@ -246,9 +246,9 @@ function Public.tick_1_move_solar_wind()
 		if r and r.valid then
 			local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
 			particle.position = p
-			if storage.player_looking_at_cerys then
+			--if storage.player_looking_at_cerys then
 				r.target = {type = "position", position = p} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
-			end
+			--end
 			
 			particle.age = particle.age + 1
 
