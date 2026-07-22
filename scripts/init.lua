@@ -168,6 +168,9 @@ function Public.ensure_top_level_storage()
 	if not storage.accrued_probability_units then
 		storage.accrued_probability_units = 0
 	end
+	if not storage.cached_scale_factor then
+		 storage.cached_scale_factor = {}
+	end
 end
 
 function Public.ensure_cerys_storage_and_tables()

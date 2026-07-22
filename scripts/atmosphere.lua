@@ -226,6 +226,16 @@ local function remove_particle_at(i)
 end
 Public.remove_particle_at = remove_particle_at
 
+local function cached_scale_factor(ticks_until_death)
+	local s = storage.cached_scale_factor[ticks_until_death]
+    if s == nil then
+        s = math.sqrt(math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME))
+        storage.cached_scale_factor[ticks_until_death] = s
+    end
+    return s
+
+end
+
 function Public.tick_1_move_solar_wind()
 	local i = 1
 	while i <= #storage.solar_wind_particles do
@@ -236,7 +246,10 @@ function Public.tick_1_move_solar_wind()
 		if r and r.valid then
 			local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
 			particle.position = p
-			r.target = p
+			if storage.player_looking_at_cerys then
+				r.target = {type = "position", position = p} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+			end
+			
 			particle.age = particle.age + 1
 
 			if particle.marked_for_death_tick then
@@ -249,13 +262,13 @@ function Public.tick_1_move_solar_wind()
 					remove_particle_at(i)
 				else
 					if particle.rendering and particle.rendering.valid then
-						local scale_factor = math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME) ^ (1 / 2)
+						local scale_factor = cached_scale_factor(ticks_until_death)
 						particle.rendering.x_scale = scale_factor
 						particle.rendering.y_scale = scale_factor
 					end
 				end
 			end
-
+			
 			i = i + 1
 		else
 			remove_particle_at(i)

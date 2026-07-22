@@ -134,6 +134,10 @@ script.on_event(defines.events.on_pre_build, function(event)
 	end
 end)
 
+script.on_event(defines.events.on_surface_deleted , function()
+	storage.surface_some_chunk_generated = nil
+end)
+
 script.on_event("bplib-overlaps", function(event)
 	for bp_index, entity in pairs(event.overlaps) do
 		if
