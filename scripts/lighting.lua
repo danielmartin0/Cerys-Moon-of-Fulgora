@@ -247,8 +247,11 @@ function Public.tick_update_lights()
 	for unit_number, panel in pairs(storage.cerys.solar_panels) do
 		if panel.entity and panel.entity.valid then
 			-- if panel.entity.is_connected_to_electric_network() then -- doesn't work?
-			local x = panel.entity.position.x
-			local y = panel.entity.position.y
+			if not panel.position then
+				panel.position = panel.entity.position
+			end
+			local x = panel.position.x
+			local y = panel.position.y
 
 			local d = math.sqrt(x ^ 2 + y ^ 2)
 			if d > R * 0.99 then
