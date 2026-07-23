@@ -21,6 +21,25 @@ local function cached_cos(x)
 
 end
 
+local function cached_stretched_daytime(daytime)
+	local stretched_daytime = storage.stretched_daytime[daytime]
+    if stretched_daytime == nil then
+		if daytime < 46 / 100 then
+			return 0
+		elseif daytime < 70 / 100 then
+			stretched_daytime = 0.5 * (daytime - 46 / 100) / (24 / 100)
+		elseif daytime < 76 / 100 then
+			stretched_daytime = 0.5
+		else
+			stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
+		end
+        storage.stretched_daytime[daytime] = stretched_daytime
+    end
+    return stretched_daytime
+
+end
+
+
 function Public.tick_update_lights()
 	if not storage.cerys then
 		return
@@ -35,7 +54,7 @@ function Public.tick_update_lights()
 
 	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
-
+	daytime = math.floor(daytime*10000 + 0.5)/10000 --Round to nearest 0.0001 To reduce size of lookup table
 	if settings.global["cerys-dynamic-lighting"].value and elapsed_ticks < 10 * 60 then -- Avoid cargo pod graphical issue on first visit
 		surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
 		surface.min_brightness = 0.2
@@ -80,16 +99,8 @@ function Public.tick_update_lights()
 	--== Graphics ==--
 	-- Commented lines are typically less polished versions.
 
-	local stretched_daytime
-	if daytime < 46 / 100 then
-		stretched_daytime = 0
-	elseif daytime < 70 / 100 then
-		stretched_daytime = 0.5 * (daytime - 46 / 100) / (24 / 100)
-	elseif daytime < 76 / 100 then
-		stretched_daytime = 0.5
-	else
-		stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
-	end
+	local stretched_daytime = cached_stretched_daytime(daytime)
+	
 	-- local stretched_daytime = daytime
 	local phase = (stretched_daytime + 0.25) * 2 * 180 -- puts midday at phase = 90
 	phase = math.floor(phase*100 + 0.5)/100 --Round to nearest 0.01 To reduce size of trig lookup table
@@ -107,10 +118,15 @@ function Public.tick_update_lights()
 	local extra_scale_when_covering = 1 + 1 * cached_sin(phase) ^ 20
 	-- local elbow_room_factor = 1 -- for testing
 
+	--Nothing after this point can be cached
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
 	local light_radius = (R * circle_scaling_effect) * extra_scale_when_covering
 
 	local is_white_circle = (phase % (2 * 180)) < 180
+
+
+
+	
 	local use_rectangle = math.abs(bounded_x) > 0.83
 
 	local light_1 = storage.cerys.light.rendering_1
