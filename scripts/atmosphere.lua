@@ -254,9 +254,9 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 end
 
 function Public.tick_1_move_solar_wind()
-	local i = 1
+	--local i = 1
 	
-	while i <= #storage.solar_wind_particles do
+	for i = #storage.solar_wind_particles, 1, -1 do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
 		--local v = particle.velocity
@@ -281,7 +281,7 @@ function Public.tick_1_move_solar_wind()
 				handle_death(particle,i)
 			end
 			
-			i = i + 1
+			
 		
 			
 		
