@@ -1,7 +1,14 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.24.6
+Version: 4.24.7
 Date: ????
   Changes:
+---------------------------------------------------------------------------------------------------
+Version: 4.24.6
+Date: 2026-07-22
+  Optimizations:
+    - Many performance optimizations thanks to MeteorSwarm.
+  Compatibility:
+    - Asteroid collectors now possess an Ambient radiation surface condition (when placed).
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.5
 Date: 2026-07-18
