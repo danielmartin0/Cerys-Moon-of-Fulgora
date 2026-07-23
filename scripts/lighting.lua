@@ -7,22 +7,17 @@ local Public = {}
 local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
 local function cached_sin(x)
-	local s = storage.sin[x]
+	local s = storage.sin[x % 360]
     if s == nil then
-        s = math.sin(x)
-        storage.sin[x] = s
+        s = math.sin(x*(math.pi/180))
+        storage.sin[x % 360] = s
     end
     return s
 
 end
 
 local function cached_cos(x)
-	local s = storage.cos[x]
-    if s == nil then
-        s = math.cos(x)
-        storage.cos[x] = s
-    end
-    return s
+    return cached_sin(x + 90)
 
 end
 
@@ -96,11 +91,11 @@ function Public.tick_update_lights()
 		stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
 	end
 	-- local stretched_daytime = daytime
+	local phase = (stretched_daytime + 0.25) * 2 * 180 -- puts midday at phase = 90
+	phase = math.floor(phase*100 + 0.5)/100 --Round to nearest 0.01 To reduce size of trig lookup table
 
-	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- puts midday at phase = pi/2
-
-	local bounded_x = (1 - cached_sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
-	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2)) -- for testing
+	local bounded_x = (1 - cached_sin(phase % 180)) * (((phase % 180) < (180 / 2)) and 1 or -1)
+	-- local bounded_x = (1 - (phase % 180) / (180 / 2)) -- for testing
 
 	local regularized_bounded_x = math.max(math.min(bounded_x, 0.83), -0.83)
 	-- local regularized_bounded_x = math.tanh(bounded_x) * 0.9 / math.tanh(1) -- Changing size whilst it's huge causes large moving artifacts
@@ -115,21 +110,21 @@ function Public.tick_update_lights()
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
 	local light_radius = (R * circle_scaling_effect) * extra_scale_when_covering
 
-	local is_white_circle = (phase % (2 * math.pi)) < math.pi
+	local is_white_circle = (phase % (2 * 180)) < 180
 	local use_rectangle = math.abs(bounded_x) > 0.83
 
 	local light_1 = storage.cerys.light.rendering_1
 	local light_2 = storage.cerys.light.rendering_2
 
 	if use_rectangle then
-		light_x = R * cached_cos((phase + math.pi / 2) % math.pi) * 0.7 -- constant factor is not an exact science
+		light_x = R * cached_cos((phase + 180 / 2) % 180) * 0.7 -- constant factor is not an exact science
 	end
 	local light_position = { x = light_x, y = 0 }
 	local light_scale = light_radius * box_over_circle / 64
 	if use_rectangle then
 		light_scale = light_scale * 0.65 -- not an exact science
 	end
-	local rectangle_sprite = ((phase % (2 * math.pi)) > math.pi / 2 and (phase % (2 * math.pi)) < 3 * math.pi / 2)
+	local rectangle_sprite = ((phase % (2 * 180)) > 180 / 2 and (phase % (2 * 180)) < 3 * 180 / 2)
 			and "cerys-solar-light-rectangle-inverted"
 		or "cerys-solar-light-rectangle"
 
@@ -248,19 +243,19 @@ function Public.tick_update_lights()
 			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
 			local adjusted_longitude = 2 * panel_longitude_radians / 3 -- This multiplication accounts for a 2d–3d perspective issue.
 
-			local angle = (phase - math.pi / 2 + adjusted_longitude) % (2 * math.pi)
+			local angle = (phase - 180 / 2 + adjusted_longitude) % (2 * 180)
 
-			local penumbra_size = math.pi / 14 -- must be <= math.pi / 4
+			local penumbra_size = 180 / 14 -- must be <= 180 / 4
 
 			local efficiency
-			if angle < math.pi / 2 - penumbra_size then
+			if angle < 180 / 2 - penumbra_size then
 				efficiency = 1
-			elseif angle < math.pi / 2 + penumbra_size then
-				efficiency = 1 - (angle - (math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
-			elseif angle < 3 * math.pi / 2 - penumbra_size then
+			elseif angle < 180 / 2 + penumbra_size then
+				efficiency = 1 - (angle - (180 / 2 - penumbra_size)) / (2 * penumbra_size)
+			elseif angle < 3 * 180 / 2 - penumbra_size then
 				efficiency = 0
-			elseif angle < 3 * math.pi / 2 + penumbra_size then
-				efficiency = (angle - (3 * math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
+			elseif angle < 3 * 180 / 2 + penumbra_size then
+				efficiency = (angle - (3 * 180 / 2 - penumbra_size)) / (2 * penumbra_size)
 			else
 				efficiency = 1
 			end

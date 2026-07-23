@@ -174,9 +174,6 @@ function Public.ensure_top_level_storage()
 	if not storage.sin then
 		storage.sin = {}
 	end
-	if not storage.cos then
-		storage.cos = {}
-	end
 end
 
 function Public.ensure_cerys_storage_and_tables()
