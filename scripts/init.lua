@@ -171,6 +171,12 @@ function Public.ensure_top_level_storage()
 	if not storage.cached_scale_factor then
 		 storage.cached_scale_factor = {}
 	end
+	if not storage.sin then
+		storage.sin = {}
+	end
+	if not storage.stretched_daytime then
+		storage.stretched_daytime = {}
+	end
 end
 
 function Public.ensure_cerys_storage_and_tables()

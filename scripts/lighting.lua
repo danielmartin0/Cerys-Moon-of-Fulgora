@@ -6,6 +6,40 @@ local Public = {}
 -- local DAY_LENGTH = 0.5 * 60 * 60
 local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
+local function cached_sin(x)
+	local s = storage.sin[x % 360]
+    if s == nil then
+        s = math.sin(x*(math.pi/180))
+        storage.sin[x % 360] = s
+    end
+    return s
+
+end
+
+local function cached_cos(x)
+    return cached_sin(x + 90)
+
+end
+
+local function cached_stretched_daytime(daytime)
+	local stretched_daytime = storage.stretched_daytime[daytime]
+    if stretched_daytime == nil then
+		if daytime < 46 / 100 then
+			return 0
+		elseif daytime < 70 / 100 then
+			stretched_daytime = 0.5 * (daytime - 46 / 100) / (24 / 100)
+		elseif daytime < 76 / 100 then
+			stretched_daytime = 0.5
+		else
+			stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
+		end
+        storage.stretched_daytime[daytime] = stretched_daytime
+    end
+    return stretched_daytime
+
+end
+
+
 function Public.tick_update_lights()
 	if not storage.cerys then
 		return
@@ -20,7 +54,7 @@ function Public.tick_update_lights()
 
 	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
-
+	daytime = math.floor(daytime*10000 + 0.5)/10000 --Round to nearest 0.0001 To reduce size of lookup table
 	if settings.global["cerys-dynamic-lighting"].value and elapsed_ticks < 10 * 60 then -- Avoid cargo pod graphical issue on first visit
 		surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
 		surface.min_brightness = 0.2
@@ -65,22 +99,14 @@ function Public.tick_update_lights()
 	--== Graphics ==--
 	-- Commented lines are typically less polished versions.
 
-	local stretched_daytime
-	if daytime < 46 / 100 then
-		stretched_daytime = 0
-	elseif daytime < 70 / 100 then
-		stretched_daytime = 0.5 * (daytime - 46 / 100) / (24 / 100)
-	elseif daytime < 76 / 100 then
-		stretched_daytime = 0.5
-	else
-		stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
-	end
+	local stretched_daytime = cached_stretched_daytime(daytime)
+	
 	-- local stretched_daytime = daytime
+	local phase = (stretched_daytime + 0.25) * 2 * 180 -- puts midday at phase = 90
+	phase = math.floor(phase*100 + 0.5)/100 --Round to nearest 0.01 To reduce size of trig lookup table
 
-	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- puts midday at phase = pi/2
-
-	local bounded_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
-	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2)) -- for testing
+	local bounded_x = (1 - cached_sin(phase % 180)) * (((phase % 180) < (180 / 2)) and 1 or -1)
+	-- local bounded_x = (1 - (phase % 180) / (180 / 2)) -- for testing
 
 	local regularized_bounded_x = math.max(math.min(bounded_x, 0.83), -0.83)
 	-- local regularized_bounded_x = math.tanh(bounded_x) * 0.9 / math.tanh(1) -- Changing size whilst it's huge causes large moving artifacts
@@ -89,27 +115,32 @@ function Public.tick_update_lights()
 	-- local circle_scaling_effect = 1 -- for testing
 
 	-- Avoids a) the circle being a snug fit (ensuring it at least as far as Fulgora), b) graphical overflow of the negative circle's image boundary
-	local extra_scale_when_covering = 1 + 1 * math.sin(phase) ^ 20
+	local extra_scale_when_covering = 1 + 1 * cached_sin(phase) ^ 20
 	-- local elbow_room_factor = 1 -- for testing
 
+	--Nothing after this point can be cached
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
 	local light_radius = (R * circle_scaling_effect) * extra_scale_when_covering
 
-	local is_white_circle = (phase % (2 * math.pi)) < math.pi
+	local is_white_circle = (phase % (2 * 180)) < 180
+
+
+
+	
 	local use_rectangle = math.abs(bounded_x) > 0.83
 
 	local light_1 = storage.cerys.light.rendering_1
 	local light_2 = storage.cerys.light.rendering_2
 
 	if use_rectangle then
-		light_x = R * math.cos((phase + math.pi / 2) % math.pi) * 0.7 -- constant factor is not an exact science
+		light_x = R * cached_cos((phase + 180 / 2) % 180) * 0.7 -- constant factor is not an exact science
 	end
 	local light_position = { x = light_x, y = 0 }
 	local light_scale = light_radius * box_over_circle / 64
 	if use_rectangle then
 		light_scale = light_scale * 0.65 -- not an exact science
 	end
-	local rectangle_sprite = ((phase % (2 * math.pi)) > math.pi / 2 and (phase % (2 * math.pi)) < 3 * math.pi / 2)
+	local rectangle_sprite = ((phase % (2 * 180)) > 180 / 2 and (phase % (2 * 180)) < 3 * 180 / 2)
 			and "cerys-solar-light-rectangle-inverted"
 		or "cerys-solar-light-rectangle"
 
@@ -216,8 +247,11 @@ function Public.tick_update_lights()
 	for unit_number, panel in pairs(storage.cerys.solar_panels) do
 		if panel.entity and panel.entity.valid then
 			-- if panel.entity.is_connected_to_electric_network() then -- doesn't work?
-			local x = panel.entity.position.x
-			local y = panel.entity.position.y
+			if not panel.position then
+				panel.position = panel.entity.position
+			end
+			local x = panel.position.x
+			local y = panel.position.y
 
 			local d = math.sqrt(x ^ 2 + y ^ 2)
 			if d > R * 0.99 then
@@ -228,19 +262,19 @@ function Public.tick_update_lights()
 			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
 			local adjusted_longitude = 2 * panel_longitude_radians / 3 -- This multiplication accounts for a 2d–3d perspective issue.
 
-			local angle = (phase - math.pi / 2 + adjusted_longitude) % (2 * math.pi)
+			local angle = (phase - 180 / 2 + adjusted_longitude) % (2 * 180)
 
-			local penumbra_size = math.pi / 14 -- must be <= math.pi / 4
+			local penumbra_size = 180 / 14 -- must be <= 180 / 4
 
 			local efficiency
-			if angle < math.pi / 2 - penumbra_size then
+			if angle < 180 / 2 - penumbra_size then
 				efficiency = 1
-			elseif angle < math.pi / 2 + penumbra_size then
-				efficiency = 1 - (angle - (math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
-			elseif angle < 3 * math.pi / 2 - penumbra_size then
+			elseif angle < 180 / 2 + penumbra_size then
+				efficiency = 1 - (angle - (180 / 2 - penumbra_size)) / (2 * penumbra_size)
+			elseif angle < 3 * 180 / 2 - penumbra_size then
 				efficiency = 0
-			elseif angle < 3 * math.pi / 2 + penumbra_size then
-				efficiency = (angle - (3 * math.pi / 2 - penumbra_size)) / (2 * penumbra_size)
+			elseif angle < 3 * 180 / 2 + penumbra_size then
+				efficiency = (angle - (3 * 180 / 2 - penumbra_size)) / (2 * penumbra_size)
 			else
 				efficiency = 1
 			end
