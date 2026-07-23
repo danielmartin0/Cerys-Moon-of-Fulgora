@@ -6,6 +6,26 @@ local Public = {}
 -- local DAY_LENGTH = 0.5 * 60 * 60
 local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
+local function cached_sin(x)
+	local s = storage.sin[x]
+    if s == nil then
+        s = math.sin(x)
+        storage.sin[x] = s
+    end
+    return s
+
+end
+
+local function cached_cos(x)
+	local s = storage.cos[x]
+    if s == nil then
+        s = math.cos(x)
+        storage.cos[x] = s
+    end
+    return s
+
+end
+
 function Public.tick_update_lights()
 	if not storage.cerys then
 		return
@@ -79,7 +99,7 @@ function Public.tick_update_lights()
 
 	local phase = (stretched_daytime + 0.25) * 2 * math.pi -- puts midday at phase = pi/2
 
-	local bounded_x = (1 - math.sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
+	local bounded_x = (1 - cached_sin(phase % math.pi)) * (((phase % math.pi) < (math.pi / 2)) and 1 or -1)
 	-- local bounded_x = (1 - (phase % math.pi) / (math.pi / 2)) -- for testing
 
 	local regularized_bounded_x = math.max(math.min(bounded_x, 0.83), -0.83)
@@ -89,7 +109,7 @@ function Public.tick_update_lights()
 	-- local circle_scaling_effect = 1 -- for testing
 
 	-- Avoids a) the circle being a snug fit (ensuring it at least as far as Fulgora), b) graphical overflow of the negative circle's image boundary
-	local extra_scale_when_covering = 1 + 1 * math.sin(phase) ^ 20
+	local extra_scale_when_covering = 1 + 1 * cached_sin(phase) ^ 20
 	-- local elbow_room_factor = 1 -- for testing
 
 	local light_x = R * regularized_bounded_x * circle_scaling_effect + R * bounded_x
@@ -102,7 +122,7 @@ function Public.tick_update_lights()
 	local light_2 = storage.cerys.light.rendering_2
 
 	if use_rectangle then
-		light_x = R * math.cos((phase + math.pi / 2) % math.pi) * 0.7 -- constant factor is not an exact science
+		light_x = R * cached_cos((phase + math.pi / 2) % math.pi) * 0.7 -- constant factor is not an exact science
 	end
 	local light_position = { x = light_x, y = 0 }
 	local light_scale = light_radius * box_over_circle / 64
