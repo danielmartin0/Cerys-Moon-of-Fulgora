@@ -35,6 +35,7 @@ local MAX_AGE = MIN_INITIAL_VELOCITY * 2 * 32 * (common.CERYS_RADIUS + 150) * 10
 local MIN_SPEED_THRESHOLD = 0.025
 local MIN_SPEED_THRESHOLD_SQUARED = MIN_SPEED_THRESHOLD * MIN_SPEED_THRESHOLD
 local PARTICLE_SHRINK_TIME = 14
+local MAX_COLLISION_RADIUS = 1.2
 
 local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
@@ -420,6 +421,13 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 		cerys_surface = nil
 	end
 
+	local cerys_surface_index, bound_squared
+	if cerys_surface then
+		local bound = lib.get_cerys_semimajor_axis(cerys_surface) + MAX_COLLISION_RADIUS
+		cerys_surface_index = cerys_surface.index
+		bound_squared = bound * bound
+	end
+
 	for i = 1, #particles do
 		local particle = particles[i]
 		if not particle.is_ghost then
@@ -434,8 +442,14 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 					surface_cache[s_idx] = surface
 				end
 			end
-			if math.sqrt(particle.position.x^2+particle.position.y^2) > common.CERYS_RADIUS then goto continue end --Skip collision checks if particle is out of bounds of Cerys
-			
+			if bound_squared and (s_idx == nil or s_idx == cerys_surface_index) then
+				local px = particle.position.x
+				local py = particle.position.y
+				if px * px + py * py > bound_squared then
+					goto continue
+				end
+			end
+
 			if surface then
 			local count =  surface.count_entities_filtered
 				local chars =
