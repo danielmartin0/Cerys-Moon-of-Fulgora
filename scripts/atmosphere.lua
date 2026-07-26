@@ -353,7 +353,7 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface,tick)
 		local particle = storage.solar_wind_particles[i]
 
 		local kill = false
-		if (particle.birth_tick and (tick > particle.birth_tick + MAX_AGE)) or (particle.age and particle.age > MAX_AGE) then
+		if tick > particle.birth_tick + MAX_AGE then
 			kill = true
 		elseif not have_cerys or particle.surface_index ~= cerys_surface_index then
 		else

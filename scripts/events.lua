@@ -402,7 +402,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 
 		table.insert(storage.solar_wind_particles, {
 			rendering = r,
-			age = 0,
+			birth_tick = event.tick,
 			velocity = atmosphere.initial_solar_wind_velocity(),
 			position = p2,
 			is_ghost = true,
