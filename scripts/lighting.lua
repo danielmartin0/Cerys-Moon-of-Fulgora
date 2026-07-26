@@ -260,9 +260,9 @@ function Public.tick_update_lights()
 			end
 
 			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
-			local adjusted_longitude = 2 * panel_longitude_radians / 3 -- This multiplication accounts for a 2d–3d perspective issue.
+			local adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 * (180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
 
-			local angle = (phase - 180 / 2 + adjusted_longitude) % (2 * 180)
+			local angle = (phase - 180 / 2 + adjusted_longitude_degrees) % (2 * 180)
 
 			local penumbra_size = 180 / 14 -- must be <= 180 / 4
 
