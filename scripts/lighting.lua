@@ -247,20 +247,24 @@ function Public.tick_update_lights()
 	for unit_number, panel in pairs(storage.cerys.solar_panels) do
 		if panel.entity and panel.entity.valid then
 			-- if panel.entity.is_connected_to_electric_network() then -- doesn't work?
-			if not panel.position then
-				panel.position = panel.entity.position
-			end
-			local x = panel.position.x
-			local y = panel.position.y
+			local adjusted_longitude_degrees = panel.adjusted_longitude_degrees
+			if not adjusted_longitude_degrees then
+				local position = panel.position or panel.entity.position
+				panel.position = position
 
-			local d = math.sqrt(x ^ 2 + y ^ 2)
-			if d > R * 0.99 then
-				x = x / d * R * 0.99
-				y = y / d * R * 0.99
-			end
+				local x = position.x
+				local y = position.y
 
-			local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
-			local adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 * (180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
+				local d = math.sqrt(x ^ 2 + y ^ 2)
+				if d > R * 0.99 then
+					x = x / d * R * 0.99
+					y = y / d * R * 0.99
+				end
+
+				local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
+				adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 * (180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
+				panel.adjusted_longitude_degrees = adjusted_longitude_degrees
+			end
 
 			local angle = (phase - 180 / 2 + adjusted_longitude_degrees) % (2 * 180)
 
