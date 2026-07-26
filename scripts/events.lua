@@ -134,8 +134,9 @@ script.on_event(defines.events.on_pre_build, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_surface_deleted , function()
+script.on_event({ defines.events.on_surface_deleted, defines.events.on_surface_cleared }, function()
 	storage.surface_some_chunk_generated = nil
+	storage.cerys_surface_stretch_factor = nil
 end)
 
 script.on_event("bplib-overlaps", function(event)
