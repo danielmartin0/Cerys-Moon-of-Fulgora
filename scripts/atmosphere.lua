@@ -237,44 +237,55 @@ local function cached_scale_factor(ticks_until_death)
 
 end
 
+local function handle_death(particle,i)
+local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
+				
+	if ticks_until_death < 0 then
+		particle.rendering.destroy()
+		remove_particle_at(i)
+	else
+		
+		local scale_factor = cached_scale_factor(ticks_until_death)
+		particle.rendering.x_scale = scale_factor
+		particle.rendering.y_scale = scale_factor
+		
+	end
+
+end
+
 function Public.tick_1_move_solar_wind()
-	local i = 1
-	while i <= #storage.solar_wind_particles do
+	--local i = 1
+	
+	for i = #storage.solar_wind_particles, 1, -1 do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
 		--local v = particle.velocity
-
-		if particle.rendering and particle.rendering.valid then
+		if not (particle.rendering and particle.rendering.valid) then 
+			remove_particle_at(i)
+			goto continue
+		end
+		
 			--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
 			particle.position.x = particle.position.x + particle.velocity.x
+			
 			particle.position.y = particle.position.y + particle.velocity.y
+			
+			
 			--if storage.player_looking_at_cerys then
-				particle.rendering.target = {type = "position", position = particle.position} --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+				particle.rendering.target =  particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
 			--end
 			
 			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
 
 			if particle.marked_for_death_tick then
-				local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
-
-				if ticks_until_death < 0 then
-					if particle.rendering and particle.rendering.valid then
-						particle.rendering.destroy()
-					end
-					remove_particle_at(i)
-				else
-					if particle.rendering and particle.rendering.valid then
-						local scale_factor = cached_scale_factor(ticks_until_death)
-						particle.rendering.x_scale = scale_factor
-						particle.rendering.y_scale = scale_factor
-					end
-				end
+				handle_death(particle,i)
 			end
 			
-			i = i + 1
-		else
-			remove_particle_at(i)
-		end
+			
+		
+			
+		
+		::continue::
 	end
 end
 
