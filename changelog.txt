@@ -1,11 +1,12 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.8
 Date: ????
-  Changes:
+  Optimizations:
+    - Further performance improvements.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.7
 Date: 2026-07-28
-  Changes:
+  Optimizations:
     - Further performance improvements thanks to MeteorSwarm.
   Bugfixes:
     - Factorio 2.1: Fixed that the craftable Mixed-oxide reactor entity had no neighbor bonuses.
