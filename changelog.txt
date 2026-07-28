@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.7
-Date: ????
+Date: 2026-07-28
   Changes:
     - Further performance improvements thanks to MeteorSwarm.
   Bugfixes:
