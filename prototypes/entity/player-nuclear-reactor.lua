@@ -16,6 +16,30 @@ data:extend({
 		corpse = "nuclear-reactor-remnants",
 		dying_explosion = "nuclear-reactor-explosion",
 		neighbour_bonus = 1,
+		neighbour_connectable = {
+			connections = {
+				{
+					location = { position = { 0, -3.5 }, direction = defines.direction.north },
+					category = "nuclear-reactor",
+					neighbour_category = { "nuclear-reactor" },
+				},
+				{
+					location = { position = { 3.5, 0 }, direction = defines.direction.east },
+					category = "nuclear-reactor",
+					neighbour_category = { "nuclear-reactor" },
+				},
+				{
+					location = { position = { 0, 3.5 }, direction = defines.direction.south },
+					category = "nuclear-reactor",
+					neighbour_category = { "nuclear-reactor" },
+				},
+				{
+					location = { position = { -3.5, 0 }, direction = defines.direction.west },
+					category = "nuclear-reactor",
+					neighbour_category = { "nuclear-reactor" },
+				},
+			},
+		},
 		energy_source = {
 			type = "burner",
 			fuel_categories = { "nuclear-mixed-oxide" },
