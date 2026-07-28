@@ -6,13 +6,9 @@ local Public = {}
 local PLANET_OFFSET = { x = 50, y = -30 }
 local PLANET_PARALLAX = 0.35
 
-local background_sprite_valid = nil
+local background_sprite_valid = helpers.is_valid_sprite_path("cerys-fulgora-background")
 
 function Public.tick_1_update_background_renderings(surface)
-	if background_sprite_valid == nil then
-		background_sprite_valid = helpers.is_valid_sprite_path("cerys-fulgora-background")
-	end
-
 	if game.is_multiplayer() and settings.global["cerys-disable-parallax-in-multiplayer"].value then
 		if not storage.parallax_disabled then
 			Public.reset_background_rendering_positions()
