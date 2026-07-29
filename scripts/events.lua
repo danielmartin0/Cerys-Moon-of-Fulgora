@@ -252,8 +252,8 @@ function Public.simulation_tick(tick, cerys_surface)
 			atmosphere.tick_5_solar_wind_destroy_check()
 		end
 
-		if tick % (8 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_8_solar_wind_collisions(solar_wind_tick_multiplier)
+		if tick % (6 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_6_solar_wind_collisions(solar_wind_tick_multiplier)
 		end
 
 		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then

@@ -455,7 +455,7 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 end
 
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
-function Public.tick_8_solar_wind_collisions(probability_multiplier)
+function Public.tick_6_solar_wind_collisions(probability_multiplier)
 	local particles = storage.solar_wind_particles
 	local surface_cache = {}
 	local cerys_surface = game.get_surface("cerys")
