@@ -761,7 +761,8 @@ local player_view_changed_events = {
 	defines.events.on_player_display_resolution_changed,
 	defines.events.on_player_display_scale_changed,
 	"cerys-zoom-in",
-	"cerys-zoom-out"
+	"cerys-zoom-out",
+	defines.events.on_player_controller_changed
 }
 
 script.on_event(player_view_changed_events,player_views.do_player_view_changed)
