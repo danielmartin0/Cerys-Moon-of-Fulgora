@@ -1,5 +1,6 @@
 local common = require("common")
 local lib = require("lib")
+local player_views = require("scripts.player_views")
 local find = lib.find
 
 local Public = {}
@@ -40,6 +41,8 @@ local CHANCE_DAMAGE_CHARACTER = common.HARD_MODE_ON and 1 or 0.011
 
 local CHANCE_MUTATE_BELT_URANIUM = 1 / 393
 local CHANCE_MUTATE_INVENTORY_URANIUM = 1 / 11764
+
+local OFFSCREEN = {1000,1000}
 
 local ASTEROID_TO_PERCENTAGE_RATE = {
 	["small-metallic-asteroid-planetary"] = 0.8,
@@ -129,6 +132,7 @@ function Public.spawn_solar_wind_particle(surface,tick)
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
 		surface_index = surface.index,
+		render_particle = true
 	})
 end
 
@@ -253,9 +257,24 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 
 end
 
-function Public.tick_1_move_solar_wind()
+function Public.tick_1_move_solar_wind(render_all)
 	--local i = 1
 	
+	local update_render = not render_all and (storage.update_solar_wind_render or game.tick % 60 == 0) --Every 10 ticks, check position of particle relative to player views to see if it's time to render
+	local player_views_on_cerys = {
+
+	}
+	if update_render then
+		
+		if storage.players_cache then
+			for index,player in pairs(game.connected_players) do
+				local cache = storage.players_cache[index]
+				if cache and cache.looking_at_cerys then
+					player_views_on_cerys[index] = player.position
+				end
+			end
+		end
+	end
 	for i = #storage.solar_wind_particles, 1, -1 do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
@@ -271,9 +290,26 @@ function Public.tick_1_move_solar_wind()
 			particle.position.y = particle.position.y + particle.velocity.y
 			
 			
-			--if storage.player_looking_at_cerys then
+			if update_render then 
+				particle.render_particle = false
+				for player_index,player in pairs(player_views_on_cerys) do
+				
+					if player_views.can_see_position(player_index,player_views_on_cerys[player_index],particle.position) then
+						particle.render_particle = true
+						break
+					end
+					
+				end
+				if particle.render_particle == false then
+					particle.rendering.target = OFFSCREEN
+				end
+				storage.update_solar_wind_render = false
+			end
+			
+
+			if render_all or particle.render_particle then
 				particle.rendering.target =  particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
-			--end
+			end
 			
 			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
 
@@ -618,6 +654,7 @@ function Public.irradiation_chance_effect(surface, position)
 			height = 0.3,
 			vertical_speed = 0.03,
 			frame_speed = 1,
+			
 		})
 	end
 end
