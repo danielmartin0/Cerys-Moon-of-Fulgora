@@ -158,6 +158,11 @@ function Public.ensure_top_level_storage()
 	if not storage.visible_solar_wind_particles then
 		storage.visible_solar_wind_particles = {}
 	end
+	if not storage.static_particle_colliders then
+		storage.static_particle_colliders = {}
+		--storage.static_particle_colliders[x][y] = LuaEntity
+		-- To check for collision, simply check if storage.static_particle_colliders[x][y] exists
+	end
 	if not storage.off_cerys_state_count then
 		storage.off_cerys_state_count = (storage.cerys and storage.cerys.off_cerys_state_count) or 0
 		if storage.cerys then storage.cerys.off_cerys_state_count = nil end
