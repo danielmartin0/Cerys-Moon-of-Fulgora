@@ -256,7 +256,7 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 	end
 
 end
-local RENDER_OUT_OF_VIEW_PERIOD = 3
+local RENDER_OUT_OF_VIEW_PERIOD = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
 function Public.tick_1_move_solar_wind(render_all)
 	--local i = 1
