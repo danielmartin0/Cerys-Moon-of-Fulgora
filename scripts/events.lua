@@ -45,6 +45,10 @@ script.on_event({
 			return
 		end
 	end
+	if on_cerys and rro.contains({"transport-belt","container","logistic-container"},entity.type) then
+		collisions.add_entity_to_collision_map(entity)
+	end
+
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
