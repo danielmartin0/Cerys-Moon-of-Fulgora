@@ -32,8 +32,8 @@ function Public.can_see_position(player_index, center, target)
     return not (dy > player.half_height) and not (-dy > player.half_height)
 end
 
-local screen_safety_factor = 25 --Factor of safety to pad "screen" by to prevent pop-in from particles
-
+local screen_safety_factor = 5 --Factor of safety to pad "screen" by to prevent pop-in from particles
+local screen_safety_factor_width = 10
 function Public.do_player_view_changed(event) --Run when player view has changed
     local player = game.players[event.player_index]
     if true or not storage.players_cache[event.player_index] or storage.players_cache[event.player_index].tick + 2 < event.tick then
@@ -46,7 +46,7 @@ function Public.do_player_view_changed(event) --Run when player view has changed
             zoom_limits = player.zoom_limits
 	    }
         local cache = storage.players_cache[event.player_index]
-        cache.half_width = screen_safety_factor + cache.display_resolution.width / (cache.display_scale * 32 * cache.zoom) / 2
+        cache.half_width = screen_safety_factor_width + screen_safety_factor + cache.display_resolution.width / (cache.display_scale * 32 * cache.zoom) / 2
         cache.half_height = screen_safety_factor + cache.display_resolution.height / (cache.display_scale * 32 * cache.zoom) / 2
         cache.details_not_seen = cache.half_width>cache.zoom_limits.furthest_game_view.distance
         --print(serpent.block(cache))
