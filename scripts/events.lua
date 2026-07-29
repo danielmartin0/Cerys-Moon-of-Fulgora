@@ -16,6 +16,7 @@ local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
 local inserter = require("scripts.inserter")
+local player_views = require("scripts.player_views")
 
 local Public = {}
 
@@ -744,6 +745,22 @@ script.on_event(defines.events.on_gui_closed, function(event)
 		end
 	end
 end)
+
+local player_view_changed_events = {
+	defines.events.on_player_display_resolution_changed,
+	defines.events.on_player_display_scale_changed,
+	"cerys-zoom-in",
+	"cerys-zoom-out"
+}
+
+script.on_event(player_view_changed_events,player_views.do_player_view_changed)
+
+-- script.on_nth_tick(10,function()
+-- 	for _,player in pairs(game.connected_players) do
+-- 		player_views.do_player_view_changed{player_index = player.index}
+-- 	end
+-- end
+-- )
 
 -- script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
 -- 	if event.setting_type == "runtime-global" and (event.setting == "cerys-disable-parallax") then
