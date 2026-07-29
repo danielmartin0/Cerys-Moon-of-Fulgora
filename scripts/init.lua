@@ -3,6 +3,7 @@ local lib = require("lib")
 local repair = require("scripts.reactor-repair")
 local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
+local player_views = require("scripts.player_views")
 local Public = {}
 
 script.on_init(function()
@@ -176,6 +177,13 @@ function Public.ensure_top_level_storage()
 	end
 	if not storage.stretched_daytime then
 		storage.stretched_daytime = {}
+	end
+	if not storage.players_cache then
+		storage.players_cache = {}
+		-- for _,player in game.players do
+		-- 	player_views.do_player_view_changed{player_index=player.index}
+			
+		-- end
 	end
 end
 
