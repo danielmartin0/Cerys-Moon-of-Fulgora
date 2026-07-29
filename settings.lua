@@ -77,7 +77,7 @@ data:extend({
 		setting_type = "runtime-global",
 		default_value = 100.0,
 		minimum_value = 0.0,
-		maximum_value = 200.0,
+		maximum_value = 1000.0,
 		order = "f",
 	},
 	{

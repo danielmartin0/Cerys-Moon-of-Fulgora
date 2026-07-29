@@ -300,6 +300,10 @@ function Public.cerys_tick(surface, tick)
 	if sim_active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
 		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
+			while spawn_chance > 1 do
+				spawn_chance = spawn_chance - 1
+				atmosphere.spawn_solar_wind_particle(surface,tick)
+			end
 			if math.random() < spawn_chance then
 				atmosphere.spawn_solar_wind_particle(surface,tick)
 			end
