@@ -157,7 +157,7 @@ function Public.tick_solar_wind_deflection()
 		local rod_entity = rod.entity
 		local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
 
-		for i = 1, #particles do
+		for i,particle in pairs(particles) do
 			local particle = particles[i]
 			local p_particle = particle.position
 
@@ -227,7 +227,7 @@ local function remove_particle_at(i)
 	if particle and particle.off_cerys then
 		storage.off_cerys_state_count = (storage.off_cerys_state_count or 1) - 1
 	end
-	table.remove(storage.solar_wind_particles, i)
+	storage.solar_wind_particles[i] = nil
 end
 Public.remove_particle_at = remove_particle_at
 
@@ -256,6 +256,11 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 	end
 
 end
+
+function Public.tick_1_move_visible_solar_wind()
+
+end
+
 local RENDER_OUT_OF_VIEW_PERIOD = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
 function Public.tick_1_move_solar_wind(render_all)
@@ -277,7 +282,7 @@ function Public.tick_1_move_solar_wind(render_all)
 			end
 		end
 	end
-	for i = #storage.solar_wind_particles, 1, -1 do -- Iterate backward to avoid index shifting
+	for i,particle in pairs(storage.solar_wind_particles) do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
 		--local v = particle.velocity
@@ -353,8 +358,8 @@ function Public.tick_5_solar_wind_destroy_check()
 	end
 
 	local i = 1
-	while i <= #storage.solar_wind_particles do
-		local particle = storage.solar_wind_particles[i]
+	for i,particle in pairs(storage.solar_wind_particles) do
+		--local particle = storage.solar_wind_particles[i]
 		local v = particle.velocity
 
 		local speed_squared = v.x * v.x + v.y * v.y
@@ -376,7 +381,7 @@ function Public.tick_5_solar_wind_destroy_check()
 			end
 		end
 
-		i = i + 1
+		--i = i + 1
 	end
 end
 
@@ -391,8 +396,8 @@ function Public.tick_240_clean_up_cerys_solar_wind_particles(surface,tick)
 		cerys_surface_index = surface.index
 	end
 
-	local i = 1
-	while i <= #storage.solar_wind_particles do
+	--local i = 1
+	for i,particle in pairs(storage.solar_wind_particles) do
 		local particle = storage.solar_wind_particles[i]
 
 		local kill = false
@@ -463,8 +468,8 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 		cerys_surface = nil
 	end
 
-	for i = 1, #particles do
-		local particle = particles[i]
+	for i,particle in pairs(particles) do
+		--local particle = particles[i]
 		if not particle.is_ghost then
 			local s_idx = particle.surface_index
 			local surface
