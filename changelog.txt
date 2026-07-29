@@ -3,6 +3,7 @@ Version: 4.24.9
 Date: ????
   Optimizations:
     - Increased particle spawn rate option's maximum value from 200% to 1000%.
+    - Optimized solar wind rendering and physics.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.8
 Date: 2026-07-28
