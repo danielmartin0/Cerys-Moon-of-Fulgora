@@ -17,7 +17,8 @@ local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
 local inserter = require("scripts.inserter")
 local player_views = require("scripts.player_views")
-
+local collisions = require("scripts.collisions")
+local rro = require("__PlanetsLib__.lib.remove-replace-object")
 local Public = {}
 
 -- Highest-level file besides control.lua.
