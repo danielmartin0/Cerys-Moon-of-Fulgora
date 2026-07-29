@@ -256,14 +256,16 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 	end
 
 end
+local RENDER_OUT_OF_VIEW_PERIOD = 3
 
 function Public.tick_1_move_solar_wind(render_all)
 	--local i = 1
 	
 	local update_render = not render_all and (storage.update_solar_wind_render or game.tick % 60 == 0) --Every 10 ticks, check position of particle relative to player views to see if it's time to render
 	local player_views_on_cerys = {
-
+	
 	}
+	local process_particles_out_of_view = not render_all and game.tick % RENDER_OUT_OF_VIEW_PERIOD == 0
 	if update_render then
 		
 		if storage.players_cache then
@@ -283,11 +285,16 @@ function Public.tick_1_move_solar_wind(render_all)
 			remove_particle_at(i)
 			goto continue
 		end
-		
+			if particle.render_particle then
+				particle.position.x = particle.position.x + particle.velocity.x
+				particle.position.y = particle.position.y + particle.velocity.y
+			elseif process_particles_out_of_view then
+				particle.position.x = particle.position.x + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.x
+				particle.position.y = particle.position.y + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.y
+
+			end
 			--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
-			particle.position.x = particle.position.x + particle.velocity.x
 			
-			particle.position.y = particle.position.y + particle.velocity.y
 			
 			
 			if update_render then 
