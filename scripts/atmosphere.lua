@@ -228,6 +228,7 @@ local function remove_particle_at(i)
 		storage.off_cerys_state_count = (storage.off_cerys_state_count or 1) - 1
 	end
 	storage.solar_wind_particles[i] = nil
+	storage.visible_solar_wind_particles[i] = nil
 end
 Public.remove_particle_at = remove_particle_at
 
@@ -257,13 +258,22 @@ local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_fo
 
 end
 
-function Public.tick_1_move_visible_solar_wind()
-
+function Public.tick_1_move_visible_solar_wind(render_all)
+	for i,_ in pairs(storage.visible_solar_wind_particles) do
+		local particle = storage.solar_wind_particles[i]
+		particle.position.x = particle.position.x + particle.velocity.x
+		particle.position.y = particle.position.y + particle.velocity.y
+		
+		particle.rendering.target =  particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+		if particle.marked_for_death_tick then
+			handle_death(particle,i)
+		end
+	end
 end
 
 local RENDER_OUT_OF_VIEW_PERIOD = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
-function Public.tick_1_move_solar_wind(render_all)
+function Public.tick_6_move_solar_wind(render_all)
 	--local i = 1
 	
 	local update_render = not render_all and (storage.update_solar_wind_render or game.tick % 60 == 0) --Every 10 ticks, check position of particle relative to player views to see if it's time to render
@@ -281,6 +291,7 @@ function Public.tick_1_move_solar_wind(render_all)
 				end
 			end
 		end
+
 	end
 	for i,particle in pairs(storage.solar_wind_particles) do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
@@ -290,10 +301,7 @@ function Public.tick_1_move_solar_wind(render_all)
 			remove_particle_at(i)
 			goto continue
 		end
-			if particle.render_particle then
-				particle.position.x = particle.position.x + particle.velocity.x
-				particle.position.y = particle.position.y + particle.velocity.y
-			elseif process_particles_out_of_view then
+			if not particle.render_particle then
 				particle.position.x = particle.position.x + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.x
 				particle.position.y = particle.position.y + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.y
 
@@ -308,26 +316,22 @@ function Public.tick_1_move_solar_wind(render_all)
 				
 					if player_views.can_see_position(player_index,player_views_on_cerys[player_index],particle.position) then
 						particle.render_particle = true
+						storage.visible_solar_wind_particles[i]=true
 						break
 					end
 					
 				end
 				if particle.render_particle == false then
 					particle.rendering.target = OFFSCREEN
+					storage.visible_solar_wind_particles[i]=nil
 				end
 				storage.update_solar_wind_render = false
 			end
-			
-
-			if render_all or particle.render_particle then
-				particle.rendering.target =  particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
-			end
-			
 			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
 
-			if particle.marked_for_death_tick then
-				handle_death(particle,i)
-			end
+			-- if particle.marked_for_death_tick then
+			-- 	handle_death(particle,i)
+			-- end
 			
 			
 		

@@ -155,6 +155,9 @@ function Public.ensure_top_level_storage()
 		storage.solar_wind_particles = (storage.cerys and storage.cerys.solar_wind_particles) or {}
 		if storage.cerys then storage.cerys.solar_wind_particles = nil end
 	end
+	if not storage.visible_solar_wind_particles then
+		storage.visible_solar_wind_particles = {}
+	end
 	if not storage.off_cerys_state_count then
 		storage.off_cerys_state_count = (storage.cerys and storage.cerys.off_cerys_state_count) or 0
 		if storage.cerys then storage.cerys.off_cerys_state_count = nil end

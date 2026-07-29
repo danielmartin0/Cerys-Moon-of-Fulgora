@@ -245,7 +245,11 @@ function Public.simulation_tick(tick, cerys_surface)
 
 	if active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
 		if tick % (1 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_1_move_solar_wind()
+			atmosphere.tick_1_move_visible_solar_wind()
+		end
+		
+		if tick % (6 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_6_move_solar_wind()
 		end
 
 		if tick % (5 * solar_wind_tick_multiplier) == 0 then
