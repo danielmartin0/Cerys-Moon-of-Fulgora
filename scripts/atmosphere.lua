@@ -3,6 +3,7 @@ local lib = require("lib")
 local player_views = require("scripts.player_views")
 local find = lib.find
 local collisions = require("scripts.collisions")
+local rro = require("__PlanetsLib__.lib.remove-replace-object")
 
 local Public = {}
 
@@ -464,6 +465,8 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 	end
 end
 
+
+
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_6_solar_wind_collisions(probability_multiplier)
 	local particles = storage.solar_wind_particles
@@ -472,7 +475,7 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 	if cerys_surface and not cerys_surface.valid then
 		cerys_surface = nil
 	end
-
+	local do_character_damage = math.random() < CHANCE_DAMAGE_CHARACTER
 	for i,particle in pairs(particles) do
 		--local particle = particles[i]
 		if not particle.is_ghost then
@@ -491,6 +494,7 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 			
 			if surface then
 			local count =  surface.count_entities_filtered
+			if do_character_damage then
 				local chars =
 					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 				if #chars > 0 then
@@ -521,7 +525,7 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 								end
 							end
 
-							if math.random() < CHANCE_DAMAGE_CHARACTER then
+							--if math.random() < CHANCE_DAMAGE_CHARACTER then
 								local player = e.player
 								if player and player.valid then
 									player.play_sound({
@@ -538,10 +542,11 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 									or 5
 
 								e.damage(damage, game.forces.neutral, "impact")
-							end
+							--end
 						end
 					end
 				end
+			end
 				local container_filter = {
 					type = { "container", "logistic-container" },
 					position = particle.position,
