@@ -417,8 +417,10 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			position = p2,
 			is_ghost = true,
 			surface_index = surface.index,
+			render_particle = true,
 			off_cerys = off_cerys or nil,
 		})
+		
 
 		if off_cerys then
 			storage.off_cerys_state_count = (storage.off_cerys_state_count or 0) + 1
