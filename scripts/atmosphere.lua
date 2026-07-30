@@ -160,7 +160,6 @@ function Public.tick_solar_wind_deflection()
 		local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
 
 		for i,particle in pairs(particles) do
-			local particle = particles[i]
 			local p_particle = particle.position
 
 			if
