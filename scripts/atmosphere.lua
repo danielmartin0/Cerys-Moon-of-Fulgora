@@ -476,7 +476,7 @@ function Public.tick_240_clean_up_cerys_asteroids(surface)
 end
 
 
-
+local CERYS_RADIUS_SQUARED = common.CERYS_RADIUS^2
 local CHANCE_CHECK_BELT = 1 -- now that we have audiovisual effects, this needs to be 1
 function Public.tick_6_solar_wind_collisions(probability_multiplier)
 	local particles = storage.solar_wind_particles
@@ -500,7 +500,7 @@ function Public.tick_6_solar_wind_collisions(probability_multiplier)
 					surface_cache[s_idx] = surface
 				end
 			end
-			if math.sqrt(particle.position.x^2+particle.position.y^2) > common.CERYS_RADIUS then goto continue end --Skip collision checks if particle is out of bounds of Cerys
+			if math.abs(particle.position.x^2+particle.position.y^2) > CERYS_RADIUS_SQUARED then goto continue end --Skip collision checks if particle is out of bounds of Cerys
 			
 			if surface then
 			local count =  surface.count_entities_filtered
