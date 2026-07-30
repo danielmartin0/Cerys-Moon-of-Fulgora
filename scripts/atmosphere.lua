@@ -217,16 +217,10 @@ function Public.tick_solar_wind_deflection()
 
 					if polarity_fraction and polarity_fraction ~= 0 then
 						local deflection = polarity_fraction * ROD_DEFLECTION_STRENGTH * deflection_tick_interval / 60
+						local dv_scale =  deflection / (d2 ^ (7 / 4)) * (particle.marked_for_death_tick and 1/3 or 1)
 
-						local dvx = dx / (d2 ^ (7 / 4)) * deflection
-						local dvy = dy / (d2 ^ (7 / 4)) * deflection
-
-						if particle.marked_for_death_tick then
-							dvx = dvx / 3
-							dvy = dvy / 3
-						end
-						particle.velocity.x = particle.velocity.x + v.x
-						particle.velocity.y = particle.velocity.y + v.y
+						particle.velocity.x = particle.velocity.x + dx * dv_scale
+						particle.velocity.y = particle.velocity.y + dy * dv_scale
 					end
 				end
 			end
