@@ -146,22 +146,21 @@ function Public.initial_solar_wind_velocity()
 	return { x = x_velocity, y = y_velocity }
 end
 
+
+
+
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE^2
 local deflection_strength_constant = ROD_DEFLECTION_STRENGTH * Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL / 60
-function Public.tick_solar_wind_deflection()
-	local particles = storage.solar_wind_particles
-	
-	local rod_is_positive = storage.charging_rod_is_positive
-	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
-
-	for i,particle in pairs(particles) do
-		local particle_p_rounded = particle.position_rounded or {x=0,y=0}
+local rod_is_positive = storage.charging_rod_is_positive
+local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
+function Public.process_solar_wind_deflection(particle)
+	local particle_p_rounded = particle.position_rounded or {x=0,y=0}
 
 		if not (storage.static_particle_colliders[particle_p_rounded.x] and 
         	storage.static_particle_colliders[particle_p_rounded.x][particle_p_rounded.y] and
             storage.static_particle_colliders[particle_p_rounded.x][particle_p_rounded.y].charging_rods) then
-				goto on_to_the_next
+				return 
 				
 			end
 		
@@ -218,9 +217,14 @@ function Public.tick_solar_wind_deflection()
 				end
 			end
 		end
-		::on_to_the_next::
-	end
+
 end
+
+-- function Public.tick_solar_wind_deflection()
+-- 	for i,particle in pairs(storage.solar_wind_particles) do
+-- 		Public.process_solar_wind_deflection(particle)
+-- 	end
+-- end
 
 local function remove_particle_at(i)
 	local particle = storage.solar_wind_particles[i]
@@ -339,8 +343,9 @@ function Public.tick_6_move_solar_wind(render_all)
 			
 		
 			
-		
+		Public.process_solar_wind_deflection(particle)
 		::continue::
+		
 	end
 end
 

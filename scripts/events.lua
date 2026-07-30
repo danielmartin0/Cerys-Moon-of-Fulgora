@@ -265,9 +265,9 @@ function Public.simulation_tick(tick, cerys_surface)
 			atmosphere.tick_6_solar_wind_collisions(solar_wind_tick_multiplier)
 		end
 
-		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_solar_wind_deflection()
-		end
+		-- if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
+		-- 	atmosphere.tick_solar_wind_deflection()
+		-- end
 
 		if tick % (12 * solar_wind_tick_multiplier) == 0 then
 			rods.tick_12_check_charging_rods()
