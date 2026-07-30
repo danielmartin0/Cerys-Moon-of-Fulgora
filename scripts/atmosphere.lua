@@ -180,12 +180,12 @@ function Public.tick_solar_wind_deflection()
 
 			if
 				particle.surface_index == rod_surface_index
-				and not (
-					p_particle.x - p_rod.x > ROD_MAX_RANGE
-					or p_rod.x - p_particle.x > ROD_MAX_RANGE
-					or p_particle.y - p_rod.y > ROD_MAX_RANGE
-					or p_rod.y - p_particle.y > ROD_MAX_RANGE
-				)
+				-- and not (
+				-- 	p_particle.x - p_rod.x > ROD_MAX_RANGE
+				-- 	or p_rod.x - p_particle.x > ROD_MAX_RANGE
+				-- 	or p_particle.y - p_rod.y > ROD_MAX_RANGE
+				-- 	or p_rod.y - p_particle.y > ROD_MAX_RANGE
+				-- )
 			then
 				local dx = p_particle.x - p_rod.x
 				local dy = p_particle.y - p_rod.y
