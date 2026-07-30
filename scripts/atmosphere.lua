@@ -147,7 +147,8 @@ function Public.initial_solar_wind_velocity()
 end
 
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
-
+local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE^2
+local deflection_strength_constant = ROD_DEFLECTION_STRENGTH * Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL / 60
 function Public.tick_solar_wind_deflection()
 	local particles = storage.solar_wind_particles
 	
@@ -197,7 +198,7 @@ function Public.tick_solar_wind_deflection()
 					dx = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.cos(random_angle)
 					dy = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.sin(random_angle)
 					d2 = dx * dx + dy * dy
-				elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE then
+				elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
 					local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
 					dx = dx * scale
 					dy = dy * scale
@@ -216,9 +217,10 @@ function Public.tick_solar_wind_deflection()
 					end
 
 					if polarity_fraction and polarity_fraction ~= 0 then
-						local deflection = polarity_fraction * ROD_DEFLECTION_STRENGTH * deflection_tick_interval / 60
-						local dv_scale =  deflection / (d2 ^ (7 / 4)) * (particle.marked_for_death_tick and 1/3 or 1)
-
+						
+						--local deflection = polarity_fraction * ROD_DEFLECTION_STRENGTH * deflection_tick_interval / 60
+						local dv_scale = (polarity_fraction * deflection_strength_constant) / (d2 ^ (7 / 4)) * (particle.marked_for_death_tick and 1/3 or 1)
+						--print(serpent.block(dv_scale))
 						particle.velocity.x = particle.velocity.x + dx * dv_scale
 						particle.velocity.y = particle.velocity.y + dy * dv_scale
 					end
