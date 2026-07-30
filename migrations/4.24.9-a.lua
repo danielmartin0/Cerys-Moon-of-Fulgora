@@ -1,5 +1,7 @@
 local collisions = require("scripts.collisions")
 
+if not storage.static_particle_colliders then storage.static_particle_colliders = {} end
+
 local ROD_MAX_GRID_RANGE = 25 + 3
 for _,rod in pairs(storage.charging_rods) do
     local entity = rod.entity
