@@ -91,7 +91,7 @@ end
 
 --Checks for collisions of particles with grid-aligned static entities. Allows the mod to avoid expensive find_entities_filtered calls.
 function Public.check_collision_tile(particle,types)
-    local collided_position = {x = math.ceil(particle.position.x-0.5), y = math.ceil(particle.position.y-0.5)}
+    local collided_position = particle.position_rounded or {0,0}
     local collision 
     --print("Position:" .. serpent.block(particle.position))
     --print("Collided tiles:" ..serpent.block(collided_tiles))

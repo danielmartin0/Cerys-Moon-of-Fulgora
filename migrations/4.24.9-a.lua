@@ -20,3 +20,7 @@ for _,rod in pairs(storage.charging_rods) do
 	end
 end
 
+for _,particle in pairs(storage.solar_wind_particles) do
+    particle.position_rounded={x=math.ceil(particle.position.x-0.5),y=math.ceil(particle.position.y-0.5)}
+end
+

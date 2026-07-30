@@ -134,7 +134,8 @@ function Public.spawn_solar_wind_particle(surface,tick)
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
 		surface_index = surface.index,
-		render_particle = true
+		render_particle = true,
+		position_rounded = {x = math.ceil(x-0.5),y = math.ceil(y-0.5)}
 	})
 end
 
@@ -149,19 +150,33 @@ Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 
 function Public.tick_solar_wind_deflection()
 	local particles = storage.solar_wind_particles
-	local rods = storage.charging_rods
+	
 	local rod_is_positive = storage.charging_rod_is_positive
 	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
-	for rod_unit_number, rod in pairs(rods) do
-		local p_rod = rod.rod_position
-		local rod_surface_index = rod.surface_index
-		local rod_entity = rod.entity
-		local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
+	for i,particle in pairs(particles) do
+		local particle = particles[i]
+		local particle_p_rounded = particle.position_rounded or {x=0,y=0}
 
-		for i,particle in pairs(particles) do
-			local particle = particles[i]
-			local p_particle = particle.position
+		if not (storage.static_particle_colliders[particle_p_rounded.x] and 
+        	storage.static_particle_colliders[particle_p_rounded.x][particle_p_rounded.y] and
+            storage.static_particle_colliders[particle_p_rounded.x][particle_p_rounded.y].charging_rods) then
+				goto on_to_the_next
+				
+			end
+		
+		local rods = storage.static_particle_colliders[particle_p_rounded.x][particle_p_rounded.y].charging_rods
+		local p_particle = particle.position
+		
+		for i, rod_entity in pairs(rods) do
+			local rod_unit_number = rod_entity.unit_number
+			local rod = storage.charging_rods[rod_entity.unit_number]
+			local p_rod = rod.rod_position
+			local rod_surface_index = rod.surface_index
+			local rod_entity = rod.entity
+			local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
+
+		
 
 			if
 				particle.surface_index == rod_surface_index
@@ -221,6 +236,7 @@ function Public.tick_solar_wind_deflection()
 				end
 			end
 		end
+		::on_to_the_next::
 	end
 end
 
@@ -303,11 +319,14 @@ function Public.tick_6_move_solar_wind(render_all)
 			remove_particle_at(i)
 			goto continue
 		end
+
 			if not particle.render_particle then
 				particle.position.x = particle.position.x + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.x
 				particle.position.y = particle.position.y + RENDER_OUT_OF_VIEW_PERIOD*particle.velocity.y
-
+				
 			end
+			particle.position_rounded.x = math.ceil(particle.position.x-0.5)
+			particle.position_rounded.y = math.ceil(particle.position.y-0.5)
 			--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
 			
 			
