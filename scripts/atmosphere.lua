@@ -169,11 +169,11 @@ function Public.tick_solar_wind_deflection()
 		local p_particle = particle.position
 		
 		for i, rod_entity in pairs(rods) do
+			if not rod_entity.valid then rods[i] = nil end
 			local rod_unit_number = rod_entity.unit_number
 			local rod = storage.charging_rods[rod_entity.unit_number]
 			local p_rod = rod.rod_position
 			local rod_surface_index = rod.surface_index
-			local rod_entity = rod.entity
 			local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
 
 		
@@ -221,17 +221,12 @@ function Public.tick_solar_wind_deflection()
 						local dvx = dx / (d2 ^ (7 / 4)) * deflection
 						local dvy = dy / (d2 ^ (7 / 4)) * deflection
 
-						local v = particle.velocity
-
 						if particle.marked_for_death_tick then
 							dvx = dvx / 3
 							dvy = dvy / 3
 						end
-
-						v.x = v.x + dvx
-						v.y = v.y + dvy
-
-						particle.velocity = v
+						particle.velocity.x = particle.velocity.x + v.x
+						particle.velocity.y = particle.velocity.y + v.y
 					end
 				end
 			end
