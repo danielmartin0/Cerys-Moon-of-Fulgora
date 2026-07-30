@@ -192,10 +192,8 @@ function Public.tick_solar_wind_deflection()
 				local d2 = dx * dx + dy * dy
 
 				-- Bound the minimum distance
-				if d2 == 0 then
+				if d2  < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
 					d2 = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED
-				elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
-					d2 = (dx * dx + dy * dy) * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED / math.abs(d2)
 				end
 
 				if d2 < ROD_MAX_RANGE_SQUARED then
