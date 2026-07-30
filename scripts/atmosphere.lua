@@ -199,10 +199,11 @@ function Public.tick_solar_wind_deflection()
 					dy = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE * math.sin(random_angle)
 					d2 = dx * dx + dy * dy
 				elseif d2 < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
-					local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
-					dx = dx * scale
-					dy = dy * scale
-					d2 = dx * dx + dy * dy
+					--local scale = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE / math.sqrt(d2)
+					--dx = dx * scale
+					--dy = dy * scale
+					--d2 = dx * dx + dy * dy
+					d2 = (dx * dx + dy * dy) * MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED / math.abs(d2)
 				end
 
 				if d2 < ROD_MAX_RANGE_SQUARED then
