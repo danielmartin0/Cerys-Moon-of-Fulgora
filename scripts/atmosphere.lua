@@ -168,7 +168,10 @@ function Public.process_solar_wind_deflection(particle)
 		local p_particle = particle.position
 		
 		for i, rod_entity in pairs(rods) do
-			if not rod_entity.valid then rods[i] = nil end
+			if not rod_entity.valid then 
+				rods[i] = nil 
+				goto continue
+			end
 			local rod_unit_number = rod_entity.unit_number
 			local rod = storage.charging_rods[rod_entity.unit_number]
 			local p_rod = rod.rod_position
@@ -216,6 +219,7 @@ function Public.process_solar_wind_deflection(particle)
 					end
 				end
 			end
+			::continue::
 		end
 
 end
