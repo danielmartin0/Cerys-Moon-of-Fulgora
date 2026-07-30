@@ -149,11 +149,13 @@ end
 Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL = 6
 local MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE^2
 local deflection_strength_constant = ROD_DEFLECTION_STRENGTH * Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL / 60
-function Public.process_particle_solar_wind_deflection(particle)
-
-end
 function Public.tick_solar_wind_deflection()
-	for i,particle in pairs(storage.solar_wind_particles) do
+	local particles = storage.solar_wind_particles
+	
+	local rod_is_positive = storage.charging_rod_is_positive
+	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
+
+	for i,particle in pairs(particles) do
 		local particle_p_rounded = particle.position_rounded or {x=0,y=0}
 
 		if not (storage.static_particle_colliders[particle_p_rounded.x] and 
@@ -170,7 +172,10 @@ function Public.tick_solar_wind_deflection()
 			if not rod_entity.valid then rods[i] = nil end
 			local rod_unit_number = rod_entity.unit_number
 			local rod = storage.charging_rods[rod_entity.unit_number]
-			
+			local p_rod = rod.rod_position
+			local rod_surface_index = rod.surface_index
+			local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
+
 		
 
 			if
@@ -182,10 +187,6 @@ function Public.tick_solar_wind_deflection()
 				-- 	or p_rod.y - p_particle.y > ROD_MAX_RANGE
 				-- )
 			then
-				local p_rod = rod.rod_position
-				local rod_surface_index = rod.surface_index
-				local rod_is_ghost = rod_entity and rod_entity.valid and rod_entity.name == "entity-ghost"
-
 				local dx = p_particle.x - p_rod.x
 				local dy = p_particle.y - p_rod.y
 				local d2 = dx * dx + dy * dy
@@ -199,7 +200,7 @@ function Public.tick_solar_wind_deflection()
 					local polarity_fraction
 					if rod_is_ghost then
 						if particle.is_ghost then
-							polarity_fraction = (storage.charging_rod_is_positive[rod_unit_number] and 1 or -1)
+							polarity_fraction = (rod_is_positive[rod_unit_number] and 1 or -1)
 								* (rod.max_polarity_fraction or 1)
 						end
 					else
