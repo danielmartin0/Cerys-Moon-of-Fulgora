@@ -193,12 +193,13 @@ function Public.process_solar_wind_deflection(particle)
 				local dy = p_particle.y - p_rod.y
 				local d2 = dx * dx + dy * dy
 
-				-- Bound the minimum distance
-				if d2  < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
-					d2 = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED
-				end
+				
 
 				if d2 < ROD_MAX_RANGE_SQUARED then
+					-- Bound the minimum distance
+					if d2  < MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED then
+						d2 = MIN_ELECTROMAGNETIC_INTERACTION_DISTANCE_SQUARED
+					end
 					local polarity_fraction
 					if rod_is_ghost then
 						if particle.is_ghost then
