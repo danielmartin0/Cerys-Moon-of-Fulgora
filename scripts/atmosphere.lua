@@ -156,7 +156,6 @@ function Public.tick_solar_wind_deflection()
 	local deflection_tick_interval = Public.SOLAR_WIND_DEFLECTION_TICK_INTERVAL
 
 	for i,particle in pairs(particles) do
-		local particle = particles[i]
 		local particle_p_rounded = particle.position_rounded or {x=0,y=0}
 
 		if not (storage.static_particle_colliders[particle_p_rounded.x] and 
