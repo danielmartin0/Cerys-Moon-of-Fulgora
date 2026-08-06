@@ -78,7 +78,7 @@ for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
 		type = "item",
 		name = name,
 		amount = 1,
-		independent_probability = percent / 100,
+		shared_probability = percent / 100,
 		show_details_in_recipe_tooltip = false,
 	})
 end
