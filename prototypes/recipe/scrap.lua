@@ -57,28 +57,32 @@ if common_data.K2_INSTALLED then
 	RECYCLING_PROBABILITIES_PERCENT["low-density-structure"] = 0.8
 end
 
--- Sort the table descending by value
+local SORTED_RECYCLING_PROBABILITIES_PERCENT = {}
 do
-	local t = {}
 	for k, v in pairs(RECYCLING_PROBABILITIES_PERCENT) do
-		table.insert(t, { k, v })
+		table.insert(SORTED_RECYCLING_PROBABILITIES_PERCENT, { k, v })
 	end
-	table.sort(t, function(a, b)
-		return a[2] > b[2]
+	table.sort(SORTED_RECYCLING_PROBABILITIES_PERCENT, function(a, b)
+		if a[2] ~= b[2] then
+			return a[2] > b[2]
+		end
+		return a[1] < b[1]
 	end)
-	local sorted = {}
-	for _, pair in ipairs(t) do
-		sorted[pair[1]] = pair[2]
-	end
-	RECYCLING_PROBABILITIES_PERCENT = sorted
 end
 
-for name, percent in pairs(RECYCLING_PROBABILITIES_PERCENT) do
+local EDGE_EPSILON_PERCENT = 1e-9 -- values can otherwise show as 1.89% instead of 1.90%.
+
+local cumulative_percent = 0.0
+for _, pair in ipairs(SORTED_RECYCLING_PROBABILITIES_PERCENT) do
+	local name, percent = pair[1], pair[2]
+	local min_percent = cumulative_percent
+	cumulative_percent = cumulative_percent + percent + EDGE_EPSILON_PERCENT
+
 	table.insert(data.raw.recipe["cerys-nuclear-scrap-recycling"].results, {
 		type = "item",
 		name = name,
 		amount = 1,
-		shared_probability = percent / 100,
+		shared_probability = { min = min_percent / 100, max = cumulative_percent / 100 },
 		show_details_in_recipe_tooltip = false,
 	})
 end
