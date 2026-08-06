@@ -3,6 +3,7 @@ local lib = require("lib")
 local repair = require("scripts.reactor-repair")
 local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
+local player_views = require("scripts.player_views")
 local Public = {}
 
 script.on_init(function()
@@ -154,6 +155,14 @@ function Public.ensure_top_level_storage()
 		storage.solar_wind_particles = (storage.cerys and storage.cerys.solar_wind_particles) or {}
 		if storage.cerys then storage.cerys.solar_wind_particles = nil end
 	end
+	if not storage.visible_solar_wind_particles then
+		storage.visible_solar_wind_particles = {}
+	end
+	if not storage.static_particle_colliders then
+		storage.static_particle_colliders = {}
+		--storage.static_particle_colliders[x][y] = LuaEntity
+		-- To check for collision, simply check if storage.static_particle_colliders[x][y] exists
+	end
 	if not storage.off_cerys_state_count then
 		storage.off_cerys_state_count = (storage.cerys and storage.cerys.off_cerys_state_count) or 0
 		if storage.cerys then storage.cerys.off_cerys_state_count = nil end
@@ -176,6 +185,13 @@ function Public.ensure_top_level_storage()
 	end
 	if not storage.stretched_daytime then
 		storage.stretched_daytime = {}
+	end
+	if not storage.players_cache then
+		storage.players_cache = {}
+		-- for _,player in game.players do
+		-- 	player_views.do_player_view_changed{player_index=player.index}
+			
+		-- end
 	end
 end
 
