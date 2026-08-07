@@ -74,10 +74,6 @@ local reactor = {
 			-- util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
 			-- 	scale = 0.22,
 			-- }),
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
-				scale = 0.22,
-				draw_as_shadow = true,
-			}),
 		},
 	},
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
@@ -239,6 +235,10 @@ local reactor_base = merge(rising_reactor_tower_1, {
 				scale = 0.22,
 				draw_as_shadow = true,
 			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
+				scale = 0.22,
+				draw_as_shadow = true,
+			}),
 		},
 	},
 })
@@ -251,6 +251,10 @@ local reactor_base_frozen = merge(reactor_base, {
 				scale = 0.22,
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
+				scale = 0.22,
+				draw_as_shadow = true,
+			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
 				scale = 0.22,
 				draw_as_shadow = true,
 			}),

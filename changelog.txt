@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.12
 Date: ????
-  Changes:
+  Graphics:
+    - The shadow of radiative tower no longer disappears when tall entities are hidden.
+    - Fixed that non-tower radiative heaters were marked as tall.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.11
 Date: 2026-08-06
