@@ -1,5 +1,3 @@
-local common_data = require("common-data-only")
-
 local leave_higher_chip_recycling_unchanged = mods["crushing-industry"] or mods["bztin"]
 local leave_stone_brick_recycling_unchanged = mods["crushing-industry"]
 
@@ -54,7 +52,7 @@ if settings.startup["cerys-enforce-vanilla-recycling-recipes"].value then
 		data.raw["recipe"][RECYCLE_TO_ITSELF[i][1] .. "-recycling"]["energy_required"] = RECYCLE_TO_ITSELF[i][2]
 	end
 
-	if common_data.K2_INSTALLED then
+	if mods["Krastorio2"] then
 		data.raw["recipe"]["electronic-circuit-recycling"]["ingredients"] =
 			{ { type = "item", name = "electronic-circuit", amount = 1 } }
 		data.raw["recipe"]["electronic-circuit-recycling"]["results"] = {

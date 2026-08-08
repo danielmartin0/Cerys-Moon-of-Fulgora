@@ -1,4 +1,3 @@
-local common_data = require("common-data-only")
 local common = require("common")
 
 local CIV_AGE_MY = 2200
@@ -53,7 +52,7 @@ local RECYCLING_PROBABILITIES_PERCENT = {
 	["uranium-235"] = U238_AMOUNT * U235_RATIO,
 }
 
-if common_data.K2_INSTALLED then
+if mods["Krastorio2"] then
 	RECYCLING_PROBABILITIES_PERCENT["low-density-structure"] = 0.8
 end
 

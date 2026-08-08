@@ -1,11 +1,10 @@
 local util = require("util")
 local common = require("common")
-local common_data = require("common-data-only")
 local lib = require("lib")
 local merge = lib.merge
 local find = lib.find
 
-if not common_data.K2_INSTALLED then
+if not mods["Krastorio2"] then
 	return
 end
 
@@ -19,6 +18,69 @@ if settings.startup["kr-realistic-weapons-auto-aim"].value then
 	sniper_range = 50
 	k_target_type = "entity" -- "entity", "position" or "direction"
 	k_d_radius = 0.25
+end
+
+local function each_entry(t)
+	if type(t) ~= "table" then
+		return {}
+	end
+	return t[1] ~= nil and t or { t }
+end
+
+local function set_projectile_name(ammo_type, projectile_name)
+	for _, trigger in pairs(each_entry(ammo_type and ammo_type.action)) do
+		for _, delivery in pairs(each_entry(trigger.action_delivery)) do
+			if delivery.projectile then
+				delivery.projectile = projectile_name
+			end
+		end
+	end
+end
+
+local function find_damage_effect(effects, damage_type)
+	for _, effect in pairs(each_entry(effects)) do
+		if type(effect) == "table" then
+			if effect.type == "damage" and effect.damage and effect.damage.type == damage_type then
+				return effect
+			end
+			for _, trigger in pairs(each_entry(effect.action)) do -- e.g. a nested-result effect
+				for _, delivery in pairs(each_entry(trigger.action_delivery)) do
+					local nested = find_damage_effect(delivery.target_effects, damage_type)
+					if nested then
+						return nested
+					end
+				end
+			end
+		end
+	end
+end
+
+local function multiply_projectile_damage(projectile_name, damage_type, factor)
+	local projectile = data.raw.projectile[projectile_name]
+	local action = util.table.deepcopy(projectile.action)
+	local found = false
+
+	for _, trigger in pairs(each_entry(action)) do
+		for _, delivery in pairs(each_entry(trigger.action_delivery)) do
+			local effect = find_damage_effect(delivery.target_effects, damage_type)
+			if effect then
+				effect.damage.amount = effect.damage.amount * factor
+				found = true
+			end
+		end
+	end
+
+	if found then
+		projectile.action = action
+	else
+		log(
+			"[CERYS] No "
+				.. damage_type
+				.. " damage found in "
+				.. projectile_name
+				.. ", so its damage is left unchanged."
+		)
+	end
 end
 
 if
@@ -42,7 +104,7 @@ then
 		}),
 	})
 	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-uranium-rifle-magazine"].ammo_type)
-	ammo_type.action[1].action_delivery[1].projectile = "kr-plutonium-rifle-magazine-projectile"
+	set_projectile_name(ammo_type, "kr-plutonium-rifle-magazine-projectile")
 	data.raw.ammo["kr-plutonium-rifle-magazine"].ammo_type = ammo_type
 
 	data:extend({
@@ -63,9 +125,7 @@ then
 			name = "kr-plutonium-rifle-magazine-projectile",
 		}),
 	})
-	local action = util.table.deepcopy(data.raw.projectile["kr-plutonium-rifle-magazine-projectile"].action)
-	action.action_delivery.target_effects[3].damage.amount = action.action_delivery.target_effects[3].damage.amount * 2
-	data.raw.projectile["kr-plutonium-rifle-magazine-projectile"].action = action
+	multiply_projectile_damage("kr-plutonium-rifle-magazine-projectile", "kr-radioactive", 2)
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",
@@ -95,7 +155,7 @@ then
 		}),
 	})
 	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-plutonium-anti-materiel-rifle-magazine"].ammo_type)
-	ammo_type.action[1].action_delivery[1].projectile = "kr-plutonium-anti-materiel-rifle-magazine-projectile"
+	set_projectile_name(ammo_type, "kr-plutonium-anti-materiel-rifle-magazine-projectile")
 	data.raw.ammo["kr-plutonium-anti-materiel-rifle-magazine"].ammo_type = ammo_type
 
 	data:extend({
@@ -116,11 +176,7 @@ then
 			name = "kr-plutonium-anti-materiel-rifle-magazine-projectile",
 		}),
 	})
-	local action =
-		util.table.deepcopy(data.raw.projectile["kr-plutonium-anti-materiel-rifle-magazine-projectile"].action)
-	action.action_delivery.target_effects[2].action.action_delivery.target_effects[2].damage.amount = action.action_delivery.target_effects[2].action.action_delivery.target_effects[2].damage.amount
-		* 2
-	data.raw.projectile["kr-plutonium-anti-materiel-rifle-magazine-projectile"].action = action
+	multiply_projectile_damage("kr-plutonium-anti-materiel-rifle-magazine-projectile", "kr-radioactive", 2)
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",

@@ -1,9 +1,7 @@
-local common_data = require("common-data-only")
-
 local function ruin_minable_results(collision_area)
 	-- collision_area is 2, 4, 10, 25, 36
 	local fulgoran_ruin_mining_time = 0.25 * collision_area ^ 0.75
-	local K2_Installed = common_data.K2_INSTALLED
+	local K2_Installed = mods["Krastorio2"]
 
 	local results = {
 		mining_particle = "stone-particle",

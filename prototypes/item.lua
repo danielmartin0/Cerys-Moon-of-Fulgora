@@ -1,4 +1,3 @@
-local common_data = require("common-data-only")
 local item_tints = require("__base__.prototypes.item-tints")
 local merge = require("lib").merge
 local item_sounds = require("__base__.prototypes.item_sounds")
@@ -216,14 +215,14 @@ data:extend({
 	{
 		type = "item",
 		name = "cerysian-science-pack",
-		localised_name = common_data.K2_INSTALLED and { "cerys.kr-cerysian-tech-card" } or nil,
-		icon = common_data.K2_INSTALLED and "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-tech-card.png"
+		localised_name = mods["Krastorio2"] and { "cerys.kr-cerysian-tech-card" } or nil,
+		icon = mods["Krastorio2"] and "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-tech-card.png"
 			or "__Cerys-Moon-of-Fulgora__/graphics/icons/cerysian-science-pack.png",
 		icon_size = 64,
 		color_hint = { text = "R" },
 		weight = 1 * 1000 * 1000000, -- Cannot be launched on rocket
 		subgroup = "science-pack",
-		order = common_data.K2_INSTALLED and "b02[automation-tech-card]-b"
+		order = mods["Krastorio2"] and "b02[automation-tech-card]-b"
 			or "a[automation-science-pack]-b[cerysian-science-pack]",
 		default_import_location = "cerys",
 		inventory_move_sound = item_sounds.science_inventory_move,
@@ -805,7 +804,7 @@ data:extend({
 	},
 })
 
-if common_data.K2_INSTALLED then
+if mods["Krastorio2"] then
 	data:extend({
 		{
 			type = "item",

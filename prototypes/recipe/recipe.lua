@@ -97,11 +97,11 @@ data:extend({
 		name = "cerys-space-science-pack-from-methane-ice",
 		localised_name = {
 			"cerys.from-methane-ice",
-			common_data.K2_INSTALLED and { "item-name.kr-space-research-data" } or { "item-name.space-science-pack" },
+			mods["Krastorio2"] and { "item-name.kr-space-research-data" } or { "item-name.space-science-pack" },
 		},
 		icons = {
 			{
-				icon = common_data.K2_INSTALLED and "__Krastorio2Assets__/icons/cards/space-research-data.png"
+				icon = mods["Krastorio2"] and "__Krastorio2Assets__/icons/cards/space-research-data.png"
 					or "__base__/graphics/icons/space-science-pack.png",
 				icon_size = 64,
 				scale = 0.65,
@@ -126,15 +126,15 @@ data:extend({
 		results = {
 			{
 				type = "item",
-				name = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
+				name = mods["Krastorio2"] and "kr-space-research-data" or "space-science-pack",
 				amount = 1,
 			},
 		},
 		allow_productivity = true,
-		main_product = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
+		main_product = mods["Krastorio2"] and "kr-space-research-data" or "space-science-pack",
 		categories = { "fulgoran-cryogenics" },
 		subgroup = "science-pack",
-		order = common_data.K2_INSTALLED and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
+		order = mods["Krastorio2"] and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
 		always_show_made_in = true,
 	},
 	{
@@ -407,7 +407,7 @@ data:extend({
 			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 120 or 75 }, -- 1 iron => 50 sulfuric acid.
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
-			{ type = "item", name = "iron-ore", amount = common_data.K2_INSTALLED and 4 or 2 },
+			{ type = "item", name = "iron-ore", amount = mods["Krastorio2"] and 4 or 2 },
 			{ type = "fluid", name = "ammonia", amount = 50 },
 		},
 		allow_productivity = true,
@@ -470,7 +470,9 @@ data:extend({
 	},
 })
 
-if common_data.K2_INSTALLED then
+if mods["Krastorio2"] then
+	local tech_card_category = data.raw["recipe-category"]["kr-tech-cards"] and "kr-tech-cards" or "kr-t2-tech-cards"
+
 	data:extend({
 		{
 			type = "recipe",
@@ -497,7 +499,7 @@ if common_data.K2_INSTALLED then
 			localised_name = {
 				"cerys.kr-cerysian-tech-card",
 			},
-			categories = { "kr-tech-cards" },
+			categories = { tech_card_category },
 			always_show_made_in = true,
 			enabled = false,
 			energy_required = 20,

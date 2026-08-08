@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.13
 Date: ????
-  Changes:
+  Compatibility:
+    - Fixed a crash when another mod changes the structure of Krastorio 2 uranium ammunition.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.12
 Date: 2026-08-07

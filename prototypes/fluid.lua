@@ -35,7 +35,7 @@ data:extend({
 	},
 })
 
-if not common_data.K2_INSTALLED then
+if not mods["Krastorio2"] then
 	data:extend({
 		{
 			type = "fluid",

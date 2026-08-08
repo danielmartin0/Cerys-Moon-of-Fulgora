@@ -1,4 +1,3 @@
-local common_data = require("common-data-only")
 local common = require("common")
 local lib = require("lib")
 local merge = lib.merge
@@ -427,7 +426,7 @@ data:extend({
 		allows_productivity = false,
 	},
 })
-if common_data.K2_INSTALLED then
+if mods["Krastorio2"] then
 	table.insert(data.raw.technology["cerysian-science-pack"].effects, {
 		type = "unlock-recipe",
 		recipe = "kr-cerysian-research-data",

@@ -14,6 +14,7 @@
     "Flare Stack >= 4.0.0",
     "PlanetsLib >= 1.19.5",
     "bplib >= 2.0.0",
+    "? Krastorio2 >= 2.1.0",
     "? Krastorio2-spaced-out >= 2.0.10",
     "(?) PlutoniumEnergy",
     "(?) limit-special-building-surfaces",
