@@ -16,7 +16,9 @@ local lighting = require("scripts.lighting")
 local picker_dollies = require("compat.picker-dollies")
 local terrain = require("scripts.terrain")
 local inserter = require("scripts.inserter")
-
+local player_views = require("scripts.player_views")
+local collisions = require("scripts.collisions")
+local rro = require("__PlanetsLib__.lib.remove-replace-object")
 local Public = {}
 
 -- Highest-level file besides control.lua.
@@ -43,6 +45,10 @@ script.on_event({
 			return
 		end
 	end
+	if on_cerys and rro.contains({"transport-belt","container","logistic-container"},entity.type) then
+		collisions.add_entity_to_collision_map(entity)
+	end
+
 
 	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
 		radiative_towers.register_radiative_tower(entity)
@@ -244,15 +250,19 @@ function Public.simulation_tick(tick, cerys_surface)
 
 	if active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
 		if tick % (1 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_1_move_solar_wind()
+			atmosphere.tick_1_move_visible_solar_wind()
+		end
+		
+		if tick % (6 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_6_move_solar_wind()
 		end
 
 		if tick % (5 * solar_wind_tick_multiplier) == 0 then
 			atmosphere.tick_5_solar_wind_destroy_check()
 		end
 
-		if tick % (8 * solar_wind_tick_multiplier) == 0 then
-			atmosphere.tick_8_solar_wind_collisions(solar_wind_tick_multiplier)
+		if tick % (6 * solar_wind_tick_multiplier) == 0 then
+			atmosphere.tick_6_solar_wind_collisions(solar_wind_tick_multiplier)
 		end
 
 		if tick % (atmosphere.SOLAR_WIND_DEFLECTION_TICK_INTERVAL * solar_wind_tick_multiplier) == 0 then
@@ -300,6 +310,10 @@ function Public.cerys_tick(surface, tick)
 	if sim_active or not settings.global["cerys-disable-solar-wind-when-not-looking-at-surface"].value then
 		if tick % (7 * solar_wind_tick_multiplier) == 0 then
 			local spawn_chance = 0.35 * settings.global["cerys-solar-wind-spawn-rate-percentage"].value / 100
+			while spawn_chance > 1 do
+				spawn_chance = spawn_chance - 1
+				atmosphere.spawn_solar_wind_particle(surface,tick)
+			end
 			if math.random() < spawn_chance then
 				atmosphere.spawn_solar_wind_particle(surface,tick)
 			end
@@ -408,8 +422,10 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			position = p2,
 			is_ghost = true,
 			surface_index = surface.index,
+			render_particle = true,
 			off_cerys = off_cerys or nil,
 		})
+		
 
 		if off_cerys then
 			storage.off_cerys_state_count = (storage.off_cerys_state_count or 0) + 1
@@ -740,6 +756,23 @@ script.on_event(defines.events.on_gui_closed, function(event)
 		end
 	end
 end)
+
+local player_view_changed_events = {
+	defines.events.on_player_display_resolution_changed,
+	defines.events.on_player_display_scale_changed,
+	"cerys-zoom-in",
+	"cerys-zoom-out",
+	defines.events.on_player_controller_changed
+}
+
+script.on_event(player_view_changed_events,player_views.do_player_view_changed)
+
+-- script.on_nth_tick(10,function()
+-- 	for _,player in pairs(game.connected_players) do
+-- 		player_views.do_player_view_changed{player_index = player.index}
+-- 	end
+-- end
+-- )
 
 -- script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
 -- 	if event.setting_type == "runtime-global" and (event.setting == "cerys-disable-parallax") then
