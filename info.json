@@ -8,9 +8,9 @@
   "description": "Fulgora's moon of puzzles. Ancient wrecks embedded in thick ice can seemingly be repaired, including a colossal nuclear reactor that could transform the possibilities on the surface... if you can get it working.\n\nCerys is a complete and polished mod that does not modify the vanilla game in any way, so is easy to include in existing saves.",
   "homepage": "https://foundrygg.com",
   "dependencies": [
-    "base >= 2.1.0",
-    "space-age >= 2.1.0",
-    "recycler >= 2.1.0",
+    "base >= 2.1.14",
+    "space-age >= 2.1.14",
+    "recycler >= 2.1.14",
     "Flare Stack >= 4.0.0",
     "PlanetsLib >= 1.19.5",
     "bplib >= 2.0.0",

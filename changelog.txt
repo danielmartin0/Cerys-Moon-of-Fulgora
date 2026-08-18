@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.14
 Date: ????
-  Changes:
+  Bugfixes:
+    - Corrected the 'static recycling' setting to respect the new vanilla recycling time of concrete and copper cables in Factorio 2.1.13.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.13
 Date: 2026-08-09
