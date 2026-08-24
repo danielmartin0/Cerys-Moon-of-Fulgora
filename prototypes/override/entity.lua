@@ -1,6 +1,6 @@
 local common = require("common")
 
---== Surface Conditions Restrictions ==--
+-- == Surface Conditions Restrictions ==--
 
 for name, entity in pairs(data.raw["reactor"]) do
 	if string.sub(name, 1, 6) ~= "cerys-" then
@@ -32,6 +32,10 @@ for _, entity in pairs(data.raw["asteroid-collector"]) do
 	PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
 end
 
+if data.raw["assembling-machine"]["crusher"] then
+	PlanetsLib.restrict_surface_conditions(data.raw["assembling-machine"]["crusher"], common.AMBIENT_RADIATION_MAX)
+end
+
 for _, entity in pairs(data.raw["boiler"]) do
 	if entity.energy_source.type ~= "heat" then
 		PlanetsLib.restrict_surface_conditions(entity, common.AMBIENT_RADIATION_MAX)
@@ -40,8 +44,7 @@ end
 
 if data.raw["assembling-machine"]["cryogenic-plant"] then
 	PlanetsLib.restrict_surface_conditions(
-		data.raw["assembling-machine"]["cryogenic-plant"],
-		common.AMBIENT_RADIATION_MAX
+		data.raw["assembling-machine"]["cryogenic-plant"], common.AMBIENT_RADIATION_MAX
 	)
 end
 
@@ -53,21 +56,18 @@ for _, entity in pairs(data.raw["furnace"]) do
 	end
 end
 
---=== Fulgora lightning priority rules ==--
+-- === Fulgora lightning priority rules ==--
 
-if
-	data.raw.planet.fulgora
-	and data.raw.planet.fulgora.lightning_properties
-	and data.raw.planet.fulgora.lightning_properties.priority_rules
-then
+if data.raw.planet.fulgora and data.raw.planet.fulgora.lightning_properties
+	and data.raw.planet.fulgora.lightning_properties.priority_rules then
 	table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 		type = "prototype",
 		string = "cerys-charging-rod",
-		priority_bonus = 250,
+		priority_bonus = 250
 	})
 end
 
---== Nuclear explosion effects ==--
+-- == Nuclear explosion effects ==--
 
 if data.raw["explosion"]["nuke-effects-nauvis"] then
 	PlanetsLib.restrict_surface_conditions(data.raw["explosion"]["nuke-effects-nauvis"], common.AMBIENT_RADIATION_MAX)

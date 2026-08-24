@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.15
 Date: ????
-  Changes:
+  Compatibility:
+    - Vanilla crushers now possess an Ambient radiation surface condition (when placed) such that Muluna no longer enables them on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.14
 Date: 2026-08-18
@@ -51,7 +52,7 @@ Date: 2026-07-22
   Optimizations:
     - Many performance optimizations thanks to MeteorSwarm.
   Compatibility:
-    - Asteroid collectors now possess an Ambient radiation surface condition (when placed).
+    - Asteroid collectors now possess an Ambient radiation surface condition (when placed) such that Muluna no longer enables them on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.5
 Date: 2026-07-18
