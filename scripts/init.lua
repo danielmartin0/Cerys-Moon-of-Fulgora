@@ -140,27 +140,41 @@ end
 function Public.ensure_top_level_storage()
 	if not storage.charging_rods then
 		storage.charging_rods = (storage.cerys and storage.cerys.charging_rods) or {}
-		if storage.cerys then storage.cerys.charging_rods = nil end
+		if storage.cerys then
+			storage.cerys.charging_rods = nil
+		end
 	end
 	if not storage.charging_rod_is_positive then
 		storage.charging_rod_is_positive = (storage.cerys and storage.cerys.charging_rod_is_positive) or {}
-		if storage.cerys then storage.cerys.charging_rod_is_positive = nil end
+		if storage.cerys then
+			storage.cerys.charging_rod_is_positive = nil
+		end
 	end
 	if not storage.rod_registrations then
 		storage.rod_registrations = (storage.cerys and storage.cerys.rod_registrations) or {}
-		if storage.cerys then storage.cerys.rod_registrations = nil end
+		if storage.cerys then
+			storage.cerys.rod_registrations = nil
+		end
 	end
 	if not storage.solar_wind_particles then
 		storage.solar_wind_particles = (storage.cerys and storage.cerys.solar_wind_particles) or {}
-		if storage.cerys then storage.cerys.solar_wind_particles = nil end
+		if storage.cerys then
+			storage.cerys.solar_wind_particles = nil
+		end
 	end
 	if not storage.off_cerys_state_count then
 		storage.off_cerys_state_count = (storage.cerys and storage.cerys.off_cerys_state_count) or 0
-		if storage.cerys then storage.cerys.off_cerys_state_count = nil end
+		if storage.cerys then
+			storage.cerys.off_cerys_state_count = nil
+		end
 	end
 	if storage.given_charging_rod_performance_warning == nil then
-		storage.given_charging_rod_performance_warning = (storage.cerys and storage.cerys.given_charging_rod_performance_warning) or false
-		if storage.cerys then storage.cerys.given_charging_rod_performance_warning = nil end
+		storage.given_charging_rod_performance_warning = (
+			storage.cerys and storage.cerys.given_charging_rod_performance_warning
+		) or false
+		if storage.cerys then
+			storage.cerys.given_charging_rod_performance_warning = nil
+		end
 	end
 	if not storage.background_renderings then
 		storage.background_renderings = {}
@@ -169,7 +183,7 @@ function Public.ensure_top_level_storage()
 		storage.accrued_probability_units = 0
 	end
 	if not storage.cached_scale_factor then
-		 storage.cached_scale_factor = {}
+		storage.cached_scale_factor = {}
 	end
 	if not storage.sin then
 		storage.sin = {}

@@ -20,24 +20,24 @@ local reactor = {
 			{
 				location = { position = { 0, -3.5 }, direction = defines.direction.north },
 				category = "nuclear-reactor",
-				neighbour_category = { "nuclear-reactor" }
+				neighbour_category = { "nuclear-reactor" },
 			},
 			{
 				location = { position = { 3.5, 0 }, direction = defines.direction.east },
 				category = "nuclear-reactor",
-				neighbour_category = { "nuclear-reactor" }
+				neighbour_category = { "nuclear-reactor" },
 			},
 			{
 				location = { position = { 0, 3.5 }, direction = defines.direction.south },
 				category = "nuclear-reactor",
-				neighbour_category = { "nuclear-reactor" }
+				neighbour_category = { "nuclear-reactor" },
 			},
 			{
 				location = { position = { -3.5, 0 }, direction = defines.direction.west },
 				category = "nuclear-reactor",
-				neighbour_category = { "nuclear-reactor" }
-			}
-		}
+				neighbour_category = { "nuclear-reactor" },
+			},
+		},
 	},
 	energy_source = {
 		type = "burner",
@@ -48,8 +48,8 @@ local reactor = {
 		light_flicker = {
 			color = { 0, 0, 0 },
 			minimum_intensity = 0.7,
-			maximum_intensity = 0.95
-		}
+			maximum_intensity = 0.95,
+		},
 	},
 	consumption = "160MW", -- From 40MW
 	damaged_trigger_effect = hit_effects.entity(),
@@ -59,68 +59,68 @@ local reactor = {
 		connections = {
 			{
 				position = { -3, -3 },
-				direction = defines.direction.north
+				direction = defines.direction.north,
 			},
 			{
 				position = { -1, -3 },
-				direction = defines.direction.north
+				direction = defines.direction.north,
 			},
 			{
 				position = { 1, -3 },
-				direction = defines.direction.north
+				direction = defines.direction.north,
 			},
 			{
 				position = { 3, -3 },
-				direction = defines.direction.north
+				direction = defines.direction.north,
 			},
 			{
 				position = { 3, -3 },
-				direction = defines.direction.east
+				direction = defines.direction.east,
 			},
 			{
 				position = { 3, -1 },
-				direction = defines.direction.east
+				direction = defines.direction.east,
 			},
 			{
 				position = { 3, 1 },
-				direction = defines.direction.east
+				direction = defines.direction.east,
 			},
 			{
 				position = { 3, 3 },
-				direction = defines.direction.east
+				direction = defines.direction.east,
 			},
 			{
 				position = { 3, 3 },
-				direction = defines.direction.south
+				direction = defines.direction.south,
 			},
 			{
 				position = { 1, 3 },
-				direction = defines.direction.south
+				direction = defines.direction.south,
 			},
 			{
 				position = { -1, 3 },
-				direction = defines.direction.south
+				direction = defines.direction.south,
 			},
 			{
 				position = { -3, 3 },
-				direction = defines.direction.south
+				direction = defines.direction.south,
 			},
 			{
 				position = { -3, 3 },
-				direction = defines.direction.west
+				direction = defines.direction.west,
 			},
 			{
 				position = { -3, 1 },
-				direction = defines.direction.west
+				direction = defines.direction.west,
 			},
 			{
 				position = { -3, -1 },
-				direction = defines.direction.west
+				direction = defines.direction.west,
 			},
 			{
 				position = { -3, -3 },
-				direction = defines.direction.west
-			}
+				direction = defines.direction.west,
+			},
 		},
 		heat_picture = apply_heat_pipe_glow({
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/heat.png",
@@ -129,11 +129,11 @@ local reactor = {
 			scale = 0.55,
 			shift = util.by_pixel(35, -8),
 			blend_mode = "additive",
-			draw_as_glow = true
+			draw_as_glow = true,
 		}),
-		specific_heat = "10MJ",         -- from 10MJ
-		max_temperature = 1500,         -- from 1000
-		max_transfer = "40GW"           -- from 10GW
+		specific_heat = "10MJ", -- from 10MJ
+		max_temperature = 1500, -- from 1000
+		max_transfer = "40GW", -- from 10GW
 	}),
 	connection_patches_connected = {
 		sheet = {
@@ -141,8 +141,8 @@ local reactor = {
 			width = 64,
 			height = 64,
 			variation_count = 16,
-			scale = 0.55
-		}
+			scale = 0.55,
+		},
 	},
 	connection_patches_disconnected = nil,
 	heat_connection_patches_connected = {
@@ -151,8 +151,8 @@ local reactor = {
 			width = 64,
 			height = 64,
 			variation_count = 16,
-			scale = 0.55
-		})
+			scale = 0.55,
+		}),
 	},
 	heat_connection_patches_disconnected = nil,
 	working_light_picture = {
@@ -163,7 +163,7 @@ local reactor = {
 		height = 540,
 		scale = 0.55,
 		shift = util.by_pixel(35, -8),
-		tint = { r = 0, g = 1, b = 1 }
+		tint = { r = 0, g = 1, b = 1 },
 	},
 	picture = {
 		layers = {
@@ -172,7 +172,7 @@ local reactor = {
 				width = 646,
 				height = 540,
 				scale = 0.55,
-				shift = util.by_pixel(35, -8)
+				shift = util.by_pixel(35, -8),
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/shadow.png",
@@ -180,26 +180,26 @@ local reactor = {
 				height = 540,
 				scale = 0.55,
 				shift = util.by_pixel(35, -8),
-				draw_as_shadow = true
-			}
-		}
+				draw_as_shadow = true,
+			},
+		},
 	},
 	lower_layer_picture = nil,
 	heat_lower_layer_picture = nil,
 	-- lower_layer_picture = {
-		-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-0.5.png",
-		-- width = 2113,
-		-- height = 2068,
-		-- scale = 0.55,
-		-- shift = ?,
-		-- },
-		-- heat_lower_layer_picture = apply_heat_pipe_glow({
-		-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-heated-0.5.png",
-		-- width = 2113,
-		-- height = 2068,
-		-- scale = 0.55,
-		-- shift = ?,
-		-- }),
+	-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-0.5.png",
+	-- width = 2113,
+	-- height = 2068,
+	-- scale = 0.55,
+	-- shift = ?,
+	-- },
+	-- heat_lower_layer_picture = apply_heat_pipe_glow({
+	-- 	filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-pipes-heated-0.5.png",
+	-- width = 2113,
+	-- height = 2068,
+	-- scale = 0.55,
+	-- shift = ?,
+	-- }),
 	impact_category = "metal-large",
 	open_sound = { filename = "__base__/sound/open-close/nuclear-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/nuclear-close.ogg", volume = 0.8 },
@@ -211,15 +211,15 @@ local reactor = {
 			target_effects = {
 				{
 					type = "create-entity",
-					entity_name = "atomic-rocket"
-				}
-			}
-		}
+					entity_name = "atomic-rocket",
+				},
+			},
+		},
 	},
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
 	circuit_connector = circuit_connector_definitions["nuclear-reactor"],
-	surface_conditions = { common.AMBIENT_RADIATION_MAX }
+	surface_conditions = { common.AMBIENT_RADIATION_MAX },
 }
 
 reactor.lower_layer_picture = {
@@ -227,7 +227,7 @@ reactor.lower_layer_picture = {
 	width = 448,
 	height = 442,
 	scale = 0.5,
-	shift = util.by_pixel(-1, -5)
+	shift = util.by_pixel(-1, -5),
 }
 
 reactor.heat_lower_layer_picture = apply_heat_pipe_glow({
@@ -236,7 +236,7 @@ reactor.heat_lower_layer_picture = apply_heat_pipe_glow({
 	height = 442,
 	scale = 0.5,
 	shift = util.by_pixel(-1, -5),
-	draw_as_glow = true
+	draw_as_glow = true,
 })
 
 -- For the connection patches to line up, we need a scale of 0.5. its currently at 0.55 in the original code
@@ -256,7 +256,7 @@ for i = 0, 15 do
 		height = 64,
 		x = x,
 		y = 0,
-		scale = 0.5
+		scale = 0.5,
 	}
 
 	reactor.connection_patches_disconnected[i + 1] = {
@@ -265,7 +265,7 @@ for i = 0, 15 do
 		height = 64,
 		x = x,
 		y = 64,
-		scale = 0.5
+		scale = 0.5,
 	}
 
 	reactor.heat_connection_patches_connected[i + 1] = apply_heat_pipe_glow({
@@ -274,7 +274,7 @@ for i = 0, 15 do
 		height = 64,
 		x = x,
 		y = 0,
-		scale = 0.5
+		scale = 0.5,
 	})
 
 	reactor.heat_connection_patches_disconnected[i + 1] = apply_heat_pipe_glow({
@@ -283,7 +283,7 @@ for i = 0, 15 do
 		height = 64,
 		x = x,
 		y = 64,
-		scale = 0.5
+		scale = 0.5,
 	})
 end
 

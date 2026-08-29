@@ -322,7 +322,7 @@ local advanced_structure_repair_tech = {
 	},
 	allows_productivity = false,
 }
-if mods["quality"]  then
+if mods["quality"] then
 	table.insert(advanced_structure_repair_tech.effects, {
 		type = "unlock-recipe",
 		recipe = "cerys-upgrade-fulgoran-cryogenic-plant-quality",

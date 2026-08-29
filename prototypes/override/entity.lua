@@ -44,7 +44,8 @@ end
 
 if data.raw["assembling-machine"]["cryogenic-plant"] then
 	PlanetsLib.restrict_surface_conditions(
-		data.raw["assembling-machine"]["cryogenic-plant"], common.AMBIENT_RADIATION_MAX
+		data.raw["assembling-machine"]["cryogenic-plant"],
+		common.AMBIENT_RADIATION_MAX
 	)
 end
 
@@ -58,12 +59,15 @@ end
 
 -- === Fulgora lightning priority rules ==--
 
-if data.raw.planet.fulgora and data.raw.planet.fulgora.lightning_properties
-	and data.raw.planet.fulgora.lightning_properties.priority_rules then
+if
+	data.raw.planet.fulgora
+	and data.raw.planet.fulgora.lightning_properties
+	and data.raw.planet.fulgora.lightning_properties.priority_rules
+then
 	table.insert(data.raw.planet.fulgora.lightning_properties.priority_rules, {
 		type = "prototype",
 		string = "cerys-charging-rod",
-		priority_bonus = 250
+		priority_bonus = 250,
 	})
 end
 

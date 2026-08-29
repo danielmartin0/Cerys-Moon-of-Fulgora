@@ -5,9 +5,7 @@ local cerys_index = cerys_surface and cerys_surface.valid and cerys_surface.inde
 
 if storage.cerys then
 	storage.charging_rods = storage.charging_rods or storage.cerys.charging_rods or {}
-	storage.charging_rod_is_positive = storage.charging_rod_is_positive
-		or storage.cerys.charging_rod_is_positive
-		or {}
+	storage.charging_rod_is_positive = storage.charging_rod_is_positive or storage.cerys.charging_rod_is_positive or {}
 	storage.rod_registrations = storage.rod_registrations or storage.cerys.rod_registrations or {}
 	storage.solar_wind_particles = storage.solar_wind_particles or storage.cerys.solar_wind_particles or {}
 	if storage.given_charging_rod_performance_warning == nil then
@@ -43,7 +41,12 @@ local function surface_index_of_particle(particle)
 	if particle.surface_index then
 		return particle.surface_index
 	end
-	if particle.rendering and particle.rendering.valid and particle.rendering.surface and particle.rendering.surface.valid then
+	if
+		particle.rendering
+		and particle.rendering.valid
+		and particle.rendering.surface
+		and particle.rendering.surface.valid
+	then
 		return particle.rendering.surface.index
 	end
 	return cerys_index

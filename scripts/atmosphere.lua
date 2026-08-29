@@ -107,7 +107,7 @@ function Public.try_spawn_asteroid(surface)
 	end
 end
 
-function Public.spawn_solar_wind_particle(surface,tick)
+function Public.spawn_solar_wind_particle(surface, tick)
 	local d = common.CERYS_RADIUS / lib.get_cerys_surface_stretch_factor(surface)
 
 	local y = math.random(-d - 8, d + 8)
@@ -125,7 +125,7 @@ function Public.spawn_solar_wind_particle(surface,tick)
 	table.insert(storage.solar_wind_particles, {
 		rendering = r,
 		--age = 0,
-		birth_tick=tick,
+		birth_tick = tick,
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
 		surface_index = surface.index,
@@ -229,62 +229,53 @@ Public.remove_particle_at = remove_particle_at
 
 local function cached_scale_factor(ticks_until_death)
 	local s = storage.cached_scale_factor[ticks_until_death]
-    if s == nil then
-        s = math.sqrt(math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME))
-        storage.cached_scale_factor[ticks_until_death] = s
-    end
-    return s
-
+	if s == nil then
+		s = math.sqrt(math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME))
+		storage.cached_scale_factor[ticks_until_death] = s
+	end
+	return s
 end
 
-local function handle_death(particle,i)
-local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
-				
+local function handle_death(particle, i)
+	local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
+
 	if ticks_until_death < 0 then
 		particle.rendering.destroy()
 		remove_particle_at(i)
 	else
-		
 		local scale_factor = cached_scale_factor(ticks_until_death)
 		particle.rendering.x_scale = scale_factor
 		particle.rendering.y_scale = scale_factor
-		
 	end
-
 end
 
 function Public.tick_1_move_solar_wind()
 	--local i = 1
-	
+
 	for i = #storage.solar_wind_particles, 1, -1 do -- Iterate backward to avoid index shifting
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
 		--local v = particle.velocity
-		if not (particle.rendering and particle.rendering.valid) then 
+		if not (particle.rendering and particle.rendering.valid) then
 			remove_particle_at(i)
 			goto continue
 		end
-		
-			--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
-			particle.position.x = particle.position.x + particle.velocity.x
-			
-			particle.position.y = particle.position.y + particle.velocity.y
-			
-			
-			--if storage.player_looking_at_cerys then
-				particle.rendering.target =  particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
-			--end
-			
-			--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
 
-			if particle.marked_for_death_tick then
-				handle_death(particle,i)
-			end
-			
-			
-		
-			
-		
+		--local p = { x = particle.position.x + v.x, y = particle.position.y + v.y }
+		particle.position.x = particle.position.x + particle.velocity.x
+
+		particle.position.y = particle.position.y + particle.velocity.y
+
+		--if storage.player_looking_at_cerys then
+		particle.rendering.target = particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+		--end
+
+		--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
+
+		if particle.marked_for_death_tick then
+			handle_death(particle, i)
+		end
+
 		::continue::
 	end
 end
@@ -337,7 +328,7 @@ function Public.tick_5_solar_wind_destroy_check()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_solar_wind_particles(surface,tick)
+function Public.tick_240_clean_up_cerys_solar_wind_particles(surface, tick)
 	local have_cerys = surface and surface.valid
 	local semimajor_axis, semiminor_axis, cerys_surface_index
 	if have_cerys then
@@ -434,10 +425,12 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 					surface_cache[s_idx] = surface
 				end
 			end
-			if math.sqrt(particle.position.x^2+particle.position.y^2) > common.CERYS_RADIUS then goto continue end --Skip collision checks if particle is out of bounds of Cerys
-			
+			if math.sqrt(particle.position.x ^ 2 + particle.position.y ^ 2) > common.CERYS_RADIUS then
+				goto continue
+			end --Skip collision checks if particle is out of bounds of Cerys
+
 			if surface then
-			local count =  surface.count_entities_filtered
+				local count = surface.count_entities_filtered
 				local chars =
 					surface.find_entities_filtered({ name = "character", position = particle.position, radius = 1.2 })
 				if #chars > 0 then
@@ -478,10 +471,10 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 								end
 
 								local damage = (
-										settings.startup["cerys-high-damage-mode"]
-										and settings.startup["cerys-high-damage-mode"].value
-									) -- Setting stored in Cerys Start mod
-									and 80
+									settings.startup["cerys-high-damage-mode"]
+									and settings.startup["cerys-high-damage-mode"].value
+								) -- Setting stored in Cerys Start mod
+										and 80
 									or 5
 
 								e.damage(damage, game.forces.neutral, "impact")
@@ -495,7 +488,6 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 					-- has_item_inside = "uranium-238", -- this would only catch normal quality
 					radius = 0.75,
 				}
-				
 
 				if surface.count_entities_filtered(container_filter) > 0 then
 					local containers = surface.find_entities_filtered(container_filter)
@@ -508,8 +500,13 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 
 							local inv = e.get_inventory(defines.inventory.chest)
 							if inv and inv.valid then
-								local irradiated =
-									Public.irradiate_inventory(surface, inv, e.force, e.position, probability_multiplier)
+								local irradiated = Public.irradiate_inventory(
+									surface,
+									inv,
+									e.force,
+									e.position,
+									probability_multiplier
+								)
 								if irradiated then
 									surface.create_entity({
 										name = "plutonium-explosion",
@@ -524,10 +521,10 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 				-- Note: Uranium on belts is more susceptible to slower wind. This is acceptable for now on a flavor basis of neutron capture.
 				if CHANCE_CHECK_BELT >= 1 or (math.random() < CHANCE_CHECK_BELT) then
 					local belt_filter = {
-							type = "transport-belt",
-							position = particle.position,
-							radius = 0.5,
-						}
+						type = "transport-belt",
+						position = particle.position,
+						radius = 0.5,
+					}
 					if surface.count_entities_filtered(belt_filter) > 0 then
 						local belts = surface.find_entities_filtered(belt_filter)
 						local e = belts[1]

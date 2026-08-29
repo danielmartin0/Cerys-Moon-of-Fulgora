@@ -121,11 +121,11 @@ local size_to_probability_expression = {
 
 local size_to_spritesheets = {
 	small = {
-		{ path = "cerys-ruin-small",      frame_count = 27 },
+		{ path = "cerys-ruin-small", frame_count = 27 },
 		{ path = "cerys-ruin-small-tall", frame_count = 7 },
 	},
 	medium = {
-		{ path = "cerys-ruin-medium",      frame_count = 10 },
+		{ path = "cerys-ruin-medium", frame_count = 10 },
 		{ path = "cerys-ruin-medium-tall", frame_count = 4 },
 	},
 	big = {

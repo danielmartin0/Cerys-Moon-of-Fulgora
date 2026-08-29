@@ -108,7 +108,7 @@ data:extend({
 		type = "ambient-sound",
 		name = "cerys-1",
 		track_type = "hero-track",
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/aurora.ogg",
 			volume = 0.5,
@@ -120,7 +120,7 @@ data:extend({
 		name = "cerys-2",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/signaltonoise.ogg",
 			volume = 0.5,
@@ -132,7 +132,7 @@ data:extend({
 		name = "cerys-3",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/affirmations.ogg",
 			volume = 0.5,
@@ -144,7 +144,7 @@ data:extend({
 		name = "cerys-4",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/effervescence.ogg",
 			volume = 0.5,
@@ -156,7 +156,7 @@ data:extend({
 		name = "cerys-5",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/filaments.ogg",
 			volume = 0.5,
@@ -168,7 +168,7 @@ data:extend({
 		name = "cerys-6",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/chasingdaylight.ogg",
 			volume = 0.5,
@@ -180,7 +180,7 @@ data:extend({
 		name = "cerys-7",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/celestial.ogg",
 			volume = 0.5,
@@ -216,7 +216,7 @@ data:extend({
 		name = "cerys-10",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/fallingtogether.ogg",
 			volume = 0.5,
@@ -240,7 +240,7 @@ data:extend({
 		name = "cerys-12",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/thistooshallpass.ogg",
 			volume = 0.5,
@@ -264,7 +264,7 @@ data:extend({
 		name = "cerys-14",
 		track_type = "main-track",
 		weight = 10,
-		planets = {"cerys"},
+		planets = { "cerys" },
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/unraveling.ogg",
 			volume = 0.5,
