@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.16
 Date: ????
-  Changes:
+  Graphics:
+    - Better connecting graphics between heat pipes and the Mixed-oxide nuclear reactor (thanks to CAR DOOR!)
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.15
 Date: 2026-08-24
