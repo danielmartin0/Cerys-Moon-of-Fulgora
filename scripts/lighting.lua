@@ -50,7 +50,8 @@ function Public.tick_update_lights()
 
 	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
-	daytime = math.floor(daytime * 10000 + 0.5) / 10000 --Round to nearest 0.0001 To reduce size of lookup table
+	daytime = math.floor(daytime * 10000 + 0.5) /
+		10000 --Round to nearest 0.0001 To reduce size of lookup table
 	if settings.global["cerys-dynamic-lighting"].value and elapsed_ticks < 10 * 60 then -- Avoid cargo pod graphical issue on first visit
 		surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
 		surface.min_brightness = 0.2
@@ -134,7 +135,7 @@ function Public.tick_update_lights()
 		light_scale = light_scale * 0.65 -- not an exact science
 	end
 	local rectangle_sprite = ((phase % (2 * 180)) > 180 / 2 and (phase % (2 * 180)) < 3 * 180 / 2)
-			and "cerys-solar-light-rectangle-inverted"
+		and "cerys-solar-light-rectangle-inverted"
 		or "cerys-solar-light-rectangle"
 
 	if is_white_circle then
@@ -255,7 +256,8 @@ function Public.tick_update_lights()
 				end
 
 				local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
-				adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 * (180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
+				adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 *
+					(180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
 				panel.adjusted_longitude_degrees = adjusted_longitude_degrees
 			end
 
@@ -293,7 +295,9 @@ function Public.tick_update_lights()
 
 	local desired_solar_panel_bar_fullness = desired_solar_power_multiplier
 
-	local engine_daytime = 0.45 - 0.1995 * desired_solar_panel_bar_fullness -- Any closer to 0.25 and the engine complains
+	local engine_daytime = 0.45 -
+		0.1995 *
+		desired_solar_panel_bar_fullness -- Any closer to 0.25 and the engine complains
 
 	if desired_solar_panel_bar_fullness == 1 then
 		engine_daytime = engine_daytime - 1 / 3000 -- Somehow this helps avoid an oscillating value in the UI

@@ -330,8 +330,8 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 
 	e.temperature = e.temperature
 		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
-			* TEMPERATURE_LOSS_RATE
-			* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
+		* TEMPERATURE_LOSS_RATE
+		* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
 
 	if valid_tower.frozen then
 		if temperature_above_zero > 1 then

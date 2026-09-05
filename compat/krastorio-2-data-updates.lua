@@ -75,10 +75,10 @@ local function multiply_projectile_damage(projectile_name, damage_type, factor)
 	else
 		log(
 			"[CERYS] No "
-				.. damage_type
-				.. " damage found in "
-				.. projectile_name
-				.. ", so its damage is left unchanged."
+			.. damage_type
+			.. " damage found in "
+			.. projectile_name
+			.. ", so its damage is left unchanged."
 		)
 	end
 end

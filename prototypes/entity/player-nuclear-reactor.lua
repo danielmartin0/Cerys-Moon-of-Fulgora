@@ -147,7 +147,8 @@ local reactor = {
 	connection_patches_disconnected = nil,
 	heat_connection_patches_connected = {
 		sheet = apply_heat_pipe_glow({
-			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
+			filename =
+			"__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
 			width = 64,
 			height = 64,
 			variation_count = 16,
@@ -269,7 +270,8 @@ for i = 0, 15 do
 	}
 
 	reactor.heat_connection_patches_connected[i + 1] = apply_heat_pipe_glow({
-		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
+		filename =
+		"__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
 		width = 64,
 		height = 64,
 		x = x,
@@ -278,7 +280,8 @@ for i = 0, 15 do
 	})
 
 	reactor.heat_connection_patches_disconnected[i + 1] = apply_heat_pipe_glow({
-		filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
+		filename =
+		"__Cerys-Moon-of-Fulgora__/graphics/entity/player-nuclear-reactor/reactor-connect-patches-heated-4x4.png",
 		width = 64,
 		height = 64,
 		x = x,

@@ -267,7 +267,8 @@ function Public.tick_1_move_solar_wind()
 		particle.position.y = particle.position.y + particle.velocity.y
 
 		--if storage.player_looking_at_cerys then
-		particle.rendering.target = particle.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
+		particle.rendering.target = particle
+			.position --Render particle only if players are looking at Cerys. This saves a lot of performance when not looking at Cerys without changing any gameplay mechanics
 		--end
 
 		--particle.age = particle.age + 1 --Now achieved via tracking the birth tick of new solar wind
@@ -471,10 +472,10 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 								end
 
 								local damage = (
-									settings.startup["cerys-high-damage-mode"]
-									and settings.startup["cerys-high-damage-mode"].value
-								) -- Setting stored in Cerys Start mod
-										and 80
+										settings.startup["cerys-high-damage-mode"]
+										and settings.startup["cerys-high-damage-mode"].value
+									) -- Setting stored in Cerys Start mod
+									and 80
 									or 5
 
 								e.damage(damage, game.forces.neutral, "impact")

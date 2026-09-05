@@ -177,7 +177,8 @@ function Public.unfreeze_cryo_plant(surface, plant)
 			local input_inv2 = e2.get_inventory(defines.inventory.crafter_input)
 			if input_inv2 and input_inv2.valid then
 				for _, c in pairs(contents or {}) do
-					local new_count = c.count + 1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
+					local new_count = c.count +
+						1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
 					input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
 				end
 			end

@@ -193,7 +193,7 @@ function Public.tick_15_check_broken_crushers(surface)
 					}
 
 					crusher.rendering2.color = circuit_count >= products_required * circuit_count_per_recipe
-							and { 0, 255, 0 }
+						and { 0, 255, 0 }
 						or { 255, 185, 0 }
 					crusher.rendering2.text = {
 						"cerys.repair-remaining-description",

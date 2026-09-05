@@ -17,10 +17,10 @@ if not storage.cerys.teleporter and not storage.cerys.frozen_teleporter then
 	if e and e.valid then
 		game.print(
 			"[CERYS]: Added a Fulgoran Teleporter to the Cerys surface: [gps="
-				.. e.position.x
-				.. ","
-				.. e.position.y
-				.. ",cerys]",
+			.. e.position.x
+			.. ","
+			.. e.position.y
+			.. ",cerys]",
 			{ color = common.FRIENDLY_COLOR }
 		)
 	end

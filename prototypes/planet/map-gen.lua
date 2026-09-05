@@ -447,6 +447,7 @@ data:extend({
 	{
 		type = "noise-expression",
 		name = "cerys_decorative_knockout", -- adapted from vanilla
-		expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, persistence = 0.7, seed0 = map_seed, seed1 = 1300000, octaves = 2, input_scale = 1/2.5}",
+		expression =
+		"multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, persistence = 0.7, seed0 = map_seed, seed1 = 1300000, octaves = 2, input_scale = 1/2.5}",
 	},
 })
