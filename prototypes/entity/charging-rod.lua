@@ -2,7 +2,7 @@ local hit_effects = require("__base__.prototypes.entity.hit-effects")
 local sounds = require("__base__.prototypes.entity.sounds")
 local merge = require("lib").merge
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 
 -- NOTE: Positive and negative have been flipped so some stuff is labelled wrong internally.
 
@@ -249,11 +249,11 @@ data:extend({
 			},
 		},
 	},
-	merge(common_data.hidden_lamp_base, {
+	merge(data_utils.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-blue",
 		light = { intensity = 0.15, size = 10, color = { r = 0.8, g = 0.8, b = 1 } },
 	}),
-	merge(common_data.hidden_lamp_base, {
+	merge(data_utils.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-red",
 		light = { intensity = 0.15, size = 10, color = { r = 1, g = 0.8, b = 0.8 } },
 	}),

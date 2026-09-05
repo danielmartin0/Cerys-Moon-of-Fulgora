@@ -92,16 +92,16 @@ end
 local recycling_tech = data.raw.technology["recycling"]
 local cerys_recycler_tech = data.raw.technology["cerys-nuclear-scrap-recycling"]
 
-if recycling_tech and recycling_tech.effects and cerys_recycler_tech and cerys_recycler_tech.effects then
-	local function cerys_tech_has_unlock(recipe_name)
-		for _, effect in ipairs(cerys_recycler_tech.effects) do
-			if effect.type == "unlock-recipe" and effect.recipe == recipe_name then
-				return true
-			end
+local function cerys_tech_has_unlock(recipe_name)
+	for _, effect in ipairs(cerys_recycler_tech.effects) do
+		if effect.type == "unlock-recipe" and effect.recipe == recipe_name then
+			return true
 		end
-		return false
 	end
+	return false
+end
 
+if recycling_tech and recycling_tech.effects and cerys_recycler_tech and cerys_recycler_tech.effects then
 	for _, effect in ipairs(recycling_tech.effects) do
 		if effect.type == "unlock-recipe" and effect.hidden and not cerys_tech_has_unlock(effect.recipe) then
 			table.insert(cerys_recycler_tech.effects, {

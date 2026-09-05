@@ -1,5 +1,5 @@
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 local lib = require("lib")
 local merge = lib.merge
 

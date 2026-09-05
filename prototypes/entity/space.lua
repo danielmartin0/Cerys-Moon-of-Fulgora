@@ -1,6 +1,6 @@
 local merge = require("lib").merge
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 
 local ASTEROIDS_TO_CLONE = {
 	["small-metallic-asteroid"] = 8,

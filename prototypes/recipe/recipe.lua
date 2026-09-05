@@ -1,5 +1,5 @@
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 local lib = require("lib")
 
 data:extend({
@@ -145,7 +145,7 @@ data:extend({
 			{ type = "item", name = "speed-module-2", amount = 8 },
 			{ type = "item", name = "processing-unit", amount = 4 },
 			{ type = "item", name = "advanced-circuit", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
@@ -159,7 +159,7 @@ data:extend({
 			{ type = "item", name = "productivity-module-2", amount = 8 },
 			{ type = "item", name = "uranium-235", amount = 4 },
 			{ type = "item", name = "superconductor", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-radioactive-module-charged", amount = 1 } },
@@ -175,7 +175,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "holmium-plate", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 5 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 50 },
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
 		results = { { type = "item", name = "cerysian-science-pack", amount = 1 } },
@@ -205,7 +205,7 @@ data:extend({
 		energy_required = 15,
 		ingredients = {
 			{ type = "item", name = "artillery-shell", amount = 1 },
-			{ type = "item", name = common_data.LITHIUM_NAME, amount = 1 },
+			{ type = "item", name = data_utils.LITHIUM_NAME, amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 5 },
 		},
 		results = { { type = "item", name = "cerys-neutron-bomb", amount = 1 } },
@@ -240,7 +240,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "solid-fuel", amount = 1 },
 			{ type = "fluid", name = "ammonia", amount = 10 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "explosives", amount = 2 } },
 		allow_productivity = true,
@@ -280,7 +280,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 5 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 5 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
@@ -338,7 +338,7 @@ data:extend({
 			{ type = "fluid", name = "water", amount = 25 },
 		},
 		results = {
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 50 },
 		},
 		allow_productivity = true,
 		enabled = false,
@@ -432,7 +432,7 @@ data:extend({
 		energy_required = 10,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "item", name = common_data.LITHIUM_NAME, amount = 5 },
+			{ type = "item", name = data_utils.LITHIUM_NAME, amount = 5 },
 		},
 		results = {
 			{ type = "fluid", name = "lubricant", amount = 50 },

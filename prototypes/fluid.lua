@@ -1,4 +1,4 @@
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 
 data:extend({
 	{
@@ -39,7 +39,7 @@ if not mods["Krastorio2"] then
 	data:extend({
 		{
 			type = "fluid",
-			name = common_data.NITRIC_ACID_NAME,
+			name = data_utils.NITRIC_ACID_NAME,
 			subgroup = "fluid",
 			default_temperature = 15,
 			base_color = { 0.384, 0.271, 0.792 },
