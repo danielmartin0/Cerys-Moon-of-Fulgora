@@ -3,6 +3,8 @@ Version: 4.24.17
 Date: ????
   Compatibility:
     - Maraxsis compatibility code now detects the planet rather than the specific mod.
+  Changes:
+    - The scripted melting of ice on Cerys is now still processed, albeit very slowly (for performance), when no player is looking at or standing on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.16
 Date: 2026-08-29

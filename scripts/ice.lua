@@ -15,17 +15,18 @@ local TILE_TRANSITIONS = {
 	["cerys-ash-cracks-frozen-from-dry-ice"] = "cerys-ash-cracks",
 	["cerys-ash-dark-frozen-from-dry-ice"] = "cerys-ash-dark",
 	["cerys-ash-light-frozen-from-dry-ice"] = "cerys-ash-light",
-	["cerys-pumice-stones-frozen-from-dry-ice"] = "cerys-pumice-stones",
+	["cerys-pumice-stones-frozen-from-dry-ice"] = "cerys-pumice-stones"
 }
 
 local HIDDEN_TILE_TO_MELTING_TILE = {
 	["cerys-ash-cracks-frozen"] = "cerys-ash-cracks-frozen-from-dry-ice",
 	["cerys-ash-dark-frozen"] = "cerys-ash-dark-frozen-from-dry-ice",
 	["cerys-ash-light-frozen"] = "cerys-ash-light-frozen-from-dry-ice",
-	["cerys-pumice-stones-frozen"] = "cerys-pumice-stones-frozen-from-dry-ice",
+	["cerys-pumice-stones-frozen"] = "cerys-pumice-stones-frozen-from-dry-ice"
 }
 
 Public.ICE_CHECK_INTERVAL = 80
+Public.UNATTENDED_ICE_CHECK_INTERVAL = 60 * 60 * 1 -- 1 minute
 
 local TRANSITION_TILE_NAMES = {}
 for source_tile, _ in pairs(TILE_TRANSITIONS) do
@@ -39,6 +40,12 @@ function Public.tick_ice(surface)
 	if not storage.transitioning_tiles[surface.index] then
 		storage.transitioning_tiles[surface.index] = {}
 	end
+	if not storage.last_ice_check_tick then
+		storage.last_ice_check_tick = {}
+	end
+
+	local previous_check_tick = storage.last_ice_check_tick[surface.index]
+	storage.last_ice_check_tick[surface.index] = game.tick
 
 	local transitioning_tiles
 	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
@@ -48,24 +55,24 @@ function Public.tick_ice(surface)
 			area = {
 				left_top = {
 					x = -common.CERYS_RADIUS * 1.1 * stretch_factor,
-					y = -common.CERYS_RADIUS * 1.1 / stretch_factor,
+					y = -common.CERYS_RADIUS * 1.1 / stretch_factor
 				},
 				right_bottom = {
 					x = common.CERYS_RADIUS * 1.1 * stretch_factor,
-					y = common.CERYS_RADIUS * 1.1 / stretch_factor,
-				},
-			},
+					y = common.CERYS_RADIUS * 1.1 / stretch_factor
+				}
+			}
 		})
 	else
 		transitioning_tiles = surface.find_tiles_filtered({
 			name = TRANSITION_TILE_NAMES,
 			position = { x = 0, y = 0 },
-			radius = common.CERYS_RADIUS * 1.05,
+			radius = common.CERYS_RADIUS * 1.05
 		})
 	end
 
 	if #transitioning_tiles > 0 then
-		local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, Public.ICE_CHECK_INTERVAL)
+		local tiles_to_set = Public.process_transitions(surface, transitioning_tiles, previous_check_tick)
 
 		if #tiles_to_set > 0 then
 			surface.set_tiles(tiles_to_set)
@@ -78,8 +85,7 @@ function Public.tick_ice(surface)
 		end
 	end
 end
-
-function Public.process_transitions(surface, transitioning_tiles, interval)
+function Public.process_transitions(surface, transitioning_tiles, previous_check_tick)
 	local tiles_to_set = {}
 
 	for _, tile in pairs(transitioning_tiles) do
@@ -90,16 +96,9 @@ function Public.process_transitions(surface, transitioning_tiles, interval)
 
 		local last_observed_tick = storage.transitioning_tiles[surface.index][pos.x][pos.y]
 
-		if
-			last_observed_tick
-			and (game.tick - last_observed_tick >= interval)
-			and (game.tick - last_observed_tick < interval * 2)
-		then
+		if last_observed_tick and previous_check_tick and last_observed_tick >= previous_check_tick then
 			if TILE_TRANSITIONS[tile.name] and TILE_TRANSITIONS[tile.name] ~= "nil" then
-				tiles_to_set[#tiles_to_set + 1] = {
-					name = TILE_TRANSITIONS[tile.name],
-					position = pos,
-				}
+				tiles_to_set[#tiles_to_set + 1] = { name = TILE_TRANSITIONS[tile.name], position = pos }
 			end
 
 			if Public.TILE_TRANSITION_EFFECTS[tile.name] then
@@ -129,9 +128,9 @@ local function melt_dry_ice(surface, pos)
 	local colliding_simple_entities = surface.find_entities_filtered({
 		name = {
 			"cerys-methane-iceberg-huge",
-			"cerys-methane-iceberg-big",
+			"cerys-methane-iceberg-big"
 		},
-		position = pos,
+		position = pos
 	})
 
 	for _, e in pairs(colliding_simple_entities) do
@@ -142,30 +141,30 @@ local function melt_dry_ice(surface, pos)
 		name = {
 			"cerys-methane-iceberg-medium",
 			"cerys-methane-iceberg-small",
-			"cerys-methane-iceberg-tiny",
+			"cerys-methane-iceberg-tiny"
 		},
-		position = pos,
+		position = pos
 	})
 
 	surface.destroy_decoratives({
 		name = {
-			"cerys-ice-decal-white",
+			"cerys-ice-decal-white"
 		},
 		area = {
 			left_top = { x = pos.x - 2, y = pos.y - 2 },
-			right_bottom = { x = pos.x + 2, y = pos.y + 2 },
-		},
+			right_bottom = { x = pos.x + 2, y = pos.y + 2 }
+		}
 	})
 end
 
 Public.TILE_POST_TRANSITION_EFFECTS = {
-	["cerys-water-puddles"] = function(surface, pos)
+	["cerys-water-puddles"] = function (surface, pos)
 		local pumps = surface.find_entities_filtered({
 			area = {
 				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
-				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 }
 			},
-			type = "offshore-pump",
+			type = "offshore-pump"
 		})
 
 		for _, entity in pairs(pumps) do
@@ -180,17 +179,17 @@ Public.TILE_POST_TRANSITION_EFFECTS = {
 				position = p,
 				force = f,
 				direction = d,
-				quality = q,
+				quality = q
 			})
 		end
-	end,
+	end
 }
 
 Public.TILE_TRANSITION_EFFECTS = {
-	["cerys-dry-ice-on-water-melting"] = function(surface, pos)
+	["cerys-dry-ice-on-water-melting"] = function (surface, pos)
 		melt_dry_ice(surface, pos)
 	end,
-	["cerys-dry-ice-on-land-melting"] = function(surface, pos)
+	["cerys-dry-ice-on-land-melting"] = function (surface, pos)
 		melt_dry_ice(surface, pos)
 	end,
 	-- ["cerys-dry-ice-smooth-melting"] = function(surface, pos)
@@ -199,13 +198,13 @@ Public.TILE_TRANSITION_EFFECTS = {
 	-- ["cerys-dry-ice-smooth-land-melting"] = function(surface, pos)
 	-- 	melt_dry_ice(surface, pos)
 	-- end,
-	["cerys-water-puddles-freezing"] = function(surface, pos)
+	["cerys-water-puddles-freezing"] = function (surface, pos)
 		local pumps = surface.find_entities_filtered({
 			area = {
 				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
-				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 }
 			},
-			type = "offshore-pump",
+			type = "offshore-pump"
 		})
 
 		for _, entity in pairs(pumps) do
@@ -214,16 +213,16 @@ Public.TILE_TRANSITION_EFFECTS = {
 
 		surface.create_entity({
 			name = "water-splash",
-			position = { x = pos.x + 0.5, y = pos.y + 0.5 },
+			position = { x = pos.x + 0.5, y = pos.y + 0.5 }
 		})
 	end,
-	["cerys-ice-on-water-melting"] = function(surface, pos)
+	["cerys-ice-on-water-melting"] = function (surface, pos)
 		local colliding_entities = surface.find_entities_filtered({
 			area = {
 				left_top = { x = pos.x + 0.2, y = pos.y + 0.2 },
-				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 },
+				right_bottom = { x = pos.x + 0.8, y = pos.y + 0.8 }
 			},
-			collision_mask = "object",
+			collision_mask = "object"
 		})
 
 		for _, entity in pairs(colliding_entities) do
@@ -238,9 +237,9 @@ Public.TILE_TRANSITION_EFFECTS = {
 
 		surface.create_entity({
 			name = "water-splash",
-			position = { x = pos.x + 0.5, y = pos.y + 0.5 },
+			position = { x = pos.x + 0.5, y = pos.y + 0.5 }
 		})
-	end,
+	end
 	-- ["nuclear-scrap-under-ice-melting"] = function(surface, pos)
 	-- 	if not storage.frozen_scrap_amounts then
 	-- 		storage.frozen_scrap_amounts = {}
@@ -291,11 +290,7 @@ function Public.place_ghost_foundation_under_entity(surface, entity)
 		for j = -entity.tile_height / 2 + 0.5, entity.tile_height / 2 - 0.5 do
 			local tile = surface.get_tile(entity.position.x + i, entity.position.y + j)
 
-			if
-				tile
-				and tile.valid
-				and (tile.name == "cerys-ice-on-water-melting" or tile.name == "cerys-ice-on-water")
-			then
+			if tile and tile.valid and (tile.name == "cerys-ice-on-water-melting" or tile.name == "cerys-ice-on-water") then
 				local ghosts = tile.get_tile_ghosts()
 
 				local has_floor_layer = false
@@ -313,7 +308,7 @@ function Public.place_ghost_foundation_under_entity(surface, entity)
 						force = entity.force,
 						name = "tile-ghost",
 						position = { x = entity.position.x + i, y = entity.position.y + j },
-						ghost_name = "foundation",
+						ghost_name = "foundation"
 					})
 				end
 			end

@@ -341,7 +341,9 @@ function Public.cerys_tick(surface, tick)
 		cooling.tick_60_cool_boilers()
 	end
 
-	if (player_looking_at_surface or player_on_surface) and (tick + 1) % ice.ICE_CHECK_INTERVAL == 0 then
+	local ice_check_interval = (player_looking_at_surface or player_on_surface) and ice.ICE_CHECK_INTERVAL
+		or ice.UNATTENDED_ICE_CHECK_INTERVAL
+	if (tick + 1) % ice_check_interval == 0 then
 		ice.tick_ice(surface)
 	end
 
