@@ -1,7 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.17
 Date: ????
-  Changes:
+  Compatibility:
+    - Maraxsis compatibility code now detects the planet rather than the specific mod.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.16
 Date: 2026-08-29
