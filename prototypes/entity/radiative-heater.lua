@@ -15,15 +15,15 @@ data:extend({
 		drawing_box_vertical_extension = 1.2,
 		energy_source = {
 			type = "burner",
-			fuel_categories = { "chemical-or-radiative" },
+			fuel_categories = { "radiative" },
 			emissions_per_minute = { pollution = 5 },
-			fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
+			fuel_inventory_size = 2,                                                          -- not too high so you can see the fuel on belts
 			burnt_inventory_size = 0,
 			light_flicker = {
 				color = { 0, 0, 0 },
 				minimum_intensity = 0,
-				maximum_intensity = 0,
-			}, -- Disable the flicker effect
+				maximum_intensity = 0
+			} -- Disable the flicker effect
 		},
 		consumption = "1300kW",
 		heat_buffer = {
@@ -37,28 +37,28 @@ data:extend({
 						scale = 0.42,
 						blend_mode = "additive",
 						tint = { 0.55, 0.55, 0.55, 1 },
-						draw_as_glow = true,
+						draw_as_glow = true
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/flare", {
 						scale = 0.42,
 						blend_mode = "additive",
 						tint = { 0.13, 0.13, 0.13, 1 },
-						draw_as_glow = true,
-					}),
-				},
-			},
+						draw_as_glow = true
+					})
+				}
+			}
 		},
 		neighbour_bonus = 0,
 		picture = {
 			layers = {
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/tower", {
-					scale = 0.42,
+					scale = 0.42
 				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-heater/shadow", {
 					scale = 0.42,
-					draw_as_shadow = true,
-				}),
-			},
+					draw_as_shadow = true
+				})
+			}
 		},
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/radiative-heater.png",
 		icon_size = 64,
@@ -68,7 +68,7 @@ data:extend({
 			sound = { audible_distance_modifier = 0.9, filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
 			max_sounds_per_prototype = 3,
 			fade_in_ticks = 4,
-			fade_out_ticks = 20,
+			fade_out_ticks = 20
 		},
 		default_temperature_signal = { type = "virtual", name = "signal-T" },
 		circuit_wire_max_distance = reactor_circuit_wire_max_distance,
@@ -76,11 +76,11 @@ data:extend({
 			variation = 7,
 			main_offset = util.by_pixel(-37.5, 7.5),
 			shadow_offset = util.by_pixel(-37.5, 7.5),
-			show_shadow = true,
+			show_shadow = true
 		}),
 		minable = { mining_time = 0.2, result = "cerys-radiative-heater" },
 		autoplace = {
-			probability_expression = "0",
+			probability_expression = "0"
 		},
 		fast_replaceable_group = "radiative-tower",
 		created_effect = {
@@ -89,9 +89,9 @@ data:extend({
 				type = "instant",
 				source_effects = {
 					type = "script",
-					effect_id = "cerys-player-radiative-tower-created",
-				},
-			},
+					effect_id = "cerys-player-radiative-tower-created"
+				}
+			}
 		},
 		radius_visualisation_specification = {
 			distance = 13.5, -- Extra 0.5 because the hidden reactor sits at the middle of a tile
@@ -99,17 +99,17 @@ data:extend({
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/area-of-effect.png",
 				tint = { r = 1, g = 0, b = 0, a = 0.5 },
 				height = 64,
-				width = 64,
-			},
+				width = 64
+			}
 		},
 		custom_tooltip_fields = {
 			{
 				name = { "cerys.player-radiative-tower-range-tooltip-name" },
 				value = { "cerys.tooltip-unknown-value" },
-				quality_values = {}, -- Filled in data-final-fixes
-			},
-		},
-	},
+				quality_values = {} -- Filled in data-final-fixes
+			}
+		}
+	}
 })
 
 -- data:extend({

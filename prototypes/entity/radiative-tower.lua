@@ -22,16 +22,16 @@ local reactor = {
 	drawing_box_vertical_extension = 3,
 	energy_source = {
 		type = "burner",
-		fuel_categories = { "chemical-or-radiative" },
+		fuel_categories = { "radiative" },
 		emissions_per_minute = { pollution = 5 },
 		effectivity = 1,
-		fuel_inventory_size = 2, -- not too high so you can see the fuel on belts
+		fuel_inventory_size = 2,                                                          -- not too high so you can see the fuel on belts
 		burnt_inventory_size = 0,
 		light_flicker = {
 			color = { 0, 0, 0 },
 			minimum_intensity = 0,
-			maximum_intensity = 0,
-		}, -- Disable the flicker effect
+			maximum_intensity = 0
+		} -- Disable the flicker effect
 	},
 	consumption = common.HARD_MODE_ON and "1850kW" or "1300kW",
 	heat_buffer = {
@@ -51,30 +51,30 @@ local reactor = {
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/light", {
 					scale = 0.22,
 					blend_mode = "additive",
-					draw_as_glow = true,
+					draw_as_glow = true
 				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/flare", {
 					scale = 0.22,
 					blend_mode = "additive",
 					draw_as_glow = true,
-					tint = { 0.4, 0.4, 0.4, 1 },
-				}),
-			},
-		},
+					tint = { 0.4, 0.4, 0.4, 1 }
+				})
+			}
+		}
 	},
 	neighbour_bonus = 0,
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower", {
-				scale = 0.22,
-			}),
+				scale = 0.22
+			})
 			-- util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
 			-- 	scale = 0.22,
 			-- }),
-		},
+		}
 	},
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
@@ -82,7 +82,7 @@ local reactor = {
 		sound = { audible_distance_modifier = 0.9, filename = "__base__/sound/heat-pipe.ogg", volume = 0.85 },
 		max_sounds_per_prototype = 3,
 		fade_in_ticks = 4,
-		fade_out_ticks = 20,
+		fade_out_ticks = 20
 	},
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
@@ -90,11 +90,11 @@ local reactor = {
 		variation = 14,
 		main_offset = util.by_pixel(2.625, 24.25),
 		shadow_offset = util.by_pixel(2.625, 24.25),
-		show_shadow = true,
+		show_shadow = true
 	}),
 	minable = { mining_time = 1.25, result = "cerys-fulgoran-radiative-tower" },
 	autoplace = {
-		probability_expression = "0",
+		probability_expression = "0"
 	},
 	map_color = { 143, 0, 0 },
 	-- Disabled as it's a spoiler and unnecessary due to info from the layered ice:
@@ -110,12 +110,11 @@ local reactor = {
 	custom_tooltip_fields = {
 		{
 			name = { "cerys.radiative-tower-range-tooltip-name" },
-			value = common.HARD_MODE_ON and {
-				"cerys.metres-tooltip-value",
-				tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE),
-			} or { "cerys.metres-tooltip-value", tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS) },
-		},
-	},
+			value = common.HARD_MODE_ON
+				and { "cerys.metres-tooltip-value", tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS_HARD_MODE) }
+				or { "cerys.metres-tooltip-value", tostring(common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS) }
+		}
+	}
 }
 
 local frozen_reactor = merge(reactor, {
@@ -124,23 +123,21 @@ local frozen_reactor = merge(reactor, {
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load(
 				"__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower",
 				-- "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-ice", -- TODO: Put back to icy tower if it can be distinguished in the landscape (in all locations, not just this one)
-				{
-					scale = 0.22,
-				}
+				{ scale = 0.22 }
 			),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
 				scale = 0.22,
-				draw_as_shadow = true,
-			}),
-		},
+				draw_as_shadow = true
+			})
+		}
 	},
 	working_sound = "nil",
-	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower"
 })
 
 local CONTRACTED_MAP_COLOR = { 37, 0, 0 }
@@ -153,19 +150,19 @@ local rising_reactor_base = merge(reactor, {
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/back-ice", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
 				scale = 0.22,
-				draw_as_shadow = true,
-			}),
-		},
+				draw_as_shadow = true
+			})
+		}
 	},
 	map_color = CONTRACTED_MAP_COLOR,
 	working_sound = "nil",
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	radius_visualisation_specification = "nil",
-	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower"
 })
 
 local rising_reactor_tower_1 = merge(rising_reactor_base, {
@@ -177,11 +174,9 @@ local rising_reactor_tower_1 = merge(rising_reactor_base, {
 			util.sprite_load(
 				"__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-1",
 				-- "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-1-ice", -- TODO: Put back to icy tower if it can be distinguished in the landscape (in all locations, not just this one)
-				{
-					scale = 0.22,
-				}
-			),
-		},
+				{ scale = 0.22 }
+			)
+		}
 	},
 	minable = nil,
 	next_upgrade = nil,
@@ -189,7 +184,7 @@ local rising_reactor_tower_1 = merge(rising_reactor_base, {
 	selectable_in_game = false,
 	collision_box = { { 0, 0 }, { 0, 0 } },
 	selection_box = { { 0, 0 }, { 0, 0 } },
-	collision_mask = { layers = {} },
+	collision_mask = { layers = {} }
 })
 
 local rising_reactor_tower_2 = merge(rising_reactor_tower_1, {
@@ -199,12 +194,10 @@ local rising_reactor_tower_2 = merge(rising_reactor_tower_1, {
 			util.sprite_load(
 				"__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-2",
 				-- "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-2-ice", -- TODO: Put back to icy tower if it can be distinguished in the landscape (in all locations, not just this one)
-				{
-					scale = 0.22,
-				}
-			),
-		},
-	},
+				{ scale = 0.22 }
+			)
+		}
+	}
 })
 
 local rising_reactor_tower_3 = merge(rising_reactor_tower_1, {
@@ -214,12 +207,10 @@ local rising_reactor_tower_3 = merge(rising_reactor_tower_1, {
 			util.sprite_load(
 				"__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower",
 				-- "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-ice", -- TODO: Put back to icy tower if it can be distinguished in the landscape (in all locations, not just this one)
-				{
-					scale = 0.22,
-				}
-			),
-		},
-	},
+				{ scale = 0.22 }
+			)
+		}
+	}
 })
 
 local reactor_base = merge(rising_reactor_tower_1, {
@@ -229,18 +220,18 @@ local reactor_base = merge(rising_reactor_tower_1, {
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
 				scale = 0.22,
-				draw_as_shadow = true,
+				draw_as_shadow = true
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
 				scale = 0.22,
-				draw_as_shadow = true,
-			}),
-		},
-	},
+				draw_as_shadow = true
+			})
+		}
+	}
 })
 
 local reactor_base_frozen = merge(reactor_base, {
@@ -248,18 +239,18 @@ local reactor_base_frozen = merge(reactor_base, {
 	picture = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
 				scale = 0.22,
-				draw_as_shadow = true,
+				draw_as_shadow = true
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
 				scale = 0.22,
-				draw_as_shadow = true,
-			}),
-		},
-	},
+				draw_as_shadow = true
+			})
+		}
+	}
 })
 
 local container = {
@@ -276,9 +267,9 @@ local container = {
 			type = "instant",
 			source_effects = {
 				type = "script",
-				effect_id = "cerys-fulgoran-radiative-tower-contracted-container",
-			},
-		},
+				effect_id = "cerys-fulgoran-radiative-tower-contracted-container"
+			}
+		}
 	},
 	inventory_size = 1,
 	max_health = 500,
@@ -293,28 +284,25 @@ local container = {
 			util.sprite_load(
 				"__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-1",
 				-- "__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/tower-crop-1-ice", -- TODO: Put back to icy tower if it can be distinguished in the landscape (in all locations, not just this one)
-				{
-					scale = 0.22,
-					shift = util.by_pixel(0, common.RADIATIVE_TOWER_SHIFT_PIXELS),
-				}
+				{ scale = 0.22, shift = util.by_pixel(0, common.RADIATIVE_TOWER_SHIFT_PIXELS) }
 			),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front-ice", {
-				scale = 0.22,
+				scale = 0.22
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
 				scale = 0.22,
-				draw_as_shadow = true,
-			}),
-		},
+				draw_as_shadow = true
+			})
+		}
 	},
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
 	close_sound = { filename = "__base__/sound/open-close/metal-large-close.ogg", volume = 0.8 },
 	minable = { mining_time = 1, result = "cerys-fulgoran-radiative-tower" },
 	map_color = CONTRACTED_MAP_COLOR,
 	surface_conditions = {
-		common.AMBIENT_RADIATION_MIN,
+		common.AMBIENT_RADIATION_MIN
 	},
-	factoriopedia_alternative = "cerys-fulgoran-radiative-tower",
+	factoriopedia_alternative = "cerys-fulgoran-radiative-tower"
 }
 
 reactor.fast_replaceable_group = "fulgoran-radiative-tower"
@@ -333,7 +321,7 @@ data:extend({
 	rising_reactor_tower_3,
 	reactor_base,
 	reactor_base_frozen,
-	container,
+	container
 })
 
 for i = 1, common.LAMP_COUNT do
@@ -353,11 +341,11 @@ for i = 1, common.LAMP_COUNT do
 				filename = "__core__/graphics/empty.png",
 				priority = "extra-high",
 				width = 1,
-				height = 1,
+				height = 1
 			},
 			consumption = "500MW",
 			energy_source = {
-				type = "void",
+				type = "void"
 			},
 			heating_radius = i,
 			heat_buffer = {
@@ -367,29 +355,29 @@ for i = 1, common.LAMP_COUNT do
 				connections = {
 					{
 						position = { 0, 0 },
-						direction = defines.direction.north,
+						direction = defines.direction.north
 					},
 					{
 						position = { 0, 0 },
-						direction = defines.direction.east,
+						direction = defines.direction.east
 					},
 					{
 						position = { 0, 0 },
-						direction = defines.direction.south,
+						direction = defines.direction.south
 					},
 					{
 						position = { 0, 0 },
-						direction = defines.direction.west,
-					},
-				},
-			},
-		},
+						direction = defines.direction.west
+					}
+				}
+			}
+		}
 	})
 
 	data:extend({
 		merge(data_utils.hidden_lamp_base, {
 			name = "radiative-tower-lamp-" .. i,
-			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } }, -- Going over 0.5 intensity produces more issues where the intersection of heating towers is more blue than most other places.
-		}),
+			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } } -- Going over 0.5 intensity produces more issues where the intersection of heating towers is more blue than most other places.
+		})
 	})
 end

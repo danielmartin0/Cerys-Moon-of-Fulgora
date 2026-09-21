@@ -1,4 +1,4 @@
-data.raw.item["solid-fuel"].fuel_category = "chemical-or-radiative"
+table.insert(data.raw.item["solid-fuel"].fuel_categories, "radiative")
 
 -- NOTE: Do we still need this now that we can make frozen tile variants?
 data.raw.item["stone-brick"].place_as_tile.condition.layers["cerys_tile"] = true
