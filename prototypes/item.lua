@@ -288,7 +288,7 @@ data:extend({
 		name = "plutonium-fuel",
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-fuel.png",
 		icon_size = 64,
-		fuel_category = "chemical",
+		fuel_categories = {"chemical"},
 		subgroup = "plutonium-processing",
 		order = "c-e",
 		fuel_value = "5GJ",
@@ -712,7 +712,7 @@ data:extend({
 		inventory_move_sound = item_sounds.nuclear_inventory_move,
 		pick_sound = item_sounds.nuclear_inventory_pickup,
 		drop_sound = item_sounds.nuclear_inventory_move,
-		fuel_category = "nuclear-mixed-oxide",
+		fuel_categories = {"nuclear-mixed-oxide"},
 		burnt_result = "depleted-mixed-oxide-fuel-cell",
 		fuel_value = "96GJ",
 		stack_size = 50,
@@ -803,6 +803,11 @@ data:extend({
 		weight = 100 * 1000,
 	},
 })
+
+if helpers.compare_versions(helpers.game_version, "2.1.20") < 0 then
+	data.raw.item["mixed-oxide-fuel-cell"].fuel_category = "nuclear-mixed-oxide"
+	data.raw.item["plutonium-fuel"].fuel_category = "chemical"
+end
 
 if mods["Krastorio2"] then
 	data:extend({

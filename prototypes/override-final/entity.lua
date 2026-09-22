@@ -34,36 +34,38 @@ local function update_fuel_categories(entity)
 	end
 end
 
-for _, locomotive in pairs(data.raw.locomotive) do
-	update_fuel_categories(locomotive)
-end
+if helpers.compare_versions(helpers.game_version, "2.1.20") < 0 then
+	for _, locomotive in pairs(data.raw.locomotive) do
+		update_fuel_categories(locomotive)
+	end
 
-for _, drill in pairs(data.raw["mining-drill"]) do
-	update_fuel_categories(drill)
-end
+	for _, drill in pairs(data.raw["mining-drill"]) do
+		update_fuel_categories(drill)
+	end
 
-for _, inserter in pairs(data.raw.inserter) do
-	update_fuel_categories(inserter)
-end
+	for _, inserter in pairs(data.raw.inserter) do
+		update_fuel_categories(inserter)
+	end
 
-for _, boiler in pairs(data.raw.boiler) do
-	update_fuel_categories(boiler)
-end
+	for _, boiler in pairs(data.raw.boiler) do
+		update_fuel_categories(boiler)
+	end
 
-for _, furnace in pairs(data.raw.furnace) do
-	update_fuel_categories(furnace)
-end
+	for _, furnace in pairs(data.raw.furnace) do
+		update_fuel_categories(furnace)
+	end
 
-for _, car in pairs(data.raw.car) do
-	update_fuel_categories(car)
-end
+	for _, car in pairs(data.raw.car) do
+		update_fuel_categories(car)
+	end
 
-for _, generator in pairs(data.raw["burner-generator"]) do
-	update_fuel_categories(generator)
-end
+	for _, generator in pairs(data.raw["burner-generator"]) do
+		update_fuel_categories(generator)
+	end
 
-for _, reactor in pairs(data.raw.reactor) do
-	update_fuel_categories(reactor)
+	for _, reactor in pairs(data.raw.reactor) do
+		update_fuel_categories(reactor)
+	end
 end
 
 --== Surface Condition Relaxations ==--
