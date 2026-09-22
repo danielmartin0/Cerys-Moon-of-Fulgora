@@ -702,10 +702,23 @@ for _, recipe in pairs(data.raw.recipe) do
 	if recipe.results and #recipe.results == 1 and recipe.results[1].type == "item" then
 		local result_name = recipe.results[1].name
 
-		if result_name and data.raw.item[result_name] and data.raw.item[result_name].fuel_category then
-			local fuel_category = data.raw.item[result_name].fuel_category
+		if result_name and data.raw.item[result_name] then
+			local fuel_categories = data.raw.item[result_name].fuel_categories
 
-			if fuel_category == "nuclear-mixed-oxide" or fuel_category == "nuclear" or fuel_category == "fusion" then
+			local has_relevant_fuel_category = false
+
+			for _, fuel_category in pairs(fuel_categories or {}) do
+				if
+					fuel_category == "nuclear-mixed-oxide"
+					or fuel_category == "nuclear"
+					or fuel_category == "fusion"
+				then
+					has_relevant_fuel_category = true
+					break
+				end
+			end
+
+			if has_relevant_fuel_category then
 				table.insert(fuel_productivity_effects, {
 					type = "change-recipe-productivity",
 					recipe = recipe.name,
