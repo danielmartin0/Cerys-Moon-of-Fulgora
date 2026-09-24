@@ -7,8 +7,8 @@ data:extend({
 	{
 		type = "surface-property",
 		name = "cerys-ambient-radiation",
-		default_value = 10,
-	},
+		default_value = 10
+	}
 })
 
 PlanetsLib:extend({
@@ -18,17 +18,11 @@ PlanetsLib:extend({
 		orbit = {
 			parent = {
 				type = "planet",
-				name = "fulgora",
+				name = "fulgora"
 			},
 			distance = 1.39,
 			orientation = mods["Tiered-Solar-System"] and 0.6 or 0.45, -- Generally pointing away from the sun
-			sprite = {
-				type = "sprite",
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/orbit.png",
-				size = 379,
-				scale = 0.25,
-			},
-			is_satellite = true,
+			is_satellite = true
 		},
 		subgroup = "satellites",
 		label_orientation = 0.51,
@@ -38,35 +32,34 @@ PlanetsLib:extend({
 		starmap_icon_size = 500,
 		map_gen_settings = map_gen_settings.cerys(),
 		gravity_pull = 10,
-		draw_orbit = false,
 		magnitude = 0.5,
 		order = "d[fulgora]-a[cerys]",
 		pollutant_type = nil,
 		solar_power_in_space = 120,
 		platform_procession_set = {
 			arrival = { "planet-to-platform-b" },
-			departure = { "platform-to-planet-a" },
+			departure = { "platform-to-planet-a" }
 		},
 		planet_procession_set = {
 			arrival = { "platform-to-planet-b" },
-			departure = { "planet-to-platform-a" },
+			departure = { "planet-to-platform-a" }
 		},
 		procession_graphic_catalogue = planet_catalogue_cerys,
 		surface_properties = {
 			["day-night-cycle"] = common.DAY_LENGTH_MINUTES * 60 * 60,
 			["magnetic-field"] = 120, -- Fulgora is 99
-			["solar-power"] = 120, -- No atmosphere
+			["solar-power"] = 120,    -- No atmosphere
 			["robot-energy-usage"] = 3,
 			pressure = 5,
-			gravity = 0.15, -- 0.1 is minimum for chests
+			gravity = 0.15,           -- 0.1 is minimum for chests
 			temperature = 251,
-			["cerys-ambient-radiation"] = 400,
+			["cerys-ambient-radiation"] = 400
 		},
 		asteroid_spawn_influence = 1,
 		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora, 0.9),
 		persistent_ambient_sounds = {},
 		surface_render_parameters = {
-			shadow_opacity = 0.6, -- Slightly darker due to no atmosphere, though too dark doesn't play well with dynamic lighting
+			shadow_opacity = 0.6 -- Slightly darker due to no atmosphere, though too dark doesn't play well with dynamic lighting
 		},
 		entities_require_heating = not common.DEBUG_DISABLE_FREEZING,
 
@@ -84,21 +77,21 @@ PlanetsLib:extend({
 				planet_surface = {
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/planet/cerys.png",
 					width = 4096,
-					height = 2048,
+					height = 2048
 				},
 				planet_normal = {
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/planet/cerys-normal.png",
 					width = 2048,
-					height = 1024,
+					height = 1024
 				},
 				radius = 350,
 				position = { -200.0, -150.0 },
 				rotation_seconds = -180,
 				surface_normal_intensity = 1.2,
-				surface_vertical_offset = 0.0,
-			},
-		},
-	},
+				surface_vertical_offset = 0.0
+			}
+		}
+	}
 })
 
 -- If oxygen property is enabled, oxygen for Cerys is set to 0%, in line with Muluna's convention for planets intended to ban burner items.
@@ -115,6 +108,6 @@ data:extend({
 		to = "cerys",
 		order = "c",
 		length = 800,
-		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora),
-	},
+		asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.gleba_fulgora)
+	}
 })
