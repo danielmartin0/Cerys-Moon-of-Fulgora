@@ -20,7 +20,7 @@ Public.REACTOR_NAME_TO_STAGE = {
 	["cerys-fulgoran-reactor-wreck-cleared"] = repair.REACTOR_STAGE_ENUM.needs_scaffold,
 	["cerys-fulgoran-reactor-wreck-scaffolded"] = repair.REACTOR_STAGE_ENUM.needs_repair,
 	["cerys-fulgoran-reactor-scaffolded"] = repair.REACTOR_STAGE_ENUM.needs_repair,
-	["cerys-fulgoran-reactor-wreck-frozen"] = repair.REACTOR_STAGE_ENUM.frozen,
+	["cerys-fulgoran-reactor-wreck-frozen"] = repair.REACTOR_STAGE_ENUM.frozen
 }
 
 function Public.tick_reactor(surface, player_looking_at_surface)
@@ -43,7 +43,7 @@ function Public.tick_reactor(surface, player_looking_at_surface)
 				name = "cerys-fulgoran-reactor-wreck",
 				position = e.position,
 				force = e.force,
-				fast_replace = true,
+				fast_replace = true
 			})
 
 			if e2 and e2.valid then
@@ -94,12 +94,12 @@ function Public.create_radiation(surface, reactor_entity)
 	local distance_from_reactor = 5
 	local position = {
 		x = reactor_entity.position.x + distance_from_reactor * math.cos(angle),
-		y = reactor_entity.position.y + distance_from_reactor * math.sin(angle),
+		y = reactor_entity.position.y + distance_from_reactor * math.sin(angle)
 	}
 
 	local e = surface.create_entity({
 		name = "cerys-gamma-radiation",
-		position = position,
+		position = position
 	})
 
 	table.insert(storage.cerys.radiation_particles, {
@@ -107,7 +107,7 @@ function Public.create_radiation(surface, reactor_entity)
 		age = 0,
 		velocity = velocity,
 		position = position,
-		spawn_position = position,
+		spawn_position = position
 	})
 end
 
@@ -122,8 +122,9 @@ function Public.tick_2_radiation(surface)
 	while i <= #storage.cerys.radiation_particles do
 		local particle = storage.cerys.radiation_particles[i]
 		if (not particle.irradiation_tick) or (particle.irradiation_tick < game.tick - DAMAGE_TICK_DELAY) then
-			local chars =
-				surface.find_entities_filtered({ type = "character", position = particle.position, radius = 1 })
+			local chars = surface.find_entities_filtered(
+				{ type = "character", position = particle.position, radius = 1 }
+			)
 
 			for _, char in ipairs(chars) do
 				if char and char.valid then
@@ -131,7 +132,7 @@ function Public.tick_2_radiation(surface)
 					if player and player.valid then
 						player.play_sound({
 							path = "cerys-radiation-impact",
-							volume_modifier = 0.2,
+							volume_modifier = 0.2
 						})
 					end
 
@@ -143,7 +144,7 @@ function Public.tick_2_radiation(surface)
 			local storage_tanks = surface.find_entities_filtered({
 				type = "storage-tank",
 				position = particle.position,
-				radius = 1.5,
+				radius = 1.5
 			})
 
 			local should_remove = false
@@ -230,8 +231,8 @@ function Public.register_reactor_if_missing(surface)
 				"cerys-fulgoran-reactor-wreck",
 				"cerys-fulgoran-reactor-wreck-frozen",
 				"cerys-fulgoran-reactor-wreck-scaffolded",
-				"cerys-fulgoran-reactor-scaffolded",
-			},
+				"cerys-fulgoran-reactor-scaffolded"
+			}
 		})
 
 		if #reactors > 0 then
@@ -250,11 +251,7 @@ function Public.register_reactor_if_missing(surface)
 					stage = repair.REACTOR_STAGE_ENUM.active
 				end
 
-				storage.cerys.reactor = {
-					stage = stage,
-					entity = e,
-					creation_tick = game.tick,
-				}
+				storage.cerys.reactor = { stage = stage, entity = e, creation_tick = game.tick }
 			end
 		end
 	end

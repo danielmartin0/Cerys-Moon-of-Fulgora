@@ -22,33 +22,33 @@ local crusher = {
 			variation = 0,
 			main_offset = util.by_pixel(16.25, 38.25),
 			shadow_offset = util.by_pixel(16.25, 38.25),
-			show_shadow = true,
+			show_shadow = true
 		},
 		{
 			variation = 0,
 			main_offset = util.by_pixel(16.25, 38.25),
 			shadow_offset = util.by_pixel(16.25, 38.25),
-			show_shadow = true,
+			show_shadow = true
 		},
 		{
 			variation = 0,
 			main_offset = util.by_pixel(16.25, 38.25),
 			shadow_offset = util.by_pixel(16.25, 38.25),
-			show_shadow = true,
+			show_shadow = true
 		},
 		{
 			variation = 0,
 			main_offset = util.by_pixel(16.25, 38.25),
 			shadow_offset = util.by_pixel(16.25, 38.25),
-			show_shadow = true,
-		},
+			show_shadow = true
+		}
 	}),
 	collision_box = { { -1.7, -1.2 }, { 1.7, 1.2 } },
 	selection_box = { { -2, -1.5 }, { 2, 1.5 } },
 	damaged_trigger_effect = hit_effects.entity(),
 	module_slots = 0, -- (old comment: 1 lets us bump the asteroid spawn rate. More fun to shoot down more asteroids rather than build more modules)
 	icons_positioning = {
-		{ inventory_index = defines.inventory.crafter_modules, shift = { 0, 0.3 } },
+		{ inventory_index = defines.inventory.crafter_modules, shift = { 0, 0.3 } }
 	},
 	icon_draw_specification = { shift = { 0, -0.45 } },
 	allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },
@@ -59,7 +59,7 @@ local crusher = {
 	energy_source = {
 		type = "electric",
 		usage_priority = "secondary-input",
-		emissions_per_minute = { pollution = 1 },
+		emissions_per_minute = { pollution = 1 }
 	},
 	open_sound = sounds.electric_large_open,
 	close_sound = sounds.electric_large_close,
@@ -68,17 +68,17 @@ local crusher = {
 			filename = "__space-age__/sound/entity/crusher/crusher-loop.ogg",
 			volume = 1,
 			speed = 0.4,
-			audible_distance_modifier = 1,
+			audible_distance_modifier = 1
 		},
 		fade_in_ticks = 4,
 		fade_out_ticks = 40,
-		max_sounds_per_prototype = 3,
+		max_sounds_per_prototype = 3
 	},
 	-- water_reflection = {...},
 	graphics_set = {
 		frozen_patch = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-frozen", {
 			scale = 0.5,
-			shift = util.by_pixel(3, -6),
+			shift = util.by_pixel(3, -6)
 		}),
 		animation = {
 			layers = {
@@ -86,19 +86,19 @@ local crusher = {
 					animation_speed = 0.5,
 					frame_count = 48,
 					scale = 0.5,
-					shift = util.by_pixel(3, -6),
+					shift = util.by_pixel(3, -6)
 				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher", {
 					animation_speed = 0.5,
 					repeat_count = 48,
 					scale = 0.5,
-					shift = util.by_pixel(3, -6),
-				}),
-			},
-		},
+					shift = util.by_pixel(3, -6)
+				})
+			}
+		}
 	},
 	autoplace = {
-		probability_expression = "0",
+		probability_expression = "0"
 	},
 	map_color = { 212, 93, 93 },
 	created_effect = {
@@ -107,13 +107,13 @@ local crusher = {
 			type = "instant",
 			source_effects = {
 				type = "script",
-				effect_id = "cerys-fulgoran-crusher-created",
-			},
-		},
+				effect_id = "cerys-fulgoran-crusher-created"
+			}
+		}
 	},
 	quality_affects_module_slots = true,
 	-- Filled in data-final-fixes:
-	module_slots_quality_bonus = {},
+	module_slots_quality_bonus = {}
 }
 
 local wreck = merge(crusher, {
@@ -125,14 +125,14 @@ local wreck = merge(crusher, {
 	fast_replaceable_group = "cerys-fulgoran-crusher",
 	crafting_speed = 1,
 	energy_source = {
-		type = "void",
+		type = "void"
 	},
 	module_slots = 0,
 	allowed_effects = { "speed", "productivity" },
 	graphics_set = {
 		frozen_patch = util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-broken-frozen", {
 			scale = 0.5,
-			shift = util.by_pixel(3, -6),
+			shift = util.by_pixel(3, -6)
 		}),
 		animation = {
 			layers = {
@@ -140,16 +140,16 @@ local wreck = merge(crusher, {
 					animation_speed = 0.1,
 					frame_count = 48,
 					scale = 0.5,
-					shift = util.by_pixel(3, -6),
+					shift = util.by_pixel(3, -6)
 				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-broken", {
 					animation_speed = 0.1,
 					repeat_count = 48,
 					scale = 0.5,
-					shift = util.by_pixel(3, -6),
-				}),
-			},
-		},
+					shift = util.by_pixel(3, -6)
+				})
+			}
+		}
 	},
 	map_color = { 212, 93, 93 },
 	working_sound = {
@@ -157,10 +157,10 @@ local wreck = merge(crusher, {
 		sound = {
 			audible_distance_modifier = 0.5,
 			filename = "__base__/sound/assembling-machine-t2-1.ogg",
-			volume = 0.45,
+			volume = 0.45
 		},
 		fade_in_ticks = 4,
-		fade_out_ticks = 20,
+		fade_out_ticks = 20
 	},
 	factoriopedia_alternative = "cerys-fulgoran-crusher",
 	created_effect = {
@@ -169,10 +169,10 @@ local wreck = merge(crusher, {
 			type = "instant",
 			source_effects = {
 				type = "script",
-				effect_id = "cerys-fulgoran-crusher-wreck-created",
-			},
-		},
-	},
+				effect_id = "cerys-fulgoran-crusher-wreck-created"
+			}
+		}
+	}
 })
 
 local wreck_frozen = merge(wreck, {
@@ -185,18 +185,18 @@ local wreck_frozen = merge(wreck, {
 					frame_count = 48,
 					scale = 0.5,
 					shift = util.by_pixel(3, -6),
-					tint = common.FACTORIO_UNDO_FROZEN_TINT,
+					tint = common.FACTORIO_UNDO_FROZEN_TINT
 				}),
 				util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/crusher/crusher-wreck-frozen", {
 					animation_speed = 0.1,
 					repeat_count = 48,
 					scale = 0.5,
 					shift = util.by_pixel(3, -6),
-					tint = common.FACTORIO_UNDO_FROZEN_TINT,
-				}),
-			},
-		},
-	},
+					tint = common.FACTORIO_UNDO_FROZEN_TINT
+				})
+			}
+		}
+	}
 })
 
 data:extend({ crusher, wreck, wreck_frozen })

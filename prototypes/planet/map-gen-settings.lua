@@ -1,6 +1,6 @@
 local planet_map_gen = require("__base__/prototypes/planet/planet-map-gen")
 
-planet_map_gen.cerys = function()
+planet_map_gen.cerys = function ()
 	return {
 		width = 32 * 30,
 		height = 32 * 30,
@@ -8,7 +8,7 @@ planet_map_gen.cerys = function()
 		autoplace_controls = {
 			["cerys_nitrogen_rich_minerals"] = {},
 			["cerys_methane_ice"] = {},
-			["cerys_nuclear_scrap"] = {},
+			["cerys_nuclear_scrap"] = {}
 		},
 		autoplace_settings = {
 			["tile"] = {
@@ -20,8 +20,8 @@ planet_map_gen.cerys = function()
 					["cerys-ash-cracks-frozen"] = {},
 					["cerys-ash-dark-frozen"] = {},
 					-- ["cerys-ash-light-frozen"] = {},
-					["cerys-pumice-stones-frozen"] = {},
-				},
+					["cerys-pumice-stones-frozen"] = {}
+				}
 			},
 			["decorative"] = {
 				treat_missing_as_default = false,
@@ -32,8 +32,8 @@ planet_map_gen.cerys = function()
 					["cerys-crater-small"] = {},
 					["cerys-methane-iceberg-medium"] = {},
 					["cerys-methane-iceberg-small"] = {},
-					["cerys-methane-iceberg-tiny"] = {},
-				},
+					["cerys-methane-iceberg-tiny"] = {}
+				}
 			},
 			["entity"] = {
 				treat_missing_as_default = false,
@@ -50,20 +50,20 @@ planet_map_gen.cerys = function()
 					["cerys-methane-iceberg-big"] = {},
 					["cerys-fulgoran-radiative-tower"] = {}, -- null
 					["cerys-fulgoran-cryogenic-plant"] = {}, -- null
-					["cerys-fulgoran-crusher"] = {}, -- null
-					["cerys-fulgoran-teleporter"] = {}, -- null
-					["cerys-fulgoran-reactor"] = {}, -- null
+					["cerys-fulgoran-crusher"] = {},         -- null
+					["cerys-fulgoran-teleporter"] = {},      -- null
+					["cerys-fulgoran-reactor"] = {},         -- null
 					["lithium-brine"] = { -- Needed for Cerys to appear in the 'Appears on' list for lithium brine's Factoriopedia entry, but overridden below.
 						frequency = "very-low",
 						size = "very-low",
-						richness = "very-low",
-					},
-				},
-			},
+						richness = "very-low"
+					}
+				}
+			}
 		},
 		property_expression_names = {
-			["entity:lithium-brine:probability"] = "0",
-		},
+			["entity:lithium-brine:probability"] = "0"
+		}
 	}
 end
 
@@ -74,10 +74,10 @@ data:extend({
 		localised_name = {
 			"",
 			"[entity=cerys-nuclear-scrap] ",
-			{ "entity-name.cerys-nuclear-scrap" },
+			{ "entity-name.cerys-nuclear-scrap" }
 		},
 		order = "r-a",
-		category = "resource",
+		category = "resource"
 	},
 	{
 		type = "autoplace-control",
@@ -85,10 +85,10 @@ data:extend({
 		localised_name = {
 			"",
 			"[entity=methane-ice] ",
-			{ "entity-name.methane-ice" },
+			{ "entity-name.methane-ice" }
 		},
 		order = "r-b",
-		category = "resource",
+		category = "resource"
 	},
 	{
 		type = "autoplace-control",
@@ -96,11 +96,11 @@ data:extend({
 		localised_name = {
 			"",
 			"[entity=cerys-nitrogen-rich-minerals] ",
-			{ "entity-name.cerys-nitrogen-rich-minerals" },
+			{ "entity-name.cerys-nitrogen-rich-minerals" }
 		},
 		order = "r-c",
-		category = "resource",
-	},
+		category = "resource"
+	}
 })
 
 return planet_map_gen

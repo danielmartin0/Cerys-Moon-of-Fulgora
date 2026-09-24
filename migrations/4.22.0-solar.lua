@@ -41,12 +41,8 @@ local function surface_index_of_particle(particle)
 	if particle.surface_index then
 		return particle.surface_index
 	end
-	if
-		particle.rendering
-		and particle.rendering.valid
-		and particle.rendering.surface
-		and particle.rendering.surface.valid
-	then
+	if particle.rendering and particle.rendering.valid and particle.rendering.surface
+		and particle.rendering.surface.valid then
 		return particle.rendering.surface.index
 	end
 	return cerys_index

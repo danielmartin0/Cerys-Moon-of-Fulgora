@@ -11,21 +11,21 @@ local function ruin_minable_results(collision_area)
 				type = "item",
 				name = "iron-gear-wheel",
 				amount_min = math.ceil(collision_area * 1.9 * (K2_Installed and 1.5 or 1)),
-				amount_max = math.ceil(collision_area * 2.1 * (K2_Installed and 1.5 or 1)),
+				amount_max = math.ceil(collision_area * 2.1 * (K2_Installed and 1.5 or 1))
 			},
 			{
 				type = "item",
 				name = "steel-plate",
 				amount_max = math.ceil(collision_area * 0.62),
-				amount_min = math.ceil(collision_area * 0.53),
+				amount_min = math.ceil(collision_area * 0.53)
 			},
 			{
 				type = "item",
 				name = "concrete",
 				amount_min = math.ceil(collision_area * 0.19),
-				amount_max = math.ceil(collision_area * 0.21),
-			},
-		},
+				amount_max = math.ceil(collision_area * 0.21)
+			}
+		}
 	}
 
 	if collision_area >= 14 then
@@ -33,14 +33,14 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "solar-panel",
 			amount_min = math.ceil(collision_area / 14),
-			amount_max = math.ceil(collision_area / 14),
+			amount_max = math.ceil(collision_area / 14)
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "solar-panel",
 			amount = 1,
-			independent_probability = collision_area / 12,
+			independent_probability = collision_area / 12
 		})
 	end
 
@@ -48,14 +48,14 @@ local function ruin_minable_results(collision_area)
 		table.insert(results.results, {
 			type = "item",
 			name = "processing-unit",
-			amount = math.ceil(collision_area / 6.5),
+			amount = math.ceil(collision_area / 6.5)
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "processing-unit",
 			amount = 1,
-			independent_probability = collision_area / 6.5,
+			independent_probability = collision_area / 6.5
 		})
 	end
 
@@ -63,14 +63,14 @@ local function ruin_minable_results(collision_area)
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
-			amount = math.floor(collision_area / 21),
+			amount = math.floor(collision_area / 21)
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "cerys-charging-rod",
 			amount = 1,
-			independent_probability = collision_area / 21,
+			independent_probability = collision_area / 21
 		})
 	end
 
@@ -78,14 +78,14 @@ local function ruin_minable_results(collision_area)
 		table.insert(results.results, {
 			type = "item",
 			name = "efficiency-module",
-			amount = math.floor(collision_area / 10),
+			amount = math.floor(collision_area / 10)
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "efficiency-module",
 			amount = 1,
-			independent_probability = collision_area / 10,
+			independent_probability = collision_area / 10
 		})
 	end
 
@@ -94,14 +94,14 @@ local function ruin_minable_results(collision_area)
 			type = "item",
 			name = "copper-cable",
 			amount_min = 1,
-			amount_max = math.floor(collision_area / 9),
+			amount_max = math.floor(collision_area / 9)
 		})
 	else
 		table.insert(results.results, {
 			type = "item",
 			name = "copper-cable",
 			amount = 1,
-			independent_probability = collision_area / 9,
+			independent_probability = collision_area / 9
 		})
 	end
 
@@ -116,27 +116,27 @@ local size_to_probability_expression = {
 	medium = "0.01 * (cerys_ruin_density - 0.1)",
 	big = "0.0065 * (cerys_ruin_density - 0.3)",
 	huge = "0.002 * (cerys_ruin_density - 0.4)", -- Looks similar to cryoplants
-	colossal = "0.002 * (cerys_ruin_density - 0.5)",
+	colossal = "0.002 * (cerys_ruin_density - 0.5)"
 }
 
 local size_to_spritesheets = {
 	small = {
 		{ path = "cerys-ruin-small", frame_count = 27 },
-		{ path = "cerys-ruin-small-tall", frame_count = 7 },
+		{ path = "cerys-ruin-small-tall", frame_count = 7 }
 	},
 	medium = {
 		{ path = "cerys-ruin-medium", frame_count = 10 },
-		{ path = "cerys-ruin-medium-tall", frame_count = 4 },
+		{ path = "cerys-ruin-medium-tall", frame_count = 4 }
 	},
 	big = {
-		{ path = "cerys-ruin-big", frame_count = 6 },
+		{ path = "cerys-ruin-big", frame_count = 6 }
 	},
 	huge = {
-		{ path = "cerys-ruin-huge", frame_count = 8, dice_y = 2 },
+		{ path = "cerys-ruin-huge", frame_count = 8, dice_y = 2 }
 	},
 	colossal = {
-		{ path = "cerys-ruin-colossal", frame_count = 3, dice_y = 2 },
-	},
+		{ path = "cerys-ruin-colossal", frame_count = 3, dice_y = 2 }
+	}
 }
 
 local RUIN_GRAPHICS_PATH = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-ruin/"

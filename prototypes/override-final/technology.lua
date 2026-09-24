@@ -14,10 +14,8 @@ for _, technology in pairs(data.raw.technology) do
 				scrap_recycling_productivity_change = scrap_recycling_productivity_change + effect.change
 			end
 
-			if
-				effect.type == "change-recipe-productivity"
-				and effect.recipe == "cerys-processing-units-from-nitric-acid"
-			then
+			if effect.type == "change-recipe-productivity"
+				and effect.recipe == "cerys-processing-units-from-nitric-acid" then
 				cerys_chips_productivity_change = cerys_chips_productivity_change + effect.change
 			end
 
@@ -30,7 +28,7 @@ for _, technology in pairs(data.raw.technology) do
 			table.insert(technology.effects, {
 				type = "change-recipe-productivity",
 				recipe = "cerys-processing-units-from-nitric-acid",
-				change = processing_unit_productivity_change,
+				change = processing_unit_productivity_change
 			})
 		end
 
@@ -38,7 +36,7 @@ for _, technology in pairs(data.raw.technology) do
 			table.insert(technology.effects, {
 				type = "change-recipe-productivity",
 				recipe = "cerys-nuclear-scrap-recycling",
-				change = scrap_recycling_productivity_change,
+				change = scrap_recycling_productivity_change
 			})
 		end
 	end
@@ -48,13 +46,13 @@ data.raw.technology["flare-stack-fluid-venting-tech"].prerequisites = { "cerysia
 data.raw.technology["flare-stack-fluid-venting-tech"].unit = {
 	count = 15,
 	ingredients = {
-		{ "cerysian-science-pack", 1 },
+		{ "cerysian-science-pack", 1 }
 	},
-	time = 60,
+	time = 60
 }
 data.raw.technology["flare-stack-fluid-venting-tech"].allows_productivity = false
 
---== Prevent hidden prerequisites on Moon Discovery Cerys ==--
+-- == Prevent hidden prerequisites on Moon Discovery Cerys ==--
 
 local tech = data.raw.technology["moon-discovery-cerys"]
 if tech and tech.prerequisites then
@@ -68,7 +66,7 @@ if tech and tech.prerequisites then
 	tech.prerequisites = valid_prereqs
 end
 
---== Remove duplicate productivity effects from cerys technologies ==--
+-- == Remove duplicate productivity effects from cerys technologies ==--
 
 for _, technology in pairs(data.raw.technology) do
 	if technology.name and string.sub(technology.name, 1, 6) == "cerys-" and technology.effects then
@@ -107,7 +105,7 @@ if recycling_tech and recycling_tech.effects and cerys_recycler_tech and cerys_r
 			table.insert(cerys_recycler_tech.effects, {
 				type = "unlock-recipe",
 				recipe = effect.recipe,
-				hidden = true,
+				hidden = true
 			})
 		end
 	end

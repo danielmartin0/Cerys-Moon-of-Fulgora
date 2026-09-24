@@ -8,7 +8,7 @@ local common = require("common")
 
 local Public = {}
 
---== Entity positions ==--
+-- == Entity positions ==--
 
 local hex_scale = 22
 local max_radius = common.CERYS_RADIUS * 4 -- Accounting for possible ribbonworlds
@@ -48,7 +48,7 @@ local function hex_grid_positions(args)
 
 				local p = {
 					x = math.ceil(grid_scale * (x + noise_x * noise_size)),
-					y = math.ceil(grid_scale * (y + noise_y * noise_size)),
+					y = math.ceil(grid_scale * (y + noise_y * noise_size))
 				}
 
 				table.insert(positions, p)
@@ -64,93 +64,89 @@ local tower_positions = hex_grid_positions({
 	seed = 2104,
 	grid_scale = 1.07,
 	noise_size = 40,
-	noise_scale = 500,
+	noise_scale = 500
 })
 
 local cryo_plant_base_positions = {
 	{
 		x = -120,
-		y = 24,
+		y = 24
 	},
 	{
 		x = -96,
-		y = -42,
+		y = -42
 	},
 	{
 		x = -71,
-		y = -93,
+		y = -93
 	},
 	{
 		x = -70,
-		y = 62,
+		y = 62
 	},
 	{
 		x = -70,
-		y = 30,
+		y = 30
 	},
 	{
 		x = -42,
-		y = -11,
+		y = -11
 	},
 	{
 		x = -35,
-		y = -63,
+		y = -63
 	},
 	{
 		x = -32,
-		y = 52,
+		y = 52
 	},
 	{
 		x = -19,
-		y = 110,
+		y = 110
 	},
 	{
 		x = -15,
-		y = -100,
+		y = -100
 	},
 	{
 		x = -7,
-		y = 14,
+		y = 14
 	},
 	{
 		x = 17,
-		y = -33,
+		y = -33
 	},
 	{
 		x = 22,
-		y = 77,
+		y = 77
 	},
 	{
 		x = 30,
-		y = -60,
+		y = -60
 	},
 	{
 		x = 59,
-		y = 2,
+		y = 2
 	},
 	{
 		x = 79,
-		y = 51,
+		y = 51
 	},
 	{
 		x = 85,
-		y = -46,
+		y = -46
 	},
 	{
 		x = 118,
-		y = 1,
-	},
+		y = 1
+	}
 }
 
 local crusher_positions = {
-	{ x = -67, y = -79.5 },
-	{ x = 45, y = -33.5 },
-	{ x = 4, y = 74.5 },
-	{ x = 87, y = 41.5 },
-	{ x = -65, y = 40.5 },
+	{ x = -67, y = -79.5 }, { x = 45, y = -33.5 }, { x = 4, y = 74.5 }, { x = 87, y = 41.5 }, { x = -65, y = 40.5 }
 }
 
---== Terrain & entity generation ==--
+-- == Terrain & entity generation ==--
 
 function Public.on_cerys_chunk_generated(event, surface)
 	local area = event.area
@@ -163,7 +159,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 	local stretch_factor = lib.get_cerys_surface_stretch_factor(surface)
 	local semimajor_axis = lib.get_cerys_semimajor_axis(surface)
 
-	--== Empty space ==--
+	-- == Empty space ==--
 
 	for x = area.left_top.x, area.right_bottom.x - 1 do
 		for y = area.left_top.y, area.right_bottom.y - 1 do
@@ -171,8 +167,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 				local existing_tile = surface.get_tile(x, y)
 				local existing_tile_name = existing_tile and existing_tile.valid and existing_tile.name
 
-				local is_surface = existing_tile_name ~= "empty-space"
-					and existing_tile_name ~= "cerys-empty-space"
+				local is_surface = existing_tile_name ~= "empty-space" and existing_tile_name ~= "cerys-empty-space"
 					and existing_tile_name ~= "cerys-empty-space-2"
 
 				if is_surface then
@@ -190,7 +185,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
-	--== Structures ==--
+	-- == Structures ==--
 
 	Public.create_towers(surface, area)
 	Public.create_cryo_plants(surface, area)
@@ -204,7 +199,7 @@ function Public.on_cerys_chunk_generated(event, surface)
 				name = entity_data.name,
 				position = p,
 				force = entity_data.force,
-				amount = entity_data.amount,
+				amount = entity_data.amount
 			})
 
 			if entity and entity_data.post_create then
@@ -213,30 +208,26 @@ function Public.on_cerys_chunk_generated(event, surface)
 		end
 	end
 
-	--== Reactor concrete ==--
+	-- == Reactor concrete ==--
 
 	local adjusted_reactor_position = {
 		x = math.ceil(common.REACTOR_POSITION_SEED.x),
-		y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor)
 	}
 
-	if
-		adjusted_reactor_position.x >= area.left_top.x
-		and adjusted_reactor_position.x < area.right_bottom.x
-		and adjusted_reactor_position.y >= area.left_top.y
-		and adjusted_reactor_position.y < area.right_bottom.y
-	then
+	if adjusted_reactor_position.x >= area.left_top.x and adjusted_reactor_position.x < area.right_bottom.x
+		and adjusted_reactor_position.y >= area.left_top.y and adjusted_reactor_position.y < area.right_bottom.y then
 		Public.ensure_solid_foundation(surface, adjusted_reactor_position, 34, 24)
 	end
 
-	--== Other ==--
+	-- == Other ==--
 
 	surface.create_decoratives({ check_collision = true, decoratives = decoratives })
 
 	Public.create_lithium_brine(surface, area)
 end
 
---luacheck: ignore
+-- luacheck: ignore
 function Public.terrain(x, y, seed, existing_tile, entities, tiles, decoratives, hidden_tiles)
 	local new_tile = nil
 
@@ -293,38 +284,31 @@ function Public.create_towers(surface, area)
 
 		table.insert(positions, {
 			x = math.ceil(common.REACTOR_POSITION_SEED.x) - 16 + displacement_from_corner.x,
-			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) - 11 + displacement_from_corner.y,
+			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) - 11 + displacement_from_corner.y
 		})
 	else
 		local displacement_from_corner = { x = 9, y = 2 }
 
 		table.insert(positions, {
 			x = math.ceil(common.REACTOR_POSITION_SEED.x) + 16 + displacement_from_corner.x,
-			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) + 11 + displacement_from_corner.y,
+			y = math.ceil(common.REACTOR_POSITION_SEED.y / stretch_factor) + 11 + displacement_from_corner.y
 		})
 	end
 
 	table.insert(positions, {
 		x = 33.5,
-		y = -41,
+		y = -41
 	})
 	table.insert(positions, {
 		x = -93.5,
-		y = -80,
+		y = -80
 	})
 
 	local positions_in_area = {}
 	for _, p in ipairs(positions) do
-		if
-			p.x >= area.left_top.x
-			and p.x < area.right_bottom.x
-			and p.y >= area.left_top.y
-			and p.y < area.right_bottom.y
-			and not (p.x == -71 and p.y == 73)
-			and not (p.x == 9 and p.y == 85)
-			and not (p.x == -35 and p.y == 107)
-			and not (p.x == 27 and p.y == -55)
-		then
+		if p.x >= area.left_top.x and p.x < area.right_bottom.x and p.y >= area.left_top.y and p.y < area.right_bottom.y
+			and not (p.x == -71 and p.y == 73) and not (p.x == 9 and p.y == 85) and not (p.x == -35 and p.y == 107)
+			and not (p.x == 27 and p.y == -55) then
 			-- if (p.x > 30 and p.x < 55) and (p.y > 40 and p.y < 60) then
 			-- 	log(serpent.block(p))
 			-- end
@@ -337,19 +321,17 @@ function Public.create_towers(surface, area)
 
 		Public.deal_with_existing_entities(surface, p2, 3, 4)
 
-		if
-			surface.can_place_entity({
-				name = "cerys-fulgoran-radiative-tower-contracted-container",
-				position = p2,
-				force = "player",
-			})
-		then
+		if surface.can_place_entity({
+			name = "cerys-fulgoran-radiative-tower-contracted-container",
+			position = p2,
+			force = "player"
+		}) then
 			Public.ensure_solid_foundation(surface, p2, 3, 4)
 
 			local e = surface.create_entity({
 				name = "cerys-fulgoran-radiative-tower-contracted-container",
 				position = p2,
-				force = "player",
+				force = "player"
 			})
 
 			local inv = e.get_inventory(defines.inventory.chest)
@@ -367,12 +349,7 @@ end
 
 function Public.create_cryo_plants(surface, area)
 	for _, p in ipairs(cryo_plant_base_positions) do
-		if
-			p.x >= area.left_top.x
-			and p.x < area.right_bottom.x
-			and p.y >= area.left_top.y
-			and p.y < area.right_bottom.y
-		then
+		if p.x >= area.left_top.x and p.x < area.right_bottom.x and p.y >= area.left_top.y and p.y < area.right_bottom.y then
 			local p2 = { x = p.x + 0.5, y = p.y + 0.5 }
 
 			Public.deal_with_existing_entities(surface, p2, 5, 5)
@@ -385,7 +362,7 @@ function Public.create_cryo_plants(surface, area)
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-cryogenic-plant-wreck-frozen",
 					position = p3,
-					force = "player",
+					force = "player"
 				})
 
 				if e and e.valid then
@@ -412,7 +389,7 @@ function Public.create_teleporter()
 	local e = surface.create_entity({
 		name = "cerys-fulgoran-teleporter-frozen",
 		position = p2,
-		force = "player",
+		force = "player"
 	})
 
 	if e and e.valid then
@@ -426,12 +403,7 @@ end
 
 function Public.create_crushers(surface, area)
 	for _, p in ipairs(crusher_positions) do
-		if
-			p.x >= area.left_top.x
-			and p.x < area.right_bottom.x
-			and p.y >= area.left_top.y
-			and p.y < area.right_bottom.y
-		then
+		if p.x >= area.left_top.x and p.x < area.right_bottom.x and p.y >= area.left_top.y and p.y < area.right_bottom.y then
 			Public.deal_with_existing_entities(surface, p, 4, 3)
 
 			local p2 = surface.find_non_colliding_position("cerys-fulgoran-crusher-wreck-frozen", p, 3, 3)
@@ -442,7 +414,7 @@ function Public.create_crushers(surface, area)
 				local e = surface.create_entity({
 					name = "cerys-fulgoran-crusher-wreck-frozen",
 					position = p2,
-					force = "player",
+					force = "player"
 				})
 
 				if e and e.valid then
@@ -459,14 +431,11 @@ function Public.deal_with_existing_entities(surface, position, width, height)
 		type = "character",
 		area = {
 			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
-			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
-		},
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 }
+		}
 	})
 	for _, character in ipairs(colliding_characters) do
-		local desired_position = {
-			x = character.position.x - 6,
-			y = character.position.y - 6,
-		}
+		local desired_position = { x = character.position.x - 6, y = character.position.y - 6 }
 
 		local new_position = surface.find_non_colliding_position("character", desired_position, 1, 1)
 			or desired_position
@@ -477,8 +446,8 @@ function Public.deal_with_existing_entities(surface, position, width, height)
 	local colliding_entities = surface.find_entities_filtered({
 		area = {
 			left_top = { x = position.x - width / 2, y = position.y - height / 2 },
-			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 },
-		},
+			right_bottom = { x = position.x + width / 2, y = position.y + height / 2 }
+		}
 	})
 	for _, entity in ipairs(colliding_entities) do
 		if entity.prototype.type and entity.prototype.type ~= "assembling-machine" then
@@ -488,19 +457,10 @@ function Public.deal_with_existing_entities(surface, position, width, height)
 end
 
 function Public.create_lithium_brine(surface, area)
-	local adjusted_lithium_position = {
-		x = common.LITHIUM_ACTUAL_POSITION.x,
-		y = common.LITHIUM_ACTUAL_POSITION.y,
-	}
+	local adjusted_lithium_position = { x = common.LITHIUM_ACTUAL_POSITION.x, y = common.LITHIUM_ACTUAL_POSITION.y }
 
-	if
-		not (
-			adjusted_lithium_position.x >= area.left_top.x
-			and adjusted_lithium_position.x < area.right_bottom.x
-			and adjusted_lithium_position.y >= area.left_top.y
-			and adjusted_lithium_position.y < area.right_bottom.y
-		)
-	then
+	if not (adjusted_lithium_position.x >= area.left_top.x and adjusted_lithium_position.x < area.right_bottom.x
+		and adjusted_lithium_position.y >= area.left_top.y and adjusted_lithium_position.y < area.right_bottom.y) then
 		return
 	end
 
@@ -513,7 +473,7 @@ function Public.create_lithium_brine(surface, area)
 		local d = (math.random() ^ 0.5) * 22
 		local p = {
 			x = adjusted_lithium_position.x + math.cos(angle) * d * stretch_factor,
-			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor,
+			y = adjusted_lithium_position.y + math.sin(angle) * d / stretch_factor
 		}
 
 		local p2 = surface.find_non_colliding_position("lithium-brine", p, 5, 1)
@@ -523,7 +483,7 @@ function Public.create_lithium_brine(surface, area)
 				surface.create_entity({
 					name = "lithium-brine",
 					position = p2,
-					amount = 100000000000,
+					amount = 100000000000
 				})
 				created = created + 1
 			end
@@ -538,12 +498,12 @@ function Public.create_lithium_brine(surface, area)
 	local brine_area = {
 		left_top = {
 			x = adjusted_lithium_position.x - 22 * stretch_factor,
-			y = adjusted_lithium_position.y - 22 / stretch_factor,
+			y = adjusted_lithium_position.y - 22 / stretch_factor
 		},
 		right_bottom = {
 			x = adjusted_lithium_position.x + 22 * stretch_factor,
-			y = adjusted_lithium_position.y + 22 / stretch_factor,
-		},
+			y = adjusted_lithium_position.y + 22 / stretch_factor
+		}
 	}
 
 	local entities_to_destroy = surface.find_entities_filtered({
@@ -555,8 +515,8 @@ function Public.create_lithium_brine(surface, area)
 			"cerys-ruin-medium",
 			"cerys-ruin-big",
 			"cerys-ruin-huge",
-			"cerys-ruin-colossal",
-		},
+			"cerys-ruin-colossal"
+		}
 	})
 	for _, entity in ipairs(entities_to_destroy) do
 		entity.destroy()
@@ -568,8 +528,8 @@ function Public.create_lithium_brine(surface, area)
 			"cerys-methane-iceberg-medium",
 			"cerys-methane-iceberg-small",
 			"cerys-methane-iceberg-tiny",
-			"cerys-ruin-tiny",
-		},
+			"cerys-ruin-tiny"
+		}
 	})
 end
 
@@ -602,7 +562,7 @@ function Public.ensure_solid_foundation(surface, center, width, height)
 			if tile_underneath_is_water then
 				table.insert(tiles, {
 					name = "cerys-concrete",
-					position = { x = x, y = y },
+					position = { x = x, y = y }
 				})
 			end
 		end

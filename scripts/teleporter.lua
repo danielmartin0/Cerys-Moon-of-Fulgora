@@ -24,14 +24,14 @@ function Public.teleport_to_fulgora(player)
 
 	local inventories = {
 		character.get_inventory(defines.inventory.character_main),
-		character.get_inventory(defines.inventory.character_trash),
+		character.get_inventory(defines.inventory.character_trash)
 	}
 
 	for _, inventory in ipairs(inventories) do
 		if inventory and inventory.valid then
 			original_surface.spill_inventory({
 				inventory = inventory,
-				position = character.position,
+				position = character.position
 			})
 		end
 	end
@@ -52,20 +52,20 @@ function Public.teleport_to_fulgora(player)
 
 	player.play_sound({
 		path = "cerys-teleporter-1",
-		volume_modifier = 0.6,
+		volume_modifier = 0.6
 	})
 	player.play_sound({
 		path = "cerys-teleporter-2",
-		volume_modifier = 0.6,
+		volume_modifier = 0.6
 	})
 
 	original_surface.play_sound({
 		path = "cerys-teleporter-1",
-		volume_modifier = 0.6,
+		volume_modifier = 0.6
 	})
 	original_surface.play_sound({
 		path = "cerys-teleporter-2",
-		volume_modifier = 0.6,
+		volume_modifier = 0.6
 	})
 end
 
@@ -101,17 +101,14 @@ function Public.toggle_gui(player, entity)
 		storage.teleporter_gui = {}
 	end
 	if not storage.teleporter_gui[player.index] then
-		storage.teleporter_gui[player.index] = {
-			confirmed = false,
-			revert_tick = nil,
-		}
+		storage.teleporter_gui[player.index] = { confirmed = false, revert_tick = nil }
 	end
 
 	local frame = player.gui.screen.add({
 		type = "frame",
 		name = "cerys_teleporter_gui",
 		direction = "vertical",
-		style = "frame",
+		style = "frame"
 	})
 	frame.auto_center = true
 
@@ -119,7 +116,7 @@ function Public.toggle_gui(player, entity)
 		type = "flow",
 		name = "titlebar",
 		direction = "horizontal",
-		style = "horizontal_flow",
+		style = "horizontal_flow"
 	})
 	titlebar.style.horizontal_spacing = 8
 	titlebar.drag_target = frame
@@ -129,13 +126,13 @@ function Public.toggle_gui(player, entity)
 		name = "title",
 		caption = { "cerys.teleporter-title" },
 		style = "frame_title",
-		ignored_by_interaction = true,
+		ignored_by_interaction = true
 	})
 
 	local drag_handle = titlebar.add({
 		type = "empty-widget",
 		name = "drag_handle",
-		style = "draggable_space_header",
+		style = "draggable_space_header"
 	})
 	drag_handle.style.horizontally_stretchable = true
 	drag_handle.style.height = 24
@@ -149,14 +146,14 @@ function Public.toggle_gui(player, entity)
 		style = "frame_action_button",
 		sprite = "utility/close",
 		hovered_sprite = "utility/close_black",
-		clicked_sprite = "utility/close_black",
+		clicked_sprite = "utility/close_black"
 	})
 
 	local content_frame = frame.add({
 		type = "frame",
 		name = "content_frame",
 		direction = "vertical",
-		style = "inside_shallow_frame_with_padding",
+		style = "inside_shallow_frame_with_padding"
 	})
 
 	local vertical_flow = content_frame.add({
@@ -164,18 +161,18 @@ function Public.toggle_gui(player, entity)
 		name = "vertical_flow",
 		direction = "vertical",
 		style = "vertical_flow",
-		vertical_spacing = 8,
+		vertical_spacing = 8
 	})
 
 	local preview_frame = vertical_flow.add({
 		type = "frame",
-		style = "deep_frame_in_shallow_frame",
+		style = "deep_frame_in_shallow_frame"
 	})
 
 	local preview = preview_frame.add({
 		type = "entity-preview",
 		name = "teleporter_preview",
-		style = "wide_entity_button",
+		style = "wide_entity_button"
 	})
 	preview.entity = entity
 	preview.style.width = 280
@@ -185,7 +182,7 @@ function Public.toggle_gui(player, entity)
 		type = "flow",
 		name = "button_flow",
 		direction = "horizontal",
-		style = "horizontal_flow",
+		style = "horizontal_flow"
 	})
 	button_flow.style.horizontal_align = "center"
 	button_flow.style.top_margin = 8
@@ -197,7 +194,7 @@ function Public.toggle_gui(player, entity)
 		caption = { "cerys.teleporter-button-text" },
 		style = "green_button",
 		enabled = game.planets.fulgora and not game.planets.fulgora.prototype.hidden,
-		tooltip = { "cerys.teleporter-button-tooltip" },
+		tooltip = { "cerys.teleporter-button-tooltip" }
 	})
 	button.style.minimal_width = 160
 
@@ -224,7 +221,7 @@ function Public.reset_button_state(player_index)
 	storage.teleporter_gui[player_index].revert_tick = nil
 end
 
-script.on_event(defines.events.on_gui_click, function(event)
+script.on_event(defines.events.on_gui_click, function (event)
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -250,19 +247,18 @@ script.on_event(defines.events.on_gui_click, function(event)
 	end
 end)
 
-Public.tick_15_check_teleporter = function()
+Public.tick_15_check_teleporter = function ()
 	if storage.cerys and storage.cerys.teleporter then
 		local e = storage.cerys.teleporter.entity
 		if e and e.valid then
 			if e.frozen then
-				e.custom_status = {
-					diode = defines.entity_status_diode.red,
-					label = { "entity-status.frozen" },
-				}
+				e.custom_status = { diode = defines.entity_status_diode.red, label = { "entity-status.frozen" } }
 			else
 				e.custom_status = {
 					diode = defines.entity_status_diode.green,
-					label = { "cerys.teleporter-status-label" },
+					label = {
+						"cerys.teleporter-status-label"
+					}
 				}
 			end
 		end
@@ -302,15 +298,12 @@ function Public.unfreeze_teleporter(surface, e)
 		name = "cerys-fulgoran-teleporter",
 		position = e.position,
 		force = e.force,
-		fast_replace = true,
+		fast_replace = true
 	})
 
 	if e2 and e2.valid then
 		e2.destructible = false
-		e2.custom_status = {
-			diode = defines.entity_status_diode.green,
-			label = { "cerys.teleporter-status-label" },
-		}
+		e2.custom_status = { diode = defines.entity_status_diode.green, label = { "cerys.teleporter-status-label" } }
 	end
 
 	e.destroy()
@@ -320,13 +313,10 @@ function Public.unfreeze_teleporter(surface, e)
 	end
 
 	storage.cerys.frozen_teleporter = nil
-	storage.cerys.teleporter = {
-		entity = e2,
-		creation_tick = game.tick,
-	}
+	storage.cerys.teleporter = { entity = e2, creation_tick = game.tick }
 end
 
-Public.register_frozen_teleporter = function(entity)
+Public.register_frozen_teleporter = function (entity)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -335,10 +325,7 @@ Public.register_frozen_teleporter = function(entity)
 		return
 	end
 
-	storage.cerys.frozen_teleporter = {
-		entity = entity,
-		creation_tick = game.tick,
-	}
+	storage.cerys.frozen_teleporter = { entity = entity, creation_tick = game.tick }
 end
 
 return Public

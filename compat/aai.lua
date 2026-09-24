@@ -7,6 +7,6 @@ if mods["aai-industry"] or mods["Rocs-Rusting-Iron"] then
 		name = "stone",
 		amount = 1,
 		independent_probability = 1 / 100,
-		show_details_in_recipe_tooltip = false,
+		show_details_in_recipe_tooltip = false
 	})
 end

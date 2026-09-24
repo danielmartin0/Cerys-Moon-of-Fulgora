@@ -10,22 +10,13 @@ function Public.add_picker_dollies_blacklists()
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-frozen", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-rising-reactor-base", true)
 		remote.call(
-			"PickerDollies",
-			"add_blacklist_name",
-			"cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
-			true
+			"PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-rising-reactor-tower-1", true
 		)
 		remote.call(
-			"PickerDollies",
-			"add_blacklist_name",
-			"cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
-			true
+			"PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-rising-reactor-tower-2", true
 		)
 		remote.call(
-			"PickerDollies",
-			"add_blacklist_name",
-			"cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
-			true
+			"PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-rising-reactor-tower-3", true
 		)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-base", true)
 		remote.call("PickerDollies", "add_blacklist_name", "cerys-fulgoran-radiative-tower-base-frozen", true)

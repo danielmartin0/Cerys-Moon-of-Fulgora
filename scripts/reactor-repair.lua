@@ -3,13 +3,7 @@ local common = require("common")
 
 local Public = {}
 
-Public.REACTOR_STAGE_ENUM = {
-	frozen = 0,
-	needs_excavation = 1,
-	needs_scaffold = 2,
-	needs_repair = 3,
-	active = 4,
-}
+Public.REACTOR_STAGE_ENUM = { frozen = 0, needs_excavation = 1, needs_scaffold = 2, needs_repair = 3, active = 4 }
 
 local bricks_per_excavation_recipe = prototypes.recipe["cerys-excavate-nuclear-reactor"].products[1].amount
 
@@ -40,8 +34,7 @@ function Public.reactor_excavation_check(surface, reactor)
 	local inv = e.get_output_inventory()
 	local concrete_in_machine = inv and inv.valid and inv.get_item_count() or 0
 
-	local products_remaining = common.REACTOR_CONCRETE_TO_EXCAVATE
-		- e.products_finished * bricks_per_excavation_recipe
+	local products_remaining = common.REACTOR_CONCRETE_TO_EXCAVATE - e.products_finished * bricks_per_excavation_recipe
 		+ concrete_in_machine
 
 	local last_observed = reactor.excavation_products_remaining_last_observed
@@ -51,7 +44,7 @@ function Public.reactor_excavation_check(surface, reactor)
 		if products_remaining < last_observed - 10 then
 			surface.play_sound({
 				position = e.position,
-				path = "cerys-excavation",
+				path = "cerys-excavation"
 			})
 
 			reactor.excavation_products_remaining_last_observed = products_remaining
@@ -66,7 +59,7 @@ function Public.reactor_excavation_check(surface, reactor)
 			name = "cerys-fulgoran-reactor-wreck-cleared",
 			position = e.position,
 			force = e.force,
-			fast_replace = true,
+			fast_replace = true
 		})
 
 		if e2 and e2.valid then
@@ -88,22 +81,20 @@ function Public.reactor_excavation_check(surface, reactor)
 				surface = surface,
 				target = {
 					entity = e,
-					offset = { 0, -14 },
+					offset = { 0, -14 }
 				},
 				scale = 3,
 				font = "default-game",
 				alignment = "center",
-				use_rich_text = true,
+				use_rich_text = true
 			})
 
 			reactor.rendering = r
 		end
 
 		r.text = {
-			"cerys.repair-remaining-description",
-			"[item=concrete]",
-			products_remaining,
-			common.REACTOR_CONCRETE_TO_EXCAVATE,
+			"cerys.repair-remaining-description", "[item=concrete]", products_remaining,
+			common.REACTOR_CONCRETE_TO_EXCAVATE
 		}
 	end
 end
@@ -126,7 +117,7 @@ function Public.reactor_repair_check(surface, reactor)
 		if e.products_finished > last_observed then
 			surface.play_sound({
 				position = e.position,
-				path = "cerys-repair",
+				path = "cerys-repair"
 			})
 
 			reactor.repair_products_remaining_last_observed = e.products_finished
@@ -149,7 +140,7 @@ function Public.reactor_repair_check(surface, reactor)
 			position = e.position,
 			force = e.force,
 			fast_replace = true,
-			quality = e.quality,
+			quality = e.quality
 		})
 
 		if e2 and e2.valid then
@@ -170,7 +161,7 @@ function Public.reactor_repair_check(surface, reactor)
 				for _, m in pairs(contents) do
 					surface.spill_item_stack({
 						position = e2.position,
-						stack = { name = m.name, count = m.count, quality = m.quality },
+						stack = { name = m.name, count = m.count, quality = m.quality }
 					})
 				end
 			end
@@ -191,12 +182,12 @@ function Public.reactor_repair_check(surface, reactor)
 				surface = surface,
 				target = {
 					entity = e,
-					offset = { -4.2, -13.5 },
+					offset = { -4.2, -13.5 }
 				},
 				scale = 2.5,
 				font = "default-game",
 				alignment = "center",
-				use_rich_text = true,
+				use_rich_text = true
 			})
 
 			reactor.rendering1 = r1
@@ -208,12 +199,12 @@ function Public.reactor_repair_check(surface, reactor)
 				surface = surface,
 				target = {
 					entity = e,
-					offset = { 4.2, -13.5 },
+					offset = { 4.2, -13.5 }
 				},
 				scale = 2.5,
 				font = "default-game",
 				alignment = "center",
-				use_rich_text = true,
+				use_rich_text = true
 			})
 
 			reactor.rendering2 = r2
@@ -234,21 +225,14 @@ function Public.reactor_repair_check(surface, reactor)
 		local chips_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_chips
 
 		r1.color = chips_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
-		r1.text = {
-			"cerys.repair-remaining-description",
-			"[item=processing-unit]",
-			chips_count,
-			recipes_needed * 1,
-		}
+		r1.text = { "cerys.repair-remaining-description", "[item=processing-unit]", chips_count, recipes_needed * 1 }
 
 		local repair_parts_count = 1 * (e.products_finished + (e.is_crafting() and 1 or 0)) + inventory_repair_parts
 
 		r2.color = repair_parts_count >= recipes_needed * 1 and { 0, 255, 0 } or { 255, 185, 0 }
 		r2.text = {
-			"cerys.repair-remaining-description",
-			"[item=ancient-structure-repair-part]",
-			repair_parts_count,
-			recipes_needed * 1,
+			"cerys.repair-remaining-description", "[item=ancient-structure-repair-part]", repair_parts_count,
+			recipes_needed * 1
 		}
 	end
 end
@@ -268,8 +252,9 @@ function Public.scaffold_on_pre_build(event)
 		return
 	end
 
-	local existing_reactor =
-		surface.find_entities_filtered({ name = "cerys-fulgoran-reactor", position = event.position })
+	local existing_reactor = surface.find_entities_filtered(
+		{ name = "cerys-fulgoran-reactor", position = event.position }
+	)
 
 	if existing_reactor and existing_reactor[1] and existing_reactor[1].valid then
 		local item = player.cursor_stack
@@ -326,7 +311,7 @@ function Public.scaffold_on_build(scaffold_entity, player)
 			name = "cerys-fulgoran-reactor-wreck-scaffolded",
 			position = position,
 			force = force,
-			quality = quality,
+			quality = quality
 		})
 
 		e.minable_flag = false
@@ -341,7 +326,7 @@ function Public.scaffold_on_build(scaffold_entity, player)
 			if is_cursor_empty then
 				player.cursor_stack.set_stack({
 					name = "cerys-fulgoran-reactor-scaffold",
-					count = 1,
+					count = 1
 				})
 			else
 				local inv = player.get_main_inventory()
@@ -376,7 +361,7 @@ function Public.upgrading_existing_reactor(surface, reactor_entity, player, new_
 		position = reactor_entity.position,
 		force = reactor_entity.force,
 		fast_replace = true,
-		quality = new_quality,
+		quality = new_quality
 	})
 
 	if e2 and e2.valid then

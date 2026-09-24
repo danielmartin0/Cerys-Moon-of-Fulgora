@@ -4,24 +4,11 @@ local merge = require("lib").merge
 -- data.raw.resource["crude-oil"].created_effect = create_tiles("snow-flat")
 
 local stage_counts_3 = {
-	15000 * 10000,
-	9500 * 10000,
-	5500 * 10000,
-	2900 * 10000,
-	1300 * 10000,
-	400 * 10000,
-	150 * 10000,
-	80 * 10000,
+	15000 * 10000, 9500 * 10000, 5500 * 10000, 2900 * 10000, 1300 * 10000, 400 * 10000, 150 * 10000, 80 * 10000
 }
 local stage_counts_4 = {
-	15000 * 40000 * 5,
-	9500 * 40000 * 3,
-	5500 * 40000 * 2,
-	2900 * 40000 * 1.5,
-	1300 * 40000,
-	400 * 40000,
-	150 * 40000,
-	80 * 40000,
+	15000 * 40000 * 5, 9500 * 40000 * 3, 5500 * 40000 * 2, 2900 * 40000 * 1.5, 1300 * 40000, 400 * 40000, 150 * 40000,
+	80 * 40000
 }
 
 data:extend({
@@ -32,7 +19,7 @@ data:extend({
 		order = "w-a[nuclear-scrap]",
 		minable = merge(data.raw.resource["scrap"].minable, {
 			mining_time = 0.5,
-			result = "cerys-nuclear-scrap",
+			result = "cerys-nuclear-scrap"
 		}),
 		stages = {
 			sheet = {
@@ -41,18 +28,18 @@ data:extend({
 				size = 128,
 				frame_count = 8,
 				variation_count = 8,
-				scale = 0.5,
-			},
+				scale = 0.5
+			}
 		},
 		autoplace = {
 			order = "b",
 			probability_expression = "cerys_nuclear_scrap",
-			richness_expression = "10 + 100 * cerys_nuclear_scrap ^ 3",
+			richness_expression = "10 + 100 * cerys_nuclear_scrap ^ 3"
 		},
 		map_color = { 92, 106, 42 },
 		map_grid = true,
 		factoriopedia_simulation = "nil",
-		stage_counts = stage_counts_4,
+		stage_counts = stage_counts_4
 	}),
 
 	merge(data.raw.resource["iron-ore"], {
@@ -60,7 +47,7 @@ data:extend({
 		order = "w-b[nuclear-scrap]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
 			mining_time = 4,
-			result = "cerys-nitrogen-rich-minerals",
+			result = "cerys-nitrogen-rich-minerals"
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals.png",
 		icon_size = 64,
@@ -71,18 +58,18 @@ data:extend({
 				size = 128,
 				frame_count = 8,
 				variation_count = 8,
-				scale = 0.5,
-			},
+				scale = 0.5
+			}
 		},
 		autoplace = {
 			order = "b",
 			probability_expression = "cerys_nitrogen_rich_minerals",
-			richness_expression = "ceil(500 + 100 * cerys_nitrogen_rich_minerals ^ 2)",
+			richness_expression = "ceil(500 + 100 * cerys_nitrogen_rich_minerals ^ 2)"
 		},
 		map_color = { 0, 0, 0 },
 		map_grid = true,
 		stage_counts = stage_counts_3,
-		factoriopedia_simulation = "nil",
+		factoriopedia_simulation = "nil"
 	}),
 
 	merge(data.raw.resource["copper-ore"], {
@@ -90,7 +77,7 @@ data:extend({
 		order = "w-c[methane-ice]",
 		minable = merge(data.raw.resource["iron-ore"].minable, { -- TODO: Change particle emitted
 			mining_time = 0.5,
-			result = "methane-ice",
+			result = "methane-ice"
 		}),
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/methane-ice.png",
 		icon_size = 64,
@@ -101,17 +88,17 @@ data:extend({
 				size = 128,
 				frame_count = 8,
 				variation_count = 8,
-				scale = 0.5,
-			},
+				scale = 0.5
+			}
 		},
 		autoplace = {
 			order = "b",
 			probability_expression = "cerys_methane_ice",
-			richness_expression = "10 + 1000 * cerys_methane_ice ^ 2",
+			richness_expression = "10 + 1000 * cerys_methane_ice ^ 2"
 		},
 		map_color = { 159, 194, 165 },
 		map_grid = true,
 		stage_counts = stage_counts_4,
-		factoriopedia_simulation = "nil",
-	}),
+		factoriopedia_simulation = "nil"
+	})
 })

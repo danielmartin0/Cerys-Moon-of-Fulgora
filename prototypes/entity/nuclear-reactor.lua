@@ -5,31 +5,19 @@ local common = require("common")
 local function make_heat_buffer_connections(size)
 	local connections = {}
 	for x = -(size - 1) / 2 + 3, (size - 1) / 2 - 3, 3 do
-		connections[#connections + 1] = {
-			position = { x, -(size - 1) / 2 },
-			direction = defines.direction.north,
-		}
+		connections[#connections + 1] = { position = { x, -(size - 1) / 2 }, direction = defines.direction.north }
 	end
 
 	for y = -(size - 1) / 2 + 3, (size - 1) / 2 - 3, 3 do
-		connections[#connections + 1] = {
-			position = { (size - 1) / 2, y },
-			direction = defines.direction.east,
-		}
+		connections[#connections + 1] = { position = { (size - 1) / 2, y }, direction = defines.direction.east }
 	end
 
 	for x = -(size - 1) / 2 + 3, (size - 1) / 2 - 3, 3 do
-		connections[#connections + 1] = {
-			position = { x, (size - 1) / 2 },
-			direction = defines.direction.south,
-		}
+		connections[#connections + 1] = { position = { x, (size - 1) / 2 }, direction = defines.direction.south }
 	end
 
 	for y = -(size - 1) / 2 + 3, (size - 1) / 2 - 3, 3 do
-		connections[#connections + 1] = {
-			position = { -(size - 1) / 2, y },
-			direction = defines.direction.west,
-		}
+		connections[#connections + 1] = { position = { -(size - 1) / 2, y }, direction = defines.direction.west }
 	end
 
 	return connections
@@ -65,8 +53,8 @@ local fulgoran_reactor = {
 		light_flicker = {
 			color = { 0, 0, 0 },
 			minimum_intensity = 0.7,
-			maximum_intensity = 0.95,
-		},
+			maximum_intensity = 0.95
+		}
 	},
 	collision_box = { { -11, -10.7 }, { 10.8, 10.7 } },
 	selection_box = { { -11, -11 }, { 11, 11 } },
@@ -74,9 +62,9 @@ local fulgoran_reactor = {
 	lower_layer_picture = nil,
 	heat_lower_layer_picture = nil,
 	heat_buffer = {
-		max_temperature = 1200, -- from 1000
+		max_temperature = 1200,  -- from 1000
 		specific_heat = "640MJ", -- from 10MJ
-		max_transfer = "300GW", -- from 10GW
+		max_transfer = "300GW",  -- from 10GW
 		minimum_glow_temperature = 0,
 		connections = make_heat_buffer_connections(22),
 		heat_picture = apply_heat_pipe_glow({
@@ -86,8 +74,8 @@ local fulgoran_reactor = {
 			scale = 0.354816,
 			shift = util.by_pixel(3, -3),
 			blend_mode = "additive",
-			draw_as_glow = true,
-		}),
+			draw_as_glow = true
+		})
 	},
 
 	connection_patches_connected = {
@@ -96,8 +84,8 @@ local fulgoran_reactor = {
 			width = 64,
 			height = 64,
 			variation_count = 24,
-			scale = 0.5,
-		},
+			scale = 0.5
+		}
 	},
 	connection_patches_disconnected = nil,
 	heat_connection_patches_connected = {
@@ -106,8 +94,8 @@ local fulgoran_reactor = {
 			width = 64,
 			height = 64,
 			variation_count = 24,
-			scale = 0.5,
-		}),
+			scale = 0.5
+		})
 	},
 	heat_connection_patches_disconnected = nil,
 
@@ -119,7 +107,7 @@ local fulgoran_reactor = {
 		height = 2068,
 		scale = 0.354816,
 		shift = util.by_pixel(3, -3),
-		tint = { r = 0, g = 1, b = 1 },
+		tint = { r = 0, g = 1, b = 1 }
 	},
 
 	picture = {
@@ -129,7 +117,7 @@ local fulgoran_reactor = {
 				width = 2113,
 				height = 2068,
 				scale = 0.354816,
-				shift = util.by_pixel(3, -3),
+				shift = util.by_pixel(3, -3)
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-light-shadow-0.5.png",
@@ -137,9 +125,9 @@ local fulgoran_reactor = {
 				height = 2068,
 				scale = 0.354816,
 				shift = util.by_pixel(3, -3),
-				draw_as_shadow = true,
-			},
-		},
+				draw_as_shadow = true
+			}
+		}
 	},
 
 	impact_category = "metal-large",
@@ -149,7 +137,7 @@ local fulgoran_reactor = {
 		sound = reactor_sound,
 		max_sounds_per_prototype = 3,
 		fade_in_ticks = 4,
-		fade_out_ticks = 20,
+		fade_out_ticks = 20
 	},
 
 	meltdown_action = {
@@ -159,17 +147,17 @@ local fulgoran_reactor = {
 			target_effects = {
 				{
 					type = "create-entity",
-					entity_name = "atomic-rocket",
-				},
-			},
-		},
+					entity_name = "atomic-rocket"
+				}
+			}
+		}
 	},
 
 	default_temperature_signal = { type = "virtual", name = "signal-T" },
 	circuit_wire_max_distance = reactor_circuit_wire_max_distance,
 	circuit_connector = circuit_connector_definitions["nuclear-reactor"],
 	autoplace = {
-		probability_expression = "0",
+		probability_expression = "0"
 	},
 	map_color = { 0, 183, 212 },
 	fast_replaceable_group = "cerys-fulgoran-reactor",
@@ -177,9 +165,9 @@ local fulgoran_reactor = {
 		{
 			name = { "cerys.cooling-tooltip-name" },
 			value = { "cerys.tooltip-unknown-value" },
-			quality_values = {}, -- Filled in data-final-fixes
-		},
-	},
+			quality_values = {} -- Filled in data-final-fixes
+		}
+	}
 }
 
 local reactor_wreck_base = {
@@ -192,7 +180,7 @@ local reactor_wreck_base = {
 		"not-rotatable",
 		"not-blueprintable",
 		"not-deconstructable",
-		"not-flammable",
+		"not-flammable"
 	},
 	hidden = true,
 	map_color = { r = 0, g = 0.365, b = 0.58, a = 1 },
@@ -200,11 +188,11 @@ local reactor_wreck_base = {
 	allow_copy_paste = false,
 	collision_box = {
 		{ -16, -10.7 },
-		{ 16, 10.7 },
+		{ 16, 10.7 }
 	},
 	selection_box = { { -16, -11 }, { 16, 11 } },
 	minable = { mining_time = 1, result = "cerys-fulgoran-reactor" },
-	factoriopedia_alternative = "cerys-fulgoran-reactor",
+	factoriopedia_alternative = "cerys-fulgoran-reactor"
 }
 
 local reactor_wreck = merge(reactor_wreck_base, {
@@ -216,7 +204,7 @@ local reactor_wreck = merge(reactor_wreck_base, {
 	fixed_recipe = "cerys-excavate-nuclear-reactor",
 	energy_usage = "100kW",
 	energy_source = {
-		type = "void",
+		type = "void"
 	},
 	pictures = "nil",
 	heating_energy = "10kJ", -- Put this high and it can leak to nearby entities to re-freeze
@@ -230,18 +218,18 @@ local reactor_wreck = merge(reactor_wreck_base, {
 					shift = util.by_pixel(66, -10),
 					scale = 0.365,
 					frame_count = 1,
-					repeat_count = 1,
-				},
-			},
-		},
+					repeat_count = 1
+				}
+			}
+		}
 	},
 	working_sound = {
 		sound = { audible_distance_modifier = 1, filename = "__base__/sound/burner-mining-drill-1.ogg", volume = 1 },
 
 		fade_in_ticks = 0,
-		fade_out_ticks = 0,
+		fade_out_ticks = 0
 	},
-	map_color = { 0, 0, 0 },
+	map_color = { 0, 0, 0 }
 })
 
 local reactor_wreck_frozen = merge(reactor_wreck, {
@@ -257,12 +245,12 @@ local reactor_wreck_frozen = merge(reactor_wreck, {
 					scale = 0.365,
 					frame_count = 1,
 					repeat_count = 1,
-					tint = common.FACTORIO_UNDO_FROZEN_TINT,
-				},
-			},
-		},
+					tint = common.FACTORIO_UNDO_FROZEN_TINT
+				}
+			}
+		}
 	},
-	map_color = { 0, 41, 48 },
+	map_color = { 0, 41, 48 }
 })
 
 local reactor_wreck_cleared = merge(reactor_wreck_base, {
@@ -271,7 +259,7 @@ local reactor_wreck_cleared = merge(reactor_wreck_base, {
 	fast_replaceable_group = "cerys-fulgoran-reactor-scaffold",
 	collision_box = {
 		{ -11, -10.7 },
-		{ 10.8, 10.7 },
+		{ 10.8, 10.7 }
 	},
 	selection_box = { { -11, -11 }, { 11, 11 } },
 	picture = {
@@ -281,22 +269,22 @@ local reactor_wreck_cleared = merge(reactor_wreck_base, {
 				width = 2299,
 				height = 2161,
 				shift = util.by_pixel(17, 0),
-				scale = 0.354816,
-			},
-		},
+				scale = 0.354816
+			}
+		}
 	},
-	map_color = { 0, 68, 79 },
+	map_color = { 0, 68, 79 }
 })
 
 local scaffold = merge(reactor_wreck_cleared, {
 	name = "cerys-fulgoran-reactor-scaffold",
 	minable = {
 		mining_time = 2,
-		result = "cerys-fulgoran-reactor-scaffold",
+		result = "cerys-fulgoran-reactor-scaffold"
 	},
 	collision_box = {
 		{ -11, -10.7 },
-		{ 10.8, 10.7 },
+		{ 10.8, 10.7 }
 	},
 	picture = {
 		layers = {
@@ -305,10 +293,10 @@ local scaffold = merge(reactor_wreck_cleared, {
 				width = 1058,
 				height = 1022,
 				shift = util.by_pixel(155, 4),
-				scale = 1,
-			},
-		},
-	},
+				scale = 1
+			}
+		}
+	}
 })
 
 local cleared_with_scaffold = merge(reactor_wreck_cleared, {
@@ -321,7 +309,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 	allowed_effects = { "speed", "productivity" },
 	energy_usage = "100kW",
 	energy_source = {
-		type = "void",
+		type = "void"
 	},
 	pictures = "nil",
 	graphics_set = {
@@ -334,17 +322,16 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				{
-					filename =
-					"__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
 					width = 2299,
 					height = 2161,
 					shift = util.by_pixel(17, 0),
 					scale = 0.354816,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-front.png",
@@ -353,7 +340,7 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				-- TODO: Time this laser animation to the crafting time
 				-- {
@@ -374,18 +361,18 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					scale = 1,
 					draw_as_shadow = true,
 					frame_count = 1,
-					repeat_count = 1,
-				},
-			},
-		},
+					repeat_count = 1
+				}
+			}
+		}
 	},
 	working_sound = {
 		sound = { audible_distance_modifier = 1, filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 1 },
 
 		fade_in_ticks = 0,
-		fade_out_ticks = 0,
+		fade_out_ticks = 0
 	},
-	map_color = { 0, 104, 120 },
+	map_color = { 0, 104, 120 }
 })
 
 local complete_with_scaffold = merge(cleared_with_scaffold, {
@@ -400,7 +387,7 @@ local complete_with_scaffold = merge(cleared_with_scaffold, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/Reactor-0.5.png",
@@ -409,7 +396,7 @@ local complete_with_scaffold = merge(cleared_with_scaffold, {
 					scale = 0.354816,
 					shift = util.by_pixel(3, -3),
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/scaffold-front.png",
@@ -418,7 +405,7 @@ local complete_with_scaffold = merge(cleared_with_scaffold, {
 					shift = util.by_pixel(155, 4),
 					scale = 1,
 					frame_count = 1,
-					repeat_count = 1,
+					repeat_count = 1
 				},
 				-- TODO: Time this laser animation to the crafting time
 				-- {
@@ -439,11 +426,11 @@ local complete_with_scaffold = merge(cleared_with_scaffold, {
 					scale = 1,
 					draw_as_shadow = true,
 					frame_count = 1,
-					repeat_count = 1,
-				},
-			},
-		},
-	},
+					repeat_count = 1
+				}
+			}
+		}
+	}
 })
 
 data:extend({
@@ -453,5 +440,5 @@ data:extend({
 	reactor_wreck_cleared,
 	scaffold,
 	cleared_with_scaffold,
-	complete_with_scaffold,
+	complete_with_scaffold
 })

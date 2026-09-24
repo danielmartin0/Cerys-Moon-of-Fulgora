@@ -2,7 +2,7 @@ local util = require("util")
 local lib = require("lib")
 local merge = lib.merge
 
---== Allow personal mixed-oxide reactors to be used in upgrade recipes ==--
+-- == Allow personal mixed-oxide reactors to be used in upgrade recipes ==--
 
 if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 	local new_recipes = {}
@@ -21,8 +21,8 @@ if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 							localised_name = { "cerys.from-mixed-oxide", { "equipment-name." .. equipment_name } },
 							localised_description = {
 								"cerys.alternative-recipe-from-mixed-oxide",
-								{ "equipment-description.mixed-oxide-reactor-equipment" },
-							},
+								{ "equipment-description.mixed-oxide-reactor-equipment" }
+							}
 						})
 
 						local function replace_ingredient(ings)
@@ -69,7 +69,7 @@ if data.raw["generator-equipment"]["fission-reactor-equipment"] then
 	end
 end
 
---== Adjust decayed radioactive module recycling ==--
+-- == Adjust decayed radioactive module recycling ==--
 
 local decayed_recycling = data.raw.recipe["cerys-radioactive-module-decayed-recycling"]
 local charged_recycling = data.raw.recipe["cerys-radioactive-module-charged-recycling"]

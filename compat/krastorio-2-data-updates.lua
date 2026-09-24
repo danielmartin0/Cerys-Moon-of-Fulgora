@@ -74,20 +74,14 @@ local function multiply_projectile_damage(projectile_name, damage_type, factor)
 		projectile.action = action
 	else
 		log(
-			"[CERYS] No "
-			.. damage_type
-			.. " damage found in "
-			.. projectile_name
-			.. ", so its damage is left unchanged."
+			"[CERYS] No " .. damage_type .. " damage found in " .. projectile_name
+				.. ", so its damage is left unchanged."
 		)
 	end
 end
 
-if
-	data.raw.ammo["kr-uranium-rifle-magazine"]
-	and data.raw.recipe["kr-uranium-rifle-magazine"]
-	and data.raw.projectile["kr-uranium-rifle-magazine-projectile"]
-then
+if data.raw.ammo["kr-uranium-rifle-magazine"] and data.raw.recipe["kr-uranium-rifle-magazine"]
+	and data.raw.projectile["kr-uranium-rifle-magazine-projectile"] then
 	data:extend({
 		merge(data.raw.ammo["kr-uranium-rifle-magazine"], {
 			name = "kr-plutonium-rifle-magazine",
@@ -98,10 +92,10 @@ then
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/kr-plutonium-rifle-magazine.png",
 					size = 64,
-					scale = 0.5,
-				},
-			},
-		}),
+					scale = 0.5
+				}
+			}
+		})
 	})
 	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-uranium-rifle-magazine"].ammo_type)
 	set_projectile_name(ammo_type, "kr-plutonium-rifle-magazine-projectile")
@@ -112,32 +106,29 @@ then
 			name = "kr-plutonium-rifle-magazine",
 			ingredients = {
 				{ type = "item", name = "kr-uranium-rifle-magazine", amount = 10 },
-				{ type = "item", name = "plutonium-238", amount = 1 },
+				{ type = "item", name = "plutonium-238", amount = 1 }
 			},
 			results = { { type = "item", name = "kr-plutonium-rifle-magazine", amount = 10 } },
 			energy_required = data.raw.recipe["kr-uranium-rifle-magazine"].energy_required * 10,
-			main_product = "kr-plutonium-rifle-magazine",
-		}),
+			main_product = "kr-plutonium-rifle-magazine"
+		})
 	})
 
 	data:extend({
 		merge(data.raw.projectile["kr-uranium-rifle-magazine-projectile"], {
-			name = "kr-plutonium-rifle-magazine-projectile",
-		}),
+			name = "kr-plutonium-rifle-magazine-projectile"
+		})
 	})
 	multiply_projectile_damage("kr-plutonium-rifle-magazine-projectile", "kr-radioactive", 2)
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",
-		recipe = "kr-plutonium-rifle-magazine",
+		recipe = "kr-plutonium-rifle-magazine"
 	})
 end
 
-if
-	data.raw.ammo["kr-uranium-anti-materiel-rifle-magazine"]
-	and data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"]
-	and data.raw.projectile["kr-uranium-anti-materiel-rifle-magazine-projectile"]
-then
+if data.raw.ammo["kr-uranium-anti-materiel-rifle-magazine"] and data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"]
+	and data.raw.projectile["kr-uranium-anti-materiel-rifle-magazine-projectile"] then
 	data:extend({
 		merge(data.raw.ammo["kr-uranium-anti-materiel-rifle-magazine"], {
 			name = "kr-plutonium-anti-materiel-rifle-magazine",
@@ -149,10 +140,10 @@ then
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/kr-plutonium-anti-materiel-rifle-magazine.png",
 					size = 64,
-					scale = 0.5,
-				},
-			},
-		}),
+					scale = 0.5
+				}
+			}
+		})
 	})
 	local ammo_type = util.table.deepcopy(data.raw.ammo["kr-plutonium-anti-materiel-rifle-magazine"].ammo_type)
 	set_projectile_name(ammo_type, "kr-plutonium-anti-materiel-rifle-magazine-projectile")
@@ -163,46 +154,43 @@ then
 			name = "kr-plutonium-anti-materiel-rifle-magazine",
 			ingredients = {
 				{ type = "item", name = "kr-uranium-anti-materiel-rifle-magazine", amount = 10 },
-				{ type = "item", name = "plutonium-238", amount = 1 },
+				{ type = "item", name = "plutonium-238", amount = 1 }
 			},
 			results = { { type = "item", name = "kr-plutonium-anti-materiel-rifle-magazine", amount = 10 } },
 			energy_required = data.raw.recipe["kr-uranium-anti-materiel-rifle-magazine"].energy_required * 10,
-			main_product = "kr-plutonium-anti-materiel-rifle-magazine",
-		}),
+			main_product = "kr-plutonium-anti-materiel-rifle-magazine"
+		})
 	})
 
 	data:extend({
 		merge(data.raw.projectile["kr-uranium-anti-materiel-rifle-magazine-projectile"], {
-			name = "kr-plutonium-anti-materiel-rifle-magazine-projectile",
-		}),
+			name = "kr-plutonium-anti-materiel-rifle-magazine-projectile"
+		})
 	})
 	multiply_projectile_damage("kr-plutonium-anti-materiel-rifle-magazine-projectile", "kr-radioactive", 2)
 
 	table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 		type = "unlock-recipe",
-		recipe = "kr-plutonium-anti-materiel-rifle-magazine",
+		recipe = "kr-plutonium-anti-materiel-rifle-magazine"
 	})
 end
 
 data.raw.recipe["cerys-charging-rod"].ingredients = {
 	{ type = "item", name = "superconductor", amount = 8 },
 	{ type = "item", name = "kr-steel-beam", amount = 8 },
-	{ type = "item", name = "holmium-plate", amount = 16 }, -- For holmium plate qualitycycling
+	{ type = "item", name = "holmium-plate", amount = 16 } -- For holmium plate qualitycycling
 }
 
 data.raw.recipe["cerys-fulgoran-reactor-scaffold"].ingredients = {
-	{ type = "item", name = "kr-steel-beam", amount = 400 },
-	{ type = "item", name = "refined-concrete", amount = 400 },
-	{ type = "item", name = "processing-unit", amount = 50 },
+	{ type = "item", name = "kr-steel-beam", amount = 400 }, { type = "item", name = "refined-concrete", amount = 400 },
+	{ type = "item", name = "processing-unit", amount = 50 }
 }
 
 data.raw.recipe["cerys-nitric-acid"].ingredients = {
-	{ type = "fluid", name = "ammonia", amount = 50 },
-	{ type = "fluid", name = "kr-oxygen", amount = 50 },
+	{ type = "fluid", name = "ammonia", amount = 50 }, { type = "fluid", name = "kr-oxygen", amount = 50 }
 }
 data.raw.recipe["cerys-nitric-acid"].results = {
-	{ type = "fluid", name = "kr-nitric-acid", amount = 50 },
-	{ type = "fluid", name = "kr-nitrogen", amount = 50 },
+	{ type = "fluid", name = "kr-nitric-acid", amount = 50 }, { type = "fluid", name = "kr-nitrogen", amount = 50 }
 }
 data.raw.recipe["cerys-nitric-acid"].categories = { "fulgoran-cryogenics" }
 data.raw.recipe["cerys-nitric-acid"].localised_name = { "cerys.nitric-acid-by-ammonia-oxidation" }
@@ -214,25 +202,22 @@ data.raw.recipe["cerys-nitric-acid"].icons = {
 		icon_size = 64,
 		scale = 0.65,
 		shift = { 2, 2 },
-		draw_background = true,
+		draw_background = true
 	},
 	{
 		icon = "__space-age__/graphics/icons/fluid/ammonia.png",
 		icon_size = 64,
 		scale = 0.45,
 		shift = { -11, -11 },
-		draw_background = true,
-	},
+		draw_background = true
+	}
 }
 
-if
-	not find(data.raw.recipe["cerys-hydrogen-bomb"].ingredients, function(ingredient)
-		return ingredient.type == "fluid" and ingredient.name == "kr-hydrogen"
-	end)
-then
+if not find(data.raw.recipe["cerys-hydrogen-bomb"].ingredients, function (ingredient)
+	return ingredient.type == "fluid" and ingredient.name == "kr-hydrogen"
+end) then
 	table.insert(
-		data.raw.recipe["cerys-hydrogen-bomb"].ingredients,
-		{ type = "fluid", name = "kr-hydrogen", amount = 25 }
+		data.raw.recipe["cerys-hydrogen-bomb"].ingredients, { type = "fluid", name = "kr-hydrogen", amount = 25 }
 	)
 	data.raw.recipe["cerys-hydrogen-bomb"].categories = { "chemistry" }
 end

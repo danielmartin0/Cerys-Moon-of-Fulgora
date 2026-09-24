@@ -8,7 +8,7 @@ local ASTEROIDS_TO_CLONE = {
 	["small-oxide-asteroid"] = 6,
 	["medium-metallic-asteroid"] = 7,
 	["medium-carbonic-asteroid"] = 8,
-	["medium-oxide-asteroid"] = 9,
+	["medium-oxide-asteroid"] = 9
 }
 
 if mods["cupric-asteroids"] then
@@ -27,14 +27,11 @@ local function create_asteroid(asteroid_name, shadow_shift_factor, name_suffix)
 		localised_description = { "cerys.planetary-asteroid-description" },
 		order = "z[planetary]-" .. original.order,
 		subgroup = "planetary-environment",
-		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER,
+		max_health = original.max_health * ASTEROID_HEALTH_MULTIPLIER
 	})
 
-	if
-		string.find(asteroid_name, "metallic")
-		or string.find(asteroid_name, "oxide")
-		or string.find(asteroid_name, "carbonic")
-	then
+	if string.find(asteroid_name, "metallic") or string.find(asteroid_name, "oxide")
+		or string.find(asteroid_name, "carbonic") then
 		-- TODO: Add 'p' symbol for cupric etc asteroids
 		e.icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/planetary-" .. asteroid_name .. ".png"
 		e.icon_size = 64
@@ -104,10 +101,10 @@ local solar_wind_particle = {
 				size = 32,
 				scale = 0.5,
 				draw_as_glow = true,
-				blend_mode = "additive",
-			},
-		},
-	},
+				blend_mode = "additive"
+			}
+		}
+	}
 }
 
 data:extend({
@@ -127,10 +124,10 @@ data:extend({
 					size = 32,
 					scale = 0.5,
 					draw_as_glow = true,
-					blend_mode = "additive",
-				},
-			},
-		},
+					blend_mode = "additive"
+				}
+			}
+		}
 	}),
 
 	merge(solar_wind_particle, {
@@ -145,10 +142,10 @@ data:extend({
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/gamma-radiation.png",
 					size = 32,
 					scale = 0.45,
-					draw_as_glow = true,
-				},
-			},
-		},
+					draw_as_glow = true
+				}
+			}
+		}
 	}),
 
 	merge(solar_wind_particle, {
@@ -163,9 +160,9 @@ data:extend({
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/neutron.png",
 					size = 32,
 					scale = 0.45,
-					draw_as_glow = true,
-				},
-			},
-		},
-	}),
+					draw_as_glow = true
+				}
+			}
+		}
+	})
 })

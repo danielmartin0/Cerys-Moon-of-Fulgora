@@ -16,8 +16,8 @@ data:extend({
 		resistances = {
 			{
 				type = "fire",
-				percent = 90,
-			},
+				percent = 90
+			}
 		},
 		collision_box = { { -0.15, -0.15 }, { 0.15, 0.15 } },
 		selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } },
@@ -35,7 +35,7 @@ data:extend({
 		energy_source = {
 			type = "electric",
 			usage_priority = "secondary-input",
-			drain = "1.2kW",
+			drain = "1.2kW"
 		},
 		fast_replaceable_group = "long-handed-inserter",
 		impact_category = "metal",
@@ -47,42 +47,42 @@ data:extend({
 			priority = "extra-high",
 			width = 32,
 			height = 136,
-			scale = 0.25,
+			scale = 0.25
 		},
 		hand_closed_picture = {
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/inserter/inserter-hand-closed.png",
 			priority = "extra-high",
 			width = 72,
 			height = 164,
-			scale = 0.25,
+			scale = 0.25
 		},
 		hand_open_picture = {
 			filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/inserter/inserter-hand-open.png",
 			priority = "extra-high",
 			width = 72,
 			height = 164,
-			scale = 0.25,
+			scale = 0.25
 		},
 		hand_base_shadow = {
 			filename = "__base__/graphics/entity/burner-inserter/burner-inserter-hand-base-shadow.png",
 			priority = "extra-high",
 			width = 32,
 			height = 132,
-			scale = 0.25,
+			scale = 0.25
 		},
 		hand_closed_shadow = {
 			filename = "__base__/graphics/entity/burner-inserter/burner-inserter-hand-closed-shadow.png",
 			priority = "extra-high",
 			width = 72,
 			height = 164,
-			scale = 0.25,
+			scale = 0.25
 		},
 		hand_open_shadow = {
 			filename = "__base__/graphics/entity/burner-inserter/burner-inserter-hand-open-shadow.png",
 			priority = "extra-high",
 			width = 72,
 			height = 164,
-			scale = 0.25,
+			scale = 0.25
 		},
 		platform_picture = {
 			sheet = {
@@ -91,11 +91,11 @@ data:extend({
 				width = 105,
 				height = 79,
 				shift = util.by_pixel(1.5, 7.5 - 1),
-				scale = 0.5,
-			},
+				scale = 0.5
+			}
 		},
 		circuit_connector = circuit_connector_definitions["inserter"],
-		circuit_wire_max_distance = inserter_circuit_wire_max_distance + 3,
+		circuit_wire_max_distance = inserter_circuit_wire_max_distance + 3
 	},
 	{
 		type = "corpse",
@@ -120,7 +120,7 @@ data:extend({
 			height = 94,
 			direction_count = 1,
 			shift = util.by_pixel(3.5, -2),
-			scale = 0.5,
-		}),
-	},
+			scale = 0.5
+		})
+	}
 })

@@ -16,13 +16,8 @@ end
 
 if storage.cerys and storage.cerys.solar_panels then
 	for unit_number, panel in pairs(storage.cerys.solar_panels) do
-		if
-			panel.entity
-			and panel.entity.valid
-			and panel.entity.surface
-			and panel.entity.surface.valid
-			and panel.entity.surface.name == "cerys"
-		then
+		if panel.entity and panel.entity.valid and panel.entity.surface and panel.entity.surface.valid
+			and panel.entity.surface.name == "cerys" then
 			storage.cerys.solar_panels[unit_number] = nil
 		end
 	end

@@ -32,8 +32,8 @@ local reactors = surface.find_entities_filtered({
 		"cerys-hidden-reactor-14",
 		"cerys-hidden-reactor-15",
 		"cerys-hidden-reactor-16",
-		"cerys-hidden-reactor-17",
-	},
+		"cerys-hidden-reactor-17"
+	}
 })
 
 for _, reactor in pairs(reactors) do
@@ -60,8 +60,8 @@ local lamps = surface.find_entities_filtered({
 		"radiative-tower-lamp-14",
 		"radiative-tower-lamp-15",
 		"radiative-tower-lamp-16",
-		"radiative-tower-lamp-17",
-	},
+		"radiative-tower-lamp-17"
+	}
 })
 
 for _, lamp in pairs(lamps) do
@@ -71,13 +71,8 @@ for _, lamp in pairs(lamps) do
 end
 
 for _, tower in pairs(storage.radiative_towers.towers) do
-	if
-		tower.entity
-		and tower.entity.valid
-		and tower.entity.surface
-		and tower.entity.surface.valid
-		and tower.entity.surface.name == "cerys"
-	then
+	if tower.entity and tower.entity.valid and tower.entity.surface and tower.entity.surface.valid
+		and tower.entity.surface.name == "cerys" then
 		tower.reactors = {}
 		tower.last_radius = nil
 		tower.current_lamp = nil

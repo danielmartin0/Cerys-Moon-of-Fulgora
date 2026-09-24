@@ -2,12 +2,8 @@ local lib = require("lib")
 local rods = require("scripts.charging-rod")
 
 local CHILD_NAMES = {
-	"cerys-charging-rod-glow-r",
-	"cerys-charging-rod-glow-b",
-	"cerys-charging-rod-animation-r",
-	"cerys-charging-rod-animation-b",
-	"cerys-charging-rod-lamp-blue",
-	"cerys-charging-rod-lamp-red",
+	"cerys-charging-rod-glow-r", "cerys-charging-rod-glow-b", "cerys-charging-rod-animation-r",
+	"cerys-charging-rod-animation-b", "cerys-charging-rod-lamp-blue", "cerys-charging-rod-lamp-red"
 }
 
 local surface = lib.generated_cerys_surface()

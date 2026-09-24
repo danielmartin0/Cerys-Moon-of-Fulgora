@@ -10,7 +10,7 @@ data:extend({
 			"not-selectable-in-game",
 			"not-upgradable",
 			"not-in-kill-statistics",
-			"no-automated-item-insertion",
+			"no-automated-item-insertion"
 		},
 		max_health = 1e9,
 		picture = util.empty_sprite(),
@@ -28,7 +28,7 @@ data:extend({
 		tile_width = 1,
 		selection_priority = 0,
 		hidden = true,
-		hidden_in_factoriopedia = true,
+		hidden_in_factoriopedia = true
 	},
 	{
 		type = "proxy-container",
@@ -42,7 +42,7 @@ data:extend({
 			"not-upgradable",
 			"not-in-kill-statistics",
 			"no-automated-item-removal",
-			"no-automated-item-insertion",
+			"no-automated-item-insertion"
 		},
 		max_health = 1e9,
 		picture = util.empty_sprite(),
@@ -60,6 +60,6 @@ data:extend({
 		tile_width = 1,
 		selection_priority = 0,
 		hidden = true,
-		hidden_in_factoriopedia = true,
-	},
+		hidden_in_factoriopedia = true
+	}
 })

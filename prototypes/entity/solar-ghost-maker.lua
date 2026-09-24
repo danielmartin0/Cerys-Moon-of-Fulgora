@@ -47,7 +47,8 @@ data:extend({
 						render_layer = "air-object",
 					})
 
-					local spd = ]] .. common.PARTICLE_SIMULATION_SPEED .. [[
+					local spd = ]] .. common.PARTICLE_SIMULATION_SPEED
+				.. [[
 					local x_velocity = 0.15 * spd + math.random() * 0.1 / 3 * spd
 					local y_velocity = 0.2 * (math.random() - 0.5) ^ 3 * spd
 
@@ -56,7 +57,7 @@ data:extend({
 						velocity = { x = x_velocity, y = y_velocity },
 					})
 				end
-        	]],
+        	]]
 		},
 		drawing_box_vertical_extension = 1.5,
 		graphics_set = {
@@ -65,22 +66,22 @@ data:extend({
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/solar-ghost-maker/111", {
 						priority = "high",
 						scale = 0.19,
-						repeat_count = 1,
+						repeat_count = 1
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/solar-ghost-maker/111shadow", {
 						priority = "high",
 						draw_as_shadow = true,
 						scale = 0.19,
-						repeat_count = 1,
-					}),
-				},
-			},
+						repeat_count = 1
+					})
+				}
+			}
 		},
 		crafting_categories = { "cerys-make-solar-wind-ghosts" },
 		fixed_recipe = "cerys-make-solar-wind-ghosts",
 		crafting_speed = 1,
 		energy_source = {
-			type = "void",
+			type = "void"
 		},
 		energy_usage = "10kW",
 		module_slots = 0,
@@ -89,34 +90,34 @@ data:extend({
 		allowed_effects = { "speed" },
 		effect_receiver = { uses_module_effects = true, uses_beacon_effects = true, uses_surface_effects = false },
 		surface_conditions = {
-			common.AMBIENT_RADIATION_MIN,
+			common.AMBIENT_RADIATION_MIN
 		},
 		circuit_connector = circuit_connector_definitions.create_vector(universal_connector_template, {
 			{
 				variation = 24,
 				main_offset = util.by_pixel(-5.125, -29),
 				shadow_offset = util.by_pixel(-5.125, -29),
-				show_shadow = true,
+				show_shadow = true
 			},
 			{
 				variation = 24,
 				main_offset = util.by_pixel(-5.125, -29),
 				shadow_offset = util.by_pixel(-5.125, -29),
-				show_shadow = true,
+				show_shadow = true
 			},
 			{
 				variation = 24,
 				main_offset = util.by_pixel(-5.125, -29),
 				shadow_offset = util.by_pixel(-5.125, -29),
-				show_shadow = true,
+				show_shadow = true
 			},
 			{
 				variation = 24,
 				main_offset = util.by_pixel(-5.125, -29),
 				shadow_offset = util.by_pixel(-5.125, -29),
-				show_shadow = true,
-			},
+				show_shadow = true
+			}
 		}),
-		circuit_wire_max_distance = default_circuit_wire_max_distance,
-	},
+		circuit_wire_max_distance = default_circuit_wire_max_distance
+	}
 })

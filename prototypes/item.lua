@@ -15,7 +15,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1 * 1000 * 1000000,
 		spoil_ticks = 1,
-		auto_recycle = false,
+		auto_recycle = false
 	},
 	{
 		type = "item",
@@ -27,8 +27,8 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 100 * 1000,
 		stack_size = 20,
-		place_result = "cerys-radiative-heater",
-	},
+		place_result = "cerys-radiative-heater"
+	}
 })
 
 data:extend({
@@ -43,7 +43,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 10,
-		place_result = "cerys-fulgoran-radiative-tower-contracted-container",
+		place_result = "cerys-fulgoran-radiative-tower-contracted-container"
 	},
 	{
 		type = "item",
@@ -62,12 +62,12 @@ data:extend({
 					source_effects = {
 						{
 							type = "script",
-							effect_id = "cerys-create-solar-wind-particle-ghost",
-						},
-					},
-				},
-			},
-		},
+							effect_id = "cerys-create-solar-wind-particle-ghost"
+						}
+					}
+				}
+			}
+		}
 	},
 	{
 		type = "item",
@@ -81,7 +81,7 @@ data:extend({
 		drop_sound = item_sounds.electric_small_inventory_move,
 		place_result = "cerys-solar-ghost-maker",
 		stack_size = 50,
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	},
 	{
 		type = "item",
@@ -96,7 +96,7 @@ data:extend({
 		pick_sound = item_sounds.inserter_inventory_pickup,
 		drop_sound = item_sounds.inserter_inventory_move,
 		place_result = "cerys-radiation-proof-inserter",
-		stack_size = 50,
+		stack_size = 50
 	},
 	{
 		type = "module",
@@ -109,17 +109,17 @@ data:extend({
 					{
 						size = 64,
 						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module-full.png",
-						scale = 0.5,
+						scale = 0.5
 					},
 					{
 						draw_as_glow = true,
 						blend_mode = "additive",
 						size = 64,
 						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/overclock-module-lightning.png",
-						scale = 0.5,
-					},
-				},
-			},
+						scale = 0.5
+					}
+				}
+			}
 		},
 		subgroup = "module",
 		order = "a[speed]-d[speed-module-4]-a[overclock-module]",
@@ -136,15 +136,15 @@ data:extend({
 			consumption = 1.4,
 			quality = -0.05,
 			productivity = -0.05,
-			pollution = 0.25,
+			pollution = 0.25
 		},
 		default_import_location = "cerys",
 		beacon_tint = {
-			primary = { 0.441, 0.714, 1.000, 1.000 }, -- #70b6ffff
-			secondary = { 0.388, 0.976, 1.000, 1.000 }, -- #63f8ffff
+			primary = { 0.441, 0.714, 1.000, 1.000 },  -- #70b6ffff
+			secondary = { 0.388, 0.976, 1.000, 1.000 } -- #63f8ffff
 		},
 		art_style = "vanilla", -- In vanilla, not present on prod modules for some reason?
-		requires_beacon_alt_mode = false,
+		requires_beacon_alt_mode = false
 	},
 	{
 		type = "module",
@@ -157,17 +157,17 @@ data:extend({
 					{
 						size = 64,
 						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-full.png",
-						scale = 0.5,
+						scale = 0.5
 					},
 					{
 						draw_as_glow = true,
 						blend_mode = "additive",
 						size = 64,
 						filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/radioactive-module-glow.png",
-						scale = 0.5,
-					},
-				},
-			},
+						scale = 0.5
+					}
+				}
+			}
 		},
 		subgroup = "module",
 		order = "c[productivity]-d[productivity-module-4]-a[radioactive-module]-a[charged]",
@@ -183,11 +183,11 @@ data:extend({
 			productivity = 0.17,
 			consumption = 1,
 			pollution = 0.14,
-			speed = -0.2,
+			speed = -0.2
 		},
 		spoil_ticks = 8 * 60 * 60,
 		spoil_result = "cerys-radioactive-module-decayed",
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	},
 	{
 		type = "module",
@@ -208,9 +208,9 @@ data:extend({
 			productivity = 0.08,
 			consumption = 0.7,
 			pollution = 0.07,
-			speed = -0.10,
+			speed = -0.10
 		}, -- half as strong, Tier 2.5 equivalent
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	},
 	{
 		type = "item",
@@ -229,7 +229,7 @@ data:extend({
 		pick_sound = item_sounds.science_inventory_pickup,
 		drop_sound = item_sounds.science_inventory_move,
 		stack_size = 200,
-		random_tint_color = item_tints.bluish_science,
+		random_tint_color = item_tints.bluish_science
 	},
 
 	merge(data.raw.item["fission-reactor-equipment"], {
@@ -238,7 +238,7 @@ data:extend({
 		icon_size = 64,
 		place_as_equipment_result = "mixed-oxide-reactor-equipment",
 		order = "a[energy-source]-b[fission-reactor]-b[mixed-oxide-reactor-equipment]",
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	}),
 	{
 		type = "item",
@@ -252,7 +252,7 @@ data:extend({
 		pick_sound = item_sounds.metal_large_inventory_pickup,
 		drop_sound = item_sounds.metal_large_inventory_move,
 		stack_size = 1,
-		place_result = "cerys-fulgoran-reactor-scaffold",
+		place_result = "cerys-fulgoran-reactor-scaffold"
 	},
 	{
 		type = "item",
@@ -266,7 +266,7 @@ data:extend({
 		pick_sound = item_sounds.repair_pack_inventory_pickup,
 		drop_sound = item_sounds.repair_pack_inventory_move,
 		stack_size = 1,
-		weight = 100 * 1000,
+		weight = 100 * 1000
 	},
 	{
 		type = "item",
@@ -281,7 +281,7 @@ data:extend({
 		place_result = "cerys-charging-rod",
 		stack_size = 50,
 		default_import_location = "cerys",
-		random_tint_color = item_tints.iron_rust,
+		random_tint_color = item_tints.iron_rust
 	},
 	{
 		type = "item",
@@ -299,7 +299,7 @@ data:extend({
 		pick_sound = item_sounds.fuel_cell_inventory_pickup,
 		drop_sound = item_sounds.fuel_cell_inventory_move,
 		stack_size = 5,
-		weight = 20 * 1000,
+		weight = 20 * 1000
 	},
 	{
 		type = "item",
@@ -312,7 +312,7 @@ data:extend({
 					size = 64,
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-238.png",
 					scale = 0.5,
-					mipmap_count = 4,
+					mipmap_count = 4
 				},
 				{
 					draw_as_light = true,
@@ -320,9 +320,9 @@ data:extend({
 					size = 64,
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-238.png",
 					scale = 0.5,
-					tint = { 0.3, 0.3, 0.3, 0.3 },
-				},
-			},
+					tint = { 0.3, 0.3, 0.3, 0.3 }
+				}
+			}
 		},
 		subgroup = "plutonium-processing",
 		order = "b-b",
@@ -332,7 +332,7 @@ data:extend({
 		pick_sound = item_sounds.nuclear_inventory_pickup,
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 100,
-		weight = 10 * 1000,
+		weight = 10 * 1000
 	},
 	{
 		type = "item",
@@ -346,7 +346,7 @@ data:extend({
 		pick_sound = item_sounds.nuclear_inventory_pickup,
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 100,
-		weight = 10 * 1000,
+		weight = 10 * 1000
 	},
 	merge(data.raw.item["lab"], {
 		name = "cerys-lab",
@@ -354,7 +354,7 @@ data:extend({
 		icon_size = 64,
 		order = "zzzz",
 		place_result = "cerys-lab",
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	}),
 	merge(data.raw.item["ice"], {
 		name = "methane-ice",
@@ -362,7 +362,7 @@ data:extend({
 		icon_size = 64,
 		subgroup = "cerys-processes",
 		order = "a-c[methane-ice]",
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	}),
 	merge(data.raw.item["iron-ore"], {
 		name = "cerys-nitrogen-rich-minerals",
@@ -375,28 +375,28 @@ data:extend({
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals-1.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals-2.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitrogen-rich-minerals-3.png",
 				scale = 0.5,
-				mipmap_count = 4,
-			},
+				mipmap_count = 4
+			}
 		},
-		default_import_location = "cerys",
+		default_import_location = "cerys"
 	}),
 	{
 		type = "item",
@@ -408,38 +408,38 @@ data:extend({
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-1.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-2.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-3.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-4.png",
 				scale = 0.5,
-				mipmap_count = 4,
+				mipmap_count = 4
 			},
 			{
 				size = 64,
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-scrap-5.png",
 				scale = 0.5,
-				mipmap_count = 4,
-			},
+				mipmap_count = 4
+			}
 		},
 		subgroup = "cerys-processes",
 		order = "a-a[nuclear-scrap]",
@@ -448,7 +448,7 @@ data:extend({
 		drop_sound = item_sounds.resource_inventory_move,
 		stack_size = 50,
 		default_import_location = "cerys",
-		weight = 2 * 1000,
+		weight = 2 * 1000
 	},
 	{
 		type = "item",
@@ -460,7 +460,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 10,
-		place_result = "cerys-mixed-oxide-reactor",
+		place_result = "cerys-mixed-oxide-reactor"
 	},
 	-- {
 	-- 	type = "item",
@@ -487,7 +487,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 10,
-		place_result = "cerys-fulgoran-cryogenic-plant",
+		place_result = "cerys-fulgoran-cryogenic-plant"
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -501,7 +501,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 5,
-		place_result = "cerys-fulgoran-crusher",
+		place_result = "cerys-fulgoran-crusher"
 	},
 	{
 		-- Non-obtainable. It's here to make non-minable entities trigger a 'this entity cannot be mind' text when mined, without showing anything unusual in Factoriopedia.
@@ -515,7 +515,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 1,
-		place_result = "cerys-fulgoran-reactor",
+		place_result = "cerys-fulgoran-reactor"
 	},
 	{
 		type = "item",
@@ -527,7 +527,7 @@ data:extend({
 		default_import_location = "cerys",
 		weight = 1000 * 1000,
 		stack_size = 1,
-		place_result = "cerys-fulgoran-teleporter",
+		place_result = "cerys-fulgoran-teleporter"
 	},
 	{
 		type = "ammo",
@@ -540,15 +540,15 @@ data:extend({
 					size = 64,
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/plutonium-rounds-magazine.png",
 					scale = 0.5,
-					mipmap_count = 4,
+					mipmap_count = 4
 				},
 				{
 					draw_as_light = true,
 					size = 64,
 					filename = "__base__/graphics/icons/uranium-rounds-magazine-light.png",
-					scale = 0.5,
-				},
-			},
+					scale = 0.5
+				}
+			}
 		},
 		ammo_category = "bullet",
 		ammo_type = {
@@ -558,26 +558,26 @@ data:extend({
 					type = "instant",
 					source_effects = {
 						type = "create-explosion",
-						entity_name = "explosion-gunshot",
+						entity_name = "explosion-gunshot"
 					},
 					target_effects = {
 						{
 							type = "create-entity",
 							entity_name = "explosion-hit",
 							offsets = { { 0, 1 } },
-							offset_deviation = { { -0.5, -0.5 }, { 0.5, 0.5 } },
+							offset_deviation = { { -0.5, -0.5 }, { 0.5, 0.5 } }
 						},
 						{
 							type = "damage",
-							damage = { amount = 48, type = "physical" },
+							damage = { amount = 48, type = "physical" }
 						},
 						{
 							type = "activate-impact",
-							deliver_category = "bullet",
-						},
-					},
-				},
-			},
+							deliver_category = "bullet"
+						}
+					}
+				}
+			}
 		},
 		magazine_size = 10,
 		subgroup = "ammo",
@@ -587,7 +587,7 @@ data:extend({
 		drop_sound = item_sounds.ammo_small_inventory_move,
 		stack_size = 100,
 		default_import_location = "cerys",
-		weight = 40 * 1000,
+		weight = 40 * 1000
 	},
 	-- {
 	-- 	type = "ammo",
@@ -697,15 +697,15 @@ data:extend({
 					size = 64,
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/mixed-oxide-fuel-cell.png",
 					scale = 0.5,
-					mipmap_count = 4,
+					mipmap_count = 4
 				},
 				{
 					draw_as_light = true,
 					size = 64,
 					filename = "__base__/graphics/icons/uranium-fuel-cell-light.png",
-					scale = 0.5,
-				},
-			},
+					scale = 0.5
+				}
+			}
 		},
 		subgroup = "plutonium-processing",
 		order = "b-d",
@@ -717,7 +717,7 @@ data:extend({
 		fuel_value = "96GJ",
 		stack_size = 50,
 		default_import_location = "cerys",
-		weight = 100 * 1000,
+		weight = 100 * 1000
 	},
 	{
 		type = "item",
@@ -731,7 +731,7 @@ data:extend({
 		drop_sound = item_sounds.nuclear_inventory_move,
 		stack_size = 50,
 		default_import_location = "cerys",
-		weight = 100 * 1000,
+		weight = 100 * 1000
 	},
 	{
 		type = "ammo",
@@ -740,7 +740,7 @@ data:extend({
 		icon_size = 64,
 		ammo_category = "rocket",
 		ammo_type = {
-			range_modifier = 2, -- from 1.5
+			range_modifier = 2,     -- from 1.5
 			cooldown_modifier = 12, -- from 10
 			target_type = "position",
 			action = {
@@ -751,10 +751,10 @@ data:extend({
 					starting_speed = 0.05,
 					source_effects = {
 						type = "create-entity",
-						entity_name = "explosion-hit",
-					},
-				},
-			},
+						entity_name = "explosion-hit"
+					}
+				}
+			}
 		},
 		subgroup = "ammo",
 		order = "d[rocket-launcher]-d[atomic-bomb]-b[hydrogen-bomb]",
@@ -763,7 +763,7 @@ data:extend({
 		drop_sound = item_sounds.atomic_bomb_inventory_move,
 		stack_size = 10,
 		weight = 1000 * 1000,
-		send_to_orbit_mode = "manual",
+		send_to_orbit_mode = "manual"
 	},
 	{
 		type = "ammo",
@@ -772,7 +772,7 @@ data:extend({
 		icon_size = 64,
 		localised_description = {
 			"cerys.neutron-bomb-description",
-			{ "surface-property-unit.pressure", "5" },
+			{ "surface-property-unit.pressure", "5" }
 		},
 		ammo_category = "artillery-shell",
 		ammo_type = {
@@ -789,10 +789,10 @@ data:extend({
 					range_deviation = 0,
 					source_effects = {
 						type = "create-explosion",
-						entity_name = "artillery-cannon-muzzle-flash",
-					},
-				},
-			},
+						entity_name = "artillery-cannon-muzzle-flash"
+					}
+				}
+			}
 		},
 		subgroup = "ammo",
 		order = "d[explosive-cannon-shell]-d[artillery]-a[neutron-bomb]",
@@ -800,8 +800,8 @@ data:extend({
 		pick_sound = item_sounds.artillery_large_inventory_pickup,
 		drop_sound = item_sounds.artillery_large_inventory_move,
 		stack_size = 1,
-		weight = 100 * 1000,
-	},
+		weight = 100 * 1000
+	}
 })
 
 if mods["Krastorio2"] then
@@ -814,7 +814,7 @@ if mods["Krastorio2"] then
 			order = "a0c[cerysian-research-data]",
 			stack_size = 200,
 			weight = 1 * kg,
-			default_import_location = "cerys",
-		},
+			default_import_location = "cerys"
+		}
 	})
 end

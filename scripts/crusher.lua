@@ -2,10 +2,7 @@ local common = require("common")
 
 local Public = {}
 
-Public.CRUSHER_WRECK_STAGE_ENUM = {
-	frozen = 0,
-	needs_repair = 1,
-}
+Public.CRUSHER_WRECK_STAGE_ENUM = { frozen = 0, needs_repair = 1 }
 
 function Public.crusher_repair_recipes_needed()
 	return math.ceil(common.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED)
@@ -41,7 +38,7 @@ function Public.tick_15_check_broken_crushers(surface)
 						name = "cerys-fulgoran-crusher-wreck",
 						position = e.position,
 						force = e.force,
-						fast_replace = true,
+						fast_replace = true
 					})
 
 					if e2 and e2.valid then
@@ -99,7 +96,7 @@ function Public.tick_15_check_broken_crushers(surface)
 						position = e.position,
 						force = e.force,
 						direction = e.direction,
-						fast_replace = true,
+						fast_replace = true
 					})
 
 					if e2 and e2.valid then
@@ -136,13 +133,13 @@ function Public.tick_15_check_broken_crushers(surface)
 							surface = surface,
 							target = {
 								entity = e,
-								offset = { 0, -3.7 },
+								offset = { 0, -3.7 }
 							},
 							color = { 0, 255, 0 },
 							scale = 1.2,
 							font = "default-game",
 							alignment = "center",
-							use_rich_text = true,
+							use_rich_text = true
 						})
 					end
 					if not (crusher.rendering2 and crusher.rendering2.valid) then
@@ -151,13 +148,13 @@ function Public.tick_15_check_broken_crushers(surface)
 							surface = surface,
 							target = {
 								entity = e,
-								offset = { 0, -2.65 },
+								offset = { 0, -2.65 }
 							},
 							color = { 0, 255, 0 },
 							scale = 1.2,
 							font = "default-game",
 							alignment = "center",
-							use_rich_text = true,
+							use_rich_text = true
 						})
 					end
 
@@ -178,28 +175,24 @@ function Public.tick_15_check_broken_crushers(surface)
 
 					local circuit_count_per_recipe = prototypes.recipe["cerys-repair-crusher"].ingredients[1].amount
 
-					local circuit_count = products_finished * circuit_count_per_recipe
-						+ (e.is_crafting() and 1 or 0) * circuit_count_per_recipe
+					local circuit_count = products_finished * circuit_count_per_recipe + (e.is_crafting() and 1 or 0)
+						* circuit_count_per_recipe
 						+ circuits
 					local repair_count = (products_finished + (e.is_crafting() and 1 or 0)) + repair_parts
 
 					crusher.rendering1.color = repair_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 
 					crusher.rendering1.text = {
-						"cerys.repair-remaining-description",
-						"[item=ancient-structure-repair-part]",
-						repair_count,
-						products_required,
+						"cerys.repair-remaining-description", "[item=ancient-structure-repair-part]", repair_count,
+						products_required
 					}
 
 					crusher.rendering2.color = circuit_count >= products_required * circuit_count_per_recipe
 						and { 0, 255, 0 }
 						or { 255, 185, 0 }
 					crusher.rendering2.text = {
-						"cerys.repair-remaining-description",
-						"[item=processing-unit]",
-						circuit_count,
-						products_required * circuit_count_per_recipe,
+						"cerys.repair-remaining-description", "[item=processing-unit]", circuit_count,
+						products_required * circuit_count_per_recipe
 					}
 				end
 			end
@@ -209,7 +202,7 @@ function Public.tick_15_check_broken_crushers(surface)
 	end
 end
 
-Public.register_broken_crusher = function(entity, frozen)
+Public.register_broken_crusher = function (entity, frozen)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -219,7 +212,7 @@ Public.register_broken_crusher = function(entity, frozen)
 	storage.cerys.broken_crushers[entity.unit_number] = {
 		entity = entity,
 		stage = frozen and Public.CRUSHER_WRECK_STAGE_ENUM.frozen or Public.CRUSHER_WRECK_STAGE_ENUM.needs_repair,
-		creation_tick = game.tick,
+		creation_tick = game.tick
 	}
 end
 
@@ -243,10 +236,7 @@ function Public.tick_20_check_crusher_quality_upgrades(surface)
 
 			if recipe and recipe.name == "cerys-upgrade-fulgoran-crusher-quality" then
 				if crusher.quality and crusher.quality.next and crusher.quality.next.name == recipe_quality.name then
-					storage.cerys.crusher_upgrade_monitor[unit_number] = {
-						entity = crusher,
-						quality_upgrading_to = recipe_quality,
-					}
+					storage.cerys.crusher_upgrade_monitor[unit_number] = { entity = crusher, quality_upgrading_to = recipe_quality }
 				else
 					local input_inv = crusher.get_inventory(defines.inventory.crafter_input)
 					if input_inv and input_inv.valid then
@@ -255,15 +245,15 @@ function Public.tick_20_check_crusher_quality_upgrades(surface)
 							input_inv.remove({
 								name = ingredient.name,
 								count = ingredient.count,
-								quality = ingredient.quality,
+								quality = ingredient.quality
 							})
 							surface.spill_item_stack({
 								position = crusher.position,
 								stack = {
 									name = ingredient.name,
 									count = ingredient.count,
-									quality = ingredient.quality,
-								},
+									quality = ingredient.quality
+								}
 							})
 						end
 					end
@@ -292,10 +282,8 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 			storage.cerys.crusher_upgrade_monitor[unit_number] = nil
 		elseif e.is_crafting() then
 			local recipe, quality = e.get_recipe()
-			local still_the_same_recipe = recipe
-				and recipe.name == "cerys-upgrade-fulgoran-crusher-quality"
-				and quality
-				and quality.name == quality_upgrading_to.name
+			local still_the_same_recipe = recipe and recipe.name == "cerys-upgrade-fulgoran-crusher-quality"
+				and quality and quality.name == quality_upgrading_to.name
 
 			if not still_the_same_recipe then
 				storage.cerys.crusher_upgrade_monitor[unit_number] = nil
@@ -309,7 +297,7 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 						force = e.force,
 						direction = e.direction,
 						fast_replace = true,
-						quality = quality_upgrading_to.name,
+						quality = quality_upgrading_to.name
 					})
 
 					if e2 and e2.valid then
@@ -325,7 +313,7 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 								for _ = 1, m.count do
 									surface.spill_item_stack({
 										position = e.position,
-										stack = { name = m.name, count = 1, quality = m.quality },
+										stack = { name = m.name, count = 1, quality = m.quality }
 									})
 								end
 							end
@@ -352,7 +340,7 @@ function Public.tick_1_check_crusher_quality_upgrades(surface)
 	end
 end
 
-Public.register_crusher = function(entity)
+Public.register_crusher = function (entity)
 	if not (entity and entity.valid) then
 		return
 	end

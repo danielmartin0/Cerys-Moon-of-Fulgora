@@ -8,13 +8,13 @@ data:extend({
 			width = 256,
 			height = 256,
 			priority = "high",
-			scale = 0.4,
+			scale = 0.4
 		},
 		power = "900kW",
 		shape = {
 			width = 3,
 			height = 3,
-			type = "full",
-		},
-	}),
+			type = "full"
+		}
+	})
 })

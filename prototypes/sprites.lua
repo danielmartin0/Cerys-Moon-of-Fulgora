@@ -8,7 +8,7 @@ data:extend({
 		priority = "no-atlas",
 		width = common.SOLAR_IMAGE_SIZE,
 		height = common.SOLAR_IMAGE_SIZE,
-		draw_as_light = true,
+		draw_as_light = true
 	},
 	{
 		type = "sprite",
@@ -18,7 +18,7 @@ data:extend({
 		width = common.SOLAR_IMAGE_SIZE,
 		height = common.SOLAR_IMAGE_SIZE,
 		draw_as_light = true,
-		invert_colors = true,
+		invert_colors = true
 	},
 	{
 		type = "sprite",
@@ -27,7 +27,7 @@ data:extend({
 		priority = "no-atlas",
 		width = common.SOLAR_IMAGE_SIZE,
 		height = common.SOLAR_IMAGE_SIZE,
-		draw_as_light = true,
+		draw_as_light = true
 	},
 	{
 		type = "sprite",
@@ -37,8 +37,8 @@ data:extend({
 		width = common.SOLAR_IMAGE_SIZE,
 		height = common.SOLAR_IMAGE_SIZE,
 		draw_as_light = true,
-		invert_colors = true,
-	},
+		invert_colors = true
+	}
 })
 
 data:extend({
@@ -53,7 +53,7 @@ data:extend({
 		mipmap_count = 1,
 		scale = 0.6,
 		draw_as_glow = true,
-		blend_mode = "additive",
+		blend_mode = "additive"
 	},
 	{
 		type = "sprite",
@@ -66,7 +66,7 @@ data:extend({
 		mipmap_count = 1,
 		scale = 0.4,
 		draw_as_glow = true,
-		blend_mode = "additive",
+		blend_mode = "additive"
 	},
 
 	{
@@ -78,7 +78,7 @@ data:extend({
 		height = common.DEFAULT_FULGORA_IMAGE_SIZE,
 		flags = { "no-crop" },
 		mipmap_count = 1,
-		scale = 4,
+		scale = 4
 	},
 	{
 		type = "sprite",
@@ -89,7 +89,7 @@ data:extend({
 		height = 962,
 		shift = util.by_pixel(58, -38),
 		mipmap_count = 1,
-		scale = 0.22,
+		scale = 0.22
 	},
 	{
 		type = "sprite",
@@ -100,7 +100,7 @@ data:extend({
 		shift = util.by_pixel(58, -38),
 		mipmap_count = 1,
 		scale = 0.22,
-		draw_as_shadow = true,
+		draw_as_shadow = true
 	},
 	{
 		type = "sprite",
@@ -111,8 +111,8 @@ data:extend({
 		shift = util.by_pixel(58, -38),
 		mipmap_count = 1,
 		scale = 0.22,
-		draw_as_shadow = true,
-	},
+		draw_as_shadow = true
+	}
 	-- {
 	-- 	type = "sprite",
 	-- 	name = "cerys-radiative-tower-light",

@@ -2,10 +2,7 @@ local common = require("common")
 
 local Public = {}
 
-Public.CRYO_WRECK_STAGE_ENUM = {
-	frozen = 0,
-	needs_repair = 1,
-}
+Public.CRYO_WRECK_STAGE_ENUM = { frozen = 0, needs_repair = 1 }
 
 function Public.tick_15_check_broken_cryo_plants(surface)
 	if not storage.cerys.broken_cryo_plants then
@@ -41,7 +38,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 					position = e.position,
 					force = e.force,
 					direction = e.direction,
-					fast_replace = true,
+					fast_replace = true
 				})
 
 				if e2 and e2.valid then
@@ -68,13 +65,9 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 				if not storage.cerys.first_unfrozen_cryo_plant then
 					storage.cerys.first_unfrozen_cryo_plant = e.unit_number
 				end
-				if
-					not storage.cerys.second_unfrozen_cryo_plant
-					and (
-						storage.cerys.first_unfrozen_cryo_plant
-						and e.unit_number ~= storage.cerys.first_unfrozen_cryo_plant
-					)
-				then
+				if not storage.cerys.second_unfrozen_cryo_plant
+					and (storage.cerys.first_unfrozen_cryo_plant
+						and e.unit_number ~= storage.cerys.first_unfrozen_cryo_plant) then
 					storage.cerys.second_unfrozen_cryo_plant = e.unit_number
 				end
 
@@ -84,13 +77,13 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 						surface = surface,
 						target = {
 							entity = e,
-							offset = { 0, -3.8 },
+							offset = { 0, -3.8 }
 						},
 						color = { 0, 255, 0 },
 						scale = 1.2,
 						font = "default-game",
 						alignment = "center",
-						use_rich_text = true,
+						use_rich_text = true
 					})
 				end
 
@@ -107,10 +100,8 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 
 				plant.rendering.color = repair_parts_count >= products_required and { 0, 255, 0 } or { 255, 185, 0 }
 				plant.rendering.text = {
-					"cerys.repair-remaining-description",
-					"[item=ancient-structure-repair-part]",
-					repair_parts_count,
-					products_required,
+					"cerys.repair-remaining-description", "[item=ancient-structure-repair-part]", repair_parts_count,
+					products_required
 				}
 			end
 		else
@@ -119,7 +110,7 @@ function Public.tick_15_check_broken_cryo_plants(surface)
 	end
 end
 
-Public.register_broken_cryogenic_plant = function(entity, frozen)
+Public.register_broken_cryogenic_plant = function (entity, frozen)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -127,11 +118,11 @@ Public.register_broken_cryogenic_plant = function(entity, frozen)
 	storage.cerys.broken_cryo_plants[entity.unit_number] = {
 		entity = entity,
 		stage = frozen and Public.CRYO_WRECK_STAGE_ENUM.frozen or Public.CRYO_WRECK_STAGE_ENUM.needs_repair,
-		creation_tick = game.tick,
+		creation_tick = game.tick
 	}
 end
 
-Public.register_cryogenic_plant = function(entity)
+Public.register_cryogenic_plant = function (entity)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -166,7 +157,7 @@ function Public.unfreeze_cryo_plant(surface, plant)
 		name = "cerys-fulgoran-cryogenic-plant-wreck",
 		position = e.position,
 		force = e.force,
-		fast_replace = true,
+		fast_replace = true
 	})
 
 	if e2 and e2.valid then
@@ -177,8 +168,7 @@ function Public.unfreeze_cryo_plant(surface, plant)
 			local input_inv2 = e2.get_inventory(defines.inventory.crafter_input)
 			if input_inv2 and input_inv2.valid then
 				for _, c in pairs(contents or {}) do
-					local new_count = c.count +
-						1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
+					local new_count = c.count + 1 -- one will have been consumed when the plant started crafting. WARNING: If the recipe changes to have >1 count for ingredient, this will break.
 					input_inv2.insert({ name = c.name, count = new_count, quality = c.quality })
 				end
 			end
@@ -225,7 +215,7 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 				if plant.quality and plant.quality.next and plant.quality.next.name == recipe_quality.name then
 					storage.cerys.cryo_upgrade_monitor[plant.unit_number] = {
 						entity = plant,
-						quality_upgrading_to = recipe_quality.name,
+						quality_upgrading_to = recipe_quality.name
 					}
 				else
 					local inv = plant.get_inventory(defines.inventory.crafter_input)
@@ -236,7 +226,7 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 							inv.remove({
 								name = ingredient.name,
 								count = ingredient.count,
-								quality = ingredient.quality,
+								quality = ingredient.quality
 							})
 
 							surface.spill_item_stack({
@@ -244,8 +234,8 @@ function Public.tick_20_check_cryo_quality_upgrades(surface)
 								stack = {
 									name = ingredient.name,
 									count = ingredient.count,
-									quality = ingredient.quality,
-								},
+									quality = ingredient.quality
+								}
 							})
 						end
 					end
@@ -274,10 +264,8 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 			storage.cerys.cryo_upgrade_monitor[unit_number] = nil
 		elseif e.is_crafting() then
 			local recipe, quality = e.get_recipe()
-			local still_the_same_recipe = recipe
-				and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality"
-				and quality
-				and quality.name == quality_upgrading_to
+			local still_the_same_recipe = recipe and recipe.name == "cerys-upgrade-fulgoran-cryogenic-plant-quality"
+				and quality and quality.name == quality_upgrading_to
 
 			if not still_the_same_recipe then
 				storage.cerys.cryo_upgrade_monitor[unit_number] = nil
@@ -289,7 +277,7 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 						force = e.force,
 						direction = e.direction,
 						fast_replace = true,
-						quality = quality_upgrading_to,
+						quality = quality_upgrading_to
 					})
 
 					if e2 and e2.valid then
@@ -306,7 +294,7 @@ function Public.tick_1_check_cryo_quality_upgrades(surface)
 								for _ = 1, m.count do
 									surface.spill_item_stack({
 										position = e.position,
-										stack = { name = m.name, count = 1, quality = m.quality },
+										stack = { name = m.name, count = 1, quality = m.quality }
 									})
 								end
 							end

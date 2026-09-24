@@ -15,7 +15,7 @@ for tile_name, replacement_name in pairs(common.TILE_REPLACEMENTS) do
 		if old_tile.valid then
 			table.insert(new_tiles, {
 				name = replacement_name,
-				position = old_tile.position,
+				position = old_tile.position
 			})
 		end
 	end

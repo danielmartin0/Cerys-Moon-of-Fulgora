@@ -8,35 +8,35 @@ data:extend({
 		priority = 250,
 		filename = "__base__/sound/fight/nuclear-explosion-1.ogg",
 		speed = 0.6,
-		volume = 3,
+		volume = 3
 	},
 	{
 		type = "sound",
 		name = "cerys-teleporter-1",
 		category = "game-effect",
 		priority = 250,
-		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_1.ogg",
+		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_1.ogg"
 	},
 	{
 		type = "sound",
 		name = "cerys-teleporter-2",
 		category = "game-effect",
 		priority = 250,
-		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_2.ogg",
+		filename = "__Cerys-Moon-of-Fulgora__/sounds/teleporter_2.ogg"
 	},
 	{
 		type = "sound",
 		name = "cerys-radiation-exposure",
-		audible_distance_modifier = 0.7, --multiplies the default 40 tiles of audible distance by this number
+		audible_distance_modifier = 0.7, -- multiplies the default 40 tiles of audible distance by this number
 		category = "game-effect",
 		priority = 250,
 		variations = {
 			{
 				filename = "__base__/sound/bullets/bullet-impact-stone-5.ogg",
 				min_speed = 1.6,
-				max_speed = 2,
-			},
-		},
+				max_speed = 2
+			}
+		}
 	},
 	{
 		type = "sound",
@@ -46,22 +46,22 @@ data:extend({
 		priority = 250,
 		variations = {
 			{
-				filename = "__base__/sound/bullets/bullet-impact-stone-4.ogg",
+				filename = "__base__/sound/bullets/bullet-impact-stone-4.ogg"
 			},
 			{
-				filename = "__base__/sound/bullets/bullet-impact-stone-5.ogg",
+				filename = "__base__/sound/bullets/bullet-impact-stone-5.ogg"
 			},
 			{
-				filename = "__base__/sound/bullets/bullet-impact-stone-6.ogg",
-			},
-		},
+				filename = "__base__/sound/bullets/bullet-impact-stone-6.ogg"
+			}
+		}
 	},
 	{
 		type = "sound",
 		name = "cerys-fulgoran-tower-opening",
 		category = "game-effect",
 		priority = 200,
-		filename = "__Cerys-Moon-of-Fulgora__/sounds/vehicle-surface-metal-rock-truncated.ogg",
+		filename = "__Cerys-Moon-of-Fulgora__/sounds/vehicle-surface-metal-rock-truncated.ogg"
 	},
 	{
 		type = "sound",
@@ -72,14 +72,14 @@ data:extend({
 			{
 				filename = "__base__/sound/burner-mining-drill-1.ogg",
 				min_speed = 0.4,
-				max_speed = 1,
+				max_speed = 1
 			},
 			{
 				filename = "__base__/sound/burner-mining-drill-2.ogg",
 				min_speed = 0.4,
-				max_speed = 1,
-			},
-		},
+				max_speed = 1
+			}
+		}
 	},
 	{
 		type = "sound",
@@ -90,19 +90,19 @@ data:extend({
 			{
 				filename = "__base__/sound/centrifuge-1.ogg",
 				min_speed = 0.2,
-				max_speed = 0.8,
+				max_speed = 0.8
 			},
 			{
 				filename = "__base__/sound/centrifuge-2.ogg",
 				min_speed = 0.2,
-				max_speed = 0.8,
+				max_speed = 0.8
 			},
 			{
 				filename = "__base__/sound/centrifuge-3.ogg",
 				min_speed = 0.2,
-				max_speed = 0.8,
-			},
-		},
+				max_speed = 0.8
+			}
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -112,8 +112,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/aurora.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -124,8 +124,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/signaltonoise.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -136,8 +136,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/affirmations.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -148,8 +148,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/effervescence.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -160,8 +160,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/filaments.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -172,8 +172,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/chasingdaylight.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	{
 		type = "ambient-sound",
@@ -184,8 +184,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/celestial.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	-- {
 	-- 	type = "ambient-sound",
@@ -220,8 +220,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/fallingtogether.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	-- {
 	-- 	type = "ambient-sound",
@@ -244,8 +244,8 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/thistooshallpass.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
+			priority = 200
+		}
 	},
 	-- {
 	-- 	type = "ambient-sound",
@@ -268,7 +268,7 @@ data:extend({
 		sound = {
 			filename = "__Cerys-Moon-of-Fulgora__/sounds/unraveling.ogg",
 			volume = 0.5,
-			priority = 200,
-		},
-	},
+			priority = 200
+		}
+	}
 })
