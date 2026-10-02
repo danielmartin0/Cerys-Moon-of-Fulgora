@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.19
 Date: ????
+  Bugfixes:
+    - Roboports that need more pressure than Nauvis, such as the Maraxsis pressure dome and its regulator or the Tenebris Prime bioluminescent roboports, are no longer made buildable at low pressure (they could be placed on almost every planet).
   Graphics:
     - Use of the native orbit graphics in Factorio 2.1.20.
   Locale:
