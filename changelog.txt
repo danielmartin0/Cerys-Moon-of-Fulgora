@@ -3,6 +3,7 @@ Version: 4.25.1
 Date: ????
   Bugfixes:
     - Fixed that plutonium-239 production statistics did not respect quality.
+    - Roboports that need more pressure than Nauvis, such as the Maraxsis pressure dome and its regulator or the Tenebris Prime bioluminescent roboports, are no longer made buildable at low pressure (they could be placed on almost every planet).
   Graphics:
     - Fixed that the Fulgora backdrop could be blurry for players using the setting 'Use Fulgora starmap graphic' without Visible Planets In Space and a Fulgora mod. This setting has been removed.
 ---------------------------------------------------------------------------------------------------
