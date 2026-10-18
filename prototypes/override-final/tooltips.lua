@@ -18,7 +18,7 @@ for _, quality in pairs(data.raw.quality) do
 		/ radiative_heater_radius_vis.distance
 
 	data.raw.accumulator["cerys-charging-rod"].custom_tooltip_fields[1].quality_values[quality.name] =
-		{ "cerys.kv-tooltip-value", tostring(100 * lib.calculate_max_polarity_fraction(quality.level)) }
+	{ "cerys.kv-tooltip-value", tostring(100 * lib.calculate_max_polarity_fraction(quality.level)) }
 
 	data.raw.reactor["cerys-fulgoran-reactor"].custom_tooltip_fields[1].quality_values[quality.name] = {
 		"cerys.cooling-tooltip-value",

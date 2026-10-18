@@ -96,9 +96,9 @@ local function adjust_inserter_to_match_machine(inserter, machine)
 	end
 
 	local decayed_held = inserter.held_stack
-			and inserter.held_stack.valid_for_read
-			and inserter.held_stack.name == "cerys-radioactive-module-decayed"
-			and inserter.held_stack.count
+		and inserter.held_stack.valid_for_read
+		and inserter.held_stack.name == "cerys-radioactive-module-decayed"
+		and inserter.held_stack.count
 		or 0
 
 	local desired_filter

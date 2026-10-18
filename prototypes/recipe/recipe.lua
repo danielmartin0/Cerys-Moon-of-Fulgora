@@ -1,5 +1,5 @@
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 local lib = require("lib")
 
 data:extend({
@@ -97,11 +97,11 @@ data:extend({
 		name = "cerys-space-science-pack-from-methane-ice",
 		localised_name = {
 			"cerys.from-methane-ice",
-			common_data.K2_INSTALLED and { "item-name.kr-space-research-data" } or { "item-name.space-science-pack" },
+			mods["Krastorio2"] and { "item-name.kr-space-research-data" } or { "item-name.space-science-pack" },
 		},
 		icons = {
 			{
-				icon = common_data.K2_INSTALLED and "__Krastorio2Assets__/icons/cards/space-research-data.png"
+				icon = mods["Krastorio2"] and "__Krastorio2Assets__/icons/cards/space-research-data.png"
 					or "__base__/graphics/icons/space-science-pack.png",
 				icon_size = 64,
 				scale = 0.65,
@@ -126,15 +126,15 @@ data:extend({
 		results = {
 			{
 				type = "item",
-				name = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
+				name = mods["Krastorio2"] and "kr-space-research-data" or "space-science-pack",
 				amount = 1,
 			},
 		},
 		allow_productivity = true,
-		main_product = common_data.K2_INSTALLED and "kr-space-research-data" or "space-science-pack",
+		main_product = mods["Krastorio2"] and "kr-space-research-data" or "space-science-pack",
 		categories = { "fulgoran-cryogenics" },
 		subgroup = "science-pack",
-		order = common_data.K2_INSTALLED and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
+		order = mods["Krastorio2"] and "a0c[space-research-data]" or "g[space-science-pack]-b[from-methane-ice]",
 		always_show_made_in = true,
 	},
 	{
@@ -145,7 +145,7 @@ data:extend({
 			{ type = "item", name = "speed-module-2", amount = 8 },
 			{ type = "item", name = "processing-unit", amount = 4 },
 			{ type = "item", name = "advanced-circuit", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-overclock-module", amount = 1 } },
@@ -159,7 +159,7 @@ data:extend({
 			{ type = "item", name = "productivity-module-2", amount = 8 },
 			{ type = "item", name = "uranium-235", amount = 4 },
 			{ type = "item", name = "superconductor", amount = 4 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 25 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 25 },
 		},
 		energy_required = 120,
 		results = { { type = "item", name = "cerys-radioactive-module-charged", amount = 1 } },
@@ -175,7 +175,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "holmium-plate", amount = 1 },
 			{ type = "item", name = "uranium-238", amount = 5 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 50 },
 			{ type = "item", name = "ancient-structure-repair-part", amount = 1 },
 		},
 		results = { { type = "item", name = "cerysian-science-pack", amount = 1 } },
@@ -205,7 +205,7 @@ data:extend({
 		energy_required = 15,
 		ingredients = {
 			{ type = "item", name = "artillery-shell", amount = 1 },
-			{ type = "item", name = common_data.LITHIUM_NAME, amount = 1 },
+			{ type = "item", name = data_utils.LITHIUM_NAME, amount = 1 },
 			{ type = "item", name = "plutonium-239", amount = 5 },
 		},
 		results = { { type = "item", name = "cerys-neutron-bomb", amount = 1 } },
@@ -240,7 +240,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "solid-fuel", amount = 1 },
 			{ type = "fluid", name = "ammonia", amount = 10 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 10 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 10 },
 		},
 		results = { { type = "item", name = "explosives", amount = 2 } },
 		allow_productivity = true,
@@ -280,7 +280,7 @@ data:extend({
 		ingredients = {
 			{ type = "item", name = "electronic-circuit", amount = 16 },
 			{ type = "item", name = "advanced-circuit", amount = 2 },
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 5 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 5 },
 		},
 		results = { { type = "item", name = "processing-unit", amount = 1 } },
 		allow_productivity = true,
@@ -338,7 +338,7 @@ data:extend({
 			{ type = "fluid", name = "water", amount = 25 },
 		},
 		results = {
-			{ type = "fluid", name = common_data.NITRIC_ACID_NAME, amount = 50 },
+			{ type = "fluid", name = data_utils.NITRIC_ACID_NAME, amount = 50 },
 		},
 		allow_productivity = true,
 		enabled = false,
@@ -407,7 +407,7 @@ data:extend({
 			{ type = "fluid", name = "sulfuric-acid", amount = common.HARD_MODE_ON and 120 or 75 }, -- 1 iron => 50 sulfuric acid.
 		},
 		results = { -- Since these are the biggest way to get these two items, their amounts should ideally balance to their expected usage:
-			{ type = "item", name = "iron-ore", amount = common_data.K2_INSTALLED and 4 or 2 },
+			{ type = "item", name = "iron-ore", amount = mods["Krastorio2"] and 4 or 2 },
 			{ type = "fluid", name = "ammonia", amount = 50 },
 		},
 		allow_productivity = true,
@@ -432,7 +432,7 @@ data:extend({
 		energy_required = 10,
 		ingredients = {
 			{ type = "fluid", name = "light-oil", amount = 50 },
-			{ type = "item", name = common_data.LITHIUM_NAME, amount = 5 },
+			{ type = "item", name = data_utils.LITHIUM_NAME, amount = 5 },
 		},
 		results = {
 			{ type = "fluid", name = "lubricant", amount = 50 },
@@ -470,7 +470,9 @@ data:extend({
 	},
 })
 
-if common_data.K2_INSTALLED then
+if mods["Krastorio2"] then
+	local tech_card_category = data.raw["recipe-category"]["kr-tech-cards"] and "kr-tech-cards" or "kr-t2-tech-cards"
+
 	data:extend({
 		{
 			type = "recipe",
@@ -497,7 +499,7 @@ if common_data.K2_INSTALLED then
 			localised_name = {
 				"cerys.kr-cerysian-tech-card",
 			},
-			categories = { "kr-tech-cards" },
+			categories = { tech_card_category },
 			always_show_made_in = true,
 			enabled = false,
 			energy_required = 20,

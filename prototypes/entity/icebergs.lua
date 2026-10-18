@@ -17,35 +17,40 @@ data:extend({
 		},
 		pictures = {
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-2.png",
+				filename =
+				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-2.png",
 				width = 444,
 				height = 310,
 				scale = 0.5,
 				shift = { 0.65, -0.75 },
 			},
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-5.png",
+				filename =
+				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-5.png",
 				width = 444,
 				height = 310,
 				scale = 0.5,
 				shift = { 1.15, -0.75 },
 			},
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-7.png",
+				filename =
+				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-7.png",
 				width = 444,
 				height = 310,
 				scale = 0.5,
 				shift = { 0.95, -0.25 },
 			},
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-11.png",
+				filename =
+				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-11.png",
 				width = 444,
 				height = 310,
 				scale = 0.5,
 				shift = { 0.65, -0.75 },
 			},
 			{
-				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-12.png",
+				filename =
+				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-huge/dry-iceberg-huge-12.png",
 				width = 444,
 				height = 310,
 				scale = 0.5,

@@ -1,9 +1,57 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.24.9
+Version: 4.24.18
 Date: ????
   Optimizations:
     - Increased particle spawn rate option's maximum value from 200% to 1000%.
     - Optimized solar wind rendering and physics.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.17
+Date: 2026-09-08
+  Compatibility:
+    - Maraxsis compatibility code now detects the planet rather than the specific mod.
+  Changes:
+    - The scripted melting of ice on Cerys is now still processed, albeit very slowly (for performance), when no player is looking at or standing on Cerys.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.16
+Date: 2026-08-29
+  Graphics:
+    - Better connecting graphics between heat pipes and the Mixed-oxide nuclear reactor (thanks to CAR DOOR!)
+---------------------------------------------------------------------------------------------------
+Version: 4.24.15
+Date: 2026-08-24
+  Compatibility:
+    - Vanilla crushers now possess an Ambient radiation surface condition (when placed) such that Muluna no longer enables them on Cerys.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.14
+Date: 2026-08-18
+  Bugfixes:
+    - Corrected the 'static recycling' setting to respect the new vanilla recycling time of concrete and copper cables in Factorio 2.1.13.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.13
+Date: 2026-08-09
+  Compatibility:
+    - Fixed a crash when another mod changes the structure of Krastorio 2 uranium ammunition.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.12
+Date: 2026-08-07
+  Graphics:
+    - The shadow of radiative tower no longer disappears when tall entities are hidden.
+    - Fixed that non-tower radiative heaters were marked as tall.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.11
+Date: 2026-08-06
+  Bugfixes:
+    - Fixed a crash.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.10
+Date: 2026-08-06
+  Changes:
+    - Nuclear scrap recycling results now use exclusive probabilities instead of independent probabilities.
+---------------------------------------------------------------------------------------------------
+Version: 4.24.9
+Date: 2026-08-05
+  Changes:
+    - Support for Factorio 2.1.13.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.8
 Date: 2026-07-28
@@ -22,7 +70,7 @@ Date: 2026-07-22
   Optimizations:
     - Many performance optimizations thanks to MeteorSwarm.
   Compatibility:
-    - Asteroid collectors now possess an Ambient radiation surface condition (when placed).
+    - Asteroid collectors now possess an Ambient radiation surface condition (when placed) such that Muluna no longer enables them on Cerys.
 ---------------------------------------------------------------------------------------------------
 Version: 4.24.5
 Date: 2026-07-18

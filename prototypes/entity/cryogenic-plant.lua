@@ -357,7 +357,8 @@ local wreck_frozen = merge(wreck, {
 			layers = {
 				{
 					animation_speed = 0.5,
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
+					filename =
+					"__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
 					frame_count = 1,
 					repeat_count = 192,
 					height = 864,

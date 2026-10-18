@@ -337,7 +337,8 @@ local cleared_with_scaffold = merge(reactor_wreck_cleared, {
 					repeat_count = 1,
 				},
 				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
+					filename =
+					"__Cerys-Moon-of-Fulgora__/graphics/entity/nuclear-reactor/reactor-ruin-cleared-cropped.png",
 					width = 2299,
 					height = 2161,
 					shift = util.by_pixel(17, 0),

@@ -1,11 +1,10 @@
 local common = require("common")
 local lib = require("lib")
 
-if mods["maraxsis"] then
+if data.raw.planet["maraxsis"] then
 	if data.raw.recipe["maraxsis-petroleum-gas-cracking"] then
 		PlanetsLib.restrict_surface_conditions(
-			data.raw.recipe["maraxsis-petroleum-gas-cracking"],
-			common.AMBIENT_RADIATION_MAX
+			data.raw.recipe["maraxsis-petroleum-gas-cracking"], common.AMBIENT_RADIATION_MAX
 		)
 	end
 
@@ -17,15 +16,13 @@ if mods["maraxsis"] then
 
 	if data.raw["fusion-generator"]["maraxsis-oversized-steam-turbine"] then
 		PlanetsLib.remove_surface_condition(
-			data.raw["fusion-generator"]["maraxsis-oversized-steam-turbine"],
-			common.AMBIENT_RADIATION_MAX
+			data.raw["fusion-generator"]["maraxsis-oversized-steam-turbine"], common.AMBIENT_RADIATION_MAX
 		)
 	end
 
 	if data.raw["fusion-generator"]["muluna-cycling-steam-turbine"] then
 		PlanetsLib.remove_surface_condition(
-			data.raw["fusion-generator"]["muluna-cycling-steam-turbine"],
-			common.AMBIENT_RADIATION_MAX
+			data.raw["fusion-generator"]["muluna-cycling-steam-turbine"], common.AMBIENT_RADIATION_MAX
 		)
 	end
 

@@ -2,20 +2,17 @@ local util = require("util")
 local common = require("common")
 local Public = {}
 
-
-
-
 function Public.get_cerys_surface_stretch_factor(cerys_surface)
 	if not storage.cerys_surface_stretch_factor then
 		local height_starts_stretching = common.CERYS_RADIUS * (common.HARD_MODE_ON and 2.4 or 1.6)
-	local max_stretch_factor = 6
+		local max_stretch_factor = 6
 
-	local stretch_factor = math.min(
-		max_stretch_factor,
-		height_starts_stretching / math.min(cerys_surface.map_gen_settings.height / 2, height_starts_stretching)
-	)
+		local stretch_factor = math.min(
+			max_stretch_factor,
+			height_starts_stretching / math.min(cerys_surface.map_gen_settings.height / 2, height_starts_stretching)
+		)
 
-	storage.cerys_surface_stretch_factor = stretch_factor
+		storage.cerys_surface_stretch_factor = stretch_factor
 	end
 	return storage.cerys_surface_stretch_factor
 end
@@ -36,18 +33,14 @@ function Public.get_cerys_semiminor_axis(cerys_surface)
 	return common.CERYS_RADIUS / Public.get_cerys_surface_stretch_factor(cerys_surface)
 end
 
-
-
 function Public.generated_cerys_surface()
 	local surface = game.surfaces["cerys"]
 	if not (surface and surface.valid) then
 		return false
 	end
-	if storage.surface_some_chunk_generated then return surface end
-	
-	
-	
-	
+	if storage.surface_some_chunk_generated then
+		return surface
+	end
 
 	for chunk in surface.get_chunks() do
 		if surface.is_chunk_generated(chunk) then

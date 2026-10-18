@@ -112,7 +112,7 @@ function Public.try_spawn_asteroid(surface)
 	end
 end
 
-function Public.spawn_solar_wind_particle(surface,tick)
+function Public.spawn_solar_wind_particle(surface, tick)
 	local d = common.CERYS_RADIUS / lib.get_cerys_surface_stretch_factor(surface)
 
 	local y = math.random(-d - 8, d + 8)
@@ -130,7 +130,7 @@ function Public.spawn_solar_wind_particle(surface,tick)
 	table.insert(storage.solar_wind_particles, {
 		rendering = r,
 		--age = 0,
-		birth_tick=tick,
+		birth_tick = tick,
 		velocity = Public.initial_solar_wind_velocity(),
 		position = { x = x, y = y },
 		surface_index = surface.index,
@@ -243,28 +243,24 @@ Public.remove_particle_at = remove_particle_at
 
 local function cached_scale_factor(ticks_until_death)
 	local s = storage.cached_scale_factor[ticks_until_death]
-    if s == nil then
-        s = math.sqrt(math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME))
-        storage.cached_scale_factor[ticks_until_death] = s
-    end
-    return s
-
+	if s == nil then
+		s = math.sqrt(math.max(0.00001, ticks_until_death / PARTICLE_SHRINK_TIME))
+		storage.cached_scale_factor[ticks_until_death] = s
+	end
+	return s
 end
 
-local function handle_death(particle,i)
-local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
-				
+local function handle_death(particle, i)
+	local ticks_until_death = PARTICLE_SHRINK_TIME - (game.tick - particle.marked_for_death_tick)
+
 	if ticks_until_death < 0 then
 		particle.rendering.destroy()
 		remove_particle_at(i)
 	else
-		
 		local scale_factor = cached_scale_factor(ticks_until_death)
 		particle.rendering.x_scale = scale_factor
 		particle.rendering.y_scale = scale_factor
-		
 	end
-
 end
 
 function Public.tick_1_move_visible_solar_wind(render_all)
@@ -306,7 +302,7 @@ function Public.tick_6_move_solar_wind(render_all)
 		local particle = storage.solar_wind_particles[i]
 		--local r = particle.rendering
 		--local v = particle.velocity
-		if not (particle.rendering and particle.rendering.valid) then 
+		if not (particle.rendering and particle.rendering.valid) then
 			remove_particle_at(i)
 			goto continue
 		end
@@ -402,7 +398,7 @@ function Public.tick_5_solar_wind_destroy_check()
 	end
 end
 
-function Public.tick_240_clean_up_cerys_solar_wind_particles(surface,tick)
+function Public.tick_240_clean_up_cerys_solar_wind_particles(surface, tick)
 	local have_cerys = surface and surface.valid
 	local semimajor_axis, semiminor_axis, cerys_surface_index
 	if have_cerys then

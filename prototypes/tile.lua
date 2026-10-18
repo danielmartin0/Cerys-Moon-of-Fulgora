@@ -380,9 +380,9 @@ table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones-frozen")
 
 local water_ice_transitions_between_transitions = adjusted_original_ice_transitions_between_transitions
 water_ice_transitions_between_transitions[1].spritesheet =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
 water_ice_transitions_between_transitions[1].water_patch.filename =
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
+"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
 
 local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	transitions = water_ice_transitions,

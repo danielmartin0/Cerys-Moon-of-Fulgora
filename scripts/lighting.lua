@@ -8,22 +8,20 @@ local DAY_LENGTH = common.DAY_LENGTH_MINUTES * 60 * 60
 
 local function cached_sin(x)
 	local s = storage.sin[x % 360]
-    if s == nil then
-        s = math.sin(x*(math.pi/180))
-        storage.sin[x % 360] = s
-    end
-    return s
-
+	if s == nil then
+		s = math.sin(x * (math.pi / 180))
+		storage.sin[x % 360] = s
+	end
+	return s
 end
 
 local function cached_cos(x)
-    return cached_sin(x + 90)
-
+	return cached_sin(x + 90)
 end
 
 local function cached_stretched_daytime(daytime)
 	local stretched_daytime = storage.stretched_daytime[daytime]
-    if stretched_daytime == nil then
+	if stretched_daytime == nil then
 		if daytime < 46 / 100 then
 			return 0
 		elseif daytime < 70 / 100 then
@@ -33,12 +31,10 @@ local function cached_stretched_daytime(daytime)
 		else
 			stretched_daytime = 0.5 + 0.5 * (daytime - 76 / 100) / (24 / 100)
 		end
-        storage.stretched_daytime[daytime] = stretched_daytime
-    end
-    return stretched_daytime
-
+		storage.stretched_daytime[daytime] = stretched_daytime
+	end
+	return stretched_daytime
 end
-
 
 function Public.tick_update_lights()
 	if not storage.cerys then
@@ -54,7 +50,8 @@ function Public.tick_update_lights()
 
 	local elapsed_ticks = game.tick - (storage.cerys.first_visit_tick or 0)
 	local daytime = (elapsed_ticks / DAY_LENGTH) % 1
-	daytime = math.floor(daytime*10000 + 0.5)/10000 --Round to nearest 0.0001 To reduce size of lookup table
+	daytime = math.floor(daytime * 10000 + 0.5) /
+		10000 --Round to nearest 0.0001 To reduce size of lookup table
 	if settings.global["cerys-dynamic-lighting"].value and elapsed_ticks < 10 * 60 then -- Avoid cargo pod graphical issue on first visit
 		surface.brightness_visual_weights = { 0.22, 0.23, 0.22 }
 		surface.min_brightness = 0.2
@@ -100,10 +97,10 @@ function Public.tick_update_lights()
 	-- Commented lines are typically less polished versions.
 
 	local stretched_daytime = cached_stretched_daytime(daytime)
-	
+
 	-- local stretched_daytime = daytime
 	local phase = (stretched_daytime + 0.25) * 2 * 180 -- puts midday at phase = 90
-	phase = math.floor(phase*100 + 0.5)/100 --Round to nearest 0.01 To reduce size of trig lookup table
+	phase = math.floor(phase * 100 + 0.5) / 100 --Round to nearest 0.01 To reduce size of trig lookup table
 
 	local bounded_x = (1 - cached_sin(phase % 180)) * (((phase % 180) < (180 / 2)) and 1 or -1)
 	-- local bounded_x = (1 - (phase % 180) / (180 / 2)) -- for testing
@@ -124,9 +121,6 @@ function Public.tick_update_lights()
 
 	local is_white_circle = (phase % (2 * 180)) < 180
 
-
-
-	
 	local use_rectangle = math.abs(bounded_x) > 0.83
 
 	local light_1 = storage.cerys.light.rendering_1
@@ -141,7 +135,7 @@ function Public.tick_update_lights()
 		light_scale = light_scale * 0.65 -- not an exact science
 	end
 	local rectangle_sprite = ((phase % (2 * 180)) > 180 / 2 and (phase % (2 * 180)) < 3 * 180 / 2)
-			and "cerys-solar-light-rectangle-inverted"
+		and "cerys-solar-light-rectangle-inverted"
 		or "cerys-solar-light-rectangle"
 
 	if is_white_circle then
@@ -262,7 +256,8 @@ function Public.tick_update_lights()
 				end
 
 				local panel_longitude_radians = math.atan2(x, math.sqrt(R ^ 2 - x ^ 2 - y ^ 2))
-				adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 * (180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
+				adjusted_longitude_degrees = 2 * panel_longitude_radians / 3 *
+					(180 / math.pi) -- This multiplication accounts for a 2d–3d perspective issue.
 				panel.adjusted_longitude_degrees = adjusted_longitude_degrees
 			end
 
@@ -300,7 +295,9 @@ function Public.tick_update_lights()
 
 	local desired_solar_panel_bar_fullness = desired_solar_power_multiplier
 
-	local engine_daytime = 0.45 - 0.1995 * desired_solar_panel_bar_fullness -- Any closer to 0.25 and the engine complains
+	local engine_daytime = 0.45 -
+		0.1995 *
+		desired_solar_panel_bar_fullness -- Any closer to 0.25 and the engine complains
 
 	if desired_solar_panel_bar_fullness == 1 then
 		engine_daytime = engine_daytime - 1 / 3000 -- Somehow this helps avoid an oscillating value in the UI

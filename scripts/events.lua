@@ -275,7 +275,7 @@ function Public.simulation_tick(tick, cerys_surface)
 	end
 
 	if tick % 240 == 0 then
-		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(cerys_surface,tick)
+		atmosphere.tick_240_clean_up_cerys_solar_wind_particles(cerys_surface, tick)
 	end
 end
 
@@ -315,7 +315,7 @@ function Public.cerys_tick(surface, tick)
 				atmosphere.spawn_solar_wind_particle(surface,tick)
 			end
 			if math.random() < spawn_chance then
-				atmosphere.spawn_solar_wind_particle(surface,tick)
+				atmosphere.spawn_solar_wind_particle(surface, tick)
 			end
 		end
 	end
@@ -355,7 +355,9 @@ function Public.cerys_tick(surface, tick)
 		cooling.tick_60_cool_boilers()
 	end
 
-	if (player_looking_at_surface or player_on_surface) and (tick + 1) % ice.ICE_CHECK_INTERVAL == 0 then
+	local ice_check_interval = (player_looking_at_surface or player_on_surface) and ice.ICE_CHECK_INTERVAL
+		or ice.UNATTENDED_ICE_CHECK_INTERVAL
+	if (tick + 1) % ice_check_interval == 0 then
 		ice.tick_ice(surface)
 	end
 
@@ -513,10 +515,10 @@ script.on_configuration_changed(function()
 					if e and e.valid then
 						game.print(
 							"[CERYS]: Added a Fulgoran Teleporter to the Cerys surface: [gps="
-								.. e.position.x
-								.. ","
-								.. e.position.y
-								.. ",cerys]",
+							.. e.position.x
+							.. ","
+							.. e.position.y
+							.. ",cerys]",
 							{ color = common.FRIENDLY_COLOR }
 						)
 					end

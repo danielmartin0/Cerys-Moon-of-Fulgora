@@ -1,6 +1,6 @@
 local merge = require("lib").merge
 local common = require("common")
-local common_data = require("common-data-only")
+local data_utils = require("data-utils")
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 
 local reactor = {
@@ -74,10 +74,6 @@ local reactor = {
 			-- util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/front", {
 			-- 	scale = 0.22,
 			-- }),
-			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
-				scale = 0.22,
-				draw_as_shadow = true,
-			}),
 		},
 	},
 	open_sound = { filename = "__base__/sound/open-close/metal-large-open.ogg", volume = 0.8 },
@@ -239,6 +235,10 @@ local reactor_base = merge(rising_reactor_tower_1, {
 				scale = 0.22,
 				draw_as_shadow = true,
 			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
+				scale = 0.22,
+				draw_as_shadow = true,
+			}),
 		},
 	},
 })
@@ -251,6 +251,10 @@ local reactor_base_frozen = merge(reactor_base, {
 				scale = 0.22,
 			}),
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow-base", {
+				scale = 0.22,
+				draw_as_shadow = true,
+			}),
+			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/radiative-tower/shadow", {
 				scale = 0.22,
 				draw_as_shadow = true,
 			}),
@@ -383,7 +387,7 @@ for i = 1, common.LAMP_COUNT do
 	})
 
 	data:extend({
-		merge(common_data.hidden_lamp_base, {
+		merge(data_utils.hidden_lamp_base, {
 			name = "radiative-tower-lamp-" .. i,
 			light = { intensity = 0.5, size = 4.5 * i, color = { r = 1, g = 0.81, b = 0.79 } }, -- Going over 0.5 intensity produces more issues where the intersection of heating towers is more blue than most other places.
 		}),
