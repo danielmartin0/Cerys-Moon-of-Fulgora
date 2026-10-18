@@ -41,7 +41,7 @@ function Public.do_player_view_changed(event) --Run when player view has changed
             display_resolution = player.display_resolution,
             display_scale = player.display_scale,
             zoom = player.zoom,
-            looking_at_cerys = player.surface and player.surface.name == "cerys",
+            looking_at = player.surface and player.surface.name or nil,
             tick = event.tick,
             zoom_limits = player.zoom_limits
 	    }
