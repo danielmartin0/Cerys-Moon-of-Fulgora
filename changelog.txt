@@ -10,7 +10,7 @@ Date: 2026-10-24
   Changes:
     - 'Plutonium productivity' technology renamed to 'Transmutation efficiency'
   Graphics:
-    - Native graphics for the orbital line are now used around Cerys on the starmap.
+    - Cerys now uses native graphics for the starmap orbital line.
   Locale:
     - Updated Ukranian locale.
 ---------------------------------------------------------------------------------------------------
