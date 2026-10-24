@@ -8,16 +8,16 @@ data:extend({
 		order = "a-z-b[Cerys]",
 		trigger = {
 			type = "research",
-			technology = "moon-discovery-cerys",
+			technology = "moon-discovery-cerys"
 		},
 		skip_trigger = {
 			type = "or",
 			triggers = {
 				{
 					type = "change-surface",
-					surface = "cerys",
-				},
-			},
+					surface = "cerys"
+				}
+			}
 		},
 		simulation = {
 			init_update_count = 10,
@@ -124,8 +124,8 @@ data:extend({
             end
         ]],
 			checkboard = false,
-			mute_wind_sounds = true,
-		},
+			mute_wind_sounds = true
+		}
 		-- },
 		-- simulation = {
 		-- 	planet = "cerys",
@@ -209,7 +209,7 @@ data:extend({
 		-- 	checkboard = false,
 		-- 	mute_wind_sounds = false,
 		-- },
-	},
+	}
 })
 
 data:extend({
@@ -222,8 +222,8 @@ data:extend({
 		order = "a-z-b[Cerys]-b",
 		trigger = {
 			type = "research",
-			technology = "cerys-plutonium-weaponry",
+			technology = "cerys-plutonium-weaponry"
 		},
-		dependencies = { "cerys-briefing" },
-	},
+		dependencies = { "cerys-briefing" }
+	}
 })

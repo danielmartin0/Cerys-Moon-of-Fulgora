@@ -29,13 +29,13 @@ local heat_entities = surface.find_entities_filtered({
 	area = {
 		left_top = {
 			x = -common.CERYS_RADIUS * 1.2 * stretch_factor,
-			y = -common.CERYS_RADIUS * 1.2 / stretch_factor,
+			y = -common.CERYS_RADIUS * 1.2 / stretch_factor
 		},
 		right_bottom = {
 			x = common.CERYS_RADIUS * 1.2 * stretch_factor,
-			y = common.CERYS_RADIUS * 1.2 / stretch_factor,
-		},
-	},
+			y = common.CERYS_RADIUS * 1.2 / stretch_factor
+		}
+	}
 })
 
 for _, entity in pairs(heat_entities) do

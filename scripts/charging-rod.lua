@@ -6,20 +6,16 @@ local POLARITY_TO_CHILDREN = {
 	[true] = { -- positive
 		glow = "cerys-charging-rod-glow-r",
 		animation = "cerys-charging-rod-animation-r",
-		lamp = "cerys-charging-rod-lamp-red",
+		lamp = "cerys-charging-rod-lamp-red"
 	},
 	[false] = { -- negative
 		glow = "cerys-charging-rod-glow-b",
 		animation = "cerys-charging-rod-animation-b",
-		lamp = "cerys-charging-rod-lamp-blue",
-	},
+		lamp = "cerys-charging-rod-lamp-blue"
+	}
 }
 
-local CHILDREN_Y_OFFSET = {
-	glow = 1,
-	animation = 1,
-	lamp = 0,
-}
+local CHILDREN_Y_OFFSET = { glow = 1, animation = 1, lamp = 0 }
 
 Public.GUI_KEY = "cerys-gui-charging-rod-2"
 -- These GUIs are attached to all accumulator entities on some old saves:
@@ -43,7 +39,7 @@ function Public.tags_set_is_positive(tags, is_positive)
 	return tags
 end
 
-Public.built_charging_rod = function(entity, tags)
+Public.built_charging_rod = function (entity, tags)
 	if not (entity and entity.valid) then
 		return
 	end
@@ -83,7 +79,7 @@ Public.built_charging_rod = function(entity, tags)
 			storage.given_charging_rod_performance_warning = true
 
 			game.print({
-				"cerys.charging-rod-performance-warning",
+				"cerys.charging-rod-performance-warning"
 			}, { color = common.WARN_COLOR })
 		end
 	end
@@ -111,7 +107,7 @@ function Public.register_charging_rod(entity)
 		rod_position = { x = entity.position.x, y = entity.position.y },
 		circuit_controlled = false,
 		control_signal = { type = "virtual", name = "signal-P" },
-		children = {},
+		children = {}
 	}
 
 	if off_cerys then
@@ -142,7 +138,7 @@ local function ensure_child(rod, key, name)
 	rod.children[key] = e.surface.create_entity({
 		name = name,
 		position = { x = e.position.x, y = e.position.y + CHILDREN_Y_OFFSET[key] },
-		create_build_effect_smoke = false,
+		create_build_effect_smoke = false
 	})
 end
 
@@ -209,7 +205,7 @@ function Public.update_rod_lights(entity, rod)
 	rod.polarity_fraction = rod.max_polarity_fraction * energy_fraction * (positive and 1 or -1)
 end
 
-Public.rod_set_state = function(entity, positive)
+Public.rod_set_state = function (entity, positive)
 	storage.charging_rod_is_positive[entity.unit_number] = positive or false
 
 	if entity.name == "entity-ghost" then
@@ -281,7 +277,7 @@ function Public.tick_12_check_charging_rods()
 	end
 end
 
-script.on_event(defines.events.on_object_destroyed, function(event)
+script.on_event(defines.events.on_object_destroyed, function (event)
 	if not storage.rod_registrations then
 		return
 	end
@@ -373,27 +369,27 @@ function Public.on_gui_opened(event)
 				gui = defines.relative_gui_type.accumulator_gui,
 				position = defines.relative_gui_position.right,
 				ghost_mode = "both",
-				name = "cerys-charging-rod",
-			},
+				name = "cerys-charging-rod"
+			}
 		})
 
 		local titlebar_flow = main_frame.add({
 			type = "flow",
 			direction = "horizontal",
-			drag_target = main_frame,
+			drag_target = main_frame
 		})
 
 		titlebar_flow.add({
 			type = "label",
 			caption = { "cerys.charging-rod-polarity-setting-title" },
 			style = "frame_title",
-			ignored_by_interaction = true,
+			ignored_by_interaction = true
 		})
 
 		local drag_handle = titlebar_flow.add({
 			type = "empty-widget",
 			ignored_by_interaction = true,
-			style = "draggable_space_header",
+			style = "draggable_space_header"
 		})
 		drag_handle.style.horizontally_stretchable = true
 		drag_handle.style.height = 24
@@ -403,7 +399,7 @@ function Public.on_gui_opened(event)
 			type = "frame",
 			name = "content",
 			style = "inside_shallow_frame_with_padding_and_vertical_spacing",
-			direction = "vertical",
+			direction = "vertical"
 		})
 
 		local circuit_controlled = rod_circuit_data and rod_circuit_data.circuit_controlled
@@ -415,12 +411,12 @@ function Public.on_gui_opened(event)
 			name = "charging-rod-switch",
 			allow_none_state = false,
 			switch_state = is_positive and "left" or "right",
-			enabled = not circuit_controlled,
+			enabled = not circuit_controlled
 		})
 
 		content_frame.add({
 			type = "line",
-			direction = "horizontal",
+			direction = "horizontal"
 		})
 
 		content_frame.add({
@@ -428,21 +424,21 @@ function Public.on_gui_opened(event)
 			name = "circuit-control-checkbox",
 			caption = { "cerys.charging-rod-polarity-circuit-control-label" },
 			state = circuit_controlled and true or false,
-			tooltip = { "cerys.charging-rod-polarity-circuit-control-tooltip" },
+			tooltip = { "cerys.charging-rod-polarity-circuit-control-tooltip" }
 		})
 
 		local flow = content_frame.add({
 			type = "flow",
 			direction = "horizontal",
 			name = "signal_flow",
-			style = "player_input_horizontal_flow",
+			style = "player_input_horizontal_flow"
 		})
 		flow.style.horizontally_stretchable = true
 
 		local signal_label = flow.add({
 			type = "label",
 			caption = "Control signal:",
-			style = "label",
+			style = "label"
 		})
 		signal_label.style.minimal_width = 110 -- Why is this needed?
 		signal_label.style.horizontally_stretchable = true
@@ -455,12 +451,12 @@ function Public.on_gui_opened(event)
 			name = "control-signal-button",
 			elem_type = "signal",
 			signal = signal,
-			enabled = circuit_controlled and true or false,
+			enabled = circuit_controlled and true or false
 		})
 	end
 end
 
-script.on_event(defines.events.on_gui_switch_state_changed, function(event)
+script.on_event(defines.events.on_gui_switch_state_changed, function (event)
 	if event.element.name ~= "charging-rod-switch" then
 		return
 	end
@@ -483,13 +479,9 @@ script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 	local gui_key = entity.name == "cerys-charging-rod" and Public.GUI_KEY or Public.GUI_KEY_GHOST
 
 	for _, other_player in pairs(game.connected_players) do
-		if
-			other_player.valid
-			and other_player.index ~= event.player_index
-			and other_player.opened
-			and other_player.opened.valid
-			and other_player.opened == entity
-		then
+		if other_player.valid and other_player.index ~= event.player_index
+			and other_player.opened and other_player.opened.valid
+			and other_player.opened == entity then
 			local gui = other_player.gui.relative[gui_key]
 			if gui then
 				local other_switch = gui["content"]["charging-rod-switch"]
@@ -501,7 +493,7 @@ script.on_event(defines.events.on_gui_switch_state_changed, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_entity_settings_pasted, function(event)
+script.on_event(defines.events.on_entity_settings_pasted, function (event)
 	local source = event.source
 	local destination = event.destination
 
@@ -509,20 +501,12 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 		return
 	end
 
-	if
-		not (
-			source.name == "cerys-charging-rod"
-			or (source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod")
-		)
-	then
+	if not (source.name == "cerys-charging-rod"
+		or (source.name == "entity-ghost" and source.ghost_name == "cerys-charging-rod")) then
 		return
 	end
-	if
-		not (
-			destination.name == "cerys-charging-rod"
-			or (destination.name == "entity-ghost" and destination.ghost_name == "cerys-charging-rod")
-		)
-	then
+	if not (destination.name == "cerys-charging-rod"
+		or (destination.name == "entity-ghost" and destination.ghost_name == "cerys-charging-rod")) then
 		return
 	end
 
@@ -549,7 +533,7 @@ script.on_event(defines.events.on_entity_settings_pasted, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_entity_cloned, function(event)
+script.on_event(defines.events.on_entity_cloned, function (event)
 	local source = event.source
 	local destination = event.destination
 
@@ -573,7 +557,7 @@ script.on_event(defines.events.on_entity_cloned, function(event)
 	Public.rod_set_state(destination, storage.charging_rod_is_positive[source.unit_number])
 end)
 
-script.on_event(defines.events.on_gui_checked_state_changed, function(event)
+script.on_event(defines.events.on_gui_checked_state_changed, function (event)
 	if event.element.name == "circuit-control-checkbox" then
 		local player = game.players[event.player_index]
 		if not (player and player.valid) then
@@ -602,19 +586,15 @@ script.on_event(defines.events.on_gui_checked_state_changed, function(event)
 			content_frame["signal_flow"]["control-signal-button"].enabled = event.element.state
 		end
 
-		if
-			content_frame
-			and content_frame["signal_flow"]
-			and content_frame["signal_flow"].children
-			and content_frame["signal_flow"].children[1]
-		then
+		if content_frame and content_frame["signal_flow"]
+			and content_frame["signal_flow"].children and content_frame["signal_flow"].children[1] then
 			local label = content_frame["signal_flow"].children[1]
 			label.style.font_color = event.element.state and { 1, 1, 1 } or { 0.5, 0.5, 0.5 }
 		end
 	end
 end)
 
-script.on_event(defines.events.on_gui_elem_changed, function(event)
+script.on_event(defines.events.on_gui_elem_changed, function (event)
 	if event.element.name ~= "control-signal-button" then
 		return
 	end
@@ -639,7 +619,7 @@ script.on_event(defines.events.on_gui_elem_changed, function(event)
 	end
 end)
 
-script.on_event("cerys-toggle-entity", function(event)
+script.on_event("cerys-toggle-entity", function (event)
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -648,13 +628,8 @@ script.on_event("cerys-toggle-entity", function(event)
 
 	local e = player.selected
 
-	if
-		not (
-			e
-			and e.valid
-			and (e.name == "cerys-charging-rod" or (e.name == "entity-ghost" and e.ghost_name == "cerys-charging-rod"))
-		)
-	then
+	if not (e and e.valid
+		and (e.name == "cerys-charging-rod" or (e.name == "entity-ghost" and e.ghost_name == "cerys-charging-rod"))) then
 		return
 	end
 

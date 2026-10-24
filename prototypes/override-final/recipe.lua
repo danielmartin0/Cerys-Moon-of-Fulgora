@@ -3,7 +3,9 @@ local data_utils = require("data-utils")
 local lib = require("lib")
 local merge = lib.merge
 
-for _, recipe_name in pairs({ "superconductor", "sulfuric-acid", "lithium", "ammonia-rocket-fuel", "fusion-power-cell" }) do
+for _, recipe_name in pairs(
+	{ "superconductor", "sulfuric-acid", "lithium", "ammonia-rocket-fuel", "fusion-power-cell" }
+) do
 	if data.raw.recipe[recipe_name] then
 		lib.add_recipe_category(data.raw.recipe[recipe_name], "fulgoran-cryogenics")
 	end
@@ -13,23 +15,23 @@ if data.raw.recipe["plutonium-239-recycling"] then
 	data.raw.recipe["plutonium-239-recycling"].energy_required = 1 -- Dropping the energy of the U->Pu dummy recipe affects this for some reason
 end
 
---== Relaxations ==--
+-- == Relaxations ==--
 
 if data.raw.recipe["recycler"] then
 	PlanetsLib.relax_surface_conditions(data.raw.recipe["recycler"], {
 		property = "magnetic-field",
-		max = 120,
+		max = 120
 	})
 end
 
 if data.raw.recipe["cryogenic-plant"] then
 	PlanetsLib.relax_surface_conditions(data.raw.recipe["cryogenic-plant"], {
 		property = "pressure",
-		min = 5,
+		min = 5
 	})
 end
 
---== Restrictions ==--
+-- == Restrictions ==--
 
 if data.raw.recipe["lab"] then
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["lab"], common.AMBIENT_RADIATION_MAX)
@@ -63,13 +65,12 @@ if data.raw.recipe["speed-module-3-recycling"] then
 		merge(data.raw.recipe["speed-module-3-recycling"], {
 			name = "cerys-speed-module-3-recycling",
 			enabled = true,
-			results = speed_3_recycling_results_without_tungsten_carbide,
-		}),
+			results = speed_3_recycling_results_without_tungsten_carbide
+		})
 	})
 
 	PlanetsLib.restrict_surface_conditions(
-		data.raw.recipe["cerys-speed-module-3-recycling"],
-		common.AMBIENT_RADIATION_MIN
+		data.raw.recipe["cerys-speed-module-3-recycling"], common.AMBIENT_RADIATION_MIN
 	)
 	PlanetsLib.restrict_surface_conditions(data.raw.recipe["speed-module-3-recycling"], common.AMBIENT_RADIATION_MAX)
 end

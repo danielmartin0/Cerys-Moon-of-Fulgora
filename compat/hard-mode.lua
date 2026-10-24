@@ -16,7 +16,7 @@ if mods["Rocs-Hardcore-Delayed-Tech-Tree"] then
 		if not already_has_recipe then
 			table.insert(discovery_tech.effects, {
 				type = "unlock-recipe",
-				recipe = "kovarex-enrichment-process",
+				recipe = "kovarex-enrichment-process"
 			})
 		end
 	end

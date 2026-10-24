@@ -13,146 +13,131 @@ data:extend({
 		collision_box = { { -1.1, -1.1 }, { 1.1, 1.1 } },
 		render_layer = "decorative",
 		autoplace = {
-			probability_expression = "cerys_methane_iceberg_medium",
+			probability_expression = "cerys_methane_iceberg_medium"
 		},
 		trigger_effect = decorative_trigger_effects.medium_rock(),
 		pictures = {
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-1.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-1.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-2.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-2.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-3.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-3.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-4.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-4.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-5.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-5.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-6.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-6.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-7.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-7.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-8.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-8.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-9.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-9.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-10.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-10.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-11.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-11.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-12.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-12.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-13.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-13.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-14.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-14.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
+				shift = { 0.0, 0.0 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-15.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-medium/dry-iceberg-medium-15.png",
 				priority = base_decorative_sprite_priority,
 				width = 114,
 				height = 88,
 				scale = 0.5,
-				shift = { 0.0, 0.0 },
-			},
-		},
+				shift = { 0.0, 0.0 }
+			}
+		}
 	},
 	{
 		name = "cerys-methane-iceberg-small",
@@ -162,110 +147,99 @@ data:extend({
 		render_layer = "decorative",
 		walking_sound = sounds.pebble,
 		autoplace = {
-			probability_expression = "cerys_methane_iceberg_small",
+			probability_expression = "cerys_methane_iceberg_small"
 		},
 		trigger_effect = decorative_trigger_effects.small_rock(),
 		pictures = {
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-1.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-1.png",
 				priority = base_decorative_sprite_priority,
 				scale = 0.5,
 				width = 90,
 				height = 56,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-2.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-2.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-3.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-3.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-4.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-4.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-5.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-5.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-6.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-6.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-7.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-7.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-8.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-8.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-9.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-9.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-10.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-10.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-11.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-small/dry-iceberg-small-11.png",
 				priority = base_decorative_sprite_priority,
 				width = 90,
 				height = 56,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
-			},
-		},
+				shift = { 0.0390625, 0.0234375 }
+			}
+		}
 	},
 	{
 		name = "cerys-methane-iceberg-tiny",
@@ -275,153 +249,139 @@ data:extend({
 		render_layer = "decorative",
 		walking_sound = sounds.pebble,
 		autoplace = {
-			probability_expression = "cerys_methane_iceberg_tiny",
+			probability_expression = "cerys_methane_iceberg_tiny"
 		},
 		trigger_effect = decorative_trigger_effects.tiny_rock(),
 		pictures = {
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-1.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-1.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-2.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-2.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-3.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-3.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-4.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-4.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-5.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-5.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-6.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-6.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-7.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-7.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-8.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-8.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-9.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-9.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-10.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-10.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-11.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-11.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
+				shift = { 0.0390625, 0.0234375 }
 			},
 			{
-				filename =
-				"__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-12.png",
+				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/dry-iceberg/dry-iceberg-tiny/dry-iceberg-tiny-12.png",
 				priority = base_decorative_sprite_priority,
 				width = 46,
 				height = 28,
 				scale = 0.5,
-				shift = { 0.0390625, 0.0234375 },
-			},
-		},
+				shift = { 0.0390625, 0.0234375 }
+			}
+		}
 	},
 	merge(data.raw["optimized-decorative"]["crater-large"], {
 		name = "cerys-crater-large",
 		autoplace = {
 			order = "d[decal]-a",
-			probability_expression =
-			"multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 10200, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.001} + 0.15",
-			tile_restriction = common.ROCK_TILES,
-		},
+			probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 10200, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.001} + 0.15",
+			tile_restriction = common.ROCK_TILES
+		}
 	}),
 	merge(data.raw["optimized-decorative"]["crater-small"], {
 		name = "cerys-crater-small",
 		autoplace = {
 			order = "d[decal]-a",
-			probability_expression =
-			"multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 10300, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.001} + 0.15",
-			tile_restriction = common.ROCK_TILES,
-		},
+			probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 10300, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.001} + 0.15",
+			tile_restriction = common.ROCK_TILES
+		}
 	}),
 	merge(data.raw["optimized-decorative"]["fulgoran-ruin-tiny"], {
 		name = "cerys-ruin-tiny",
 		autoplace = {
 			order = "a[ruin]-i[tiny]",
 			probability_expression = "cerys_ruin_tiny",
-			tile_restriction = common.ROCK_TILES,
+			tile_restriction = common.ROCK_TILES
 		},
 		pictures = util.spritesheets_to_pictures({
 			{
 				path = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-ruin/cerys-ruin-tiny",
 				frame_count = 35,
-				scale = 0.3,
-			},
-		}),
-	}),
+				scale = 0.3
+			}
+		})
+	})
 })
 
 -- We need to write out 'pictures' explicitly, since if we clone the base pictures there's a base game crash on medium or lower video memory settings.
@@ -429,9 +389,8 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 	name = "cerys-ice-decal-white",
 	render_layer = "decorative",
 	autoplace = {
-		probability_expression =
-		"multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 11000, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.005} + 0.005",
-		tile_restriction = common.ROCK_TILES,
+		probability_expression = "multioctave_noise{x = cerys_x_surface, y = cerys_y_surface, seed0 = map_seed, seed1 = 11000, octaves = 2, persistence = 0.6, input_scale = 1 / 20, output_scale = 0.005} + 0.005",
+		tile_restriction = common.ROCK_TILES
 	},
 	pictures = {
 		{
@@ -441,7 +400,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 396,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-02.png",
@@ -450,7 +409,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 548,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-03.png",
@@ -459,7 +418,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 307,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-04.png",
@@ -468,7 +427,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 476,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-05.png",
@@ -477,7 +436,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 348,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-06.png",
@@ -486,7 +445,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 320,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-07.png",
@@ -495,7 +454,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 373,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-08.png",
@@ -504,7 +463,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 509,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-09.png",
@@ -513,7 +472,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 428,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-10.png",
@@ -522,7 +481,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 378,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-11.png",
@@ -531,7 +490,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 473,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-12.png",
@@ -540,7 +499,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 279,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-13.png",
@@ -549,7 +508,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 380,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-14.png",
@@ -558,7 +517,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 372,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-15.png",
@@ -567,7 +526,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 383,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-16.png",
@@ -576,7 +535,7 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 364,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
+			shift = { 0.0, 0.0 }
 		},
 		{
 			filename = "__space-age__/graphics/decorative/aquilo-ice/aqulio-snowy-decal/aqulio-snowy-decal-17.png",
@@ -585,9 +544,9 @@ local d = merge(data.raw["optimized-decorative"]["aqulio-snowy-decal"], {
 			height = 379,
 			tint = { 1, 1, 1 },
 			scale = 0.5,
-			shift = { 0.0, 0.0 },
-		},
-	},
+			shift = { 0.0, 0.0 }
+		}
+	}
 })
 for _, picture in pairs(d.pictures) do
 	picture.tint = { 1, 1, 1, 0.5 }

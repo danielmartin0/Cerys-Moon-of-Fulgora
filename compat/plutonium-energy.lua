@@ -35,19 +35,19 @@ if mods["PlutoniumEnergy"] then
 	if data.raw.recipe["plutonium-cannon-shell"] then
 		table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
 			type = "unlock-recipe",
-			recipe = "plutonium-cannon-shell",
+			recipe = "plutonium-cannon-shell"
 		})
 	end
 	if data.raw.recipe["explosive-plutonium-cannon-shell"] then
 		table.insert(data.raw.technology["cerys-plutonium-weaponry"].effects, {
 			type = "unlock-recipe",
-			recipe = "explosive-plutonium-cannon-shell",
+			recipe = "explosive-plutonium-cannon-shell"
 		})
 	end
 	if data.raw.recipe["MOX-reactor"] then
 		table.insert(data.raw.technology["cerys-applications-of-radioactivity"].effects, {
 			type = "unlock-recipe",
-			recipe = "MOX-reactor",
+			recipe = "MOX-reactor"
 		})
 	end
 	if data.raw.reactor["MOX-reactor"] then

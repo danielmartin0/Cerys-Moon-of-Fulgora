@@ -13,8 +13,8 @@ end
 
 local towers = surface.find_entities_filtered({
 	name = {
-		"cerys-fulgoran-radiative-tower-contracted-container",
-	},
+		"cerys-fulgoran-radiative-tower-contracted-container"
+	}
 })
 
 for _, e in ipairs(towers) do

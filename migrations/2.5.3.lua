@@ -3,12 +3,8 @@ if not (storage.radiative_towers and storage.radiative_towers.towers) then
 end
 
 for _, surface in pairs(game.surfaces) do
-	if
-		surface.valid
-		and surface.name ~= "cerys"
-		and surface.planet
-		and surface.planet.prototype.entities_require_heating
-	then
+	if surface.valid and surface.name ~= "cerys" and surface.planet
+		and surface.planet.prototype.entities_require_heating then
 		local reactors = surface.find_entities_filtered({
 			name = {
 				"cerys-hidden-reactor-1",
@@ -27,8 +23,8 @@ for _, surface in pairs(game.surfaces) do
 				"cerys-hidden-reactor-14",
 				"cerys-hidden-reactor-15",
 				"cerys-hidden-reactor-16",
-				"cerys-hidden-reactor-17",
-			},
+				"cerys-hidden-reactor-17"
+			}
 		})
 
 		for _, reactor in pairs(reactors) do
@@ -55,8 +51,8 @@ for _, surface in pairs(game.surfaces) do
 				"radiative-tower-lamp-14",
 				"radiative-tower-lamp-15",
 				"radiative-tower-lamp-16",
-				"radiative-tower-lamp-17",
-			},
+				"radiative-tower-lamp-17"
+			}
 		})
 
 		for _, lamp in pairs(lamps) do
@@ -67,13 +63,8 @@ for _, surface in pairs(game.surfaces) do
 	end
 
 	for _, tower in pairs(storage.radiative_towers.towers) do
-		if
-			tower.entity
-			and tower.entity.valid
-			and tower.entity.surface
-			and tower.entity.surface.valid
-			and tower.entity.surface.name == surface.name
-		then
+		if tower.entity and tower.entity.valid and tower.entity.surface and tower.entity.surface.valid
+			and tower.entity.surface.name == surface.name then
 			tower.reactors = {}
 			tower.last_radius = nil
 			tower.current_lamp = nil

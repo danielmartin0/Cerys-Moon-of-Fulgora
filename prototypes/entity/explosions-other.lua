@@ -1,16 +1,12 @@
 local function sound_variations_with_volume_variations(
-	filename_string,
-	variations,
-	min_volume,
-	max_volume,
-	modifiers_parameter
+	filename_string, variations, min_volume, max_volume, modifiers_parameter
 )
 	local result = {}
 	for i = 1, variations do
 		result[i] = {
 			filename = filename_string .. "-" .. i .. ".ogg",
 			min_volume = min_volume or 0.5,
-			max_volume = max_volume or 0.5,
+			max_volume = max_volume or 0.5
 		}
 		if modifiers_parameter then
 			result[i].modifiers = modifiers_parameter
@@ -26,7 +22,7 @@ data:extend({
 		localised_name = { "entity-name.explosion" },
 		icons = {
 			{ icon = "__base__/graphics/icons/explosion.png" },
-			{ icon = "__base__/graphics/icons/cannon-shell.png" },
+			{ icon = "__base__/graphics/icons/cannon-shell.png" }
 		},
 		flags = { "not-on-map" },
 		hidden = true,
@@ -42,17 +38,17 @@ data:extend({
 				frame_count = 16,
 				animation_speed = 0.5,
 				scale = 0.5,
-				usage = "explosion",
-			},
+				usage = "explosion"
+			}
 		},
 		sound = {
 			aggregation = {
 				max_count = 1,
-				remove = true,
+				remove = true
 			},
-			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.25, 0.3),
-		},
-	},
+			variations = sound_variations_with_volume_variations("__base__/sound/small-explosion", 5, 0.25, 0.3)
+		}
+	}
 })
 
 data:extend({
@@ -74,10 +70,10 @@ data:extend({
 				tint = { r = 0.8, g = 0.8, b = 1 },
 				scale = 0.78,
 				draw_as_glow = true,
-				shift = util.by_pixel(1.5, -1),
-			},
-		},
-	},
+				shift = util.by_pixel(1.5, -1)
+			}
+		}
+	}
 })
 
 -- local plutonium_cannon_shell_explosion = merge(data.raw["explosion"]["big-explosion"], {

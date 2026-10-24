@@ -1,12 +1,12 @@
 local Public = {}
 
---== Prevent burner inserters from being restricted on Cerys: ==--
+-- == Prevent burner inserters from being restricted on Cerys: ==--
 
 if data.raw["inserter"]["burner-inserter"] then
 	local burner_inserter = data.raw["inserter"]["burner-inserter"]
 	PlanetsLib.relax_surface_conditions(burner_inserter, {
 		property = "temperature",
-		min = 255,
+		min = 255
 	})
 end
 
@@ -17,10 +17,7 @@ end
 
 -- This override is because many mods add their science packs to all modded labs. If a mod wants to mark Cerys as a dependency and extend these inputs intentionally, that is fine.
 data.raw.lab["cerys-lab"].inputs = {
-	"cerysian-science-pack",
-	"logistic-science-pack",
-	"space-science-pack",
-	"cryogenic-science-pack",
+	"cerysian-science-pack", "logistic-science-pack", "space-science-pack", "cryogenic-science-pack"
 }
 
 -- data.raw.lab["cerys-lab-dummy"].inputs = {
@@ -31,7 +28,7 @@ data.raw.lab["cerys-lab"].next_upgrade = nil
 data.raw.reactor["cerys-fulgoran-reactor"].next_upgrade = nil
 data.raw["assembling-machine"]["cerys-fulgoran-cryogenic-plant"].next_upgrade = nil
 
---== Fix mods installing faulty next_upgrade on Cerys entities (5-dim, etc): ==--
+-- == Fix mods installing faulty next_upgrade on Cerys entities (5-dim, etc): ==--
 
 local collision_mask_util = require("collision-mask-util")
 

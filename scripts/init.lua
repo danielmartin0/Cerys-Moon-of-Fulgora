@@ -5,7 +5,7 @@ local terrain = require("scripts.terrain")
 local picker_dollies = require("compat.picker-dollies")
 local Public = {}
 
-script.on_init(function()
+script.on_init(function ()
 	picker_dollies.add_picker_dollies_blacklists()
 	Public.initialize_technologies()
 	Public.ensure_top_level_storage()
@@ -61,14 +61,14 @@ function Public.create_reactor(surface)
 
 	local adjusted_reactor_position = {
 		x = math.ceil(common.REACTOR_POSITION_SEED.x),
-		y = math.ceil(common.REACTOR_POSITION_SEED.y / lib.get_cerys_surface_stretch_factor(surface)),
+		y = math.ceil(common.REACTOR_POSITION_SEED.y / lib.get_cerys_surface_stretch_factor(surface))
 	}
 
 	local entities = surface.find_entities_filtered({
 		area = {
 			{ adjusted_reactor_position.x - 15, adjusted_reactor_position.y - 11 },
-			{ adjusted_reactor_position.x + 15, adjusted_reactor_position.y + 11 },
-		},
+			{ adjusted_reactor_position.x + 15, adjusted_reactor_position.y + 11 }
+		}
 	})
 
 	for _, entity in pairs(entities) do
@@ -82,7 +82,7 @@ function Public.create_reactor(surface)
 	local e = surface.create_entity({
 		name = name,
 		position = adjusted_reactor_position,
-		force = "player",
+		force = "player"
 	})
 
 	e.minable_flag = false
@@ -91,11 +91,7 @@ function Public.create_reactor(surface)
 	local stage = common.DEBUG_NUCLEAR_REACTOR_START and repair.REACTOR_STAGE_ENUM.active
 		or repair.REACTOR_STAGE_ENUM.frozen
 
-	storage.cerys.reactor = {
-		stage = stage,
-		entity = e,
-		creation_tick = game.tick,
-	}
+	storage.cerys.reactor = { stage = stage, entity = e, creation_tick = game.tick }
 end
 
 function Public.on_surface_created(event)
@@ -169,9 +165,8 @@ function Public.ensure_top_level_storage()
 		end
 	end
 	if storage.given_charging_rod_performance_warning == nil then
-		storage.given_charging_rod_performance_warning = (
-			storage.cerys and storage.cerys.given_charging_rod_performance_warning
-		) or false
+		storage.given_charging_rod_performance_warning = (storage.cerys
+			and storage.cerys.given_charging_rod_performance_warning) or false
 		if storage.cerys then
 			storage.cerys.given_charging_rod_performance_warning = nil
 		end
@@ -197,9 +192,7 @@ function Public.ensure_cerys_storage_and_tables()
 	Public.ensure_top_level_storage()
 
 	if not storage.cerys then
-		storage.cerys = {
-			initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"],
-		}
+		storage.cerys = { initialization_version = script.active_mods["Cerys-Moon-of-Fulgora"] }
 	end
 
 	if not storage.cerys.radiation_particles then

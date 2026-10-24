@@ -22,32 +22,32 @@ data:extend({
 						{
 							type = "destroy-cliffs",
 							radius = 27,
-							explosion_at_trigger = "explosion",
+							explosion_at_trigger = "explosion"
 						},
 						{
 							type = "create-entity",
 							check_buildability = true,
 							-- This entity can have surface conditions
-							entity_name = "nuke-effects-nauvis",
+							entity_name = "nuke-effects-nauvis"
 						},
 						{
 							type = "create-entity",
 							check_buildability = true,
-							entity_name = "nuke-effects-vulcanus",
+							entity_name = "nuke-effects-vulcanus"
 						},
 						{
 							type = "create-entity",
 							check_buildability = true,
-							entity_name = "nuke-effects-aquilo",
+							entity_name = "nuke-effects-aquilo"
 						},
 						{
 							type = "create-entity",
 							check_buildability = true,
-							entity_name = "nuke-effects-space",
+							entity_name = "nuke-effects-space"
 						},
 						{
 							type = "create-entity",
-							entity_name = "thermonuclear-explosion",
+							entity_name = "thermonuclear-explosion"
 						},
 						{
 							type = "camera-effect",
@@ -57,51 +57,51 @@ data:extend({
 							delay = 0,
 							strength = 10,
 							full_strength_max_distance = 200,
-							max_distance = 1200,
+							max_distance = 1200
 						},
 						{
 							type = "play-sound",
 							sound = sounds.nuclear_explosion(1.5),
 							play_on_target_position = false,
 							-- min_distance = 200,
-							max_distance = 3000,
+							max_distance = 3000
 						},
 						{
 							type = "play-sound",
 							sound = sounds.nuclear_explosion_aftershock(0.5),
 							play_on_target_position = false,
 							-- min_distance = 200,
-							max_distance = 1000,
+							max_distance = 1000
 						},
 						{
 							type = "damage",
-							damage = { amount = 1200, type = "explosion" },
+							damage = { amount = 1200, type = "explosion" }
 						},
 						{
 							type = "damage",
-							damage = { amount = 400, type = "physical" },
+							damage = { amount = 400, type = "physical" }
 						},
 						{
 							type = "damage",
-							damage = { amount = 400, type = "fire" },
+							damage = { amount = 400, type = "fire" }
 						},
 						{
 							type = "create-entity",
 							entity_name = "huge-scorchmark",
 							offsets = { { 0, -0.5 } },
-							check_buildability = true,
+							check_buildability = true
 						},
 						{
 							type = "invoke-tile-trigger",
-							repeat_count = 1,
+							repeat_count = 1
 						},
 						{
 							type = "destroy-decoratives",
-							include_soft_decoratives = true, -- soft decoratives are decoratives with grows_through_rail_path = true
+							include_soft_decoratives = true,       -- soft decoratives are decoratives with grows_through_rail_path = true
 							include_decals = true,
 							invoke_decorative_trigger = true,
 							decoratives_with_trigger_only = false, -- if true, destroys only decoratives that have trigger_effect set
-							radius = 28, -- large radius for demostrative purposes
+							radius = 28                            -- large radius for demostrative purposes
 						},
 						{
 							type = "create-decorative",
@@ -111,7 +111,7 @@ data:extend({
 							spawn_min = 90,
 							spawn_max = 120,
 							apply_projection = true,
-							spread_evenly = true,
+							spread_evenly = true
 						},
 						{
 							type = "nested-result",
@@ -125,9 +125,9 @@ data:extend({
 									type = "projectile",
 									projectile = "atomic-bomb-ground-zero-projectile",
 									starting_speed = 2 * 0.6 * 0.8,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -141,9 +141,9 @@ data:extend({
 									type = "projectile",
 									projectile = "hydrogen-bomb-wave",
 									starting_speed = 2 * 0.5 * 0.7,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -158,9 +158,9 @@ data:extend({
 									type = "projectile",
 									projectile = "atomic-bomb-wave-spawns-cluster-nuke-explosion",
 									starting_speed = 2 * 0.5 * 0.7,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -175,9 +175,9 @@ data:extend({
 									type = "projectile",
 									projectile = "atomic-bomb-wave-spawns-fire-smoke-explosion",
 									starting_speed = 2 * 0.5 * 0.65,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -192,9 +192,9 @@ data:extend({
 									type = "projectile",
 									projectile = "atomic-bomb-wave-spawns-nuke-shockwave-explosion",
 									starting_speed = 2 * 0.5 * 0.65,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -209,9 +209,9 @@ data:extend({
 									type = "projectile",
 									projectile = "atomic-bomb-wave-spawns-nuclear-smoke",
 									starting_speed = 2 * 0.5 * 0.65,
-									starting_speed_deviation = nuke_shockwave_starting_speed_deviation,
-								},
-							},
+									starting_speed_deviation = nuke_shockwave_starting_speed_deviation
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -230,26 +230,26 @@ data:extend({
 											entity_name = "nuclear-smouldering-smoke-source",
 											tile_collision_mask = {
 												layers = {
-													water_tile = true,
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-					},
+													water_tile = true
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				},
 				{
 					type = "delayed",
-					delayed_trigger = "thermonuclear-explosion-fires",
-				},
-			},
+					delayed_trigger = "thermonuclear-explosion-fires"
+				}
+			}
 		},
 		--light = {intensity = 0.8, size = 15},
 		animation = require("__base__.prototypes.entity.rocket-projectile-pictures").animation({ 0.3, 1, 0.3 }),
 		shadow = require("__base__.prototypes.entity.rocket-projectile-pictures").shadow,
-		smoke = require("__base__.prototypes.entity.rocket-projectile-pictures").smoke,
+		smoke = require("__base__.prototypes.entity.rocket-projectile-pictures").smoke
 	},
 
 	{
@@ -273,13 +273,13 @@ data:extend({
 						upper_distance_threshold = 95,
 						lower_damage_modifier = 1,
 						upper_damage_modifier = 0.1,
-						damage = { amount = 150, type = "explosion" },
-					},
-				},
-			},
+						damage = { amount = 150, type = "explosion" }
+					}
+				}
+			}
 		},
 		animation = nil,
-		shadow = nil,
+		shadow = nil
 	},
 
 	{
@@ -307,12 +307,12 @@ data:extend({
 										entity_name = "cerys-hydrogen-bomb-fire-flame-1",
 										tile_collision_mask = {
 											layers = {
-												water_tile = true,
-											},
-										},
-									},
-								},
-							},
+												water_tile = true
+											}
+										}
+									}
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -329,12 +329,12 @@ data:extend({
 										entity_name = "cerys-hydrogen-bomb-fire-flame-2",
 										tile_collision_mask = {
 											layers = {
-												water_tile = true,
-											},
-										},
-									},
-								},
-							},
+												water_tile = true
+											}
+										}
+									}
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -351,12 +351,12 @@ data:extend({
 										entity_name = "cerys-hydrogen-bomb-fire-flame-3",
 										tile_collision_mask = {
 											layers = {
-												water_tile = true,
-											},
-										},
-									},
-								},
-							},
+												water_tile = true
+											}
+										}
+									}
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -373,12 +373,12 @@ data:extend({
 										entity_name = "cerys-hydrogen-bomb-fire-flame-4",
 										tile_collision_mask = {
 											layers = {
-												water_tile = true,
-											},
-										},
-									},
-								},
-							},
+												water_tile = true
+											}
+										}
+									}
+								}
+							}
 						},
 						{
 							type = "nested-result",
@@ -395,37 +395,37 @@ data:extend({
 										entity_name = "cerys-hydrogen-bomb-fire-flame-5",
 										tile_collision_mask = {
 											layers = {
-												water_tile = true,
-											},
-										},
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
+												water_tile = true
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	},
 	merge(data.raw["fire"]["fire-flame"], {
 		name = "cerys-hydrogen-bomb-fire-flame-1",
-		initial_lifetime = 1200,
+		initial_lifetime = 1200
 	}),
 	merge(data.raw["fire"]["fire-flame"], {
 		name = "cerys-hydrogen-bomb-fire-flame-2",
-		initial_lifetime = 1000,
+		initial_lifetime = 1000
 	}),
 	merge(data.raw["fire"]["fire-flame"], {
 		name = "cerys-hydrogen-bomb-fire-flame-3",
-		initial_lifetime = 800,
+		initial_lifetime = 800
 	}),
 	merge(data.raw["fire"]["fire-flame"], {
 		name = "cerys-hydrogen-bomb-fire-flame-4",
-		initial_lifetime = 600,
+		initial_lifetime = 600
 	}),
 	merge(data.raw["fire"]["fire-flame"], {
 		name = "cerys-hydrogen-bomb-fire-flame-5",
-		initial_lifetime = 400,
+		initial_lifetime = 400
 	}),
 	{
 		type = "explosion",
@@ -434,7 +434,7 @@ data:extend({
 		hidden = true,
 		icons = {
 			{ icon = "__base__/graphics/icons/explosion.png" },
-			{ icon = "__base__/graphics/icons/atomic-bomb.png" },
+			{ icon = "__base__/graphics/icons/atomic-bomb.png" }
 		},
 		order = "a-d-a",
 		subgroup = "explosions",
@@ -444,8 +444,8 @@ data:extend({
 			speed = 2,
 			variations = {
 				{ filename = "__base__/sound/fight/large-explosion-1.ogg", volume = 0.5, speed = 2 },
-				{ filename = "__base__/sound/fight/large-explosion-2.ogg", volume = 0.5, speed = 2 },
-			},
+				{ filename = "__base__/sound/fight/large-explosion-2.ogg", volume = 0.5, speed = 2 }
+			}
 		},
 		animations = {
 			width = 628,
@@ -454,7 +454,7 @@ data:extend({
 			draw_as_glow = true,
 			priority = "very-low",
 			flags = { "linear-magnification" },
-			shift = util.by_pixel(0.5, -122.5), --shift = util.by_pixel(0.5, -62.5), shifted by 60 due to scaling and centering
+			shift = util.by_pixel(0.5, -122.5), -- shift = util.by_pixel(0.5, -62.5), shifted by 60 due to scaling and centering
 			animation_speed = 0.45 * 0.5 * 0.75,
 			scale = 4,
 			dice_y = 5,
@@ -463,26 +463,26 @@ data:extend({
 				{
 					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-1.png",
 					width_in_frames = 5,
-					height_in_frames = 5,
+					height_in_frames = 5
 				},
 				{
 					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-2.png",
 					width_in_frames = 5,
-					height_in_frames = 5,
+					height_in_frames = 5
 				},
 				{
 					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-3.png",
 					width_in_frames = 5,
-					height_in_frames = 5,
+					height_in_frames = 5
 				},
 				{
 					filename = "__base__/graphics/entity/nuke-explosion/nuke-explosion-4.png",
 					width_in_frames = 5,
-					height_in_frames = 5,
-				},
+					height_in_frames = 5
+				}
 			},
-			usage = "explosion",
-		},
+			usage = "explosion"
+		}
 	},
 	{
 		type = "explosion",
@@ -491,7 +491,7 @@ data:extend({
 		hidden = true,
 		icons = {
 			{ icon = "__base__/graphics/icons/explosion.png" },
-			{ icon = "__base__/graphics/icons/atomic-bomb.png" },
+			{ icon = "__base__/graphics/icons/atomic-bomb.png" }
 		},
 		order = "cerys",
 		subgroup = "explosions",
@@ -510,10 +510,10 @@ data:extend({
 						delay = 0,
 						strength = 20,
 						full_strength_max_distance = 2500,
-						max_distance = 2000,
-					},
-				},
-			},
-		},
-	},
+						max_distance = 2000
+					}
+				}
+			}
+		}
+	}
 })

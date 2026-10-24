@@ -27,65 +27,59 @@ script.on_event({
 	defines.events.on_robot_built_entity,
 	defines.events.on_space_platform_built_entity,
 	defines.events.script_raised_built,
-	defines.events.script_raised_revive,
-}, function(event)
-	local entity = event.entity
-	if not (entity and entity.valid) then
-		return
-	end
-
-	local on_cerys = entity.surface and entity.surface.valid and entity.surface.name == "cerys"
-
-	if on_cerys and entity.type == "tile-ghost" then
-		local tile = entity.surface.get_tile(entity.position.x, entity.position.y)
-		if tile and lib.find(common.SPACE_TILES_AROUND_CERYS, tile.name) then
-			entity.destroy()
-			return
-		end
-	end
-
-	if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
-		radiative_towers.register_radiative_tower(entity)
-	elseif
-		entity.name == "cerys-charging-rod"
-		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-	then
-		local tags = entity.tags
-			or event.tags
-			or {
-				circuit_controlled = false,
-				control_signal = { type = "virtual", name = "signal-P" },
-				is_positive = true,
-			}
-		rods.built_charging_rod(entity, tags)
-	elseif on_cerys and entity.type == "heat-pipe" then
-		cooling.register_heat_pipe(entity)
-	elseif on_cerys and entity.type == "boiler" then
-		cooling.register_boiler(entity)
-	elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
-		if not event.player_index then
+	defines.events.script_raised_revive
+},
+	function (event)
+		local entity = event.entity
+		if not (entity and entity.valid) then
 			return
 		end
 
-		local player = game.players[event.player_index]
+		local on_cerys = entity.surface and entity.surface.valid and entity.surface.name == "cerys"
 
-		if not (player and player.valid) then
-			return
+		if on_cerys and entity.type == "tile-ghost" then
+			local tile = entity.surface.get_tile(entity.position.x, entity.position.y)
+			if tile and lib.find(common.SPACE_TILES_AROUND_CERYS, tile.name) then
+				entity.destroy()
+				return
+			end
 		end
 
-		reactor_repair.scaffold_on_build(entity, player)
-	elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
-		teleporter.register_frozen_teleporter(entity)
-	elseif on_cerys and entity.type == "solar-panel" then
-		lighting.register_solar_panel(entity)
-	elseif entity.name == "cerys-lab" then
-		entity.backer_name = ""
-	elseif entity.name == "cerys-radiation-proof-inserter" then
-		inserter.register_inserter(entity)
-	end
-end)
+		if entity.name == "cerys-fulgoran-radiative-tower" or entity.name == "cerys-fulgoran-radiative-tower-frozen" then
+			radiative_towers.register_radiative_tower(entity)
+		elseif entity.name == "cerys-charging-rod"
+			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
+			local tags = entity.tags or event.tags
+				or { circuit_controlled = false, control_signal = { type = "virtual", name = "signal-P" }, is_positive = true }
+			rods.built_charging_rod(entity, tags)
+		elseif on_cerys and entity.type == "heat-pipe" then
+			cooling.register_heat_pipe(entity)
+		elseif on_cerys and entity.type == "boiler" then
+			cooling.register_boiler(entity)
+		elseif entity.name == "cerys-fulgoran-reactor-scaffold" and event.name == defines.events.on_built_entity then
+			if not event.player_index then
+				return
+			end
 
-script.on_event("bplib-extract", function(event)
+			local player = game.players[event.player_index]
+
+			if not (player and player.valid) then
+				return
+			end
+
+			reactor_repair.scaffold_on_build(entity, player)
+		elseif entity.name == "cerys-fulgoran-teleporter-frozen" then
+			teleporter.register_frozen_teleporter(entity)
+		elseif on_cerys and entity.type == "solar-panel" then
+			lighting.register_solar_panel(entity)
+		elseif entity.name == "cerys-lab" then
+			entity.backer_name = ""
+		elseif entity.name == "cerys-radiation-proof-inserter" then
+			inserter.register_inserter(entity)
+		end
+	end)
+
+script.on_event("bplib-extract", function (event)
 	for bp_index, entity in pairs(event.entities) do
 		if entity.name == "cerys-charging-rod" then
 			local tags = {}
@@ -116,7 +110,7 @@ local function update_overlapping_entity(tags, entity)
 	end
 end
 
-script.on_event(defines.events.on_pre_build, function(event)
+script.on_event(defines.events.on_pre_build, function (event)
 	local player = game.get_player(event.player_index)
 
 	if not (player and player.valid) then
@@ -134,24 +128,22 @@ script.on_event(defines.events.on_pre_build, function(event)
 	end
 end)
 
-script.on_event({ defines.events.on_surface_deleted, defines.events.on_surface_cleared }, function()
+script.on_event({ defines.events.on_surface_deleted, defines.events.on_surface_cleared }, function ()
 	storage.surface_some_chunk_generated = nil
 	storage.cerys_surface_stretch_factor = nil
 end)
 
-script.on_event("bplib-overlaps", function(event)
+script.on_event("bplib-overlaps", function (event)
 	for bp_index, entity in pairs(event.overlaps) do
-		if
-			entity.name == "cerys-charging-rod"
-			or (entity.type == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-		then
+		if entity.name == "cerys-charging-rod"
+			or (entity.type == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
 			local tags = event.blueprint.get_blueprint_entity_tags(bp_index) or {}
 			update_overlapping_entity(tags, entity)
 		end
 	end
 end)
 
-script.on_event(defines.events.on_research_finished, function(event)
+script.on_event(defines.events.on_research_finished, function (event)
 	local research = event.research
 
 	if research.name == "cerys-fulgoran-cryogenics" then
@@ -173,7 +165,7 @@ script.on_event(defines.events.on_research_finished, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_player_changed_surface, function(event)
+script.on_event(defines.events.on_player_changed_surface, function (event)
 	local player = game.players[event.player_index]
 	local new_surface = player.surface
 
@@ -186,7 +178,7 @@ script.on_event(defines.events.on_player_changed_surface, function(event)
 	end
 end)
 
-script.on_event(defines.events.on_tick, function(event)
+script.on_event(defines.events.on_tick, function (event)
 	local tick = event.tick
 
 	radiative_towers.tick_1_move_radiative_towers()
@@ -352,7 +344,7 @@ function Public.cerys_tick(surface, tick)
 	end
 end
 
-script.on_event(defines.events.on_script_trigger_effect, function(event)
+script.on_event(defines.events.on_script_trigger_effect, function (event)
 	local effect_id = event.effect_id
 
 	local entity = event.target_entity
@@ -388,17 +380,14 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			return
 		end
 
-		local p2 = {
-			x = p.x + 0.6,
-			y = p.y - 1.44 + (math.random() - 0.5),
-		} -- Update Factoriopedia simulation if updating this
+		local p2 = { x = p.x + 0.6, y = p.y - 1.44 + (math.random() - 0.5) } -- Update Factoriopedia simulation if updating this
 
 		local r = rendering.draw_sprite({
 			sprite = "cerys-solar-wind-particle-ghost",
 			target = p2,
 			surface = surface,
 			render_layer = "air-object",
-			tint = { r = 0.9, g = 0.9, b = 0.9 }, -- Opacity 90% (since it's a glow)
+			tint = { r = 0.9, g = 0.9, b = 0.9 } -- Opacity 90% (since it's a glow)
 		})
 
 		local off_cerys = surface.name ~= "cerys"
@@ -410,7 +399,7 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 			position = p2,
 			is_ghost = true,
 			surface_index = surface.index,
-			off_cerys = off_cerys or nil,
+			off_cerys = off_cerys or nil
 		})
 
 		if off_cerys then
@@ -421,52 +410,54 @@ end)
 
 script.on_event({
 	defines.events.on_robot_built_tile,
-	defines.events.on_player_built_tile,
-}, function(event)
-	local surface = game.surfaces[event.surface_index]
-	if surface and surface.valid and surface.name == "cerys" then
-		for _, tile in pairs(event.tiles) do
-			if common.TILE_REPLACEMENTS[event.tile.name] then
-				surface.set_tiles(
-					{ {
-						name = common.TILE_REPLACEMENTS[event.tile.name],
-						position = tile.position,
-					} },
-					true
-				)
-			end
+	defines.events.on_player_built_tile
+},
+	function (event)
+		local surface = game.surfaces[event.surface_index]
+		if surface and surface.valid and surface.name == "cerys" then
+			for _, tile in pairs(event.tiles) do
+				if common.TILE_REPLACEMENTS[event.tile.name] then
+					surface.set_tiles({
+						{
+							name = common.TILE_REPLACEMENTS[event.tile.name],
+							position = tile.position
+						}
+					}, true)
+				end
 
-			local hidden_tile = surface.get_hidden_tile(tile.position)
+				local hidden_tile = surface.get_hidden_tile(tile.position)
 
-			if hidden_tile == "cerys-empty-space-2" then -- It seems to be impossible to prevent this with collision masks
-				surface.set_tiles({ {
-					name = hidden_tile,
-					position = tile.position,
-				} }, true)
+				if hidden_tile == "cerys-empty-space-2" then -- It seems to be impossible to prevent this with collision masks
+					surface.set_tiles({
+						{
+							name = hidden_tile,
+							position = tile.position
+						}
+					}, true)
 
-				if event.player_index then
-					local player = game.get_player(event.player_index)
-					if player and player.valid and event.item then
-						player.insert({ name = event.item.name, count = 1, quality = event.quality.name })
+					if event.player_index then
+						local player = game.get_player(event.player_index)
+						if player and player.valid and event.item then
+							player.insert({ name = event.item.name, count = 1, quality = event.quality.name })
+						end
 					end
 				end
 			end
-		end
-	else
-		if common.TILE_REPLACEMENTS_INVERSE[event.tile.name] then
-			for _, tile in pairs(event.tiles) do
-				surface.set_tiles({
-					{
-						name = common.TILE_REPLACEMENTS_INVERSE[event.tile.name],
-						position = tile.position,
-					},
-				}, true)
+		else
+			if common.TILE_REPLACEMENTS_INVERSE[event.tile.name] then
+				for _, tile in pairs(event.tiles) do
+					surface.set_tiles({
+						{
+							name = common.TILE_REPLACEMENTS_INVERSE[event.tile.name],
+							position = tile.position
+						}
+					}, true)
+				end
 			end
 		end
-	end
-end)
+	end)
 
-script.on_configuration_changed(function()
+script.on_configuration_changed(function ()
 	init.ensure_top_level_storage()
 
 	if storage.background_renderings then
@@ -487,9 +478,7 @@ script.on_configuration_changed(function()
 			if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 				nuclear_reactor.register_reactor_if_missing(surface)
 
-				if
-					not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid)
-				then
+				if not (storage.cerys.reactor and storage.cerys.reactor.entity and storage.cerys.reactor.entity.valid) then
 					init.create_reactor(surface)
 				end
 
@@ -497,14 +486,9 @@ script.on_configuration_changed(function()
 					local e = terrain.create_teleporter()
 
 					if e and e.valid then
-						game.print(
-							"[CERYS]: Added a Fulgoran Teleporter to the Cerys surface: [gps="
-							.. e.position.x
-							.. ","
-							.. e.position.y
-							.. ",cerys]",
-							{ color = common.FRIENDLY_COLOR }
-						)
+						game.print("[CERYS]: Added a Fulgoran Teleporter to the Cerys surface: [gps=" .. e.position.x
+								.. "," .. e.position.y
+								.. ",cerys]", { color = common.FRIENDLY_COLOR })
 					end
 				end
 			end
@@ -514,12 +498,8 @@ script.on_configuration_changed(function()
 	picker_dollies.add_picker_dollies_blacklists()
 
 	-- Hard mode can toggle pitch black:
-	if
-		storage.cerys
-		and storage.cerys.light
-		and storage.cerys.light.rendering_3
-		and storage.cerys.light.rendering_3.valid
-	then
+	if storage.cerys and storage.cerys.light and storage.cerys.light.rendering_3
+		and storage.cerys.light.rendering_3.valid then
 		storage.cerys.light.rendering_3.destroy()
 		storage.cerys.light.rendering_3 = nil
 	end
@@ -550,24 +530,19 @@ function Public.check_rocket_timed_effects(surface)
 		surface.create_entity({
 			name = "cerys-atmospheric-nuke-effect",
 			position = { x = 0, y = 0 },
-			force = "neutral",
+			force = "neutral"
 		})
 
 		for _, player in pairs(game.connected_players) do
 			if player and player.valid and player.surface and player.surface.valid then
 				local player_surface = player.surface
-				if
-					player_surface.name == "cerys"
-					or (
-						player_surface.platform
-						and player_surface.platform.valid
-						and player_surface.platform.space_location
-						and player_surface.platform.space_location.name == "cerys"
-					)
-				then
+				if player_surface.name == "cerys"
+					or (player_surface.platform and player_surface.platform.valid
+						and player_surface.platform.space_location and player_surface.platform.space_location.name
+							== "cerys") then
 					player.play_sound({
 						path = "cerys-atmospheric-nuke",
-						volume_modifier = 1,
+						volume_modifier = 1
 					})
 				end
 			end
@@ -575,43 +550,44 @@ function Public.check_rocket_timed_effects(surface)
 	end
 end
 
-script.on_event(defines.events.on_rocket_launch_ordered, function(event)
-	local rocket = event.rocket
-	if not (rocket and rocket.valid) then
-		return
-	end
+script.on_event(
+	defines.events.on_rocket_launch_ordered,
+	function (event)
+		local rocket = event.rocket
+		if not (rocket and rocket.valid) then
+			return
+		end
 
-	local surface = rocket.surface
-	if not (surface and surface.valid and surface.name == "cerys") then
-		return
-	end
+		local surface = rocket.surface
+		if not (surface and surface.valid and surface.name == "cerys") then
+			return
+		end
 
-	local cargo_pod = event.rocket.cargo_pod
-	if not (cargo_pod and cargo_pod.valid) then
-		return
-	end
+		local cargo_pod = event.rocket.cargo_pod
+		if not (cargo_pod and cargo_pod.valid) then
+			return
+		end
 
-	if not storage.atmospheric_nuke_toast_timer then
-		if
-			cargo_pod.cargo_pod_destination
-			and cargo_pod.cargo_pod_destination.type == defines.cargo_destination.orbit
-		then
-			local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
+		if not storage.atmospheric_nuke_toast_timer then
+			if cargo_pod.cargo_pod_destination
+				and cargo_pod.cargo_pod_destination.type == defines.cargo_destination.orbit then
+				local pod_contents = cargo_pod.get_inventory(defines.inventory.cargo_unit).get_contents()
 
-			local has_hydrogen_bomb = false
-			for _, item in pairs(pod_contents) do
-				if item.name == "cerys-hydrogen-bomb" then
-					has_hydrogen_bomb = true
+				local has_hydrogen_bomb = false
+				for _, item in pairs(pod_contents) do
+					if item.name == "cerys-hydrogen-bomb" then
+						has_hydrogen_bomb = true
+					end
 				end
-			end
 
-			if has_hydrogen_bomb then
-				storage.atmospheric_nuke_timer = game.tick + 22 * 60
-				storage.atmospheric_nuke_toast_timer = game.tick + 27 * 60
+				if has_hydrogen_bomb then
+					storage.atmospheric_nuke_timer = game.tick + 22 * 60
+					storage.atmospheric_nuke_toast_timer = game.tick + 27 * 60
+				end
 			end
 		end
 	end
-end)
+)
 
 local function unresearch_successors(tech)
 	for _, successor in pairs(tech.successors) do
@@ -624,38 +600,31 @@ end
 
 script.on_event({
 	defines.events.on_pre_surface_cleared,
-	defines.events.on_pre_surface_deleted,
-}, function(event)
-	local surface_index = event.surface_index
-	local surface = game.surfaces[surface_index]
+	defines.events.on_pre_surface_deleted
+},
+	function (event)
+		local surface_index = event.surface_index
+		local surface = game.surfaces[surface_index]
 
-	if not (surface and surface.valid and surface.name == "cerys") then
-		return
-	end
-
-	for _, force in pairs(game.forces) do
-		local tech = force.technologies["moon-discovery-cerys"]
-		if tech then
-			unresearch_successors(tech)
+		if not (surface and surface.valid and surface.name == "cerys") then
+			return
 		end
-	end
 
-	storage.cerys = nil
-end)
+		for _, force in pairs(game.forces) do
+			local tech = force.technologies["moon-discovery-cerys"]
+			if tech then
+				unresearch_successors(tech)
+			end
+		end
 
-script.on_event(defines.events.on_entity_damaged, function(event)
+		storage.cerys = nil
+	end)
+
+script.on_event(defines.events.on_entity_damaged, function (event)
 	local entity = event.entity
 
-	if
-		not (
-			entity
-			and entity.valid
-			and entity.type == "asteroid"
-			and entity.surface
-			and entity.surface.valid
-			and entity.surface.name == "cerys"
-		)
-	then
+	if not (entity and entity.valid and entity.type == "asteroid" and entity.surface and entity.surface.valid
+		and entity.surface.name == "cerys") then
 		return
 	end
 
@@ -669,26 +638,23 @@ script.on_event(defines.events.on_entity_damaged, function(event)
 		return
 	end
 
-	local no_weapon = not (
-		cause.get_inventory(defines.inventory.character_guns)
-		and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index]
-		and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index].valid_for_read
-	)
+	local no_weapon = not (cause.get_inventory(defines.inventory.character_guns) and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index]
+		and cause.get_inventory(defines.inventory.character_guns)[cause.selected_gun_index].valid_for_read)
 
 	if no_weapon then
 		entity.health = entity.health - 2 -- Allow melee on asteroids for funsies
 	end
 end)
 
-script.on_event(defines.events.on_surface_created, function(event)
+script.on_event(defines.events.on_surface_created, function (event)
 	init.on_surface_created(event)
 end)
 
-script.on_event(defines.events.on_chunk_generated, function(event)
+script.on_event(defines.events.on_chunk_generated, function (event)
 	init.on_chunk_generated(event)
 end)
 
-script.on_event(defines.events.on_gui_opened, function(event)
+script.on_event(defines.events.on_gui_opened, function (event)
 	if event.gui_type ~= defines.gui_type.entity then
 		return
 	end
@@ -709,17 +675,15 @@ script.on_event(defines.events.on_gui_opened, function(event)
 		teleporter.toggle_gui(player, entity)
 	elseif entity.name == "cerys-radiation-proof-inserter" then
 		inserter.on_inserter_gui_opened(player, entity)
-	elseif
-		entity.name == "cerys-charging-rod"
-		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-	then
+	elseif entity.name == "cerys-charging-rod"
+		or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
 		rods.on_gui_opened(event)
 	elseif entity.type == "accumulator" then -- Legacy code
 		rods.destroy_guis(event.player_index)
 	end
 end)
 
-script.on_event(defines.events.on_gui_closed, function(event)
+script.on_event(defines.events.on_gui_closed, function (event)
 	local player = game.players[event.player_index]
 
 	if not (player and player.valid) then
@@ -734,10 +698,8 @@ script.on_event(defines.events.on_gui_closed, function(event)
 			return
 		end
 
-		if
-			entity.name == "cerys-charging-rod"
-			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod")
-		then
+		if entity.name == "cerys-charging-rod"
+			or (entity.name == "entity-ghost" and entity.ghost_name == "cerys-charging-rod") then
 			rods.destroy_guis(event.player_index)
 		end
 	end

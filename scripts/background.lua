@@ -36,7 +36,7 @@ function Public.tick_1_update_background_renderings(surface)
 
 				local target_position = {
 					x = center_of_screen.x * PLANET_PARALLAX + PLANET_OFFSET.x,
-					y = center_of_screen.y * PLANET_PARALLAX + PLANET_OFFSET.y + extra_y_offset,
+					y = center_of_screen.y * PLANET_PARALLAX + PLANET_OFFSET.y + extra_y_offset
 				}
 
 				if not r then
@@ -48,9 +48,8 @@ function Public.tick_1_update_background_renderings(surface)
 						players = { player.index },
 						x_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
 							/ prototypes.mod_data["Cerys"].data.fulgora_image_size,
-						y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
-							/ prototypes.mod_data["Cerys"].data.fulgora_image_size
-							/ planet_stretch,
+						y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE / prototypes.mod_data["Cerys"].data.fulgora_image_size
+							/ planet_stretch
 					})
 
 					r = storage.background_renderings[player.index]
@@ -85,13 +84,9 @@ function Public.reset_background_rendering_positions()
 		local r = storage.background_renderings[player.index]
 
 		if r and r.valid then
-			r.target = {
-				x = PLANET_OFFSET.x,
-				y = PLANET_OFFSET.y,
-			}
+			r.target = { x = PLANET_OFFSET.x, y = PLANET_OFFSET.y }
 			r.x_scale = common.DEFAULT_FULGORA_IMAGE_SIZE / prototypes.mod_data["Cerys"].data.fulgora_image_size
-			r.y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE
-				/ prototypes.mod_data["Cerys"].data.fulgora_image_size
+			r.y_scale = common.DEFAULT_FULGORA_IMAGE_SIZE / prototypes.mod_data["Cerys"].data.fulgora_image_size
 				/ planet_stretch
 		end
 	end

@@ -39,7 +39,7 @@ if storage.radiative_towers and storage.radiative_towers.towers then
 				local new_lamp = e.surface.create_entity({
 					name = "radiative-tower-lamp-" .. heating_radius,
 					position = e.position,
-					force = e.force,
+					force = e.force
 				})
 				new_lamp.destructible = false
 				new_lamp.minable_flag = false

@@ -9,19 +9,19 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 		"cerysian-science-pack",
 		"logistic-science-pack",
 		"space-science-pack",
-		"cryogenic-science-pack",
+		"cryogenic-science-pack"
 	}, -- Also set elsewhere
 	collision_box = { { -2.15, -1.75 }, { 2.15, 1.75 } },
 	selection_box = { { -2.5, -2 }, { 2.5, 2 } },
 	minable = { mining_time = 0.2, result = "cerys-lab" },
 	surface_conditions = {
-		common.AMBIENT_RADIATION_MIN,
+		common.AMBIENT_RADIATION_MIN
 	},
 	energy_usage = "60kW",
 	researching_speed = 2,
 	frozen_patch = merge(data.raw.lab["lab"].frozen_patch, {
 		scale = 0.75,
-		shift = util.by_pixel(0, 4),
+		shift = util.by_pixel(0, 4)
 	}),
 	on_animation = {
 		layers = {
@@ -34,7 +34,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				shift = util.by_pixel(10, 0),
 				line_length = 1,
 				repeat_count = 33,
-				animation_speed = 1 / 3,
+				animation_speed = 1 / 3
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab.png",
@@ -44,7 +44,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				line_length = 11,
 				animation_speed = 1 / 3,
 				shift = util.by_pixel(0, 1.5),
-				scale = 0.68,
+				scale = 0.68
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab-integration.png",
@@ -54,7 +54,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				repeat_count = 33,
 				animation_speed = 1 / 3,
 				shift = util.by_pixel(0, 15.5),
-				scale = 0.68,
+				scale = 0.68
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab-light.png",
@@ -66,7 +66,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				line_length = 11,
 				animation_speed = 1 / 3,
 				shift = util.by_pixel(0, 0),
-				scale = 0.68,
+				scale = 0.68
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-front-shadow.png",
@@ -76,7 +76,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				scale = 0.68,
 				line_length = 1,
 				repeat_count = 33,
-				shift = util.by_pixel(10, 0),
+				shift = util.by_pixel(10, 0)
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-front.png",
@@ -87,7 +87,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				line_length = 1,
 				repeat_count = 33,
 				animation_speed = 1 / 3,
-				shift = util.by_pixel(10, 0),
+				shift = util.by_pixel(10, 0)
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab-shadow.png",
@@ -98,7 +98,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				line_length = 1,
 				repeat_count = 33,
 				animation_speed = 1 / 3,
-				draw_as_shadow = true,
+				draw_as_shadow = true
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-shadow.png",
@@ -110,9 +110,9 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				line_length = 1,
 				repeat_count = 33,
 				animation_speed = 1 / 3,
-				draw_as_shadow = true,
-			},
-		},
+				draw_as_shadow = true
+			}
+		}
 	},
 	off_animation = {
 		layers = {
@@ -122,21 +122,21 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				width = 347,
 				height = 267,
 				scale = 0.68,
-				shift = util.by_pixel(10, 0),
+				shift = util.by_pixel(10, 0)
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab.png",
 				width = 194,
 				height = 174,
 				shift = util.by_pixel(0, 1.5),
-				scale = 0.68,
+				scale = 0.68
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab-integration.png",
 				width = 242,
 				height = 162,
 				shift = util.by_pixel(0, 15.5),
-				scale = 0.68,
+				scale = 0.68
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-front-shadow.png",
@@ -144,7 +144,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				width = 347,
 				height = 267,
 				scale = 0.68,
-				shift = util.by_pixel(10, 0),
+				shift = util.by_pixel(10, 0)
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-front.png",
@@ -152,7 +152,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				width = 347,
 				height = 267,
 				scale = 0.68,
-				shift = util.by_pixel(10, 0),
+				shift = util.by_pixel(10, 0)
 			},
 			{
 				filename = "__base__/graphics/entity/lab/lab-shadow.png",
@@ -160,7 +160,7 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				height = 136,
 				shift = util.by_pixel(13, 11),
 				scale = 0.68,
-				draw_as_shadow = true,
+				draw_as_shadow = true
 			},
 			{
 				filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cerys-lab/cerys-lab-shadow.png",
@@ -169,23 +169,23 @@ local cerys_lab = merge(data.raw.lab["lab"], {
 				height = 267,
 				scale = 0.68,
 				draw_as_shadow = true,
-				shift = util.by_pixel(10, 0),
-			},
-		},
+				shift = util.by_pixel(10, 0)
+			}
+		}
 	},
-	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png", -- Lab research productivity reads this icon
+	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cerys-lab-cropped.png",                                  -- Lab research productivity reads this icon
 	icon_size = 64,
 	fast_replaceable_group = "nil",
 	working_sound = merge(data.raw.lab["lab"].working_sound, {
 		sound = merge(data.raw.lab["lab"].working_sound.sound, {
-			volume = 1,
-		}),
-	}),
+			volume = 1
+		})
+	})
 })
 
 data:extend({
 
-	cerys_lab,
+	cerys_lab
 
 	-- merge(cerys_lab, {
 	-- 	-- This entity is never placed. It is only in the game to prevent the game from throwing a fit about there being no science lab that can research fulgoran-cryogenics-progress.

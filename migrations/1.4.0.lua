@@ -11,15 +11,11 @@ if not surface then
 end
 
 local tower_prototypes = {
-	"cerys-fulgoran-radiative-tower",
-	"cerys-fulgoran-radiative-tower-frozen",
-	"cerys-fulgoran-radiative-tower-rising-reactor-base",
-	"cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
-	"cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
-	"cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
-	"cerys-fulgoran-radiative-tower-base",
-	"cerys-fulgoran-radiative-tower-base-frozen",
-	"cerys-fulgoran-radiative-tower-contracted-container",
+	"cerys-fulgoran-radiative-tower", "cerys-fulgoran-radiative-tower-frozen",
+	"cerys-fulgoran-radiative-tower-rising-reactor-base", "cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
+	"cerys-fulgoran-radiative-tower-rising-reactor-tower-2", "cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
+	"cerys-fulgoran-radiative-tower-base", "cerys-fulgoran-radiative-tower-base-frozen",
+	"cerys-fulgoran-radiative-tower-contracted-container"
 }
 
 for _, prototype_name in pairs(tower_prototypes) do

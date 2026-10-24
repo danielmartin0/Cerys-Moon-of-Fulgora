@@ -19,7 +19,7 @@ for _, decal in pairs(ice_decals) do
 		if not is_dry_ice then
 			surface.destroy_decoratives({
 				name = "cerys-ice-decal-white",
-				position = decal.position,
+				position = decal.position
 			})
 		end
 	end

@@ -8,7 +8,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	order = "c",
 	max_health = 3500,
 	crafting_categories = {
-		"fulgoran-cryogenics",
+		"fulgoran-cryogenics"
 	},
 	module_slots = 9,
 	crafting_speed = 2,
@@ -17,7 +17,7 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	minable = { mining_time = 1, result = "cerys-fulgoran-cryogenic-plant" },
 	autoplace = {
-		probability_expression = "0",
+		probability_expression = "0"
 	},
 	map_color = { 83, 17, 150 },
 	icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/cryogenic-plant.png",
@@ -27,20 +27,20 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 			{
 				sound = {
 					filename = "__Cerys-Moon-of-Fulgora__/sounds/advanced-furnace.ogg",
-					volume = 0.8,
+					volume = 0.8
 				},
 				fade_in_ticks = 8,
-				fade_out_ticks = 80,
+				fade_out_ticks = 80
 			},
 			{
 				sound = {
 					filename = "__space-age__/sound/entity/cryogenic-plant/cryogenic-plant.ogg",
-					volume = 0.8,
+					volume = 0.8
 				},
 				fade_in_ticks = 4,
-				fade_out_ticks = 30,
-			},
-		},
+				fade_out_ticks = 30
+			}
+		}
 	}),
 	-- Filled in data-final-fixes:
 	crafting_speed_quality_multiplier = {},
@@ -50,10 +50,10 @@ local cryo_plant = merge(data.raw["assembling-machine"]["cryogenic-plant"], {
 			type = "instant",
 			source_effects = {
 				type = "script",
-				effect_id = "cerys-fulgoran-cryogenic-plant-created",
-			},
-		},
-	},
+				effect_id = "cerys-fulgoran-cryogenic-plant-created"
+			}
+		}
+	}
 })
 
 -- TODO: Apart from the main image, some of the shifts are from the base game.
@@ -70,9 +70,9 @@ cryo_plant.graphics_set = {
 				scale = 0.252,
 				shift = {
 					0.6 - 0.132,
-					-0.1 - 0.05,
+					-0.1 - 0.05
 				},
-				width = 993,
+				width = 993
 			},
 			{
 				animation_speed = 0.5,
@@ -85,9 +85,9 @@ cryo_plant.graphics_set = {
 				scale = 0.504,
 				shift = {
 					1.309375 - 0.132,
-					0.21875 - 0.05,
+					0.21875 - 0.05
 				},
-				width = 462,
+				width = 462
 			},
 			{
 				animation_speed = 0.5,
@@ -99,11 +99,11 @@ cryo_plant.graphics_set = {
 				scale = 0.252,
 				shift = {
 					-0.05 - 0.132,
-					-1.359375 - 0.05,
+					-1.359375 - 0.05
 				},
-				width = 244,
-			},
-		},
+				width = 244
+			}
+		}
 	},
 	working_visualisations = {
 		{
@@ -117,11 +117,11 @@ cryo_plant.graphics_set = {
 				scale = 0.252,
 				shift = {
 					0 - 0.132,
-					-1.1875 - 0.05,
+					-1.1875 - 0.05
 				},
-				width = 212,
+				width = 212
 			},
-			fadeout = true,
+			fadeout = true
 		},
 		{
 			animation = {
@@ -134,12 +134,12 @@ cryo_plant.graphics_set = {
 				scale = 0.252,
 				shift = {
 					0 - 0.132,
-					-1.1875 - 0.05,
+					-1.1875 - 0.05
 				},
-				width = 208,
+				width = 208
 			},
 			apply_recipe_tint = "primary",
-			fadeout = true,
+			fadeout = true
 		},
 		{
 			animation = {
@@ -152,19 +152,19 @@ cryo_plant.graphics_set = {
 				scale = 0.252,
 				shift = {
 					0 - 0.132,
-					-1.171875 - 0.05,
+					-1.171875 - 0.05
 				},
-				width = 208,
+				width = 208
 			},
 			apply_recipe_tint = "secondary",
-			fadeout = true,
-		},
+			fadeout = true
+		}
 		-- TODO?:
 		-- frozen_patch = util.sprite_load(
 		-- 	"__space-age__/graphics/entity/cryogenic-plant/cryogenic-plant-frozen",
 		-- 	{ scale = 0.5 }
 		-- ),
-	},
+	}
 }
 
 local pipe_picture = {
@@ -173,37 +173,37 @@ local pipe_picture = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v", {
 				priority = "extra-high",
 				scale = 0.252,
-				shift = { 0, 3 },
-			}),
-		},
+				shift = { 0, 3 }
+			})
+		}
 	},
 	east = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-h", {
 				priority = "extra-high",
 				scale = 0.252,
-				shift = { -3, 0 },
-			}),
-		},
+				shift = { -3, 0 }
+			})
+		}
 	},
 	south = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-v", {
 				priority = "extra-high",
 				scale = 0.252,
-				shift = { 0, -3 },
-			}),
-		},
+				shift = { 0, -3 }
+			})
+		}
 	},
 	west = {
 		layers = {
 			util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-pipe-h", {
 				priority = "extra-high",
 				scale = 0.252,
-				shift = { 3, 0 },
-			}),
-		},
-	},
+				shift = { 3, 0 }
+			})
+		}
+	}
 }
 
 -- TODO: Adjust to our pipe graphics
@@ -212,7 +212,7 @@ cryo_plant.fluid_boxes = {
 		production_type = "input",
 		pipe_covers = pipecoverspictures(),
 		volume = 1000,
-		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -2, 2 } } },
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { -2, 2 } } }
 	},
 	{
 		production_type = "input",
@@ -220,19 +220,19 @@ cryo_plant.fluid_boxes = {
 		pipe_picture = pipe_picture,
 		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 1000,
-		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } },
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 0, 2 } } }
 	},
 	{
 		production_type = "input",
 		pipe_covers = pipecoverspictures(),
 		volume = 1000,
-		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 2, 2 } } },
+		pipe_connections = { { flow_direction = "input", direction = defines.direction.south, position = { 2, 2 } } }
 	},
 	{
 		production_type = "output",
 		pipe_covers = pipecoverspictures(),
 		volume = 100,
-		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -2, -2 } } },
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { -2, -2 } } }
 	},
 	{
 		production_type = "output",
@@ -240,14 +240,14 @@ cryo_plant.fluid_boxes = {
 		pipe_picture = pipe_picture,
 		always_draw_covers = true, -- fighting against FluidBoxPrototype::always_draw_covers crazy default
 		volume = 100,
-		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 0, -2 } } },
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 0, -2 } } }
 	},
 	{
 		production_type = "output",
 		pipe_covers = pipecoverspictures(),
 		volume = 100,
-		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 2, -2 } } },
-	},
+		pipe_connections = { { flow_direction = "output", direction = defines.direction.north, position = { 2, -2 } } }
+	}
 }
 
 -- fluid_boxes =
@@ -304,7 +304,7 @@ local wreck = merge(cryo_plant, {
 	fast_replaceable_group = "cerys-fulgoran-cryogenic-plant",
 	crafting_speed = 1,
 	energy_source = {
-		type = "void",
+		type = "void"
 	},
 	module_slots = 2,
 	allowed_effects = { "speed", "productivity" },
@@ -321,13 +321,13 @@ local wreck = merge(cryo_plant, {
 					scale = 0.273,
 					shift = {
 						0.5,
-						0,
+						0
 					},
-					width = 993,
-				},
-			},
+					width = 993
+				}
+			}
 		},
-		working_visualisations = nil,
+		working_visualisations = nil
 	},
 	map_color = { 200, 150, 250 },
 	working_sound = {
@@ -335,7 +335,7 @@ local wreck = merge(cryo_plant, {
 		sound = { filename = "__base__/sound/assembling-machine-t2-1.ogg", volume = 0.45 },
 		audible_distance_modifier = 0.5,
 		fade_in_ticks = 4,
-		fade_out_ticks = 20,
+		fade_out_ticks = 20
 	},
 	factoriopedia_alternative = "cerys-fulgoran-cryogenic-plant",
 	created_effect = {
@@ -344,10 +344,10 @@ local wreck = merge(cryo_plant, {
 			type = "instant",
 			source_effects = {
 				type = "script",
-				effect_id = "cerys-fulgoran-cryogenic-plant-wreck-created",
-			},
-		},
-	},
+				effect_id = "cerys-fulgoran-cryogenic-plant-wreck-created"
+			}
+		}
+	}
 })
 
 local wreck_frozen = merge(wreck, {
@@ -357,8 +357,7 @@ local wreck_frozen = merge(wreck, {
 			layers = {
 				{
 					animation_speed = 0.5,
-					filename =
-					"__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/entity/cryogenic-plant/cryogenic-plant-wreck-frozen.png",
 					frame_count = 1,
 					repeat_count = 192,
 					height = 864,
@@ -366,19 +365,19 @@ local wreck_frozen = merge(wreck, {
 					scale = 0.273,
 					shift = {
 						0.5,
-						0,
+						0
 					},
 					width = 993,
-					tint = common.FACTORIO_UNDO_FROZEN_TINT,
-				},
-			},
+					tint = common.FACTORIO_UNDO_FROZEN_TINT
+				}
+			}
 		},
-		working_visualisations = nil,
-	},
+		working_visualisations = nil
+	}
 })
 
 data:extend({
 	cryo_plant,
 	wreck,
-	wreck_frozen,
+	wreck_frozen
 })

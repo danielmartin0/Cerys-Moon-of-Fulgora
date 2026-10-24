@@ -5,7 +5,7 @@ local data_utils = require("data-utils")
 
 local lab_inputs = data_utils.current_lab_inputs()
 
---== Recipe autobans (surface conditions) ==--
+-- == Recipe autobans (surface conditions) ==--
 
 for _, recipe in pairs(data.raw.recipe) do
 	if recipe.results and recipe.name ~= "electric-engine-unit" then
@@ -51,10 +51,8 @@ for _, recipe in pairs(data.raw.recipe) do
 			end
 		end
 
-		local excluded = produces_barrel
-			or ends_in_recycling
-			or requires_softbanned
-			or is_cerys_recipe
+		local excluded = produces_barrel or ends_in_recycling
+			or requires_softbanned or is_cerys_recipe
 			or produces_science_pack
 
 		if not excluded then

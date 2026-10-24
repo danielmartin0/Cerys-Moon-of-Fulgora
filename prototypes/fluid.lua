@@ -16,7 +16,7 @@ data:extend({
 		icon_mipmaps = 4,
 		base_color = { r = 0.5, g = 0.5, b = 1, a = 1 },
 		flow_color = { r = 1, g = 1, b = 1, a = 0 },
-		auto_barrel = false,
+		auto_barrel = false
 	},
 
 	{
@@ -31,8 +31,8 @@ data:extend({
 		icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nuclear/nuclear-waste-solution-nitric.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
-		order = "b[new-fluid]-j[cerys]-b[mixed-oxide-waste-solution]",
-	},
+		order = "b[new-fluid]-j[cerys]-b[mixed-oxide-waste-solution]"
+	}
 })
 
 if not mods["Krastorio2"] then
@@ -47,7 +47,7 @@ if not mods["Krastorio2"] then
 			icon = "__Cerys-Moon-of-Fulgora__/graphics/icons/nitric-acid.png",
 			icon_size = 64,
 			icon_mipmaps = 4,
-			order = "a[fluid]-b[oil]-f[sulfuric-acid]-b[nitric-acid]",
-		},
+			order = "a[fluid]-b[oil]-f[sulfuric-acid]-b[nitric-acid]"
+		}
 	})
 end

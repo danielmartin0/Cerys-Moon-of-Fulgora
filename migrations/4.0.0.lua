@@ -7,10 +7,8 @@ if not surface then
 end
 
 for _, force in pairs(game.forces) do
-	if
-		force.technologies["planetslib-cerys-cargo-drops"]
-		and force.technologies["planetslib-cerys-cargo-drops"].researched
-	then
+	if force.technologies["planetslib-cerys-cargo-drops"]
+		and force.technologies["planetslib-cerys-cargo-drops"].researched then
 		if force.technologies["cerys-reactor-fuel"] then
 			force.technologies["cerys-reactor-fuel"].researched = true
 		end
@@ -23,10 +21,8 @@ for _, force in pairs(game.forces) do
 		end
 	end
 
-	if
-		force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME]
-		and force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME].researched == true
-	then
+	if force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME]
+		and force.technologies[common.FULGORAN_TOWER_MINING_TECH_NAME].researched == true then
 		lib.make_radiative_towers_minable()
 	end
 end

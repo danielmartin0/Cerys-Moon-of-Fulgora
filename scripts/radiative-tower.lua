@@ -10,13 +10,10 @@ local TEMPERATURE_LOSS_RATE = 1 / 97
 local TEMPERATURE_LOSS_POWER = 1.6
 
 local function ensure_storage_tables()
-	storage.radiative_towers = storage.radiative_towers or {
-		towers = {},
-		contracted_towers = {},
-	}
+	storage.radiative_towers = storage.radiative_towers or { towers = {}, contracted_towers = {} }
 end
 
-Public.register_radiative_tower_contracted = function(entity)
+Public.register_radiative_tower_contracted = function (entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -25,16 +22,16 @@ Public.register_radiative_tower_contracted = function(entity)
 
 	local starting_tower_position = {
 		x = entity.position.x,
-		y = entity.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
+		y = entity.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32
 	}
 
 	local shadow = rendering.draw_sprite({
 		sprite = "cerys-radiative-tower-shadow-1",
 		target = {
 			x = entity.position.x + 1 - common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
-			y = entity.position.y,
+			y = entity.position.y
 		},
-		surface = entity.surface,
+		surface = entity.surface
 	})
 
 	ensure_storage_tables()
@@ -43,11 +40,11 @@ Public.register_radiative_tower_contracted = function(entity)
 		entity = entity,
 		starting_tower_position = starting_tower_position,
 		stage = 0,
-		shadow = shadow,
+		shadow = shadow
 	}
 end
 
-Public.register_player_radiative_tower = function(entity)
+Public.register_player_radiative_tower = function (entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -74,14 +71,10 @@ Public.register_player_radiative_tower = function(entity)
 	-- 	create_build_effect_smoke = false,
 	-- })
 
-	storage.radiative_towers.towers[entity.unit_number] = {
-		entity = entity,
-		reactors = {},
-		is_player_tower = true,
-	}
+	storage.radiative_towers.towers[entity.unit_number] = { entity = entity, reactors = {}, is_player_tower = true }
 end
 
-Public.register_radiative_tower = function(entity)
+Public.register_radiative_tower = function (entity)
 	ensure_storage_tables()
 
 	if not (entity and entity.valid) then
@@ -98,7 +91,7 @@ Public.register_radiative_tower = function(entity)
 		name = "cerys-fulgoran-radiative-tower-base-frozen",
 		position = entity.position,
 		force = entity.force,
-		create_build_effect_smoke = false,
+		create_build_effect_smoke = false
 	})
 
 	if base and base.valid then
@@ -112,9 +105,9 @@ Public.register_radiative_tower = function(entity)
 		sprite = "cerys-radiative-tower-shadow-1",
 		target = {
 			x = entity.position.x + 1,
-			y = entity.position.y,
+			y = entity.position.y
 		},
-		surface = entity.surface,
+		surface = entity.surface
 	})
 
 	storage.radiative_towers.towers[entity.unit_number] = {
@@ -122,7 +115,7 @@ Public.register_radiative_tower = function(entity)
 		reactors = {},
 		base_entity = base,
 		frozen = true,
-		shadow = shadow,
+		shadow = shadow
 	}
 end
 
@@ -182,8 +175,7 @@ function Public.heating_radius_from_temperature_above_zero(temperature_above_zer
 	local temperature_interval = BASE_TEMPERATURE_INTERVAL / (heating_radius / base_heating_radius)
 
 	return math.min(
-		common.MAX_HEATING_RADIUS,
-		math.floor(math.min(heating_radius, temperature_above_zero / temperature_interval))
+		common.MAX_HEATING_RADIUS, math.floor(math.min(heating_radius, temperature_above_zero / temperature_interval))
 	)
 end
 
@@ -204,9 +196,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local temperature_above_zero = e.temperature - Public.TEMPERATURE_ZERO
 
 	local heating_radius = Public.heating_radius_from_temperature_above_zero(
-		temperature_above_zero,
-		is_player_tower,
-		is_player_tower and e.quality.level or 0
+		temperature_above_zero, is_player_tower, is_player_tower and e.quality.level or 0
 	)
 
 	if common.DEBUG_HEATERS_FUELED then
@@ -221,13 +211,8 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	local need_to_regenerate_reactors = false
 	for r = 1, valid_tower.last_radius do
 		local reactors = valid_tower.reactors[r]
-		if
-			not reactors
-			or not reactors.north
-			or not reactors.north.valid
-			or not reactors.south
-			or not reactors.south.valid
-		then
+		if not reactors or not reactors.north or not reactors.north.valid or not reactors.south
+			or not reactors.south.valid then
 			need_to_regenerate_reactors = true
 			break
 		end
@@ -265,7 +250,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y - (is_player_tower and 0 or 0.5) },
 					force = e.force,
-					create_build_effect_smoke = false,
+					create_build_effect_smoke = false
 				})
 				reactor_north.destructible = false
 				reactor_north.minable_flag = false
@@ -275,17 +260,14 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 					name = "cerys-hidden-reactor-" .. r,
 					position = { x = e.position.x, y = e.position.y + (is_player_tower and 0 or 0.5) },
 					force = e.force,
-					create_build_effect_smoke = false,
+					create_build_effect_smoke = false
 				})
 				reactor_south.destructible = false
 				reactor_south.minable_flag = false
 				reactor_south.temperature = 40
 
 				-- Store both reactors in a table
-				valid_tower.reactors[r] = {
-					north = reactor_north,
-					south = reactor_south,
-				}
+				valid_tower.reactors[r] = { north = reactor_north, south = reactor_south }
 			end
 		elseif heating_radius < valid_tower.last_radius then
 			for r = valid_tower.last_radius, heating_radius + 1, -1 do
@@ -311,7 +293,7 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 				name = "radiative-tower-lamp-" .. heating_radius,
 				position = e.position,
 				force = e.force,
-				create_build_effect_smoke = false,
+				create_build_effect_smoke = false
 			})
 			new_lamp.destructible = false
 			new_lamp.minable_flag = false
@@ -324,14 +306,12 @@ function Public.apply_temperature_drop(valid_tower, is_player_tower)
 	end
 
 	local temperature_to_apply_loss_for = math.min(
-		math.max(temperature_above_zero, 30),
-		common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS * BASE_TEMPERATURE_INTERVAL
+		math.max(temperature_above_zero, 30), common.FULGORAN_RADIATIVE_TOWER_HEATING_RADIUS * BASE_TEMPERATURE_INTERVAL
 	)
 
 	e.temperature = e.temperature
-		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER)
-		* TEMPERATURE_LOSS_RATE
-		* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
+		- (temperature_to_apply_loss_for ^ TEMPERATURE_LOSS_POWER) * TEMPERATURE_LOSS_RATE
+			* (Public.TOWER_TEMPERATURE_TICK_INTERVAL / 60)
 
 	if valid_tower.frozen then
 		if temperature_above_zero > 1 then
@@ -354,7 +334,7 @@ function Public.unfreeze_tower(tower)
 			name = "cerys-fulgoran-radiative-tower-base",
 			position = e.position,
 			force = e.force,
-			create_build_effect_smoke = false,
+			create_build_effect_smoke = false
 		})
 
 		if base and base.valid then
@@ -368,7 +348,7 @@ function Public.unfreeze_tower(tower)
 		name = "cerys-fulgoran-radiative-tower",
 		position = e.position,
 		force = e.force,
-		create_build_effect_smoke = false,
+		create_build_effect_smoke = false
 		-- fast_replace = true,
 	})
 
@@ -458,7 +438,7 @@ function Public.tick_20_contracted_towers(surface)
 				surface.play_sound({
 					path = "cerys-fulgoran-tower-opening",
 					volume_modifier = 0.7,
-					position = contracted_tower.position,
+					position = contracted_tower.position
 				})
 
 				contracted_tower.open_tick = game.tick
@@ -467,14 +447,14 @@ function Public.tick_20_contracted_towers(surface)
 					sprite = "cerys-radiative-tower-front-ice",
 					target = e.position,
 					surface = e.surface,
-					render_layer = "above-inserters",
+					render_layer = "above-inserters"
 				})
 
 				local e2 = surface.create_entity({
 					name = "cerys-fulgoran-radiative-tower-rising-reactor-base",
 					position = e.position,
 					force = e.force,
-					create_build_effect_smoke = false,
+					create_build_effect_smoke = false
 				})
 
 				if e2 and e2.valid then
@@ -486,10 +466,10 @@ function Public.tick_20_contracted_towers(surface)
 					name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-1",
 					position = {
 						x = e.position.x,
-						y = e.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32,
+						y = e.position.y + common.RADIATIVE_TOWER_SHIFT_PIXELS / 32
 					},
 					force = e.force,
-					create_build_effect_smoke = false,
+					create_build_effect_smoke = false
 				})
 				contracted_tower.top_entity = top_entity
 
@@ -502,7 +482,7 @@ function Public.tick_20_contracted_towers(surface)
 							else
 								e.surface.spill_item_stack({
 									position = e.position,
-									stack = stack,
+									stack = stack
 								})
 							end
 						end
@@ -549,13 +529,13 @@ function Public.tick_1_move_radiative_towers()
 			if ticks_since_open < (EXPAND_DISTANCE / 32) / EXPAND_SPEED then
 				top_entity.teleport({
 					x = contracted_tower.starting_tower_position.x,
-					y = contracted_tower.starting_tower_position.y - ticks_since_open * EXPAND_SPEED,
+					y = contracted_tower.starting_tower_position.y - ticks_since_open * EXPAND_SPEED
 				})
 
 				if contracted_tower.shadow and contracted_tower.shadow.valid then
 					contracted_tower.shadow.target = {
 						x = e.position.x + 1 - (EXPAND_DISTANCE / 32) + ticks_since_open * EXPAND_SPEED,
-						y = e.position.y,
+						y = e.position.y
 					}
 				end
 
@@ -566,7 +546,7 @@ function Public.tick_1_move_radiative_towers()
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-2",
 						position = top_entity.position,
 						force = top_entity.force,
-						create_build_effect_smoke = false,
+						create_build_effect_smoke = false
 					})
 					contracted_tower.top_entity.destroy()
 					contracted_tower.top_entity = new_top_entity
@@ -581,7 +561,7 @@ function Public.tick_1_move_radiative_towers()
 						name = "cerys-fulgoran-radiative-tower-rising-reactor-tower-3",
 						position = top_entity.position,
 						force = top_entity.force,
-						create_build_effect_smoke = false,
+						create_build_effect_smoke = false
 					})
 					contracted_tower.top_entity.destroy()
 					contracted_tower.top_entity = new_top_entity
@@ -592,7 +572,7 @@ function Public.tick_1_move_radiative_towers()
 					position = e.position,
 					force = e.force,
 					raise_built = true,
-					create_build_effect_smoke = true,
+					create_build_effect_smoke = true
 				})
 
 				if new_tower and new_tower.valid then
@@ -610,7 +590,7 @@ function Public.tick_1_move_radiative_towers()
 							else
 								e.surface.spill_item_stack({
 									position = e.position,
-									stack = stack,
+									stack = stack
 								})
 							end
 						end

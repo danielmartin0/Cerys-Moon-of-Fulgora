@@ -5,9 +5,9 @@ data:extend({
 		type = "mod-data",
 		name = "Cerys",
 		data = {
-			fulgora_image_size = common.DEFAULT_FULGORA_IMAGE_SIZE,
-		},
-	},
+			fulgora_image_size = common.DEFAULT_FULGORA_IMAGE_SIZE
+		}
+	}
 })
 
 local bplib_data = data.raw["mod-data"]["bplib"].data

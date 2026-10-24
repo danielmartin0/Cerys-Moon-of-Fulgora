@@ -9,7 +9,7 @@ local cryogenic_plant = require("scripts.cryogenic-plant")
 storage.cerys_fulgoran_cryoplants = storage.cerys_fulgoran_cryoplants or {}
 
 local cryoplants = surface.find_entities_filtered({
-	name = "cerys-fulgoran-cryogenic-plant",
+	name = "cerys-fulgoran-cryogenic-plant"
 })
 
 for _, e in pairs(cryoplants) do

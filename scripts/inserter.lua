@@ -5,9 +5,7 @@ local Public = {}
 function Public.register_inserter(entity)
 	storage.cerys_inserters = storage.cerys_inserters or {}
 
-	storage.cerys_inserters[entity.unit_number] = {
-		entity = entity,
-	}
+	storage.cerys_inserters[entity.unit_number] = { entity = entity }
 	entity.use_filters = true
 end
 
@@ -17,7 +15,7 @@ end
 
 local module_inventory_defines_by_type = {
 	["lab"] = defines.inventory.lab_modules,
-	["mining-drill"] = defines.inventory.mining_drill_modules,
+	["mining-drill"] = defines.inventory.mining_drill_modules
 }
 
 local function get_module_inventory_defines(entity)
@@ -60,10 +58,8 @@ local function is_valid_module_machine(entity)
 			return false
 		end
 
-		local allowed_in_categories = not (
-			recipe.prototype.allowed_module_categories
-			and not recipe.prototype.allowed_module_categories["productivity"]
-		)
+		local allowed_in_categories = not (recipe.prototype.allowed_module_categories
+			and not recipe.prototype.allowed_module_categories["productivity"])
 
 		if not allowed_in_categories then
 			return false
@@ -95,10 +91,8 @@ local function adjust_inserter_to_match_machine(inserter, machine)
 			+ inv.get_item_count({ name = "cerys-radioactive-module-charged", quality = quality })
 	end
 
-	local decayed_held = inserter.held_stack
-		and inserter.held_stack.valid_for_read
-		and inserter.held_stack.name == "cerys-radioactive-module-decayed"
-		and inserter.held_stack.count
+	local decayed_held = inserter.held_stack and inserter.held_stack.valid_for_read
+		and inserter.held_stack.name == "cerys-radioactive-module-decayed" and inserter.held_stack.count
 		or 0
 
 	local desired_filter
@@ -145,8 +139,7 @@ local function adjust_inserter(inserter_data)
 	local inserter = inserter_data.entity
 
 	local disable_by_signal = inserter.get_signal(
-		{ name = "signal-deny", type = "virtual" },
-		defines.wire_connector_id.circuit_red,
+		{ name = "signal-deny", type = "virtual" }, defines.wire_connector_id.circuit_red,
 		defines.wire_connector_id.circuit_green
 	)
 
@@ -160,10 +153,8 @@ local function adjust_inserter(inserter_data)
 	inserter.use_filters = true
 	inserter.inserter_filter_mode = "whitelist"
 
-	local proxy_for_drop = inserter.drop_target
-		and inserter.drop_target.valid
-		and inserter.drop_target.name == "cerys-proxy-drop"
-		and inserter.drop_target
+	local proxy_for_drop = inserter.drop_target and inserter.drop_target.valid
+		and inserter.drop_target.name == "cerys-proxy-drop" and inserter.drop_target
 
 	local proxy_for_drop_target = (proxy_for_drop and is_valid_module_machine(proxy_for_drop.proxy_target_entity))
 		and proxy_for_drop
@@ -173,12 +164,8 @@ local function adjust_inserter(inserter_data)
 		inserter_data.drop_proxy = nil
 	end
 
-	local new_machine_for_drop = (
-		inserter.drop_target
-		and inserter.drop_target.valid
-		and is_valid_module_machine(inserter.drop_target)
-
-	) and inserter.drop_target
+	local new_machine_for_drop = (inserter.drop_target and inserter.drop_target.valid
+		and is_valid_module_machine(inserter.drop_target)) and inserter.drop_target
 
 	if new_machine_for_drop then
 		proxy_for_drop = inserter.surface.create_entity({
@@ -186,7 +173,7 @@ local function adjust_inserter(inserter_data)
 			position = inserter.drop_position,
 			force = inserter.force,
 			create_build_effect_smoke = false,
-			preserve_ghosts_and_corpses = true,
+			preserve_ghosts_and_corpses = true
 		})
 		local target = inserter.drop_target
 		proxy_for_drop.proxy_target_entity = target
@@ -197,10 +184,8 @@ local function adjust_inserter(inserter_data)
 
 	local valid_drop_machine = proxy_for_drop and proxy_for_drop.valid and proxy_for_drop.proxy_target_entity
 
-	local proxy_for_pickup = inserter.pickup_target
-		and inserter.pickup_target.valid
-		and inserter.pickup_target.name == "cerys-proxy-pickup"
-		and inserter.pickup_target
+	local proxy_for_pickup = inserter.pickup_target and inserter.pickup_target.valid
+		and inserter.pickup_target.name == "cerys-proxy-pickup" and inserter.pickup_target
 
 	local proxy_for_pickup_target = (proxy_for_pickup and is_valid_module_machine(proxy_for_pickup.proxy_target_entity))
 		and proxy_for_pickup
@@ -210,12 +195,8 @@ local function adjust_inserter(inserter_data)
 		inserter_data.pickup_proxy = nil
 	end
 
-	local new_machine_for_pickup = (
-		inserter.pickup_target
-		and inserter.pickup_target.valid
-		and is_valid_module_machine(inserter.pickup_target)
-
-	) and inserter.pickup_target
+	local new_machine_for_pickup = (inserter.pickup_target and inserter.pickup_target.valid
+		and is_valid_module_machine(inserter.pickup_target)) and inserter.pickup_target
 
 	if new_machine_for_pickup then
 		proxy_for_pickup = inserter.surface.create_entity({
@@ -223,7 +204,7 @@ local function adjust_inserter(inserter_data)
 			position = inserter.pickup_position,
 			force = inserter.force,
 			create_build_effect_smoke = false,
-			preserve_ghosts_and_corpses = true,
+			preserve_ghosts_and_corpses = true
 		})
 		local target = inserter.pickup_target
 		proxy_for_pickup.proxy_target_entity = target

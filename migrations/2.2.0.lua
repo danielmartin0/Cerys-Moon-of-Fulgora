@@ -13,8 +13,6 @@ end
 storage.cerys.solar_panels = {}
 for _, entity in pairs(surface.find_entities_filtered({ type = "solar-panel" })) do
 	if entity.valid then
-		storage.cerys.solar_panels[entity.unit_number] = {
-			entity = entity,
-		}
+		storage.cerys.solar_panels[entity.unit_number] = { entity = entity }
 	end
 end

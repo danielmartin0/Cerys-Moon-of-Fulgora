@@ -20,8 +20,8 @@ local adjusted_original_ice_transitions = {
 			outer_corner_count = 8,
 			side_count = 8,
 			u_transition_count = 2,
-			o_transition_count = 1,
-		},
+			o_transition_count = 1
+		}
 	},
 	{
 		to_tiles = lava_tile_type_names,
@@ -37,8 +37,8 @@ local adjusted_original_ice_transitions = {
 			outer_corner_count = 8,
 			side_count = 8,
 			u_transition_count = 2,
-			o_transition_count = 1,
-		},
+			o_transition_count = 1
+		}
 	},
 	{
 		to_tiles = common.SPACE_TILES_AROUND_CERYS,
@@ -50,8 +50,8 @@ local adjusted_original_ice_transitions = {
 
 		spritesheet = "__space-age__/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png",
 		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
-		overlay_enabled = false,
-	},
+		overlay_enabled = false
+	}
 }
 
 local adjusted_original_ice_transitions_between_transitions = {
@@ -64,14 +64,14 @@ local adjusted_original_ice_transitions_between_transitions = {
 		background_enabled = false,
 		effect_map_layout = {
 			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-to-land-mask.png",
-			o_transition_count = 0,
+			o_transition_count = 0
 		},
 		water_patch = {
 			filename = "__space-age__/graphics/terrain/water-transitions/ice-patch.png",
 			scale = 0.5,
 			width = 64,
-			height = 64,
-		},
+			height = 64
+		}
 	},
 	{
 		transition_group1 = default_transition_group_id,
@@ -83,7 +83,7 @@ local adjusted_original_ice_transitions_between_transitions = {
 
 		spritesheet = "__base__/graphics/terrain/out-of-map-transition/dirt-out-of-map-transition.png",
 		layout = tile_spritesheet_layout.transition_3_3_3_1_0,
-		overlay_enabled = false,
+		overlay_enabled = false
 	},
 	{
 		transition_group1 = water_transition_group_id,
@@ -98,20 +98,20 @@ local adjusted_original_ice_transitions_between_transitions = {
 		effect_map_layout = {
 			spritesheet = "__base__/graphics/terrain/effect-maps/water-dirt-to-out-of-map-mask.png",
 			u_transition_count = 0,
-			o_transition_count = 0,
-		},
-	},
+			o_transition_count = 0
+		}
+	}
 }
 
---== Ground collision mask ==--
+-- == Ground collision mask ==--
 
 local cerys_ground_collision_mask = merge(tile_collision_masks.ground(), {
 	layers = merge((tile_collision_masks.ground().layers or {}), {
-		cerys_tile = true,
-	}),
+		cerys_tile = true
+	})
 })
 
---== Rock & Rock Ice ==--
+-- == Rock & Rock Ice ==--
 
 local rock_transitions = {
 	{ -- copied from fulgora rock
@@ -133,9 +133,9 @@ local rock_transitions = {
 			outer_corner_tile_height = 2,
 			side_tile_height = 2,
 			u_transition_tile_height = 2,
-			o_transition_count = 1,
+			o_transition_count = 1
 		},
-		background_mask_layout = tile_spritesheet_layout.simple_white_mask,
+		background_mask_layout = tile_spritesheet_layout.simple_white_mask
 	},
 	{ -- copied from vulcanus rock
 		to_tiles = lava_tile_type_names,
@@ -149,8 +149,8 @@ local rock_transitions = {
 			outer_corner_count = 8,
 			side_count = 8,
 			u_transition_count = 2,
-			o_transition_count = 1,
-		},
+			o_transition_count = 1
+		}
 	},
 	{ -- copied from vulcanus rock
 		to_tiles = common.SPACE_TILES_AROUND_CERYS,
@@ -160,12 +160,12 @@ local rock_transitions = {
 		offset_background_layer_by_tile_layer = true,
 		spritesheet = "__space-age__/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png",
 		layout = tile_spritesheet_layout.transition_4_4_8_1_1,
-		overlay_enabled = false,
+		overlay_enabled = false
 	},
 	{ -- custom
 		to_tiles = {
 			"cerys-ice-on-water",
-			"cerys-ice-on-water-melting",
+			"cerys-ice-on-water-melting"
 		},
 		transition_group = water_transition_group_id,
 		spritesheet = "__space-age__/graphics/terrain/water-transitions/lava-stone-cold.png",
@@ -176,9 +176,9 @@ local rock_transitions = {
 			outer_corner_count = 8,
 			side_count = 8,
 			u_transition_count = 2,
-			o_transition_count = 1,
-		},
-	},
+			o_transition_count = 1
+		}
+	}
 }
 
 -- stylua: ignore
@@ -186,23 +186,74 @@ local cerys_rock_base = merge(data.raw.tile["volcanic-ash-cracks"], {
 	sprite_usage_surface = "any",
 	collision_mask = cerys_ground_collision_mask,
 	subgroup = "cerys-tiles",
-	transitions = rock_transitions,
+	transitions = rock_transitions
 })
 
 -- stylua: ignore
 local lightmap_spritesheet = {
 	max_size = 4,
 	[1] = {
-		weights = { 0.085, 0.085, 0.085, 0.085, 0.087, 0.085, 0.065, 0.085, 0.045, 0.045, 0.045, 0.045, 0.005, 0.025, 0.045, 0.045 },
+		weights = {
+			0.085,
+			0.085,
+			0.085,
+			0.085,
+			0.087,
+			0.085,
+			0.065,
+			0.085,
+			0.045,
+			0.045,
+			0.045,
+			0.045,
+			0.005,
+			0.025,
+			0.045,
+			0.045
+		}
 	},
 	[2] = {
 		probability = 1,
-		weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
 	},
 	[4] = {
 		probability = 0.1,
-		weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
-	},
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
+	}
 }
 
 local function create_base_tile(name, layer, map_color, force_hidden)
@@ -210,12 +261,11 @@ local function create_base_tile(name, layer, map_color, force_hidden)
 		name = name,
 		frozen_variant = name .. "-frozen",
 		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. ".png",
-			lightmap_spritesheet
+			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. ".png", lightmap_spritesheet
 		),
 		layer = layer,
 		hidden = force_hidden and true or cerys_rock_base.hidden,
-		map_color = map_color,
+		map_color = map_color
 	})
 end
 
@@ -225,7 +275,7 @@ frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 		"cerys-ash-cracks",
 		"cerys-ash-dark",
 		"cerys-ash-light",
-		"cerys-pumice-stones",
+		"cerys-pumice-stones"
 	},
 	transition_group = water_transition_group_id,
 	spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2-transparent.png",
@@ -236,8 +286,8 @@ frozen_rock_transitions[#frozen_rock_transitions + 1] = {
 		outer_corner_count = 8,
 		side_count = 8,
 		u_transition_count = 2,
-		o_transition_count = 1,
-	},
+		o_transition_count = 1
+	}
 }
 
 local function create_frozen_variant(name, layer, map_color, force_hidden)
@@ -245,21 +295,20 @@ local function create_frozen_variant(name, layer, map_color, force_hidden)
 	return merge(cerys_rock_base, {
 		name = name .. "-frozen",
 		autoplace = {
-			probability_expression = "if(cerys_surface>0, 1000 + " .. noise_var .. ", -1000)",
+			probability_expression = "if(cerys_surface>0, 1000 + " .. noise_var .. ", -1000)"
 		},
 		thawed_variant = name,
 		layer = layer,
 		hidden = force_hidden and true or cerys_rock_base.hidden,
 		variants = tile_variations_template_with_transitions(
-			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png",
-			lightmap_spritesheet
+			"__Cerys-Moon-of-Fulgora__/graphics/terrain/" .. name .. "-frozen.png", lightmap_spritesheet
 		),
 		layer_group = "ground-artificial", -- Above crater decals
 		transitions = frozen_rock_transitions,
 		-- TODO: Fix 3way transitions between rock, rock ice, and water ice?
 
 		transition_merges_with_tile = name,
-		map_color = map_color,
+		map_color = map_color
 	})
 end
 
@@ -268,7 +317,7 @@ local function create_melting_variant(name, layer, map_color, force_hidden)
 	return merge(frozen_variant, {
 		name = frozen_variant.name .. "-from-dry-ice",
 		thawed_variant = "nil",
-		factoriopedia_alternative = frozen_variant.name,
+		factoriopedia_alternative = frozen_variant.name
 	})
 end
 
@@ -288,7 +337,7 @@ data:extend({
 
 	create_base_tile("cerys-pumice-stones", 8, { 59, 61, 59 }),
 	create_frozen_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
-	create_melting_variant("cerys-pumice-stones", 10, { 44, 48, 64 }),
+	create_melting_variant("cerys-pumice-stones", 10, { 44, 48, 64 })
 })
 
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.overlay_layer_group = "top"
@@ -298,7 +347,7 @@ data:extend({
 -- data.raw.tile["cerys-ash-cracks-frozen"].variants.transition.offset_background_layer_by_tile_layer = 1
 -- log(serpent.block(data.raw.tile["cerys-ash-cracks-frozen"]))
 
---== Water ==--
+-- == Water ==--
 
 local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	fluid = "water",
@@ -309,8 +358,8 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 			resource = true,
 			cerys_tile = true,
 			cerys_water_tile = true,
-			doodad = true,
-		},
+			doodad = true
+		}
 	},
 	effect = "cerys-water-puddles-2",
 	autoplace = "nil",
@@ -319,7 +368,7 @@ local cerys_shallow_water_base = merge(data.raw.tile["brash-ice"], {
 	default_cover_tile = "concrete",
 	-- default_cover_tile = "ice-platform",
 	-- transitions = "nil",
-	walking_speed_modifier = 0.8,
+	walking_speed_modifier = 0.8
 })
 
 data:extend({
@@ -327,13 +376,13 @@ data:extend({
 		name = "cerys-water-puddles",
 		frozen_variant = "cerys-water-puddles-freezing",
 		autoplace = {
-			probability_expression = "0",
-		},
+			probability_expression = "0"
+		}
 	}),
 	merge(cerys_shallow_water_base, {
 		name = "cerys-water-puddles-freezing",
 		thawed_variant = "cerys-water-puddles",
-		factoriopedia_alternative = "cerys-water-puddles",
+		factoriopedia_alternative = "cerys-water-puddles"
 	}),
 	merge(data.raw["tile-effect"]["brash-ice-2"], {
 		name = "cerys-water-puddles-2",
@@ -342,13 +391,13 @@ data:extend({
 				{
 					filename = "__space-age__/graphics/terrain/gleba/watercaustics.png",
 					width = 512,
-					height = 512,
+					height = 512
 				},
 				{
 					filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-shallow-water.png",
 					width = 512 * 4,
-					height = 512 * 2,
-				},
+					height = 512 * 2
+				}
 			},
 			animation_speed = 4,
 			dark_threshold = { 0, 0 },
@@ -358,12 +407,12 @@ data:extend({
 			foam_color_multiplier = 0,
 			-- reflection_threshold = { 0, 0 },
 
-			near_zoom = 2,
-		}),
-	}),
+			near_zoom = 2
+		})
+	})
 })
 
---== Iced Water ==--
+-- == Iced Water ==--
 
 local water_ice_transitions = util.table.deepcopy(adjusted_original_ice_transitions)
 water_ice_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-2.png"
@@ -379,10 +428,8 @@ table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones")
 table.insert(water_ice_transitions[1].to_tiles, "cerys-pumice-stones-frozen")
 
 local water_ice_transitions_between_transitions = adjusted_original_ice_transitions_between_transitions
-water_ice_transitions_between_transitions[1].spritesheet =
-"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
-water_ice_transitions_between_transitions[1].water_patch.filename =
-"__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
+water_ice_transitions_between_transitions[1].spritesheet = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-transition.png"
+water_ice_transitions_between_transitions[1].water_patch.filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/ice-patch.png"
 
 local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	transitions = water_ice_transitions,
@@ -392,7 +439,7 @@ local cerys_ice_on_water_base = merge(data.raw.tile["ice-smooth"], {
 	map_color = { 8, 39, 94 },
 	layer = 2,
 	layer_group = "ground-natural",
-	subgroup = "cerys-tiles",
+	subgroup = "cerys-tiles"
 })
 
 data:extend({
@@ -400,17 +447,17 @@ data:extend({
 		name = "cerys-ice-on-water",
 		thawed_variant = "cerys-ice-on-water-melting",
 		autoplace = {
-			probability_expression = "min(0, 1000000 * cerys_surface) + 100 * cerys_water",
-		},
+			probability_expression = "min(0, 1000000 * cerys_surface) + 100 * cerys_water"
+		}
 	}),
 	merge(cerys_ice_on_water_base, {
 		name = "cerys-ice-on-water-melting",
 		frozen_variant = "cerys-ice-on-water",
-		autoplace = "nil",
-	}),
+		autoplace = "nil"
+	})
 })
 
---== Dry ice ==--
+-- == Dry ice ==--
 
 -- stylua: ignore
 local dry_ice_rough_variants = tile_variations_template(
@@ -419,16 +466,67 @@ local dry_ice_rough_variants = tile_variations_template(
 	{
 		max_size = 4,
 		[1] = {
-			weights = { 0.085, 0.085, 0.085, 0.085, 0.087, 0.085, 0.065, 0.085, 0.045, 0.045, 0.045, 0.045, 0.005, 0.025, 0.045, 0.045 },
+			weights = {
+				0.085,
+				0.085,
+				0.085,
+				0.085,
+				0.087,
+				0.085,
+				0.065,
+				0.085,
+				0.045,
+				0.045,
+				0.045,
+				0.045,
+				0.005,
+				0.025,
+				0.045,
+				0.045
+			}
 		},
 		[2] = {
 			probability = 1,
-			weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
+			weights = {
+				0.018,
+				0.020,
+				0.015,
+				0.025,
+				0.015,
+				0.020,
+				0.025,
+				0.015,
+				0.025,
+				0.025,
+				0.010,
+				0.025,
+				0.020,
+				0.025,
+				0.025,
+				0.010
+			}
 		},
 		[4] = {
 			probability = 0.1,
-			weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
-		},
+			weights = {
+				0.018,
+				0.020,
+				0.015,
+				0.025,
+				0.015,
+				0.020,
+				0.025,
+				0.015,
+				0.025,
+				0.025,
+				0.010,
+				0.025,
+				0.020,
+				0.025,
+				0.025,
+				0.010
+			}
+		}
 		--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
 	}
 )
@@ -455,7 +553,7 @@ dry_ice_transitions[1].to_tiles = {
 	"cerys-concrete-minable",
 	"cerys-frozen-concrete-minable",
 	"cerys-foundation",
-	"cerys-ice-platform",
+	"cerys-ice-platform"
 	-- "nuclear-scrap-under-ice",
 	-- "nuclear-scrap-under-ice-melting",
 	-- "ice-supporting-nuclear-scrap",
@@ -480,7 +578,7 @@ local cerys_dry_ice_rough_base = merge(data.raw.tile["ice-rough"], {
 	layer_group = "ground-artificial", -- Above crater decals
 	map_color = { 128, 184, 194 },
 	allows_being_covered = false,
-	walking_speed_modifier = 0.9,
+	walking_speed_modifier = 0.9
 })
 
 data:extend({
@@ -488,15 +586,15 @@ data:extend({
 		name = "cerys-dry-ice-on-water",
 		thawed_variant = "cerys-dry-ice-on-water-melting",
 		collision_mask = cerys_ground_collision_mask,
-		layer = 80,
+		layer = 80
 	}),
 	merge(cerys_dry_ice_rough_base, {
 		name = "cerys-dry-ice-on-water-melting",
 		frozen_variant = "cerys-dry-ice-on-water",
 		collision_mask = cerys_ground_collision_mask,
 		layer = 81,
-		factoriopedia_alternative = "cerys-dry-ice-on-water",
-	}),
+		factoriopedia_alternative = "cerys-dry-ice-on-water"
+	})
 })
 
 -- stylua: ignore
@@ -506,40 +604,91 @@ local dry_ice_rough_land_variants = tile_variations_template(
 	{
 		max_size = 4,
 		[1] = {
-			weights = { 0.085, 0.085, 0.085, 0.085, 0.087, 0.085, 0.065, 0.085, 0.045, 0.045, 0.045, 0.045, 0.005, 0.025, 0.045, 0.045 },
+			weights = {
+				0.085,
+				0.085,
+				0.085,
+				0.085,
+				0.087,
+				0.085,
+				0.065,
+				0.085,
+				0.045,
+				0.045,
+				0.045,
+				0.045,
+				0.005,
+				0.025,
+				0.045,
+				0.045
+			}
 		},
 		[2] = {
 			probability = 1,
-			weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
+			weights = {
+				0.018,
+				0.020,
+				0.015,
+				0.025,
+				0.015,
+				0.020,
+				0.025,
+				0.015,
+				0.025,
+				0.025,
+				0.010,
+				0.025,
+				0.020,
+				0.025,
+				0.025,
+				0.010
+			}
 		},
 		[4] = {
 			probability = 0.1,
-			weights = { 0.018, 0.020, 0.015, 0.025, 0.015, 0.020, 0.025, 0.015, 0.025, 0.025, 0.010, 0.025, 0.020, 0.025, 0.025, 0.010 },
-		},
+			weights = {
+				0.018,
+				0.020,
+				0.015,
+				0.025,
+				0.015,
+				0.020,
+				0.025,
+				0.015,
+				0.025,
+				0.025,
+				0.010,
+				0.025,
+				0.020,
+				0.025,
+				0.025,
+				0.010
+			}
+		}
 		--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
 	}
 )
 
 local cerys_dry_ice_rough_land_base = merge(cerys_dry_ice_rough_base, {
 	variants = dry_ice_rough_land_variants,
-	map_color = { 92, 138, 116 },
+	map_color = { 92, 138, 116 }
 })
 
 data:extend({
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land",
 		thawed_variant = "cerys-dry-ice-on-land-melting",
-		layer = 82,
+		layer = 82
 	}),
 	merge(cerys_dry_ice_rough_land_base, {
 		name = "cerys-dry-ice-on-land-melting",
 		frozen_variant = "cerys-dry-ice-on-land",
 		layer = 83,
-		factoriopedia_alternative = "cerys-dry-ice-on-land",
-	}),
+		factoriopedia_alternative = "cerys-dry-ice-on-land"
+	})
 })
 
---== Concrete ==--
+-- == Concrete ==--
 
 -- local concrete_edges_overlay_layout = {
 -- 	inner_corner = {
@@ -582,7 +731,7 @@ local function create_cerys_concrete(name_stem, frozen, item_name, transition_me
 		placeable_by = { item = item_name, count = 1 },
 		factoriopedia_alternative = frozen and "nil" or name_without_cerys,
 		hidden = frozen and "nil" or true,
-		can_be_part_of_blueprint = true,
+		can_be_part_of_blueprint = true
 	})
 
 	tile.transition_merges_with_tile = transition_merge_tile
@@ -599,38 +748,38 @@ local function create_cerys_concrete(name_stem, frozen, item_name, transition_me
 			material_background = {
 				picture = "__Cerys-Moon-of-Fulgora__/graphics/terrain/frozen-" .. name_stem .. ".png",
 				count = 8,
-				scale = 0.5,
+				scale = 0.5
 			},
 			transition = { -- Similar to vanilla frozen concrete
 				mask_layout = {
 					inner_corner = {
 						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-inner-corner-mask.png",
 						count = 1,
-						scale = 0.5,
+						scale = 0.5
 					},
 					outer_corner = {
 						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-outer-corner-mask.png",
 						count = 1,
-						scale = 0.5,
+						scale = 0.5
 					},
 					side = {
 						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-side-mask.png",
 						count = 1,
-						scale = 0.5,
+						scale = 0.5
 					},
 					u_transition = {
 						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-u-mask.png",
 						count = 1,
-						scale = 0.5,
+						scale = 0.5
 					},
 					o_transition = {
 						spritesheet = "__base__/graphics/terrain/concrete/hazard-concrete-o-mask.png",
 						count = 1,
-						scale = 0.5,
-					},
-				},
+						scale = 0.5
+					}
+				}
 				-- apply_effect_color_to_overlay = true, -- Wish this worked!
-			},
+			}
 		}
 	end
 
@@ -641,8 +790,8 @@ local function create_cerys_concrete(name_stem, frozen, item_name, transition_me
 			merge(tile, {
 				name = name .. "-minable",
 				frozen_variant = frozen and "nil" or "cerys-frozen-" .. name_stem .. "-minable",
-				thawed_variant = frozen and "cerys-" .. name_stem .. "-minable" or "nil",
-			}),
+				thawed_variant = frozen and "cerys-" .. name_stem .. "-minable" or "nil"
+			})
 		})
 
 		-- The following tile is used for machines on water. Unfortunately, it's stuck on the default namespace because Factorio cannot migrate the names of hidden tiles.
@@ -651,8 +800,8 @@ local function create_cerys_concrete(name_stem, frozen, item_name, transition_me
 			merge(tile, {
 
 				minable = "nil",
-				can_be_part_of_blueprint = false,
-			}),
+				can_be_part_of_blueprint = false
+			})
 		})
 	else
 		data:extend({ tile })
@@ -664,7 +813,7 @@ create_cerys_concrete("concrete", true, "concrete", "cerys-concrete-minable")
 
 for _, name in pairs({
 	"hazard-concrete-left",
-	"hazard-concrete-right",
+	"hazard-concrete-right"
 }) do
 	create_cerys_concrete(name, false, "hazard-concrete", "cerys-concrete-minable")
 	create_cerys_concrete(name, true, "hazard-concrete", "cerys-concrete-minable")
@@ -675,13 +824,13 @@ create_cerys_concrete("refined-concrete", true, "refined-concrete", "cerys-refin
 
 for _, name in pairs({
 	"refined-hazard-concrete-left",
-	"refined-hazard-concrete-right",
+	"refined-hazard-concrete-right"
 }) do
 	create_cerys_concrete(name, false, "refined-hazard-concrete", "cerys-refined-concrete")
 	create_cerys_concrete(name, true, "refined-hazard-concrete", "cerys-refined-concrete")
 end
 
---== Other cloned tiles ==--
+-- == Other cloned tiles ==--
 
 local foundation_layers = data.raw.tile.foundation.collision_mask.layers
 local ice_platform_layers = data.raw.tile["ice-platform"].collision_mask.layers
@@ -697,9 +846,9 @@ data:extend({
 		hidden = true,
 		can_be_part_of_blueprint = true,
 		collision_mask = merge(data.raw.tile.foundation.collision_mask, {
-			layers = foundation_layers,
+			layers = foundation_layers
 		}),
-		is_foundation = false,
+		is_foundation = false
 	}),
 	merge(data.raw.tile["ice-platform"], {
 		name = "cerys-ice-platform",
@@ -711,19 +860,19 @@ data:extend({
 		hidden = true,
 		can_be_part_of_blueprint = true,
 		collision_mask = merge(data.raw.tile["ice-platform"].collision_mask, {
-			layers = ice_platform_layers,
+			layers = ice_platform_layers
 		}),
-		is_foundation = false,
-	}),
+		is_foundation = false
+	})
 })
 
---== Empty space ==--
+-- == Empty space ==--
 
 local cerys_empty = merge(data.raw.tile["empty-space"], {
 	subgroup = "cerys-tiles",
 	name = "cerys-empty-space", -- Legacy tile. We're not migrating it so not to break old saves
 	destroys_dropped_items = true,
-	factoriopedia_alternative = "cerys-empty-space-2",
+	factoriopedia_alternative = "cerys-empty-space-2"
 })
 if not cerys_empty.collision_mask then
 	cerys_empty.collision_mask = { layers = {} }
@@ -739,12 +888,12 @@ local cerys_empty_2 = merge(data.raw.tile["empty-space"], {
 	collision_mask = {
 		colliding_with_tiles_only = true,
 		not_colliding_with_itself = true,
-		layers = data.raw.tile["empty-space"].collision_mask.layers,
-	},
+		layers = data.raw.tile["empty-space"].collision_mask.layers
+	}
 })
 table.insert(out_of_map_tile_type_names, "cerys-empty-space-2")
 
 data:extend({
 	cerys_empty,
-	cerys_empty_2,
+	cerys_empty_2
 })

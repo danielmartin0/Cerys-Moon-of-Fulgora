@@ -8,21 +8,13 @@ end
 storage.cerys.rod_registrations = storage.cerys.rod_registrations or {}
 
 local CHILD_NAMES = {
-	"cerys-charging-rod-glow-r",
-	"cerys-charging-rod-glow-b",
-	"cerys-charging-rod-animation-r",
-	"cerys-charging-rod-animation-b",
-	"cerys-charging-rod-lamp-blue",
-	"cerys-charging-rod-lamp-red",
+	"cerys-charging-rod-glow-r", "cerys-charging-rod-glow-b", "cerys-charging-rod-animation-r",
+	"cerys-charging-rod-animation-b", "cerys-charging-rod-lamp-blue", "cerys-charging-rod-lamp-red"
 }
 
 local LEGACY_FIELDS = {
-	"red_light_entity",
-	"blue_light_entity",
-	"red_glow_entity",
-	"blue_glow_entity",
-	"red_lamp_entity",
-	"blue_lamp_entity",
+	"red_light_entity", "blue_light_entity", "red_glow_entity", "blue_glow_entity", "red_lamp_entity",
+	"blue_lamp_entity"
 }
 
 local surface = lib.generated_cerys_surface()

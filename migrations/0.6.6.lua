@@ -11,11 +11,6 @@ if not surface then
 end
 
 local reactor = storage.cerys.reactor
-if
-	reactor
-	and reactor.entity
-	and reactor.entity.valid
-	and reactor.entity.name == "cerys-fulgoran-reactor-wreck-cleared"
-then
+if reactor and reactor.entity and reactor.entity.valid and reactor.entity.name == "cerys-fulgoran-reactor-wreck-cleared" then
 	reactor.entity.minable_flag = true
 end

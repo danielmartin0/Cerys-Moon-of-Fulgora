@@ -25,13 +25,13 @@ if mods["any-planet-start"] then
 	if data.raw.recipe["heat-exchanger"] then
 		table.insert(discovery_tech.effects, {
 			type = "unlock-recipe",
-			recipe = "heat-exchanger",
+			recipe = "heat-exchanger"
 		})
 	end
 	if data.raw.recipe["kovarex-enrichment-process"] then
 		table.insert(discovery_tech.effects, {
 			type = "unlock-recipe",
-			recipe = "kovarex-enrichment-process",
+			recipe = "kovarex-enrichment-process"
 		})
 	end
 end

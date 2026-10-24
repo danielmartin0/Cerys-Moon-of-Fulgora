@@ -4,7 +4,7 @@ data:extend({
 		name = "cerys-enforce-vanilla-recycling-recipes",
 		setting_type = "startup",
 		default_value = true,
-		order = "b",
+		order = "b"
 	},
 	{
 		type = "double-setting",
@@ -13,63 +13,63 @@ data:extend({
 		default_value = 1.0,
 		minimum_value = 0.1,
 		maximum_value = 100000.0,
-		order = "c",
+		order = "c"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-radiative-heaters-require-cryogenic-science",
 		setting_type = "startup",
 		default_value = true,
-		order = "d",
+		order = "d"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-fusion-reactor-requires-radiative-tower",
 		setting_type = "startup",
 		default_value = false,
-		order = "e",
+		order = "e"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-use-fulgora-starmap-graphic",
 		setting_type = "startup",
 		default_value = false,
-		order = "f",
+		order = "f"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-sandbox-mode",
 		setting_type = "startup",
 		default_value = false,
-		order = "g",
+		order = "g"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-secret-cell-productivity-tech-for-legacy-saves",
 		setting_type = "startup",
 		default_value = false,
-		order = "z",
+		order = "z"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-dynamic-lighting",
 		setting_type = "runtime-global",
 		default_value = true,
-		order = "a",
+		order = "a"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-asteroid-chunks-drop-on-belts",
 		setting_type = "runtime-global",
 		default_value = true,
-		order = "b",
+		order = "b"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-solar-wind-when-not-looking-at-surface",
 		setting_type = "runtime-global",
 		default_value = false,
-		order = "d",
+		order = "d"
 	},
 	{
 		type = "double-setting",
@@ -78,7 +78,7 @@ data:extend({
 		default_value = 100.0,
 		minimum_value = 0.0,
 		maximum_value = 200.0,
-		order = "f",
+		order = "f"
 	},
 	{
 		type = "double-setting",
@@ -87,22 +87,22 @@ data:extend({
 		default_value = 1.0,
 		minimum_value = 0.1,
 		maximum_value = 1000.0,
-		order = "g",
+		order = "g"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-parallax-in-multiplayer",
 		setting_type = "runtime-global",
 		default_value = true,
-		order = "h",
+		order = "h"
 	},
 	{
 		type = "bool-setting",
 		name = "cerys-disable-kofi-toast",
 		setting_type = "runtime-global",
 		default_value = false,
-		order = "z",
-	},
+		order = "z"
+	}
 })
 
 data:extend({
@@ -112,6 +112,6 @@ data:extend({
 		name = "cerys-hardcore-mode",
 		forced_value = false,
 		default_value = false,
-		hidden = true,
-	},
+		hidden = true
+	}
 })

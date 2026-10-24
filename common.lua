@@ -4,26 +4,11 @@ Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
 
-Public.GRAVITY_MIN = {
-	property = "gravity",
-	min = 0.15,
-}
-Public.FIVE_PRESSURE_MIN = {
-	property = "pressure",
-	min = 5,
-}
-Public.TEN_PRESSURE_MIN = {
-	property = "pressure",
-	min = 10,
-}
-Public.AMBIENT_RADIATION_MAX = {
-	property = "cerys-ambient-radiation",
-	max = 300,
-}
-Public.AMBIENT_RADIATION_MIN = {
-	property = "cerys-ambient-radiation",
-	min = 400,
-}
+Public.GRAVITY_MIN = { property = "gravity", min = 0.15 }
+Public.FIVE_PRESSURE_MIN = { property = "pressure", min = 5 }
+Public.TEN_PRESSURE_MIN = { property = "pressure", min = 10 }
+Public.AMBIENT_RADIATION_MAX = { property = "cerys-ambient-radiation", max = 300 }
+Public.AMBIENT_RADIATION_MIN = { property = "cerys-ambient-radiation", min = 400 }
 
 Public.HARD_MODE_ON = settings.startup["cerys-hardcore-mode"].value
 
@@ -41,8 +26,7 @@ Public.FACTORIO_UNDO_FROZEN_TINT = { 1, 0.91, 0.82, 1 }
 Public.LAMP_COUNT = 30 -- Accounting for quality
 Public.DAY_LENGTH_MINUTES = 6 -- Fulgora is 3 minutes
 Public.FIRST_CRYO_REPAIR_RECIPES_NEEDED = 50
-Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 200 or
-	100 -- Having more than two distinct values is a bad idea
+Public.DEFAULT_CRYO_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 200 or 100 -- Having more than two distinct values is a bad idea
 Public.DEFAULT_CRUSHER_REPAIR_RECIPES_NEEDED = 20
 Public.REACTOR_CONCRETE_TO_EXCAVATE = 4000
 Public.BASE_REACTOR_REPAIR_RECIPES_NEEDED = Public.HARD_MODE_ON and 1000 or 400
@@ -67,41 +51,21 @@ Public.DEFAULT_FULGORA_IMAGE_SIZE = 2048
 Public.FULGORAN_TOWER_MINING_TECH_NAME = "cerys-radiative-heaters"
 
 Public.ROCK_TILES = {
-	"cerys-ash-cracks",
-	"cerys-ash-cracks-frozen",
-	"cerys-ash-cracks-frozen-from-dry-ice",
-	"cerys-ash-dark",
-	"cerys-ash-dark-frozen",
-	"cerys-ash-dark-frozen-from-dry-ice",
-	"cerys-ash-light",
-	"cerys-ash-light-frozen",
-	"cerys-ash-light-frozen-from-dry-ice",
-	"cerys-pumice-stones",
-	"cerys-pumice-stones-frozen",
-	"cerys-pumice-stones-frozen-from-dry-ice",
+	"cerys-ash-cracks", "cerys-ash-cracks-frozen", "cerys-ash-cracks-frozen-from-dry-ice", "cerys-ash-dark",
+	"cerys-ash-dark-frozen", "cerys-ash-dark-frozen-from-dry-ice", "cerys-ash-light", "cerys-ash-light-frozen",
+	"cerys-ash-light-frozen-from-dry-ice", "cerys-pumice-stones", "cerys-pumice-stones-frozen",
+	"cerys-pumice-stones-frozen-from-dry-ice"
 }
 
-Public.SPACE_TILES_AROUND_CERYS = {
-	"out-of-map",
-	"empty-space",
-	"cerys-empty-space",
-	"cerys-empty-space-2",
-}
+Public.SPACE_TILES_AROUND_CERYS = { "out-of-map", "empty-space", "cerys-empty-space", "cerys-empty-space-2" }
 
-Public.KNOWN_GAS_NAMES = {
-	"steam",
-	"methane",
-	"petroleum-gas",
-	"fusion-plasma",
-	"oxygen",
-	"hydrogen",
-}
+Public.KNOWN_GAS_NAMES = { "steam", "methane", "petroleum-gas", "fusion-plasma", "oxygen", "hydrogen" }
 
 Public.SOFTBANNED_RESOURCES = {
 	"heavy-oil",
 	"crude-oil",
 	"coal",
-	"steam",
+	"steam"
 	-- "stone", -- having stone is OK as long as you don't make power
 }
 
@@ -119,7 +83,7 @@ Public.TILE_REPLACEMENTS = {
 	["frozen-refined-hazard-concrete-left"] = "cerys-frozen-refined-hazard-concrete-left",
 	["frozen-refined-hazard-concrete-right"] = "cerys-frozen-refined-hazard-concrete-right",
 	["foundation"] = "cerys-foundation",
-	["ice-platform"] = "cerys-ice-platform",
+	["ice-platform"] = "cerys-ice-platform"
 }
 
 Public.TILE_REPLACEMENTS_INVERSE = {}

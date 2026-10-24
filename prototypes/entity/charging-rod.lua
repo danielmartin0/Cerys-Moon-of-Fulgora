@@ -20,12 +20,12 @@ data:extend({
 		resistances = {
 			{
 				type = "fire",
-				percent = 90,
+				percent = 90
 			},
 			{
 				type = "electric",
-				percent = 100,
-			},
+				percent = 100
+			}
 		},
 		collision_box = { { -0.65, -0.65 }, { 0.65, 0.65 } },
 		selection_box = { { -0.9, -1 }, { 0.9, 1 } },
@@ -43,14 +43,14 @@ data:extend({
 				name = "cerys-charging-rod-animation-r",
 				position = { x = 0, y = 1 },
 				})
-			]],
+			]]
 		},
 		energy_source = {
 			type = "electric",
 			usage_priority = "tertiary",
 			buffer_capacity = "12MJ",
 			input_flow_limit = "6MW",
-			output_flow_limit = "500kW",
+			output_flow_limit = "500kW"
 		},
 		chargable_graphics = merge(data.raw["lightning-attractor"]["lightning-rod"].chargable_graphics, {
 			discharge_animation = {
@@ -60,9 +60,9 @@ data:extend({
 						blend_mode = "additive",
 						scale = 0.375 * 0.85,
 						frame_count = 24,
-						draw_as_glow = true,
-					}),
-				},
+						draw_as_glow = true
+					})
+				}
 			},
 			charge_animation = {
 				layers = {
@@ -71,29 +71,29 @@ data:extend({
 						blend_mode = "additive",
 						scale = 0.375 * 0.85,
 						frame_count = 24,
-						draw_as_glow = true,
-					}),
-				},
+						draw_as_glow = true
+					})
+				}
 			},
 			picture = {
 				layers = {
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/tower", {
 						priority = "high",
 						scale = 0.27 * 0.85,
-						multiply_shift = 0.85,
+						multiply_shift = 0.85
 					}),
 					util.sprite_load("__Cerys-Moon-of-Fulgora__/graphics/entity/charging-rod/shadow", {
 						priority = "high",
 						draw_as_shadow = true,
 						scale = 0.27 * 0.85,
-						multiply_shift = 0.85,
-					}),
-				},
+						multiply_shift = 0.85
+					})
+				}
 			},
-			charge_animation_is_looped = true,
+			charge_animation_is_looped = true
 		}),
 		surface_conditions = {
-			common.AMBIENT_RADIATION_MIN,
+			common.AMBIENT_RADIATION_MIN
 		},
 		working_sound = {
 			max_sounds_per_prototype = 4,
@@ -102,29 +102,29 @@ data:extend({
 					sound = {
 						filename = "__base__/sound/accumulator-working.ogg",
 						volume = 0.9,
-						speed = 0.77,
+						speed = 0.77
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,
-					fade_out_ticks = 8,
+					fade_out_ticks = 8
 				},
 				{
 					sound = {
 						filename = "__base__/sound/accumulator-discharging.ogg",
 						volume = 0.9,
-						speed = 0.77,
+						speed = 0.77
 					},
 					match_volume_to_activity = true,
 					fade_in_ticks = 4,
-					fade_out_ticks = 8,
-				},
-			},
+					fade_out_ticks = 8
+				}
+			}
 		},
 		circuit_connector = circuit_connector_definitions.create_single(universal_connector_template, {
 			variation = 24,
 			main_offset = util.by_pixel(-5.125, -29),
 			shadow_offset = util.by_pixel(-5.125, -29),
-			show_shadow = true,
+			show_shadow = true
 		}),
 		circuit_wire_max_distance = default_circuit_wire_max_distance,
 		custom_tooltip_fields = {
@@ -132,10 +132,10 @@ data:extend({
 				name = { "cerys.charging-rod-voltage-tooltip-name" },
 				quality_header = "cerys.quality-tooltip-header-decreases-with-higher-qualities",
 				value = { "cerys.tooltip-unknown-value" },
-				quality_values = {}, -- Filled in data-final-fixes
-			},
+				quality_values = {} -- Filled in data-final-fixes
+			}
 		},
-		default_output_signal = { type = "virtual", name = "signal-A" },
+		default_output_signal = { type = "virtual", name = "signal-A" }
 		-- radius_visualisation_specification = {
 		-- 	distance = 13,
 		-- 	sprite = {
@@ -170,11 +170,11 @@ data:extend({
 					scale = 0.27 * 0.85,
 					-- shift = util.by_pixel(0, -81 * 0.85 - 32),
 					shift = util.by_pixel(-1.296, -91.6),
-					animation_speed = 0.17,
+					animation_speed = 0.17
 					-- run_mode = "backward",
-				},
-			},
-		},
+				}
+			}
+		}
 	},
 	{
 		type = "simple-entity",
@@ -199,11 +199,11 @@ data:extend({
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
 					-- shift = util.by_pixel(-1.296, -91.6),
-					animation_speed = 0.17,
+					animation_speed = 0.17
 					-- run_mode = "backward",
-				},
-			},
-		},
+				}
+			}
+		}
 	},
 	{
 		type = "simple-entity",
@@ -222,10 +222,10 @@ data:extend({
 					height = 1000,
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					blend_mode = "additive",
-				},
-			},
-		},
+					blend_mode = "additive"
+				}
+			}
+		}
 	},
 	{
 		type = "simple-entity",
@@ -244,17 +244,17 @@ data:extend({
 					height = 1000,
 					scale = 0.27 * 0.85,
 					shift = util.by_pixel(0, -81 * 0.85 - 32),
-					blend_mode = "additive",
-				},
-			},
-		},
+					blend_mode = "additive"
+				}
+			}
+		}
 	},
 	merge(data_utils.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-blue",
-		light = { intensity = 0.15, size = 10, color = { r = 0.8, g = 0.8, b = 1 } },
+		light = { intensity = 0.15, size = 10, color = { r = 0.8, g = 0.8, b = 1 } }
 	}),
 	merge(data_utils.hidden_lamp_base, {
 		name = "cerys-charging-rod-lamp-red",
-		light = { intensity = 0.15, size = 10, color = { r = 1, g = 0.8, b = 0.8 } },
-	}),
+		light = { intensity = 0.15, size = 10, color = { r = 1, g = 0.8, b = 0.8 } }
+	})
 })
