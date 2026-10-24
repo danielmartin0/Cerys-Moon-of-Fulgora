@@ -1,10 +1,12 @@
 ---------------------------------------------------------------------------------------------------
-Version: 4.24.19
+Version: 4.25.0
 Date: ????
+  Features:
+    - Cerys now has menu simulations! Thanks to Holda2 and pangolin87 for creating them.
   Changes:
     - 'Plutonium productivity' technology renamed to 'Transmutation efficiency'
   Graphics:
-    - Use of the native orbit graphics in Factorio 2.1.20.
+    - Native graphics for the orbital line are now used around Cerys on the starmap.
   Locale:
     - Updated Ukranian locale.
 ---------------------------------------------------------------------------------------------------
