@@ -3,6 +3,7 @@ local Public = {}
 Public.DEBUG_DISABLE_FREEZING = false
 Public.DEBUG_HEATERS_FUELED = false
 Public.DEBUG_NUCLEAR_REACTOR_START = false
+Public.DEBUG_ONLY_CERYS_MENU_SIMULATIONS = true
 
 Public.GRAVITY_MIN = { property = "gravity", min = 0.15 }
 Public.FIVE_PRESSURE_MIN = { property = "pressure", min = 5 }
