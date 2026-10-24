@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.0
-Date: ????
+Date: 2026-10-24
   Features:
     - Cerys now has menu simulations! Thanks to Holda2 and pangolin87 for creating them.
   Changes:
