@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.1
 Date: ????
+  Bugfixes:
+    - Roboports that need more pressure than Nauvis, such as the Maraxsis pressure dome and its regulator or the Tenebris Prime bioluminescent roboports, are no longer made buildable at low pressure (they could be placed on almost every planet).
   Graphics:
     - Removed the setting 'Use Fulgora starmap graphic'. This setting was used to customize the Fulgora backdrop to match a modded Fulgora starmap graphic the player might have installed. Instead, such modified graphics are now detected and used automatically. Conversely, players can no longer get stuck on a low-res Fulgora graphic after uninstalling such a mod.
 ---------------------------------------------------------------------------------------------------
