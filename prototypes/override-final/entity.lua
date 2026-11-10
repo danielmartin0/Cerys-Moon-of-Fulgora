@@ -21,9 +21,27 @@ end
 
 -- == Surface Condition Relaxations ==--
 
--- Vanilla and modded roboports:
+-- Vanilla and modded roboports. Roboports that need a higher pressure than Nauvis are made for one planet (such as the
+-- Maraxsis pressure dome and its regulator, or the Tenebris Prime bioluminescent roboports), so relaxing them would
+-- make them buildable almost everywhere:
+local nauvis_pressure = data.raw.planet.nauvis
+		and data.raw.planet.nauvis.surface_properties
+		and data.raw.planet.nauvis.surface_properties.pressure
+	or 1000
+
+local function needs_more_pressure_than_nauvis(entity)
+	for _, condition in pairs(entity.surface_conditions or {}) do
+		if condition.property == "pressure" and condition.min and condition.min > nauvis_pressure then
+			return true
+		end
+	end
+	return false
+end
+
 for _, entity in pairs(data.raw["roboport"]) do
-	PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
+	if not needs_more_pressure_than_nauvis(entity) then
+		PlanetsLib.relax_surface_conditions(entity, common.FIVE_PRESSURE_MIN)
+	end
 end
 -- Vanilla and modded burner inserters (to help with freeze reboots):
 for _, entity in pairs(data.raw["inserter"]) do
