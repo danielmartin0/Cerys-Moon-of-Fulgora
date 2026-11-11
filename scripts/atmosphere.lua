@@ -534,12 +534,10 @@ function Public.tick_8_solar_wind_collisions(probability_multiplier)
 											})
 
 											if e.force and e.force.valid then
-												e.force
-													.get_item_production_statistics(surface)
-													.on_flow("plutonium-239", item.stack.count)
-												e.force
-													.get_item_production_statistics(surface)
-													.on_flow("uranium-238", -item.stack.count)
+												local quality_name = item.stack.quality.name
+												local stats = e.force.get_item_production_statistics(surface)
+												stats.on_flow({ name = "plutonium-239", quality = quality_name }, item.stack.count)
+												stats.on_flow({ name = "uranium-238", quality = quality_name }, -item.stack.count)
 											end
 
 											surface.create_entity({
@@ -629,8 +627,9 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 				end
 
 				if force and force.valid then
-					force.get_item_production_statistics(surface).on_flow("plutonium-239", number_mutated)
-					force.get_item_production_statistics(surface).on_flow("uranium-238", -number_mutated)
+					local stats = force.get_item_production_statistics(surface)
+					stats.on_flow({ name = "plutonium-239", quality = name }, number_mutated)
+					stats.on_flow({ name = "uranium-238", quality = name }, -number_mutated)
 				end
 
 				mutated = true
