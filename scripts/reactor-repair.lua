@@ -392,7 +392,15 @@ function Public.upgrading_existing_reactor(surface, reactor_entity, player, new_
 		reactor_entity.destroy()
 	end
 
-	player.cursor_stack.set_stack(nil)
+	-- Consume only the one scaffold used for the upgrade, not the whole stack:
+	local cursor_stack = player.cursor_stack
+	if cursor_stack and cursor_stack.valid_for_read then
+		if cursor_stack.count > 1 then
+			cursor_stack.count = cursor_stack.count - 1
+		else
+			cursor_stack.clear()
+		end
+	end
 end
 
 return Public
