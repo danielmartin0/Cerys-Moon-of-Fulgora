@@ -1,12 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.1
 Date: ????
-  Changes:
-    - Support for the new water effect texture fields in Factorio 2.1.22.
   Bugfixes:
     - Fixed that plutonium-239 production statistics did not respect quality.
   Graphics:
     - Fixed that the Fulgora backdrop could be blurry for players using the setting 'Use Fulgora starmap graphic' without Visible Planets In Space and a Fulgora mod. This setting has been removed.
+  Changes:
+    - Support for the new water effect texture fields in Factorio 2.1.22.
+  Locale:
+    - Russian translation updated.
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.0
 Date: 2026-10-24
