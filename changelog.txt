@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.1
-Date: ????
+Date: 2026-11-17
   Bugfixes:
     - Fixed that plutonium-239 production statistics did not respect quality.
   Graphics:
