@@ -6,6 +6,7 @@ require("prototypes.override-final.recipe")
 require("prototypes.override-final.sprites")
 require("prototypes.override-final.technology")
 require("prototypes.override-final.tooltips")
+require("prototypes.menu-simulations")
 
 require("compat.compat")
 require("compat.static-recycling")

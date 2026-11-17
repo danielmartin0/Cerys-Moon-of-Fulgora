@@ -2,3 +2,4 @@
 .idea
 *.zip
 spritter
+!menu-simulations/*.zip
