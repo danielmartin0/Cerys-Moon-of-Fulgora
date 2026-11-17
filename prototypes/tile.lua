@@ -387,16 +387,9 @@ data:extend({
 	merge(data.raw["tile-effect"]["brash-ice-2"], {
 		name = "cerys-water-puddles-2",
 		water = merge(data.raw["tile-effect"]["brash-ice-2"].water, {
-			textures = {
+			image_textures = {
 				{
-					filename = "__space-age__/graphics/terrain/gleba/watercaustics.png",
-					width = 512,
-					height = 512
-				},
-				{
-					filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-shallow-water.png",
-					width = 512 * 4,
-					height = 512 * 2
+					filename = "__Cerys-Moon-of-Fulgora__/graphics/terrain/cerys-shallow-water.png"
 				}
 			},
 			animation_speed = 4,
@@ -460,76 +453,72 @@ data:extend({
 -- == Dry ice ==--
 
 -- stylua: ignore
-local dry_ice_rough_variants = tile_variations_template(
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/dry-ice-rough.png",
-	"__base__/graphics/terrain/masks/transition-4.png",
-	{
-		max_size = 4,
-		[1] = {
-			weights = {
-				0.085,
-				0.085,
-				0.085,
-				0.085,
-				0.087,
-				0.085,
-				0.065,
-				0.085,
-				0.045,
-				0.045,
-				0.045,
-				0.045,
-				0.005,
-				0.025,
-				0.045,
-				0.045
-			}
-		},
-		[2] = {
-			probability = 1,
-			weights = {
-				0.018,
-				0.020,
-				0.015,
-				0.025,
-				0.015,
-				0.020,
-				0.025,
-				0.015,
-				0.025,
-				0.025,
-				0.010,
-				0.025,
-				0.020,
-				0.025,
-				0.025,
-				0.010
-			}
-		},
-		[4] = {
-			probability = 0.1,
-			weights = {
-				0.018,
-				0.020,
-				0.015,
-				0.025,
-				0.015,
-				0.020,
-				0.025,
-				0.015,
-				0.025,
-				0.025,
-				0.010,
-				0.025,
-				0.020,
-				0.025,
-				0.025,
-				0.010
-			}
+local dry_ice_rough_variants = tile_variations_template("__Cerys-Moon-of-Fulgora__/graphics/terrain/dry-ice-rough.png", "__base__/graphics/terrain/masks/transition-4.png", {
+	max_size = 4,
+	[1] = {
+		weights = {
+			0.085,
+			0.085,
+			0.085,
+			0.085,
+			0.087,
+			0.085,
+			0.065,
+			0.085,
+			0.045,
+			0.045,
+			0.045,
+			0.045,
+			0.005,
+			0.025,
+			0.045,
+			0.045
 		}
-		--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
+	},
+	[2] = {
+		probability = 1,
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
+	},
+	[4] = {
+		probability = 0.1,
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
 	}
-)
+	--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
+})
 
 local dry_ice_transitions = util.table.deepcopy(water_ice_transitions)
 dry_ice_transitions[1].to_tiles = {
@@ -598,76 +587,72 @@ data:extend({
 })
 
 -- stylua: ignore
-local dry_ice_rough_land_variants = tile_variations_template(
-	"__Cerys-Moon-of-Fulgora__/graphics/terrain/dry-ice-rough-land.png",
-	"__base__/graphics/terrain/masks/transition-4.png",
-	{
-		max_size = 4,
-		[1] = {
-			weights = {
-				0.085,
-				0.085,
-				0.085,
-				0.085,
-				0.087,
-				0.085,
-				0.065,
-				0.085,
-				0.045,
-				0.045,
-				0.045,
-				0.045,
-				0.005,
-				0.025,
-				0.045,
-				0.045
-			}
-		},
-		[2] = {
-			probability = 1,
-			weights = {
-				0.018,
-				0.020,
-				0.015,
-				0.025,
-				0.015,
-				0.020,
-				0.025,
-				0.015,
-				0.025,
-				0.025,
-				0.010,
-				0.025,
-				0.020,
-				0.025,
-				0.025,
-				0.010
-			}
-		},
-		[4] = {
-			probability = 0.1,
-			weights = {
-				0.018,
-				0.020,
-				0.015,
-				0.025,
-				0.015,
-				0.020,
-				0.025,
-				0.015,
-				0.025,
-				0.025,
-				0.010,
-				0.025,
-				0.020,
-				0.025,
-				0.025,
-				0.010
-			}
+local dry_ice_rough_land_variants = tile_variations_template("__Cerys-Moon-of-Fulgora__/graphics/terrain/dry-ice-rough-land.png", "__base__/graphics/terrain/masks/transition-4.png", {
+	max_size = 4,
+	[1] = {
+		weights = {
+			0.085,
+			0.085,
+			0.085,
+			0.085,
+			0.087,
+			0.085,
+			0.065,
+			0.085,
+			0.045,
+			0.045,
+			0.045,
+			0.045,
+			0.005,
+			0.025,
+			0.045,
+			0.045
 		}
-		--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
+	},
+	[2] = {
+		probability = 1,
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
+	},
+	[4] = {
+		probability = 0.1,
+		weights = {
+			0.018,
+			0.020,
+			0.015,
+			0.025,
+			0.015,
+			0.020,
+			0.025,
+			0.015,
+			0.025,
+			0.025,
+			0.010,
+			0.025,
+			0.020,
+			0.025,
+			0.025,
+			0.010
+		}
 	}
-)
+	--[8] = { probability = 1.00, weights = {0.090, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.025, 0.125, 0.005, 0.010, 0.100, 0.100, 0.010, 0.020, 0.020} }
+})
 
 local cerys_dry_ice_rough_land_base = merge(cerys_dry_ice_rough_base, {
 	variants = dry_ice_rough_land_variants,

@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 4.25.1
 Date: ????
+  Changes:
+    - Support for the new water effect texture fields in Factorio 2.1.22.
   Bugfixes:
     - Fixed that plutonium-239 production statistics did not respect quality.
   Graphics:
