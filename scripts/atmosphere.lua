@@ -621,18 +621,25 @@ function Public.irradiate_inventory(surface, inv, force, position, probability_m
 				storage.accrued_probability_units = storage.accrued_probability_units - number_mutated
 
 				local removed = inv.remove({ name = "uranium-238", count = 100, quality = name })
-				inv.insert({ name = "plutonium-239", count = number_mutated, quality = name })
-				if removed > number_mutated then
-					inv.insert({ name = "uranium-238", count = removed - number_mutated, quality = name })
+				-- Never create more plutonium than the uranium actually removed:
+				local to_convert = math.min(number_mutated, removed)
+				local converted = 0
+				if to_convert > 0 then
+					converted = inv.insert({ name = "plutonium-239", count = to_convert, quality = name })
+				end
+				if removed > converted then
+					inv.insert({ name = "uranium-238", count = removed - converted, quality = name })
 				end
 
-				if force and force.valid then
-					local stats = force.get_item_production_statistics(surface)
-					stats.on_flow({ name = "plutonium-239", quality = name }, number_mutated)
-					stats.on_flow({ name = "uranium-238", quality = name }, -number_mutated)
-				end
+				if converted > 0 then
+					if force and force.valid then
+						local stats = force.get_item_production_statistics(surface)
+						stats.on_flow({ name = "plutonium-239", quality = name }, converted)
+						stats.on_flow({ name = "uranium-238", quality = name }, -converted)
+					end
 
-				mutated = true
+					mutated = true
+				end
 			end
 		end
 	end
